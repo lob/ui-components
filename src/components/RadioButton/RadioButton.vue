@@ -7,7 +7,7 @@
       :value="value"
       :checked="checked"
       :disabled="disabled"
-      @change="onChange"
+      @click="onClick($event)"
     />
     <span class="radio__label">{{label}}</span>
   </label>
@@ -29,7 +29,7 @@ export default {
   },
   model: {
     prop: 'modelValue',
-    event: 'change'
+    event: 'input'
   },
   computed: {
     checked() {
@@ -37,8 +37,12 @@ export default {
     }
   },
   methods: {
-    onChange() {
-      this.$emit('change', this.value)
+    onClick(event) {
+      this.$emit('click', event)
+      this.$emit('input', this.value)
+      if (!this.checked) {
+        this.$emit('change', event)
+      }
     }
   }
 }
