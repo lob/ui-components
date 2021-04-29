@@ -29,7 +29,7 @@ export default {
   },
   model: {
     prop: 'modelValue',
-    event: 'input'
+    event: 'change'
   },
   computed: {
     checked() {
