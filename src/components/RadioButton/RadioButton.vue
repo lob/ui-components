@@ -1,21 +1,22 @@
 <template>
-  <label :class="['radio', {'radio--next-line': nextLine}]">
+  <div :class="['radio', {'radio--next-line': nextLine}, {'radio--disabled': disabled}]">
     <input
       type="radio"
       :class="['radio__input', {'radio__input--error': error}]"
       :name="name"
+      :id="value"
       :value="value"
       :checked="checked"
       :disabled="disabled"
       @click="onClick($event)"
     />
-    <span class="radio__label">{{label}}</span>
-  </label>
+    <label :for="value">{{label}}</label>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'RadioButton',
+  name: 'Radio',
   props: {
     modelValue: {
       default: ''
@@ -49,17 +50,18 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
   .radio {
-    margin-top: 0;
-    margin-bottom: 5px;
-    margin-left: 25px;
-    margin-right: 10px;
-    cursor: pointer;
     display: inline-block;
+    cursor: pointer;
+    margin-top: 5px;
+    margin-left: -15px;
+    margin-right: 12px;
   }
 
   .radio--next-line {
     display: block;
+    margin-bottom: 5px;
   }
 
   .radio--disabled {
@@ -68,56 +70,79 @@ export default {
 
   .radio__input {
     position: absolute;
-    margin: 0 !important;
-    padding: 0 !important;
+    margin: 0;
+    padding: 0;
     opacity: 0;
     height: 0;
     width: 0;
     pointer-events: none;
+    left: 42px;
+    top: -1px;
+  
+    + label {
+      font-size: 14px;
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      margin-left: 20px;
+
+      &::before {
+        content: '';
+        position: absolute;
+        display: inline-block;
+        left: 1px;
+        top: 3px;
+        border-radius: 50%;
+        border: 1px solid var(--color-gray-xl-dove);
+        width: 14px;
+        height: 14px;
+        background: transparent;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        display: inline-block;
+        left: 4px;
+        top: 6px;
+        border-radius: 50%;
+        width: 8px;
+        height: 8px;
+      }
+    }
+
+    &:checked {
+      + label::after {
+        background: var(--color-primary);
+        border-color: var(--color-gray-xl-dove);
+        box-shadow: 0px 0px 4px #{'rgba(var(--color-primary-rgb), 0.2)'};
+      }
+    }
+
+    &:hover {
+      + label::before {
+        box-shadow: 0px 0px 4px #{'rgba(var(--color-primary-rgb), 0.4)'};
+      }
+    }
+
+    &:focus {
+      + label::before {
+        border-color: var(--color-primary-xl);
+      }
+    }
+
+    &:disabled {
+      + label::before {
+        background: var(--color-white-mist);
+        border-color: var(--color-gray-xl-dove);
+        box-sizing: border-box;
+      }
+    }
   }
 
-  .radio__input + *::before {
-    content: "";
-    width: 14px;
-    height: 14px;
-    margin-right: 5px;
-    border-radius: 50%;
-    border-style: solid;
-    border-width: 1px;
-    border-color: var(--color-gray-xl-dove);
-    left: -20px;
-    position: absolute;
-    top: 4px;
-  }
-
-  .radio__input:checked + *::before {
-    background: radial-gradient(var(--color-primary) 0%, var(--color-primary) 40%, transparent 50%, transparent);
-    border-color: var(--color-gray-xl-dove);
-    box-shadow: 0px 0px 4px #{'rgba(var(--color-primary-rgb), 0.2)'};
-  }
-
-  .radio__input:hover + *::before {
-    box-shadow: 0px 0px 4px #{'rgba(var(--color-primary-rgb), 0.4)'};
-  }
-
-  .radio__input:focus + *::before {
-    border-color: var(--color-primary-xl);
-  }
-
-  .radio__input[disabled] + *::before {
-    background: var(--color-white-mist);
-    border-color: var(--color-gray-xl-dove);
-    box-sizing: border-box;
-  }
-
-  .radio__input--error + *::before {
-    border-color: var(--color-feedback-error);
-  }
-
-  .radio__label {
-    margin-bottom: 0;
-    text-align: left;
-    display: inline-block;
-    font-weight: 300;
+  .radio__input--error {
+    + label::before {
+      border-color: var(--color-feedback-error);
+    }
   }
 </style>
