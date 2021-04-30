@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: 'Radio',
+  name: 'RadioButton',
   props: {
     modelValue: {
       default: ''
@@ -50,7 +50,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
   .radio {
     display: inline-block;
     cursor: pointer;
