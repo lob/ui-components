@@ -55,8 +55,7 @@ export default {
     display: inline-block;
     cursor: pointer;
     margin-top: 5px;
-    margin-left: -15px;
-    margin-right: 12px;
+    margin-right: 15px;
   }
 
   .radio--next-line {
@@ -76,26 +75,26 @@ export default {
     height: 0;
     width: 0;
     pointer-events: none;
-    left: 42px;
-    top: -1px;
+    margin-top: 4px;
   
     + label {
       font-size: 14px;
+      font-weight: 300;
       position: relative;
       display: inline-block;
       cursor: pointer;
-      margin-left: 20px;
+      margin-left: 25px;
 
       &::before {
         content: '';
         position: absolute;
         display: inline-block;
-        left: 1px;
-        top: 3px;
+        left: -20px;
+        top: 2px;
         border-radius: 50%;
         border: 1px solid var(--color-gray-xl-dove);
-        width: 14px;
-        height: 14px;
+        width: 12px;
+        height: 12px;
         background: transparent;
       }
 
@@ -103,8 +102,8 @@ export default {
         content: '';
         position: absolute;
         display: inline-block;
-        left: 4px;
-        top: 6px;
+        left: -17px;
+        top: 5px;
         border-radius: 50%;
         width: 8px;
         height: 8px;
