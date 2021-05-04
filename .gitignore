@@ -1,3 +1,7 @@
+# Note: you may have to add a file to be ignored both here and in .npmignore.
+# A good candidate for this would be a file that contains sensitive information - that would also have to be added to .npmignore!
+# .npmignore takes precedence and will override, but we don't always want to gitignore some of the stuff that we want to npmignore (and vice versa).
+
 .DS_Store
 node_modules
 dist
