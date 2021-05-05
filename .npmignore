@@ -2,3 +2,4 @@
 node_modules
 
 *.stories.js
+*.mdx

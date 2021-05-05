@@ -1,16 +1,12 @@
 import Card from './Card.vue';
+import mdx from './Card.mdx';
 
 export default {
   title: 'Components/Card',
   component: Card,
   parameters: {
     docs: {
-      description: {
-        component: `Cards are a flexible component used to display content in a variety of contexts.
-          <br />
-          Please note: though you can only insert text into this demo, the card component will accept any valid HTML or Vue component.
-        `
-      }
+      page: mdx
     }
   },
   argTypes: {
