@@ -1,0 +1,27 @@
+import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs/blocks';
+import Card from './Card.vue';
+
+# Card
+
+Cards are a flexible component used to display content in a variety of contexts.
+
+<Preview>
+  <Story id="components-card--primary" />
+</Preview>
+
+<br />
+<br />
+
+## How to Use
+
+Please note: though you can only insert text in the Storybook demo, the card component will accept any valid HTML or Vue component.
+
+```html
+<card>
+  <p>I am a card.</p>
+</card>
+```
+
+## Props
+
+<ArgsTable story={PRIMARY_STORY} />

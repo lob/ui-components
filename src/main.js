@@ -1,4 +1,4 @@
-import './assets/css/colors.css'
+import './assets/styles/main.scss'
 import * as components from './components'
 
 const ComponentLibrary = {
