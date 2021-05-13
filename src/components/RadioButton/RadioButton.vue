@@ -1,51 +1,67 @@
 <template>
   <div :class="['radio', {'radio--separate-lines': this.$parent.separateLines}, {'radio--disabled': disabled}]">
     <input
+      :id="value"
       type="radio"
       :class="['radio__input', {'radio__input--error': error}]"
       :name="name"
-      :id="value"
       :value="value"
       :checked="checked"
       :disabled="disabled"
       @click="onClick($event)"
-    />
-    <label :for="value">{{label}}</label>
+    >
+    <label :for="value">{{ label }}</label>
   </div>
 </template>
 
 <script>
 export default {
   name: 'RadioButton',
-  props: {
-    modelValue: {
-      default: null
-    },
-    error: Boolean,
-    name: String,
-    value: String,
-    label: String,
-    disabled: Boolean,
-  },
   model: {
     prop: 'modelValue',
     event: 'input'
   },
+  props: {
+    modelValue: {
+      type: String,
+      default: null
+    },
+    error: {
+      type: Boolean,
+      default: false
+    },
+    name: {
+      type: String,
+      default: ''
+    },
+    value: {
+      type: String,
+      default: ''
+    },
+    label: {
+      type: String,
+      default: ''
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    }
+  },
   computed: {
-    checked() {
-      return this.modelValue == this.value
+    checked () {
+      return this.modelValue === this.value;
     }
   },
   methods: {
-    onClick(event) {
-      this.$emit('click', event)
-      this.$emit('input', this.value)
+    onClick (event) {
+      this.$emit('click', event);
+      this.$emit('input', this.value);
       if (!this.checked) {
-        this.$emit('change', event)
+        this.$emit('change', event);
       }
     }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">
@@ -74,7 +90,7 @@ export default {
     width: 0;
     pointer-events: none;
     margin-top: 4px;
-  
+
     + label {
       font-size: 14px;
       font-weight: 300;

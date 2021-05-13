@@ -1,13 +1,13 @@
 <template>
   <div class="card">
-    <slot name="content"></slot>
+    <slot name="content" />
   </div>
 </template>
 
 <script>
 export default {
   name: 'Card'
-}
+};
 </script>
 
 <style scoped lang="scss">
