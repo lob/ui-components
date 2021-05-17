@@ -1,0 +1,29 @@
+import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs/blocks';
+import Checkbox from './Checkbox.vue';
+
+# Checkbox
+
+A checkbox represents a value in typically a form that can either be true or false.
+
+<Preview>
+  <Story id="components-checkbox--primary" />
+</Preview>
+
+<br />
+<br />
+
+## How to Use
+
+The label and v-model are required. The other props are optional.
+
+```html
+<Checkbox
+  label="I am a checkbox"
+  v-model="mySwitch"
+>
+</Checkbox>
+```
+
+## Props
+
+<ArgsTable story={PRIMARY_STORY} />

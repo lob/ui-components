@@ -18,15 +18,30 @@
   export default {
     name: 'Checkbox',
     props: {
+      label: {
+        type: String,
+        required: true
+      },
       value: {
+        type: Boolean,
+        required: true
+      },
+      disabled: {
         type: Boolean,
         default: false
       },
-      name: String,
-      disabled: Boolean,
-      required: Boolean,
-      error: Boolean,
-      label: String
+      required: {
+        type: Boolean,
+        default: false
+      },
+      error: {
+        type: Boolean,
+        default: false
+      },
+      name: { 
+        type: String,
+        default: ''
+      }
     },
     computed: {
       checked() {
