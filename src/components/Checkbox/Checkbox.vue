@@ -10,7 +10,7 @@
       :required="required"
     />
     <span class="checkmark"></span>
-    <label for="name">{{label}}</label>
+    <label for="name" class="checkbox__label">{{label}}</label>
   </label>
 </template>
 
@@ -77,10 +77,6 @@
     margin-right: 10px;
     cursor: pointer;
     text-align: left;
-    label {
-      display: block;
-      padding-top: 2px;
-    }
   }
 
   .checkbox__input--disabled {
@@ -97,8 +93,6 @@
       border-color: var(--color-gray-xl-dove) !important;
     }
   }
-
-
 
   .checkbox__label {
     margin-bottom: 0;
