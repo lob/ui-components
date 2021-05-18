@@ -58,8 +58,8 @@ export default {
   .legend--sr-only {
     border: 0;
     clip: rect(0 0 0 0);
-    clip-path: polygon(0px 0px, 0px 0px, 0px 0px);
-    -webkit-clip-path: polygon(0px 0px, 0px 0px, 0px 0px);
+    clip-path: polygon(0 0, 0 0, 0 0);
+    -webkit-clip-path: polygon(0 0, 0 0, 0 0);
     height: 1px;
     margin: -1px;
     overflow: hidden;

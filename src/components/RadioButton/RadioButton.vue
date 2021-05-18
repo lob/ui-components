@@ -128,13 +128,19 @@ export default {
       + label::after {
         background: var(--color-primary);
         border-color: var(--color-gray-xl-dove);
-        box-shadow: 0px 0px 4px #{'rgba(var(--color-primary-rgb), 0.2)'};
+        box-shadow: 0 0 4px #{'rgba(var(--color-primary-rgb), 0.2)'};
+      }
+    }
+
+    .radio__input--error {
+      + label::before {
+        border-color: var(--color-feedback-error);
       }
     }
 
     &:hover {
       + label::before {
-        box-shadow: 0px 0px 4px #{'rgba(var(--color-primary-rgb), 0.4)'};
+        box-shadow: 0 0 4px #{'rgba(var(--color-primary-rgb), 0.4)'};
       }
     }
 
@@ -153,12 +159,6 @@ export default {
       + label::after {
         display: none;
       }
-    }
-  }
-
-  .radio__input--error {
-    + label::before {
-      border-color: var(--color-feedback-error);
     }
   }
 </style>
