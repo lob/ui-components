@@ -79,7 +79,7 @@
     text-align: left;
   }
 
-  .checkbox__input--disabled {
+  .checkbox__input--disabled, .checkbox__input--disabled label {
     cursor: not-allowed;
 
     .checkmark { 
@@ -160,4 +160,5 @@
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
   }
+
 </style>
