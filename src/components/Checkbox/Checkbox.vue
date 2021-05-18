@@ -95,7 +95,7 @@
   }
 
   .checkbox__label {
-    margin-bottom: 0;
+    margin-top: 3px;
     text-align: left;
     display: inline-block;
   }
