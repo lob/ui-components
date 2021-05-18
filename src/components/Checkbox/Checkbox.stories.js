@@ -9,24 +9,22 @@ export default {
       page: mdx
     }
   },
-  argTypes: {
-    'v-model': {
-      control: {
-        type: Boolean,
-        default: true
-      }
-    }
-  },
 };
+
+let checkboxVModel = false;
 
 const Template = (args, {argTypes}) => ({
   props: Object.keys(argTypes),
   components: { Checkbox },
-  template: '<checkbox v-bind="$props"></checkbox>',
+  data: () => ({ checkboxVModel }),
+  template: `
+    <checkbox 
+      v-bind="$props" 
+      v-model="checkboxVModel"
+    ></checkbox>`,
 });
 
 export const Primary = Template.bind({});
 Primary.args = {
-  label: 'Custom checkbox label',
-  error: false
+  label: 'Custom checkbox label'
 }

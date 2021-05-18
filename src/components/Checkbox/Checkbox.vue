@@ -1,5 +1,5 @@
 <template>
-  <label class="checkbox" :class="{'checkbox--disabled': disabled}">
+  <label class="checkbox" :class="{'checkbox__input--disabled': disabled}">
     <input
       :class="['checkbox__input', {'checkbox__input--error': error}]"
       type="checkbox"
@@ -10,7 +10,7 @@
       :required="required"
     />
     <span class="checkmark"></span>
-    {{label}}
+    <label for="name">{{label}}</label>
   </label>
 </template>
 
@@ -77,11 +77,28 @@
     margin-right: 10px;
     cursor: pointer;
     text-align: left;
+    label {
+      display: block;
+      padding-top: 2px;
+    }
   }
 
-  .checkbox--disabled {
+  .checkbox__input--disabled {
     cursor: not-allowed;
+
+    .checkmark { 
+      background: var(--color-white-mist);
+      border-color: var(--color-gray-xl-dove);
+    }  
+
+    /* locked state */
+    input:checked ~ .checkmark {
+      background: var(--color-gray-xl-dove) !important;
+      border-color: var(--color-gray-xl-dove) !important;
+    }
   }
+
+
 
   .checkbox__label {
     margin-bottom: 0;
@@ -124,8 +141,8 @@
   }
 
   .checkbox input:checked ~ .checkmark {
-    background-color: var(--color-primary-rgb);
-    border-color: var(--color-primary-rgb);
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
   }
 
   .checkmark:after {
