@@ -26,5 +26,6 @@ const Template = (args, {argTypes}) => ({
 
 export const Primary = Template.bind({});
 Primary.args = {
-  label: 'Custom checkbox label'
+  label: 'Custom checkbox label',
+  name: 'myInput'
 }
