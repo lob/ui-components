@@ -1,0 +1,22 @@
+import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs/blocks';
+import TopNavbar from './TopNavbar.vue';
+
+# Top Navbar
+
+This component represents the fixed header of the webapp, with a responsive display and different content depending if the user is logged in or not.
+
+<Preview>
+  <Story id="components-topnavbar--primary" />
+</Preview>
+
+## How to Use
+
+```html
+<TopNavbar>
+  Content
+</TopNavbar>
+```
+
+## Props
+
+<ArgsTable story={PRIMARY_STORY} />
