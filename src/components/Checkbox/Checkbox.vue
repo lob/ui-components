@@ -10,7 +10,7 @@
       :required="required"
     />
     <span class="checkmark"></span>
-    <label for="name" class="checkbox__label">{{label}}</label>
+    <label for="name" class="checkbox__label">{{label}} <template v-if="required">*</template></label>
   </label>
 </template>
 
