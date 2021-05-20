@@ -10,7 +10,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "build-library": "vue-cli-service build --target lib --name ui-components src/main.js",
-    "lint": "eslint --ext .js,.vue .",
+    "lint": "npm run lint:js && npm run lint:css",
+    "lint:js": "eslint --ext .js,.vue .",
     "lint:css": "stylelint 'src/**/*.vue'",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
