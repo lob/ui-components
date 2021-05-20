@@ -1,5 +1,8 @@
 <template>
-  <label class="checkbox" :class="{'checkbox__input--disabled': disabled}">
+  <label class="checkbox" 
+    :class="[{'checkbox__input--disabled': disabled},
+            {'checkbox__input--same-line': sameLine}]"
+  >
     <input
       :class="['checkbox__input', {'checkbox__input--error': error}]"
       type="checkbox"
@@ -41,6 +44,10 @@
       name: { 
         type: String,
         default: ''
+      },
+      sameLine: { 
+        type: Boolean,
+        default: false
       }
     },
     computed: {
@@ -77,6 +84,10 @@
     margin-right: 10px;
     cursor: pointer;
     text-align: left;
+  }
+
+  .checkbox__input--same-line {
+    display: inline-block
   }
 
   .checkbox__input--disabled, .checkbox__input--disabled label {
