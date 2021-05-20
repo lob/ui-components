@@ -6,11 +6,13 @@
     <input
       :class="['checkbox__input', {'checkbox__input--error': error}]"
       type="checkbox"
-      :value="checked"
-      @input="onInput"
+      v-model="computedVModel"
+      :value="nativeValue"
       :name="name"
       :disabled="disabled"
       :required="required"
+      :true-value="trueValue"
+      :false-value="falseValue"
     />
     <span class="checkmark"></span>
     <label for="name" class="checkbox__label">{{label}}<template v-if="required">*</template></label>
@@ -26,8 +28,19 @@
         required: true
       },
       value: {
-        type: Boolean,
+        type: null,
         required: true
+      },
+      nativeValue: {
+        type: null
+      },
+      trueValue: {
+        type: null,
+        default: true
+      },
+      falseValue: {
+        type: null,
+        default: false
       },
       disabled: {
         type: Boolean,
@@ -50,16 +63,27 @@
         default: false
       }
     },
-    computed: {
-      checked() {
-        return this.value
+    data() {
+      return {
+        privateValue: this.value
       }
     },
-    methods: {
-      onInput({target: {checked}}) {
-        this.$emit('input', checked)
+    computed: {
+      computedVModel: {
+        get() {
+            return this.privateValue
+        },
+        set(value) {
+            this.privateValue = value
+            this.$emit('input', value)
+        }
       }
-    }
+    },
+    watch: {
+      value(value) { // watch for external v-model change
+        this.privateValue = value
+      }
+    },
   }
 </script>
 
