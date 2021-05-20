@@ -10,10 +10,10 @@ export default {
     docs: {
       page: mdx
     }
-  },
+  }
 };
 
-const Template = (args, {argTypes}) => ({
+const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { RadioGroup, RadioButton },
   template: `
@@ -34,11 +34,11 @@ const Template = (args, {argTypes}) => ({
         value="big"
       />
     </radio-group>
-  `,
+  `
 });
 
 export const Primary = Template.bind({});
 Primary.args = {
   legend: 'Postcard Size',
-  separateLines: false,
-}
+  separateLines: false
+};
