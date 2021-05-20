@@ -11,16 +11,12 @@ export default {
   },
 };
 
-let checkboxVModel = false;
-
 const Template = (args, {argTypes}) => ({
   props: Object.keys(argTypes),
   components: { Checkbox },
-  data: () => ({ checkboxVModel }),
   template: `
     <checkbox 
       v-bind="$props" 
-      v-model="checkboxVModel"
     ></checkbox>`,
 });
 
