@@ -17,7 +17,9 @@ Vue.use(components);
 ```
 
 ## Development
+This repo was initialized using npm v7 which changes the `package-lock.json` file format changed significantly. Before installing node modules, make sure you have npm v7 installed.
 ```
+npm install -g npm@latest
 npm install
 ```
 
