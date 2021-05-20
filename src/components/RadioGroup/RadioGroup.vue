@@ -14,7 +14,8 @@ export default {
   props: {
     legend: String,
     srOnlyLegend: Boolean,
-    required: Boolean
+    separateLines: Boolean,
+    required: Boolean,
   }
 }
 </script>

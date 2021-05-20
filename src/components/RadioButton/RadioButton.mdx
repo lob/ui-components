@@ -1,0 +1,28 @@
+import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs/blocks';
+import RadioButton from './RadioButton.vue';
+
+# Radio Button
+
+A radio button typically represents a single option in a group of related choices. Only one can be selected at a time.
+
+<Preview>
+  <Story id="components-radio-button--primary" />
+</Preview>
+
+## How to Use
+
+Most of the time, radio buttons should be grouped together using a `radio-group` component. The `name` prop should be the same across the group so that (1) HTML can use it to figure out which group a radio button is in, and ensure that only one button in the group is selected and (2) screen readers can accurately group options together.
+
+You can pass in the `v-model` prop to bind radio buttons to the parent component's data model.
+
+```html
+<radio-button
+  name="postcard-size"
+  value="4x6"
+  label="4x6"
+/>
+```
+
+## Props
+
+<ArgsTable story={PRIMARY_STORY} />

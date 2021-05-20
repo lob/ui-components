@@ -1,5 +1,5 @@
 <template>
-  <div :class="['radio', {'radio--next-line': nextLine}, {'radio--disabled': disabled}]">
+  <div :class="['radio', {'radio--separate-lines': this.$parent.separateLines}, {'radio--disabled': disabled}]">
     <input
       type="radio"
       :class="['radio__input', {'radio__input--error': error}]"
@@ -19,9 +19,8 @@ export default {
   name: 'RadioButton',
   props: {
     modelValue: {
-      default: ''
+      default: null
     },
-    nextLine: Boolean,
     error: Boolean,
     name: String,
     value: String,
@@ -57,7 +56,7 @@ export default {
     margin-right: 15px;
   }
 
-  .radio--next-line {
+  .radio--separate-lines {
     display: block;
     margin-bottom: 5px;
   }
@@ -133,7 +132,10 @@ export default {
       + label::before {
         background: var(--color-white-mist);
         border-color: var(--color-gray-xl-dove);
-        box-sizing: border-box;
+      }
+
+      + label::after {
+        display: none;
       }
     }
   }
