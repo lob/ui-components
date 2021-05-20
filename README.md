@@ -2,7 +2,7 @@
 Lob's Vue component library
 
 ## To use in project
-```
+```bash
 npm install @lob/ui-components
 ```
 
@@ -18,18 +18,19 @@ Vue.use(components);
 
 ## Development
 This repo was initialized using npm v7 which changes the `package-lock.json` file format changed significantly. Before installing node modules, make sure you have npm v7 installed.
-```
+
+```bash
 npm install -g npm@latest
 npm install
 ```
 
 ### Lints and fixes files
-```
+```bash
 npm run lint
 ```
 
 ## Publish to NPM
-```
+```bash
 npm run build-bundle
 npm publish
 ```
