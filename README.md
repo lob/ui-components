@@ -21,6 +21,11 @@ Vue.use(components);
 npm install
 ```
 
+## Unit testing
+```bash
+npm run test:unit
+```
+
 ### Lints and fixes files
 ```
 npm run lint
