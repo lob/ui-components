@@ -63,25 +63,14 @@
         default: false
       }
     },
-    data() {
-      return {
-        privateValue: this.value
-      }
-    },
     computed: {
       computedVModel: {
         get() {
-            return this.privateValue
+          return this.value
         },
         set(value) {
-            this.privateValue = value
-            this.$emit('input', value)
+          this.$emit('input', value)
         }
-      }
-    },
-    watch: {
-      value(value) { // watch for external v-model change
-        this.privateValue = value
       }
     },
   }
