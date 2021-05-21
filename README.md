@@ -24,6 +24,11 @@ npm install -g npm@7.13.0
 npm install
 ```
 
+## Unit testing
+```bash
+npm run test:unit
+```
+
 ### Lints and fixes files
 ```bash
 npm run lint
