@@ -18,15 +18,15 @@ export default {
   }
 };
 
-const Template = (args, {argTypes}) => ({
+const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { RadioButton },
-  template: '<radio-button v-bind="$props" />',
+  template: '<radio-button v-bind="$props" />'
 });
 
 export const Primary = Template.bind({});
 Primary.args = {
   name: 'postcard-size',
   label: '4x6',
-  value: '4x6',
-}
+  value: '4x6'
+};

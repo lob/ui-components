@@ -2,9 +2,14 @@
   <fieldset class="fieldset">
     <legend :class="['legend', {'legend--sr-only': srOnlyLegend}]">
       {{ legend }}
-      <span v-if="required" class="legend--required">*</span>
+      <span
+        v-if="required"
+        class="legend--required"
+      >
+        *
+      </span>
     </legend>
-    <slot></slot>
+    <slot />
   </fieldset>
 </template>
 
@@ -12,12 +17,24 @@
 export default {
   name: 'RadioGroup',
   props: {
-    legend: String,
-    srOnlyLegend: Boolean,
-    separateLines: Boolean,
-    required: Boolean,
+    legend: {
+      type: String,
+      default: ''
+    },
+    srOnlyLegend: {
+      type: Boolean,
+      default: false
+    },
+    separateLines: {
+      type: Boolean,
+      default: false
+    },
+    required: {
+      type: Boolean,
+      default: false
+    }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">
@@ -39,11 +56,11 @@ export default {
   }
 
   .legend--sr-only {
-    border: 0; 
-    clip: rect(0 0 0 0); 
-    clip-path: polygon(0px 0px, 0px 0px, 0px 0px);
-    -webkit-clip-path: polygon(0px 0px, 0px 0px, 0px 0px);
-    height: 1px; 
+    border: 0;
+    clip: rect(0 0 0 0);
+    clip-path: polygon(0 0, 0 0, 0 0);
+    -webkit-clip-path: polygon(0 0, 0 0, 0 0);
+    height: 1px;
     margin: -1px;
     overflow: hidden;
     padding: 0;

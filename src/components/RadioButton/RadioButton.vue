@@ -1,51 +1,67 @@
 <template>
   <div :class="['radio', {'radio--separate-lines': this.$parent.separateLines}, {'radio--disabled': disabled}]">
     <input
+      :id="value"
       type="radio"
       :class="['radio__input', {'radio__input--error': error}]"
       :name="name"
-      :id="value"
       :value="value"
       :checked="checked"
       :disabled="disabled"
       @click="onClick($event)"
-    />
-    <label :for="value">{{label}}</label>
+    >
+    <label :for="value">{{ label }}</label>
   </div>
 </template>
 
 <script>
 export default {
   name: 'RadioButton',
-  props: {
-    modelValue: {
-      default: null
-    },
-    error: Boolean,
-    name: String,
-    value: String,
-    label: String,
-    disabled: Boolean,
-  },
   model: {
     prop: 'modelValue',
     event: 'input'
   },
+  props: {
+    modelValue: {
+      type: String,
+      default: null
+    },
+    error: {
+      type: Boolean,
+      default: false
+    },
+    name: {
+      type: String,
+      default: ''
+    },
+    value: {
+      type: String,
+      default: ''
+    },
+    label: {
+      type: String,
+      default: ''
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    }
+  },
   computed: {
-    checked() {
-      return this.modelValue == this.value
+    checked () {
+      return this.modelValue === this.value;
     }
   },
   methods: {
-    onClick(event) {
-      this.$emit('click', event)
-      this.$emit('input', this.value)
+    onClick (event) {
+      this.$emit('click', event);
+      this.$emit('input', this.value);
       if (!this.checked) {
-        this.$emit('change', event)
+        this.$emit('change', event);
       }
     }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">
@@ -74,7 +90,7 @@ export default {
     width: 0;
     pointer-events: none;
     margin-top: 4px;
-  
+
     + label {
       font-size: 14px;
       font-weight: 300;
@@ -112,13 +128,19 @@ export default {
       + label::after {
         background: var(--color-primary);
         border-color: var(--color-gray-xl-dove);
-        box-shadow: 0px 0px 4px #{'rgba(var(--color-primary-rgb), 0.2)'};
+        box-shadow: 0 0 4px #{'rgba(var(--color-primary-rgb), 0.2)'};
+      }
+    }
+
+    .radio__input--error {
+      + label::before {
+        border-color: var(--color-feedback-error);
       }
     }
 
     &:hover {
       + label::before {
-        box-shadow: 0px 0px 4px #{'rgba(var(--color-primary-rgb), 0.4)'};
+        box-shadow: 0 0 4px #{'rgba(var(--color-primary-rgb), 0.4)'};
       }
     }
 
@@ -137,12 +159,6 @@ export default {
       + label::after {
         display: none;
       }
-    }
-  }
-
-  .radio__input--error {
-    + label::before {
-      border-color: var(--color-feedback-error);
     }
   }
 </style>
