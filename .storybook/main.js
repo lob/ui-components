@@ -13,7 +13,16 @@ module.exports = {
   webpackFinal: async (config, { configType }) => {
     config.module.rules.push({
       test: /\.scss$/,
-      use: ['vue-style-loader', 'css-loader', 'sass-loader'],
+      use: [
+        'vue-style-loader', 
+        'css-loader',
+        {
+          loader: 'sass-loader',
+  		    options: {
+  			    additionalData: '@import "src/assets/styles/mixins.scss";'
+          } 
+        }
+      ],
       include: path.resolve(__dirname, '../'),
     });
     return config;
