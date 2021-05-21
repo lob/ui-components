@@ -1,18 +1,18 @@
 <template>
-  <label class="checkbox" 
+  <label 
+    class="checkbox" 
     :class="[{'checkbox__input--disabled': disabled},
             {'checkbox__input--same-line': sameLine}]"
   >
     <input
-      :class="['checkbox__input', {'checkbox__input--error': error}]"
       type="checkbox"
-      v-model="computedVModel"
-      :value="nativeValue"
+      :class="['checkbox__input', {'checkbox__input--error': error}]"
+      :checked="checked"
+      :value="value"
       :name="name"
       :disabled="disabled"
       :required="required"
-      :true-value="trueValue"
-      :false-value="falseValue"
+      @input="onInput"
     />
     <span class="checkmark"></span>
     <label for="name" class="checkbox__label">{{label}}<template v-if="required">*</template></label>
@@ -28,19 +28,8 @@
         required: true
       },
       value: {
-        type: null,
-        required: true
-      },
-      nativeValue: {
-        type: null
-      },
-      trueValue: {
-        type: null,
-        default: true
-      },
-      falseValue: {
-        type: null,
-        default: false
+        type: [String, Boolean],
+        default: null
       },
       disabled: {
         type: Boolean,
@@ -56,23 +45,44 @@
       },
       name: { 
         type: String,
-        default: ''
+        required: true
       },
       sameLine: { 
         type: Boolean,
         default: false
+      },
+      modelValue: {
+        type: [Array, Boolean],
+        default: null
       }
+    },
+    model: {
+      prop: 'modelValue',
+      event: 'input'
     },
     computed: {
-      computedVModel: {
-        get() {
-          return this.value
-        },
-        set(value) {
-          this.$emit('input', value)
+      checked() {
+        if (typeof this.modelValue === 'object') {
+          return this.modelValue.includes(this.value)
         }
+        return this.modelValue
       }
     },
+    methods: {
+      onInput($event) {
+        if (typeof this.modelValue === 'object') {
+          let checked = [...this.modelValue]
+          if (checked.includes(this.value)) {
+            checked.splice(checked.indexOf(this.value), 1);
+          } else {
+            checked.push(this.value);
+          }
+          this.$emit('input', checked);
+        } else {
+          this.$emit('input', $event.target.checked)
+        }
+      }
+    }
   }
 </script>
 
