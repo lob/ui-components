@@ -1,14 +1,14 @@
 <template>
-  <label 
-    class="checkbox" 
-    :class="[{'checkbox__input--disabled': disabled},
-            {'checkbox__input--same-line': sameLine}]"
+  <label :class="['checkbox', 
+          {'checkbox__input--disabled': disabled},
+          {'checkbox__input--same-line': sameLine}]"
   >
     <input
       type="checkbox"
       :class="['checkbox__input', {'checkbox__input--error': error}]"
       :checked="checked"
       :value="value"
+      :id="name"
       :name="name"
       :disabled="disabled"
       :required="required"
