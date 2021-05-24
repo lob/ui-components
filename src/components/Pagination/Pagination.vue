@@ -22,24 +22,10 @@
         @click="pageClick(1)"
       >
         <span class="sr-only">Go to first page</span>
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 16 16"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M12.6451 14.0024L6.86243 8.36551C6.69482 8.20053 6.69482 7.92556 6.86243 7.76058L12.6451 2.12374C12.8127 1.95875 13.0921 1.95875 13.2597 2.12374L13.8743 2.72867C14.0419 2.89365 14.0419 3.16861 13.8743 3.3336L9.32077 7.76058C9.15316 7.92556 9.15316 8.20053 9.32077 8.36551L13.8743 12.7925C14.0419 12.9575 14.0419 13.2324 13.8743 13.3974L13.2597 14.0024C13.0642 14.1398 12.8127 14.1398 12.6451 14.0024Z"
-          />
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M3.96543 2C4.15873 2 4.31543 2.1567 4.31543 2.35L4.31543 13.7555C4.31543 13.9488 4.15873 14.1055 3.96543 14.1055L2.84961 14.1055C2.65631 14.1055 2.49961 13.9488 2.49961 13.7555L2.49961 2.35C2.49961 2.1567 2.65631 2 2.84961 2L3.96543 2Z"
-          />
-        </svg>
+        <page-arrow-icon
+          :first="true"
+          :disabled="page === 1"
+        />
       </button>
       <button
         :class="['pagination__btn', { 'pagination__btn--disabled': page <= 1 }]"
@@ -47,19 +33,10 @@
         @click="pageClick(page - 1)"
       >
         <span class="sr-only">Go to previous page</span>
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 16 16"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M10.5077 13.8978L4.13846 8.31005C3.95385 8.14651 3.95385 7.87394 4.13846 7.71039L10.5077 2.12266C10.6923 1.95911 11 1.95911 11.1846 2.12266L11.8615 2.72232C12.0462 2.88586 12.0462 3.15843 11.8615 3.32198L6.84615 7.71039C6.66154 7.87394 6.66154 8.14651 6.84615 8.31005L11.8615 12.6985C12.0462 12.862 12.0462 13.1346 11.8615 13.2981L11.1846 13.8978C10.9692 14.0341 10.6923 14.0341 10.5077 13.8978Z"
-          />
-        </svg>
+        <page-arrow-icon
+          :previous="true"
+          :disabled="page <= 1"
+        />
       </button>
       <button
         :class="[
@@ -70,19 +47,10 @@
         @click="pageClick(page + 1)"
       >
         <span class="sr-only">Go to next page</span>
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 16 16"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M5.49231 2.10221L11.8615 7.68995C12.0462 7.85349 12.0462 8.12606 11.8615 8.28961L5.49231 13.8773C5.30769 14.0409 5 14.0409 4.81538 13.8773L4.13846 13.2777C3.95385 13.1141 3.95385 12.8416 4.13846 12.678L9.15385 8.28961C9.33846 8.12606 9.33846 7.85349 9.15385 7.68995L4.13846 3.30153C3.95385 3.13799 3.95385 2.86542 4.13846 2.70187L4.81538 2.10221C5.03077 1.96593 5.30769 1.96593 5.49231 2.10221Z"
-          />
-        </svg>
+        <page-arrow-icon
+          :next="true"
+          :disabled="offset + limit >= totalNumber"
+        />
       </button>
       <button
         :class="[
@@ -93,24 +61,10 @@
         @click="pageClick(lastPage)"
       >
         <span class="sr-only">Go to last page</span>
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 16 16"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M3.35488 1.99764L9.13757 7.63449C9.30518 7.79947 9.30518 8.07444 9.13757 8.23942L3.35488 13.8763C3.18727 14.0412 2.90791 14.0412 2.7403 13.8763L2.12571 13.2713C1.9581 13.1064 1.9581 12.8314 2.12571 12.6664L6.67923 8.23942C6.84684 8.07444 6.84684 7.79947 6.67923 7.63449L2.12571 3.2075C1.9581 3.04252 1.9581 2.76755 2.12571 2.60257L2.7403 1.99764C2.93585 1.86016 3.18727 1.86016 3.35488 1.99764Z"
-          />
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M12.0346 14C11.8413 14 11.6846 13.8433 11.6846 13.65V2.24453C11.6846 2.05123 11.8413 1.89453 12.0346 1.89453H13.1504C13.3437 1.89453 13.5004 2.05123 13.5004 2.24453V13.65C13.5004 13.8433 13.3437 14 13.1504 14H12.0346Z"
-          />
-        </svg>
+        <page-arrow-icon
+          :last="true"
+          :disabled="offset + limit >= totalNumber"
+        />
       </button>
     </div>
 
@@ -154,8 +108,12 @@
 </template>
 
 <script>
-export default {
+import PageArrowIcon from './PageArrowIcon.vue';
+
+export default
+{
   name: 'Pagination',
+  components: { PageArrowIcon },
   props: {
     collection: {
       type: Array,
@@ -251,10 +209,6 @@ export default {
     margin: 0 16px;
     position: relative;
 
-    svg path {
-      fill: var(--color-gray-xd-shadow);
-    }
-
     &__icon {
       font-size: 18px;
       margin: 0 2px;
@@ -264,10 +218,6 @@ export default {
     &--disabled {
       color: var(--color-gray-xl-dove);
       pointer-events: none;
-
-      svg path {
-        fill: var(--color-gray-xl-dove);
-      }
     }
 
     &--mobile {
@@ -305,10 +255,6 @@ export default {
 
     &:hover {
       color: var(--color-primary-l);
-
-      svg path {
-        fill: var(--color-primary-l);
-      }
     }
   }
 }
