@@ -1,5 +1,11 @@
 <template>
-  <div :class="['radio', {'radio--separate-lines': this.$parent.separateLines}, {'radio--disabled': disabled}]">
+  <div
+    :class="[
+      'radio',
+      {'radio--separate-lines': this.$parent.separateLines},
+      {'radio--disabled': disabled}
+    ]"
+  >
     <input
       :id="value"
       type="radio"
@@ -8,7 +14,8 @@
       :value="value"
       :checked="checked"
       :disabled="disabled"
-      @click="onClick($event)"
+      @input="onInput"
+      @click="onClick"
     >
     <label :for="value">{{ label }}</label>
   </div>
@@ -53,12 +60,11 @@ export default {
     }
   },
   methods: {
-    onClick (event) {
-      this.$emit('click', event);
+    onInput () {
       this.$emit('input', this.value);
-      if (!this.checked) {
-        this.$emit('change', event);
-      }
+    },
+    onClick ($event) {
+      this.$emit('click', $event);
     }
   }
 };

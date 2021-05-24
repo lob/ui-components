@@ -1,6 +1,6 @@
 {
   "name": "@lob/ui-components",
-  "version": "0.0.9",
+  "version": "0.0.12",
   "main": "./dist/ui-components.umd.min.js",
   "repository": {
     "type": "git",
