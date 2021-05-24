@@ -64,7 +64,7 @@ describe('Radio Button', () => {
     expect(radio).toHaveClass('radio__input--error');
   });
 
-  it('fires the click event when the input is clicked', async () => {
+  it('fires the input and click events when the input is clicked', async () => {
     const props = initialProps;
     const { getByLabelText, emitted } = render(RadioButton, {
       props
@@ -73,7 +73,6 @@ describe('Radio Button', () => {
 
     await fireEvent.click(radio);
     const emittedEvent = emitted();
-    expect(emittedEvent).toHaveProperty('change');
     expect(emittedEvent).toHaveProperty('click');
     expect(emittedEvent).toHaveProperty('input');
     expect(emittedEvent.input[0]).toEqual([props.value]);
