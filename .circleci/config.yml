@@ -20,6 +20,9 @@ jobs:
     steps:
       # Checkout the code as the first step.
       - checkout
+      - run:
+          name: Set FontAwesome token
+          command: npm config set //npm.fontawesome.com/:_authToken $FONTAWESOME_NPM_AUTH_TOKEN
       # Next, the node orb's install-packages step will install the dependencies from a package.json.
       # The orb install-packages step will also automatically cache them for faster future runs.
       - node/install-packages
@@ -33,6 +36,6 @@ jobs:
 workflows:
   # CircleCI will run this workflow on every commit.
   # For more details on extending your workflow, see the configuration docs: https://circleci.com/docs/2.0/configuration-reference/#workflows
-  sample: 
+  build-test-lint: 
     jobs:
       - build-test-lint
