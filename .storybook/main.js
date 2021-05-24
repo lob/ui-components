@@ -13,7 +13,13 @@ module.exports = {
   webpackFinal: async (config, { configType }) => {
     config.module.rules.push({
       test: /\.scss$/,
-      use: ['vue-style-loader', 'css-loader', 'sass-loader'],
+      use: ['vue-style-loader', 'css-loader', 'sass-loader', 
+      { loader: 'postcss-loader',
+        options: {
+              plugins: [require("tailwindcss"), require("autoprefixer")]
+        }
+      }
+    ],
       include: path.resolve(__dirname, '../'),
     });
     return config;
