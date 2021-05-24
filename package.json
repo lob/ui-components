@@ -1,6 +1,6 @@
 {
   "name": "@lob/ui-components",
-  "version": "0.0.9",
+  "version": "0.0.12",
   "main": "./dist/ui-components.umd.min.js",
   "repository": {
     "type": "git",
@@ -22,11 +22,17 @@
     "src/*"
   ],
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/pro-light-svg-icons": "^5.15.3",
+    "@fortawesome/vue-fontawesome": "^2.0.2",
     "core-js": "^3.6.5",
+    "normalize.css": "^8.0.1",
     "vue": "^2.6.11"
   },
   "devDependencies": {
     "@babel/core": "^7.13.16",
+    "@storybook/addon-a11y": "^6.2.9",
     "@storybook/addon-actions": "^6.2.9",
     "@storybook/addon-docs": "^6.2.9",
     "@storybook/addon-essentials": "^6.2.9",

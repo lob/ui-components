@@ -8,7 +8,8 @@
       :value="value"
       :checked="checked"
       :disabled="disabled"
-      @click="onClick($event)"
+      @input="onInput"
+      @click="onClick"
     >
     <label
       :for="value"
@@ -56,12 +57,11 @@ export default {
     }
   },
   methods: {
-    onClick (event) {
-      this.$emit('click', event);
+    onInput () {
       this.$emit('input', this.value);
-      if (!this.checked) {
-        this.$emit('change', event);
-      }
+    },
+    onClick ($event) {
+      this.$emit('click', $event);
     }
   }
 };
