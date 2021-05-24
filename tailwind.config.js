@@ -90,7 +90,8 @@ module.exports = {
     fontFamily: {
       sans: ['Larsseit', 'sans-serif']
     },
-    extend: {}
+    extend: {
+    }
   },
   variants: {
     extend: {}
