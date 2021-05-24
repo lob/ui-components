@@ -23,10 +23,12 @@
   ],
   "dependencies": {
     "core-js": "^3.6.5",
+    "normalize.css": "^8.0.1",
     "vue": "^2.6.11"
   },
   "devDependencies": {
     "@babel/core": "^7.13.16",
+    "@storybook/addon-a11y": "^6.2.9",
     "@storybook/addon-actions": "^6.2.9",
     "@storybook/addon-docs": "^6.2.9",
     "@storybook/addon-essentials": "^6.2.9",
