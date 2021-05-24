@@ -192,8 +192,8 @@ describe('Pagination', () => {
 
       await fireEvent.click(button);
       const emittedEvent = emitted();
-      expect(emittedEvent).toHaveProperty('page-change');
-      expect(emittedEvent['page-change'][0][0].page).toEqual(1);
+      expect(emittedEvent).toHaveProperty('change');
+      expect(emittedEvent.change[0][0].page).toEqual(1);
     });
 
     it('emits an event with the previous page data when previous page button is clicked', async () => {
@@ -205,8 +205,8 @@ describe('Pagination', () => {
 
       await fireEvent.click(button);
       const emittedEvent = emitted();
-      expect(emittedEvent).toHaveProperty('page-change');
-      expect(emittedEvent['page-change'][0][0].page).toEqual(1);
+      expect(emittedEvent).toHaveProperty('change');
+      expect(emittedEvent.change[0][0].page).toEqual(1);
     });
 
     it('emits an event with the next page data when next page button is clicked', async () => {
@@ -218,8 +218,8 @@ describe('Pagination', () => {
 
       await fireEvent.click(button);
       const emittedEvent = emitted();
-      expect(emittedEvent).toHaveProperty('page-change');
-      expect(emittedEvent['page-change'][0][0].page).toEqual(3);
+      expect(emittedEvent).toHaveProperty('change');
+      expect(emittedEvent.change[0][0].page).toEqual(3);
     });
 
     it('emits an event with the last page data when last page button is clicked', async () => {
@@ -231,8 +231,8 @@ describe('Pagination', () => {
 
       await fireEvent.click(button);
       const emittedEvent = emitted();
-      expect(emittedEvent).toHaveProperty('page-change');
-      expect(emittedEvent['page-change'][0][0].page).toEqual(3);
+      expect(emittedEvent).toHaveProperty('change');
+      expect(emittedEvent.change[0][0].page).toEqual(3);
     });
 
   });

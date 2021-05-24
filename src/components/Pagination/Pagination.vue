@@ -196,7 +196,7 @@ export default {
   },
   methods: {
     pageClick (newPage) {
-      this.$emit('page-change', { page: newPage });
+      this.$emit('change', { page: newPage });
     }
   }
 };
