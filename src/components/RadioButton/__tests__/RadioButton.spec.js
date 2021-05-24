@@ -77,5 +77,5 @@ describe('Radio Button', () => {
     expect(emittedEvent).toHaveProperty('input');
     expect(emittedEvent.input[0]).toEqual([props.value]);
   });
-});
 
+});
