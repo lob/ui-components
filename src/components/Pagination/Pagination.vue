@@ -161,101 +161,101 @@ export default
 </script>
 
 <style scoped lang="scss">
-.pagination {
-  display: flex;
-  font-size: 16px;
-  justify-content: space-between;
-  margin-top: 0;
-  padding: 0 7px 16px;
-  position: relative;
-  top: -16px;
-  width: 100%;
-
-  @media (max-width: 576px) {
-  // @include media($max-phone) {
-    justify-content: unset;
-  }
-
-  &__paging-container {
+  .pagination {
     display: flex;
-    align-items: center;
+    font-size: 16px;
+    justify-content: space-between;
+    margin-top: 0;
+    padding: 0 7px 16px;
+    position: relative;
+    top: -16px;
+    width: 100%;
 
     @media (max-width: 576px) {
-    // @include media($max-phone) {
-      display: none;
-    }
-
-    &--mobile {
-      display: none;
-      padding-left: 15%;
-
-      @media (max-width: 576px) {
       // @include media($max-phone) {
-        display: flex;
-        align-items: center;
-      }
-    }
-  }
-
-  &__text {
-    font-size: 14px;
-    font-weight: 400;
-    margin-right: 31px;
-  }
-
-  &__btn {
-    border: none;
-    background-color: transparent;
-    margin: 0 16px;
-    position: relative;
-
-    &__icon {
-      font-size: 18px;
-      margin: 0 2px;
-      position: relative;
+      justify-content: unset;
     }
 
-    &--disabled {
-      color: var(--color-gray-xl-dove);
-      pointer-events: none;
-    }
-
-    &--mobile {
+    &__paging-container {
+      display: flex;
       align-items: center;
-      color: var(--color-gray-xd-shadow);
-      display: none;
-      font-size: 14px;
-      transition: transform 0.5s ease;
 
       @media (max-width: 576px) {
-      // @include media($max-phone) {
-        display: flex;
+        // @include media($max-phone) {
+        display: none;
       }
 
-      &.pagination__btn--next {
-        &:hover {
-          .pagination__btn__icon {
-            transform: translateX(4px);
-          }
-        }
-      }
+      &--mobile {
+        display: none;
+        padding-left: 15%;
 
-      &.pagination__btn--prev {
-        &:hover {
-          .pagination__btn__icon {
-            transform: translateX(-4px);
-          }
+        @media (max-width: 576px) {
+          // @include media($max-phone) {
+          display: flex;
+          align-items: center;
         }
       }
     }
 
-    &--hidden {
-      display: none;
+    &__text {
+      font-size: 14px;
+      font-weight: 400;
+      margin-right: 31px;
     }
 
-    &:hover {
-      color: var(--color-primary-l);
+    &__btn {
+      border: none;
+      background-color: transparent;
+      margin: 0 16px;
+      position: relative;
+
+      &__icon {
+        font-size: 18px;
+        margin: 0 2px;
+        position: relative;
+      }
+
+      &--disabled {
+        color: var(--color-gray-xl-dove);
+        pointer-events: none;
+      }
+
+      &--mobile {
+        align-items: center;
+        color: var(--color-gray-xd-shadow);
+        display: none;
+        font-size: 14px;
+        transition: transform 0.5s ease;
+
+        @media (max-width: 576px) {
+          // @include media($max-phone) {
+          display: flex;
+        }
+
+        &.pagination__btn--next {
+          &:hover {
+            .pagination__btn__icon {
+              transform: translateX(4px);
+            }
+          }
+        }
+
+        &.pagination__btn--prev {
+          &:hover {
+            .pagination__btn__icon {
+              transform: translateX(-4px);
+            }
+          }
+        }
+      }
+
+      &--hidden {
+        display: none;
+      }
+
+      &:hover {
+        color: var(--color-primary-l);
+      }
     }
   }
-}
 </style>
