@@ -128,10 +128,10 @@
           @click="pageClick(page + 1)"
         >
           Next
-          <!-- <font-awesome-icon
+          <font-awesome-icon
             class="pagination__btn__icon"
             :icon="['fal', 'angle-right']"
-          /> -->
+          />
         </button>
         <button
           :class="[
@@ -142,10 +142,10 @@
           ]"
           @click="pageClick(page - 1)"
         >
-          <!-- <font-awesome-icon
+          <font-awesome-icon
             class="pagination__btn__icon"
             :icon="['fal', 'angle-left']"
-          /> -->
+          />
           Prev
         </button>
       </p>
