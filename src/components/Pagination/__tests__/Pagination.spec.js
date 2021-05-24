@@ -21,7 +21,8 @@ describe('Pagination', () => {
 
     it('disables the first page button', () => {
       const { getByRole } = render(Pagination, {
-        props
+        props,
+        stubs: ['FontAwesomeIcon']
       });
 
       const button = getByRole('button', { name: /first page/i });
@@ -30,7 +31,8 @@ describe('Pagination', () => {
 
     it('disables the previous page button', () => {
       const { getByRole } = render(Pagination, {
-        props
+        props,
+        stubs: ['FontAwesomeIcon']
       });
 
       const button = getByRole('button', { name: /previous page/i });
@@ -39,7 +41,8 @@ describe('Pagination', () => {
 
     it('does not disable the next page button', () => {
       const { getByRole } = render(Pagination, {
-        props
+        props,
+        stubs: ['FontAwesomeIcon']
       });
 
       const button = getByRole('button', { name: /next page/i });
@@ -48,7 +51,8 @@ describe('Pagination', () => {
 
     it('does not disable the last page button', () => {
       const { getByRole } = render(Pagination, {
-        props
+        props,
+        stubs: ['FontAwesomeIcon']
       });
 
       const button = getByRole('button', { name: /last page/i });
@@ -70,7 +74,8 @@ describe('Pagination', () => {
 
     it('does not disable the first page button', () => {
       const { getByRole } = render(Pagination, {
-        props
+        props,
+        stubs: ['FontAwesomeIcon']
       });
 
       const button = getByRole('button', { name: /first page/i });
@@ -79,7 +84,8 @@ describe('Pagination', () => {
 
     it('does not disable the previous page button', () => {
       const { getByRole } = render(Pagination, {
-        props
+        props,
+        stubs: ['FontAwesomeIcon']
       });
 
       const button = getByRole('button', { name: /previous page/i });
@@ -88,7 +94,8 @@ describe('Pagination', () => {
 
     it('does not disable the next page button', () => {
       const { getByRole } = render(Pagination, {
-        props
+        props,
+        stubs: ['FontAwesomeIcon']
       });
 
       const button = getByRole('button', { name: /next page/i });
@@ -97,7 +104,8 @@ describe('Pagination', () => {
 
     it('does not disable the last page button', () => {
       const { getByRole } = render(Pagination, {
-        props
+        props,
+        stubs: ['FontAwesomeIcon']
       });
 
       const button = getByRole('button', { name: /last page/i });
@@ -119,7 +127,8 @@ describe('Pagination', () => {
 
     it('does not disable the first page button', () => {
       const { getByRole } = render(Pagination, {
-        props
+        props,
+        stubs: ['FontAwesomeIcon']
       });
 
       const button = getByRole('button', { name: /first page/i });
@@ -128,7 +137,8 @@ describe('Pagination', () => {
 
     it('does not disable the previous page button', () => {
       const { getByRole } = render(Pagination, {
-        props
+        props,
+        stubs: ['FontAwesomeIcon']
       });
 
       const button = getByRole('button', { name: /previous page/i });
@@ -137,7 +147,8 @@ describe('Pagination', () => {
 
     it('disables the next page button', () => {
       const { getByRole } = render(Pagination, {
-        props
+        props,
+        stubs: ['FontAwesomeIcon']
       });
 
       const button = getByRole('button', { name: /next page/i });
@@ -146,7 +157,8 @@ describe('Pagination', () => {
 
     it('disables the last page button', () => {
       const { getByRole } = render(Pagination, {
-        props
+        props,
+        stubs: ['FontAwesomeIcon']
       });
 
       const button = getByRole('button', { name: /last page/i });
@@ -164,7 +176,8 @@ describe('Pagination', () => {
       };
 
       const { queryByText } = render(Pagination, {
-        props
+        props,
+        stubs: ['FontAwesomeIcon']
       });
 
       expect(queryByText(/result/i)).toBeNull();
@@ -185,7 +198,8 @@ describe('Pagination', () => {
 
     it('emits an event with the first page data when first page button is clicked', async () => {
       const { getByRole, emitted } = render(Pagination, {
-        props
+        props,
+        stubs: ['FontAwesomeIcon']
       });
 
       const button = getByRole('button', { name: /first page/i });
@@ -198,7 +212,8 @@ describe('Pagination', () => {
 
     it('emits an event with the previous page data when previous page button is clicked', async () => {
       const { getByRole, emitted } = render(Pagination, {
-        props
+        props,
+        stubs: ['FontAwesomeIcon']
       });
 
       const button = getByRole('button', { name: /previous page/i });
@@ -211,7 +226,8 @@ describe('Pagination', () => {
 
     it('emits an event with the next page data when next page button is clicked', async () => {
       const { getByRole, emitted } = render(Pagination, {
-        props
+        props,
+        stubs: ['FontAwesomeIcon']
       });
 
       const button = getByRole('button', { name: /next page/i });
@@ -224,7 +240,8 @@ describe('Pagination', () => {
 
     it('emits an event with the last page data when last page button is clicked', async () => {
       const { getByRole, emitted } = render(Pagination, {
-        props
+        props,
+        stubs: ['FontAwesomeIcon']
       });
 
       const button = getByRole('button', { name: /last page/i });
