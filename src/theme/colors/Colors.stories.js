@@ -2,7 +2,7 @@ import Colors from './Colors.vue';
 import mdx from './Colors.mdx';
 
 export default {
-  title: 'Theme/Colors',
+  title: 'Theme (Dev Only)/Colors',
   component: Colors,
   parameters: {
     docs: {
