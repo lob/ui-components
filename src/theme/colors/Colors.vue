@@ -6,14 +6,14 @@
         :key="color"
         class="pb-8"
       >
-        <h1 :class="`tw-text-${color}`">
+        <h1 :class="`text-${color}`">
           {{ color }}
         </h1>
         <div
           v-for="modifier in modifiers"
-          :key="`tw-${color}-${modifier}`"
+          :key="`${color}-${modifier}`"
         >
-          <h1 :class="`tw-text-${color}-${modifier}`">
+          <h1 :class="`text-${color}-${modifier}`">
             {{ color }}-{{ modifier }}
           </h1>
         </div>
@@ -24,7 +24,7 @@
       :key="color"
       class="pb-8"
     >
-      <h1 :class="`tw-text-${color}`">
+      <h1 :class="`text-${color}`">
         {{ color }}
       </h1>
     </div>

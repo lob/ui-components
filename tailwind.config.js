@@ -2,7 +2,6 @@ module.exports = {
   purge: [
     './src/**/*.vue'
   ],
-  prefix: 'tw-',
   darkMode: false, // or 'media' or 'class'
   theme: {
     screens: {

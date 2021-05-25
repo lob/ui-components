@@ -1,9 +1,9 @@
 <template>
-  <div :class="['tw-inline-block tw-mr-4 tw-mt-1 tw-cursor-pointer', {'tw-block tw-mb-1': this.$parent.separateLines}, {'tw-cursor-not-allowed': disabled}]">
+  <div :class="['inline-block mr-4 mt-1 cursor-pointer', {'block mb-1': this.$parent.separateLines}, {'cursor-not-allowed': disabled}]">
     <input
       :id="value"
       type="radio"
-      :class="['tw-absolute tw-m-0 tw-p-0 tw-w-0 tw-h-0 tw-opacity-0 tw-pointer-events-none tw-mt-2 radio__input', {'radio__input--error': error}]"
+      :class="['absolute m-0 p-0 w-0 h-0 opacity-0 pointer-events-none mt-2 radio__input', {'radio__input--error': error}]"
       :name="name"
       :value="value"
       :checked="checked"
@@ -13,7 +13,7 @@
     >
     <label
       :for="value"
-      class="tw-text-sm tw-font-light tw-relative tw-inline-block tw-cursor-pointer tw-ml-6"
+      class="text-sm font-light relative inline-block cursor-pointer ml-6"
     >{{ label }}</label>
   </div>
 </template>
@@ -73,39 +73,39 @@ export default {
       content: '';
       left: -20px;
 
-      @apply tw-absolute;
-      @apply tw-bg-transparent;
-      @apply tw-border-gray-l;
-      @apply tw-border-solid;
-      @apply tw-border;
-      @apply tw-h-3.5;
-      @apply tw-inline-block;
-      @apply tw-rounded-full;
-      @apply tw-top-1;
-      @apply tw-w-3.5;
+      @apply absolute;
+      @apply bg-transparent;
+      @apply border-gray-l;
+      @apply border-solid;
+      @apply border;
+      @apply h-3.5;
+      @apply inline-block;
+      @apply rounded-full;
+      @apply top-1;
+      @apply w-3.5;
     }
 
     + label::after {
       content: '';
       left: -18px;
 
-      @apply tw-absolute;
-      @apply tw-h-2.5;
-      @apply tw-inline-block;
-      @apply tw-rounded-full;
-      @apply tw-top-1.5;
-      @apply tw-w-2.5;
+      @apply absolute;
+      @apply h-2.5;
+      @apply inline-block;
+      @apply rounded-full;
+      @apply top-1.5;
+      @apply w-2.5;
     }
 
     &:checked + label::after {
       box-shadow: 0 0 4px var(--color-primary-rgb-xl);
 
-      @apply tw-bg-primary;
-      @apply tw-border-l;
+      @apply bg-primary;
+      @apply border-l;
     }
 
     &.radio__input--error + label::before {
-      @apply tw-border-error;
+      @apply border-error;
     }
 
     &:hover + label::before {
@@ -113,16 +113,16 @@ export default {
     }
 
     &:focus + label::before {
-      @apply tw-border-primary-xl;
+      @apply border-primary-xl;
     }
 
     &:disabled + label::before {
-      @apply tw-bg-gray-xxl;
-      @apply tw-border-gray-l;
+      @apply bg-gray-xxl;
+      @apply border-gray-l;
     }
 
     &:disabled + label::after {
-      @apply tw-hidden;
+      @apply hidden;
     }
   }
 </style>
