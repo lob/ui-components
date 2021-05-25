@@ -3,13 +3,11 @@ import * as components from './components';
 import * as configs from './config';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-for (const configName in configs) {
-  const config = configs[configName];
-  config.configure();
-}
+configs.icons.configure();
 
 const ComponentLibrary = {
   install (Vue) {
+    Vue.use(configs.constants);
     Vue.component('font-awesome-icon', FontAwesomeIcon);
 
     // components
