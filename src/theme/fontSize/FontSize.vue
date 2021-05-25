@@ -5,7 +5,7 @@
       :key="size"
       class="pb-8"
     >
-      <p :class="`tw-text-${size}`">
+      <p :class="`text-${size}`">
         text-{{ size }}
       </p>
     </div>
