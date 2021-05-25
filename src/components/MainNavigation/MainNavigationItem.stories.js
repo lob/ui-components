@@ -15,7 +15,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { MainNavigationItem },
-  template: '<div style="width: 222px;"><main-navigation-item v-bind="$props"></main-navigation-item></div>'
+  template: '<ul style="width: 222px;"><main-navigation-item v-bind="$props"></main-navigation-item></ul>'
 });
 
 export const Primary = Template.bind({});

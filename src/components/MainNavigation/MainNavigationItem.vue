@@ -1,22 +1,23 @@
 <template>
-  <!-- conditionally render based on user permissions -->
   <li class="list-none">
-    <!-- conditionally render based on feature flags -->
-
-    <a
-      href="#"
-      :class="['no-underline py-4 pr-10 pl-18 max-h-8 inline-flex items-center h-auto w-full text-light text-sm text-gray overflow-hidden', { 'text-normal bg-gray-xl': active}]"
+    <button
+      :class="['no-underline py-4 pr-10 pl-6 max-h-12 inline-flex items-center w-full text-light text-sm text-gray overflow-hidden focus:outline-none focus:ring-2 focus:ring-blue-xl focus:border-transparent', { 'text-normal bg-gray-xl': active}]"
+      @click="toggleSubNav"
     >
       <img
         :src="iconSrc"
-        alt="alt text"
+        :alt="iconAltText"
         class="w-auto mr-1 mr-4 align-bottom"
       >
       {{ title }}
-
-      <!-- if there's stuff in the slot, render the collapse button here -->
-      <slot />
-    </a>
+      <img
+        v-if="!hasChildNavItems"
+        :class="['w-6 ml-16', { 'transform rotate-180': !subNavOpen}]"
+        :src="`${$getConst('lobAssetsUrl')}/dashboard/navbar/caret-down.svg`"
+        :alt="subNavOpen ? 'Collapse' : 'Expand'"
+      >
+      <slot v-if="subNavOpen" />
+    </button>
 
     <!-- <component
         :is="tag"
@@ -32,8 +33,7 @@
 </template>
 
 <script>
-// click event
-// router-link
+
 export default {
   name: 'MainNavigationItem',
   props: {
@@ -45,19 +45,33 @@ export default {
       type: String,
       default: ''
     },
+    iconAltText: {
+      type: String,
+      default: ''
+    },
     active: {
+      type: Boolean,
+      default: false
+    },
+    collapsed: {
       type: Boolean,
       default: false
     }
   },
+  data () {
+    return {
+      subNavOpen: !this.collapsed
+    };
+  },
   computed: {
-
+    hasChildNavItems () {
+      return Boolean(this.$slots.default);
+    }
   },
   methods: {
-
+    toggleSubNav () {
+      this.subNavOpen = !this.subNavOpen;
+    }
   }
 };
 </script>
-
-<style scoped lang="scss">
-</style>
