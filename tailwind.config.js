@@ -5,6 +5,11 @@ module.exports = {
   prefix: 'tw-',
   darkMode: false, // or 'media' or 'class'
   theme: {
+    screens: {
+      sm: '576px',
+      md: '768px',
+      lg: '1024px'
+    },
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
