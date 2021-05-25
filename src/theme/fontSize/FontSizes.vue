@@ -5,7 +5,7 @@
       :key="size"
       class="pb-8"
     >
-      <p :class="`text-${size}`">
+      <p :class="sizeClassName(size)">
         text-{{ size }}
       </p>
     </div>
@@ -18,10 +18,15 @@ import { theme } from '../../../tailwind.config';
 const { fontSize } = theme;
 
 export default {
-  name: 'Theme',
+  name: 'FontSizes',
   computed: {
     sizes () {
       return Object.keys(fontSize);
+    }
+  },
+  methods: {
+    sizeClassName (size) {
+      return `tw-text-${size}`;
     }
   }
 };

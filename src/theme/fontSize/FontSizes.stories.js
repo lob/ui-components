@@ -1,9 +1,9 @@
-import FontSize from './FontSize.vue';
-import mdx from './FontSize.mdx';
+import FontSizes from './FontSizes.vue';
+import mdx from './FontSizes.mdx';
 
 export default {
-  title: 'Theme/FontSize',
-  component: FontSize,
+  title: 'Theme/FontSizes',
+  component: FontSizes,
   parameters: {
     docs: {
       page: mdx
@@ -13,8 +13,8 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { FontSize },
-  template: '<font-size></font-size>'
+  components: { FontSizes },
+  template: '<font-sizes></font-sizes>'
 });
 
 export const Primary = Template.bind({});

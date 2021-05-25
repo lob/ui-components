@@ -7,14 +7,14 @@
         class="pb-8"
       >
         <h1>{{ color }}</h1>
-        <h2 :class="`text-${color}`">
+        <h2 :class="colorClassName(color)">
           {{ color }}
         </h2>
         <div
           v-for="modifier in modifiers"
           :key="`${color}-${modifier}`"
         >
-          <h2 :class="`text-${color}-${modifier}`">
+          <h2 :class="colorClassName(color, modifier)">
             {{ color }}-{{ modifier }}
           </h2>
         </div>
@@ -26,7 +26,7 @@
       class="pb-8"
     >
       <h1>{{ color }}</h1>
-      <h2 :class="`text-${color}`">
+      <h2 :class="colorClassName(color)">
         {{ color }}
       </h2>
     </div>
@@ -39,7 +39,7 @@ import { theme } from '../../../tailwind.config';
 const { colors } = theme;
 
 export default {
-  name: 'Theme',
+  name: 'Colors',
   computed: {
     singleColors () {
       return Object.keys(colors).reduce((singles, color) => {
@@ -59,6 +59,11 @@ export default {
     },
     modifiers () {
       return ['xd', 'd', 'l', 'xl'];
+    }
+  },
+  methods: {
+    colorClassName (color, modifier = null) {
+      return modifier ? `tw-text-${color}-${modifier}` : `tw-text-${color}`;
     }
   }
 };
