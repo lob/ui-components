@@ -1,5 +1,43 @@
-@import "~normalize.css/normalize.css";
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
-@import 'colors';
 @import 'fonts';
-@import 'typography';
+
+:root {
+  --color-primary-rgb: 24, 120, 224;
+  --color-primary-rgb-xl: 24, 120, 224, .4;
+  --color-primary-rgb-l: 24, 120, 224, .2;
+}
+
+@layer base {
+  html, body {
+    font-size: 16px;
+    @apply tw-font-sans;
+    @apply tw-text-black;
+  }
+
+  h1 {
+    @apply tw-text-5xl;
+  }
+
+  h2 {
+    @apply tw-text-4xl;
+  }
+
+  h3 {
+    @apply tw-text-3xl;
+  }
+
+  h4 {
+    @apply tw-text-2xl;
+  }
+
+  h5 {
+    @apply tw-text-xl;
+  }
+
+  h6 {
+    @apply tw-text-lg;
+  }
+}

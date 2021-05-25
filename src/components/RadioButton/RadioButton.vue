@@ -1,15 +1,9 @@
 <template>
-  <div
-    :class="[
-      'radio',
-      {'radio--separate-lines': this.$parent.separateLines},
-      {'radio--disabled': disabled}
-    ]"
-  >
+  <div :class="['tw-inline-block tw-mr-4 tw-mt-1 tw-cursor-pointer', {'tw-block tw-mb-1': this.$parent.separateLines}, {'tw-cursor-not-allowed': disabled}]">
     <input
       :id="value"
       type="radio"
-      :class="['radio__input', {'radio__input--error': error}]"
+      :class="['tw-absolute tw-m-0 tw-p-0 tw-w-0 tw-h-0 tw-opacity-0 tw-pointer-events-none tw-mt-2 radio__input', {'radio__input--error': error}]"
       :name="name"
       :value="value"
       :checked="checked"
@@ -17,7 +11,10 @@
       @input="onInput"
       @click="onClick"
     >
-    <label :for="value">{{ label }}</label>
+    <label
+      :for="value"
+      class="tw-text-sm tw-font-light tw-relative tw-inline-block tw-cursor-pointer tw-ml-6"
+    >{{ label }}</label>
   </div>
 </template>
 
@@ -71,100 +68,61 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .radio {
-    display: inline-block;
-    cursor: pointer;
-    margin-top: 5px;
-    margin-right: 15px;
-  }
-
-  .radio--separate-lines {
-    display: block;
-    margin-bottom: 5px;
-  }
-
-  .radio--disabled {
-    cursor: not-allowed;
-  }
-
   .radio__input {
-    position: absolute;
-    margin: 0;
-    padding: 0;
-    opacity: 0;
-    height: 0;
-    width: 0;
-    pointer-events: none;
-    margin-top: 4px;
+    + label::before {
+      content: '';
+      left: -20px;
 
-    + label {
-      font-size: 14px;
-      font-weight: 300;
-      position: relative;
-      display: inline-block;
-      cursor: pointer;
-      margin-left: 25px;
-
-      &::before {
-        content: '';
-        position: absolute;
-        display: inline-block;
-        left: -20px;
-        top: 2px;
-        border-radius: 50%;
-        border: 1px solid var(--color-gray-xl-dove);
-        width: 12px;
-        height: 12px;
-        background: transparent;
-      }
-
-      &::after {
-        content: '';
-        position: absolute;
-        display: inline-block;
-        left: -17px;
-        top: 5px;
-        border-radius: 50%;
-        width: 8px;
-        height: 8px;
-      }
+      @apply tw-absolute;
+      @apply tw-bg-transparent;
+      @apply tw-border-gray-l;
+      @apply tw-border-solid;
+      @apply tw-border;
+      @apply tw-h-3.5;
+      @apply tw-inline-block;
+      @apply tw-rounded-full;
+      @apply tw-top-1;
+      @apply tw-w-3.5;
     }
 
-    &:checked {
-      + label::after {
-        background: var(--color-primary);
-        border-color: var(--color-gray-xl-dove);
-        box-shadow: 0 0 4px #{'rgba(var(--color-primary-rgb), 0.2)'};
-      }
+    + label::after {
+      content: '';
+      left: -18px;
+
+      @apply tw-absolute;
+      @apply tw-h-2.5;
+      @apply tw-inline-block;
+      @apply tw-rounded-full;
+      @apply tw-top-1.5;
+      @apply tw-w-2.5;
     }
 
-    .radio__input--error {
-      + label::before {
-        border-color: var(--color-feedback-error);
-      }
+    &:checked + label::after {
+      box-shadow: 0 0 4px var(--color-primary-rgb-xl);
+
+      @apply tw-bg-primary;
+      @apply tw-border-l;
     }
 
-    &:hover {
-      + label::before {
-        box-shadow: 0 0 4px #{'rgba(var(--color-primary-rgb), 0.4)'};
-      }
+    &.radio__input--error + label::before {
+      @apply tw-border-error;
     }
 
-    &:focus {
-      + label::before {
-        border-color: var(--color-primary-xl);
-      }
+    &:hover + label::before {
+      box-shadow: 0 0 4px var(--color-primary-rgb-l);
     }
 
-    &:disabled {
-      + label::before {
-        background: var(--color-white-mist);
-        border-color: var(--color-gray-xl-dove);
-      }
+    &:focus + label::before {
+      @apply tw-border-primary-xl;
+    }
 
-      + label::after {
-        display: none;
-      }
+    &:disabled + label::before {
+      @apply tw-bg-gray-xxl;
+      @apply tw-border-gray-l;
+    }
+
+    &:disabled + label::after {
+      @apply tw-hidden;
     }
   }
 </style>
