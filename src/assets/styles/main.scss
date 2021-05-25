@@ -13,31 +13,31 @@
 @layer base {
   html, body {
     font-size: 16px;
-    @apply font-sans;
-    @apply text-black;
+    @apply tw-font-sans;
+    @apply tw-text-black;
   }
 
   h1 {
-    @apply text-5xl;
+    @apply tw-text-5xl;
   }
 
   h2 {
-    @apply text-4xl;
+    @apply tw-text-4xl;
   }
 
   h3 {
-    @apply text-3xl;
+    @apply tw-text-3xl;
   }
 
   h4 {
-    @apply text-2xl;
+    @apply tw-text-2xl;
   }
 
   h5 {
-    @apply text-xl;
+    @apply tw-text-xl;
   }
 
   h6 {
-    @apply text-lg;
+    @apply tw-text-lg;
   }
 }
