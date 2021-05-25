@@ -1,7 +1,23 @@
 <template>
   <!-- conditionally render based on user permissions -->
-  <li class="tw-list-none tw-relative tw-m-0 tw-p-0">
+  <li class="list-none">
     <!-- conditionally render based on feature flags -->
+
+    <a
+      href="#"
+      :class="['no-underline py-4 pr-10 pl-18 max-h-8 inline-flex items-center h-auto w-full text-light text-sm text-gray overflow-hidden', { 'text-normal bg-gray-xl': active}]"
+    >
+      <img
+        :src="iconSrc"
+        alt="alt text"
+        class="w-auto mr-1 mr-4 align-bottom"
+      >
+      {{ title }}
+
+      <!-- if there's stuff in the slot, render the collapse button here -->
+      <slot />
+    </a>
+
     <!-- <component
         :is="tag"
         class="navbar-item"
@@ -12,21 +28,6 @@
         v-on="$listeners">
         <slot/>
     </component> -->
-
-    <a
-      href="#"
-      :class="['tw-no-underline tw-py-4 tw-pr-10 tw-pl-18 tw-max-h-8 tw-inline-flex tw-items-center tw-h-auto tw-w-full tw-text-light tw-text-sm tw-text-gray tw-overflow-hidden', { 'tw-text-normal tw-bg-gray-xl': active}]"
-    >
-      <img
-        :src="iconSrc"
-        alt="alt text"
-        class="tw-absolute tw-w-auto tw-mr-1 tw-left-6 align-bottom"
-      >
-      {{ title }}
-
-      <!-- if there's stuff in the slot, render the collapse button here -->
-      <slot />
-    </a>
   </li>
 </template>
 

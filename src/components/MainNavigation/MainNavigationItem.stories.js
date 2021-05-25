@@ -21,7 +21,5 @@ const Template = (args, { argTypes }) => ({
 export const Primary = Template.bind({});
 Primary.args = {
   title: 'Overview',
-  iconSrc: {
-    default: () => console.log(iconOverview) && iconOverview
-  }
+  iconSrc: iconOverview
 };
