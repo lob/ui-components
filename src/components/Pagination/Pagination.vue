@@ -1,22 +1,22 @@
 <template>
   <div
     v-if="shouldRender"
-    class="pagination"
+    class="flex md:justify-between mt-0 relative pt-0 px-2 pb-1 -top-1 w-full"
   >
     <div>
-      <p class="pagination__results">
+      <p>
         {{ totalNumber }} result<span v-if="totalNumber !== 1">s</span>
       </p>
     </div>
 
-    <div class="pagination__paging-container">
-      <p class="pagination__text">
+    <div class="hidden md:flex items-center">
+      <p class="text-sm text-normal mr-8">
         {{ paginationText }}
       </p>
       <button
         :class="[
-          'pagination__btn',
-          { 'pagination__btn--disabled': page === 1 },
+          'border-none bg-transparent my-0 mx-4 relative hover:text-primary-l',
+          { 'text-gray-l pointer-none': page === 1 },
         ]"
         :disabled="page === 1"
         @click="pageClick(1)"
@@ -28,7 +28,10 @@
         />
       </button>
       <button
-        :class="['pagination__btn', { 'pagination__btn--disabled': page <= 1 }]"
+        :class="[
+          'border-none bg-transparent my-0 mx-4 relative hover:text-primary-l',
+          { 'text-gray-l pointer-none': page <= 1 }
+        ]"
         :disabled="page <= 1"
         @click="pageClick(page - 1)"
       >
@@ -40,8 +43,8 @@
       </button>
       <button
         :class="[
-          'pagination__btn',
-          { 'pagination__btn--disabled': offset + limit >= totalNumber },
+          'border-none bg-transparent my-0 mx-4 relative hover:text-primary-l',
+          { 'text-gray-l pointer-none': offset + limit >= totalNumber },
         ]"
         :disabled="offset + limit >= totalNumber"
         @click="pageClick(page + 1)"
@@ -54,8 +57,8 @@
       </button>
       <button
         :class="[
-          'pagination__btn',
-          { 'pagination__btn--disabled': offset + limit >= totalNumber },
+          'border-none bg-transparent my-0 mx-4 relative hover:text-primary-l',
+          { 'text-gray-l pointer-none': offset + limit >= totalNumber },
         ]"
         :disabled="offset + limit >= totalNumber"
         @click="pageClick(lastPage)"
@@ -68,36 +71,33 @@
       </button>
     </div>
 
-    <div class="pagination__paging-container--mobile">
+    <div class="flex md:hidden items-center pl-8">
       <p>
         <button
           :class="[
-            'pagination__btn',
-            'pagination__btn--mobile',
-            'pagination__btn--next',
-            { 'pagination__btn--disabled': offset + limit >= totalNumber },
-            { 'pagination__btn--hidden': page == lastPage },
+            'border-none bg-transparent my-0 mx-4 relative hover:text-primary-l items-center text-gray-xxd flex md-hidden text-sm transition-transform duration-500 ease-linear transform group',
+            { 'text-gray-l pointer-none': offset + limit >= totalNumber },
+            { 'hidden': page == lastPage },
           ]"
           :disabled="offset + limit >= totalNumber"
           @click="pageClick(page + 1)"
         >
           Next
           <font-awesome-icon
-            class="pagination__btn__icon"
+            class="text-lg my-0 mx-1 relative transform group-hover:translate-x-1"
             :icon="['fal', 'angle-right']"
           />
         </button>
         <button
           :class="[
-            'pagination__btn',
-            'pagination__btn--mobile',
+            'border-none bg-transparent my-0 mx-4 relative hover:text-primary-l items-center text-gray-xxd flex md-hidden text-sm transition-transform duration-500 ease-linear transform group',
             'pagination__btn--prev',
-            { 'pagination__btn--hidden': page != lastPage },
+            { 'hidden': page != lastPage },
           ]"
           @click="pageClick(page - 1)"
         >
           <font-awesome-icon
-            class="pagination__btn__icon"
+            class="text-lg my-0 mx-1 relative transform group-hover:-translate-x-1"
             :icon="['fal', 'angle-left']"
           />
           Prev
@@ -159,103 +159,3 @@ export default
   }
 };
 </script>
-
-<style scoped lang="scss">
-  .pagination {
-    display: flex;
-    font-size: 16px;
-    justify-content: space-between;
-    margin-top: 0;
-    padding: 0 7px 16px;
-    position: relative;
-    top: -16px;
-    width: 100%;
-
-    @media (max-width: 576px) {
-      // @include media($max-phone) {
-      justify-content: unset;
-    }
-
-    &__paging-container {
-      display: flex;
-      align-items: center;
-
-      @media (max-width: 576px) {
-        // @include media($max-phone) {
-        display: none;
-      }
-
-      &--mobile {
-        display: none;
-        padding-left: 15%;
-
-        @media (max-width: 576px) {
-          // @include media($max-phone) {
-          display: flex;
-          align-items: center;
-        }
-      }
-    }
-
-    &__text {
-      font-size: 14px;
-      font-weight: 400;
-      margin-right: 31px;
-    }
-
-    &__btn {
-      border: none;
-      background-color: transparent;
-      margin: 0 16px;
-      position: relative;
-
-      &__icon {
-        font-size: 18px;
-        margin: 0 2px;
-        position: relative;
-      }
-
-      &--disabled {
-        color: var(--color-gray-xl-dove);
-        pointer-events: none;
-      }
-
-      &--mobile {
-        align-items: center;
-        color: var(--color-gray-xd-shadow);
-        display: none;
-        font-size: 14px;
-        transition: transform 0.5s ease;
-
-        @media (max-width: 576px) {
-          // @include media($max-phone) {
-          display: flex;
-        }
-
-        &.pagination__btn--next {
-          &:hover {
-            .pagination__btn__icon {
-              transform: translateX(4px);
-            }
-          }
-        }
-
-        &.pagination__btn--prev {
-          &:hover {
-            .pagination__btn__icon {
-              transform: translateX(-4px);
-            }
-          }
-        }
-      }
-
-      &--hidden {
-        display: none;
-      }
-
-      &:hover {
-        color: var(--color-primary-l);
-      }
-    }
-  }
-</style>

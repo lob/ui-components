@@ -7,7 +7,8 @@ export default {
   parameters: {
     docs: {
       page: mdx
-    }
+    },
+    layout: 'padded'
   },
   argTypes: {}
 };
@@ -15,7 +16,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { Pagination },
-  template: '<pagination v-bind="$props" />'
+  template: '<div class="block w-1/2 mx-auto mt-auto"><pagination v-bind="$props" /></div>'
 });
 
 export const FirstPageActive = Template.bind({});

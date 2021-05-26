@@ -1,7 +1,8 @@
 <template>
-  <span :class="['page-icon', {'page-icon--disabled': disabled}]">
+  <span>
     <svg
       v-if="first"
+      :class="[{'fill-gray-xxd hover:fill-primary-l': !disabled}, { 'fill-gray-l' : disabled }]"
       width="16"
       height="16"
       viewBox="0 0 16 16"
@@ -21,6 +22,7 @@
     </svg>
     <svg
       v-if="previous"
+      :class="[{'fill-gray-xxd hover:fill-primary-l': !disabled}, { 'fill-gray-l' : disabled }]"
       width="16"
       height="16"
       viewBox="0 0 16 16"
@@ -35,6 +37,7 @@
     </svg>
     <svg
       v-if="next"
+      :class="[{'fill-gray-xxd hover:fill-primary-l': !disabled}, { 'fill-gray-l' : disabled }]"
       width="16"
       height="16"
       viewBox="0 0 16 16"
@@ -49,6 +52,7 @@
     </svg>
     <svg
       v-if="last"
+      :class="[{'fill-gray-xxd hover:fill-primary-l': !disabled}, { 'fill-gray-l' : disabled }]"
       width="16"
       height="16"
       viewBox="0 0 16 16"
@@ -96,24 +100,4 @@ export default {
   }
 };
 </script>
-
-<style scoped lang="scss">
-.page-icon {
-  svg path {
-    fill: var(--color-gray-xd-shadow);
-  }
-
-  &--disabled {
-    svg path {
-      fill: var(--color-gray-xl-dove);
-    }
-  }
-
-  &:hover {
-    svg path {
-      fill: var(--color-primary-l);
-    }
-  }
-}
-</style>
 
