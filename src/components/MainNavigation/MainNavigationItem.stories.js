@@ -1,6 +1,6 @@
 import MainNavigationItem from './MainNavigationItem.vue';
 import mdx from './MainNavigationItem.mdx';
-import iconOverview from './iconOverview.svg';
+import iconOverview from '../../assets/images/iconOverview.svg';
 
 export default {
   title: 'Components/MainNavigationItem',
