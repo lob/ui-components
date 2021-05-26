@@ -1,11 +1,11 @@
 <template>
-  <label :class="['checkbox', 
-          {'checkbox__input--disabled': disabled},
-          {'checkbox__input--same-line': sameLine}]"
+  <div :class="['checkbox relative block mt-0 mb-1 ml-6 mr-3 cursor-pointer text-left min-h-5', 
+          {'cursor-not-allowed': disabled},
+          {'inline-block': sameLine}]"
   >
     <input
       type="checkbox"
-      :class="['checkbox__input', {'checkbox__input--error': error}]"
+      class="absolute m-0 p-0 h-0 w-0 opacity-0 pointer-events-none"
       :checked="checked"
       :value="value"
       :id="name"
@@ -14,9 +14,15 @@
       :required="required"
       @input="onInput"
     />
-    <span class="checkmark"></span>
-    <label for="name" class="checkbox__label">{{label}}<template v-if="required">*</template></label>
-  </label>
+    <span 
+      :class="['checkmark w-4 h-4 mr-1 rounded-sm border-solid border border-gray-l -left-5 absolute top-1', {'border-gray-l bg-gray-xxl': disabled},
+        {'border-gray-l bg-gray-l': disabled && checked},
+        {'border-error': error}, 
+        {'border-primary bg-primary': checked}]"
+      style="content: ''"
+    ></span>
+    <label for="name" class="inline-block">{{label}}<template v-if="required">*</template></label>
+  </div>
 </template>
 
 <script>
@@ -87,112 +93,34 @@
 </script>
 
 <style scoped lang="scss">
-  input.checkbox__input[type=checkbox] { /* hides default input for specificity reasons */
-    position: absolute;
-    margin: 0 !important;
-    padding: 0 !important;
-    opacity: 0;
-    height: 0;
-    width: 0;
-    pointer-events: none;
-  }
-
-  .checkbox {    
-    position: relative;
-    display: block;
-    min-height: 21px;
-    margin-top: 0;
-    margin-bottom: 5px;
-    margin-left: 25px;
-    margin-right: 10px;
-    cursor: pointer;
-    text-align: left;
-  }
-
-  .checkbox__input--same-line {
-    display: inline-block
-  }
-
-  .checkbox__input--disabled, .checkbox__input--disabled label {
-    cursor: not-allowed;
-
-    .checkmark { 
-      background: var(--color-white-mist);
-      border-color: var(--color-gray-xl-dove);
-    }  
-
-    /* locked state */
-    input:checked ~ .checkmark {
-      background: var(--color-gray-xl-dove) !important;
-      border-color: var(--color-gray-xl-dove) !important;
-    }
-  }
-
-  .checkbox__label {
-    margin-top: 3px;
-    text-align: left;
-    display: inline-block;
-  }
-
-  .checkbox__label__tooltip {
-    font-size: 12px;
-    position: absolute;
-    right: auto;
-    top: 5px;
-    margin-left: 8px;
-  }
-
-  .checkmark {
-    content: "";
-    width: 14px;
-    height: 14px;
-    margin-right: 5px;
-    border-radius: 2px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: var(--color-gray-xl-dove);
-    left: -20px;
-    position: absolute;
-    top: 5px;
-  }
-
   .checkbox:hover input ~ .checkmark {
-    box-shadow: 0px 0px 4px #{'rgba(var(--color-primary-rgb), 0.4)'};
+    box-shadow: 0px 0px 4px var(--color-primary-rgb-xl);
   }
 
-  .checkbox__input:focus ~ .checkmark {
-    border-color: var(--color-primary-xl);
-  }
-
-  .checkbox__input--error ~ .checkmark { 
-    border-color: var(--color-feedback-error);
-  }
-
-  .checkbox input:checked ~ .checkmark {
-    background-color: var(--color-primary);
-    border-color: var(--color-primary);
+  .checkbox input:focus ~ .checkmark {
+    @apply border-primary-xl;
   }
 
   .checkmark:after {
     content: "";
-    position: absolute;
-    display: none;
+    @apply absolute;
+    @apply hidden;
   }
 
   .checkbox input:checked ~ .checkmark:after {
-    display: block;
+    @apply block; 
   }
 
   .checkbox .checkmark:after {
-    left: 4px;
-    top: 0px;
-    width: 3px;
-    height: 8px;
-    border: solid white;
+    @apply left-1.5;
+    @apply top-0.5;
+    @apply w-1;
+    @apply h-2.5;
+    @apply border-solid;
+    @apply border-white;
     border-width: 0 3px 3px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
+    @apply transform;
+    @apply rotate-45;
   }
 
 </style>
