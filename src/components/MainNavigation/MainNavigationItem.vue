@@ -11,7 +11,7 @@
       >
       {{ title }}
       <img
-        v-if="!hasChildNavItems"
+        v-if="hasChildNavItems"
         :class="['w-6 ml-16', { 'transform rotate-180': !subNavOpen}]"
         :src="`${$getConst('lobAssetsUrl')}/dashboard/navbar/caret-down.svg`"
         :alt="subNavOpen ? 'Collapse' : 'Expand'"
@@ -43,11 +43,11 @@ export default {
     },
     iconSrc: {
       type: String,
-      default: ''
+      required: true
     },
     iconAltText: {
       type: String,
-      default: ''
+      required: true
     },
     active: {
       type: Boolean,
