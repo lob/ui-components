@@ -1,18 +1,43 @@
-@import "~normalize.css/normalize.css";
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
-@import "colors";
-@import "fonts";
-@import "typography";
+@import 'fonts';
 
-/* this is only temporary as Tailwind as an sr-only class */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
+:root {
+  --color-primary-rgb: 24, 120, 224;
+  --color-primary-rgb-xl: 24, 120, 224, .4;
+  --color-primary-rgb-l: 24, 120, 224, .2;
+}
+
+@layer base {
+  html, body {
+    font-size: 16px;
+    @apply font-sans;
+    @apply text-black;
+  }
+
+  h1 {
+    @apply text-5xl;
+  }
+
+  h2 {
+    @apply text-4xl;
+  }
+
+  h3 {
+    @apply text-3xl;
+  }
+
+  h4 {
+    @apply text-2xl;
+  }
+
+  h5 {
+    @apply text-xl;
+  }
+
+  h6 {
+    @apply text-lg;
+  }
 }
