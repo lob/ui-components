@@ -15,11 +15,15 @@ Most of the time, radio buttons should be grouped together using a `radio-group`
 
 You can pass in the `v-model` prop to bind radio buttons to the parent component's data model.
 
+You can pass in a `@click` handler to trigger a custom function on click events. The `event` object will be emitted along with the `click` event.
+
 ```html
 <radio-button
   name="postcard-size"
   value="4x6"
   label="4x6"
+  v-model="postcard.size"
+  @click="handleClick"
 />
 ```
 
