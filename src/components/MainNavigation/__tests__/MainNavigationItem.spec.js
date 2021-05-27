@@ -27,8 +27,8 @@ describe('Main Navigation Item', () => {
     const props = initialProps;
     const { queryByText, queryByAltText } = renderComponent({ props });
 
-    const button = queryByText(props.title);
-    expect(button).toBeInTheDocument();
+    const item = queryByText(props.title);
+    expect(item).toBeInTheDocument();
 
     const image = queryByAltText(props.iconAltText);
     expect(image).toHaveAttribute('src', props.iconSrc);

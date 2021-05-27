@@ -3,8 +3,8 @@
     <component
       :is="tag"
       :class="[
-        'no-underline py-4 pr-10 pl-6 max-h-12 inline-flex items-center w-full text-light text-sm text-left text-gray overflow-hidden relative focus:outline-none focus:ring-2 focus:ring-blue-xl focus:border-transparent',
-        { 'text-normal bg-gray-xl': active}
+        'no-underline py-4 pr-10 pl-6 max-h-12 flex items-center w-full text-sm text-left text-gray overflow-hidden relative focus:outline-none focus:ring-2 focus:ring-blue-xl focus:border-transparent',
+        { 'font-medium bg-gray-xl': active}
       ]"
       :to="to"
       active-class="text-normal bg-gray-xl"
@@ -24,9 +24,9 @@
       >
     </component>
 
-    <div class="pl-20">
+    <ul class="pl-12">
       <slot v-if="subNavOpen" />
-    </div>
+    </ul>
   </li>
 </template>
 
