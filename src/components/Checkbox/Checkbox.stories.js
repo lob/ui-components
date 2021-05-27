@@ -36,7 +36,7 @@ const Template = (args, {argTypes}) => ({
 
     <br/><br/>
 
-    Grouped Checkboxes: {{arrayVModel}}<br/>
+    Grouped Checkboxes:<br/>
     <checkbox 
       label="Chocolate"
       v-model="arrayVModel"

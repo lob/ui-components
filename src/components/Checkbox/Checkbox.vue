@@ -1,5 +1,5 @@
 <template>
-  <div :class="['checkbox relative block mt-0 mb-1 ml-6 mr-3 cursor-pointer text-left min-h-5', 
+  <label :class="['checkbox relative block mt-0 mb-1 ml-6 mr-3 cursor-pointer text-left min-h-5', 
           {'cursor-not-allowed': disabled},
           {'inline-block': sameLine}]"
   >
@@ -15,14 +15,14 @@
       @input="onInput"
     />
     <span 
+      style="content: ''"
       :class="['checkmark w-4 h-4 mr-1 rounded-sm border-solid border border-gray-l -left-5 absolute top-1', {'border-gray-l bg-gray-xxl': disabled},
         {'border-gray-l bg-gray-l': disabled && checked},
         {'border-error': error}, 
         {'border-primary bg-primary': checked}]"
-      style="content: ''"
     ></span>
-    <label for="name" class="inline-block">{{label}}<template v-if="required">*</template></label>
-  </div>
+    {{label}}<template v-if="required">*</template>
+  </label>
 </template>
 
 <script>
@@ -94,7 +94,7 @@
 
 <style scoped lang="scss">
   .checkbox:hover input ~ .checkmark {
-    box-shadow: 0px 0px 4px var(--color-primary-rgb-xl);
+    box-shadow: 0px 0px 4px var(--color-primary-rgb-l);
   }
 
   .checkbox input:focus ~ .checkmark {
@@ -112,13 +112,13 @@
   }
 
   .checkbox .checkmark:after {
-    @apply left-1.5;
-    @apply top-0.5;
-    @apply w-1;
-    @apply h-2.5;
+    border-width: 0 3px 3px 0;
+    top: 1px;
+    width: 5px;
+    height: 9px;
+    left: 4px;
     @apply border-solid;
     @apply border-white;
-    border-width: 0 3px 3px 0;
     @apply transform;
     @apply rotate-45;
   }
