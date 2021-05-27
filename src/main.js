@@ -23,5 +23,5 @@ const ComponentLibrary = {
 export default ComponentLibrary;
 
 if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.use(ComponentLibrary)
+  window.Vue.use(ComponentLibrary);
 }

@@ -58,7 +58,7 @@ describe('Checkbox', () => {
     const checkbox = getByLabelText(props.label);
 
     await fireEvent.click(checkbox); // checks de checkbox
-    let emittedEvent = emitted();
+    const emittedEvent = emitted();
     expect(emittedEvent).toHaveProperty('input');
     expect(emittedEvent.input[0]).toEqual([true]);
   });

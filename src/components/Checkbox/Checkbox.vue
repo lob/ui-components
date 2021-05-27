@@ -17,7 +17,7 @@
     >
     <span
       style="content: ''"
-      :class="['checkmark w-4 h-4 mr-1 rounded-sm border-solid border border-gray-l -left-5 absolute top-1', 
+      :class="['checkmark w-4 h-4 mr-1 rounded-sm border-solid border border-gray-l -left-5 absolute top-1',
                {'bg-gray-xxl': disabled},
                {'bg-gray-l': disabled && checked},
                {'border-error': error},
@@ -26,7 +26,7 @@
     <span
       class="cursor-pointer"
     >
-      {{ required ? label + '*' : label}}
+      {{ required ? label + '*' : label }}
     </span>
   </label>
 </template>
