@@ -1,7 +1,9 @@
 <template>
-  <ul class="bg-offWhite w-full">
-    <slot />
-  </ul>
+  <nav>
+    <ul class="bg-offWhite w-full">
+      <slot />
+    </ul>
+  </nav>
 </template>
 
 <script>
@@ -19,6 +21,8 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-
-</style>
+  <style
+    scoped
+    lang="scss"
+  />
+</template>
