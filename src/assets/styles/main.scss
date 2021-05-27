@@ -5,9 +5,9 @@
 @import 'fonts';
 
 :root {
-  --color-primary-rgb: 24, 120, 224;
-  --color-primary-rgb-xl: 24, 120, 224, .4;
-  --color-primary-rgb-l: 24, 120, 224, .2;
+  --color-primary-rgb: rgb(24, 120, 224);
+  --color-primary-rgb-l: rgba(24, 120, 224, .4);
+  --color-primary-rgb-xl: rgba(24, 120, 224, .2);
 }
 
 @layer base {
