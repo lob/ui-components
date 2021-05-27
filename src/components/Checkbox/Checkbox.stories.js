@@ -8,50 +8,53 @@ export default {
     docs: {
       page: mdx
     }
-  },
+  }
 };
 
-let checkboxVModel = false;
-let checkboxVModel2 = true;
-let arrayVModel = ['chocolate'];
+let checkboxVModel = false; //eslint-disable-line
 
-const Template = (args, {argTypes}) => ({
+const PrimaryTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { Checkbox },
-  data: () => ({ checkboxVModel, checkboxVModel2, arrayVModel }),
+  data: () => ({ checkboxVModel }),
   template: `
-  <div>
-    Simple checkboxes: {{checkboxVModel}} {{checkboxVModel2}}<br/>
     <checkbox 
       label="First"
-      v-model="checkboxVModel"
       name="first"
+      v-model="checkboxVModel"
     ></checkbox>
+    `
+});
 
-    <checkbox 
-      label="Second"
-      v-model="checkboxVModel2"
-      name="second"
-    ></checkbox>
+export const Primary = PrimaryTemplate.bind({});
+Primary.args = {
+  label: 'Custom checkbox label',
+  name: 'myInput'
+};
 
-    <br/><br/>
+let arrayVModel = []; //eslint-disable-line
 
-    Grouped Checkboxes:<br/>
-    <checkbox 
+const SecondaryTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { Checkbox },
+  data: () => ({ arrayVModel }),
+  template: `
+  <div>
+    <checkbox
       label="Chocolate"
       v-model="arrayVModel"
       name="chocolate"
       value="chocolate"
       sameLine
     />
-    <checkbox 
+    <checkbox
       label="Vanilla"
       v-model="arrayVModel"
       name="vanilla"
       value="vanilla"
       sameLine
     />
-    <checkbox 
+    <checkbox
       label="Strawberry"
       v-model="arrayVModel"
       name="strawberry"
@@ -59,11 +62,8 @@ const Template = (args, {argTypes}) => ({
       sameLine
     />
   </div>
-    `,
+    `
 });
 
-export const Primary = Template.bind({});
-Primary.args = {
-  label: 'Custom checkbox label',
-  name: 'myInput'
-}
+export const Secondary = SecondaryTemplate.bind({});
+

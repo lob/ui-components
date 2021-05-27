@@ -1,95 +1,104 @@
 <template>
-  <label :class="['checkbox relative block mt-0 mb-1 ml-6 mr-3 cursor-pointer text-left min-h-5', 
-          {'cursor-not-allowed': disabled},
-          {'inline-block': sameLine}]"
+  <div
+    :class="['checkbox relative block mt-0 mb-1 ml-6 mr-3 cursor-pointer text-left min-h-5',
+             {'cursor-not-allowed': disabled},
+             {'inline-block': sameLine}]"
   >
     <input
+      :id="name"
       type="checkbox"
       class="absolute m-0 p-0 h-0 w-0 opacity-0 pointer-events-none"
       :checked="checked"
       :value="value"
-      :id="name"
       :name="name"
       :disabled="disabled"
       :required="required"
       @input="onInput"
-    />
-    <span 
+    >
+    <span
       style="content: ''"
       :class="['checkmark w-4 h-4 mr-1 rounded-sm border-solid border border-gray-l -left-5 absolute top-1', {'border-gray-l bg-gray-xxl': disabled},
-        {'border-gray-l bg-gray-l': disabled && checked},
-        {'border-error': error}, 
-        {'border-primary bg-primary': checked}]"
-    ></span>
-    {{label}}<template v-if="required">*</template>
-  </label>
+               {'border-gray-l bg-gray-l': disabled && checked},
+               {'border-error': error},
+               {'border-primary bg-primary': checked}]"
+    />
+    <label
+      :for="name"
+      class="cursor-pointer"
+    >
+      {{ label }}
+      <template v-if="required">
+        *
+      </template>
+    </label>
+  </div>
 </template>
 
 <script>
-  export default {
-    name: 'Checkbox',
-    props: {
-      label: {
-        type: String,
-        required: true
-      },
-      value: {
-        type: [String, Boolean],
-        default: null
-      },
-      disabled: {
-        type: Boolean,
-        default: false
-      },
-      required: {
-        type: Boolean,
-        default: false
-      },
-      error: {
-        type: Boolean,
-        default: false
-      },
-      name: { 
-        type: String,
-        required: true
-      },
-      sameLine: { 
-        type: Boolean,
-        default: false
-      },
-      modelValue: {
-        type: [Array, Boolean],
-        default: null
+export default {
+  name: 'Checkbox',
+  model: {
+    prop: 'modelValue',
+    event: 'input'
+  },
+  props: {
+    label: {
+      type: String,
+      required: true
+    },
+    value: {
+      type: [String, Boolean],
+      default: null
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    required: {
+      type: Boolean,
+      default: false
+    },
+    error: {
+      type: Boolean,
+      default: false
+    },
+    name: {
+      type: String,
+      required: true
+    },
+    sameLine: {
+      type: Boolean,
+      default: false
+    },
+    modelValue: {
+      type: [Array, Boolean],
+      default: null
+    }
+  },
+  computed: {
+    checked () {
+      if (this.modelValue && typeof this.modelValue === 'object') {
+        return this.modelValue.includes(this.value);
       }
-    },
-    model: {
-      prop: 'modelValue',
-      event: 'input'
-    },
-    computed: {
-      checked() {
-        if (typeof this.modelValue === 'object') {
-          return this.modelValue.includes(this.value)
-        }
-        return this.modelValue
-      }
-    },
-    methods: {
-      onInput($event) {
-        if (typeof this.modelValue === 'object') {
-          let checked = [...this.modelValue]
-          if (checked.includes(this.value)) {
-            checked.splice(checked.indexOf(this.value), 1);
-          } else {
-            checked.push(this.value);
-          }
-          this.$emit('input', checked);
+      return this.modelValue;
+    }
+  },
+  methods: {
+    onInput ($event) {
+      if (this.modelValue && typeof this.modelValue === 'object') {
+        const checked = [...this.modelValue];
+        if (checked.includes(this.value)) {
+          checked.splice(checked.indexOf(this.value), 1);
         } else {
-          this.$emit('input', $event.target.checked)
+          checked.push(this.value);
         }
+        this.$emit('input', checked);
+      } else {
+        this.$emit('input', $event.target.checked);
       }
     }
   }
+};
 </script>
 
 <style scoped lang="scss">
@@ -108,7 +117,7 @@
   }
 
   .checkbox input:checked ~ .checkmark:after {
-    @apply block; 
+    @apply block;
   }
 
   .checkbox .checkmark:after {
