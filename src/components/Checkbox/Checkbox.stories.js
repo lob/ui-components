@@ -46,25 +46,27 @@ const SecondaryTemplate = (args, { argTypes }) => ({
       v-model="arrayVModel"
       name="chocolate"
       value="chocolate"
-      sameLine
+      v-bind="$props"
     />
     <checkbox
       label="Vanilla"
       v-model="arrayVModel"
       name="vanilla"
       value="vanilla"
-      sameLine
+      v-bind="$props"
     />
     <checkbox
       label="Strawberry"
       v-model="arrayVModel"
       name="strawberry"
       value="strawberry"
-      sameLine
+      v-bind="$props"
     />
   </div>
     `
 });
 
 export const Secondary = SecondaryTemplate.bind({});
-
+Secondary.args = {
+  sameLine: true
+};

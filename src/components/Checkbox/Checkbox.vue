@@ -27,10 +27,7 @@
       :for="name"
       class="cursor-pointer"
     >
-      {{ label }}
-      <template v-if="required">
-        *
-      </template>
+      {{ required ? label + '*' : label}}
     </label>
   </div>
 </template>
