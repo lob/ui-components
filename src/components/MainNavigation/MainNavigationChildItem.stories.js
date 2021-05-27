@@ -2,15 +2,16 @@ import VueRouter from 'vue-router';
 
 import MainNavigationItem from './MainNavigationItem.vue';
 import MainNavigationChildItem from './MainNavigationChildItem.vue';
+import mdx from './MainNavigationChildItem.mdx';
 import iconOverview from '../../assets/images/iconOverview.svg';
 
 export default {
   title: 'Components/Main Navigation/Child Item',
   component: MainNavigationChildItem,
   parameters: {
-    // docs: {
-    //   page: mdx
-    // }
+    docs: {
+      page: mdx
+    }
   },
   argTypes: {
     iconSrc: {

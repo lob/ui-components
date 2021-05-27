@@ -1,0 +1,28 @@
+import {
+  Preview,
+  Story,
+  ArgsTable,
+  PRIMARY_STORY,
+} from "@storybook/addon-docs/blocks";
+import MainNavigationChildItem from "./MainNavigationChildItem.vue";
+
+# MainNavigationChildItem
+
+The main navigation child item component is used for displaying a sub level navigation item in the main, vertical navigation.
+
+<Preview>
+  <Story id="components-main-navigation-child-item--primary" />
+</Preview>
+
+## How to Use
+
+The main navigation child item component renders as link (hooked up to your app's routing).
+
+Example of using this component in a template
+```html
+  <main-navigation-child-item title="Child Item 1" to="/us-verifications" />
+```
+
+## Props
+
+<ArgsTable story={PRIMARY_STORY} />

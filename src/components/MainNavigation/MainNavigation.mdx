@@ -1,0 +1,34 @@
+import {
+  Preview,
+  Story,
+  ArgsTable,
+  PRIMARY_STORY,
+} from "@storybook/addon-docs/blocks";
+import MainNavigation from "./MainNavigation.vue";
+
+# MainNavigation
+
+The main navigation component is used for displaying the main, vertical navigation.
+
+<Preview>
+  <Story id="components-main-navigation--primary" />
+</Preview>
+
+## How to Use
+
+The main navigation renders a semantic `nav` element with a `ul`. It is made to work with `main-navigation-item` components. However, you can also write custom components for its slot as long as the root element is an `li` (for accessibility).
+
+Example of using this component in a template
+```html
+  <main-navigation>
+    <main-navigation-item title="Navigation Item 1" iconSrc="${args.iconSrc}" iconAltText="Overview icon" />
+    <main-navigation-item title="Navigation Item 2" iconSrc="${args.iconSrc}" iconAltText="Overview icon" :collapsed="false" >
+      <main-navigation-child-item title="Child Item 1" to="/us-verifications" />
+      <main-navigation-child-item title="Child Item 2" to="/intl-verifications" />
+    </main-navigation-item>
+  </main-navigation>
+```
+
+## Props
+
+<ArgsTable story={PRIMARY_STORY} />
