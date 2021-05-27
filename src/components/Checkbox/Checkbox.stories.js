@@ -21,7 +21,8 @@ const PrimaryTemplate = (args, { argTypes }) => ({
     <checkbox 
       label="First"
       name="first"
-      v-model="checkboxVModel"
+      v-model="checkboxVModel" 
+      v-bind="$props"
     ></checkbox>
     `
 });
