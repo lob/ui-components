@@ -120,7 +120,7 @@ export default {
     width: 5px;
     height: 9px;
     left: 4px;
-    
+
     @apply border-solid;
     @apply border-white;
     @apply transform;
