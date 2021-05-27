@@ -1,3 +1,5 @@
+import VueRouter from 'vue-router';
+
 import MainNavigationItem from './MainNavigationItem.vue';
 import mdx from './MainNavigationItem.mdx';
 import iconOverview from '../../assets/images/iconOverview.svg';
@@ -22,6 +24,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { MainNavigationItem },
+  router: new VueRouter({ mode: 'history' }),
   template:
   `<ul style="width: 222px;" class="bg-offWhite">
     <main-navigation-item v-bind="$props">
@@ -35,7 +38,7 @@ Primary.args = {
   title: 'Overview',
   iconSrc: iconOverview,
   iconAltText: 'Overview icon',
-  to: ''
+  to: '/overview'
 };
 
 export const Secondary = Template.bind({});

@@ -1,3 +1,4 @@
+import VueRouter from 'vue-router';
 import './assets/styles/main.scss';
 import * as components from './components';
 import * as configs from './config';
@@ -7,6 +8,7 @@ configs.icons.configure();
 
 const ComponentLibrary = {
   install (Vue) {
+    Vue.use(VueRouter);
     Vue.use(configs.constants);
     Vue.component('font-awesome-icon', FontAwesomeIcon);
 

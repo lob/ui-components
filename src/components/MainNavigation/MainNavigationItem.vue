@@ -2,7 +2,12 @@
   <li class="list-none">
     <component
       :is="tag"
-      :class="['no-underline py-4 pr-10 pl-6 max-h-12 inline-flex items-center w-full text-light text-sm text-left text-gray overflow-hidden relative focus:outline-none focus:ring-2 focus:ring-blue-xl focus:border-transparent', { 'text-normal bg-gray-xl': active}]"
+      :class="[
+        'no-underline py-4 pr-10 pl-6 max-h-12 inline-flex items-center w-full text-light text-sm text-left text-gray overflow-hidden relative focus:outline-none focus:ring-2 focus:ring-blue-xl focus:border-transparent',
+        { 'text-normal bg-gray-xl': active}
+      ]"
+      :to="to"
+      active-class="text-normal bg-gray-xl"
       @[clickEvent]="toggleSubNav"
     >
       <img
@@ -18,6 +23,7 @@
         :alt="subNavOpen ? 'Collapse' : 'Expand'"
       >
     </component>
+
     <div class="pl-20">
       <slot v-if="subNavOpen" />
     </div>
@@ -64,7 +70,7 @@ export default {
       return Boolean(this.$slots.default);
     },
     tag () {
-      return this.to ? 'a' : 'button';
+      return this.to ? 'router-link' : 'button';
     },
     clickEvent () {
       return !this.to ? 'click' : null;
