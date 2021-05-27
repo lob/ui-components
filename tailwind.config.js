@@ -5,9 +5,9 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     screens: {
-      sm: '576px',
-      md: '768px',
-      lg: '1024px'
+      md: '576px',
+      lg: '768px',
+      xl: '1024px'
     },
     colors: {
       transparent: 'transparent',
@@ -94,11 +94,16 @@ module.exports = {
     fontFamily: {
       sans: ['Larsseit', 'sans-serif']
     },
+    fill: (theme) => ({
+      ...theme('colors')
+    }),
     extend: {
     }
   },
   variants: {
-    extend: {}
+    extend: {
+      translate: ['group-hover']
+    }
   },
   plugins: []
 };
