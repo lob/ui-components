@@ -29,7 +29,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { MainNavigation, MainNavigationChildItem, MainNavigationItem },
-  router: new VueRouter({ mode: 'history', routes: [] }),
+  router: new VueRouter({ mode: 'history' }),
   template: `
     <main-navigation style="width: 222px;" v-bind="$props">
       <main-navigation-item title="Navigation Item 1" iconSrc="${args.iconSrc}" iconAltText="Overview icon" />

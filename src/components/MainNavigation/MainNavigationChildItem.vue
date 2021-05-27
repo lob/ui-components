@@ -1,13 +1,14 @@
 <template>
   <li
     :class="[
-      'no-underline py-2 pl-8 max-h-12 my-px flex items-center w-full text-sm text-left text-gray overflow-hidden relative focus:outline-none focus:ring-2 focus:ring-blue-xl focus:border-transparent',
+      'no-underline py-1 max-h-12 my-px flex items-center text-sm text-left text-gray',
       { 'font-medium bg-gray-xl rounded-l-full': active}
     ]"
     data-testid="nav-child-item"
   >
     <router-link
       :to="to"
+      class="w-full py-1 pl-8 overflow-hidden focus:outline-none focus:ring-2 focus:ring-blue-xl focus:border-transparent"
     >
       {{ title }}
     </router-link>

@@ -24,8 +24,11 @@
       >
     </component>
 
-    <ul class="pl-12">
-      <slot v-if="subNavOpen" />
+    <ul
+      v-if="subNavOpen"
+      class="pl-12"
+    >
+      <slot />
     </ul>
   </li>
 </template>
