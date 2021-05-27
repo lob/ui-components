@@ -1,8 +1,9 @@
 <template>
   <li class="list-none">
-    <button
+    <component
+      :is="tag"
       :class="['no-underline py-4 pr-10 pl-6 max-h-12 inline-flex items-center w-full text-light text-sm text-left text-gray overflow-hidden relative focus:outline-none focus:ring-2 focus:ring-blue-xl focus:border-transparent', { 'text-normal bg-gray-xl': active}]"
-      @click="toggleSubNav"
+      @[clickEvent]="toggleSubNav"
     >
       <img
         :src="iconSrc"
@@ -16,21 +17,10 @@
         :src="`${$getConst('lobAssetsUrl')}/dashboard/navbar/caret-down.svg`"
         :alt="subNavOpen ? 'Collapse' : 'Expand'"
       >
-    </button>
-    <div class="pl-20 pb-4">
+    </component>
+    <div class="pl-20">
       <slot v-if="subNavOpen" />
     </div>
-
-    <!-- <component
-        :is="tag"
-        class="navbar-item"
-        :class="{
-            'is-active': active
-        }"
-        v-bind="$attrs"
-        v-on="$listeners">
-        <slot/>
-    </component> -->
   </li>
 </template>
 
@@ -51,6 +41,10 @@ export default {
       type: String,
       required: true
     },
+    to: {
+      type: String,
+      default: null
+    },
     active: {
       type: Boolean,
       default: false
@@ -68,6 +62,12 @@ export default {
   computed: {
     hasChildNavItems () {
       return Boolean(this.$slots.default);
+    },
+    tag () {
+      return this.to ? 'a' : 'button';
+    },
+    clickEvent () {
+      return !this.to ? 'click' : null;
     }
   },
   methods: {

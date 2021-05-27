@@ -9,6 +9,13 @@ export default {
     docs: {
       page: mdx
     }
+  },
+  argTypes: {
+    collapsed: {
+      control: {
+        disable: true
+      }
+    }
   }
 };
 
@@ -27,7 +34,8 @@ export const Primary = Template.bind({});
 Primary.args = {
   title: 'Overview',
   iconSrc: iconOverview,
-  iconAltText: 'Overview icon'
+  iconAltText: 'Overview icon',
+  to: ''
 };
 
 export const Secondary = Template.bind({});
@@ -35,6 +43,7 @@ Secondary.args = {
   title: 'With Children',
   iconSrc: iconOverview,
   iconAltText: 'item with children icon',
+  to: '',
   default: `
     <ul>
       <li>I\'m a child</li>
