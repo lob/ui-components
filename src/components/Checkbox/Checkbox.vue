@@ -16,7 +16,7 @@
       @input="onInput"
     >
     <span
-      style="content: ''"
+      style="content: '';"
       :class="['checkmark w-4 h-4 mr-1 rounded-sm border-solid border border-gray-l -left-5 absolute top-1',
                {'bg-gray-xxl': disabled},
                {'bg-gray-l': disabled && checked},
@@ -100,33 +100,35 @@ export default {
 
 <style scoped lang="scss">
   .checkbox:hover input ~ .checkmark {
-    box-shadow: 0px 0px 4px var(--color-primary-rgb-l);
+    box-shadow: 0 0 4px var(--color-primary-rgb-l);
   }
 
   .checkbox input:focus ~ .checkmark {
     @apply border-primary-xl;
   }
 
-  .checkmark:after {
+  .checkmark::after {
     content: "";
+
     @apply absolute;
     @apply hidden;
   }
 
-  .checkbox input:checked ~ .checkmark:after {
-    @apply block;
-  }
-
-  .checkbox .checkmark:after {
+  .checkbox .checkmark::after {
     border-width: 0 3px 3px 0;
     top: 1px;
     width: 5px;
     height: 9px;
     left: 4px;
+    
     @apply border-solid;
     @apply border-white;
     @apply transform;
     @apply rotate-45;
+  }
+
+  .checkbox input:checked ~ .checkmark::after {
+    @apply block;
   }
 
 </style>
