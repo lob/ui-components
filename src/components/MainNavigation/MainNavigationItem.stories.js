@@ -1,6 +1,7 @@
 import VueRouter from 'vue-router';
 
 import MainNavigationItem from './MainNavigationItem.vue';
+import MainNavigationChildItem from './MainNavigationChildItem.vue';
 import mdx from './MainNavigationItem.mdx';
 import iconOverview from '../../assets/images/iconOverview.svg';
 
@@ -23,7 +24,7 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { MainNavigationItem },
+  components: { MainNavigationItem, MainNavigationChildItem },
   router: new VueRouter({ mode: 'history' }),
   template: `
     <ul style="width: 222px;" class="bg-offWhite">
@@ -49,9 +50,7 @@ Secondary.args = {
   iconAltText: 'item with children icon',
   to: '',
   default: `
-    <ul>
-      <li>I\'m a child</li>
-      <li>And I\'m a second</li>
-    </ul>
+    <main-navigation-child-item title="Child Item 1" to="/us-verifications" />
+    <main-navigation-child-item title="Child Item 2" to="/intl-verifications" />
   `
 };
