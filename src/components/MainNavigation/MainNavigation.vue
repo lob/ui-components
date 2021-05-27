@@ -1,0 +1,24 @@
+<template>
+  <ul class="bg-offWhite w-full">
+    <slot />
+  </ul>
+</template>
+
+<script>
+export default {
+  name: 'MainNavigation',
+  props: {
+
+  },
+  computed: {
+
+  },
+  methods: {
+
+  }
+};
+</script>
+
+<style scoped lang="scss">
+
+</style>
