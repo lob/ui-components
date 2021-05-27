@@ -1,14 +1,13 @@
 import '@testing-library/jest-dom';
-import VueRouter from 'vue-router';
-
 import { render, fireEvent, waitFor } from '@testing-library/vue';
 import { constants } from '../../../config';
 import MainNavigationItem from '../MainNavigationItem.vue';
 
 const configureVue = (vue) => {
-  vue.use(VueRouter);
   vue.use(constants);
 };
+
+const routes = [];
 
 const initialProps = {
   title: 'Overview',
@@ -18,8 +17,7 @@ const initialProps = {
   collapsed: false
 };
 
-const router = new VueRouter({ mode: 'history' });
-const renderComponent = (options) => render(MainNavigationItem, { ...options, router }, configureVue);
+const renderComponent = (options, configure = configureVue) => render(MainNavigationItem, { ...options, routes }, configure);
 
 describe('Main Navigation Item', () => {
 
