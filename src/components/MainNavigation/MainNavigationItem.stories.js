@@ -15,7 +15,12 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { MainNavigationItem },
-  template: '<ul style="width: 222px;" class="bg-offWhite"><main-navigation-item v-bind="$props">{{ children }}</main-navigation-item></ul>'
+  template:
+  `<ul style="width: 222px;" class="bg-offWhite">
+    <main-navigation-item v-bind="$props">
+      <template v-if="${Boolean(args.default)}" v-slot>${args.default}</template>
+    </main-navigation-item>
+  </ul>`
 });
 
 export const Primary = Template.bind({});
@@ -27,8 +32,13 @@ Primary.args = {
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  title: 'Item With Children',
+  title: 'With Children',
   iconSrc: iconOverview,
   iconAltText: 'item with children icon',
-  children: '<ul><li>I\'m a child</li></li>And I\'m a second</li></ul>'
+  default: `
+    <ul>
+      <li>I\'m a child</li>
+      <li>And I\'m a second</li>
+    </ul>
+  `
 };

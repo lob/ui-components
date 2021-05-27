@@ -1,7 +1,7 @@
 <template>
   <li class="list-none">
     <button
-      :class="['no-underline py-4 pr-10 pl-6 max-h-12 inline-flex items-center w-full text-light text-sm text-gray overflow-hidden focus:outline-none focus:ring-2 focus:ring-blue-xl focus:border-transparent', { 'text-normal bg-gray-xl': active}]"
+      :class="['no-underline py-4 pr-10 pl-6 max-h-12 inline-flex items-center w-full text-light text-sm text-left text-gray overflow-hidden relative focus:outline-none focus:ring-2 focus:ring-blue-xl focus:border-transparent', { 'text-normal bg-gray-xl': active}]"
       @click="toggleSubNav"
     >
       <img
@@ -12,12 +12,14 @@
       {{ title }}
       <img
         v-if="hasChildNavItems"
-        :class="['w-6 ml-16', { 'transform rotate-180': !subNavOpen}]"
+        :class="['w-6 absolute top-3 right-4', { 'transform rotate-180': !subNavOpen}]"
         :src="`${$getConst('lobAssetsUrl')}/dashboard/navbar/caret-down.svg`"
         :alt="subNavOpen ? 'Collapse' : 'Expand'"
       >
-      <slot v-if="subNavOpen" />
     </button>
+    <div class="pl-20 pb-4">
+      <slot v-if="subNavOpen" />
+    </div>
 
     <!-- <component
         :is="tag"
