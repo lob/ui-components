@@ -1,5 +1,5 @@
 <template>
-  <div
+  <label
     :class="['checkbox relative block mt-0 mb-1 ml-6 mr-3 cursor-pointer text-left min-h-5',
              {'cursor-not-allowed': disabled},
              {'inline-block': sameLine}]"
@@ -23,13 +23,12 @@
                {'border-error': error},
                {'border-primary bg-primary': checked}]"
     />
-    <label
-      :for="name"
+    <span
       class="cursor-pointer"
     >
       {{ required ? label + '*' : label}}
-    </label>
-  </div>
+    </span>
+  </label>
 </template>
 
 <script>
