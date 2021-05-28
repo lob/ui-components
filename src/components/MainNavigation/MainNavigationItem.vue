@@ -14,19 +14,24 @@
       <img
         :src="iconSrc"
         :alt="iconAltText"
-        class="w-auto mr-1 mr-4 align-bottom"
+        class="w-6 mr-1 align-bottom"
       >
-      {{ title }}
-      <img
-        v-if="hasChildNavItems"
-        :class="['w-6 absolute top-3 right-4', { 'transform rotate-180': subNavOpen}]"
-        :src="`${$getConst('lobAssetsUrl')}/dashboard/navbar/caret-down.svg`"
-        :alt="subNavOpen ? 'Collapse' : 'Expand'"
+      <span
+        v-if="!sliding && slidOut"
+        class="pl-4"
       >
+        {{ title }}
+        <img
+          v-if="hasChildNavItems"
+          :class="['w-6 absolute top-3 right-4', { 'transform rotate-180': subNavOpen}]"
+          :src="`${$getConst('lobAssetsUrl')}/dashboard/navbar/caret-down.svg`"
+          :alt="subNavOpen ? 'Collapse' : 'Expand'"
+        >
+      </span>
     </component>
 
     <ul
-      v-if="subNavOpen"
+      v-if="!sliding && slidOut && subNavOpen"
       class="pl-12"
     >
       <slot />
@@ -58,11 +63,19 @@ export default {
     collapsed: {
       type: Boolean,
       default: false
+    },
+    slidOut: {
+      type: Boolean,
+      default: true
+    },
+    sliding: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
     return {
-      subNavOpen: !this.collapsed
+      subNavOpen: this.slidOut && !this.collapsed
     };
   },
   computed: {
@@ -83,3 +96,26 @@ export default {
   }
 };
 </script>
+
+<style scoped lang="scss">
+
+.fade-enter-active {
+  animation: collapse-in .5s reverse;
+}
+
+.fade-leave-active {
+  animation: collapse-in .5s;
+}
+
+@keyframes collapse-in {
+  0% {
+    width: auto;
+    opacity: 1;
+  }
+
+  100% {
+    width: 0px;
+    opacity: 0;
+  }
+}
+</style>
