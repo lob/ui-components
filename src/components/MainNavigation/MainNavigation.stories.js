@@ -11,7 +11,7 @@ export default {
   component: MainNavigation,
   decorators: [
     () => ({ template: '<div class="block bg-offWhite"><story /></div>' }),
-    routeDecorator('/')
+    routeDecorator()
   ],
   parameters: {
     docs: {
@@ -36,7 +36,7 @@ const Template = (args, { argTypes }) => ({
   template: `
     <main-navigation v-bind="$props">
       <template v-slot="slotProps">
-        <main-navigation-item title="Navigation Item 1" iconSrc="${args.iconSrc}" iconAltText="Overview icon" :slidOut="slotProps.slidOut" :sliding="slotProps.sliding" />
+        <main-navigation-item title="Navigation Item 1" iconSrc="${args.iconSrc}" iconAltText="Overview icon" to="/overview" :slidOut="slotProps.slidOut" :sliding="slotProps.sliding" />
         <main-navigation-item title="Navigation Item 2" iconSrc="${args.iconSrc}" iconAltText="Overview icon" :collapsed="false" :slidOut="slotProps.slidOut" :sliding="slotProps.sliding">
           <main-navigation-child-item title="Child Item 1" to="/us-verifications" />
           <main-navigation-child-item title="Child Item 2" to="/intl-verifications" />
