@@ -1,4 +1,4 @@
-import VueRouter from 'vue-router';
+import routeDecorator from '../../../.storybook/routeDecorator';
 
 import MainNavigation from './MainNavigation.vue';
 import MainNavigationItem from './MainNavigationItem.vue';
@@ -9,6 +9,10 @@ import iconOverview from '../../assets/images/iconOverview.svg';
 export default {
   title: 'Components/Main Navigation',
   component: MainNavigation,
+  decorators: [
+    () => ({ template: '<div class="block bg-offWhite"><story /></div>' }),
+    routeDecorator('/')
+  ],
   parameters: {
     docs: {
       page: mdx
@@ -29,14 +33,15 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { MainNavigation, MainNavigationChildItem, MainNavigationItem },
-  router: new VueRouter({ mode: 'history' }),
   template: `
-    <main-navigation style="width: 222px;" v-bind="$props">
-      <main-navigation-item title="Navigation Item 1" iconSrc="${args.iconSrc}" iconAltText="Overview icon" />
-      <main-navigation-item title="Navigation Item 2" iconSrc="${args.iconSrc}" iconAltText="Overview icon" :collapsed="false" >
-        <main-navigation-child-item title="Child Item 1" to="/us-verifications" />
-        <main-navigation-child-item title="Child Item 2" to="/intl-verifications" />
-      </main-navigation-item>
+    <main-navigation v-bind="$props">
+      <template v-slot="slotProps">
+        <main-navigation-item title="Navigation Item 1" iconSrc="${args.iconSrc}" iconAltText="Overview icon" :slidOut="slotProps.slidOut" :sliding="slotProps.sliding" />
+        <main-navigation-item title="Navigation Item 2" iconSrc="${args.iconSrc}" iconAltText="Overview icon" :collapsed="false" :slidOut="slotProps.slidOut" :sliding="slotProps.sliding">
+          <main-navigation-child-item title="Child Item 1" to="/us-verifications" />
+          <main-navigation-child-item title="Child Item 2" to="/intl-verifications" />
+        </main-navigation-item>
+      </template>
     </main-navigation>
   `
 });
