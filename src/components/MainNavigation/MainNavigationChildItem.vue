@@ -30,7 +30,7 @@ export default {
   },
   computed: {
     active () {
-      return this.$route.matched.some(({ path }) => path === this.to);
+      return this.$route.path === this.to;
     }
   }
 };

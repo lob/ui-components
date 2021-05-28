@@ -1,4 +1,4 @@
-import VueRouter from 'vue-router';
+import routeDecorator from '../../../.storybook/routeDecorator';
 
 import MainNavigationItem from './MainNavigationItem.vue';
 import MainNavigationChildItem from './MainNavigationChildItem.vue';
@@ -8,6 +8,9 @@ import iconOverview from '../../assets/images/iconOverview.svg';
 export default {
   title: 'Components/Main Navigation/Item',
   component: MainNavigationItem,
+  decorators: [
+    () => ({ template: '<ul style="width: 222px;" class="bg-offWhite"><story /></ul>' })
+  ],
   parameters: {
     docs: {
       page: mdx
@@ -25,13 +28,10 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { MainNavigationItem, MainNavigationChildItem },
-  router: new VueRouter({ mode: 'history' }),
   template: `
-    <ul style="width: 222px;" class="bg-offWhite">
-      <main-navigation-item v-bind="$props">
-        <template v-if="${Boolean(args.default)}" v-slot>${args.default}</template>
-      </main-navigation-item>
-    </ul>
+    <main-navigation-item v-bind="$props">
+      <template v-if="${Boolean(args.default)}" v-slot>${args.default}</template>
+    </main-navigation-item>
   `
 });
 
@@ -42,6 +42,11 @@ Primary.args = {
   iconAltText: 'Overview icon',
   to: '/overview'
 };
+Primary.decorators = [routeDecorator('/')];
+
+export const PrimaryActive = Template.bind({});
+PrimaryActive.args = { ...Primary.args };
+PrimaryActive.decorators = [routeDecorator('/overview')];
 
 export const Secondary = Template.bind({});
 Secondary.args = {
@@ -54,3 +59,5 @@ Secondary.args = {
     <main-navigation-child-item title="Child Item 2" to="/intl-verifications" />
   `
 };
+Secondary.decorators = [routeDecorator('/')];
+
