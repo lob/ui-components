@@ -8,7 +8,8 @@
       ]"
       :to="to"
       active-class="text-normal bg-gray-xl"
-      @[clickEvent]="toggleSubNav"
+      @click.native.stop
+      @[clickEvent].stop="toggleSubNav"
     >
       <img
         :src="iconSrc"
