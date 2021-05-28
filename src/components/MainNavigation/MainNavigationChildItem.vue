@@ -1,7 +1,7 @@
 <template>
   <li
     :class="[
-      'no-underline py-1 max-h-12 my-px flex items-center text-sm text-left text-gray overflow-hidden',
+      'no-underline py-1 max-h-12 my-px flex items-center font-light text-sm text-left text-gray overflow-hidden hover:text-primary-l',
       { 'font-medium bg-gray-xl rounded-l-full': active}
     ]"
     data-testid="nav-child-item"

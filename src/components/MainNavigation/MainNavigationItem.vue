@@ -2,7 +2,10 @@
   <li class="list-none">
     <component
       :is="tag"
-      class="no-underline py-4 pr-10 pl-6 max-h-12 flex items-center w-full text-sm text-left text-gray overflow-hidden relative focus:outline-none focus:ring-2 focus:ring-blue-xl focus:border-transparent"
+      :class="[
+        'no-underline py-4 px-6 max-h-12 flex items-center w-full font-light text-sm text-left text-gray relative overflow-hidden hover:text-primary-l focus:outline-none focus:ring-2 focus:ring-blue-xl focus:border-transparent',
+        {'truncate': sliding }
+      ]"
       :to="to"
       active-class="text-normal bg-gray-xl"
       @[clickEvent]="toggleSubNav"
