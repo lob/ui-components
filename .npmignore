@@ -3,3 +3,5 @@ node_modules
 
 *.stories.js
 *.mdx
+
+storybook-static

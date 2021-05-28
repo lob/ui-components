@@ -12,7 +12,7 @@ export default {
   argTypes: {
     content: {
       control: {
-        type: 'text',
+        type: 'text'
       },
       defaultValue: 'I am a card.',
       description: 'Content to display inside of the card',
@@ -22,16 +22,16 @@ export default {
         }
       }
     }
-  },
+  }
 };
 
-const Template = (args, {argTypes}) => ({
+const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { Card },
-  template: '<card v-slot:content>{{ content }}</card>',
+  template: '<card v-slot:content>{{ content }}</card>'
 });
 
 export const Primary = Template.bind({});
 Primary.args = {
   content: 'I am a card.'
-}
+};

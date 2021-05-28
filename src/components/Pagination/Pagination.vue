@@ -1,0 +1,161 @@
+<template>
+  <div
+    v-if="shouldRender"
+    class="flex md:justify-between mt-0 relative pt-0 px-2 pb-1 -top-1 w-full"
+  >
+    <div>
+      <p>
+        {{ totalNumber }} result<span v-if="totalNumber !== 1">s</span>
+      </p>
+    </div>
+
+    <div class="hidden md:flex items-center">
+      <p class="text-sm text-normal mr-8">
+        {{ paginationText }}
+      </p>
+      <button
+        :class="[
+          'border-none bg-transparent my-0 mx-4 relative hover:text-primary-l',
+          { 'text-gray-l pointer-none': page === 1 },
+        ]"
+        :disabled="page === 1"
+        @click="pageClick(1)"
+      >
+        <span class="sr-only">Go to first page</span>
+        <page-arrow-icon
+          :first="true"
+          :disabled="page === 1"
+        />
+      </button>
+      <button
+        :class="[
+          'border-none bg-transparent my-0 mx-4 relative hover:text-primary-l',
+          { 'text-gray-l pointer-none': page <= 1 }
+        ]"
+        :disabled="page <= 1"
+        @click="pageClick(page - 1)"
+      >
+        <span class="sr-only">Go to previous page</span>
+        <page-arrow-icon
+          :previous="true"
+          :disabled="page <= 1"
+        />
+      </button>
+      <button
+        :class="[
+          'border-none bg-transparent my-0 mx-4 relative hover:text-primary-l',
+          { 'text-gray-l pointer-none': offset + limit >= totalNumber },
+        ]"
+        :disabled="offset + limit >= totalNumber"
+        @click="pageClick(page + 1)"
+      >
+        <span class="sr-only">Go to next page</span>
+        <page-arrow-icon
+          :next="true"
+          :disabled="offset + limit >= totalNumber"
+        />
+      </button>
+      <button
+        :class="[
+          'border-none bg-transparent my-0 mx-4 relative hover:text-primary-l',
+          { 'text-gray-l pointer-none': offset + limit >= totalNumber },
+        ]"
+        :disabled="offset + limit >= totalNumber"
+        @click="pageClick(lastPage)"
+      >
+        <span class="sr-only">Go to last page</span>
+        <page-arrow-icon
+          :last="true"
+          :disabled="offset + limit >= totalNumber"
+        />
+      </button>
+    </div>
+
+    <div class="flex md:hidden items-center pl-8">
+      <p>
+        <button
+          :class="[
+            'border-none bg-transparent my-0 mx-4 relative hover:text-primary-l items-center text-gray-xxd flex md-hidden text-sm transition-transform duration-500 ease-linear transform group',
+            { 'text-gray-l pointer-none': offset + limit >= totalNumber },
+            { 'hidden': page == lastPage },
+          ]"
+          :disabled="offset + limit >= totalNumber"
+          @click="pageClick(page + 1)"
+        >
+          Next
+          <font-awesome-icon
+            class="text-lg my-0 mx-1 relative transform group-hover:translate-x-1"
+            :icon="['fal', 'angle-right']"
+          />
+        </button>
+        <button
+          :class="[
+            'border-none bg-transparent my-0 mx-4 relative hover:text-primary-l items-center text-gray-xxd flex md-hidden text-sm transition-transform duration-500 ease-linear transform group',
+            'pagination__btn--prev',
+            { 'hidden': page != lastPage },
+          ]"
+          @click="pageClick(page - 1)"
+        >
+          <font-awesome-icon
+            class="text-lg my-0 mx-1 relative transform group-hover:-translate-x-1"
+            :icon="['fal', 'angle-left']"
+          />
+          Prev
+        </button>
+      </p>
+    </div>
+  </div>
+</template>
+
+<script>
+import PageArrowIcon from './PageArrowIcon.vue';
+
+export default
+{
+  name: 'Pagination',
+  components: { PageArrowIcon },
+  props: {
+    collection: {
+      type: Array,
+      default: null
+    },
+    page: {
+      type: Number,
+      default: 0
+    },
+    total: {
+      type: Number,
+      default: 0
+    },
+    limit: {
+      type: Number,
+      default: 0
+    }
+  },
+  computed: {
+    shouldRender () {
+      return this.collection && this.collection.length > 0;
+    },
+    totalNumber () {
+      return typeof this.total === 'number' ? this.total : 0;
+    },
+    paginationText () {
+      return `${this.offset + 1} - ${Math.min(
+        this.offset + this.limit,
+        this.totalNumber
+      )} of ${this.totalNumber}`;
+    },
+    offset () {
+      return (this.page - 1) * this.limit;
+    },
+    lastPage () {
+      return Math.ceil(this.totalNumber / this.limit);
+    }
+  },
+  methods: {
+    pageClick (newPage) {
+      this.$emit('change', { page: newPage });
+    }
+  }
+};
+</script>

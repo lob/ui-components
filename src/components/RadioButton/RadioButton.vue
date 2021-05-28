@@ -1,148 +1,128 @@
 <template>
-  <div :class="['radio', {'radio--separate-lines': this.$parent.separateLines}, {'radio--disabled': disabled}]">
+  <div :class="['inline-block mr-4 mt-1 cursor-pointer', {'block mb-1': this.$parent.separateLines}, {'cursor-not-allowed': disabled}]">
     <input
-      type="radio"
-      :class="['radio__input', {'radio__input--error': error}]"
-      :name="name"
       :id="value"
+      type="radio"
+      :class="['absolute m-0 p-0 w-0 h-0 opacity-0 pointer-events-none mt-2 radio__input', {'radio__input--error': error}]"
+      :name="name"
       :value="value"
       :checked="checked"
       :disabled="disabled"
-      @click="onClick($event)"
-    />
-    <label :for="value">{{label}}</label>
+      @input="onInput"
+      @click="onClick"
+    >
+    <label
+      :for="value"
+      class="text-sm font-light relative inline-block cursor-pointer ml-6"
+    >{{ label }}</label>
   </div>
 </template>
 
 <script>
 export default {
   name: 'RadioButton',
-  props: {
-    modelValue: {
-      default: null
-    },
-    error: Boolean,
-    name: String,
-    value: String,
-    label: String,
-    disabled: Boolean,
-  },
   model: {
     prop: 'modelValue',
     event: 'input'
   },
+  props: {
+    modelValue: {
+      type: String,
+      default: null
+    },
+    error: {
+      type: Boolean,
+      default: false
+    },
+    name: {
+      type: String,
+      default: ''
+    },
+    value: {
+      type: String,
+      default: ''
+    },
+    label: {
+      type: String,
+      default: ''
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    }
+  },
   computed: {
-    checked() {
-      return this.modelValue == this.value
+    checked () {
+      return this.modelValue === this.value;
     }
   },
   methods: {
-    onClick(event) {
-      this.$emit('click', event)
-      this.$emit('input', this.value)
-      if (!this.checked) {
-        this.$emit('change', event)
-      }
+    onInput () {
+      this.$emit('input', this.value);
+    },
+    onClick ($event) {
+      this.$emit('click', $event);
     }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">
-  .radio {
-    display: inline-block;
-    cursor: pointer;
-    margin-top: 5px;
-    margin-right: 15px;
-  }
-
-  .radio--separate-lines {
-    display: block;
-    margin-bottom: 5px;
-  }
-
-  .radio--disabled {
-    cursor: not-allowed;
-  }
-
   .radio__input {
-    position: absolute;
-    margin: 0;
-    padding: 0;
-    opacity: 0;
-    height: 0;
-    width: 0;
-    pointer-events: none;
-    margin-top: 4px;
-  
-    + label {
-      font-size: 14px;
-      font-weight: 300;
-      position: relative;
-      display: inline-block;
-      cursor: pointer;
-      margin-left: 25px;
-
-      &::before {
-        content: '';
-        position: absolute;
-        display: inline-block;
-        left: -20px;
-        top: 2px;
-        border-radius: 50%;
-        border: 1px solid var(--color-gray-xl-dove);
-        width: 12px;
-        height: 12px;
-        background: transparent;
-      }
-
-      &::after {
-        content: '';
-        position: absolute;
-        display: inline-block;
-        left: -17px;
-        top: 5px;
-        border-radius: 50%;
-        width: 8px;
-        height: 8px;
-      }
-    }
-
-    &:checked {
-      + label::after {
-        background: var(--color-primary);
-        border-color: var(--color-gray-xl-dove);
-        box-shadow: 0px 0px 4px #{'rgba(var(--color-primary-rgb), 0.2)'};
-      }
-    }
-
-    &:hover {
-      + label::before {
-        box-shadow: 0px 0px 4px #{'rgba(var(--color-primary-rgb), 0.4)'};
-      }
-    }
-
-    &:focus {
-      + label::before {
-        border-color: var(--color-primary-xl);
-      }
-    }
-
-    &:disabled {
-      + label::before {
-        background: var(--color-white-mist);
-        border-color: var(--color-gray-xl-dove);
-      }
-
-      + label::after {
-        display: none;
-      }
-    }
-  }
-
-  .radio__input--error {
     + label::before {
-      border-color: var(--color-feedback-error);
+      content: '';
+      left: -20px;
+
+      @apply absolute;
+      @apply bg-transparent;
+      @apply border-gray-l;
+      @apply border-solid;
+      @apply border;
+      @apply h-3.5;
+      @apply inline-block;
+      @apply rounded-full;
+      @apply top-1;
+      @apply w-3.5;
+    }
+
+    + label::after {
+      content: '';
+      left: -18px;
+
+      @apply absolute;
+      @apply h-2.5;
+      @apply inline-block;
+      @apply rounded-full;
+      @apply top-1.5;
+      @apply w-2.5;
+    }
+
+    &:checked + label::after {
+      box-shadow: 0 0 4px var(--color-primary-rgb-xl);
+
+      @apply bg-primary;
+      @apply border-l;
+    }
+
+    &.radio__input--error + label::before {
+      @apply border-error;
+    }
+
+    &:hover + label::before {
+      box-shadow: 0 0 4px var(--color-primary-rgb-l);
+    }
+
+    &:focus + label::before {
+      @apply border-primary-xl;
+    }
+
+    &:disabled + label::before {
+      @apply bg-gray-xxl;
+      @apply border-gray-l;
+    }
+
+    &:disabled + label::after {
+      @apply hidden;
     }
   }
 </style>
