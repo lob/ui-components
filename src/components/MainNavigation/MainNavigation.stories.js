@@ -36,10 +36,15 @@ const Template = (args, { argTypes }) => ({
   template: `
     <main-navigation v-bind="$props">
       <template v-slot="slotProps">
-        <main-navigation-item title="Navigation Item 1" iconSrc="${args.iconSrc}" iconAltText="Overview icon" to="/overview" :slidOut="slotProps.slidOut" :sliding="slotProps.sliding" />
-        <main-navigation-item title="Navigation Item 2" iconSrc="${args.iconSrc}" iconAltText="Overview icon" :collapsed="false" :slidOut="slotProps.slidOut" :sliding="slotProps.sliding">
-          <main-navigation-child-item title="Child Item 1" to="/us-verifications" />
-          <main-navigation-child-item title="Child Item 2" to="/intl-verifications" />
+        <main-navigation-item title="Navigation Item 1" iconSrc="${args.iconSrc}" iconAltText="Overview icon" to="/item-1" :slidOut="slotProps.slidOut" :sliding="slotProps.sliding" />
+        <main-navigation-item title="Navigation Item 2" iconSrc="${args.iconSrc}" iconAltText="Overview icon" to="/item-2" :slidOut="slotProps.slidOut" :sliding="slotProps.sliding" />
+        <main-navigation-item title="Navigation Item 3" iconSrc="${args.iconSrc}" iconAltText="Overview icon" :collapsed="false" :slidOut="slotProps.slidOut" :sliding="slotProps.sliding">
+          <main-navigation-child-item title="Child Item 1" to="/child-1" />
+          <main-navigation-child-item title="Child Item 2" to="/child-2" />
+        </main-navigation-item>
+        <main-navigation-item title="Navigation Item 4" iconSrc="${args.iconSrc}" iconAltText="Overview icon" :collapsed="false" :slidOut="slotProps.slidOut" :sliding="slotProps.sliding">
+          <main-navigation-child-item title="Child Item 1" to="/child-3" />
+          <main-navigation-child-item title="Child Item 2" to="/child-4" />
         </main-navigation-item>
       </template>
     </main-navigation>
