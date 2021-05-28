@@ -19,7 +19,7 @@
       {{ title }}
       <img
         v-if="hasChildNavItems"
-        :class="['w-6 absolute top-3 right-4', { 'transform rotate-180': !subNavOpen}]"
+        :class="['w-6 absolute top-3 right-4', { 'transform rotate-180': subNavOpen}]"
         :src="`${$getConst('lobAssetsUrl')}/dashboard/navbar/caret-down.svg`"
         :alt="subNavOpen ? 'Collapse' : 'Expand'"
       >
