@@ -7,7 +7,7 @@
       class="relative pb-4"
       active-class="active-border"
     >
-      {{ label }}
+      {{ title }}
     </router-link>
   </li>
 </template>
@@ -16,7 +16,7 @@
 export default {
   name: 'SubnavigationItem',
   props: {
-    label: {
+    title: {
       type: String,
       default: ''
     },

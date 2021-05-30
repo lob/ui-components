@@ -1,5 +1,5 @@
 <template>
-  <ul class="flex border-b-1 border-gray-l pb-3.5">
+  <ul class="flex pb-3.5 border-b-1 border-gray-l">
     <slot />
   </ul>
 </template>

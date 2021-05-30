@@ -2,16 +2,16 @@ import routeDecorator from '../../../.storybook/routeDecorator';
 
 import Subnavigation from './Subnavigation.vue';
 import SubnavigationItem from './SubnavigationItem.vue';
-// import mdx from './SubNavigation.mdx';
+import mdx from './Subnavigation.mdx';
 
 export default {
   title: 'Components/Subnavigation ',
   component: Subnavigation,
   subcomponents: { SubnavigationItem },
   parameters: {
-    // docs: {
-    //   page: mdx
-    // }
+    docs: {
+      page: mdx
+    }
   },
   argTypes: {}
 };
@@ -19,14 +19,12 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { Subnavigation, SubnavigationItem },
-  template: `<div class="flex">
-    <subnavigation v-bind="$props">
-      <subnavigation-item label="Account" to="/account" />
-      <subnavigation-item label="API Keys" to="/api-keys" />
-      <subnavigation-item label="Payment" to="/payment" />
-    </subnavigation>
-  </div>`
+  template: `<subnavigation v-bind="$props">
+    <subnavigation-item title="Account" to="/account" />
+    <subnavigation-item title="API Keys" to="/api-keys" />
+    <subnavigation-item title="Payment" to="/payment" />
+  </subnavigation>`
 });
 
 export const Primary = Template.bind({});
-Primary.decorators = [routeDecorator()];
+Primary.decorators = [routeDecorator('/account')];

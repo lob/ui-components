@@ -1,0 +1,34 @@
+import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs/blocks';
+import Subnavigation from './Subnavigation.vue';
+
+# Subnavigation
+
+The subnavigation component is used for displaying a secondary, horizontal navigation.
+
+<Preview>
+  <Story id="components-subnavigation--primary" />
+</Preview>
+
+## How to Use
+
+### Subnavigation
+
+The subnavigation renders a semantic `nav` element with a `ul`. It is made to work with the `subnavigation-item` component. However, you can also write custom components for its slot as long as the root element is an `li` (for accessibility).
+
+Example of using this component in a template:
+
+```html
+<subnavigation v-bind="$props">
+  <subnavigation-item label="Account" to="/account" />
+  <subnavigation-item label="API Keys" to="/api-keys" />
+  <subnavigation-item label="Payment" to="/payment" />
+</subnavigation>
+```
+
+### Subnavigation Item
+
+The subnavigation item component is used for displaying each individual tab in the subnavigation component. The subnavigation item component renders as link (hooked up to your app's routing) wrapped in an `li`.
+
+## Props
+
+<ArgsTable story={PRIMARY_STORY} />
