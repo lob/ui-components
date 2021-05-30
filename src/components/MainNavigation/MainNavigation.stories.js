@@ -36,15 +36,16 @@ const Template = (args, { argTypes }) => ({
   template: `
     <main-navigation v-bind="$props">
       <template v-slot="slotProps">
-        <main-navigation-item title="Navigation Item 1" iconSrc="${args.iconSrc}" iconAltText="Overview icon" to="/item-1" :slidOut="slotProps.slidOut" :sliding="slotProps.sliding" />
-        <main-navigation-item title="Navigation Item 2" iconSrc="${args.iconSrc}" iconAltText="Overview icon" to="/item-2" :slidOut="slotProps.slidOut" :sliding="slotProps.sliding" />
-        <main-navigation-item title="Navigation Item 3" iconSrc="${args.iconSrc}" iconAltText="Overview icon" :collapsed="false" :slidOut="slotProps.slidOut" :sliding="slotProps.sliding">
-          <main-navigation-child-item title="Child Item 1" to="/child-1" />
-          <main-navigation-child-item title="Child Item 2" to="/child-2" />
+        <main-navigation-item title="Overview" iconSrc="${args.iconSrc}" iconAltText="Overview icon" to="/overview" :expanded="slotProps.expanded" />
+        <main-navigation-item title="Mail Analytics" iconSrc="${args.iconSrc}" iconAltText="Overview icon" to="/mail-analytics" :expanded="slotProps.expanded" />
+        <main-navigation-item title="Address Books" iconSrc="${args.iconSrc}" iconAltText="Overview icon" to="/address-verification" :expanded="slotProps.expanded" />
+        <main-navigation-item title="Address Verification" iconSrc="${args.iconSrc}" iconAltText="Overview icon" :subNavCollapsed="false" :expanded="slotProps.expanded">
+          <main-navigation-child-item title="US Verifications" to="/us-verifications" />
+          <main-navigation-child-item title="Int'l Verifications" to="/intl-verifications" />
         </main-navigation-item>
-        <main-navigation-item title="Navigation Item 4" iconSrc="${args.iconSrc}" iconAltText="Overview icon" :collapsed="false" :slidOut="slotProps.slidOut" :sliding="slotProps.sliding">
-          <main-navigation-child-item title="Child Item 1" to="/child-3" />
-          <main-navigation-child-item title="Child Item 2" to="/child-4" />
+        <main-navigation-item title="Print & Mail" iconSrc="${args.iconSrc}" iconAltText="Overview icon" :subNavCollapsed="false" :expanded="slotProps.expanded">
+          <main-navigation-child-item title="Postcards" to="/postcards" />
+          <main-navigation-child-item title="Letters" to="/letters" />
         </main-navigation-item>
       </template>
     </main-navigation>

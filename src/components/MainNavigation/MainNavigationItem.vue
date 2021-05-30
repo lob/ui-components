@@ -3,8 +3,7 @@
     <component
       :is="tag"
       :class="[
-        'no-underline py-4 px-6 max-h-12 flex items-center w-full font-light text-sm text-left text-gray relative overflow-hidden hover:text-primary-l focus:outline-none focus:ring-2 focus:ring-blue-xl focus:border-transparent',
-        {'truncate': sliding }
+        'no-underline py-4 px-6 max-h-12 flex items-center w-full font-light text-sm text-left text-gray relative overflow-hidden hover:text-primary-l focus:outline-none focus:ring-2 focus:ring-blue-xl focus:border-transparent'
       ]"
       :to="to"
       active-class="text-normal bg-gray-xl"
@@ -14,11 +13,14 @@
       <img
         :src="iconSrc"
         :alt="iconAltText"
-        class="w-6 mr-1 align-bottom"
+        class="w-6 align-bottom"
       >
       <span
-        v-if="!sliding && slidOut"
-        class="pl-4"
+        :class="[
+          'pl-4',
+          {'expanded': expanded},
+          {'collapsed md:hidden': !expanded}
+        ]"
       >
         {{ title }}
         <img
@@ -31,8 +33,11 @@
     </component>
 
     <ul
-      v-if="!sliding && slidOut && subNavOpen"
-      class="pl-12"
+      v-if="subNavOpen"
+      :class="[
+        'pl-12',
+        {'md:hidden': !expanded}
+      ]"
     >
       <slot />
     </ul>
@@ -60,22 +65,18 @@ export default {
       type: String,
       default: null
     },
-    collapsed: {
+    subNavCollapsed: {
       type: Boolean,
       default: false
     },
-    slidOut: {
+    expanded: {
       type: Boolean,
       default: true
-    },
-    sliding: {
-      type: Boolean,
-      default: false
     }
   },
   data () {
     return {
-      subNavOpen: this.slidOut && !this.collapsed
+      subNavOpen: this.expanded && !this.subNavCollapsed
     };
   },
   computed: {
@@ -98,24 +99,16 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
-.fade-enter-active {
-  animation: collapse-in .5s reverse;
-}
-
-.fade-leave-active {
-  animation: collapse-in .5s;
-}
-
-@keyframes collapse-in {
-  0% {
-    width: auto;
-    opacity: 1;
+@screen md {
+  .expanded {
+    max-width: 100%;
+    transition: max-width 0.3s ease-in;
   }
 
-  100% {
-    width: 0px;
-    opacity: 0;
+  .collapsed {
+    max-width: 0;
+    overflow: hidden;
+    transition: max-width 0.3s ease-out;
   }
 }
 </style>
