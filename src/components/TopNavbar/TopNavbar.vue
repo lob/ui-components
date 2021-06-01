@@ -15,9 +15,11 @@
         <nav v-if="showDashboardRedesign && session.user.id" class="brand-header">
           <div data-delay="0" data-hover="1" data-w-id="w-dropdown-toggle-2"
           class="nav-dropdown dropdownlinkmega w-dropdown w-dropdown-right resources" @mouseenter="showYourResourcesNav = true" @mouseleave="showYourResourcesNav = false" @click="toggleMobileNavs('resources')">
-            <div class="nav-link-4 w-dropdown-toggle" id="w-dropdown-toggle-2" aria-controls="w-dropdown-list-2"
-              aria-haspopup="menu" aria-expanded="false" role="" tabindex="0" style="outline: none;" 
-              :class="{ 'w--open': (!showMobileNav && showYourResourcesNav) || (showMobileNav && mobileNavs.resources) }">
+            <div 
+              id="w-dropdown-toggle-2" aria-controls="w-dropdown-list-2"
+              aria-haspopup="menu" aria-expanded="false" role="" 
+              tabindex="0" style="outline: none;" 
+              :class="['nav-link-4', 'w-dropdown-toggle', {'w--open': (!showMobileNav && showYourResourcesNav) || (showMobileNav && mobileNavs.resources)}]">
               <div class="row-2 no-wrap">
                 <div>Resources</div>
                 <img
@@ -25,8 +27,11 @@
                   width="24" alt="" class="dropdown-icon">
               </div>
             </div>
-            <nav class="dropdown-list-5 w-dropdown-list" style="height: 0px;" id="w-dropdown-list-2"
-              aria-labelledby="w-dropdown-toggle-2" :class="{ 'w--open' : (!showMobileNav && showYourResourcesNav) || (showMobileNav && mobileNavs.resources) }">
+            <nav 
+              style="height: 0px;" 
+              id="w-dropdown-list-2"
+              aria-labelledby="w-dropdown-toggle-2" 
+              :class="['dropdown-list-5', 'w-dropdown-list', {'w--open' : (!showMobileNav && showYourResourcesNav) || (showMobileNav && mobileNavs.resources)}]">
               <div class="dropdown-menu dropdownmega right-dropdown-menu">
                 <div class="text-small-4 meganavtitle sentencecase no-border-top">Docs &amp; Resources</div>
                 <div class="w-row">
@@ -130,8 +135,9 @@
           </div>
           <div v-if="session.user.id" data-delay="0" data-hover="1" data-w-id="w-dropdown-toggle-2"
             class="nav-dropdown dropdownlinkmega w-dropdown w-dropdown-right user-info" @mouseenter="showYourDashboardNav = true" @mouseleave="showYourDashboardNav = false" @click="toggleMobileNavs('dashboard')">
-            <div class="nav-link-4 w-dropdown-toggle" id="w-dropdown-toggle-2" aria-controls="w-dropdown-list-2"
-              aria-haspopup="menu" aria-expanded="false" role="" tabindex="0" style="outline: none;" :class="{ 'w--open' : (!showMobileNav && showYourDashboardNav) || (showMobileNav && mobileNavs.dashboard) }">
+            <div id="w-dropdown-toggle-2" aria-controls="w-dropdown-list-2"
+              aria-haspopup="menu" aria-expanded="false" role="" tabindex="0" style="outline: none;" 
+              :class="['nav-link-4', 'w-dropdown-toggle', {'w--open' : (!showMobileNav && showYourDashboardNav) || (showMobileNav && mobileNavs.dashboard)}]">
               <div class="row-2 no-wrap">
                 <div>{{session.user.first_name}} {{session.user.last_name}}</div>
                 <img
@@ -139,8 +145,10 @@
                   width="24" alt="" class="dropdown-icon">
               </div>
             </div>
-            <nav class="dropdown-list-5 w-dropdown-list" style="height: 0px;" id="w-dropdown-list-2"
-              aria-labelledby="w-dropdown-toggle-2" :class="{ 'w--open' : (!showMobileNav && showYourDashboardNav) || (showMobileNav && mobileNavs.dashboard) }">
+            <nav 
+              style="height: 0px;" id="w-dropdown-list-2"
+              aria-labelledby="w-dropdown-toggle-2" 
+              :class="['dropdown-list-5', 'w-dropdown-list', {'w--open': (!showMobileNav && showYourDashboardNav) || (showMobileNav && mobileNavs.dashboard)}]">
               <div class="dropdown-menu dropdownmega right-dropdown-menu">
                 <div class="w-row">
                   <div class="w-col w-col-11">
@@ -182,25 +190,35 @@
             </nav>
           </div>
         </nav>
-        <nav v-if="!showDashboardRedesign || !session.user.id" role="navigation" class="nav-menu-wrapper-4 w-nav-menu" :class="{ 'nav-menu-mobile-show': showMobileNav, 'nav-menu-mobile-hide': !showMobileNav }">
+        <nav v-if="!showDashboardRedesign || !session.user.id" role="navigation" 
+          :class="['nav-menu-wrapper-4', 'w-nav-menu', {'nav-menu-mobile-show': showMobileNav, 'nav-menu-mobile-hide': !showMobileNav}]">
           <div class="nav-links-wrapper">
             <div class="nav-links nav-links-1">
               <div data-delay="0" data-hover="1" data-w-id="w-dropdown-toggle-0"
                 class="nav-dropdown dropdownlinkmega w-dropdown" @mouseover="showProductsNav = true" @mouseleave="showProductsNav = false" @click="toggleMobileNavs('products')">
-                <div class="nav-link-4 w-dropdown-toggle" id="w-dropdown-toggle-0" aria-controls="w-dropdown-list-0"
+                <div 
+                  id="w-dropdown-toggle-0" aria-controls="w-dropdown-list-0"
                   data-toggle="collapse" aria-haspopup="menu" aria-expanded="false" role="" tabindex="0"
-                  style="outline: none;" :class="{'w--open': showProductsNav && (!showMobileNav || mobileNavs.products) }">
+                  style="outline: none;" 
+                  :class="['nav-link-4', 'w-dropdown-toggle', {'w--open': showProductsNav && (!showMobileNav || mobileNavs.products)}]">
                   <div class="row-2 no-wrap">
                     <div class="text-block-68">Products</div><img
                       :src="LOB_ASSETS_URL+'/dashboard/navbar/caret-down.svg'"
                       width="24" alt="" class="dropdown-icon">
                   </div>
                 </div>
-                <nav class="dropdown-list-5 w-dropdown-list" id="w-dropdown-list-0" style="width: 430px;"
-                  aria-labelledby="w-dropdown-toggle-0" :class="{ 'w--open': (!showMobileNav && showProductsNav) || (showMobileNav && mobileNavs.products) }">
+                <nav id="w-dropdown-list-0" style="width: 430px;"
+                  aria-labelledby="w-dropdown-toggle-0" 
+                  :class="['dropdown-list-5', 'w-dropdown-list', {'w--open': (!showMobileNav && showProductsNav) || (showMobileNav && mobileNavs.products)}]">
                   <div class="dropdown-menu dropdownmega snug2">
                     <div class="text-small-4 meganavtitle sentencecase no-border-top">APIs</div>
-                    <div class="megadropdown-row">
+                    <TopNavbarMenuItem
+                      :href="LOB_URL+'/print-mail'"
+                      :imageSource="LOB_ASSETS_URL+'/dashboard/navbar/print-mail.svg'"
+                      title="Print &amp; Mail"
+                      subtitle="Program and control direct mail just like email"
+                    />
+                    <!--<div class="megadropdown-row">
                       <a :href="LOB_URL+'/print-mail'" class="w-inline-block" tabindex="0"
                         style="outline: none;">
                         <img
@@ -214,7 +232,7 @@
                         <div class="text-small-4 muted-80 hidden-on-mobile">Program and control direct mail just like
                           email</div>
                       </div>
-                    </div>
+                    </div>-->
                     <div class="megadropdown-row">
                       <a :href="LOB_URL+'/address-verification'" class="w-inline-block" tabindex="0"
                         style="outline: none;">
@@ -598,8 +616,10 @@
                       width="24" alt="" class="dropdown-icon">
                   </div>
                 </div>
-                <nav class="dropdown-list-5 w-dropdown-list" style="height: 0px;" id="w-dropdown-list-3"
-                  aria-labelledby="w-dropdown-toggle-3" :class="{ 'w--open' : (!showMobileNav && showCompanyNav) || (showMobileNav && mobileNavs.company) }">
+                <nav 
+                  style="height: 0px;" id="w-dropdown-list-3"
+                  aria-labelledby="w-dropdown-toggle-3" 
+                  :class="['dropdown-list-5', 'w-dropdown-list', {'w--open' : (!showMobileNav && showCompanyNav) || (showMobileNav && mobileNavs.company)}]">
                   <div class="dropdown-menu dropdownmega">
                     <div class="w-row">
                       <div class="w-col w-col-6 w-col-stack">
@@ -742,11 +762,11 @@
               </div>
             </nav>
           </div>
-          <div @click="hideMobileNav()" class="nav-functions-2 signup">
+          <div @click="hideMobileNav" class="nav-functions-2 signup">
             <a v-if="!session.user.id" ui-sref="register" class="button-4 rebrand-btn-blue w-button">Sign up</a>
             <a v-else ui-sref="dashboard.settings.main.account" class="button-4 rebrand-btn-blue w-button">Settings</a>
           </div>
-          <div  @click="hideMobileNav()" class="nav-functions-2 login">
+          <div  @click="hideMobileNav" class="nav-functions-2 login">
             <a v-if="!session.user.id" ui-sref="login" class="button-4 bg-gray-4 rebrand-btn-gray w-button">Log in</a>
             <a v-else ui-sref="logout" class="button-4 bg-gray-4 rebrand-btn-gray w-button">Sign Out</a>
           </div>
@@ -761,20 +781,28 @@
           <div class="menu-button w-nav-button">
             <img
               :src="LOB_ASSETS_URL+'/dashboard/navbar/menu.svg'"
-              alt="" class="menu-icon" @click="showMobileNav = true" ng-hide="showMobileNav">
+              alt="" class="menu-icon" @click="showMobileNav = true" v-if="!showMobileNav">
             <img :src="LOB_ASSETS_URL+'/dashboard/navbar/x.svg'"
-              alt="" class="menu-cross-icon" @click="showMobileNav = false" ng-show="showMobileNav">
+              alt="" class="menu-cross-icon" @click="showMobileNav = false" v-if="showMobileNav">
           </div>
         </div>
-        <div class="w-nav-overlay" data-wf-ignore="" :class="{ 'nav-menu-mobile-show': showMobileNav, 'nav-menu-mobile-hide': !showMobileNav }"></div>
+        <div data-wf-ignore="" :class="['w-nav-overlay', { 'nav-menu-mobile-show': showMobileNav, 'nav-menu-mobile-hide': !showMobileNav }]"></div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import TopNavbarMenuItem from '../TopNavbarMenuItem'
 export default {
   name: 'TopNavbar',
+  components: {TopNavbarMenuItem},
+  props: {
+    loggedIn: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       LOB_URL: 'https://lob.com',
@@ -789,13 +817,6 @@ export default {
       showPricingNav: false,
       showDocsNav: false,
       showCompanyNav: false,
-      session: {
-        user: {
-          id: 2,
-          first_name: 'Test',
-          last_name: 'User'
-        }
-      },
       mobileNavs: {
         products: false,
         solutions: false,
@@ -803,6 +824,20 @@ export default {
         company: false,
         dashboard: false,
         docs: false
+      }
+    }
+  },
+  computed: {
+    session() {
+      if (this.loggedIn) return {
+        user: {
+          id: 2,
+          first_name: 'Test',
+          last_name: 'User'
+        }
+      };
+      return {
+        user: {}
       }
     }
   },

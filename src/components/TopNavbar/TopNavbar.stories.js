@@ -28,7 +28,9 @@ export default {
 const Template = (args, {argTypes}) => ({
   props: Object.keys(argTypes),
   components: { TopNavbar },
-  template: '<topNavbar>Something</topNavbar>',
+  template: `<topNavbar
+      v-bind="$props"
+  >Something</topNavbar>`,
 });
 
 export const Primary = Template.bind({});
