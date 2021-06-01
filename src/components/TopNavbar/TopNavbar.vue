@@ -791,7 +791,9 @@ export default {
       showCompanyNav: false,
       session: {
         user: {
-          id: 2
+          id: 2,
+          first_name: 'Test',
+          last_name: 'User'
         }
       },
       mobileNavs: {
@@ -822,9 +824,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
 @import 'https://s3-us-west-2.amazonaws.com/public.lob.com/lobdotcom/rebrand-nav-footer.min.css';
 .navbar-sticky {
+  left: 0px;
   background: #fff;
   border-bottom: 2px solid #EAF0F7;
   border-radius: 2px;
