@@ -30,10 +30,7 @@ export default {
   }
 };
 
-const Template = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
-  components: { MainNavigation, MainNavigationChildItem, MainNavigationItem },
-  template: `
+const primaryTemplateStr = (args) => `
     <main-navigation v-bind="$props">
       <template v-slot="{ expanded }">
         <main-navigation-item title="Overview" iconSrc="${args.iconSrc}" iconAltText="Overview icon" to="/overview" :expanded="expanded" />
@@ -49,20 +46,31 @@ const Template = (args, { argTypes }) => ({
         </main-navigation-item>
       </template>
     </main-navigation>
-  `
+  `;
+
+const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { MainNavigation, MainNavigationChildItem, MainNavigationItem },
+  template: primaryTemplateStr(args)
 });
 
 export const Primary = Template.bind({});
 Primary.args = {
   iconSrc: iconOverview
 };
+Primary.parameters = {
+  docs: {
+    source: {
+      code: primaryTemplateStr({ iconSrc: 'srcFilePath' })
+    }
+  }
+};
 
+const itemTemplateStr = '<main-navigation-item v-bind="$props" />';
 const ItemTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { MainNavigationItem },
-  template: `
-    <main-navigation-item v-bind="$props" />
-  `
+  template: itemTemplateStr
 });
 export const Item = ItemTemplate.bind({});
 Item.args = {
@@ -72,16 +80,29 @@ Item.args = {
   to: '/overview',
   expanded: true
 };
+Item.parameters = {
+  docs: {
+    source: {
+      code: itemTemplateStr
+    }
+  }
+};
 
+const childTemplateStr = '<main-navigation-child-item v-bind="$props" />';
 const ChildItemTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { MainNavigationChildItem },
-  template: `
-    <main-navigation-child-item v-bind="$props" />
-  `
+  template: childTemplateStr
 });
 export const ChildItem = ChildItemTemplate.bind({});
 ChildItem.args = {
   title: 'Postcards',
   to: '/postcards'
+};
+ChildItem.parameters = {
+  docs: {
+    source: {
+      code: childTemplateStr
+    }
+  }
 };
