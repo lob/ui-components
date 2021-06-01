@@ -100,7 +100,7 @@ export default {
     &:checked + label::after {
       box-shadow: 0 0 4px var(--color-primary-rgb-xl);
 
-      @apply bg-primary;
+      @apply bg-primary-500;
       @apply border-l;
     }
 

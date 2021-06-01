@@ -18,49 +18,49 @@ module.exports = {
       primary: {
         100: '#7cc6dd',
         300: '#0099d7',
-        DEFAULT: '#1876db', // could also be 500
+        500: '#1876db', // could also be 500
         700: '#0c68c0',
         900: '#0154ac'
       },
       lemon: {
         100: '#fbf3dc',
         300: '#f6e2aa',
-        DEFAULT: '#ffda74', // could also be 500
+        500: '#ffda74', // could also be 500
         700: '#fbc150',
         900: '#ed9107'
       },
       turquoise: {
         100: '#E5F1F5,',
         300: '#BBDCEA',
-        DEFAULT: '#57A1B9', // could also be 500
+        500: '#57A1B9', // could also be 500
         700: '#4890A8',
         900: '#1F667D'
       },
       flint: {
         100: '#E3F1FB',
         300: '#BFD6F2',
-        DEFAULT: '#7798C8', // could also be 500
+        500: '#7798C8', // could also be 500
         700: '#5279B4',
         900: '#355D97'
       },
       mint: {
         100: '#E2F7ED',
         300: '#A3E4C5',
-        DEFAULT: '#6CC399', // could also be 500
+        500: '#6CC399', // could also be 500
         700: '#5AAD85',
         900: '#3A7659'
       },
       coral: {
         100: '#F8E7E6',
         300: '#FFC3BF',
-        DEFAULT: '#FF9E98', // could also be 500
+        500: '#FF9E98', // could also be 500
         700: '#DB807A',
         900: '#943832'
       },
       gray: {
         100: '#C5D6E6',
         300: '#5F83A5',
-        DEFAULT: '#416581', // could also be 500
+        500: '#416581', // could also be 500
         700: '#324350', // same as black
         900: '#27333C'
       },
