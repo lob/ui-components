@@ -14,8 +14,8 @@
     "lint": "npm run lint:js && npm run lint:css",
     "lint:js": "eslint --ext .js,.vue .",
     "lint:css": "stylelint 'src/**/*.vue'",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook": "start-storybook -s ./public -p 6006",
+    "build-storybook": "build-storybook -s public"
   },
   "files": [
     "dist/*",

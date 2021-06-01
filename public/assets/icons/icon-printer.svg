@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="873px" height="873px" viewBox="0 0 873 873" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>icon_printerPaper@1x</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <radialGradient cx="47.8227787%" cy="20.7050867%" fx="47.8227787%" fy="20.7050867%" r="192.435692%" gradientTransform="translate(0.478228,0.207051),scale(0.265455,1.000000),rotate(92.372537),scale(1.000000,1.813825),translate(-0.478228,-0.207051)" id="radialGradient-1">
+            <stop stop-color="#577889" offset="0%"></stop>
+            <stop stop-color="#2C4351" offset="100%"></stop>
+        </radialGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="99.6885557%" id="linearGradient-2">
+            <stop stop-color="#80AEC2" offset="0%"></stop>
+            <stop stop-color="#AFCEDB" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="18.434876%" x2="53.5008662%" y2="132.850755%" id="linearGradient-3">
+            <stop stop-color="#EAF0F7" offset="0%"></stop>
+            <stop stop-color="#84BFD7" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="icon_printerPaper" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icons8-feed-paper" transform="translate(436.000000, 463.000000) rotate(-360.000000) translate(-436.000000, -463.000000) translate(161.000000, 172.000000)" fill-rule="nonzero">
+            <path d="M550,113.555556 C550,131.464889 535.505882,146 517.647059,146 L32.3529412,146 C14.4941176,146 0,131.464889 0,113.555556 L0,32.4444444 C0,14.5351111 14.4941176,0 32.3529412,0 L517.647059,0 C535.505882,0 550,14.5351111 550,32.4444444 L550,113.555556 Z" id="Path" fill="url(#radialGradient-1)"></path>
+            <polygon id="Path" fill="url(#linearGradient-2)" points="1.13686838e-13 485 550 485 550 582 1.13686838e-13 582"></polygon>
+            <polygon id="Path" fill="url(#linearGradient-3)" points="77.9867647 48 0 485 550 485 472.013235 48"></polygon>
+            <polygon id="Path" fill-opacity="0.205201049" fill="#366684" points="78.6628392 48 70 97 481 97 472.337161 48"></polygon>
+        </g>
+        <rect id="Rectangle-Copy" fill-opacity="0.115248033" fill="#2C4351" x="161" y="691" width="550" height="33"></rect>
+    </g>
+</svg>
