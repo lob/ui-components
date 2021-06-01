@@ -5,6 +5,8 @@ import {
   PRIMARY_STORY,
 } from "@storybook/addon-docs/blocks";
 import MainNavigation from "./MainNavigation.vue";
+import MainNavigationItem from "./MainNavigationItem.vue";
+import MainNavigationChildItem from "./MainNavigationChildItem.vue";
 
 # MainNavigation
 
@@ -18,17 +20,73 @@ The main navigation component is used for displaying the main, vertical navigati
 
 The main navigation renders a semantic `nav` element with a `ul`. It is made to work with `main-navigation-item` components. However, you can also write custom components for its slot as long as the root element is an `li` (for accessibility).
 
+The main navigation has a single prop, `collapsible` to control whether it has a click event on desktop that animates the navigation on click to slide in to a smaller width. This can give the user more screen real estate. `collapsible` defaults to true. If you do not want this animation, set this to false.
+
+When `collapsible` is true, the main navigation component passes information about it's expanded/collapsed state through slot props. This requires you passes the expanded prop to the child components in the template (see example below).
+
 Example of using this component in a template
 ```html
-  <main-navigation>
-    <main-navigation-item title="Navigation Item 1" iconSrc="${args.iconSrc}" iconAltText="Overview icon" />
-    <main-navigation-item title="Navigation Item 2" iconSrc="${args.iconSrc}" iconAltText="Overview icon" :collapsed="false" >
-      <main-navigation-child-item title="Child Item 1" to="/us-verifications" />
-      <main-navigation-child-item title="Child Item 2" to="/intl-verifications" />
-    </main-navigation-item>
+  <main-navigation v-bind="$props">
+    <template v-slot="{ expanded }">
+      <main-navigation-item title="Overview" iconSrc="overviewIconSrcFile" iconAltText="Overview icon" to="/overview" :expanded="expanded" />
+      <main-navigation-item title="Address Verification" iconSrc="addressVerificationIconSrcFile" iconAltText="Address verification icon" :subNavCollapsed="false" :expanded="expanded">
+        <main-navigation-child-item title="US Verifications" to="/us-verifications" />
+        <main-navigation-child-item title="Int'l Verifications" to="/intl-verifications" />
+      </main-navigation-item>
+    </template>
   </main-navigation>
 ```
 
 ## Props
 
 <ArgsTable story={PRIMARY_STORY} />
+
+# Main Navigation Item
+
+The main navigation item component is used for displaying a top level navigation item in the main, vertical navigation.
+
+<Preview>
+  <Story id="components-main-navigation--item" />
+</Preview>
+
+## How to Use
+
+The main navigation item component can render as a traditional link (hooked up to your app's routing) or as a button that will show its child nav items on click. 
+
+If you pass a `to` property, it will render as a link. Otherwise, it will render as a button.
+
+The `expanded` prop should come from the parent main navigation component and will control whether the item renders at full width on desktop or only renders wide enough to show its icon.
+
+Example of using this component in a template as a link.
+```html
+<main-navigation-item title="Overview" iconSrc="overviewIconSrcFile" iconAltText="Overview icon" to="/overview" :expanded="expanded" />
+```
+
+If you provide children elements in the default slot, it will bind a click event to the button to hide/show the child nav items. If you do not want to allow the user to collapse this subnavigation (i.e. you want the child items always visible), set the `collapsible` prop on the main navigation item component to false.
+
+If you want the component to render with the child items collapsed by default, you can use the `subNavCollapsed` prop set to true.
+
+Example of using this component in a template as a button with child nav items.
+```html
+<main-navigation-item title="Address Verification" iconSrc="addressVerificationIconSrcFile" iconAltText="Address verification icon" :expanded="expanded">
+  <main-navigation-child-item title="US Verifications" to="/us-verifications" />
+  <main-navigation-child-item title="Int'l Verifications" to="/intl-verifications" />
+</main-navigation-item>
+```
+
+# MainNavigationChildItem
+
+The main navigation child item component is used for displaying a sub level navigation item in the main, vertical navigation.
+
+<Preview>
+  <Story id="components-main-navigation--child-item" />
+</Preview>
+
+## How to Use
+
+The main navigation child item component renders as link (hooked up to your app's routing).
+
+Example of using this component in a template
+```html
+<main-navigation-child-item title="US Verifications" to="/us-verifications" />
+```

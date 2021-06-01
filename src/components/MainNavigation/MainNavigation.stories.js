@@ -35,15 +35,15 @@ const Template = (args, { argTypes }) => ({
   components: { MainNavigation, MainNavigationChildItem, MainNavigationItem },
   template: `
     <main-navigation v-bind="$props">
-      <template v-slot="slotProps">
-        <main-navigation-item title="Overview" iconSrc="${args.iconSrc}" iconAltText="Overview icon" to="/overview" :expanded="slotProps.expanded" />
-        <main-navigation-item title="Mail Analytics" iconSrc="${args.iconSrc}" iconAltText="Overview icon" to="/mail-analytics" :expanded="slotProps.expanded" />
-        <main-navigation-item title="Address Books" iconSrc="${args.iconSrc}" iconAltText="Overview icon" to="/address-verification" :expanded="slotProps.expanded" />
-        <main-navigation-item title="Address Verification" iconSrc="${args.iconSrc}" iconAltText="Overview icon" :subNavCollapsed="false" :expanded="slotProps.expanded">
+      <template v-slot="{ expanded }">
+        <main-navigation-item title="Overview" iconSrc="${args.iconSrc}" iconAltText="Overview icon" to="/overview" :expanded="expanded" />
+        <main-navigation-item title="Mail Analytics" iconSrc="${args.iconSrc}" iconAltText="Overview icon" to="/mail-analytics" :expanded="expanded" />
+        <main-navigation-item title="Address Books" iconSrc="${args.iconSrc}" iconAltText="Overview icon" to="/address-verification" :expanded="expanded" />
+        <main-navigation-item title="Address Verification" iconSrc="${args.iconSrc}" iconAltText="Overview icon" :expanded="expanded">
           <main-navigation-child-item title="US Verifications" to="/us-verifications" />
           <main-navigation-child-item title="Int'l Verifications" to="/intl-verifications" />
         </main-navigation-item>
-        <main-navigation-item title="Print & Mail" iconSrc="${args.iconSrc}" iconAltText="Overview icon" :subNavCollapsed="false" :expanded="slotProps.expanded">
+        <main-navigation-item title="Print & Mail" iconSrc="${args.iconSrc}" iconAltText="Overview icon" :expanded="expanded">
           <main-navigation-child-item title="Postcards" to="/postcards" />
           <main-navigation-child-item title="Letters" to="/letters" />
         </main-navigation-item>
@@ -55,4 +55,33 @@ const Template = (args, { argTypes }) => ({
 export const Primary = Template.bind({});
 Primary.args = {
   iconSrc: iconOverview
+};
+
+const ItemTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { MainNavigationItem },
+  template: `
+    <main-navigation-item v-bind="$props" />
+  `
+});
+export const Item = ItemTemplate.bind({});
+Item.args = {
+  title: 'Overview',
+  iconSrc: iconOverview,
+  iconAltText: 'Overview icon',
+  to: '/overview',
+  expanded: true
+};
+
+const ChildItemTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { MainNavigationChildItem },
+  template: `
+    <main-navigation-child-item v-bind="$props" />
+  `
+});
+export const ChildItem = ChildItemTemplate.bind({});
+ChildItem.args = {
+  title: 'Postcards',
+  to: '/postcards'
 };
