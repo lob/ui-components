@@ -14,71 +14,82 @@ module.exports = {
       current: 'currentColor',
 
       black: '#324350',
-      white: '#FFFFFF',
-      offWhite: '#F8F9FA',
 
       primary: {
-        xl: '#7cc6dd',
-        l: '#0099d7',
-        DEFAULT: '#1876db',
-        d: '#0c68c0',
-        xd: '#0154ac'
+        100: '#7cc6dd',
+        300: '#0099d7',
+        DEFAULT: '#1876db', // could also be 500
+        700: '#0c68c0',
+        900: '#0154ac'
       },
-      blue: {
-        xl: '#7cc6dd',
-        l: '#0099d7',
-        DEFAULT: '#1876db',
-        d: '#0c68c0',
-        xd: '#0154ac'
+      lemon: {
+        100: '#fbf3dc',
+        300: '#f6e2aa',
+        DEFAULT: '#ffda74', // could also be 500
+        700: '#fbc150',
+        900: '#ed9107'
       },
-      yellow: { // was lemon
-        xl: '#fbf3dc',
-        l: '#f6e2aa',
-        DEFAULT: '#ffda74',
-        d: '#fbc150',
-        xd: '#ed9107'
+      turquoise: {
+        100: '#E5F1F5,',
+        300: '#BBDCEA',
+        DEFAULT: '#57A1B9', // could also be 500
+        700: '#4890A8',
+        900: '#1F667D'
       },
-      teal: { // was turquoise
-        xl: '#BBDCEA',
-        l: '#DBF0F9',
-        DEFAULT: '#57A1B9',
-        d: '#4890A8',
-        xd: '#1F667D'
+      flint: {
+        100: '#E3F1FB',
+        300: '#BFD6F2',
+        DEFAULT: '#7798C8', // could also be 500
+        700: '#5279B4',
+        900: '#355D97'
       },
-      indigo: { // was flint
-        xl: '#DCE7FC',
-        l: '#BFD6F2',
-        DEFAULT: '#7798C8',
-        d: '#5279B4',
-        xd: '#355D97'
+      mint: {
+        100: '#E2F7ED',
+        300: '#A3E4C5',
+        DEFAULT: '#6CC399', // could also be 500
+        700: '#5AAD85',
+        900: '#3A7659'
       },
-      green: { // was mint
-        xl: '#E2F7ED',
-        l: '#A3E4C5',
-        DEFAULT: '#6CC399',
-        d: '#5AAD85',
-        xd: '#3A7659'
-      },
-      red: { // was coral
-        xl: '#F8E7E6',
-        l: '#FFC3BF',
-        DEFAULT: '#FF9E98',
-        d: '#DB807A',
-        xd: '#943832'
+      coral: {
+        100: '#F8E7E6',
+        300: '#FFC3BF',
+        DEFAULT: '#FF9E98', // could also be 500
+        700: '#DB807A',
+        900: '#943832'
       },
       gray: {
-        xxl: '#EBF3F6',
-        xl: '#EBF0F6',
-        l: '#C5D6E6',
-        DEFAULT: '#5F83A5',
-        d: '#416581',
-        xd: '#324350', // same as black
-        xxd: '#27333C'
+        100: '#C5D6E6',
+        300: '#5F83A5',
+        DEFAULT: '#416581', // could also be 500
+        700: '#324350', // same as black
+        900: '#27333C'
+      },
+      white: {
+        DEFAULT: '#FFFFFF',
+        100: '#F8F9FA',
+        200: '#F7F9FA',
+        300: '#EBF0F6'
       },
       success: '#4BBC85',
       warning: '#F5AE5B',
       error: '#F76E40',
-      alert: '#FFE773'
+      alert: '#FFE773',
+      tertiary: {
+        bluebird: '#84bfd7',
+        sky: '#96CDF2',
+        azure: '#70c0e0',
+        plum: '#b29aec',
+        seafoam: '#68CCBB',
+        burlywood: '#EBB572',
+        lime: '#b8de62',
+        gold: '#f7d669',
+        cornsilk: '#FFF6CB',
+        clay: '#D99980',
+        caramel: '#D79139',
+        tortilla: '#CBAB7E',
+        pink: '#FFCECE',
+        taffy: '#f79fc3'
+      }
     },
     fontSize: {
       xs: ['0.75rem', { lineHeight: '1rem' }],
