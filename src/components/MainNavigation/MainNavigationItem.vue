@@ -106,8 +106,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@screen md {
-
+@screen md { // stylelint-disable-line at-rule-no-unknown
   .expanded {
     max-width: 100%;
     transition: max-width 0.3s ease-in;

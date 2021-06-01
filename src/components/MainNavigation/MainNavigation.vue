@@ -48,13 +48,14 @@ export default {
 nav {
   width: 100%;
 
-   @screen md {
-     ul:not(.collapsed) {
-       width: 222px;
-     }
-     ul.collapsed {
-       width: 70px;
-     }
+  @screen md { // stylelint-disable-line at-rule-no-unknown
+    ul:not(.collapsed) {
+      width: 222px;
+    }
+
+    ul.collapsed {
+      width: 70px;
+    }
   }
 }
 </style>
