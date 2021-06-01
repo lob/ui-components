@@ -3,3 +3,5 @@ export { default as RadioGroup } from './RadioGroup';
 export { default as RadioButton } from './RadioButton';
 export { default as Pagination } from './Pagination';
 export { default as Checkbox } from './Checkbox';
+export { default as Subnavigation } from './Subnavigation';
+export { default as SubnavigationItem } from './SubnavigationItem';

@@ -6,6 +6,7 @@
       :to="to"
       class="relative pb-4"
       active-class="active-border"
+      data-testid="subnav-item"
     >
       {{ title }}
     </router-link>
