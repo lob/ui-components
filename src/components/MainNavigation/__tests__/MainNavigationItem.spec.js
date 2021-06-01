@@ -1,7 +1,11 @@
 import '@testing-library/jest-dom';
+import Vue from 'vue';
+
 import { render, fireEvent, waitFor } from '@testing-library/vue';
 import { constants } from '../../../config';
 import MainNavigationItem from '../MainNavigationItem.vue';
+
+Vue.config.silent = true; // suppressing warnings due to known issue with dynamic components and native events
 
 const configureVue = (vue) => {
   vue.use(constants);
@@ -14,7 +18,7 @@ const initialProps = {
   iconSrc: 'path/to/image.svg',
   iconAltText: 'very descriptive alt text',
   active: false,
-  collapsed: false
+  subNavCollapsed: false
 };
 
 const renderComponent = (options, configure = configureVue) => render(MainNavigationItem, { ...options, routes }, configure);
@@ -85,14 +89,6 @@ describe('Main Navigation Item', () => {
         slots = { default: [`<ul><li>${slotContent}</li></ul>`] };
       });
 
-      it('renders a collapse/expand icon', () => {
-        const props = initialProps;
-        const { queryByAltText } = renderComponent({ props, slots });
-
-        const image = queryByAltText(/Collapse|Expand/i);
-        expect(image).toBeInTheDocument();
-      });
-
       it('renders the slot content', () => {
         const props = initialProps;
         const { queryByText } = renderComponent({ props, slots });
@@ -101,63 +97,112 @@ describe('Main Navigation Item', () => {
         expect(slot).toBeInTheDocument();
       });
 
-      describe('and expanded', () => {
+      describe('when collapsible', () => {
 
-        let props;
-
-        beforeEach(() => {
-          props = {
-            ...initialProps,
-            collapsed: false
-          };
-        });
-
-        it('renders a collapse icon', () => {
+        it('renders a collapse/expand icon', () => {
+          const props = initialProps;
           const { queryByAltText } = renderComponent({ props, slots });
 
-          const image = queryByAltText(/Collapse/i);
+          const image = queryByAltText(/Collapse|Expand/i);
           expect(image).toBeInTheDocument();
         });
 
-        it('collapses the sub navigation when clicked', async () => {
-          const { getByText, queryByText, queryByAltText } = renderComponent({ props, slots });
+        describe('and expanded', () => {
 
-          const button = getByText(props.title);
-          fireEvent.click(button);
+          let props;
 
-          await waitFor(() => {
-            const slot = queryByText(slotContent);
-            expect(slot).not.toBeInTheDocument();
+          beforeEach(() => {
+            props = {
+              ...initialProps,
+              subNavCollapsed: false
+            };
           });
 
-          await waitFor(() => {
+          it('renders a collapse icon', () => {
+            const { queryByAltText } = renderComponent({ props, slots });
+
+            const image = queryByAltText(/Collapse/i);
+            expect(image).toBeInTheDocument();
+          });
+
+          it('collapses the sub navigation when clicked', async () => {
+            const { getByText, queryByText, queryByAltText } = renderComponent({ props, slots });
+
+            const button = getByText(props.title);
+            fireEvent.click(button);
+
+            await waitFor(() => {
+              const slot = queryByText(slotContent);
+              expect(slot).not.toBeInTheDocument();
+            });
+
+            await waitFor(() => {
+              const image = queryByAltText(/Expand/i);
+              expect(image).toBeInTheDocument();
+            });
+          });
+
+        });
+
+        describe('and collapsed', () => {
+
+          let props;
+
+          beforeEach(() => {
+            props = {
+              ...initialProps,
+              subNavCollapsed: true
+            };
+          });
+
+          it('renders an expand icon', () => {
+            const { queryByAltText } = renderComponent({ props, slots });
+
             const image = queryByAltText(/Expand/i);
             expect(image).toBeInTheDocument();
           });
+
+          it('expands the sub navigation when clicked', async () => {
+            const { getByText, queryByText, queryByAltText } = renderComponent({ props, slots });
+
+            const button = getByText(props.title);
+            fireEvent.click(button);
+
+            await waitFor(() => {
+              const slot = queryByText(slotContent);
+              expect(slot).toBeInTheDocument();
+            });
+
+            await waitFor(() => {
+              const image = queryByAltText(/Collapse/i);
+              expect(image).toBeInTheDocument();
+            });
+          });
+
         });
 
       });
 
-      describe('and collapsed', () => {
+      describe('when not collapsible', () => {
 
         let props;
 
         beforeEach(() => {
           props = {
             ...initialProps,
-            collapsed: true
+            collapsible: false
           };
         });
 
-        it('renders an expand icon', () => {
+        it('does not render a collapse/expand icon', () => {
           const { queryByAltText } = renderComponent({ props, slots });
 
-          const image = queryByAltText(/Expand/i);
-          expect(image).toBeInTheDocument();
+          const image = queryByAltText(/Collapse|Expand/i);
+          expect(image).not.toBeInTheDocument();
         });
 
-        it('expands the sub navigation when clicked', async () => {
-          const { getByText, queryByText, queryByAltText } = renderComponent({ props, slots });
+        it('does not collapse the sub navigation when clicked', async () => {
+          const { getByText, queryByText } = renderComponent({ props, slots });
 
           const button = getByText(props.title);
           fireEvent.click(button);
@@ -166,15 +211,42 @@ describe('Main Navigation Item', () => {
             const slot = queryByText(slotContent);
             expect(slot).toBeInTheDocument();
           });
-
-          await waitFor(() => {
-            const image = queryByAltText(/Collapse/i);
-            expect(image).toBeInTheDocument();
-          });
         });
 
       });
 
+    });
+
+  });
+
+  describe('when parent nav is expanded', () => {
+
+    it('expands its content appropriately', () => {
+      const props = initialProps;
+      const { queryByTestId } = renderComponent({ props });
+
+      const collapsibleElement = queryByTestId('collapsibleElement');
+      expect(collapsibleElement).toHaveClass('expanded');
+    });
+
+  });
+
+  describe('when parent nav is collapsed', () => {
+
+    let props;
+
+    beforeEach(() => {
+      props = {
+        ...initialProps,
+        expanded: false
+      };
+    });
+
+    it('collapses its content appropriately', () => {
+      const { queryByTestId } = renderComponent({ props });
+
+      const collapsibleElement = queryByTestId('collapsibleElement');
+      expect(collapsibleElement).not.toHaveClass('expanded');
     });
 
   });

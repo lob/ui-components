@@ -21,6 +21,7 @@
           {'expanded': expanded},
           {'collapsed md:hidden': !expanded}
         ]"
+        data-testid="collapsibleElement"
       >
         {{ title }}
         <img
