@@ -24,7 +24,7 @@
       >
         {{ title }}
         <img
-          v-if="hasChildNavItems"
+          v-if="collapsible && hasChildNavItems"
           :class="['w-6 absolute top-3 right-4', { 'transform rotate-180': subNavOpen}]"
           :src="`${$getConst('lobAssetsUrl')}/dashboard/navbar/caret-down.svg`"
           :alt="subNavOpen ? 'Collapse' : 'Expand'"
@@ -65,6 +65,10 @@ export default {
       type: String,
       default: null
     },
+    collapsible: {
+      type: Boolean,
+      default: true
+    },
     subNavCollapsed: {
       type: Boolean,
       default: false
@@ -92,7 +96,9 @@ export default {
   },
   methods: {
     toggleSubNav () {
-      this.subNavOpen = !this.subNavOpen;
+      if (this.collapsible) {
+        this.subNavOpen = !this.subNavOpen;
+      }
     }
   }
 };
@@ -100,6 +106,7 @@ export default {
 
 <style scoped lang="scss">
 @screen md {
+
   .expanded {
     max-width: 100%;
     transition: max-width 0.3s ease-in;
