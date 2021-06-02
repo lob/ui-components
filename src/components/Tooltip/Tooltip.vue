@@ -15,7 +15,6 @@
       >
         <slot name="content" />
         <div
-          data-testId="tooltip-arrow"
           :class="[
             'absolute bg-transparent w-0 h-0 m-auto',
             {'border-l-8 border-r-8 border-b-8 border-l-transparent border-r-transparent border-b-gray-700 -top-2' : hasUpArrow},
@@ -132,11 +131,13 @@ export default {
     this.yOffset = this.getYOffset();
   },
   methods: {
-    handleMouseover () {
+    handleMouseover ($event) {
       this.hover = true;
+      this.$emit('mouseover', $event);
     },
-    handleMouseleave () {
+    handleMouseleave ($event) {
       this.hover = false;
+      this.$emit('mouseleave', $event);
     },
     getXOffset () {
       return (this.$refs.triggerContainer.clientWidth - this.$refs.tooltipContainer.clientWidth) / 2;
