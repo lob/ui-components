@@ -22,6 +22,7 @@
                {'bg-gray-l': disabled && checked},
                {'border-error': error},
                {'border-primary bg-primary': checked}]"
+      data-testId="checkmark"
     />
     <span
       class="cursor-pointer"
