@@ -1,26 +1,38 @@
 <template>
-  <div>
+  <div class="relative">
     <div
-      v-if="hover"
-      class="px-4 py-3 text-xs rounded-md bg-gray-700 text-white relative"
+      :class="[
+        'absolute'
+      ]"
+      :style="tooltipPositionStyle"
     >
-      <slot name="content" />
       <div
+        ref="tooltipContainer"
         :class="[
-          'absolute bg-transparent w-0 h-0 m-auto',
-          {'border-l-8 border-r-8 border-b-8 border-l-transparent border-r-transparent border-b-gray-700 -top-2' : hasUpArrow},
-          {'border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-gray-700 -bottom-2' : hasDownArrow},
-          {'border-t-8 border-b-8 border-r-8 border-t-transparent border-b-transparent border-r-gray-700 -left-2' : hasLeftArrow},
-          {'border-t-8 border-b-8 border-l-8 border-t-transparent border-b-transparent border-l-gray-700 -right-2' : hasRightArrow},
-          {'top-0 bottom-0': arrowIsVerticallyCenter},
-          {'left-0 right-0': arrowIsHorizontallyCenter},
-          {'left-4': arrowIsLeftOfCenter},
-          {'right-4': arrowIsRightOfCenter},
-
+          'px-4 py-3 text-xs rounded-md m-auto bg-gray-700 text-white relative',
+          {'opacity-0': !hover}
         ]"
-      />
+      >
+        <slot name="content" />
+        <div
+          data-testId="tooltip-arrow"
+          :class="[
+            'absolute bg-transparent w-0 h-0 m-auto',
+            {'border-l-8 border-r-8 border-b-8 border-l-transparent border-r-transparent border-b-gray-700 -top-2' : hasUpArrow},
+            {'border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-gray-700 -bottom-2' : hasDownArrow},
+            {'border-t-8 border-b-8 border-r-8 border-t-transparent border-b-transparent border-r-gray-700 -left-2' : hasLeftArrow},
+            {'border-t-8 border-b-8 border-l-8 border-t-transparent border-b-transparent border-l-gray-700 -right-2' : hasRightArrow},
+            {'top-0 bottom-0': arrowIsVerticallyCenter},
+            {'left-0 right-0': arrowIsHorizontallyCenter},
+            {'left-4': arrowIsLeftOfCenter},
+            {'right-4': arrowIsRightOfCenter},
+
+          ]"
+        />
+      </div>
     </div>
     <div
+      ref="triggerContainer"
       @mouseover="handleMouseover"
       @mouseleave="handleMouseleave"
     >
@@ -54,7 +66,11 @@ export default {
   },
   data () {
     return {
-      hover: false
+      hover: false,
+      triggerWidth: 0,
+      triggerHeight: 0,
+      xOffset: 0,
+      yOffset: 0
     };
   },
   computed: {
@@ -81,7 +97,39 @@ export default {
     },
     arrowIsRightOfCenter () {
       return !this.arrowIsVerticallyCenter && this.arrowPlacement.match(/right/);
+    },
+    tooltipPositionStyle () {
+      switch (this.position) {
+        case ('top'):
+          return {
+            left: `${this.xOffset}px`,
+            bottom: `calc(${this.triggerHeight}px + 1rem)`
+          };
+        case ('left'):
+          return {
+            right: `calc(${this.triggerWidth}px + 1rem)`,
+            top: `${this.yOffset}px`
+          };
+        case ('right'):
+          return {
+            left: `calc(${this.triggerWidth}px + 1rem)`,
+            top: `${this.yOffset}px`
+          };
+        case ('bottom'):
+        default:
+          return {
+            left: `${this.xOffset}px`,
+            top: `calc(${this.triggerHeight}px + 1rem)`
+          };
+      }
+
     }
+  },
+  updated () {
+    this.triggerWidth = this.$refs.triggerContainer.clientWidth;
+    this.triggerHeight = this.$refs.triggerContainer.clientHeight;
+    this.xOffset = this.getXOffset();
+    this.yOffset = this.getYOffset();
   },
   methods: {
     handleMouseover () {
@@ -89,11 +137,13 @@ export default {
     },
     handleMouseleave () {
       this.hover = false;
+    },
+    getXOffset () {
+      return (this.$refs.triggerContainer.clientWidth - this.$refs.tooltipContainer.clientWidth) / 2;
+    },
+    getYOffset () {
+      return (this.$refs.triggerContainer.clientHeight - this.$refs.tooltipContainer.clientHeight) / 2;
     }
   }
 };
 </script>
-
-<style scoped lang="scss">
-
-</style>
