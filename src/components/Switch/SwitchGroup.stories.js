@@ -1,16 +1,16 @@
 import SwitchGroup from './SwitchGroup.vue';
 import SwitchItem from './SwitchItem.vue';
-// import mdx from './SwitchGroup.mdx';
+import mdx from './SwitchGroup.mdx';
 
 export default {
   title: 'Components/SwitchGroup',
   component: SwitchGroup,
-  subcomponents: { SwitchItem }
-  // parameters: {
-  //   docs: {
-  //     page: mdx
-  //   }
-  // },
+  subcomponents: { SwitchItem },
+  parameters: {
+    docs: {
+      page: mdx
+    }
+  }
 };
 
 const switchModel = null;
