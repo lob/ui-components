@@ -48,7 +48,7 @@ export default {
 nav {
   width: 100%;
 
-  @screen md { // stylelint-disable-line at-rule-no-unknown
+  @screen md {
     ul:not(.collapsed) {
       width: 222px;
     }
