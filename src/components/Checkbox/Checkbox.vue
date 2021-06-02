@@ -17,11 +17,13 @@
     >
     <span
       style="content: '';"
-      :class="['checkmark w-4 h-4 mr-1 rounded-sm border-solid border border-gray-l -left-5 absolute top-1',
-               {'bg-gray-xxl': disabled},
-               {'bg-gray-l': disabled && checked},
+      :class="['checkmark w-4 h-4 mr-1 rounded-sm border-solid border border-gray-100 -left-5 absolute top-1',
+               {'bg-white-300': disabled},
+               {'bg-gray-100': disabled && checked},
                {'border-error': error},
-               {'border-primary bg-primary': checked}]"
+               {'border-primary-500 bg-primary-500': checked}
+      ]"
+      data-testId="checkmark"
     />
     <span
       class="cursor-pointer"
