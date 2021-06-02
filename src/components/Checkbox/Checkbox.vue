@@ -104,7 +104,7 @@ export default {
   }
 
   .checkbox input:focus ~ .checkmark {
-    @apply border-primary-xl;
+    @apply border-primary-300;
   }
 
   .checkmark::after {
