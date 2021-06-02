@@ -37,7 +37,7 @@ describe('Main Navigation Child Item', () => {
     const { queryByTestId } = renderComponent({ props }, configureWithInitialRoute);
 
     const navItem = queryByTestId('nav-child-item');
-    expect(navItem).toHaveClass('font-medium bg-gray-xl rounded-l-full');
+    expect(navItem).toHaveClass('font-medium bg-white-300 rounded-l-full');
   });
 
 });
