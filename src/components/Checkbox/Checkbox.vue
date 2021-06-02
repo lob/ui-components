@@ -22,6 +22,7 @@
                {'bg-gray-l': disabled && checked},
                {'border-error': error},
                {'border-primary bg-primary': checked}]"
+      data-testId="checkmark"
     />
     <span
       class="cursor-pointer"
@@ -104,7 +105,7 @@ export default {
   }
 
   .checkbox input:focus ~ .checkmark {
-    @apply border-primary-xl;
+    @apply border-primary-300;
   }
 
   .checkmark::after {

@@ -15,8 +15,8 @@
       </p>
       <button
         :class="[
-          'border-none bg-transparent my-0 mx-4 relative hover:text-primary-l',
-          { 'text-gray-l pointer-none': page === 1 },
+          'border-none bg-transparent my-0 mx-4 relative hover:text-primary-300',
+          { 'text-gray-100 pointer-none': page === 1 },
         ]"
         :disabled="page === 1"
         @click="pageClick(1)"
@@ -29,8 +29,8 @@
       </button>
       <button
         :class="[
-          'border-none bg-transparent my-0 mx-4 relative hover:text-primary-l',
-          { 'text-gray-l pointer-none': page <= 1 }
+          'border-none bg-transparent my-0 mx-4 relative hover:text-primary-300',
+          { 'text-gray-100 pointer-none': page <= 1 }
         ]"
         :disabled="page <= 1"
         @click="pageClick(page - 1)"
@@ -43,8 +43,8 @@
       </button>
       <button
         :class="[
-          'border-none bg-transparent my-0 mx-4 relative hover:text-primary-l',
-          { 'text-gray-l pointer-none': offset + limit >= totalNumber },
+          'border-none bg-transparent my-0 mx-4 relative hover:text-primary-300',
+          { 'text-gray-100 pointer-none': offset + limit >= totalNumber },
         ]"
         :disabled="offset + limit >= totalNumber"
         @click="pageClick(page + 1)"
@@ -57,8 +57,8 @@
       </button>
       <button
         :class="[
-          'border-none bg-transparent my-0 mx-4 relative hover:text-primary-l',
-          { 'text-gray-l pointer-none': offset + limit >= totalNumber },
+          'border-none bg-transparent my-0 mx-4 relative hover:text-primary-300',
+          { 'text-gray-100 pointer-none': offset + limit >= totalNumber },
         ]"
         :disabled="offset + limit >= totalNumber"
         @click="pageClick(lastPage)"
@@ -75,8 +75,8 @@
       <p>
         <button
           :class="[
-            'border-none bg-transparent my-0 mx-4 relative hover:text-primary-l items-center text-gray-xxd flex md-hidden text-sm transition-transform duration-500 ease-linear transform group',
-            { 'text-gray-l pointer-none': offset + limit >= totalNumber },
+            'border-none bg-transparent my-0 mx-4 relative hover:text-primary-300 items-center text-gray-900 flex md-hidden text-sm transition-transform duration-500 ease-linear transform group',
+            { 'text-gray-100 pointer-none': offset + limit >= totalNumber },
             { 'hidden': page == lastPage },
           ]"
           :disabled="offset + limit >= totalNumber"
@@ -90,7 +90,7 @@
         </button>
         <button
           :class="[
-            'border-none bg-transparent my-0 mx-4 relative hover:text-primary-l items-center text-gray-xxd flex md-hidden text-sm transition-transform duration-500 ease-linear transform group',
+            'border-none bg-transparent my-0 mx-4 relative hover:text-primary-300 items-center text-gray-900 flex md-hidden text-sm transition-transform duration-500 ease-linear transform group',
             'pagination__btn--prev',
             { 'hidden': page != lastPage },
           ]"

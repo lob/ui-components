@@ -3,7 +3,7 @@ import Checkbox from './Checkbox.vue';
 
 # Checkbox
 
-A checkbox represents a value in typically a form that can either be true or false.
+A checkbox represents a value a form that can either be true or false.
 
 <Preview>
   <Story id="components-checkbox--primary" />
@@ -11,14 +11,45 @@ A checkbox represents a value in typically a form that can either be true or fal
 
 ## How to Use
 
+This checkbox component is designed to be used on its own in the case of a simple true/false or within a list to indicate a selection of options.
+
 The label and v-model are required. The other props are optional.
 
+To use this checkbox as a simple boolean, here is an example
+
 ```html
-<Checkbox
+<checkbox
   label="I am a checkbox"
   v-model="mySwitch"
 >
-</Checkbox>
+</checkbox>
+```
+
+To use this checkbox in a list to indicate an array of selected options, use the same v-model for all checkboxes. It will be an array of strings.
+
+Here is an example
+
+```html
+<div>
+    <checkbox
+      label="Chocolate"
+      v-model="selectedIceCreamFlavors"
+      name="chocolate"
+      value="chocolate"
+    />
+    <checkbox
+      label="Vanilla"
+      v-model="selectedIceCreamFlavors"
+      name="vanilla"
+      value="vanilla"
+    />
+    <checkbox
+      label="Strawberry"
+      v-model="selectedIceCreamFlavors"
+      name="strawberry"
+      value="strawberry"
+    />
+  </div>
 ```
 
 ## Props
