@@ -1,14 +1,14 @@
 import Tooltip from './Tooltip.vue';
-// import mdx from './Tooltip.mdx';
+import mdx from './Tooltip.mdx';
 
 export default {
   title: 'Components/Tooltip',
   component: Tooltip,
-  // parameters: {
-  //   docs: {
-  //     page: mdx
-  //   }
-  // },
+  parameters: {
+    docs: {
+      page: mdx
+    }
+  },
   argTypes: {
     content: {
       control: {
