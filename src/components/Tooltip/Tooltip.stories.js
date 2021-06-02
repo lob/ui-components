@@ -35,15 +35,15 @@ export default {
       }
     },
     position: {
+      options: ['top', 'bottom', 'left', 'right'],
       control: {
-        type: 'select',
-        options: ['top', 'bottom', 'left', 'right']
+        type: 'select'
       }
     },
     arrowPlacement: {
+      options: ['', 'left', 'right'],
       control: {
-        type: 'select',
-        options: ['', 'left', 'right']
+        type: 'select'
       }
     }
   }
