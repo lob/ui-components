@@ -22,6 +22,18 @@ export default {
         }
       }
     },
+    trigger: {
+      control: {
+        type: 'text'
+      },
+      defaultValue: 'Hover me.',
+      description: 'Content to trigger display of tooltip on hover',
+      table: {
+        type: {
+          summary: 'html or component'
+        }
+      }
+    },
     position: {
       control: {
         type: 'select',
@@ -40,11 +52,20 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { Tooltip },
-  template: '<tooltip v-slot v-bind="$props">{{ content }}</tooltip>'
+  template: `
+  <tooltip v-bind="$props">
+    <template v-slot:content>
+      {{ content }}
+    </template>
+    <template v-slot:trigger>
+      {{ trigger }}
+    </template>
+  </tooltip>
+  `
 });
 
 export const Primary = Template.bind({});
 Primary.args = {
   content: 'I am a tooltip.',
-  visible: true
+  trigger: 'Hover me'
 };

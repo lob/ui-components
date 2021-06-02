@@ -1,14 +1,10 @@
 <template>
-  <div
-    class="bg-lemon m-4"
-    @mouseover="hover=true"
-    @mouseleave="hover = false"
-  >
+  <div>
     <div
-      v-if="visible"
+      v-if="hover"
       class="px-4 py-3 text-xs rounded-md bg-gray-700 text-white relative"
     >
-      <slot />
+      <slot name="content" />
       <div
         :class="[
           'absolute bg-transparent w-0 h-0 m-auto',
@@ -22,6 +18,14 @@
           {'right-4': arrowIsRightOfCenter},
 
         ]"
+      />
+    </div>
+    <div
+      @mouseover="handleMouseover"
+      @mouseleave="handleMouseleave"
+    >
+      <slot
+        name="trigger"
       />
     </div>
   </div>
@@ -46,11 +50,12 @@ export default {
         // The value must match one of these strings
         return ['', 'left', 'right'].indexOf(value) !== -1;
       }
-    },
-    visible: {
-      type: Boolean,
-      default: false
     }
+  },
+  data () {
+    return {
+      hover: false
+    };
   },
   computed: {
     hasUpArrow () {
@@ -76,6 +81,14 @@ export default {
     },
     arrowIsRightOfCenter () {
       return !this.arrowIsVerticallyCenter && this.arrowPlacement.match(/right/);
+    }
+  },
+  methods: {
+    handleMouseover () {
+      this.hover = true;
+    },
+    handleMouseleave () {
+      this.hover = false;
     }
   }
 };
