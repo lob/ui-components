@@ -9,6 +9,7 @@ import iconOverview from '../../assets/images/iconOverview.svg';
 export default {
   title: 'Components/Main Navigation',
   component: MainNavigation,
+  subcomponents: { MainNavigationItem, MainNavigationChildItem },
   decorators: [
     () => ({ template: '<div class="block bg-offWhite"><story /></div>' }),
     routeDecorator()
