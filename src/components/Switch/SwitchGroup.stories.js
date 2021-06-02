@@ -13,7 +13,7 @@ export default {
   }
 };
 
-const switchModel = null;
+const switchModel = 'test';
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
