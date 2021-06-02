@@ -2,7 +2,7 @@
   <nav>
     <ul
       :class="[
-        'bg-offWhite h-screen',
+        'bg-white-100 h-screen',
         {'cursor-pointer': collapsible},
         {'expanded': collapsible && expanded},
         {'collapsed': collapsible && !expanded}
