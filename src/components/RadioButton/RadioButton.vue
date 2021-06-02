@@ -75,7 +75,7 @@ export default {
 
       @apply absolute;
       @apply bg-transparent;
-      @apply border-gray-l;
+      @apply border-gray-100;
       @apply border-solid;
       @apply border;
       @apply h-3.5;
@@ -100,7 +100,7 @@ export default {
     &:checked + label::after {
       box-shadow: 0 0 4px var(--color-primary-rgb-xl);
 
-      @apply bg-primary;
+      @apply bg-primary-500;
       @apply border-l;
     }
 
@@ -113,12 +113,12 @@ export default {
     }
 
     &:focus + label::before {
-      @apply border-primary-xl;
+      @apply border-primary-100;
     }
 
     &:disabled + label::before {
-      @apply bg-gray-xxl;
-      @apply border-gray-l;
+      @apply bg-white-300;
+      @apply border-gray-100;
     }
 
     &:disabled + label::after {
