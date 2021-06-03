@@ -5,8 +5,9 @@
       {'pb-4': !small}
     ]"
   >
-    <a
-      :href="href"
+    <component
+      :is="isExternal ? 'a' : 'router-link'"
+      :[linkProp]="to"
       class="flex pt-1 flex-nowrap items-center hover:text-primary-500"
     >
       <img
@@ -26,9 +27,11 @@
         <div
           v-if="subtitle"
           class="opacity-80 pr-0 text-gray-700 text-sm hidden md:block"
-        >{{ subtitle }}</div>
+        >
+          {{ subtitle }}
+        </div>
       </div>
-    </a>
+    </component>
   </div>
 </template>
 
@@ -36,7 +39,7 @@
 export default {
   name: 'TopNavbarMenuItem',
   props: {
-    href: {
+    to: {
       type: String,
       required: true
     },
@@ -51,6 +54,15 @@ export default {
     small: {
       type: Boolean,
       default: false
+    }
+  },
+  computed: {
+    isExternal () {
+      const protocolRelativePattern = /^https?:\/\/|^\/\//i;
+      return protocolRelativePattern.test(this.to);
+    },
+    linkProp () {
+      return this.isExternal ? 'href' : 'to';
     }
   }
 };

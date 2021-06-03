@@ -1,3 +1,4 @@
+import routeDecorator from '../../../.storybook/routeDecorator';
 import { constants } from '../../config';
 import TopNavbarMenuItem from './TopNavbarMenuItem.vue';
 //import mdx from './TopNavbarMenuItem.mdx';
@@ -5,6 +6,9 @@ import TopNavbarMenuItem from './TopNavbarMenuItem.vue';
 export default {
   title: 'Components/TopNavbarMenuItem',
   component: TopNavbarMenuItem,
+  decorators: [
+    routeDecorator()
+  ],
   parameters: {
     docs: {
       //page: mdx
@@ -27,7 +31,7 @@ const Template = (args, { argTypes }) => ({
 
 export const Primary = Template.bind({});
 Primary.args = {
-  href: '/settings/main/account',
+  to: '/settings/main/account',
   imageSource: `${constants.lobAssetsUrl}/dashboard/navbar/settings.svg`,
   small: true
 };
