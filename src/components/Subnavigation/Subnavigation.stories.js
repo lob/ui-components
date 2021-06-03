@@ -5,7 +5,7 @@ import SubnavigationItem from './SubnavigationItem.vue';
 import mdx from './Subnavigation.mdx';
 
 const templateStr = `
-  <subnavigation v-bind="$props">
+  <subnavigation>
     <subnavigation-item title="Account" to="/account" />
     <subnavigation-item title="API Keys" to="/api-keys" />
     <subnavigation-item title="Payment" to="/payment" />

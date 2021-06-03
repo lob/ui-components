@@ -5,7 +5,7 @@
     <router-link
       :to="to"
       class="relative pb-4"
-      active-class="active-border"
+      active-class="lob-active-border"
       data-testid="subnav-item"
     >
       {{ title }}
@@ -30,7 +30,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .active-border::before {
+  .lob-active-border::before {
     content: " ";
     bottom: -2px;
 
@@ -39,12 +39,7 @@ export default {
     @apply top-0;
     @apply left-0;
     @apply right-0;
-    @apply border;
-    @apply border-solid;
-    @apply border-t-0;
-    @apply border-r-0;
-    @apply border-l-0;
     @apply border-b-3;
-    @apply border-blue-l;
+    @apply border-primary-300;
   }
 </style>
