@@ -111,12 +111,18 @@ module.exports = {
     extend: {
       borderWidth: {
         3: '3px'
+      },
+      spacing: {
+        4.5: '1.125rem'
       }
     }
   },
   variants: {
     extend: {
-      translate: ['group-hover']
+      translate: ['group-hover'],
+      backgroundColor: ['disabled'],
+      borderColor: ['disabled'],
+      textColor: ['disabled']
     }
   },
   plugins: []
