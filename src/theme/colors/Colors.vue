@@ -1,32 +1,31 @@
 <template>
   <div>
-    <div>
-      <div
-        v-for="color in graidentColors"
-        :key="color"
-        class="pb-8"
-      >
-        <h1 :class="`text-${color}`">
-          {{ color }}
-        </h1>
-        <div
-          v-for="modifier in modifiers"
-          :key="`${color}-${modifier}`"
-        >
-          <h1 :class="`text-${color}-${modifier}`">
-            {{ color }}-{{ modifier }}
-          </h1>
-        </div>
-      </div>
-    </div>
     <div
-      v-for="color in singleColors"
+      v-for="color in Object.keys(themeColors)"
       :key="color"
       class="pb-8"
     >
-      <h1 :class="`text-${color}`">
+      <h1
+        :class="`text-${color}`"
+      >
         {{ color }}
       </h1>
+
+      <template
+        v-if="typeof themeColors[color] === 'object'"
+      >
+        <div
+          v-for="nestedColor in Object.keys(themeColors[color])"
+          :key="nestedColor"
+        >
+          <h1
+            v-if="typeof themeColors[color][nestedColor] === 'string' && nestedColor !== 'DEFAULT'"
+            :class="`text-${color}-${nestedColor}`"
+          >
+            {{ color }}-{{ nestedColor }}
+          </h1>
+        </div>
+      </template>
     </div>
   </div>
 </template>
@@ -39,24 +38,8 @@ const { colors } = theme;
 export default {
   name: 'Theme',
   computed: {
-    singleColors () {
-      return Object.keys(colors).reduce((singles, color) => {
-        if (typeof colors[color] === 'string') {
-          singles.push(color);
-        }
-        return singles;
-      }, []);
-    },
-    graidentColors () {
-      return Object.keys(colors).reduce((gradients, color) => {
-        if (typeof colors[color] === 'object') {
-          gradients.push(color);
-        }
-        return gradients;
-      }, []);
-    },
-    modifiers () {
-      return ['xd', 'd', 'l', 'xl'];
+    themeColors () {
+      return colors;
     }
   }
 };

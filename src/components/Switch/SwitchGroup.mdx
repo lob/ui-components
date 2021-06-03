@@ -1,0 +1,49 @@
+import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs/blocks';
+import SwitchGroup from './SwitchGroup.vue';
+
+# Switch Group
+
+A switch group represents a group of switch toggles.
+
+<Preview>
+  <Story id="components-switch-group--primary" />
+</Preview>
+
+## How to Use
+
+Wrap all switch items in a switch group with the title of the group passed in through the `legend` prop. 
+
+If you don't want the legend visible, pass in `srOnlyLegend` as true. When the legend is hidden, it will still be accessible to screen readers.
+
+```html
+<switch-group legend="Environment mode">
+  <switch-item name='mode' label="Test" value='test' v-model="switchModel" />
+  <switch-item name='mode' label="Live" value='live' v-model="switchModel" />
+</switch-group>
+```
+
+## Props
+
+<ArgsTable story={PRIMARY_STORY} />
+
+# Switch Item
+
+The switch item component is used for rendering a specific toggle item in the switch group. 
+
+## How to use
+
+Switch items should be grouped together using a `switch-group` component. The `name` prop should be the same across the group so that (1) HTML can use it to figure out which group a switch item is in, and ensure that only one item in the group is selected and (2) screen readers can accurately group options together.
+
+You can pass in the `v-model` prop to bind radio buttons to the parent component's data model.
+
+You can pass in a `@click` handler to trigger a custom function on click events. The `event` object will be emitted along with the `click` event.
+
+```html
+<switch-item
+  name="mode"
+  value="test"
+  label="Test"
+  v-model="environmentMode"
+  @click="handleClick"
+/>
+```
