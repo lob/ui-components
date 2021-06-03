@@ -72,48 +72,48 @@
                 </div>
                 <div class="w-row">
                   <div class="w-col w-col-11">
-                    <TopNavbarMenuItem
+                    <MegaMenuItem
                       href="/assets/icons/icon-lookup.svg"
                       image-source="/assets/icons/icon-lookup.svg"
                       small
                     >
                       API Reference
-                    </TopNavbarMenuItem>
-                    <TopNavbarMenuItem
+                    </MegaMenuItem>
+                    <MegaMenuItem
                       href="https://status.lob.com"
                       image-source="/assets/icons/icon-status.svg"
                       small
                     >
                       API Status
-                    </TopNavbarMenuItem>
-                    <TopNavbarMenuItem
+                    </MegaMenuItem>
+                    <MegaMenuItem
                       href="https://support.lob.com/hc/en-us"
                       :image-source="LOB_ASSETS_URL+'/dashboard/navbar/help.svg'"
                       small
                     >
                       Help Center
-                    </TopNavbarMenuItem>
-                    <TopNavbarMenuItem
-                      :href="LOB_URL+'/guides'"
+                    </MegaMenuItem>
+                    <MegaMenuItem
+                      :to="LOB_URL+'/guides'"
                       :image-source="LOB_ASSETS_URL+'/dashboard/navbar/guides.svg'"
                       small
                     >
                       Guides
-                    </TopNavbarMenuItem>
-                    <TopNavbarMenuItem
-                      :href="LOB_URL+'/template-gallery'"
+                    </MegaMenuItem>
+                    <MegaMenuItem
+                      :to="LOB_URL+'/template-gallery'"
                       :image-source="LOB_ASSETS_URL+'/dashboard/navbar/template-gallery.svg'"
                       small
                     >
                       Template Gallery
-                    </TopNavbarMenuItem>
-                    <TopNavbarMenuItem
-                      :href="LOB_URL+'/product-updates'"
+                    </MegaMenuItem>
+                    <MegaMenuItem
+                      :to="LOB_URL+'/product-updates'"
                       :image-source="'/assets/icons/icon-announcement.svg'"
                       small
                     >
                       Product Updates
-                    </TopNavbarMenuItem>
+                    </MegaMenuItem>
                   </div>
                   <div class="w-col w-col-1" />
                 </div>
@@ -162,20 +162,20 @@
                     <div class="text-small-4 meganavtitle sentencecase no-border-top">
                       Your Dashboard
                     </div>
-                    <TopNavbarMenuItem
-                      :href="'dashboard.settings.main.account'"
+                    <MegaMenuItem
+                      :to="'dashboard.settings.main.account'"
                       :image-source="LOB_ASSETS_URL+'/dashboard/navbar/settings.svg'"
                       small
                     >
                       Settings
-                    </TopNavbarMenuItem>
-                    <TopNavbarMenuItem
-                      :href="'logout'"
+                    </MegaMenuItem>
+                    <MegaMenuItem
+                      :to="'logout'"
                       :image-source="LOB_ASSETS_URL+'/dashboard/navbar/sign-out.svg'"
                       small
                     >
                       Sign Out
-                    </TopNavbarMenuItem>
+                    </MegaMenuItem>
                   </div>
                   <div class="w-col w-col-1" />
                 </div>
@@ -190,7 +190,7 @@
         >
           <div class="nav-links-wrapper">
             <div class="nav-links nav-links-1">
-              <TopNavbarMenu
+              <MegaMenu
                 :show-mobile-nav="showMobileNav"
                 :mobile-navs="mobileNavs"
                 :l-o-b-a-s-s-e-t-s-u-r-l="LOB_ASSETS_URL"
@@ -202,34 +202,34 @@
                 <div class="text-small-4 meganavtitle sentencecase no-border-top">
                   APIs
                 </div>
-                <TopNavbarMenuItem
+                <MegaMenuItem
                   subtitle="Program and control direct mail just like email"
-                  :href="LOB_URL+'/print-mail'"
+                  :to="LOB_URL+'/print-mail'"
                   :image-source="LOB_ASSETS_URL+'/dashboard/navbar/print-mail.svg'"
                 >
                   Print &amp; Mail
-                </TopNavbarMenuItem>
-                <TopNavbarMenuItem
+                </MegaMenuItem>
+                <MegaMenuItem
                   subtitle="Validate, clean, and standardize address data"
-                  :href="LOB_URL+'/address-verification'"
+                  :to="LOB_URL+'/address-verification'"
                   :image-source="LOB_ASSETS_URL+'/dashboard/navbar/address-verification.svg'"
                 >
                   Address Verification
-                </TopNavbarMenuItem>
+                </MegaMenuItem>
 
                 <div class="text-small-4 meganavtitle sentencecase">
                   Partners
                 </div>
-                <TopNavbarMenuItem
+                <MegaMenuItem
                   subtitle="Add personalized offline communications to your app"
-                  :href="LOB_URL+'/partner-program'"
+                  :to="LOB_URL+'/partner-program'"
                   :image-source="LOB_ASSETS_URL+'/dashboard/navbar/build.svg'"
                 >
                   Build on Lob
-                </TopNavbarMenuItem>
-              </TopNavbarMenu>
+                </MegaMenuItem>
+              </MegaMenu>
 
-              <TopNavbarMenu
+              <MegaMenu
                 :show-mobile-nav="showMobileNav"
                 :mobile-navs="mobileNavs"
                 :l-o-b-a-s-s-e-t-s-u-r-l="LOB_ASSETS_URL"
@@ -242,65 +242,65 @@
                     <div class="text-small-4 meganavtitle sentencecase no-border-top">
                       Industry
                     </div>
-                    <TopNavbarMenuItem
-                      :href="LOB_URL+'/financial-services'"
+                    <MegaMenuItem
+                      :to="LOB_URL+'/financial-services'"
                       :image-source="LOB_ASSETS_URL+'/dashboard/navbar/finance.svg'"
                       small
                     >
                       Financial Services
-                    </TopNavbarMenuItem>
-                    <TopNavbarMenuItem
-                      :href="LOB_URL+'/insurance'"
+                    </MegaMenuItem>
+                    <MegaMenuItem
+                      :to="LOB_URL+'/insurance'"
                       :image-source="LOB_ASSETS_URL+'/dashboard/navbar/insurance.svg'"
                       small
                     >
                       Insurance
-                    </TopNavbarMenuItem>
-                    <TopNavbarMenuItem
-                      :href="LOB_URL+'/healthcare'"
+                    </MegaMenuItem>
+                    <MegaMenuItem
+                      :to="LOB_URL+'/healthcare'"
                       :image-source="LOB_ASSETS_URL+'/dashboard/navbar/healthcare.svg'"
                       small
                     >
                       Healthcare
-                    </TopNavbarMenuItem>
-                    <TopNavbarMenuItem
-                      :href="LOB_URL+'/retail'"
+                    </MegaMenuItem>
+                    <MegaMenuItem
+                      :to="LOB_URL+'/retail'"
                       :image-source="LOB_ASSETS_URL+'/dashboard/navbar/retail.svg'"
                       small
                     >
                       Retail &amp; eCommerce
-                    </TopNavbarMenuItem>
+                    </MegaMenuItem>
                   </div>
                   <div class="w-col w-col-6 w-col-stack">
                     <div class="text-small-4 meganavtitle sentencecase">
                       Role
                     </div>
-                    <TopNavbarMenuItem
-                      :href="LOB_URL+'/product-managers'"
+                    <MegaMenuItem
+                      :to="LOB_URL+'/product-managers'"
                       :image-source="LOB_ASSETS_URL+'/dashboard/navbar/product-manager.svg'"
                       small
                     >
                       Product Managers
-                    </TopNavbarMenuItem>
-                    <TopNavbarMenuItem
-                      :href="LOB_URL+'/developers'"
+                    </MegaMenuItem>
+                    <MegaMenuItem
+                      :to="LOB_URL+'/developers'"
                       :image-source="LOB_ASSETS_URL+'/dashboard/navbar/developer.svg'"
                       small
                     >
                       Developers
-                    </TopNavbarMenuItem>
-                    <TopNavbarMenuItem
-                      :href="LOB_URL+'/marketers'"
+                    </MegaMenuItem>
+                    <MegaMenuItem
+                      :to="LOB_URL+'/marketers'"
                       :image-source="LOB_ASSETS_URL+'/dashboard/navbar/marketer.svg'"
                       small
                     >
                       Marketers
-                    </TopNavbarMenuItem>
+                    </MegaMenuItem>
                   </div>
                 </div>
-              </TopNavbarMenu>
+              </MegaMenu>
 
-              <TopNavbarMenu
+              <MegaMenu
                 :show-mobile-nav="showMobileNav"
                 :mobile-navs="mobileNavs"
                 :l-o-b-a-s-s-e-t-s-u-r-l="LOB_ASSETS_URL"
@@ -312,31 +312,31 @@
                 <div class="text-small-4 meganavtitle sentencecase no-border-top">
                   Pricing
                 </div>
-                <TopNavbarMenuItem
-                  :href="LOB_URL+'/pricing/print-mail'"
+                <MegaMenuItem
+                  :to="LOB_URL+'/pricing/print-mail'"
                   :image-source="LOB_ASSETS_URL+'/dashboard/navbar/print-mail.svg'"
                   small
                 >
                   Print &amp; Mail
-                </TopNavbarMenuItem>
-                <TopNavbarMenuItem
-                  :href="LOB_URL+'/pricing/address-verification'"
+                </MegaMenuItem>
+                <MegaMenuItem
+                  :to="LOB_URL+'/pricing/address-verification'"
                   :image-source="LOB_ASSETS_URL+'/dashboard/navbar/address-verification.svg'"
                   small
                 >
                   Address Verification
-                </TopNavbarMenuItem>
-                <TopNavbarMenuItem
-                  :href="LOB_URL+'/pricing/premium-support'"
+                </MegaMenuItem>
+                <MegaMenuItem
+                  :to="LOB_URL+'/pricing/premium-support'"
                   :image-source="LOB_ASSETS_URL+'/dashboard/navbar/premium-support.svg'"
                   small
                 >
                   Premium Support
-                </TopNavbarMenuItem>
-              </TopNavbarMenu>
+                </MegaMenuItem>
+              </MegaMenu>
 
               <a
-                :href="LOB_URL+'/happy-customers'"
+                :to="LOB_URL+'/happy-customers'"
                 class="nav-link-4 w-nav-link"
               >
                 Customers
@@ -385,67 +385,67 @@
                         <div class="text-small-4 meganavtitle sentencecase no-border-top">
                           Docs &amp; Resources
                         </div>
-                        <TopNavbarMenuItem
-                          :href="'https://docs.lob.com'"
+                        <MegaMenuItem
+                          :to="'https://docs.lob.com'"
                           :image-source="'/assets/icons/icon-lookup.svg'"
                           small
                         >
                           API Reference
-                        </TopNavbarMenuItem>
-                        <TopNavbarMenuItem
-                          :href="'https://status.lob.com'"
+                        </MegaMenuItem>
+                        <MegaMenuItem
+                          :to="'https://status.lob.com'"
                           :image-source="'/assets/icons/icon-status.svg'"
                           small
                         >
                           API Status
-                        </TopNavbarMenuItem>
-                        <TopNavbarMenuItem
-                          :href="LOB_URL+'/guides'"
+                        </MegaMenuItem>
+                        <MegaMenuItem
+                          :to="LOB_URL+'/guides'"
                           :image-source="LOB_ASSETS_URL+'/dashboard/navbar/guides.svg'"
                           small
                         >
                           Guides
-                        </TopNavbarMenuItem>
-                        <TopNavbarMenuItem
-                          :href="LOB_URL+'/template-gallery'"
+                        </MegaMenuItem>
+                        <MegaMenuItem
+                          :to="LOB_URL+'/template-gallery'"
                           :image-source="LOB_ASSETS_URL+'/dashboard/navbar/template-gallery.svg'"
                           small
                         >
                           Template Gallery
-                        </TopNavbarMenuItem>
-                        <TopNavbarMenuItem
-                          :href="'https://support.lob.com/hc/en-us'"
+                        </MegaMenuItem>
+                        <MegaMenuItem
+                          :to="'https://support.lob.com/hc/en-us'"
                           :image-source="LOB_ASSETS_URL+'/dashboard/navbar/help.svg'"
                           small
                         >
                           Help Center
-                        </TopNavbarMenuItem>
+                        </MegaMenuItem>
                       </div>
                       <div class="w-col w-col-6 w-col-stack">
                         <div class="text-small-4 meganavtitle sentencecase">
                           Content &amp; Events
                         </div>
-                        <TopNavbarMenuItem
-                          :href="LOB_URL+'/library'"
+                        <MegaMenuItem
+                          :to="LOB_URL+'/library'"
                           :image-source="LOB_ASSETS_URL+'/dashboard/navbar/library.svg'"
                           small
                         >
                           Library
-                        </TopNavbarMenuItem>
-                        <TopNavbarMenuItem
-                          :href="LOB_URL+'/events'"
+                        </MegaMenuItem>
+                        <MegaMenuItem
+                          :to="LOB_URL+'/events'"
                           :image-source="LOB_ASSETS_URL+'/dashboard/navbar/events.svg'"
                           small
                         >
                           Events
-                        </TopNavbarMenuItem>
-                        <TopNavbarMenuItem
-                          :href="LOB_URL+'/blog'"
+                        </MegaMenuItem>
+                        <MegaMenuItem
+                          :to="LOB_URL+'/blog'"
                           :image-source="LOB_ASSETS_URL+'/dashboard/navbar/blog.svg'"
                           small
                         >
                           Blog
-                        </TopNavbarMenuItem>
+                        </MegaMenuItem>
                       </div>
                     </div>
                   </div>
@@ -493,46 +493,46 @@
                         <div class="text-small-4 meganavtitle sentencecase no-border-top">
                           About
                         </div>
-                        <TopNavbarMenuItem
-                          :href="LOB_URL+'/about'"
+                        <MegaMenuItem
+                          :to="LOB_URL+'/about'"
                           :image-source="LOB_ASSETS_URL+'/dashboard/navbar/about.svg'"
                           small
                         >
                           About Lob
-                        </TopNavbarMenuItem>
-                        <TopNavbarMenuItem
-                          :href="LOB_URL+'/careers'"
+                        </MegaMenuItem>
+                        <MegaMenuItem
+                          :to="LOB_URL+'/careers'"
                           :image-source="LOB_ASSETS_URL+'/dashboard/navbar/careers.svg'"
                           small
                         >
                           Careers
-                        </TopNavbarMenuItem>
-                        <TopNavbarMenuItem
-                          :href="'https://www.lob.org/'"
+                        </MegaMenuItem>
+                        <MegaMenuItem
+                          :to="'https://www.lob.org/'"
                           :image-source="LOB_ASSETS_URL+'/dashboard/navbar/icon_heart.svg'"
                           small
                         >
                           Lob.org
-                        </TopNavbarMenuItem>
+                        </MegaMenuItem>
                       </div>
                       <div class="w-col w-col-6 w-col-stack">
                         <div class="text-small-4 meganavtitle sentencecase">
                           Partners
                         </div>
-                        <TopNavbarMenuItem
-                          :href="LOB_URL+'/partners'"
+                        <MegaMenuItem
+                          :to="LOB_URL+'/partners'"
                           :image-source="'/assets/icons/icon-partnership.svg'"
                           small
                         >
                           Partnerships
-                        </TopNavbarMenuItem>
-                        <TopNavbarMenuItem
-                          :href="LOB_URL+'/print-partner'"
+                        </MegaMenuItem>
+                        <MegaMenuItem
+                          :to="LOB_URL+'/print-partner'"
                           :image-source="'/assets/icons/icon-printer.svg'"
                           small
                         >
                           Print Network
-                        </TopNavbarMenuItem>
+                        </MegaMenuItem>
                       </div>
                     </div>
                   </div>
@@ -584,20 +584,20 @@
                     <div class="text-small-4 meganavtitle sentencecase no-border-top">
                       Your Dashboard
                     </div>
-                    <TopNavbarMenuItem
-                      :href="'dashboard.settings.main.account'"
+                    <MegaMenuItem
+                      :to="'dashboard.settings.main.account'"
                       :image-source="LOB_ASSETS_URL+'/dashboard/navbar/settings.svg'"
                       small
                     >
                       Settings
-                    </TopNavbarMenuItem>
-                    <TopNavbarMenuItem
-                      :href="'logout'"
+                    </MegaMenuItem>
+                    <MegaMenuItem
+                      :to="'logout'"
                       :image-source="OB_ASSETS_URL+'/dashboard/navbar/sign-out.svg'"
                       small
                     >
                       Sign Out
-                    </TopNavbarMenuItem>
+                    </MegaMenuItem>
                   </div>
                   <div class="w-col w-col-1" />
                 </div>
@@ -679,11 +679,11 @@
 </template>
 
 <script>
-import TopNavbarMenu from '../TopNavbarMenu';
-import TopNavbarMenuItem from '../TopNavbarMenu/TopNavbarMenuItem';
+import MegaMenu from '../MegaMenu';
+import MegaMenuItem from '../MegaMenu/MegaMenuItem';
 export default {
-  name: 'TopNavbar',
-  components: { TopNavbarMenu, TopNavbarMenuItem },
+  name: 'Mega',
+  components: { MegaMenu, MegaMenuItem },
   props: {
     loggedIn: {
       type: Boolean,

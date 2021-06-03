@@ -1,15 +1,15 @@
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/vue';
-import TopNavbarMenuItem from '../TopNavbarMenuItem.vue';
+import MegaMenuItem from '../MegaMenuItem.vue';
 
 const initialProps = {
   to: '/settings',
   imageSource: 'image.svg'
 };
 
-const renderComponent = (options, configure = null) => render(TopNavbarMenuItem, { ...options, routes: [] }, configure);
+const renderComponent = (options, configure = null) => render(MegaMenuItem, { ...options, routes: [] }, configure);
 
-describe('TopNavbarMenuItem', () => {
+describe('MegaMenuItem', () => {
 
   it('renders correctly when an internal link', () => {
     const props = initialProps;

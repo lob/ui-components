@@ -37,7 +37,7 @@
 
 <script>
 export default {
-  name: 'TopNavbarMenuItem',
+  name: 'MegaMenuItem',
   props: {
     to: {
       type: String,

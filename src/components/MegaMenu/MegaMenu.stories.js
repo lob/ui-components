@@ -1,19 +1,19 @@
 import routeDecorator from '../../../.storybook/routeDecorator';
 import { constants } from '../../config';
-import TopNavbarMenu from './TopNavbarMenu.vue';
-import TopNavbarMenuItem from './TopNavbarMenuItem.vue';
-//import mdx from './TopNavbarMenuItem.mdx';
+import MegaMenu from './MegaMenu.vue';
+import MegaMenuItem from './MegaMenuItem.vue';
+import mdx from './MegaMenu.mdx';
 
 export default {
-  title: 'Components/TopNavbarMenu',
-  component: TopNavbarMenu,
-  subcomponents: { TopNavbarMenuItem },
+  title: 'Components/MegaMenu',
+  component: MegaMenu,
+  subcomponents: { MegaMenuItem },
   decorators: [
     routeDecorator()
   ],
   parameters: {
     docs: {
-      //page: mdx
+      page: mdx
     }
   },
   argTypes: {
@@ -24,11 +24,11 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { TopNavbarMenuItem },
+  components: { MegaMenuItem },
   template: `
-  <TopNavbarMenuItem v-bind="$props">
+  <MegaMenuItem v-bind="$props">
     Some text
-  </TopNavbarMenuItem>`
+  </MegaMenuItem>`
 });
 
 export const Primary = Template.bind({});
