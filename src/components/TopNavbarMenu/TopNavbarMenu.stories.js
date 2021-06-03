@@ -1,11 +1,13 @@
 import routeDecorator from '../../../.storybook/routeDecorator';
 import { constants } from '../../config';
+import TopNavbarMenu from './TopNavbarMenu.vue';
 import TopNavbarMenuItem from './TopNavbarMenuItem.vue';
 //import mdx from './TopNavbarMenuItem.mdx';
 
 export default {
-  title: 'Components/TopNavbarMenuItem',
-  component: TopNavbarMenuItem,
+  title: 'Components/TopNavbarMenu',
+  component: TopNavbarMenu,
+  subcomponents: { TopNavbarMenuItem },
   decorators: [
     routeDecorator()
   ],
