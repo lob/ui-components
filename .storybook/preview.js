@@ -4,11 +4,9 @@ import * as configs from '../src/config';
 
 import '../src/assets/styles/main.scss';
 
-for (const configName in configs) {
-  const config = configs[configName];
-  config.configure();
-}
+configs.icons.configure();
 
+Vue.use(configs.constants);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 export const parameters = {
