@@ -1,15 +1,14 @@
 import routeDecorator from '../../../.storybook/routeDecorator';
-import Vue from 'vue';
 
 import Breadcrumb from './Breadcrumb.vue';
-// import mdx from './Breadcrumb.mdx';
+import mdx from './Breadcrumb.mdx';
 import iconOverview from '../../assets/images/iconOverview.svg';
 
 export default {
   title: 'Components/Breadcrumb',
   component: Breadcrumb,
   decorators: [
-    routeDecorator('/envelopes/create', {
+    routeDecorator('envelopes/create', {
       routes: [
         {
           path: '/envelopes',
@@ -28,23 +27,31 @@ export default {
         }
       ]
     })
-  ]
-  // parameters: {
-  //   docs: {
-  //     page: mdx
-  //   }
-  // },
+  ],
+  parameters: {
+    docs: {
+      page: mdx
+    }
+  }
 };
 
+const templateStr = '<breadcrumb v-bind="$props"></breadcrumb>';
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { Breadcrumb },
-  template: '<breadcrumb v-bind="$props"></breadcrumb>'
+  template: templateStr
 });
 
 export const Primary = Template.bind({});
 Primary.args = {
   startName: 'Dashboard',
   iconSrc: `/${iconOverview}`
+};
+Primary.parameters = {
+  docs: {
+    source: {
+      code: templateStr
+    }
+  }
 };
 

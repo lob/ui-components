@@ -6,7 +6,7 @@ import VueRouter from 'vue-router';
 export default (path = '/', routerProps = {}) => {
   return (storyFn) => {
     Vue.use(VueRouter);
-    const router = new VueRouter({ mode: 'history', ...routerProps });
+    const router = new VueRouter({ ...routerProps });
     
     router.replace(path);
 
