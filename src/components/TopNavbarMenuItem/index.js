@@ -1,2 +1,2 @@
-import TopNavbarMenuItem from './TopNavbarMenuItem.vue'
-export default TopNavbarMenuItem
+import TopNavbarMenuItem from './TopNavbarMenuItem.vue';
+export default TopNavbarMenuItem;
