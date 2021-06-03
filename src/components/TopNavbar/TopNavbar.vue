@@ -37,19 +37,19 @@
                 <div class="w-row">
                   <div class="w-col w-col-11">
                     <TopNavbarMenuItem
-                      :href="'/assets/icons/icon-lookup.svg'"
-                      :imageSource="'/assets/icons/icon-lookup.svg'"
+                      href="/assets/icons/icon-lookup.svg"
+                      imageSource="/assets/icons/icon-lookup.svg"
                       small
                     > API Reference
                     </TopNavbarMenuItem>
                     <TopNavbarMenuItem
-                      :href="'https://status.lob.com'"
-                      :imageSource="'/assets/icons/icon-status.svg'"
+                      href="https://status.lob.com"
+                      imageSource="/assets/icons/icon-status.svg"
                       small
                     > API Status
                     </TopNavbarMenuItem>
                     <TopNavbarMenuItem
-                      :href="'https://support.lob.com/hc/en-us'"
+                      href="https://support.lob.com/hc/en-us"
                       :imageSource="LOB_ASSETS_URL+'/dashboard/navbar/help.svg'"
                       small
                     > Help Center

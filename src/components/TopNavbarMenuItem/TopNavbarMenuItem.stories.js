@@ -1,19 +1,17 @@
+import { constants } from '../../config';
 import TopNavbarMenuItem from './TopNavbarMenuItem.vue';
-import mdx from './TopNavbarMenuItem.mdx';
+//import mdx from './TopNavbarMenuItem.mdx';
 
 export default {
   title: 'Components/TopNavbarMenuItem',
   component: TopNavbarMenuItem,
   parameters: {
     docs: {
-      page: mdx
+      //page: mdx
     }
   },
   argTypes: {
     content: {
-      href: "dashboard.settings.main.account",
-      imageSource: "LOB_ASSETS_URL+'/dashboard/navbar/settings.svg",
-      small: true,
     }
   },
 };
@@ -28,4 +26,7 @@ const Template = (args, {argTypes}) => ({
 
 export const Primary = Template.bind({});
 Primary.args = {
+  href: "dashboard.settings.main.account",
+  imageSource: `${constants.lobAssetsUrl}/dashboard/navbar/settings.svg`,
+  small: true
 }
