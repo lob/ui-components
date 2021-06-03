@@ -3,10 +3,10 @@
     <component
       :is="tag"
       :class="[
-        'no-underline py-4 px-6 max-h-12 flex items-center w-full font-light text-sm text-left text-gray-300 relative overflow-hidden hover:text-primary-300 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent'
+        'no-underline py-4 px-6 max-h-12 flex items-center w-full font-light text-sm text-left text-gray-500 relative overflow-hidden hover:text-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent'
       ]"
       :to="to"
-      active-class="text-normal bg-white-300"
+      active-class="text-normal bg-white-300 font-medium"
       @click.native.stop
       @[clickEvent].stop="toggleSubNav"
     >
