@@ -109,6 +109,9 @@ module.exports = {
       ...theme('colors')
     }),
     extend: {
+      borderWidth: {
+        3: '3px'
+      }
     }
   },
   variants: {
