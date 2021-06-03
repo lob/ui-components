@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin');
+
 module.exports = {
   purge: [
     './src/**/*.vue'
@@ -116,8 +118,21 @@ module.exports = {
   },
   variants: {
     extend: {
-      translate: ['group-hover']
+      translate: ['group-hover'],
+      textColor: ['important'],
+      backgroundColor: ['important']
     }
   },
-  plugins: []
+  plugins: [
+    plugin(function ({ addVariant }) {
+      addVariant('important', ({ container }) => {
+        container.walkRules((rule) => {
+          rule.selector = `.\\!${rule.selector.slice(1)}`;
+          rule.walkDecls((decl) => {
+            decl.important = true;
+          });
+        });
+      });
+    })
+  ]
 };
