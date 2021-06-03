@@ -12,24 +12,17 @@ export default {
     routeDecorator('/envelopes/create', {
       routes: [
         {
-          path: '/',
-          name: 'Dashboard',
-          component: Vue.component('dashboard', {
-            template: '<div>dashboard</div>'
-          })
-        },
-        {
           path: '/envelopes',
           name: 'Envelopes',
-          component: Vue.component('envelopes', {
+          component: {
             template: '<div>envelopes</div>'
-          }),
+          },
           children: [
             {
               path: 'create',
-              component: Vue.component('envelopes', {
+              component: {
                 template: '<div>create</div>'
-              })
+              }
             }
           ]
         }

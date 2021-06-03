@@ -1,13 +1,14 @@
 <template>
   <nav class="flex">
     <img
+      v-if="iconSrc"
       :src="iconSrc"
       :alt="iconAltText"
       class="w-6 mr-1.5 align-bottom"
     >
     <router-link
       v-for="crumb in crumbs"
-      :key="crumb"
+      :key="crumb.name"
       :to="crumb.path"
       exact
       class="flex items-center text-sm text-gray-500"
@@ -33,7 +34,7 @@ export default {
     },
     iconSrc: {
       type: String,
-      required: true
+      default: ''
     },
     iconAltText: {
       type: String,
