@@ -65,7 +65,7 @@ describe('SubnavigationItem', () => {
     const { queryByTestId } = renderSubnavItem({ props }, configureWithInitialRoute);
 
     const navItem = queryByTestId('subnav-item');
-    expect(navItem).toHaveClass('active-border');
+    expect(navItem).toHaveClass('lob-active-border');
   });
 
 });
