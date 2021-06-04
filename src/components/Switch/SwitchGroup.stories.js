@@ -3,7 +3,7 @@ import SwitchItem from './SwitchItem.vue';
 import mdx from './SwitchGroup.mdx';
 
 export default {
-  title: 'Components/SwitchGroup',
+  title: 'Components/Switch Group',
   component: SwitchGroup,
   subcomponents: { SwitchItem },
   parameters: {
