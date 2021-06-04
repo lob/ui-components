@@ -1,0 +1,40 @@
+import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs/blocks';
+import LobButton from './Button.vue';
+
+# Button
+
+Buttons are styled semantic buttons that will handle all of the appropriate button states.
+
+<Preview>
+  <Story id="components-button--primary" />
+</Preview>
+
+## How to Use
+
+There are 3 types of buttons: primary, secondary, and tertiary. By default, the button will display as primary.
+
+There are 3 sizes of buttons: default, small, and large.
+
+You can change the type and size of the button by adding the prop to the component.
+
+Please note: though you can only insert text in the Storybook demo, the button component will accept any valid HTML or Vue component.
+
+Example of using this component as a primary button in a template
+
+```html
+<lob-button>
+  Sign up
+</lob-button>
+```
+
+Example of using this component as a secondary, small button in a template
+
+```html
+<lob-button secondary small>
+  Sign up
+</lob-button>
+```
+
+## Props
+
+<ArgsTable story={PRIMARY_STORY} />
