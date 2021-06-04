@@ -22,18 +22,56 @@ export default {
   }
 };
 
+const templateStr = `
+  <MegaMenu v-bind="$props">
+    <MegaMenuItem to="/settings/main/account" imageSource="${constants.lobAssetsUrl}/dashboard/navbar/settings.svg" small>
+      Some text
+    </MegaMenuItem>
+  </MegaMenu>
+`;
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { MegaMenuItem },
-  template: `
-  <MegaMenuItem v-bind="$props">
-    Some text
-  </MegaMenuItem>`
+  components: { MegaMenu, MegaMenuItem },
+  template: templateStr
 });
 
 export const Primary = Template.bind({});
 Primary.args = {
+  title: 'Products',
+  snug: true,
+  navKey: '',
+  mobileNavs: {}
+};
+Primary.parameters = {
+  docs: {
+    source: {
+      code: templateStr
+    }
+  }
+};
+
+const itemTemplateStr = `
+  <MegaMenuItem v-bind="$props">
+    Some text
+  </MegaMenuItem>
+`;
+const ItemTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { MegaMenuItem },
+  template: itemTemplateStr
+});
+
+export const Item = ItemTemplate.bind({});
+Item.args = {
   to: '/settings/main/account',
   imageSource: `${constants.lobAssetsUrl}/dashboard/navbar/settings.svg`,
   small: true
 };
+Item.parameters = {
+  docs: {
+    source: {
+      code: itemTemplateStr
+    }
+  }
+};
+
