@@ -9,7 +9,8 @@
     <input
       :id="id"
       :type="type"
-      :class="['leading-5 text-gray-500 lob-input']"
+      :class="['input pl-4 pr-4 pt-3 pb-4 border border-gray-100 leading-5 text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-300 focus:border-transparent', {'bg-white-300 cursor-not-allowed': disabled}, {'border-error': error}]"
+      :disabled="disabled"
       :placeholder="placeholder"
     >
   </div>
@@ -40,23 +41,29 @@ export default {
     type: { // can we restrict this to a subset of values?
       type: String,
       default: 'text'
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    error: {
+      type: Boolean,
+      default: false
     }
   }
 };
 </script>
 
 <style scoped lang="scss">
-  .lob-input {
-    padding-top: 13px;
-    padding-bottom: 15px;
+  .input {
     border-radius: 3px;
-    border: 0.5px solid theme('colors.gray.100');
 
-    @apply pl-4;
-    @apply pr-4;
+    &:hover:not(:disabled):not(:focus) {
+      box-shadow: 0 5px 14px rgba(44, 67, 81, 0.13), 0 0 4px rgba(44, 67, 81, 0.02);
+    }
   }
 
-  .lob-input::placeholder {
+  .input::placeholder {
     @apply text-gray-100;
   }
 </style>
