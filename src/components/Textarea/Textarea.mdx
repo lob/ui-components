@@ -1,0 +1,30 @@
+import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs/blocks';
+import Textarea from './Textarea.vue';
+
+# Textarea
+
+A textarea component for entering large blocks of text in a form.
+
+<Preview>
+  <Story id="components-textarea--primary" />
+</Preview>
+
+## How to Use
+
+Most of the time, radio buttons should be grouped together using a `radio-group` component. The `name` prop should be the same across the group so that (1) HTML can use it to figure out which group a radio button is in, and ensure that only one button in the group is selected and (2) screen readers can accurately group options together.
+
+You can pass in the `v-model` prop to bind the textarea to the parent component's data model.
+
+You can pass in a `@change` handler to trigger a custom function on change events. The `event` object will be emitted along with the `change` event.
+
+```html
+<textarea
+  name="FancyTextarea"
+  label="Fancy text"
+  v-model="form.fancy"
+/>
+```
+
+## Props
+
+<ArgsTable story={PRIMARY_STORY} />
