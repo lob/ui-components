@@ -1,6 +1,7 @@
 <template>
   <div
     class="mx-auto inline-block relative z-50 mx-0 px-0"
+    data-testId="menu-container"
     @mouseenter="showNav = true"
     @mouseleave="showNav = false"
     @click="$emit('toggleMobileNavs')"
@@ -28,9 +29,11 @@
       aria-labelledby="w-dropdown-toggle-3"
       :class="['height-0 absolute min-w-full bg-gray-100', {'hidden': !showMenu}, {'block top-7' : showMenu}]"
     >
-      <div :class="['height-0 pt-6 pb-4 px-4',
-      {'absolute mt-1 border-none border-gray-100 rounded-lg bg-white boxShadowGray opacity-100 block h-auto': showMenu},
-      {'width330': snug}, {'width430': snug2}, {'width550': noSnug}]">
+      <div
+        :class="['height-0 pt-6 pb-4 px-4',
+                 {'absolute mt-1 border-none border-gray-100 rounded-lg bg-white boxShadowGray opacity-100 block h-auto': showMenu},
+                 {'width330': snug}, {'width430': snug2}, {'width550': noSnug}]"
+      >
         <slot />
       </div>
     </nav>
@@ -72,14 +75,14 @@ export default {
     };
   },
   computed: {
-    rotate() {
-      return this.showNav && (!this.showMobileNav || this.mobileNavs[this.navKey])
+    rotate () {
+      return this.showNav && (!this.showMobileNav || this.mobileNavs[this.navKey]);
     },
-    showMenu() {
+    showMenu () {
       return (!this.showMobileNav && this.showNav) || (this.showMobileNav && this.mobileNavs[this.navKey]);
     },
-    noSnug() {
-      return !this.snug && !this.snug2
+    noSnug () {
+      return !this.snug && !this.snug2;
     }
   }
 };
