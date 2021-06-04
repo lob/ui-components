@@ -1,0 +1,32 @@
+import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs/blocks';
+import Tooltip from './Tooltip.vue';
+
+# Tooltip
+
+Tooltips are a flexible component used to provide helpful additional description to other components on hover.
+
+<Preview>
+  <Story id="components-tooltip--primary" />
+</Preview>
+
+## How to Use
+Customizations exist for<br />
+(1) the position of the tooltip in relation to the content it describes<br />
+(2) the placement of the arrow when a tooltip is above or below the described content (centered by default)<br />
+
+Please note: though you can only insert text in the Storybook demo, the tooltip component will accept any valid HTML or Vue component.
+
+```html
+<tooltip position="top">
+  <template v-slot:content>
+    I display inside the tooltip on hover
+  </template>
+  <template v-slot:trigger>
+    When you hover over me, you'll see the tooltip
+  </template>
+</tooltip>
+```
+
+## Props
+
+<ArgsTable story={PRIMARY_STORY} />
