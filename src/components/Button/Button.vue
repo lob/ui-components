@@ -57,14 +57,14 @@ export default {
 
 <style scoped lang="scss">
 .primary:hover:not(:disabled) {
-  box-shadow: 0px 0px 10px 2px rgba(24, 118, 219, 0.6);
+  box-shadow: 0 0 10px 2px rgba(24, 118, 219, 0.6);
 }
 
 .secondary:hover:not(:disabled) {
-  box-shadow: 0px 0px 10px rgba(65, 101, 129, 0.2);
+  box-shadow: 0 0 10px rgba(65, 101, 129, 0.2);
 }
 
 .tertiary:hover:not(:disabled) {
-  box-shadow: 0px 0px 10px 2px rgba(0, 153, 215, 0.2);
+  box-shadow: 0 0 10px 2px rgba(0, 153, 215, 0.2);
 }
 </style>
