@@ -1,9 +1,7 @@
 <template>
   <div class="relative">
     <div
-      :class="[
-        'absolute'
-      ]"
+      class="absolute"
       :style="tooltipPositionStyle"
     >
       <div
@@ -25,7 +23,6 @@
             {'left-0 right-0': arrowIsHorizontallyCenter},
             {'left-4': arrowIsLeftOfCenter},
             {'right-4': arrowIsRightOfCenter},
-
           ]"
         />
       </div>
@@ -56,10 +53,10 @@ export default {
     },
     arrowPlacement: {
       type: String,
-      default: '',
+      default: 'center',
       validator: function (value) {
         // The value must match one of these strings
-        return ['', 'left', 'right'].indexOf(value) !== -1;
+        return ['center', 'left', 'right'].indexOf(value) !== -1;
       }
     }
   },
@@ -89,7 +86,7 @@ export default {
       return this.hasLeftArrow || this.hasRightArrow;
     },
     arrowIsHorizontallyCenter () {
-      return !this.arrowIsVerticallyCenter && this.arrowPlacement === '';
+      return !this.arrowIsVerticallyCenter && this.arrowPlacement.match(/center/);
     },
     arrowIsLeftOfCenter () {
       return !this.arrowIsVerticallyCenter && this.arrowPlacement.match(/left/);

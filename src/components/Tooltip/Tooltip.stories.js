@@ -41,7 +41,7 @@ export default {
       }
     },
     arrowPlacement: {
-      options: ['', 'left', 'right'],
+      options: ['center', 'left', 'right'],
       control: {
         type: 'select'
       }
