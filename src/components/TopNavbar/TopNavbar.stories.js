@@ -1,5 +1,6 @@
 import TopNavbar from './TopNavbar.vue';
 import mdx from './TopNavbar.mdx';
+import routeDecorator from '../../../.storybook/routeDecorator';
 
 export default {
   title: 'Components/TopNavbar',
@@ -9,6 +10,9 @@ export default {
       page: mdx
     }
   },
+  decorators: [
+    routeDecorator()
+  ],
   argTypes: {
     content: {
       control: {

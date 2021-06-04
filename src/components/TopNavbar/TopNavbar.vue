@@ -13,15 +13,15 @@
           class="brand w-nav-brand"
         >
           <img
-            :src="LOB_ASSETS_URL+'/dashboard/navbar/lob-logo.svg'"
+            :src="$getConst('lobAssetsUrl')+'/dashboard/navbar/lob-logo.svg'"
             width="95"
             alt=""
             class="image-pop"
           >
           <img
-            :src="LOB_ASSETS_URL+'/dashboard/navbar/lob-logo-1260.png'"
+            :src="$getConst('lobAssetsUrl')+'/dashboard/navbar/lob-logo-1260.png'"
             width="90"
-            :srcset="LOB_ASSETS_URL+'/dashboard/navbar/lob-logo-500.png 500w,' +LOB_ASSETS_URL+'/dashboard/navbar/lob-logo-800.png 800w,' +LOB_ASSETS_URL+'/dashboard/navbar/lob-logo-1260.png 1260w'"
+            :srcset="$getConst('lobAssetsUrl')+'/dashboard/navbar/lob-logo-500.png 500w,' +$getConst('lobAssetsUrl')+'/dashboard/navbar/lob-logo-800.png 800w,' +$getConst('lobAssetsUrl')+'/dashboard/navbar/lob-logo-1260.png 1260w'"
             sizes="100vw"
             alt=""
             class="image-pop hidden"
@@ -53,7 +53,7 @@
               <div class="row-2 no-wrap">
                 <div>Resources</div>
                 <img
-                  :src="LOB_ASSETS_URL+'/dashboard/navbar/caret-down.svg'"
+                  :src="$getConst('lobAssetsUrl')+'/dashboard/navbar/caret-down.svg'"
                   width="24"
                   alt=""
                   class="dropdown-icon"
@@ -70,7 +70,7 @@
                 <div class="text-small-4 meganavtitle sentencecase no-border-top">
                   Docs &amp; Resources
                 </div>
-                <div class="w-row">
+                <div>
                   <div class="w-col w-col-11">
                     <MegaMenuItem
                       href="/assets/icons/icon-lookup.svg"
@@ -88,27 +88,27 @@
                     </MegaMenuItem>
                     <MegaMenuItem
                       href="https://support.lob.com/hc/en-us"
-                      :image-source="LOB_ASSETS_URL+'/dashboard/navbar/help.svg'"
+                      :image-source="$getConst('lobAssetsUrl')+'/dashboard/navbar/help.svg'"
                       small
                     >
                       Help Center
                     </MegaMenuItem>
                     <MegaMenuItem
-                      :to="LOB_URL+'/guides'"
-                      :image-source="LOB_ASSETS_URL+'/dashboard/navbar/guides.svg'"
+                      :to="$getConst('lobUrl')+'/guides'"
+                      :image-source="$getConst('lobAssetsUrl')+'/dashboard/navbar/guides.svg'"
                       small
                     >
                       Guides
                     </MegaMenuItem>
                     <MegaMenuItem
-                      :to="LOB_URL+'/template-gallery'"
-                      :image-source="LOB_ASSETS_URL+'/dashboard/navbar/template-gallery.svg'"
+                      :to="$getConst('lobUrl')+'/template-gallery'"
+                      :image-source="$getConst('lobAssetsUrl')+'/dashboard/navbar/template-gallery.svg'"
                       small
                     >
                       Template Gallery
                     </MegaMenuItem>
                     <MegaMenuItem
-                      :to="LOB_URL+'/product-updates'"
+                      :to="$getConst('lobUrl')+'/product-updates'"
                       :image-source="'/assets/icons/icon-announcement.svg'"
                       small
                     >
@@ -143,7 +143,7 @@
               <div class="row-2 no-wrap">
                 <div>{{ session.user.first_name }} {{ session.user.last_name }}</div>
                 <img
-                  :src="LOB_ASSETS_URL+'/dashboard/navbar/caret-down.svg'"
+                  :src="$getConst('lobAssetsUrl')+'/dashboard/navbar/caret-down.svg'"
                   width="24"
                   alt=""
                   class="dropdown-icon"
@@ -157,21 +157,21 @@
               :class="['dropdown-list-5', 'w-dropdown-list', {'w--open': (!showMobileNav && showYourDashboardNav) || (showMobileNav && mobileNavs.dashboard)}]"
             >
               <div class="dropdown-menu dropdownmega right-dropdown-menu">
-                <div class="w-row">
+                <div>
                   <div class="w-col w-col-11">
                     <div class="text-small-4 meganavtitle sentencecase no-border-top">
                       Your Dashboard
                     </div>
                     <MegaMenuItem
                       :to="'dashboard.settings.main.account'"
-                      :image-source="LOB_ASSETS_URL+'/dashboard/navbar/settings.svg'"
+                      :image-source="$getConst('lobAssetsUrl')+'/dashboard/navbar/settings.svg'"
                       small
                     >
                       Settings
                     </MegaMenuItem>
                     <MegaMenuItem
                       :to="'logout'"
-                      :image-source="LOB_ASSETS_URL+'/dashboard/navbar/sign-out.svg'"
+                      :image-source="$getConst('lobAssetsUrl')+'/dashboard/navbar/sign-out.svg'"
                       small
                     >
                       Sign Out
@@ -193,7 +193,6 @@
               <MegaMenu
                 :show-mobile-nav="showMobileNav"
                 :mobile-navs="mobileNavs"
-                :l-o-b-a-s-s-e-t-s-u-r-l="LOB_ASSETS_URL"
                 nav-key="products"
                 title="Products"
                 snug2
@@ -204,15 +203,15 @@
                 </div>
                 <MegaMenuItem
                   subtitle="Program and control direct mail just like email"
-                  :to="LOB_URL+'/print-mail'"
-                  :image-source="LOB_ASSETS_URL+'/dashboard/navbar/print-mail.svg'"
+                  :to="$getConst('lobUrl')+'/print-mail'"
+                  :image-source="$getConst('lobAssetsUrl')+'/dashboard/navbar/print-mail.svg'"
                 >
                   Print &amp; Mail
                 </MegaMenuItem>
                 <MegaMenuItem
                   subtitle="Validate, clean, and standardize address data"
-                  :to="LOB_URL+'/address-verification'"
-                  :image-source="LOB_ASSETS_URL+'/dashboard/navbar/address-verification.svg'"
+                  :to="$getConst('lobUrl')+'/address-verification'"
+                  :image-source="$getConst('lobAssetsUrl')+'/dashboard/navbar/address-verification.svg'"
                 >
                   Address Verification
                 </MegaMenuItem>
@@ -222,8 +221,8 @@
                 </div>
                 <MegaMenuItem
                   subtitle="Add personalized offline communications to your app"
-                  :to="LOB_URL+'/partner-program'"
-                  :image-source="LOB_ASSETS_URL+'/dashboard/navbar/build.svg'"
+                  :to="$getConst('lobUrl')+'/partner-program'"
+                  :image-source="$getConst('lobAssetsUrl')+'/dashboard/navbar/build.svg'"
                 >
                   Build on Lob
                 </MegaMenuItem>
@@ -232,40 +231,39 @@
               <MegaMenu
                 :show-mobile-nav="showMobileNav"
                 :mobile-navs="mobileNavs"
-                :l-o-b-a-s-s-e-t-s-u-r-l="LOB_ASSETS_URL"
                 title="Solutions"
                 nav-key="solutions"
                 @toggleMobileNavs="toggleMobileNavs('solutions')"
               >
-                <div class="w-row">
+                <div>
                   <div class="w-col w-col-6 w-col-stack">
                     <div class="text-small-4 meganavtitle sentencecase no-border-top">
                       Industry
                     </div>
                     <MegaMenuItem
-                      :to="LOB_URL+'/financial-services'"
-                      :image-source="LOB_ASSETS_URL+'/dashboard/navbar/finance.svg'"
+                      :to="$getConst('lobUrl')+'/financial-services'"
+                      :image-source="$getConst('lobAssetsUrl')+'/dashboard/navbar/finance.svg'"
                       small
                     >
                       Financial Services
                     </MegaMenuItem>
                     <MegaMenuItem
-                      :to="LOB_URL+'/insurance'"
-                      :image-source="LOB_ASSETS_URL+'/dashboard/navbar/insurance.svg'"
+                      :to="$getConst('lobUrl')+'/insurance'"
+                      :image-source="$getConst('lobAssetsUrl')+'/dashboard/navbar/insurance.svg'"
                       small
                     >
                       Insurance
                     </MegaMenuItem>
                     <MegaMenuItem
-                      :to="LOB_URL+'/healthcare'"
-                      :image-source="LOB_ASSETS_URL+'/dashboard/navbar/healthcare.svg'"
+                      :to="$getConst('lobUrl')+'/healthcare'"
+                      :image-source="$getConst('lobAssetsUrl')+'/dashboard/navbar/healthcare.svg'"
                       small
                     >
                       Healthcare
                     </MegaMenuItem>
                     <MegaMenuItem
-                      :to="LOB_URL+'/retail'"
-                      :image-source="LOB_ASSETS_URL+'/dashboard/navbar/retail.svg'"
+                      :to="$getConst('lobUrl')+'/retail'"
+                      :image-source="$getConst('lobAssetsUrl')+'/dashboard/navbar/retail.svg'"
                       small
                     >
                       Retail &amp; eCommerce
@@ -276,22 +274,22 @@
                       Role
                     </div>
                     <MegaMenuItem
-                      :to="LOB_URL+'/product-managers'"
-                      :image-source="LOB_ASSETS_URL+'/dashboard/navbar/product-manager.svg'"
+                      :to="$getConst('lobUrl')+'/product-managers'"
+                      :image-source="$getConst('lobAssetsUrl')+'/dashboard/navbar/product-manager.svg'"
                       small
                     >
                       Product Managers
                     </MegaMenuItem>
                     <MegaMenuItem
-                      :to="LOB_URL+'/developers'"
-                      :image-source="LOB_ASSETS_URL+'/dashboard/navbar/developer.svg'"
+                      :to="$getConst('lobUrl')+'/developers'"
+                      :image-source="$getConst('lobAssetsUrl')+'/dashboard/navbar/developer.svg'"
                       small
                     >
                       Developers
                     </MegaMenuItem>
                     <MegaMenuItem
-                      :to="LOB_URL+'/marketers'"
-                      :image-source="LOB_ASSETS_URL+'/dashboard/navbar/marketer.svg'"
+                      :to="$getConst('lobUrl')+'/marketers'"
+                      :image-source="$getConst('lobAssetsUrl')+'/dashboard/navbar/marketer.svg'"
                       small
                     >
                       Marketers
@@ -303,7 +301,6 @@
               <MegaMenu
                 :show-mobile-nav="showMobileNav"
                 :mobile-navs="mobileNavs"
-                :l-o-b-a-s-s-e-t-s-u-r-l="LOB_ASSETS_URL"
                 title="Pricing"
                 nav-key="pricing"
                 snug
@@ -313,22 +310,22 @@
                   Pricing
                 </div>
                 <MegaMenuItem
-                  :to="LOB_URL+'/pricing/print-mail'"
-                  :image-source="LOB_ASSETS_URL+'/dashboard/navbar/print-mail.svg'"
+                  :to="$getConst('lobUrl')+'/pricing/print-mail'"
+                  :image-source="$getConst('lobAssetsUrl')+'/dashboard/navbar/print-mail.svg'"
                   small
                 >
                   Print &amp; Mail
                 </MegaMenuItem>
                 <MegaMenuItem
-                  :to="LOB_URL+'/pricing/address-verification'"
-                  :image-source="LOB_ASSETS_URL+'/dashboard/navbar/address-verification.svg'"
+                  :to="$getConst('lobUrl')+'/pricing/address-verification'"
+                  :image-source="$getConst('lobAssetsUrl')+'/dashboard/navbar/address-verification.svg'"
                   small
                 >
                   Address Verification
                 </MegaMenuItem>
                 <MegaMenuItem
-                  :to="LOB_URL+'/pricing/premium-support'"
-                  :image-source="LOB_ASSETS_URL+'/dashboard/navbar/premium-support.svg'"
+                  :to="$getConst('lobUrl')+'/pricing/premium-support'"
+                  :image-source="$getConst('lobAssetsUrl')+'/dashboard/navbar/premium-support.svg'"
                   small
                 >
                   Premium Support
@@ -336,121 +333,86 @@
               </MegaMenu>
 
               <a
-                :to="LOB_URL+'/happy-customers'"
+                :to="$getConst('lobUrl')+'/happy-customers'"
                 class="nav-link-4 w-nav-link"
               >
                 Customers
               </a>
 
-              <div
-                data-delay="0"
-                data-hover="1"
-                data-w-id="w-dropdown-toggle-2"
-                class="nav-dropdown dropdownlinkmega w-dropdown"
-                @mouseenter="showDocsNav = true"
-                @mouseleave="showDocsNav = false"
-                @click="toggleMobileNavs('docs')"
+              <MegaMenu
+                :show-mobile-nav="showMobileNav"
+                :mobile-navs="mobileNavs"
+                nav-key="docs"
+                title="Resources"
+                @toggleMobileNavs="toggleMobileNavs('docs')"
               >
-                <div
-                  id="w-dropdown-toggle-2"
-                  class="nav-link-4 w-dropdown-toggle"
-                  aria-controls="w-dropdown-list-2"
-                  aria-haspopup="menu"
-                  aria-expanded="false"
-                  role=""
-                  tabindex="0"
-                  style="outline: none;"
-                  :class="{ 'w--open' : (!showMobileNav && showDocsNav) || (showMobileNav && mobileNavs.docs) }"
-                >
-                  <div class="row-2 no-wrap">
-                    <div>Resources</div>
-                    <img
-                      :src="LOB_ASSETS_URL+'/dashboard/navbar/caret-down.svg'"
-                      width="24"
-                      alt=""
-                      class="dropdown-icon"
-                    >
+                <div class="w-col w-col-6 w-col-stack">
+                  <div class="text-small-4 meganavtitle sentencecase no-border-top">
+                    Docs &amp; Resources
                   </div>
+                  <MegaMenuItem
+                    :to="'https://docs.lob.com'"
+                    :image-source="'/assets/icons/icon-lookup.svg'"
+                    small
+                  >
+                    API Reference
+                  </MegaMenuItem>
+                  <MegaMenuItem
+                    :to="'https://status.lob.com'"
+                    :image-source="'/assets/icons/icon-status.svg'"
+                    small
+                  >
+                    API Status
+                  </MegaMenuItem>
+                  <MegaMenuItem
+                    :to="$getConst('lobUrl')+'/guides'"
+                    :image-source="$getConst('lobAssetsUrl')+'/dashboard/navbar/guides.svg'"
+                    small
+                  >
+                    Guides
+                  </MegaMenuItem>
+                  <MegaMenuItem
+                    :to="$getConst('lobUrl')+'/template-gallery'"
+                    :image-source="$getConst('lobAssetsUrl')+'/dashboard/navbar/template-gallery.svg'"
+                    small
+                  >
+                    Template Gallery
+                  </MegaMenuItem>
+                  <MegaMenuItem
+                    :to="'https://support.lob.com/hc/en-us'"
+                    :image-source="$getConst('lobAssetsUrl')+'/dashboard/navbar/help.svg'"
+                    small
+                  >
+                    Help Center
+                  </MegaMenuItem>
                 </div>
-                <nav
-                  id="w-dropdown-list-2"
-                  class="dropdown-list-5 w-dropdown-list"
-                  style="height: 0px;"
-                  aria-labelledby="w-dropdown-toggle-2"
-                  :class="{ 'w--open' : (!showMobileNav && showDocsNav) || (showMobileNav && mobileNavs.docs) }"
-                >
-                  <div class="dropdown-menu dropdownmega">
-                    <div class="w-row">
-                      <div class="w-col w-col-6 w-col-stack">
-                        <div class="text-small-4 meganavtitle sentencecase no-border-top">
-                          Docs &amp; Resources
-                        </div>
-                        <MegaMenuItem
-                          :to="'https://docs.lob.com'"
-                          :image-source="'/assets/icons/icon-lookup.svg'"
-                          small
-                        >
-                          API Reference
-                        </MegaMenuItem>
-                        <MegaMenuItem
-                          :to="'https://status.lob.com'"
-                          :image-source="'/assets/icons/icon-status.svg'"
-                          small
-                        >
-                          API Status
-                        </MegaMenuItem>
-                        <MegaMenuItem
-                          :to="LOB_URL+'/guides'"
-                          :image-source="LOB_ASSETS_URL+'/dashboard/navbar/guides.svg'"
-                          small
-                        >
-                          Guides
-                        </MegaMenuItem>
-                        <MegaMenuItem
-                          :to="LOB_URL+'/template-gallery'"
-                          :image-source="LOB_ASSETS_URL+'/dashboard/navbar/template-gallery.svg'"
-                          small
-                        >
-                          Template Gallery
-                        </MegaMenuItem>
-                        <MegaMenuItem
-                          :to="'https://support.lob.com/hc/en-us'"
-                          :image-source="LOB_ASSETS_URL+'/dashboard/navbar/help.svg'"
-                          small
-                        >
-                          Help Center
-                        </MegaMenuItem>
-                      </div>
-                      <div class="w-col w-col-6 w-col-stack">
-                        <div class="text-small-4 meganavtitle sentencecase">
-                          Content &amp; Events
-                        </div>
-                        <MegaMenuItem
-                          :to="LOB_URL+'/library'"
-                          :image-source="LOB_ASSETS_URL+'/dashboard/navbar/library.svg'"
-                          small
-                        >
-                          Library
-                        </MegaMenuItem>
-                        <MegaMenuItem
-                          :to="LOB_URL+'/events'"
-                          :image-source="LOB_ASSETS_URL+'/dashboard/navbar/events.svg'"
-                          small
-                        >
-                          Events
-                        </MegaMenuItem>
-                        <MegaMenuItem
-                          :to="LOB_URL+'/blog'"
-                          :image-source="LOB_ASSETS_URL+'/dashboard/navbar/blog.svg'"
-                          small
-                        >
-                          Blog
-                        </MegaMenuItem>
-                      </div>
-                    </div>
+                <div class="w-col w-col-6 w-col-stack">
+                  <div class="text-small-4 meganavtitle sentencecase">
+                    Content &amp; Events
                   </div>
-                </nav>
-              </div>
+                  <MegaMenuItem
+                    :to="$getConst('lobUrl')+'/library'"
+                    :image-source="$getConst('lobAssetsUrl')+'/dashboard/navbar/library.svg'"
+                    small
+                  >
+                    Library
+                  </MegaMenuItem>
+                  <MegaMenuItem
+                    :to="$getConst('lobUrl')+'/events'"
+                    :image-source="$getConst('lobAssetsUrl')+'/dashboard/navbar/events.svg'"
+                    small
+                  >
+                    Events
+                  </MegaMenuItem>
+                  <MegaMenuItem
+                    :to="$getConst('lobUrl')+'/blog'"
+                    :image-source="$getConst('lobAssetsUrl')+'/dashboard/navbar/blog.svg'"
+                    small
+                  >
+                    Blog
+                  </MegaMenuItem>
+                </div>
+              </MegaMenu>
               <div
                 data-delay="0"
                 data-hover="1"
@@ -474,7 +436,7 @@
                   <div class="row-2 no-wrap">
                     <div>Company</div>
                     <img
-                      :src="LOB_ASSETS_URL+'/dashboard/navbar/caret-down.svg'"
+                      :src="$getConst('lobAssetsUrl')+'/dashboard/navbar/caret-down.svg'"
                       width="24"
                       alt=""
                       class="dropdown-icon"
@@ -488,28 +450,28 @@
                   :class="['dropdown-list-5', 'w-dropdown-list', {'w--open' : (!showMobileNav && showCompanyNav) || (showMobileNav && mobileNavs.company)}]"
                 >
                   <div class="dropdown-menu dropdownmega">
-                    <div class="w-row">
+                    <div>
                       <div class="w-col w-col-6 w-col-stack">
                         <div class="text-small-4 meganavtitle sentencecase no-border-top">
                           About
                         </div>
                         <MegaMenuItem
-                          :to="LOB_URL+'/about'"
-                          :image-source="LOB_ASSETS_URL+'/dashboard/navbar/about.svg'"
+                          :to="$getConst('lobUrl')+'/about'"
+                          :image-source="$getConst('lobAssetsUrl')+'/dashboard/navbar/about.svg'"
                           small
                         >
                           About Lob
                         </MegaMenuItem>
                         <MegaMenuItem
-                          :to="LOB_URL+'/careers'"
-                          :image-source="LOB_ASSETS_URL+'/dashboard/navbar/careers.svg'"
+                          :to="$getConst('lobUrl')+'/careers'"
+                          :image-source="$getConst('lobAssetsUrl')+'/dashboard/navbar/careers.svg'"
                           small
                         >
                           Careers
                         </MegaMenuItem>
                         <MegaMenuItem
                           :to="'https://www.lob.org/'"
-                          :image-source="LOB_ASSETS_URL+'/dashboard/navbar/icon_heart.svg'"
+                          :image-source="$getConst('lobAssetsUrl')+'/dashboard/navbar/icon_heart.svg'"
                           small
                         >
                           Lob.org
@@ -520,14 +482,14 @@
                           Partners
                         </div>
                         <MegaMenuItem
-                          :to="LOB_URL+'/partners'"
+                          :to="$getConst('lobUrl')+'/partners'"
                           :image-source="'/assets/icons/icon-partnership.svg'"
                           small
                         >
                           Partnerships
                         </MegaMenuItem>
                         <MegaMenuItem
-                          :to="LOB_URL+'/print-partner'"
+                          :to="$getConst('lobUrl')+'/print-partner'"
                           :image-source="'/assets/icons/icon-printer.svg'"
                           small
                         >
@@ -564,7 +526,7 @@
               <div class="row-2 no-wrap">
                 <div>{{ session.user.first_name }} {{ session.user.last_name }}</div>
                 <img
-                  :src="LOB_ASSETS_URL+'/dashboard/navbar/caret-down.svg'"
+                  :src="$getConst('lobAssetsUrl')+'/dashboard/navbar/caret-down.svg'"
                   width="24"
                   alt=""
                   class="dropdown-icon"
@@ -579,14 +541,14 @@
               :class="{ 'w--open' : (!showMobileNav && showYourDashboardNav) || (showMobileNav && mobileNavs.dashboard) }"
             >
               <div class="dropdown-menu dropdownmega right-dropdown-menu">
-                <div class="w-row">
+                <div>
                   <div class="w-col w-col-11">
                     <div class="text-small-4 meganavtitle sentencecase no-border-top">
                       Your Dashboard
                     </div>
                     <MegaMenuItem
                       :to="'dashboard.settings.main.account'"
-                      :image-source="LOB_ASSETS_URL+'/dashboard/navbar/settings.svg'"
+                      :image-source="$getConst('lobAssetsUrl')+'/dashboard/navbar/settings.svg'"
                       small
                     >
                       Settings
@@ -655,14 +617,14 @@
           <div class="menu-button w-nav-button">
             <img
               v-if="!showMobileNav"
-              :src="LOB_ASSETS_URL+'/dashboard/navbar/menu.svg'"
+              :src="$getConst('lobAssetsUrl')+'/dashboard/navbar/menu.svg'"
               alt=""
               class="menu-icon"
               @click="showMobileNav = true"
             >
             <img
               v-if="showMobileNav"
-              :src="LOB_ASSETS_URL+'/dashboard/navbar/x.svg'"
+              :src="$getConst('lobAssetsUrl')+'/dashboard/navbar/x.svg'"
               alt=""
               class="menu-cross-icon"
               @click="showMobileNav = false"
@@ -692,8 +654,6 @@ export default {
   },
   data () {
     return {
-      LOB_URL: 'https://lob.com',
-      LOB_ASSETS_URL: 'https://s3-us-west-2.amazonaws.com/public.lob.com',
       showMobileNav: false,
       showYourResourcesNav: false,
       showYourDashboardNav: false,
