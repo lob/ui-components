@@ -1,0 +1,28 @@
+import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs/blocks';
+import Breadcrumb from './Breadcrumb.vue';
+
+# Breadcrumb
+
+A breadcrumb component renders a list of links to go back up the navigation hierarchy from where the user currently is back to the home page.
+
+<Preview>
+  <Story id="components-breadcrumb--primary" />
+</Preview>
+
+## How to Use
+
+Include a breadcrumb in a layout or inside any component where you want to render a list of links for the user to have easy navigation back up the navigation hierarchy.
+
+The breadcrumb component is route aware and will render a link for each matched route. Refer to [Vue's documentation](https://router.vuejs.org/guide/essentials/nested-routes.html) for information on how to configure your router for nested routing.
+
+The displayed link text will use the route's name (refer to [Vue's documentation for named routes](https://router.vuejs.org/guide/essentials/named-routes.html)) or the last segment in the path if the route is not named.
+
+You'll need to provide a `startName` to tell the component what to name the root route. If you want to include an icon at the start of your breadcrumbs, include an `iconSrc`. 
+
+```html
+<breadcrumb startName="Dashboard" />
+```
+
+## Props
+
+<ArgsTable story={PRIMARY_STORY} />

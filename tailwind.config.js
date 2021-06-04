@@ -1,3 +1,4 @@
+const plugin = require('tailwindcss/plugin');
 var flattenColorPalette = require('tailwindcss/lib/util/flattenColorPalette').default;
 
 module.exports = {
@@ -118,10 +119,22 @@ module.exports = {
   },
   variants: {
     extend: {
-      translate: ['group-hover']
+      translate: ['group-hover'],
+      textColor: ['important'],
+      backgroundColor: ['important']
     }
   },
   plugins: [
+    plugin(function ({ addVariant }) {
+      addVariant('important', ({ container }) => {
+        container.walkRules((rule) => {
+          rule.selector = `.\\!${rule.selector.slice(1)}`;
+          rule.walkDecls((decl) => {
+            decl.important = true;
+          });
+        });
+      });
+    }),
     ({ addUtilities, theme, variants }) => {
       const colors = flattenColorPalette(theme('borderColor'));
       delete colors.default;

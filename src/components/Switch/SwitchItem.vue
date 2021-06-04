@@ -1,9 +1,8 @@
 <template>
   <div
     :class="[
-      'rounded flex',
-      {'bg-white text-gray-500': !checked},
-      {'bg-primary-500 text-white checked': checked},
+      'rounded flex bg-white text-gray-500',
+      {'!bg-primary-500 !text-white checked': checked},
     ]"
   >
     <input
