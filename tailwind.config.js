@@ -1,3 +1,6 @@
+const plugin = require('tailwindcss/plugin');
+var flattenColorPalette = require('tailwindcss/lib/util/flattenColorPalette').default;
+
 module.exports = {
   purge: [
     './src/**/*.vue'
@@ -111,13 +114,45 @@ module.exports = {
     extend: {
       borderWidth: {
         3: '3px'
+      },
+      spacing: {
+        4.5: '1.125rem'
       }
     }
   },
   variants: {
     extend: {
-      translate: ['group-hover']
+      translate: ['group-hover'],
+      backgroundColor: ['disabled', 'important'],
+      borderColor: ['disabled'],
+      textColor: ['disabled', 'important']
     }
   },
-  plugins: []
+  plugins: [
+    plugin(function ({ addVariant }) {
+      addVariant('important', ({ container }) => {
+        container.walkRules((rule) => {
+          rule.selector = `.\\!${rule.selector.slice(1)}`;
+          rule.walkDecls((decl) => {
+            decl.important = true;
+          });
+        });
+      });
+    }),
+    ({ addUtilities, theme, variants }) => {
+      const colors = flattenColorPalette(theme('borderColor'));
+      delete colors.default;
+
+      const colorMap = Object.keys(colors)
+        .map((color) => ({
+          [`.border-t-${color}`]: { borderTopColor: colors[color] },
+          [`.border-r-${color}`]: { borderRightColor: colors[color] },
+          [`.border-b-${color}`]: { borderBottomColor: colors[color] },
+          [`.border-l-${color}`]: { borderLeftColor: colors[color] }
+        }));
+      const utilities = Object.assign({}, ...colorMap);
+
+      addUtilities(utilities, variants('borderColor'));
+    }
+  ]
 };
