@@ -1,0 +1,38 @@
+import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs/blocks';
+import Alert from './Alert.vue';
+
+# Alert
+
+Alerts are a flexible component used to display highlighted content prominently.
+
+<Preview>
+  <Story id="components-alert--primary" />
+</Preview>
+
+## How to Use
+
+There are 4 types of alerts: info, success, warning, and error. By default, the alert will display as info.
+
+You can change the type of the alert by adding the prop to the component.
+
+Please note: though you can only insert text in the Storybook demo, the card component will accept any valid HTML or Vue component.
+
+Example of using this component as a default info alert in a template
+
+```html
+<alert>
+  <p>You are in <span class="bold">LIVE</span> mode, all verifications will be charged according to your <a href="#">chosen plan</a>.</p>
+</alert>
+```
+
+Example of using this component as a warning alert in a template
+
+```html
+<alert warning>
+  <p>You are in <span class="bold">LIVE</span> mode, all verifications will be charged according to your <a href="#">chosen plan</a>.</p>
+</alert>
+```
+
+## Props
+
+<ArgsTable story={PRIMARY_STORY} />
