@@ -3,5 +3,7 @@ const constants = {
 };
 
 export default {
-  get: (key) => constants[key],
+  install: (app, options) => {
+    app.config.globalProperties.$getConst = (key) => constants[key];
+  },
 };

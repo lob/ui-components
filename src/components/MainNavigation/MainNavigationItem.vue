@@ -26,7 +26,7 @@
             'w-6 absolute top-3 right-4',
             { 'transform rotate-180': subNavOpen },
           ]"
-          :src="caretUrl"
+          :src="`${$getConst('lobAssetsUrl')}/dashboard/navbar/caret-down.svg`"
           :alt="subNavOpen ? 'Collapse' : 'Expand'"
         />
       </span>
@@ -92,11 +92,6 @@ export default {
       if (this.collapsible) {
         this.subNavOpen = !this.subNavOpen;
       }
-    },
-    caretUrl() {
-      return `${this.$constants.get(
-        "lobAssetsUrl"
-      )}/dashboard/navbar/caret-down.svg`;
     },
   },
 };

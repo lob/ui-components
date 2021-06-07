@@ -1,10 +1,9 @@
-import { createApp } from "vue";
+import { app } from "@storybook/vue3";
 import * as configs from "../src/config";
 
 import "../src/assets/styles/main.scss";
 
-const app = createApp({});
-app.config.globalProperties.$constants = configs.constants;
+app.use(configs.constants);
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },

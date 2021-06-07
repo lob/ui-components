@@ -1,13 +1,10 @@
-import { createRouter } from "vue-router";
 import "./assets/styles/main.scss";
 import * as components from "./components";
 import * as configs from "./config";
-import { createRouter, createMemoryHistory } from "vue-router";
 
 const ComponentLibrary = {
   install(app) {
-    app.use(createRouter());
-    app.config.globalProperties.$constants = configs.constants;
+    app.use(configs.constants);
 
     // components
     for (const componentName in components) {
