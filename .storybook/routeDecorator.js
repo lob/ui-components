@@ -13,6 +13,8 @@ export default (path = "/", routerProps = { routes: [] }) => {
       });
       app.use(router);
       routerInstalled = true;
+    } else {
+      routerProps.routes.forEach(r => router.addRoute(r));
     }
 
     router.replace(path);
