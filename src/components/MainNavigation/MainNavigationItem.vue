@@ -7,7 +7,7 @@
       ]"
       :to="to"
       active-class="text-normal bg-white-300 font-medium"
-      @click.native.stop
+      @click.stop
       @[clickEvent].stop="toggleSubNav"
     >
       <img :src="iconSrc" :alt="iconAltText" class="w-6 align-bottom" />

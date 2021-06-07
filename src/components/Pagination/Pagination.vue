@@ -105,6 +105,7 @@ import PageArrowIcon from "./PageArrowIcon.vue";
 export default {
   name: "Pagination",
   components: { PageArrowIcon },
+  emits: ["change"],
   props: {
     collection: {
       type: Array,
