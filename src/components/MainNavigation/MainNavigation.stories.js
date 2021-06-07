@@ -13,7 +13,6 @@ export default {
   component: MainNavigation,
   subcomponents: { MainNavigationItem, MainNavigationChildItem },
   decorators: [
-    () => ({ template: '<div class="block bg-offWhite"><story /></div>' }),
     routeDecorator("/", {
       routes: [
         {
@@ -78,7 +77,12 @@ export default {
   },
 };
 
-const primaryTemplateStr = (args) => `
+const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { MainNavigation, MainNavigationChildItem, MainNavigationItem },
+  decorators: [() => ({ template: '<div class="block"><story /></div>' })],
+  setup: () => ({ args }),
+  template: `
     <main-navigation v-bind="args">
       <template v-slot="{ expanded }">
         <main-navigation-item title="Overview" iconSrc="${args.iconSrc}" iconAltText="Overview icon" to="/overview" :expanded="expanded" />
@@ -94,33 +98,19 @@ const primaryTemplateStr = (args) => `
         </main-navigation-item>
       </template>
     </main-navigation>
-  `;
-
-const Template = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
-  components: { MainNavigation, MainNavigationChildItem, MainNavigationItem },
-  setup: () => ({ args }),
-  template: primaryTemplateStr(args),
+  `,
 });
 
 export const Primary = Template.bind({});
 Primary.args = {
   iconSrc: iconOverview,
 };
-Primary.parameters = {
-  docs: {
-    source: {
-      code: primaryTemplateStr({ iconSrc: "srcFilePath" }),
-    },
-  },
-};
 
-const itemTemplateStr = '<main-navigation-item v-bind="args" />';
 const ItemTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { MainNavigationItem },
   setup: () => ({ args }),
-  template: itemTemplateStr,
+  template: '<main-navigation-item v-bind="args" />',
 });
 export const Item = ItemTemplate.bind({});
 Item.args = {
@@ -130,30 +120,15 @@ Item.args = {
   to: "/overview",
   expanded: true,
 };
-Item.parameters = {
-  docs: {
-    source: {
-      code: itemTemplateStr,
-    },
-  },
-};
 
-const childTemplateStr = '<main-navigation-child-item v-bind="args" />';
 const ChildItemTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { MainNavigationChildItem },
   setup: () => ({ args }),
-  template: childTemplateStr,
+  template: '<main-navigation-child-item v-bind="args" />',
 });
 export const ChildItem = ChildItemTemplate.bind({});
 ChildItem.args = {
   title: "Postcards",
   to: "/postcards",
-};
-ChildItem.parameters = {
-  docs: {
-    source: {
-      code: childTemplateStr,
-    },
-  },
 };
