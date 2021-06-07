@@ -1,22 +1,18 @@
 {
   "name": "@lob/ui-components",
   "version": "0.0.12",
-  "main": "./dist/ui-components.umd.min.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/lob/ui-components"
-  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build-library": "vue-cli-service build --target lib --name ui-components src/main.js",
     "test:unit": "vue-cli-service test:unit",
     "lint": "npm run lint:js && npm run lint:css",
-    "lint:js": "eslint --ext .js,.vue .",
+    "build-library": "vue-cli-service build --target lib --name ui-components src/main.js",
+    "build-storybook": "build-storybook",
     "lint:css": "stylelint 'src/**/*.vue'",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "lint:js": "eslint --ext .js,.vue .",
+    "storybook": "start-storybook -p 6006"
   },
+  "main": "./dist/ui-components.umd.min.js",
   "files": [
     "dist/*",
     "src/*"
@@ -39,9 +35,10 @@
     "@testing-library/vue": "^6.4.2",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-plugin-unit-jest": "^4.5.13",
+    "@vue/cli-plugin-unit-jest": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "@vue/compiler-sfc": "^3.1.1",
+    "@vue/test-utils": "^2.0.0-0",
     "autoprefixer": "^9.8.6",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",
@@ -55,11 +52,17 @@
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^22.0.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.4",
+    "typescript": "~3.9.3",
+    "vue-jest": "^5.0.0-0",
     "vue-loader": "^16.2.0"
   },
   "browserslist": [
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lob/ui-components"
+  }
 }
