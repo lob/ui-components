@@ -1,8 +1,8 @@
-import routeDecorator from '../../../.storybook/routeDecorator';
+import routeDecorator from "../../../.storybook/routeDecorator";
 
-import Subnavigation from './Subnavigation.vue';
-import SubnavigationItem from './SubnavigationItem.vue';
-import mdx from './Subnavigation.mdx';
+import Subnavigation from "./Subnavigation.vue";
+import SubnavigationItem from "./SubnavigationItem.vue";
+import mdx from "./Subnavigation.mdx";
 
 const templateStr = `
   <subnavigation>
@@ -13,25 +13,26 @@ const templateStr = `
 `;
 
 export default {
-  title: 'Components/Subnavigation ',
+  title: "Components/Subnavigation ",
   component: Subnavigation,
   subcomponents: { SubnavigationItem },
   parameters: {
     docs: {
       page: mdx,
       source: {
-        code: templateStr
-      }
-    }
+        code: templateStr,
+      },
+    },
   },
-  argTypes: {}
+  argTypes: {},
 };
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { Subnavigation, SubnavigationItem },
-  template: templateStr
+  setup: () => ({ args }),
+  template: templateStr,
 });
 
 export const Primary = Template.bind({});
-Primary.decorators = [routeDecorator('/account')];
+Primary.decorators = [routeDecorator("/account")];

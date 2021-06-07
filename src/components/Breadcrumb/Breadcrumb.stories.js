@@ -1,57 +1,57 @@
-import routeDecorator from '../../../.storybook/routeDecorator';
+import routeDecorator from "../../../.storybook/routeDecorator";
 
-import Breadcrumb from './Breadcrumb.vue';
-import mdx from './Breadcrumb.mdx';
-import iconOverview from '../../assets/images/iconOverview.svg';
+import Breadcrumb from "./Breadcrumb.vue";
+import mdx from "./Breadcrumb.mdx";
+import iconOverview from "../../assets/images/iconOverview.svg";
 
 export default {
-  title: 'Components/Breadcrumb',
+  title: "Components/Breadcrumb",
   component: Breadcrumb,
   decorators: [
-    routeDecorator('envelopes/create', {
+    routeDecorator("envelopes/create", {
       routes: [
         {
-          path: '/envelopes',
-          name: 'Envelopes',
+          path: "/envelopes",
+          name: "Envelopes",
           component: {
-            template: '<div>envelopes</div>'
+            template: "<div>envelopes</div>",
           },
           children: [
             {
-              path: 'create',
+              path: "create",
               component: {
-                template: '<div>create</div>'
-              }
-            }
-          ]
-        }
-      ]
-    })
+                template: "<div>create</div>",
+              },
+            },
+          ],
+        },
+      ],
+    }),
   ],
   parameters: {
     docs: {
-      page: mdx
-    }
-  }
+      page: mdx,
+    },
+  },
 };
 
-const templateStr = '<breadcrumb v-bind="$props"></breadcrumb>';
+const templateStr = '<breadcrumb v-bind="args"></breadcrumb>';
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { Breadcrumb },
-  template: templateStr
+  setup: () => ({ args }),
+  template: templateStr,
 });
 
 export const Primary = Template.bind({});
 Primary.args = {
-  startName: 'Dashboard',
-  iconSrc: `/${iconOverview}`
+  startName: "Dashboard",
+  iconSrc: `/${iconOverview}`,
 };
 Primary.parameters = {
   docs: {
     source: {
-      code: templateStr
-    }
-  }
+      code: templateStr,
+    },
+  },
 };
-
