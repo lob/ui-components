@@ -7,6 +7,7 @@ import mdx from "./MainNavigation.mdx";
 import iconOverview from "../../assets/images/iconOverview.svg";
 
 const routeTemplate = (name) => `<div>${name}</div>`;
+
 export default {
   title: "Components/Main Navigation",
   component: MainNavigation,

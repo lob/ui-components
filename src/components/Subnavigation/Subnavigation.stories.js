@@ -11,11 +11,36 @@ const templateStr = `
     <subnavigation-item title="Payment" to="/payment" />
   </subnavigation>
 `;
+const routeTemplate = (name) => `<div>${name}</div>`;
 
 export default {
   title: "Components/Subnavigation ",
   component: Subnavigation,
   subcomponents: { SubnavigationItem },
+  decorators: [
+    routeDecorator("/account", {
+      routes: [
+        {
+          path: "/account",
+          component: {
+            template: routeTemplate("account"),
+          },
+        },
+        {
+          path: "/api-keys",
+          component: {
+            template: routeTemplate("api-keys"),
+          },
+        },
+        {
+          path: "/payment",
+          component: {
+            template: routeTemplate("payment"),
+          },
+        },
+      ],
+    }),
+  ],
   parameters: {
     docs: {
       page: mdx,
@@ -24,7 +49,6 @@ export default {
       },
     },
   },
-  argTypes: {},
 };
 
 const Template = (args, { argTypes }) => ({
@@ -35,4 +59,3 @@ const Template = (args, { argTypes }) => ({
 });
 
 export const Primary = Template.bind({});
-Primary.decorators = [routeDecorator("/account")];
