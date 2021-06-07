@@ -7,9 +7,7 @@
   "globals": {
     "URLSearchParams": false
   },
-  "parserOptions": {
-    "ecmaVersion": 2018
-  },
+  "parser": "vue-eslint-parser",
   "rules": {
     "lob/align-equals": 0,
     "no-extra-parens": 0,
@@ -39,6 +37,19 @@
       "env": {
         "jest": true
       }
+    },
+    {
+      "files": [
+        "**/__tests__/*.{j,t}s?(x)",
+        "**/tests/unit/**/*.spec.{j,t}s?(x)"
+      ],
+      "env": {
+        "jest": true
+      }
     }
-  ]
+  ],
+  "root": true,
+  "env": {
+    "node": true
+  }
 }
