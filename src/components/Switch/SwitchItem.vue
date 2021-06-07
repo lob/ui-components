@@ -2,7 +2,7 @@
   <div
     :class="[
       'rounded flex bg-white text-gray-500',
-      {'!bg-primary-500 !text-white checked': checked},
+      { '!bg-primary-500 !text-white checked': checked },
     ]"
   >
     <input
@@ -15,57 +15,50 @@
       :disabled="disabled"
       @input="onInput"
       @click="onClick"
-    >
-    <label
-      :for="value"
-      class="px-6 py-1.5 cursor-pointer"
-    >{{ label }}</label>
+    />
+    <label :for="value" class="px-6 py-1.5 cursor-pointer">{{ label }}</label>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'SwitchItem',
-  model: {
-    prop: 'modelValue',
-    event: 'input'
-  },
+  name: "SwitchItem",
+  emits: ["update:modelValue", "input", "click"],
   props: {
     modelValue: {
       type: String,
-      default: null
+      default: null,
     },
     name: {
       type: String,
-      required: true
+      required: true,
     },
     value: {
       type: String,
-      required: true
+      required: true,
     },
     label: {
       type: String,
-      required: true
+      required: true,
     },
     disabled: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
-    checked () {
+    checked() {
       return this.modelValue === this.value;
-    }
+    },
   },
   methods: {
-    onInput () {
-      this.$emit('input', this.value);
+    onInput() {
+      this.$emit("input", this.value);
+      this.$emit("update:modelValue", this.value);
     },
-    onClick ($event) {
-      this.$emit('click', $event);
-    }
-  }
+    onClick($event) {
+      this.$emit("click", $event);
+    },
+  },
 };
-
 </script>
-
