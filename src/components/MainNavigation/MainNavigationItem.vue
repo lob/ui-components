@@ -40,60 +40,60 @@
 
 <script>
 export default {
-  name: "MainNavigationItem",
+  name: 'MainNavigationItem',
   props: {
     title: {
       type: String,
-      required: true,
+      required: true
     },
     iconSrc: {
       type: String,
-      required: true,
+      required: true
     },
     iconAltText: {
       type: String,
-      required: true,
+      required: true
     },
     to: {
       type: String,
-      default: null,
+      default: null
     },
     collapsible: {
       type: Boolean,
-      default: true,
+      default: true
     },
     subNavCollapsed: {
       type: Boolean,
-      default: false,
+      default: false
     },
     expanded: {
       type: Boolean,
-      default: true,
-    },
+      default: true
+    }
   },
-  data() {
+  data () {
     return {
-      subNavOpen: this.expanded && !this.subNavCollapsed,
+      subNavOpen: this.expanded && !this.subNavCollapsed
     };
   },
   computed: {
-    hasChildNavItems() {
+    hasChildNavItems () {
       return Boolean(this.$slots.default);
     },
-    tag() {
-      return this.to ? "router-link" : "button";
+    tag () {
+      return this.to ? 'router-link' : 'button';
     },
-    clickEvent() {
-      return !this.to ? "click" : null;
-    },
+    clickEvent () {
+      return !this.to ? 'click' : null;
+    }
   },
   methods: {
-    toggleSubNav() {
+    toggleSubNav () {
       if (this.collapsible) {
         this.subNavOpen = !this.subNavOpen;
       }
-    },
-  },
+    }
+  }
 };
 </script>
 

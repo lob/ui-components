@@ -1,14 +1,14 @@
-import Checkbox from "./Checkbox.vue";
-import mdx from "./Checkbox.mdx";
+import Checkbox from './Checkbox.vue';
+import mdx from './Checkbox.mdx';
 
 export default {
-  title: "Components/Checkbox",
+  title: 'Components/Checkbox',
   component: Checkbox,
   parameters: {
     docs: {
-      page: mdx,
-    },
-  },
+      page: mdx
+    }
+  }
 };
 
 let checkboxVModel = false; //eslint-disable-line
@@ -25,13 +25,13 @@ const PrimaryTemplate = (args, { argTypes }) => ({
       v-model="checkboxVModel" 
       v-bind="args"
     ></checkbox>
-    `,
+    `
 });
 
 export const Primary = PrimaryTemplate.bind({});
 Primary.args = {
-  label: "Custom checkbox label",
-  name: "myInput",
+  label: 'Custom checkbox label',
+  name: 'myInput'
 };
 
 let arrayVModel = []; //eslint-disable-line
@@ -74,10 +74,10 @@ const SecondaryTemplate = (args, { argTypes }) => ({
       :sameLine="args.sameLine"
     />
   </div>
-    `,
+    `
 });
 
 export const Secondary = SecondaryTemplate.bind({});
 Secondary.args = {
-  sameLine: true,
+  sameLine: true
 };

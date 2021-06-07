@@ -18,21 +18,21 @@
 
 <script>
 export default {
-  name: "MainNavigationChildItem",
+  name: 'MainNavigationChildItem',
   props: {
     title: {
       type: String,
-      required: true,
+      required: true
     },
     to: {
       type: String,
-      required: true,
-    },
+      required: true
+    }
   },
   computed: {
-    active() {
+    active () {
       return this.$route.path === this.to;
-    },
-  },
+    }
+  }
 };
 </script>

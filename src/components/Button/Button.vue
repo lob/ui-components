@@ -28,39 +28,39 @@
 
 <script>
 export default {
-  name: "LobButton",
-  emits: ["click"],
+  name: 'LobButton',
+  emits: ['click'],
   props: {
     primary: {
       type: Boolean,
-      default: true,
+      default: true
     },
     secondary: {
       type: Boolean,
-      default: false,
+      default: false
     },
     tertiary: {
       type: Boolean,
-      default: false,
+      default: false
     },
     small: {
       type: Boolean,
-      default: false,
+      default: false
     },
     large: {
       type: Boolean,
-      default: false,
+      default: false
     },
     disabled: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   methods: {
-    handleClick($event) {
-      this.$emit("click", $event);
-    },
-  },
+    handleClick ($event) {
+      this.$emit('click', $event);
+    }
+  }
 };
 </script>
 

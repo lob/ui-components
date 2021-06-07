@@ -1,80 +1,80 @@
-import routeDecorator from "../../../.storybook/routeDecorator";
+import routeDecorator from '../../../.storybook/routeDecorator';
 
-import MainNavigation from "./MainNavigation.vue";
-import MainNavigationItem from "./MainNavigationItem.vue";
-import MainNavigationChildItem from "./MainNavigationChildItem.vue";
-import mdx from "./MainNavigation.mdx";
-import iconOverview from "../../assets/images/iconOverview.svg";
+import MainNavigation from './MainNavigation.vue';
+import MainNavigationItem from './MainNavigationItem.vue';
+import MainNavigationChildItem from './MainNavigationChildItem.vue';
+import mdx from './MainNavigation.mdx';
+import iconOverview from '../../assets/images/iconOverview.svg';
 
 const routeTemplate = (name) => `<div>${name}</div>`;
 
 export default {
-  title: "Components/Main Navigation",
+  title: 'Components/Main Navigation',
   component: MainNavigation,
   subcomponents: { MainNavigationItem, MainNavigationChildItem },
   decorators: [
-    routeDecorator("/", {
+    routeDecorator('/', {
       routes: [
         {
-          path: "/overview",
+          path: '/overview',
           component: {
-            template: routeTemplate("overview"),
-          },
+            template: routeTemplate('overview')
+          }
         },
         {
-          path: "/mail-analytics",
+          path: '/mail-analytics',
           component: {
-            template: routeTemplate("mail-analytics"),
-          },
+            template: routeTemplate('mail-analytics')
+          }
         },
         {
-          path: "/address-verification",
+          path: '/address-verification',
           component: {
-            template: routeTemplate("address-verification"),
-          },
+            template: routeTemplate('address-verification')
+          }
         },
         {
-          path: "/us-verifications",
+          path: '/us-verifications',
           component: {
-            template: routeTemplate("us-verifications"),
-          },
+            template: routeTemplate('us-verifications')
+          }
         },
         {
-          path: "/intl-verifications",
+          path: '/intl-verifications',
           component: {
-            template: routeTemplate("intl-verifications"),
-          },
+            template: routeTemplate('intl-verifications')
+          }
         },
         {
-          path: "/postcards",
+          path: '/postcards',
           component: {
-            template: routeTemplate("postcards"),
-          },
+            template: routeTemplate('postcards')
+          }
         },
         {
-          path: "/letters",
+          path: '/letters',
           component: {
-            template: routeTemplate("letters"),
-          },
-        },
-      ],
-    }),
+            template: routeTemplate('letters')
+          }
+        }
+      ]
+    })
   ],
   parameters: {
     docs: {
-      page: mdx,
-    },
+      page: mdx
+    }
   },
   argTypes: {
     iconSrc: {
       table: {
-        disable: true,
+        disable: true
       },
       control: {
-        disable: true,
-      },
-    },
-  },
+        disable: true
+      }
+    }
+  }
 };
 
 const Template = (args, { argTypes }) => ({
@@ -98,37 +98,37 @@ const Template = (args, { argTypes }) => ({
         </main-navigation-item>
       </template>
     </main-navigation>
-  `,
+  `
 });
 
 export const Primary = Template.bind({});
 Primary.args = {
-  iconSrc: iconOverview,
+  iconSrc: iconOverview
 };
 
 const ItemTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { MainNavigationItem },
   setup: () => ({ args }),
-  template: '<main-navigation-item v-bind="args" />',
+  template: '<main-navigation-item v-bind="args" />'
 });
 export const Item = ItemTemplate.bind({});
 Item.args = {
-  title: "Overview",
+  title: 'Overview',
   iconSrc: iconOverview,
-  iconAltText: "Overview icon",
-  to: "/overview",
-  expanded: true,
+  iconAltText: 'Overview icon',
+  to: '/overview',
+  expanded: true
 };
 
 const ChildItemTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { MainNavigationChildItem },
   setup: () => ({ args }),
-  template: '<main-navigation-child-item v-bind="args" />',
+  template: '<main-navigation-child-item v-bind="args" />'
 });
 export const ChildItem = ChildItemTemplate.bind({});
 ChildItem.args = {
-  title: "Postcards",
-  to: "/postcards",
+  title: 'Postcards',
+  to: '/postcards'
 };

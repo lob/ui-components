@@ -100,54 +100,54 @@
 </template>
 
 <script>
-import PageArrowIcon from "./PageArrowIcon.vue";
+import PageArrowIcon from './PageArrowIcon.vue';
 
 export default {
-  name: "Pagination",
+  name: 'Pagination',
   components: { PageArrowIcon },
-  emits: ["change"],
+  emits: ['change'],
   props: {
     collection: {
       type: Array,
-      default: null,
+      default: null
     },
     page: {
       type: Number,
-      default: 0,
+      default: 0
     },
     total: {
       type: Number,
-      default: 0,
+      default: 0
     },
     limit: {
       type: Number,
-      default: 0,
-    },
+      default: 0
+    }
   },
   computed: {
-    shouldRender() {
+    shouldRender () {
       return this.collection && this.collection.length > 0;
     },
-    totalNumber() {
-      return typeof this.total === "number" ? this.total : 0;
+    totalNumber () {
+      return typeof this.total === 'number' ? this.total : 0;
     },
-    paginationText() {
+    paginationText () {
       return `${this.offset + 1} - ${Math.min(
         this.offset + this.limit,
         this.totalNumber
       )} of ${this.totalNumber}`;
     },
-    offset() {
+    offset () {
       return (this.page - 1) * this.limit;
     },
-    lastPage() {
+    lastPage () {
       return Math.ceil(this.totalNumber / this.limit);
-    },
+    }
   },
   methods: {
-    pageClick(newPage) {
-      this.$emit("change", { page: newPage });
-    },
-  },
+    pageClick (newPage) {
+      this.$emit('change', { page: newPage });
+    }
+  }
 };
 </script>

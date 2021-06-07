@@ -1,8 +1,8 @@
-import routeDecorator from "../../../.storybook/routeDecorator";
+import routeDecorator from '../../../.storybook/routeDecorator';
 
-import Subnavigation from "./Subnavigation.vue";
-import SubnavigationItem from "./SubnavigationItem.vue";
-import mdx from "./Subnavigation.mdx";
+import Subnavigation from './Subnavigation.vue';
+import SubnavigationItem from './SubnavigationItem.vue';
+import mdx from './Subnavigation.mdx';
 
 const templateStr = `
   <subnavigation>
@@ -14,48 +14,48 @@ const templateStr = `
 const routeTemplate = (name) => `<div>${name}</div>`;
 
 export default {
-  title: "Components/Subnavigation ",
+  title: 'Components/Subnavigation ',
   component: Subnavigation,
   subcomponents: { SubnavigationItem },
   decorators: [
-    routeDecorator("/account", {
+    routeDecorator('/account', {
       routes: [
         {
-          path: "/account",
+          path: '/account',
           component: {
-            template: routeTemplate("account"),
-          },
+            template: routeTemplate('account')
+          }
         },
         {
-          path: "/api-keys",
+          path: '/api-keys',
           component: {
-            template: routeTemplate("api-keys"),
-          },
+            template: routeTemplate('api-keys')
+          }
         },
         {
-          path: "/payment",
+          path: '/payment',
           component: {
-            template: routeTemplate("payment"),
-          },
-        },
-      ],
-    }),
+            template: routeTemplate('payment')
+          }
+        }
+      ]
+    })
   ],
   parameters: {
     docs: {
       page: mdx,
       source: {
-        code: templateStr,
-      },
-    },
-  },
+        code: templateStr
+      }
+    }
+  }
 };
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { Subnavigation, SubnavigationItem },
   setup: () => ({ args }),
-  template: templateStr,
+  template: templateStr
 });
 
 export const Primary = Template.bind({});

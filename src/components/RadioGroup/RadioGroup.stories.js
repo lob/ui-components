@@ -1,19 +1,19 @@
-import RadioGroup from "./RadioGroup.vue";
-import RadioButton from "../RadioButton/RadioButton.vue";
-import mdx from "./RadioGroup.mdx";
+import RadioGroup from './RadioGroup.vue';
+import RadioButton from '../RadioButton/RadioButton.vue';
+import mdx from './RadioGroup.mdx';
 
 export default {
-  title: "Components/Radio Group",
+  title: 'Components/Radio Group',
   component: RadioGroup,
   subcomponents: { RadioButton },
   parameters: {
     docs: {
-      page: mdx,
-    },
-  },
+      page: mdx
+    }
+  }
 };
 
-const radioModel = "4x6";
+const radioModel = '4x6';
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
@@ -41,11 +41,11 @@ const Template = (args, { argTypes }) => ({
         v-model="radioModel"
       />
     </radio-group>
-  `,
+  `
 });
 
 export const Primary = Template.bind({});
 Primary.args = {
-  legend: "Postcard Size",
-  separateLines: false,
+  legend: 'Postcard Size',
+  separateLines: false
 };

@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { createRouter, createMemoryHistory } from "vue-router";
+import { createRouter, createMemoryHistory } from 'vue-router';
 import { render, fireEvent, waitFor } from '@testing-library/vue';
 import { constants } from '../../../config';
 import MainNavigationItem from '../MainNavigationItem.vue';
@@ -13,24 +13,24 @@ const initialProps = {
 };
 
 const routes = [
-  { path: "", component: { template: "<div></div>" } },
-  { path: "/", component: { template: "<div>/</div>" } },
-  { path: "/overview", component: { template: "<div>overview</div>" } },
+  { path: '', component: { template: '<div></div>' } },
+  { path: '/', component: { template: '<div>/</div>' } },
+  { path: '/overview', component: { template: '<div>overview</div>' } }
 ];
 const router = createRouter({
   history: createMemoryHistory(),
-  routes,
+  routes
 });
 
 const renderComponent = async (options) => {
   const result = render(MainNavigationItem, {
     ...options,
-    global: { plugins: [router, constants] },
+    global: { plugins: [router, constants] }
   });
   await router.isReady();
   return result;
-}
-  
+};
+
 describe('Main Navigation Item', () => {
 
   it('renders correctly', async () => {
@@ -135,7 +135,7 @@ describe('Main Navigation Item', () => {
 
           it('collapses the sub navigation when clicked', async () => {
             const { getByText, queryByText, queryByAltText } = await renderComponent({ props, slots });
-            
+
             const button = getByText(props.title);
             fireEvent.click(button);
 

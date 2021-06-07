@@ -29,59 +29,59 @@
 </template>
 
 <script>
-import { getCurrentInstance } from "vue";
+import { getCurrentInstance } from 'vue';
 
 export default {
-  name: "RadioButton",
-  emits: ["update:modelValue", "input", "click"],
+  name: 'RadioButton',
+  emits: ['update:modelValue', 'input', 'click'],
   props: {
     modelValue: {
       type: String,
-      default: null,
+      default: null
     },
     error: {
       type: Boolean,
-      default: false,
+      default: false
     },
     name: {
       type: String,
-      default: "",
+      default: ''
     },
     value: {
       type: String,
-      default: "",
+      default: ''
     },
     label: {
       type: String,
-      default: "",
+      default: ''
     },
     disabled: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
-  data() {
+  data () {
     return {
-      parent: null,
+      parent: null
     };
   },
-  created() {
+  created () {
     this.parent = getCurrentInstance().parent;
   },
   computed: {
-    checked() {
+    checked () {
       return this.modelValue === this.value;
-    },
+    }
   },
   methods: {
-    onInput() {
-      this.$emit("update:modelValue", this.value);
-      this.$emit("input", this.value);
+    onInput () {
+      this.$emit('update:modelValue', this.value);
+      this.$emit('input', this.value);
     },
-    onClick($event) {
-      this.$emit("click", $event);
-    },
-  },
+    onClick ($event) {
+      this.$emit('click', $event);
+    }
+  }
 };
 </script>
 

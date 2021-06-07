@@ -16,28 +16,28 @@
 
 <script>
 export default {
-  name: "MainNavigation",
+  name: 'MainNavigation',
   props: {
     collapsible: {
       type: Boolean,
-      default: true,
-    },
+      default: true
+    }
   },
-  data() {
+  data () {
     return {
-      expanded: true,
+      expanded: true
     };
   },
   computed: {
-    clickEvent() {
-      return this.collapsible ? "click" : null;
-    },
+    clickEvent () {
+      return this.collapsible ? 'click' : null;
+    }
   },
   methods: {
-    animateDrawer() {
+    animateDrawer () {
       this.expanded = !this.expanded;
-    },
-  },
+    }
+  }
 };
 </script>
 

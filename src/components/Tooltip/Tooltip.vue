@@ -44,119 +44,119 @@
 
 <script>
 export default {
-  name: "Tooltip",
-  emits: ["mouseover", "mouseleave"],
+  name: 'Tooltip',
+  emits: ['mouseover', 'mouseleave'],
   props: {
     position: {
       type: String,
-      default: "bottom",
+      default: 'bottom',
       validator: function (value) {
         // The value must match one of these strings
-        return ["top", "bottom", "left", "right"].indexOf(value) !== -1;
-      },
+        return ['top', 'bottom', 'left', 'right'].indexOf(value) !== -1;
+      }
     },
     arrowPlacement: {
       type: String,
-      default: "center",
+      default: 'center',
       validator: function (value) {
         // The value must match one of these strings
-        return ["center", "left", "right"].indexOf(value) !== -1;
-      },
-    },
+        return ['center', 'left', 'right'].indexOf(value) !== -1;
+      }
+    }
   },
-  data() {
+  data () {
     return {
       hover: false,
       triggerWidth: 0,
       triggerHeight: 0,
       xOffset: 0,
-      yOffset: 0,
+      yOffset: 0
     };
   },
   computed: {
-    hasUpArrow() {
+    hasUpArrow () {
       return this.position.match(/bottom/);
     },
-    hasDownArrow() {
+    hasDownArrow () {
       return this.position.match(/top/);
     },
-    hasLeftArrow() {
+    hasLeftArrow () {
       return this.position.match(/right/);
     },
-    hasRightArrow() {
+    hasRightArrow () {
       return this.position.match(/left/);
     },
-    arrowIsVerticallyCenter() {
+    arrowIsVerticallyCenter () {
       return this.hasLeftArrow || this.hasRightArrow;
     },
-    arrowIsHorizontallyCenter() {
+    arrowIsHorizontallyCenter () {
       return (
         !this.arrowIsVerticallyCenter && this.arrowPlacement.match(/center/)
       );
     },
-    arrowIsLeftOfCenter() {
+    arrowIsLeftOfCenter () {
       return !this.arrowIsVerticallyCenter && this.arrowPlacement.match(/left/);
     },
-    arrowIsRightOfCenter() {
+    arrowIsRightOfCenter () {
       return (
         !this.arrowIsVerticallyCenter && this.arrowPlacement.match(/right/)
       );
     },
-    tooltipPositionStyle() {
+    tooltipPositionStyle () {
       switch (this.position) {
-        case "top":
+        case 'top':
           return {
             left: `${this.xOffset}px`,
-            bottom: `calc(${this.triggerHeight}px + 1rem)`,
+            bottom: `calc(${this.triggerHeight}px + 1rem)`
           };
-        case "left":
+        case 'left':
           return {
             right: `calc(${this.triggerWidth}px + 1rem)`,
-            top: `${this.yOffset}px`,
+            top: `${this.yOffset}px`
           };
-        case "right":
+        case 'right':
           return {
             left: `calc(${this.triggerWidth}px + 1rem)`,
-            top: `${this.yOffset}px`,
+            top: `${this.yOffset}px`
           };
-        case "bottom":
+        case 'bottom':
         default:
           return {
             left: `${this.xOffset}px`,
-            top: `calc(${this.triggerHeight}px + 1rem)`,
+            top: `calc(${this.triggerHeight}px + 1rem)`
           };
       }
-    },
+    }
   },
-  updated() {
+  updated () {
     this.triggerWidth = this.$refs.triggerContainer.clientWidth;
     this.triggerHeight = this.$refs.triggerContainer.clientHeight;
     this.xOffset = this.getXOffset();
     this.yOffset = this.getYOffset();
   },
   methods: {
-    handleMouseover($event) {
+    handleMouseover ($event) {
       this.hover = true;
-      this.$emit("mouseover", $event);
+      this.$emit('mouseover', $event);
     },
-    handleMouseleave($event) {
+    handleMouseleave ($event) {
       this.hover = false;
-      this.$emit("mouseleave", $event);
+      this.$emit('mouseleave', $event);
     },
-    getXOffset() {
+    getXOffset () {
       return (
         (this.$refs.triggerContainer.clientWidth -
           this.$refs.tooltipContainer.clientWidth) /
         2
       );
     },
-    getYOffset() {
+    getYOffset () {
       return (
         (this.$refs.triggerContainer.clientHeight -
           this.$refs.tooltipContainer.clientHeight) /
         2
       );
-    },
-  },
+    }
+  }
 };
 </script>

@@ -20,49 +20,49 @@
 </template>
 
 <script>
-import ChevronRight from "../Icons/ChevronRight";
-import { START_LOCATION } from "vue-router";
+import ChevronRight from '../Icons/ChevronRight';
+import { START_LOCATION } from 'vue-router';
 
 export default {
-  name: "Breadcrumb",
+  name: 'Breadcrumb',
   components: { ChevronRight },
   props: {
     startName: {
       // START_LOCATION does not have a name so we need to know what to display
       type: String,
-      required: true,
+      required: true
     },
     iconSrc: {
       type: String,
-      default: "",
+      default: ''
     },
     iconAltText: {
       type: String,
-      default: "",
-    },
+      default: ''
+    }
   },
   computed: {
-    crumbs() {
+    crumbs () {
       const routes = [
         { name: this.startName, path: START_LOCATION.path },
-        ...this.$route.matched,
+        ...this.$route.matched
       ];
       return routes.map((routeRecord) => {
-        const pathSegments = routeRecord.path.split("/");
+        const pathSegments = routeRecord.path.split('/');
         const lastChildInPath = pathSegments[pathSegments.length - 1];
 
         return {
           name: routeRecord.name || this.titleize(lastChildInPath),
-          path: routeRecord.path,
+          path: routeRecord.path
         };
       });
-    },
+    }
   },
   methods: {
-    titleize(str) {
+    titleize (str) {
       return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
-    },
-  },
+    }
+  }
 };
 </script>
 

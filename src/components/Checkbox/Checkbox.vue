@@ -18,7 +18,7 @@
       @input="onInput"
     />
     <span
-      style="content: ''"
+      style="content: '';"
       :class="[
         'checkmark w-4 h-4 mr-1 rounded-sm border-solid border border-gray-100 -left-5 absolute top-1',
         { 'bg-white-300': disabled },
@@ -36,70 +36,70 @@
 
 <script>
 export default {
-  name: "Checkbox",
-  emits: ["update:modelValue", "input", "click"],
+  name: 'Checkbox',
+  emits: ['update:modelValue', 'input', 'click'],
   props: {
     label: {
       type: String,
-      required: true,
+      required: true
     },
     value: {
       type: [String, Boolean],
-      default: null,
+      default: null
     },
     disabled: {
       type: Boolean,
-      default: false,
+      default: false
     },
     required: {
       type: Boolean,
-      default: false,
+      default: false
     },
     error: {
       type: Boolean,
-      default: false,
+      default: false
     },
     name: {
       type: String,
-      required: true,
+      required: true
     },
     sameLine: {
       type: Boolean,
-      default: false,
+      default: false
     },
     modelValue: {
       type: [Array, Boolean],
-      default: null,
-    },
+      default: null
+    }
   },
   computed: {
-    checked() {
-      if (this.modelValue && typeof this.modelValue === "object") {
+    checked () {
+      if (this.modelValue && typeof this.modelValue === 'object') {
         return this.modelValue.includes(this.value);
       }
       return this.modelValue;
-    },
+    }
   },
   methods: {
-    onInput($event) {
-      if (this.modelValue && typeof this.modelValue === "object") {
+    onInput ($event) {
+      if (this.modelValue && typeof this.modelValue === 'object') {
         const checked = [...this.modelValue];
         if (checked.includes(this.value)) {
           checked.splice(checked.indexOf(this.value), 1);
         } else {
           checked.push(this.value);
         }
-        this.$emit("update:modelValue", checked);
-        this.$emit("input", checked);
+        this.$emit('update:modelValue', checked);
+        this.$emit('input', checked);
       } else {
-        this.$emit("update:modelValue", $event.target.checked);
-        this.$emit("input", $event.target.checked);
+        this.$emit('update:modelValue', $event.target.checked);
+        this.$emit('input', $event.target.checked);
       }
     },
-    onClick($event) {
-      this.$emit("click", $event);
-    },
-  },
+    onClick ($event) {
+      this.$emit('click', $event);
+    }
+  }
 };
 </script>
 
