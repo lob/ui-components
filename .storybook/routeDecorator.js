@@ -1,12 +1,12 @@
 import Vue from 'vue';
-import VueRouter from 'vue-router';
+import { createRouter } from 'vue-router';
 
 // abbreviated example of https://github.com/gvaldambrini/storybook-router/blob/master/packages/vue/vue.js
 
 export default (path = '/', routerProps = {}) => {
   return (storyFn) => {
-    Vue.use(VueRouter);
-    const router = new VueRouter({ ...routerProps });
+    const router = createRouter({ ...routerProps });
+    Vue.use(router);
     
     router.replace(path);
 
