@@ -42,9 +42,3 @@ npm run lint
 npm run build-bundle
 npm publish
 ```
-
-## To-dos
-- [ ] Implement story book
-- [ ] Implement component testing
-- [ ] Implement changelog practices
-

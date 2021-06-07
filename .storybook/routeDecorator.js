@@ -1,21 +1,22 @@
-import Vue from 'vue';
-import { createRouter } from 'vue-router';
+// import Vue from "vue";
+// import { createRouter } from "vue-router";
 
 // abbreviated example of https://github.com/gvaldambrini/storybook-router/blob/master/packages/vue/vue.js
 
-export default (path = '/', routerProps = {}) => {
+export default (path = "/", routerProps = {}) => {
   return (storyFn) => {
-    const router = createRouter({ ...routerProps });
-    Vue.use(router);
-    
-    router.replace(path);
+    // const router = createRouter({ ...routerProps });
+    // Vue.use(router);
 
-    const WrappedComponent = storyFn();
+    // router.replace(path);
 
-    return Vue.extend({
-      router,
-      components: { WrappedComponent },
-      template: '<wrapped-component/>'
-    });
-  }
-}
+    // const WrappedComponent = storyFn();
+
+    // return Vue.extend({
+    //   router,
+    //   components: { WrappedComponent },
+    //   template: '<wrapped-component/>'
+    // });
+    return storyFn();
+  };
+};
