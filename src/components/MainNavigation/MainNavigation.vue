@@ -3,48 +3,45 @@
     <ul
       :class="[
         'bg-white-100 h-screen',
-        {'cursor-pointer': collapsible},
-        {'expanded': collapsible && expanded},
-        {'collapsed': collapsible && !expanded}
+        { 'cursor-pointer': collapsible },
+        { expanded: collapsible && expanded },
+        { collapsed: collapsible && !expanded },
       ]"
       @[clickEvent]="animateDrawer"
     >
-      <slot
-        :expanded="expanded"
-      />
+      <slot :expanded="expanded" />
     </ul>
   </nav>
 </template>
 
 <script>
 export default {
-  name: 'MainNavigation',
+  name: "MainNavigation",
   props: {
     collapsible: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
-  data: function () {
+  data() {
     return {
-      expanded: true
+      expanded: true,
     };
   },
   computed: {
-    clickEvent () {
-      return this.collapsible ? 'click' : null;
-    }
+    clickEvent() {
+      return this.collapsible ? "click" : null;
+    },
   },
   methods: {
-    animateDrawer () {
+    animateDrawer() {
       this.expanded = !this.expanded;
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped lang="scss">
-
 nav {
   width: 100%;
 
