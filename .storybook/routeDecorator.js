@@ -1,18 +1,20 @@
 import { createMemoryHistory, createRouter } from "vue-router";
 import { app } from "@storybook/vue3";
 
-// abbreviated example of https://github.com/gvaldambrini/storybook-router/blob/master/packages/vue/vue.js
+let routerInstalled = false;
+let router;
 
-export default (
-  path = "/",
-  routerProps = { routes: [{ path: "" }, { path: "/" }] }
-) => {
-  return (storyFn, x) => {
-    const router = createRouter({
-      history: createMemoryHistory(),
-      ...routerProps,
-    });
-    app.use(router);
+export default (path = "/", routerProps = { routes: [] }) => {
+  return (storyFn) => {
+    if (!routerInstalled) {
+      router = createRouter({
+        history: createMemoryHistory(),
+        ...routerProps,
+      });
+      app.use(router);
+      routerInstalled = true;
+    }
+
     router.replace(path);
 
     return storyFn();
