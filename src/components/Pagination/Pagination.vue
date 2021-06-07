@@ -4,9 +4,7 @@
     class="flex md:justify-between mt-0 relative pt-0 px-2 pb-1 -top-1 w-full"
   >
     <div>
-      <p>
-        {{ totalNumber }} result<span v-if="totalNumber !== 1">s</span>
-      </p>
+      <p>{{ totalNumber }} result<span v-if="totalNumber !== 1">s</span></p>
     </div>
 
     <div class="hidden md:flex items-center">
@@ -22,24 +20,18 @@
         @click="pageClick(1)"
       >
         <span class="sr-only">Go to first page</span>
-        <page-arrow-icon
-          :first="true"
-          :disabled="page === 1"
-        />
+        <page-arrow-icon :first="true" :disabled="page === 1" />
       </button>
       <button
         :class="[
           'border-none bg-transparent my-0 mx-4 relative hover:text-primary-300',
-          { 'text-gray-100 pointer-none': page <= 1 }
+          { 'text-gray-100 pointer-none': page <= 1 },
         ]"
         :disabled="page <= 1"
         @click="pageClick(page - 1)"
       >
         <span class="sr-only">Go to previous page</span>
-        <page-arrow-icon
-          :previous="true"
-          :disabled="page <= 1"
-        />
+        <page-arrow-icon :previous="true" :disabled="page <= 1" />
       </button>
       <button
         :class="[
@@ -77,28 +69,28 @@
           :class="[
             'border-none bg-transparent my-0 mx-4 relative hover:text-primary-300 items-center text-gray-900 flex md-hidden text-sm transition-transform duration-500 ease-linear transform group',
             { 'text-gray-100 pointer-none': offset + limit >= totalNumber },
-            { 'hidden': page == lastPage },
+            { hidden: page == lastPage },
           ]"
           :disabled="offset + limit >= totalNumber"
           @click="pageClick(page + 1)"
         >
           Next
-          <font-awesome-icon
-            class="text-lg my-0 mx-1 relative transform group-hover:translate-x-1"
-            :icon="['fal', 'angle-right']"
+          <page-arrow-icon
+            :next="true"
+            class="transform group-hover:translate-x-1 group-hover:text-primary-300"
           />
         </button>
         <button
           :class="[
             'border-none bg-transparent my-0 mx-4 relative hover:text-primary-300 items-center text-gray-900 flex md-hidden text-sm transition-transform duration-500 ease-linear transform group',
             'pagination__btn--prev',
-            { 'hidden': page != lastPage },
+            { hidden: page != lastPage },
           ]"
           @click="pageClick(page - 1)"
         >
-          <font-awesome-icon
-            class="text-lg my-0 mx-1 relative transform group-hover:-translate-x-1"
-            :icon="['fal', 'angle-left']"
+          <page-arrow-icon
+            :previous="true"
+            class="transform group-hover:-translate-x-1 group-hover:text-primary-300"
           />
           Prev
         </button>
@@ -108,54 +100,53 @@
 </template>
 
 <script>
-import PageArrowIcon from './PageArrowIcon.vue';
+import PageArrowIcon from "./PageArrowIcon.vue";
 
-export default
-{
-  name: 'Pagination',
+export default {
+  name: "Pagination",
   components: { PageArrowIcon },
   props: {
     collection: {
       type: Array,
-      default: null
+      default: null,
     },
     page: {
       type: Number,
-      default: 0
+      default: 0,
     },
     total: {
       type: Number,
-      default: 0
+      default: 0,
     },
     limit: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
   },
   computed: {
-    shouldRender () {
+    shouldRender() {
       return this.collection && this.collection.length > 0;
     },
-    totalNumber () {
-      return typeof this.total === 'number' ? this.total : 0;
+    totalNumber() {
+      return typeof this.total === "number" ? this.total : 0;
     },
-    paginationText () {
+    paginationText() {
       return `${this.offset + 1} - ${Math.min(
         this.offset + this.limit,
         this.totalNumber
       )} of ${this.totalNumber}`;
     },
-    offset () {
+    offset() {
       return (this.page - 1) * this.limit;
     },
-    lastPage () {
+    lastPage() {
       return Math.ceil(this.totalNumber / this.limit);
-    }
+    },
   },
   methods: {
-    pageClick (newPage) {
-      this.$emit('change', { page: newPage });
-    }
-  }
+    pageClick(newPage) {
+      this.$emit("change", { page: newPage });
+    },
+  },
 };
 </script>
