@@ -3,105 +3,102 @@
     <component
       :is="tag"
       :class="[
-        'no-underline py-4 px-6 max-h-12 flex items-center w-full font-light text-sm text-left text-gray-500 relative overflow-hidden hover:text-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent'
+        'no-underline py-4 px-6 max-h-12 flex items-center w-full font-light text-sm text-left text-gray-500 relative overflow-hidden hover:text-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
       ]"
       :to="to"
       active-class="text-normal bg-white-300 font-medium"
       @click.native.stop
       @[clickEvent].stop="toggleSubNav"
     >
-      <img
-        :src="iconSrc"
-        :alt="iconAltText"
-        class="w-6 align-bottom"
-      >
+      <img :src="iconSrc" :alt="iconAltText" class="w-6 align-bottom" />
       <span
         :class="[
           'pl-4',
-          {'expanded': expanded},
-          {'collapsed md:hidden': !expanded}
+          { expanded: expanded },
+          { 'collapsed md:hidden': !expanded },
         ]"
         data-testid="collapsibleElement"
       >
         {{ title }}
         <img
           v-if="collapsible && hasChildNavItems"
-          :class="['w-6 absolute top-3 right-4', { 'transform rotate-180': subNavOpen}]"
-          :src="`${$getConst('lobAssetsUrl')}/dashboard/navbar/caret-down.svg`"
+          :class="[
+            'w-6 absolute top-3 right-4',
+            { 'transform rotate-180': subNavOpen },
+          ]"
+          :src="caretUrl"
           :alt="subNavOpen ? 'Collapse' : 'Expand'"
-        >
+        />
       </span>
     </component>
 
-    <ul
-      v-if="subNavOpen"
-      :class="[
-        'pl-12',
-        {'md:hidden': !expanded}
-      ]"
-    >
+    <ul v-if="subNavOpen" :class="['pl-12', { 'md:hidden': !expanded }]">
       <slot />
     </ul>
   </li>
 </template>
 
 <script>
-
 export default {
-  name: 'MainNavigationItem',
+  name: "MainNavigationItem",
   props: {
     title: {
       type: String,
-      required: true
+      required: true,
     },
     iconSrc: {
       type: String,
-      required: true
+      required: true,
     },
     iconAltText: {
       type: String,
-      required: true
+      required: true,
     },
     to: {
       type: String,
-      default: null
+      default: null,
     },
     collapsible: {
       type: Boolean,
-      default: true
+      default: true,
     },
     subNavCollapsed: {
       type: Boolean,
-      default: false
+      default: false,
     },
     expanded: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
-  data () {
+  data() {
     return {
-      subNavOpen: this.expanded && !this.subNavCollapsed
+      subNavOpen: this.expanded && !this.subNavCollapsed,
     };
   },
   computed: {
-    hasChildNavItems () {
+    hasChildNavItems() {
       return Boolean(this.$slots.default);
     },
-    tag () {
-      return this.to ? 'router-link' : 'button';
+    tag() {
+      return this.to ? "router-link" : "button";
     },
-    clickEvent () {
-      return !this.to ? 'click' : null;
-    }
+    clickEvent() {
+      return !this.to ? "click" : null;
+    },
   },
   methods: {
-    toggleSubNav () {
+    toggleSubNav() {
       if (this.collapsible) {
         this.subNavOpen = !this.subNavOpen;
       }
-    }
-  }
+    },
+    caretUrl() {
+      return `${this.$constants.get(
+        "lobAssetsUrl"
+      )}/dashboard/navbar/caret-down.svg`;
+    },
+  },
 };
 </script>
 

@@ -4,7 +4,7 @@ import * as configs from "../src/config";
 import "../src/assets/styles/main.scss";
 
 const app = createApp({});
-app.use(configs.constants);
+app.config.globalProperties.$constants = configs.constants;
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
