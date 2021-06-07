@@ -31,8 +31,8 @@
     >
       <div
         :class="['height-0 pt-6 pb-4 px-4',
-                 {'absolute mt-1 border-none border-gray-100 rounded-lg bg-white boxShadowGray opacity-100 block h-auto': showMenu},
-                 {'width330': snug}, {'width430': snug2}, {'width550': noSnug}]"
+                 {'width550 absolute mt-1 border-none border-gray-100 rounded-lg bg-white boxShadowGray opacity-100 block h-auto': showMenu},
+                 {'width430': small}, {'width330': smaller}]"
       >
         <slot />
       </div>
@@ -60,11 +60,11 @@ export default {
       type: String,
       required: true
     },
-    snug: {
+    small: {
       type: Boolean,
       default: false
     },
-    snug2: {
+    smaller: {
       type: Boolean,
       default: false
     }
@@ -80,9 +80,6 @@ export default {
     },
     showMenu () {
       return (!this.showMobileNav && this.showNav) || (this.showMobileNav && this.mobileNavs[this.navKey]);
-    },
-    noSnug () {
-      return !this.snug && !this.snug2;
     }
   }
 };
@@ -94,11 +91,11 @@ export default {
   }
 
   .width330 {
-    width: 330px
+    width: 330px !important
   }
 
   .width430 {
-    width: 430px
+    width: 430px !important
   }
 
   .width550 {

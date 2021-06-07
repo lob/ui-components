@@ -1,10 +1,14 @@
+import routeDecorator from '../../../.storybook/routeDecorator';
 import TopNavbar from './TopNavbar.vue';
 import mdx from './TopNavbar.mdx';
-import routeDecorator from '../../../.storybook/routeDecorator';
+import { constants } from '../../config';
+import MegaMenu from '../MegaMenu/MegaMenu.vue';
+import MegaMenuItem from '../MegaMenu/MegaMenuItem.vue';
 
 export default {
   title: 'Components/TopNavbar',
   component: TopNavbar,
+  subcomponents: { MegaMenu, MegaMenuItem },
   parameters: {
     docs: {
       page: mdx
@@ -12,29 +16,35 @@ export default {
   },
   decorators: [
     routeDecorator()
-  ],
-  argTypes: {
-    content: {
-      control: {
-        type: 'text',
-      },
-      defaultValue: 'I am a top navbar.',
-      description: 'Content to display inside of the navbar',
-      table: {
-        type: {
-          summary: 'html or component'
-        }
-      }
-    }
-  },
+  ]
 };
+
 
 const Template = (args, {argTypes}) => ({
   props: Object.keys(argTypes),
-  components: { TopNavbar },
-  template: `<topNavbar
-      v-bind="$props"
-  >Something</topNavbar>`,
+  components: { TopNavbar, MegaMenu, MegaMenuItem },
+  template: `
+    <topNavbar v-bind="$props">
+      <img
+        src="${constants.lobAssetsUrl}/dashboard/navbar/lob-logo.svg"
+        width="95"
+        alt=""
+      >
+      <div class="pl-6">
+        <MegaMenu title="Some menu" navKey="" :mobileNavs="{}" smaller>
+          <MegaMenuItem to="/settings/main/account" imageSource="${constants.lobAssetsUrl}/dashboard/navbar/settings.svg" small>
+            Some menu item
+          </MegaMenuItem>
+        </MegaMenu>
+
+        <MegaMenu title="Another menu" navKey="" :mobileNavs="{}" smaller>
+          <MegaMenuItem to="/settings/main/account" imageSource="${constants.lobAssetsUrl}/dashboard/navbar/settings.svg" small>
+            Another menu item
+          </MegaMenuItem>
+        </MegaMenu>
+      </div>
+    </topNavbar>
+  `
 });
 
 export const Primary = Template.bind({});

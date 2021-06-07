@@ -12,20 +12,21 @@ import MegaMenuItem from "./MegaMenuItem.vue";
 The mega menu component is used for displaying a big navigation menu with nested submenus displaying on hover.
 
 <Preview>
-  <Story id="components-mega-menu--primary" />
+  <Story id="components-megamenu--primary" />
 </Preview>
 
 ## How to Use
 
 The mega menu renders a semantic `nav` element. It is made to work with `mega-menu-item` components. However, you can also write custom components for its slot.
 
-// TODO: finish this
 
-Example of using this component in a template
+Example of using this component in a template, with a MegaMenuItem
 ```html
-  <mega-menu>
-    <!-- TODO -->
-  </mega-menu>
+  <MegaMenu title="Some menu" navKey="" :mobileNavs="{}">
+    <MegaMenuItem to="/settings/main/account" imageSource="${constants.lobAssetsUrl}/dashboard/navbar/settings.svg" small>
+      Some menu item
+    </MegaMenuItem>
+  </MegaMenu>
 ```
 
 # Mega Menu Item
@@ -33,7 +34,7 @@ Example of using this component in a template
 The mega menu item component is used for displaying a single item in the nested submenu that's displayed on hover.
 
 <Preview>
-  <Story id="components-mega-menu--item" />
+  <Story id="components-megamenu--item" />
 </Preview>
 
 ## How to Use

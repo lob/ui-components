@@ -1,2 +1,3 @@
 import MegaMenu from './MegaMenu.vue';
-export default MegaMenu;
+import MegaMenuItem from './MegaMenuItem.vue';
+export default {MegaMenu, MegaMenuItem};
