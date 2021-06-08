@@ -5,7 +5,7 @@
         'bg-white-100 h-screen',
         { 'cursor-pointer': collapsible },
         { expanded: collapsible && expanded },
-        { collapsed: collapsible && !expanded },
+        { collapsed: collapsible && !expanded }
       ]"
       @[clickEvent]="animateDrawer"
     >

@@ -3,7 +3,7 @@
     :class="[
       'checkbox relative block mt-0 mb-1 ml-6 mr-3 cursor-pointer text-left min-h-5',
       { 'cursor-not-allowed': disabled },
-      { 'inline-block': sameLine },
+      { 'inline-block': sameLine }
     ]"
   >
     <input
@@ -24,7 +24,7 @@
         { 'bg-white-300': disabled },
         { 'bg-gray-100': disabled && checked },
         { 'border-error': error },
-        { 'border-primary-500 bg-primary-500': checked },
+        { 'border-primary-500 bg-primary-500': checked }
       ]"
       data-testId="checkmark"
     />
