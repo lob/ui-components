@@ -6,24 +6,42 @@
   >
     {{ label }}
   </label>
-  <input
-    v-bind="$attrs"
-    :id="id"
-    :type="type"
-    :class="[
-      'input rounded pl-4 pr-4 pt-3 pb-4 border border-gray-100 leading-5 text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-300 focus:border-transparent',
-      {'!pl-3 !pr-3 !pt-2 !pb-2': small},
-      {'bg-white-300 cursor-not-allowed': disabled},
-      {'border-error': error}
-    ]"
-    :disabled="disabled"
-    :placeholder="placeholder"
-  >
+  <div class="flex">
+    <input
+      v-bind="$attrs"
+      :id="id"
+      ref="input"
+      :type="type"
+      :class="[
+        'input rounded px-4 pt-3 pb-4 border border-gray-100 leading-5 text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
+        {'!pl-3 !pr-3 !pt-2 !pb-2': small},
+        {'border-r-0 rounded-tr-none rounded-br-none': withCopyBtn},
+        {'bg-white-300 cursor-not-allowed': disabled || readonly},
+        {'border-error': error}
+      ]"
+      :disabled="disabled"
+      :placeholder="placeholder"
+      :readonly="readonly"
+    >
+    <lob-button
+      v-if="withCopyBtn"
+      :small="small"
+      class="rounded-tl-none rounded-bl-none pl-3 pr-3"
+      @click="copyToClipboard"
+    >
+      Copy
+    </lob-button>
+  </div>
 </template>
 
 <script>
+import LobButton from './../Button/Button.vue';
+
 export default {
   name: 'TextInput',
+  components: {
+    LobButton
+  },
   props: {
     id: {
       type: String,
@@ -58,6 +76,20 @@ export default {
     small: {
       type: Boolean,
       default: false
+    },
+    readonly: {
+      type: Boolean,
+      default: false
+    },
+    withCopyBtn: {
+      type: Boolean,
+      default: false
+    }
+  },
+  methods: {
+    copyToClipboard () {
+      this.$refs.input.select();
+      document.execCommand('copy');
     }
   }
 };

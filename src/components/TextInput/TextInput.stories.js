@@ -22,5 +22,8 @@ export const Primary = Template.bind({});
 Primary.args = {
   id: 'one',
   label: 'One',
-  placeholder: 'One'
+  placeholder: 'One',
+  withCopyBtn: true,
+  readonly: true,
+  value: 'something'
 };
