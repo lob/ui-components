@@ -1,5 +1,4 @@
-import routeDecorator from '../../../.storybook/routeDecorator';
-import { constants } from '../../config';
+import routeDecorator, { routeTemplate } from '../../../.storybook/routeDecorator';
 import MegaMenu from './MegaMenu.vue';
 import MegaMenuItem from './MegaMenuItem.vue';
 import mdx from './MegaMenu.mdx';
@@ -9,7 +8,14 @@ export default {
   component: MegaMenu,
   subcomponents: { MegaMenuItem },
   decorators: [
-    routeDecorator()
+    routeDecorator('/', [
+      {
+        path: '/settings/main/account',
+        component: {
+          template: routeTemplate('account')
+        }
+      }
+    ])
   ],
   parameters: {
     docs: {
@@ -23,15 +29,16 @@ export default {
 };
 
 const templateStr = `
-  <MegaMenu v-bind="$props">
-    <MegaMenuItem to="/settings/main/account" imageSource="${constants.lobAssetsUrl}/dashboard/navbar/settings.svg" small>
-      Some text
-    </MegaMenuItem>
-  </MegaMenu>
+<MegaMenu v-bind="args">
+  <MegaMenuItem to="/settings/main/account" :imageSource="$getConst('lobAssetsUrl')+'/dashboard/navbar/settings.svg'" small>
+    Some text
+  </MegaMenuItem>
+</MegaMenu>
 `;
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { MegaMenu, MegaMenuItem },
+  setup: () => ({ args }),
   template: templateStr
 });
 
@@ -51,20 +58,20 @@ Primary.parameters = {
 };
 
 const itemTemplateStr = `
-  <MegaMenuItem v-bind="$props">
-    Some text
-  </MegaMenuItem>
+<MegaMenuItem v-bind="args" :imageSource="$getConst('lobAssetsUrl')+'/dashboard/navbar/settings.svg'">
+  Some text
+</MegaMenuItem>
 `;
 const ItemTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { MegaMenuItem },
+  setup: () => ({ args }),
   template: itemTemplateStr
 });
 
 export const Item = ItemTemplate.bind({});
 Item.args = {
   to: '/settings/main/account',
-  imageSource: `${constants.lobAssetsUrl}/dashboard/navbar/settings.svg`,
   small: true
 };
 Item.parameters = {
