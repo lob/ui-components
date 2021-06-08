@@ -14,7 +14,8 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { TextInput },
-  template: '<text-input v-bind="$props" />'
+  setup: () => ({ args }),
+  template: '<text-input v-bind="args" />'
 });
 
 export const Primary = Template.bind({});

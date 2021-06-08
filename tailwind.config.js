@@ -125,7 +125,8 @@ module.exports = {
       backgroundColor: ['disabled', 'important'],
       borderColor: ['disabled'],
       textColor: ['disabled', 'important'],
-      display: ['important']
+      display: ['important'],
+      padding: ['important']
     }
   },
   plugins: [
