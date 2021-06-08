@@ -1,4 +1,4 @@
-import routeDecorator from '../../../.storybook/routeDecorator';
+import routeDecorator, { routeTemplate } from '../../../.storybook/routeDecorator';
 
 import Subnavigation from './Subnavigation.vue';
 import SubnavigationItem from './SubnavigationItem.vue';
@@ -11,35 +11,32 @@ const templateStr = `
     <subnavigation-item title="Payment" to="/payment" />
   </subnavigation>
 `;
-const routeTemplate = (name) => `<div>${name}</div>`;
 
 export default {
   title: 'Components/Subnavigation ',
   component: Subnavigation,
   subcomponents: { SubnavigationItem },
   decorators: [
-    routeDecorator('/account', {
-      routes: [
-        {
-          path: '/account',
-          component: {
-            template: routeTemplate('account')
-          }
-        },
-        {
-          path: '/api-keys',
-          component: {
-            template: routeTemplate('api-keys')
-          }
-        },
-        {
-          path: '/payment',
-          component: {
-            template: routeTemplate('payment')
-          }
+    routeDecorator('/account', [
+      {
+        path: '/account',
+        component: {
+          template: routeTemplate('account')
         }
-      ]
-    })
+      },
+      {
+        path: '/api-keys',
+        component: {
+          template: routeTemplate('api-keys')
+        }
+      },
+      {
+        path: '/payment',
+        component: {
+          template: routeTemplate('payment')
+        }
+      }
+    ])
   ],
   parameters: {
     docs: {

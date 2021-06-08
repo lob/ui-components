@@ -1,4 +1,4 @@
-import routeDecorator from '../../../.storybook/routeDecorator';
+import routeDecorator, { routeTemplate } from '../../../.storybook/routeDecorator';
 
 import MainNavigation from './MainNavigation.vue';
 import MainNavigationItem from './MainNavigationItem.vue';
@@ -6,59 +6,55 @@ import MainNavigationChildItem from './MainNavigationChildItem.vue';
 import mdx from './MainNavigation.mdx';
 import iconOverview from '../../assets/images/iconOverview.svg';
 
-const routeTemplate = (name) => `<div>${name}</div>`;
-
 export default {
   title: 'Components/Main Navigation',
   component: MainNavigation,
   subcomponents: { MainNavigationItem, MainNavigationChildItem },
   decorators: [
-    routeDecorator('/', {
-      routes: [
-        {
-          path: '/overview',
-          component: {
-            template: routeTemplate('overview')
-          }
-        },
-        {
-          path: '/mail-analytics',
-          component: {
-            template: routeTemplate('mail-analytics')
-          }
-        },
-        {
-          path: '/address-verification',
-          component: {
-            template: routeTemplate('address-verification')
-          }
-        },
-        {
-          path: '/us-verifications',
-          component: {
-            template: routeTemplate('us-verifications')
-          }
-        },
-        {
-          path: '/intl-verifications',
-          component: {
-            template: routeTemplate('intl-verifications')
-          }
-        },
-        {
-          path: '/postcards',
-          component: {
-            template: routeTemplate('postcards')
-          }
-        },
-        {
-          path: '/letters',
-          component: {
-            template: routeTemplate('letters')
-          }
+    routeDecorator('/', [
+      {
+        path: '/overview',
+        component: {
+          template: routeTemplate('overview')
         }
-      ]
-    })
+      },
+      {
+        path: '/mail-analytics',
+        component: {
+          template: routeTemplate('mail-analytics')
+        }
+      },
+      {
+        path: '/address-verification',
+        component: {
+          template: routeTemplate('address-verification')
+        }
+      },
+      {
+        path: '/us-verifications',
+        component: {
+          template: routeTemplate('us-verifications')
+        }
+      },
+      {
+        path: '/intl-verifications',
+        component: {
+          template: routeTemplate('intl-verifications')
+        }
+      },
+      {
+        path: '/postcards',
+        component: {
+          template: routeTemplate('postcards')
+        }
+      },
+      {
+        path: '/letters',
+        component: {
+          template: routeTemplate('letters')
+        }
+      }
+    ])
   ],
   parameters: {
     docs: {
