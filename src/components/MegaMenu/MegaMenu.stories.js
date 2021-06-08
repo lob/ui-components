@@ -45,7 +45,7 @@ const Template = (args, { argTypes }) => ({
 export const Primary = Template.bind({});
 Primary.args = {
   title: 'Products',
-  snug: true,
+  smaller: true,
   navKey: '',
   mobileNavs: {}
 };

@@ -17,7 +17,7 @@
       <div class="flex-nowrap flex width-100 mt-0 flex-row justify-start items-center">
         {{ title }}
         <img
-          :src="$getConst('lobAssetsUrl')+'/dashboard/navbar/caret-down.svg'"
+          :src="`${$getConst('lobAssetsUrl')}/dashboard/navbar/caret-down.svg`"
           width="24"
           alt=""
           :class="['transition-transform duration-200 ease-linear -mr-1', {'transform rotate-180': rotate}]"

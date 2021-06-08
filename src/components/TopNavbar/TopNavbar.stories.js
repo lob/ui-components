@@ -23,22 +23,23 @@ export default {
 const Template = (args, {argTypes}) => ({
   props: Object.keys(argTypes),
   components: { TopNavbar, MegaMenu, MegaMenuItem },
+  setup: () => ({ args }),
   template: `
-    <topNavbar v-bind="$props">
+    <topNavbar v-bind="args">
       <img
-        src="${constants.lobAssetsUrl}/dashboard/navbar/lob-logo.svg"
+        :src="$getConst('lobAssetsUrl') + '/dashboard/navbar/lob-logo.svg'"
         width="95"
         alt=""
       >
       <div class="pl-6">
         <MegaMenu title="Some menu" navKey="" :mobileNavs="{}" smaller>
-          <MegaMenuItem to="/settings/main/account" imageSource="${constants.lobAssetsUrl}/dashboard/navbar/settings.svg" small>
+          <MegaMenuItem to="/settings/main/account" :imageSource="$getConst('lobAssetsUrl') + '/dashboard/navbar/settings.svg'" small>
             Some menu item
           </MegaMenuItem>
         </MegaMenu>
 
         <MegaMenu title="Another menu" navKey="" :mobileNavs="{}" smaller>
-          <MegaMenuItem to="/settings/main/account" imageSource="${constants.lobAssetsUrl}/dashboard/navbar/settings.svg" small>
+          <MegaMenuItem to="/settings/main/account" :imageSource="$getConst('lobAssetsUrl')+'/dashboard/navbar/settings.svg'" small>
             Another menu item
           </MegaMenuItem>
         </MegaMenu>
