@@ -1,6 +1,9 @@
 <template>
   <div class="relative">
-    <div :class="['absolute', { 'hidden': !hover }]" :style="tooltipPositionStyle">
+    <div
+      :class="['absolute', { 'hidden': !hover }]"
+      :style="tooltipPositionStyle"
+    >
       <div
         ref="tooltipContainer"
         :class="[
@@ -45,7 +48,6 @@
 <script>
 export default {
   name: 'Tooltip',
-  emits: ['mouseover', 'mouseleave'],
   props: {
     position: {
       type: String,
@@ -64,6 +66,7 @@ export default {
       }
     }
   },
+  emits: ['mouseover', 'mouseleave'],
   data () {
     return {
       hover: false,
