@@ -22,11 +22,8 @@ const PrimaryTemplate = (args, { argTypes }) => ({
     <checkbox 
       label="Agree to Terms and Conditions"
       name="terms"
+      v-bind="args"
       v-model="checkboxVModel" 
-      :disabled="args.disabled"
-      :required="args.required"
-      :error="args.error"
-      :sameLine="args.sameLine"
     ></checkbox>
     `
 });
