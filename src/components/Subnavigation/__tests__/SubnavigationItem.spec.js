@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import { createRouter, createMemoryHistory } from 'vue-router';
 import { render } from '@testing-library/vue';
-import SubnaviationItem from '../SubnavigationItem.vue';
+import SubnavigationItem from '../SubnavigationItem.vue';
 
 const initialProps = {
   title: 'Account',
@@ -19,7 +19,7 @@ const router = createRouter({
   routes
 });
 
-const renderComponent = (options) => render(SubnaviationItem, { ...options, global: { plugins: [router] } });
+const renderComponent = (options) => render(SubnavigationItem, { ...options, global: { plugins: [router] } });
 
 describe('SubnavigationItem', () => {
 
