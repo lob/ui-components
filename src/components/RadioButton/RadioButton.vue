@@ -19,12 +19,11 @@
       :disabled="disabled"
       @input="onInput"
       @click="onClick"
-    />
+    >
     <label
       :for="value"
       class="text-sm font-light relative inline-block cursor-pointer ml-6"
-      >{{ label }}</label
-    >
+    >{{ label }}</label>
   </div>
 </template>
 
@@ -33,7 +32,6 @@ import { getCurrentInstance } from 'vue';
 
 export default {
   name: 'RadioButton',
-  emits: ['update:modelValue', 'input', 'click'],
   props: {
     modelValue: {
       type: String,
@@ -60,18 +58,19 @@ export default {
       default: false
     }
   },
+  emits: ['update:modelValue', 'input', 'click'],
   data () {
     return {
       parent: null
     };
   },
-  created () {
-    this.parent = getCurrentInstance().parent;
-  },
   computed: {
     checked () {
       return this.modelValue === this.value;
     }
+  },
+  created () {
+    this.parent = getCurrentInstance().parent;
   },
   methods: {
     onInput () {

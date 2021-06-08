@@ -20,7 +20,10 @@
         @click="pageClick(1)"
       >
         <span class="sr-only">Go to first page</span>
-        <page-arrow-icon :first="true" :disabled="page === 1" />
+        <page-arrow-icon
+          :first="true"
+          :disabled="page === 1"
+        />
       </button>
       <button
         :class="[
@@ -31,7 +34,10 @@
         @click="pageClick(page - 1)"
       >
         <span class="sr-only">Go to previous page</span>
-        <page-arrow-icon :previous="true" :disabled="page <= 1" />
+        <page-arrow-icon
+          :previous="true"
+          :disabled="page <= 1"
+        />
       </button>
       <button
         :class="[
@@ -105,7 +111,6 @@ import PageArrowIcon from './PageArrowIcon.vue';
 export default {
   name: 'Pagination',
   components: { PageArrowIcon },
-  emits: ['change'],
   props: {
     collection: {
       type: Array,
@@ -124,6 +129,7 @@ export default {
       default: 0
     }
   },
+  emits: ['change'],
   computed: {
     shouldRender () {
       return this.collection && this.collection.length > 0;

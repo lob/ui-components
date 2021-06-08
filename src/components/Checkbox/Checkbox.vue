@@ -16,7 +16,7 @@
       :disabled="disabled"
       :required="required"
       @input="onInput"
-    />
+    >
     <span
       style="content: '';"
       :class="[
@@ -37,7 +37,6 @@
 <script>
 export default {
   name: 'Checkbox',
-  emits: ['update:modelValue', 'input', 'click'],
   props: {
     label: {
       type: String,
@@ -72,6 +71,7 @@ export default {
       default: null
     }
   },
+  emits: ['update:modelValue', 'input', 'click'],
   computed: {
     checked () {
       if (this.modelValue && typeof this.modelValue === 'object') {

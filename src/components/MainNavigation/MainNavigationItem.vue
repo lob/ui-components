@@ -10,7 +10,11 @@
       @click.stop
       @[clickEvent].stop="toggleSubNav"
     >
-      <img :src="iconSrc" :alt="iconAltText" class="w-6 align-bottom" />
+      <img
+        :src="iconSrc"
+        :alt="iconAltText"
+        class="w-6 align-bottom"
+      >
       <span
         :class="[
           'pl-4',
@@ -28,11 +32,14 @@
           ]"
           :src="`${$getConst('lobAssetsUrl')}/dashboard/navbar/caret-down.svg`"
           :alt="subNavOpen ? 'Collapse' : 'Expand'"
-        />
+        >
       </span>
     </component>
 
-    <ul v-if="subNavOpen" :class="['pl-12', { 'md:hidden': !expanded }]">
+    <ul
+      v-if="subNavOpen"
+      :class="['pl-12', { 'md:hidden': !expanded }]"
+    >
       <slot />
     </ul>
   </li>

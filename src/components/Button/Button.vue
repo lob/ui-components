@@ -29,7 +29,6 @@
 <script>
 export default {
   name: 'LobButton',
-  emits: ['click'],
   props: {
     primary: {
       type: Boolean,
@@ -56,6 +55,7 @@ export default {
       default: false
     }
   },
+  emits: ['click'],
   methods: {
     handleClick ($event) {
       this.$emit('click', $event);

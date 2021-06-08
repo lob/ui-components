@@ -5,7 +5,7 @@
       :src="iconSrc"
       :alt="iconAltText"
       class="w-6 mr-1.5 align-bottom"
-    />
+    >
     <router-link
       v-for="crumb in crumbs"
       :key="crumb.name"

@@ -15,15 +15,17 @@
       :disabled="disabled"
       @input="onInput"
       @click="onClick"
-    />
-    <label :for="value" class="px-6 py-1.5 cursor-pointer">{{ label }}</label>
+    >
+    <label
+      :for="value"
+      class="px-6 py-1.5 cursor-pointer"
+    >{{ label }}</label>
   </div>
 </template>
 
 <script>
 export default {
   name: 'SwitchItem',
-  emits: ['update:modelValue', 'input', 'click'],
   props: {
     modelValue: {
       type: String,
@@ -46,6 +48,7 @@ export default {
       default: false
     }
   },
+  emits: ['update:modelValue', 'input', 'click'],
   computed: {
     checked () {
       return this.modelValue === this.value;
