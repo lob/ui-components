@@ -2,14 +2,14 @@
   <label class="flex flex-col">
     <span class="mb-2.5 text-gray-500 text-sm">{{ label }}</span>
     <textarea
-      :value="value"
+      :value="modelValue"
       :name="name"
       :required="required"
       :disabled="disabled"
       :class="[
         'bg-white text-gray-500 p-4 resize-none rounded-sm border border-gray-100 focus:outline-none focus:border-primary-300',
         {'border-error': error},
-        {'border-white-200': disabled},
+        {'border-white-200': disabled}
       ]"
       @input="onInput"
       @change="onChange"
@@ -21,11 +21,11 @@
 export default {
   name: 'Textarea',
   props: {
-    name: {
+    modelValue: {
       type: String,
-      default: ''
+      default: null
     },
-    value: {
+    name: {
       type: String,
       default: ''
     },
@@ -46,8 +46,10 @@ export default {
       default: false
     }
   },
+  emits: ['update:modelValue', 'input', 'change'],
   methods: {
     onInput ($event) {
+      this.$emit('update:modelValue', $event.target.value);
       this.$emit('input', $event.target.value);
     },
     onChange ($event) {

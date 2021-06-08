@@ -19,8 +19,9 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { SwitchGroup, SwitchItem },
   data: () => ({ switchModel }),
+  setup: () => ({ args }),
   template: `
-    <switch-group v-bind="$props">
+    <switch-group v-bind="args">
       <switch-item name='mode' label="Test" value='test' v-model="switchModel" />
       <switch-item name='mode' label="Live" value='live' v-model="switchModel" />
     </switch-group>

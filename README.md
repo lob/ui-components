@@ -19,11 +19,8 @@ Vue.use(components);
 ## Development
 This repo was initialized using npm v7 which changed the `package-lock.json` file format significantly. Before installing node modules, make sure you have npm v7 installed.
 
-We're also using a paid version of FontAwesome. In order to install the FontAwesome packages, you'll need to configure our authentication token locally (this can be found in 1Password).
-
 ```bash
 npm install -g npm@7.13.0
-npm config set //npm.fontawesome.com/:_authToken FONT_AWESOME_TOKEN_FROM_1PASS
 npm install
 ```
 
@@ -42,9 +39,3 @@ npm run lint
 npm run build-bundle
 npm publish
 ```
-
-## To-dos
-- [ ] Implement story book
-- [ ] Implement component testing
-- [ ] Implement changelog practices
-

@@ -27,8 +27,9 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: {  LobButton },
-  template: '<lob-button v-bind="$props" v-slot>{{ content }}</lob-button>'
+  components: { LobButton },
+  setup: () => ({ args }),
+  template: '<lob-button v-bind="args" v-slot>{{ args.content }}</lob-button>'
 });
 
 export const Primary = Template.bind({});

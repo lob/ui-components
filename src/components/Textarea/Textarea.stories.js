@@ -17,17 +17,17 @@ export default {
     }
   }
 };
-const value = 'initial value';
+const initialValue = 'initial value';
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: {  Textarea },
-  template: '<Textarea v-bind="$props"></Textarea>'
+  data: () => ({ initialValue }),
+  setup: () => ({ args }),
+  template: '<Textarea v-bind="args" v-model="initialValue"></Textarea>'
 });
 
 export const Primary = Template.bind({});
 Primary.args = {
-  'v-model': value,
-  value,
   label: 'Interesting text area'
 };
 

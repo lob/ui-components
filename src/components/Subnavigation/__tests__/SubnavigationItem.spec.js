@@ -1,29 +1,27 @@
 import '@testing-library/jest-dom';
 import { createRouter, createMemoryHistory } from 'vue-router';
 import { render } from '@testing-library/vue';
-import MainNavigationChildItem from '../MainNavigationChildItem.vue';
+import SubnavigationItem from '../SubnavigationItem.vue';
 
 const initialProps = {
-  title: 'Overview',
-  to: '/overview'
+  title: 'Account',
+  to: '/account'
 };
 const routes = [
-  { path: '/overview', component: { template: '<div>Overview</div>' } },
-  { path: '/about', component: { template: '<div>About</div>' } },
-  { path: '/', component: { template: '<div>Home</div>' } }
+  { path: '', component: { template: '<div></div>' } },
+  { path: '/', component: { template: '<div>/</div>' } },
+  { path: '/account', component: { template: '<div>Account</div>' } },
+  { path: '/api-keys', component: { template: '<div>API Keys</div>' } },
+  { path: '/payment', component: { template: '<div>Payment</div>' } }
 ];
 const router = createRouter({
   history: createMemoryHistory(),
   routes
 });
 
-const renderComponent = (options) =>
-  render(MainNavigationChildItem, {
-    ...options,
-    global: { plugins: [router] }
-  });
+const renderComponent = (options) => render(SubnavigationItem, { ...options, global: { plugins: [router] } });
 
-describe('Main Navigation Child Item', () => {
+describe('SubnavigationItem', () => {
 
   it('renders correctly', async () => {
     const props = initialProps;
@@ -41,11 +39,11 @@ describe('Main Navigation Child Item', () => {
     const props = initialProps;
 
     const { queryByTestId } = renderComponent({ props });
-    router.push('/overview');
+    router.push('/account');
     await router.isReady();
 
-    const navItem = queryByTestId('nav-child-item');
-    expect(navItem).toHaveClass('font-medium bg-white-300 rounded-l-full');
+    const navItem = queryByTestId('subnav-item');
+    expect(navItem).toHaveClass('lob-active-border');
   });
 
 });

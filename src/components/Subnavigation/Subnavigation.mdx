@@ -1,5 +1,10 @@
-import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs/blocks';
-import Subnavigation from './Subnavigation.vue';
+import {
+  Preview,
+  Story,
+  ArgsTable,
+  PRIMARY_STORY,
+} from "@storybook/addon-docs/blocks";
+import Subnavigation from "./Subnavigation.vue";
 
 # Subnavigation
 
@@ -18,7 +23,7 @@ The subnavigation renders a semantic `nav` element with a `ul`. It is made to wo
 Example of using this component in a template:
 
 ```html
-<subnavigation v-bind="$props">
+<subnavigation v-bind="args">
   <subnavigation-item label="Account" to="/account" />
   <subnavigation-item label="API Keys" to="/api-keys" />
   <subnavigation-item label="Payment" to="/payment" />

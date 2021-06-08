@@ -1,69 +1,71 @@
 {
   "name": "@lob/ui-components",
   "version": "0.0.12",
-  "main": "./dist/ui-components.umd.min.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/lob/ui-components"
-  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build-library": "vue-cli-service build --target lib --name ui-components src/main.js",
     "test:unit": "vue-cli-service test:unit",
     "lint": "npm run lint:js && npm run lint:css",
-    "lint:js": "eslint --ext .js,.vue .",
+    "build-library": "vue-cli-service build --target lib --name ui-components src/main.js",
+    "build-storybook": "build-storybook",
     "lint:css": "stylelint 'src/**/*.vue'",
-    "storybook": "start-storybook -s ./public -p 6006",
-    "build-storybook": "build-storybook -s public"
+    "lint:js": "eslint --ext .js,.vue .",
+    "storybook": "start-storybook -p 6006"
   },
+  "main": "./dist/ui-components.umd.min.js",
   "files": [
     "dist/*",
     "src/*"
   ],
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.35",
-    "@fortawesome/pro-light-svg-icons": "^5.15.3",
-    "@fortawesome/vue-fontawesome": "^2.0.2",
     "core-js": "^3.6.5",
-    "vue": "^2.6.11",
-    "vue-router": "^3.5.1"
+    "vue": "^3.0.0",
+    "vue-router": "^4.0.8"
   },
   "devDependencies": {
-    "@babel/core": "^7.13.16",
+    "@babel/core": "^7.14.3",
     "@storybook/addon-a11y": "^6.2.9",
     "@storybook/addon-actions": "^6.2.9",
     "@storybook/addon-docs": "^6.2.9",
     "@storybook/addon-essentials": "^6.2.9",
     "@storybook/addon-links": "^6.2.9",
     "@storybook/addon-postcss": "^2.0.0",
-    "@storybook/vue": "^6.2.9",
-    "@testing-library/jest-dom": "^5.12.0",
-    "@testing-library/vue": "^5.6.2",
+    "@storybook/vue3": "^6.2.9",
+    "@testing-library/jest-dom": "^5.13.0",
+    "@testing-library/vue": "^6.4.2",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-plugin-unit-jest": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
-    "@vue/test-utils": "^1.0.3",
+    "@vue/compiler-sfc": "^3.1.1",
+    "@vue/test-utils": "^2.0.0-0",
     "autoprefixer": "^9.8.6",
     "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.6.3",
     "babel-loader": "^8.2.2",
     "eslint": "^6.8.0",
     "eslint-config-lob": "^5.2.0",
     "eslint-plugin-jest": "^24.3.6",
-    "eslint-plugin-vue": "^6.2.2",
+    "eslint-plugin-lob": "^1.2.0",
+    "eslint-plugin-vue": "^7.10.0",
     "postcss": "^7.0.35",
-    "sass": "^1.32.8",
+    "sass": "^1.34.1",
     "sass-loader": "^10.1.1",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^22.0.0",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.2",
-    "vue-loader": "^15.9.6",
-    "vue-template-compiler": "^2.6.11"
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.4",
+    "typescript": "~3.9.3",
+    "vue-eslint-parser": "^7.6.0",
+    "vue-jest": "^5.0.0-0",
+    "vue-loader": "^16.2.0"
   },
   "browserslist": [
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lob/ui-components"
+  }
 }

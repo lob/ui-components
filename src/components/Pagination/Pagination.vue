@@ -4,9 +4,7 @@
     class="flex md:justify-between mt-0 relative pt-0 px-2 pb-1 -top-1 w-full"
   >
     <div>
-      <p>
-        {{ totalNumber }} result<span v-if="totalNumber !== 1">s</span>
-      </p>
+      <p>{{ totalNumber }} result<span v-if="totalNumber !== 1">s</span></p>
     </div>
 
     <div class="hidden md:flex items-center">
@@ -16,7 +14,7 @@
       <button
         :class="[
           'border-none bg-transparent my-0 mx-4 relative hover:text-primary-300',
-          { 'text-gray-100 pointer-none': page === 1 },
+          { 'text-gray-100 pointer-none': page === 1 }
         ]"
         :disabled="page === 1"
         @click="pageClick(1)"
@@ -44,7 +42,7 @@
       <button
         :class="[
           'border-none bg-transparent my-0 mx-4 relative hover:text-primary-300',
-          { 'text-gray-100 pointer-none': offset + limit >= totalNumber },
+          { 'text-gray-100 pointer-none': offset + limit >= totalNumber }
         ]"
         :disabled="offset + limit >= totalNumber"
         @click="pageClick(page + 1)"
@@ -58,7 +56,7 @@
       <button
         :class="[
           'border-none bg-transparent my-0 mx-4 relative hover:text-primary-300',
-          { 'text-gray-100 pointer-none': offset + limit >= totalNumber },
+          { 'text-gray-100 pointer-none': offset + limit >= totalNumber }
         ]"
         :disabled="offset + limit >= totalNumber"
         @click="pageClick(lastPage)"
@@ -77,28 +75,28 @@
           :class="[
             'border-none bg-transparent my-0 mx-4 relative hover:text-primary-300 items-center text-gray-900 flex md-hidden text-sm transition-transform duration-500 ease-linear transform group',
             { 'text-gray-100 pointer-none': offset + limit >= totalNumber },
-            { 'hidden': page == lastPage },
+            { hidden: page == lastPage }
           ]"
           :disabled="offset + limit >= totalNumber"
           @click="pageClick(page + 1)"
         >
           Next
-          <font-awesome-icon
-            class="text-lg my-0 mx-1 relative transform group-hover:translate-x-1"
-            :icon="['fal', 'angle-right']"
+          <page-arrow-icon
+            :next="true"
+            class="transform group-hover:translate-x-1 group-hover:text-primary-300"
           />
         </button>
         <button
           :class="[
             'border-none bg-transparent my-0 mx-4 relative hover:text-primary-300 items-center text-gray-900 flex md-hidden text-sm transition-transform duration-500 ease-linear transform group',
             'pagination__btn--prev',
-            { 'hidden': page != lastPage },
+            { hidden: page != lastPage }
           ]"
           @click="pageClick(page - 1)"
         >
-          <font-awesome-icon
-            class="text-lg my-0 mx-1 relative transform group-hover:-translate-x-1"
-            :icon="['fal', 'angle-left']"
+          <page-arrow-icon
+            :previous="true"
+            class="transform group-hover:-translate-x-1 group-hover:text-primary-300"
           />
           Prev
         </button>
@@ -110,8 +108,7 @@
 <script>
 import PageArrowIcon from './PageArrowIcon.vue';
 
-export default
-{
+export default {
   name: 'Pagination',
   components: { PageArrowIcon },
   props: {
@@ -132,6 +129,7 @@ export default
       default: 0
     }
   },
+  emits: ['change'],
   computed: {
     shouldRender () {
       return this.collection && this.collection.length > 0;

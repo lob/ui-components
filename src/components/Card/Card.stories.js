@@ -28,7 +28,8 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { Card },
-  template: '<card v-slot:content>{{ content }}</card>'
+  setup: () => ({ args }),
+  template: '<card v-slot:content>{{ args.content }}</card>'
 });
 
 export const Primary = Template.bind({});
