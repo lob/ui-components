@@ -8,7 +8,7 @@
         ref="tooltipContainer"
         :class="[
           'px-4 py-3 text-xs rounded-md m-auto bg-gray-700 text-white relative',
-          { 'opacity-0': !hover },
+          { 'opacity-0': !hover }
         ]"
       >
         <slot name="content" />
@@ -16,21 +16,21 @@
           :class="[
             'absolute bg-transparent w-0 h-0 m-auto',
             {
-              'border-l-8 border-r-8 border-b-8 border-l-transparent border-r-transparent border-b-gray-700 -top-2': hasUpArrow,
+              'border-l-8 border-r-8 border-b-8 border-l-transparent border-r-transparent border-b-gray-700 -top-2': hasUpArrow
             },
             {
-              'border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-gray-700 -bottom-2': hasDownArrow,
+              'border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-gray-700 -bottom-2': hasDownArrow
             },
             {
-              'border-t-8 border-b-8 border-r-8 border-t-transparent border-b-transparent border-r-gray-700 -left-2': hasLeftArrow,
+              'border-t-8 border-b-8 border-r-8 border-t-transparent border-b-transparent border-r-gray-700 -left-2': hasLeftArrow
             },
             {
-              'border-t-8 border-b-8 border-l-8 border-t-transparent border-b-transparent border-l-gray-700 -right-2': hasRightArrow,
+              'border-t-8 border-b-8 border-l-8 border-t-transparent border-b-transparent border-l-gray-700 -right-2': hasRightArrow
             },
             { 'top-0 bottom-0': arrowIsVerticallyCenter },
             { 'left-0 right-0': arrowIsHorizontallyCenter },
             { 'left-4': arrowIsLeftOfCenter },
-            { 'right-4': arrowIsRightOfCenter },
+            { 'right-4': arrowIsRightOfCenter }
           ]"
         />
       </div>

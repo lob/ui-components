@@ -3,19 +3,19 @@
     :class="[
       'rounded disabled:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
       {
-        'primary bg-primary-500 text-white active:bg-primary-700 disabled:bg-white-300': primary,
+        'primary bg-primary-500 text-white active:bg-primary-700 disabled:bg-white-300': primary
       },
       {
         'secondary bg-white-200 border border-primary-500 text-primary-500 active:text-primary-700 active:border-primary-700 disabled:border-gray-100':
-          secondary && !primary,
+          secondary && !primary
       },
       {
         'tertiary bg-white border border-gray-100 text-gray-500 active:border-gray-300 disabled:border-white-300':
-          tertiary && !primary && !secondary,
+          tertiary && !primary && !secondary
       },
       { 'px-6 py-3.5': !small && !large },
       { 'px-3 py-2': small },
-      { 'px-6 py-4.5': large && !small },
+      { 'px-6 py-4.5': large && !small }
     ]"
     :disabled="disabled"
     @click="handleClick"

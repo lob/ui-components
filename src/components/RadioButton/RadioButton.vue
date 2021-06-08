@@ -3,7 +3,7 @@
     :class="[
       'inline-block mr-4 mt-1 cursor-pointer',
       { '!block mb-1': parent.props.separateLines },
-      { 'cursor-not-allowed': disabled },
+      { 'cursor-not-allowed': disabled }
     ]"
   >
     <input
@@ -11,7 +11,7 @@
       type="radio"
       :class="[
         'absolute m-0 p-0 w-0 h-0 opacity-0 pointer-events-none mt-2 radio__input',
-        { 'radio__input--error': error },
+        { 'radio__input--error': error }
       ]"
       :name="name"
       :value="value"

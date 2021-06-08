@@ -3,7 +3,7 @@
     <component
       :is="tag"
       :class="[
-        'no-underline py-4 px-6 max-h-12 flex items-center w-full font-light text-sm text-left text-gray-500 relative overflow-hidden hover:text-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
+        'no-underline py-4 px-6 max-h-12 flex items-center w-full font-light text-sm text-left text-gray-500 relative overflow-hidden hover:text-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent'
       ]"
       :to="to"
       active-class="text-normal bg-white-300 font-medium"
@@ -19,7 +19,7 @@
         :class="[
           'pl-4',
           { expanded: expanded },
-          { 'collapsed md:hidden': !expanded },
+          { 'collapsed md:hidden': !expanded }
         ]"
         data-testid="collapsibleElement"
       >
@@ -28,7 +28,7 @@
           v-if="collapsible && hasChildNavItems"
           :class="[
             'w-6 absolute top-3 right-4',
-            { 'transform rotate-180': subNavOpen },
+            { 'transform rotate-180': subNavOpen }
           ]"
           :src="`${$getConst('lobAssetsUrl')}/dashboard/navbar/caret-down.svg`"
           :alt="subNavOpen ? 'Collapse' : 'Expand'"
