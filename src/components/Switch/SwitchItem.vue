@@ -2,7 +2,7 @@
   <div
     :class="[
       'rounded flex bg-white text-gray-500',
-      {'!bg-primary-500 !text-white checked': checked},
+      { '!bg-primary-500 !text-white checked': checked }
     ]"
   >
     <input
@@ -26,10 +26,6 @@
 <script>
 export default {
   name: 'SwitchItem',
-  model: {
-    prop: 'modelValue',
-    event: 'input'
-  },
   props: {
     modelValue: {
       type: String,
@@ -52,6 +48,7 @@ export default {
       default: false
     }
   },
+  emits: ['update:modelValue', 'input', 'click'],
   computed: {
     checked () {
       return this.modelValue === this.value;
@@ -60,12 +57,11 @@ export default {
   methods: {
     onInput () {
       this.$emit('input', this.value);
+      this.$emit('update:modelValue', this.value);
     },
     onClick ($event) {
       this.$emit('click', $event);
     }
   }
 };
-
 </script>
-

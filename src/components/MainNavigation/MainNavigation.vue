@@ -3,15 +3,13 @@
     <ul
       :class="[
         'bg-white-100 h-screen',
-        {'cursor-pointer': collapsible},
-        {'expanded': collapsible && expanded},
-        {'collapsed': collapsible && !expanded}
+        { 'cursor-pointer': collapsible },
+        { expanded: collapsible && expanded },
+        { collapsed: collapsible && !expanded }
       ]"
       @[clickEvent]="animateDrawer"
     >
-      <slot
-        :expanded="expanded"
-      />
+      <slot :expanded="expanded" />
     </ul>
   </nav>
 </template>
@@ -25,7 +23,7 @@ export default {
       default: true
     }
   },
-  data: function () {
+  data () {
     return {
       expanded: true
     };
@@ -44,7 +42,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
 nav {
   width: 100%;
 

@@ -28,11 +28,13 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: {  Alert },
-  template: '<alert v-slot v-bind="$props">{{ content }}</alert>'
+  components: { Alert },
+  setup: () => ({ args }),
+  template: '<alert v-slot v-bind="args">{{ args.content }}</alert>'
 });
 
 export const Primary = Template.bind({});
 Primary.args = {
-  content: 'You are in LIVE mode, all verifications will be charged according to your chosen plan.'
+  content:
+    'You are in LIVE mode, all verifications will be charged according to your chosen plan.'
 };

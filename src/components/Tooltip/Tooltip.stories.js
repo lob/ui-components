@@ -52,13 +52,14 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { Tooltip },
+  setup: () => ({ args }),
   template: `
-  <tooltip v-bind="$props">
+  <tooltip v-bind="args">
     <template v-slot:content>
-      {{ content }}
+      {{ args.content }}
     </template>
     <template v-slot:trigger>
-      {{ trigger }}
+      {{ args.trigger }}
     </template>
   </tooltip>
   `
