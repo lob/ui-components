@@ -8,6 +8,9 @@
     "URLSearchParams": false
   },
   "parser": "vue-eslint-parser",
+  "ignorePatterns": [
+    "!/.storybook"
+  ],
   "rules": {
     "lob/align-equals": 0,
     "no-extra-parens": 0,
@@ -20,24 +23,6 @@
     "prefer-template": 0
   },
   "overrides": [
-    {
-      "files": [
-        "**/__tests__/*.{j,t}s?(x)",
-        "**/tests/unit/**/*.spec.{j,t}s?(x)"
-      ],
-      "env": {
-        "jest": true
-      }
-    },
-    {
-      "files": [
-        "**/__tests__/*.{j,t}s?(x)",
-        "**/tests/unit/**/*.spec.{j,t}s?(x)"
-      ],
-      "env": {
-        "jest": true
-      }
-    },
     {
       "files": [
         "**/__tests__/*.{j,t}s?(x)",
