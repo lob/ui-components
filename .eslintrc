@@ -1,15 +1,16 @@
 {
   "extends": [
     "lob/browser",
-    "plugin:vue/recommended",
+    "plugin:vue/vue3-recommended",
     "plugin:jest/recommended"
   ],
   "globals": {
     "URLSearchParams": false
   },
-  "parserOptions": {
-    "ecmaVersion": 2018
-  },
+  "parser": "vue-eslint-parser",
+  "ignorePatterns": [
+    "!/.storybook"
+  ],
   "rules": {
     "lob/align-equals": 0,
     "no-extra-parens": 0,
@@ -19,7 +20,8 @@
     "no-var": 0,
     "prefer-arrow-callback": 0,
     "prefer-reflect": 0,
-    "prefer-template": 0
+    "prefer-template": 0,
+    "vue/comma-dangle": 2
   },
   "overrides": [
     {
@@ -31,5 +33,9 @@
         "jest": true
       }
     }
-  ]
+  ],
+  "root": true,
+  "env": {
+    "node": true
+  }
 }

@@ -1,28 +1,36 @@
 <template>
   <div class="relative">
     <div
-      class="absolute"
+      :class="['absolute', { 'hidden': !hover }]"
       :style="tooltipPositionStyle"
     >
       <div
         ref="tooltipContainer"
         :class="[
           'px-4 py-3 text-xs rounded-md m-auto bg-gray-700 text-white relative',
-          {'opacity-0': !hover}
+          { 'opacity-0': !hover }
         ]"
       >
         <slot name="content" />
         <div
           :class="[
             'absolute bg-transparent w-0 h-0 m-auto',
-            {'border-l-8 border-r-8 border-b-8 border-l-transparent border-r-transparent border-b-gray-700 -top-2' : hasUpArrow},
-            {'border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-gray-700 -bottom-2' : hasDownArrow},
-            {'border-t-8 border-b-8 border-r-8 border-t-transparent border-b-transparent border-r-gray-700 -left-2' : hasLeftArrow},
-            {'border-t-8 border-b-8 border-l-8 border-t-transparent border-b-transparent border-l-gray-700 -right-2' : hasRightArrow},
-            {'top-0 bottom-0': arrowIsVerticallyCenter},
-            {'left-0 right-0': arrowIsHorizontallyCenter},
-            {'left-4': arrowIsLeftOfCenter},
-            {'right-4': arrowIsRightOfCenter},
+            {
+              'border-l-8 border-r-8 border-b-8 border-l-transparent border-r-transparent border-b-gray-700 -top-2': hasUpArrow
+            },
+            {
+              'border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-gray-700 -bottom-2': hasDownArrow
+            },
+            {
+              'border-t-8 border-b-8 border-r-8 border-t-transparent border-b-transparent border-r-gray-700 -left-2': hasLeftArrow
+            },
+            {
+              'border-t-8 border-b-8 border-l-8 border-t-transparent border-b-transparent border-l-gray-700 -right-2': hasRightArrow
+            },
+            { 'top-0 bottom-0': arrowIsVerticallyCenter },
+            { 'left-0 right-0': arrowIsHorizontallyCenter },
+            { 'left-4': arrowIsLeftOfCenter },
+            { 'right-4': arrowIsRightOfCenter }
           ]"
         />
       </div>
@@ -32,9 +40,7 @@
       @mouseover="handleMouseover"
       @mouseleave="handleMouseleave"
     >
-      <slot
-        name="trigger"
-      />
+      <slot name="trigger" />
     </div>
   </div>
 </template>
@@ -60,6 +66,7 @@ export default {
       }
     }
   },
+  emits: ['mouseover', 'mouseleave'],
   data () {
     return {
       hover: false,
@@ -86,39 +93,42 @@ export default {
       return this.hasLeftArrow || this.hasRightArrow;
     },
     arrowIsHorizontallyCenter () {
-      return !this.arrowIsVerticallyCenter && this.arrowPlacement.match(/center/);
+      return (
+        !this.arrowIsVerticallyCenter && this.arrowPlacement.match(/center/)
+      );
     },
     arrowIsLeftOfCenter () {
       return !this.arrowIsVerticallyCenter && this.arrowPlacement.match(/left/);
     },
     arrowIsRightOfCenter () {
-      return !this.arrowIsVerticallyCenter && this.arrowPlacement.match(/right/);
+      return (
+        !this.arrowIsVerticallyCenter && this.arrowPlacement.match(/right/)
+      );
     },
     tooltipPositionStyle () {
       switch (this.position) {
-        case ('top'):
+        case 'top':
           return {
             left: `${this.xOffset}px`,
             bottom: `calc(${this.triggerHeight}px + 1rem)`
           };
-        case ('left'):
+        case 'left':
           return {
             right: `calc(${this.triggerWidth}px + 1rem)`,
             top: `${this.yOffset}px`
           };
-        case ('right'):
+        case 'right':
           return {
             left: `calc(${this.triggerWidth}px + 1rem)`,
             top: `${this.yOffset}px`
           };
-        case ('bottom'):
+        case 'bottom':
         default:
           return {
             left: `${this.xOffset}px`,
             top: `calc(${this.triggerHeight}px + 1rem)`
           };
       }
-
     }
   },
   updated () {
@@ -137,10 +147,18 @@ export default {
       this.$emit('mouseleave', $event);
     },
     getXOffset () {
-      return (this.$refs.triggerContainer.clientWidth - this.$refs.tooltipContainer.clientWidth) / 2;
+      return (
+        (this.$refs.triggerContainer.clientWidth -
+          this.$refs.tooltipContainer.clientWidth) /
+        2
+      );
     },
     getYOffset () {
-      return (this.$refs.triggerContainer.clientHeight - this.$refs.tooltipContainer.clientHeight) / 2;
+      return (
+        (this.$refs.triggerContainer.clientHeight -
+          this.$refs.tooltipContainer.clientHeight) /
+        2
+      );
     }
   }
 };

@@ -7,7 +7,7 @@
       ]"
       :to="to"
       active-class="text-normal bg-white-300 font-medium"
-      @click.native.stop
+      @click.stop
       @[clickEvent].stop="toggleSubNav"
     >
       <img
@@ -18,15 +18,18 @@
       <span
         :class="[
           'pl-4',
-          {'expanded': expanded},
-          {'collapsed md:hidden': !expanded}
+          { expanded: expanded },
+          { 'collapsed md:hidden': !expanded }
         ]"
         data-testid="collapsibleElement"
       >
         {{ title }}
         <img
           v-if="collapsible && hasChildNavItems"
-          :class="['w-6 absolute top-3 right-4', { 'transform rotate-180': subNavOpen}]"
+          :class="[
+            'w-6 absolute top-3 right-4',
+            { 'transform rotate-180': subNavOpen }
+          ]"
           :src="`${$getConst('lobAssetsUrl')}/dashboard/navbar/caret-down.svg`"
           :alt="subNavOpen ? 'Collapse' : 'Expand'"
         >
@@ -35,10 +38,7 @@
 
     <ul
       v-if="subNavOpen"
-      :class="[
-        'pl-12',
-        {'md:hidden': !expanded}
-      ]"
+      :class="['pl-12', { 'md:hidden': !expanded }]"
     >
       <slot />
     </ul>
@@ -46,7 +46,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'MainNavigationItem',
   props: {

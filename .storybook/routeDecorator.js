@@ -1,21 +1,31 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+import { createMemoryHistory, createRouter } from 'vue-router';
+import { app } from '@storybook/vue3';
 
-// abbreviated example of https://github.com/gvaldambrini/storybook-router/blob/master/packages/vue/vue.js
+let routerInstalled = false;
+let router;
 
-export default (path = '/', routerProps = {}) => {
+export const routeTemplate = (name) => `<div>${name}</div>`;
+
+export default (path = '/', routes = []) => {
+  routes = [
+    { path: '', component: { template: routeTemplate('default empty') } },
+    { path: '', component: { template: routeTemplate('default /') } },
+    ...routes
+  ];
   return (storyFn) => {
-    Vue.use(VueRouter);
-    const router = new VueRouter({ ...routerProps });
-    
+    if (!routerInstalled) {
+      router = createRouter({
+        history: createMemoryHistory(),
+        routes
+      });
+      app.use(router);
+      routerInstalled = true;
+    } else {
+      routes.forEach((r) => router.addRoute(r));
+    }
+
     router.replace(path);
 
-    const WrappedComponent = storyFn();
-
-    return Vue.extend({
-      router,
-      components: { WrappedComponent },
-      template: '<wrapped-component/>'
-    });
-  }
-}
+    return storyFn();
+  };
+};

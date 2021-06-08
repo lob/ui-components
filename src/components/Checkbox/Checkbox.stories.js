@@ -11,33 +11,35 @@ export default {
   }
 };
 
-let checkboxVModel = false; //eslint-disable-line
+const checkboxVModel = false;
 
 const PrimaryTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { Checkbox },
+  setup: () => ({ args }),
   data: () => ({ checkboxVModel }),
   template: `
     <checkbox 
-      label="First"
-      name="first"
+      label="Agree to Terms and Conditions"
+      name="terms"
+      v-bind="args"
       v-model="checkboxVModel" 
-      v-bind="$props"
     ></checkbox>
     `
 });
 
 export const Primary = PrimaryTemplate.bind({});
 Primary.args = {
-  label: 'Custom checkbox label',
-  name: 'myInput'
+  label: 'Agree to Terms and Conditions',
+  name: 'terms'
 };
 
-let arrayVModel = []; //eslint-disable-line
+const arrayVModel = [];
 
 const SecondaryTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { Checkbox },
+  setup: () => ({ args }),
   data: () => ({ arrayVModel }),
   template: `
   <div>
@@ -46,21 +48,30 @@ const SecondaryTemplate = (args, { argTypes }) => ({
       v-model="arrayVModel"
       name="chocolate"
       value="chocolate"
-      v-bind="$props"
+      :disabled="args.disabled"
+      :required="args.required"
+      :error="args.error"
+      :sameLine="args.sameLine"
     />
     <checkbox
       label="Vanilla"
       v-model="arrayVModel"
       name="vanilla"
       value="vanilla"
-      v-bind="$props"
+      :disabled="args.disabled"
+      :required="args.required"
+      :error="args.error"
+      :sameLine="args.sameLine"
     />
     <checkbox
       label="Strawberry"
       v-model="arrayVModel"
       name="strawberry"
       value="strawberry"
-      v-bind="$props"
+      :disabled="args.disabled"
+      :required="args.required"
+      :error="args.error"
+      :sameLine="args.sameLine"
     />
   </div>
     `
