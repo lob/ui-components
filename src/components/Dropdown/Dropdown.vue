@@ -21,9 +21,9 @@
         {'!bg-white-300 !border-white-200 pointer-events-none': disabled}
       ]"
       tabindex="0"
-      @blur="onComboBlur"
+      @blur="onSelectBlur"
       @click="updateMenuState(true)"
-      @keydown="onComboKeydown"
+      @keydown="onSelectKeydown"
     >
       <span class="mr-8 text-sm">
         {{ value }}
@@ -202,10 +202,10 @@ export default {
         return matches && exclude.indexOf(option) < 0;
       });
     },
-    // return combobox action from key press
+    // return select action from key press
     getActionFromKey ($event, menuOpen) {
       const { key, altKey, ctrlKey, metaKey } = $event;
-      const openKeys = ['ArrowDown', 'ArrowUp', 'Enter', ' ', 'Home', 'End']; // all keys that will open the combo
+      const openKeys = ['ArrowDown', 'ArrowUp', 'Enter', ' ', 'Home', 'End']; // all keys that will open the select
 
       // handle opening when closed
       if (!menuOpen && openKeys.includes(key)) {
@@ -300,7 +300,7 @@ export default {
 
     /* EVENTS */
 
-    onComboKeydown ($event) {
+    onSelectKeydown ($event) {
       const { key } = $event;
 
       const action = this.getActionFromKey($event, this.open);
@@ -320,13 +320,13 @@ export default {
           $event.preventDefault();
           return this.updateMenuState(false);
         case MenuActions.Type:
-          this.onComboType(key);
+          this.onSelectType(key);
         case MenuActions.Open:
           $event.preventDefault();
           return this.updateMenuState(true);
       }
     },
-    onComboType (letter) {
+    onSelectType (letter) {
       // open the listbox if it is closed
       this.updateMenuState(true);
 
@@ -339,7 +339,7 @@ export default {
         this.onOptionChange(searchIndex);
       }
     },
-    onComboBlur ($event) {
+    onSelectBlur ($event) {
       if (this.ignoreBlur) {
         this.ignoreBlur = false;
         return;
