@@ -20,7 +20,7 @@
       >
       <div class="pl-2 text-gray-900">
         <span
-          :class="['pt-1 opacity-75 transition-colors transition-opacity no-underline md:pb-0.5 md:text-lg block relative align-top mx-auto whitespace-nowrap border-none text-normal text-small hover:text-primary-500', {'py-1': small}]"
+          :class="['pt-1 opacity-75 transition-colors transition-opacity no-underline md:pb-0.5 block relative align-top mx-auto whitespace-nowrap border-none text-normal text-lg hover:text-primary-500', {'py-1': small}]"
         >
           <slot />
         </span>
@@ -67,9 +67,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-  .text-small {
-    font-size: 18px !important
-  }
-</style>

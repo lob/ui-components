@@ -31,16 +31,19 @@ const Template = (args, {argTypes}) => ({
         width="95"
         alt=""
       >
-      <div class="pl-6">
+      <div class="md:pl-6">
         <MegaMenu title="Some menu" navKey="" :mobileNavs="{}" smaller>
           <MegaMenuItem to="/settings/main/account" :imageSource="$getConst('lobAssetsUrl') + '/dashboard/navbar/settings.svg'" small>
             Some menu item
+          </MegaMenuItem>
+          <MegaMenuItem to="/settings/main/account" :imageSource="$getConst('lobAssetsUrl') + '/dashboard/navbar/settings.svg'" small>
+            Another menu item
           </MegaMenuItem>
         </MegaMenu>
 
         <MegaMenu title="Another menu" navKey="" :mobileNavs="{}" smaller>
           <MegaMenuItem to="/settings/main/account" :imageSource="$getConst('lobAssetsUrl')+'/dashboard/navbar/settings.svg'" small>
-            Another menu item
+            Yet another menu item
           </MegaMenuItem>
         </MegaMenu>
       </div>
