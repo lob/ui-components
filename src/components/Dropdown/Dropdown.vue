@@ -16,11 +16,11 @@
       :aria-expanded="open"
       :aria-labelledby="`${id} ${id}-value`"
       :aria-controls="`${id}-listbox`"
-      class="combo-input cursor-default bg-white py-1.5 px-2.5 border rounded border-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent"
+      class="cursor-default bg-white py-1.5 px-2.5 border rounded border-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent"
       tabindex="0"
       @blur="onComboBlur"
       @click="updateMenuState(true)"
-      @keydown="onComboKeyDown"
+      @keydown="onComboKeydown"
     >
       <span class="mr-8 text-sm">
         {{ value }}
@@ -34,21 +34,28 @@
       ref="listbox"
       :class="[
         'lob-dropdown-options cursor-default max-h-96 bg-white rounded-sm text-sm py-4 overflow-y-auto absolute left-0 top-full hidden w-full z-100',
-        {'!block': open}]"
+        {'!block': open }]"
       role="listbox"
     >
       <div
         v-for="(option, i) in options"
         :id="`${id}-${i}`"
-        :key="option"
+        :key="option.label || option"
         :ref="activeIndex === i ? 'activeOption' : null"
-        :class="['combo-option py-1 px-8 truncate hover:bg-turquoise-100', {'bg-turquoise-100': activeIndex === i}]"
+        :class="[
+          'py-1 px-8 truncate',
+          {'bg-turquoise-100': activeIndex === i},
+          {'hover:bg-turquoise-100': !option.disabled},
+          { 'text-gray-300': option.disabled},
+          {'!bg-none': option.disabled && activeIndex === i}
+        ]"
+        :aria-disabled="option.disabled"
         :aria-selected="activeIndex === i"
         role="option"
-        @mousedown="onOptionMouseDown"
+        @mousedown="onOptionMousedown"
         @click="($event) => onOptionClick($event, i)"
       >
-        {{ option }}
+        {{ option.label || option }}
       </div>
     </div>
   </div>
@@ -113,11 +120,10 @@ export default {
   emits: ['update:modelValue', 'input', 'change'],
   data () {
     return {
-      value: this.modelValue || '',
       // active option index
-      activeIndex: this.options.indexOf(this.modelValue) || -1,
+      activeIndex: (this.options && this.options.findIndex((o) => o.label === this.modelValue || o === this.modelValue)) || -1,
       // selected option index
-      selectedIndex: this.options.indexOf(this.modelValue) || -1,
+      selectedIndex: (this.options && this.options.findIndex((o) => o.label === this.modelValue || o === this.modelValue)) || -1,
       // menu state
       open: false,
       // prevent menu closing before click completed
@@ -125,12 +131,25 @@ export default {
       // timeout after each typed character
       searchTimeout: 0,
       // current accumulated search string
-      searchString: ''
+      searchString: '',
+      // minIndex that user can select (with mouse or keyboard)
+      minIndex: this.options.findIndex((o) => !o.disabled),
+      // maxIndex that user can select (with mouse or keyboard)
+      maxIndex: this.options.findLastIndex((o) => !o.disabled)
     };
   },
   computed: {
     activeId () {
       return this.open ? `${this.id}-${this.activeIndex}` : '';
+    },
+    selectedOptionItem () {
+      return this.options[this.selectedIndex] || null;
+    },
+    value () {
+      if (this.selectedOptionItem) {
+        return this.selectedOptionItem.label || this.selectedOptionItem;
+      }
+      return '';
     }
   },
   updated () {
@@ -139,6 +158,8 @@ export default {
     }
   },
   methods: {
+    /* SCROLL UTILITIES */
+
     // check if an element is currently scrollable
     isScrollable (element) {
       return element && element.clientHeight < element.scrollHeight;
@@ -157,12 +178,20 @@ export default {
         scrollParent.scrollTo(0, offsetTop - parentOffsetHeight + offsetHeight);
       }
     },
+
+    /* TYPING/STRING UTILITIES */
+
     // filter an array of options against an input string
     // returns an array of options that begin with the filter string, case-independent
     filterOptions (options = [], filter = '', exclude = []) {
       const filterString = filter.toLowerCase().trim();
       return options.filter((option) => {
-        const matches = option.toLowerCase().indexOf(filterString) === 0;
+        let matches;
+        if (typeof option === 'object') {
+          matches = option.label.toLowerCase().indexOf(filterString) === 0;
+        } else {
+          matches = option.toLowerCase().indexOf(filterString) === 0;
+        }
         return matches && exclude.indexOf(option) < 0;
       });
     },
@@ -208,33 +237,20 @@ export default {
     },
     // return the index of an option from an array of options, based on a search string
     // if the filter is multiple iterations of the same letter (e.g "aaa"), then cycle through first-letter matches
-    getIndexByLetter (options, filter, startIndex = 0) {
-      const orderedOptions = [...options.slice(startIndex), ...options.slice(0, startIndex)];
-      const firstMatch = this.filterOptions(orderedOptions, filter)[0];
+    getIndexByLetter (filter, startIndex = 0) {
+      const orderedOptions = [...this.options.slice(startIndex), ...this.options.slice(0, startIndex)];
+      const excludedOptions = [...this.options].filter((o) => o.disabled);
+      const firstMatch = this.filterOptions(orderedOptions, filter, excludedOptions)[0];
       const allSameLetter = (array) => array.every((letter) => letter === array[0]);
 
       // first check if there is an exact match for the typed string
       if (firstMatch) {
-        return options.indexOf(firstMatch);
+        return this.options.indexOf(firstMatch);
       } else if (allSameLetter(filter.split(''))) {
-        const matches = this.filterOptions(orderedOptions, filter[0]);
-        return options.indexOf(matches[0]);
+        const matches = this.filterOptions(orderedOptions, filter[0], excludedOptions);
+        return this.options.indexOf(matches[0]);
       } else {
         return -1;
-      }
-    },
-    getUpdatedIndex (current, max, action) {
-      switch (action) {
-        case MenuActions.First:
-          return 0;
-        case MenuActions.Last:
-          return max;
-        case MenuActions.Previous:
-          return Math.max(0, current - 1);
-        case MenuActions.Next:
-          return Math.min(max, current + 1);
-        default:
-          return current;
       }
     },
     getSearchString (char) {
@@ -252,9 +268,33 @@ export default {
       this.searchString += char;
       return this.searchString;
     },
-    onComboKeyDown ($event) {
+    getUpdatedIndex (current, action) {
+      switch (action) {
+        case MenuActions.First:
+          return this.minIndex;
+        case MenuActions.Last:
+          return this.maxIndex;
+        case MenuActions.Previous:
+          let prevIndex = current - 1;
+          if (this.options[prevIndex] && this.options[prevIndex].disabled) {
+            prevIndex--;
+          }
+          return Math.max(this.minIndex, prevIndex);
+        case MenuActions.Next:
+          let nextIndex = current + 1;
+          if (this.options[nextIndex] && this.options[nextIndex].disabled) {
+            nextIndex++;
+          }
+          return Math.min(this.maxIndex, nextIndex);
+        default:
+          return current;
+      }
+    },
+
+    /* EVENTS */
+
+    onComboKeydown ($event) {
       const { key } = $event;
-      const max = this.options.length - 1;
 
       const action = this.getActionFromKey($event, this.open);
 
@@ -264,7 +304,7 @@ export default {
         case MenuActions.First:
         case MenuActions.Previous:
           $event.preventDefault();
-          return this.onOptionChange(this.getUpdatedIndex(this.activeIndex, max, action));
+          return this.onOptionChange(this.getUpdatedIndex(this.activeIndex, action));
         case MenuActions.CloseSelect:
         case MenuActions.Space:
           $event.preventDefault();
@@ -273,7 +313,6 @@ export default {
           $event.preventDefault();
           return this.updateMenuState(false);
         case MenuActions.Type:
-        // this.activeIndex = Math.max(0, getIndexByLetter(this.options, key));
           this.onComboType(key);
         case MenuActions.Open:
           $event.preventDefault();
@@ -286,7 +325,7 @@ export default {
 
       // find the index of the first matching option
       const searchString = this.getSearchString(letter);
-      const searchIndex = this.getIndexByLetter(this.options, searchString, this.activeIndex + 1);
+      const searchIndex = this.getIndexByLetter(searchString, this.activeIndex + 1);
 
       // if a match was found, go to it
       if (searchIndex >= 0) {
@@ -304,28 +343,31 @@ export default {
         this.updateMenuState(false, false);
       }
     },
+    onOptionMousedown () {
+      this.ignoreBlur = true;
+    },
     onOptionChange (index) {
       this.activeIndex = index;
     },
     onOptionClick ($event, index) {
+      if (this.options[index].disabled) {
+        return;
+      }
+
       this.onOptionChange(index);
       this.selectOption($event, index);
       this.updateMenuState(false);
     },
-    onOptionMouseDown () {
-      this.ignoreBlur = true;
+    updateMenuState (open, focus = true) {
+      this.open = open;
+      focus && this.$refs.input.focus();
     },
     selectOption ($event, index) {
-      const selected = this.options[index];
-      this.value = selected;
       this.selectedIndex = index;
+      const selected = this.options[index];
       this.$emit('update:modelValue', selected);
       this.$emit('input', selected);
       this.$emit('change', $event);
-    },
-    updateMenuState (open, callFocus = true) {
-      this.open = open;
-      callFocus && this.$refs.input.focus();
     }
   }
 };

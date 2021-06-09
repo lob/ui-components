@@ -188,3 +188,30 @@ Secondary.args = {
     'Mew'
   ]
 };
+
+export const Tertiary = Template.bind({});
+Tertiary.args = {
+  id: 'test',
+  label: 'Test dropdown',
+  options: [
+    { label: 'California', value: 'California', disabled: true },
+    { label: 'Colorado', value: 'CO' },
+    { label: 'Illinois', value: 'IL', disabled: true },
+    { label: 'Oklahoma', value: 'OK' },
+    { label: 'Texas', value: 'TX', disabled: true }
+  ]
+};
+
+const TestTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  template: `
+    <select>
+      <option value="1">Opt 1</option>
+      <option value="2">Opt 2</option>
+      <option value="3" disabled="true">Opt 3</option>
+      <option value="4">Opt 4</option>
+    </select>
+  `
+});
+
+export const Test = TestTemplate.bind({});
