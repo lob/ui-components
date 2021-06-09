@@ -30,7 +30,7 @@ export default {
 
 const templateStr = `
 <MegaMenu v-bind="args">
-  <MegaMenuItem to="/settings/main/account" :imageSource="$getConst('lobAssetsUrl')+'/dashboard/navbar/settings.svg'" small>
+  <MegaMenuItem id="1" to="/settings/main/account" :imageSource="$getConst('lobAssetsUrl')+'/dashboard/navbar/settings.svg'" small>
     Some text
   </MegaMenuItem>
 </MegaMenu>

@@ -1,21 +1,21 @@
 <template>
   <div
-    class="block md:inline-block relative z-50 mx-0 px-0 border-b-2 border-gray-100 md:border-0"
+    class="block md:inline-block relative z-50 mx-0 px-0 border-b-2 border-gray-100 md:border-0 focus:border-b-2"
     data-testId="menu-container"
     @mouseenter="showNav = true"
     @mouseleave="showNav = false"
     @click="onClick"
   >
     <div
-      id="w-dropdown-toggle-3"
+      :id="dropdownToggleId"
       class="w-full md:w-auto outline-none mx-0 py-2.5 px-3 transition-colors duration-200 ease-linear text-gray-700 whitespace-nowrap active:text-primary-300 active:no-underline hover:text-primary-300 hover:no-underline inline-block cursor-pointer relative"
-      aria-controls="w-dropdown-list-3" 
+      :aria-controls="dropdownListId" 
       aria-haspopup="menu"
       aria-expanded="false"
-      role=""
+      role="navigation"
     >
       <div class="flex-nowrap flex width-100 mt-0 flex-row justify-between md:justify-start items-center">
-        {{ title }}
+        {{ title }} 
         <img
           :src="`${$getConst('lobAssetsUrl')}/dashboard/navbar/caret-down.svg`"
           width="24"
@@ -25,8 +25,8 @@
       </div>
     </div>
     <nav
-      id="w-dropdown-list-3"
-      aria-labelledby="w-dropdown-toggle-3"
+      :id="dropdownListId"
+      :aria-labelledby="dropdownToggleId"
       :class="['height-0 md:absolute min-w-full bg-white-200', {'hidden': !showNav && !showMobileNav}, {'block top-7': showNav && !showMobileNav}]"
     >
       <div
@@ -46,6 +46,10 @@ export default {
   name: 'MegaMenu',
   props: {
     title: {
+      type: String,
+      required: true
+    },
+    id: {
       type: String,
       required: true
     },
@@ -72,6 +76,14 @@ export default {
     onClick($evt) {
       this.showMobileNav = !this.showMobileNav;
       this.$emit('click', $evt);
+    }
+  },
+  computed: {
+    dropdownToggleId() {
+      return `dropdown-toggle-${this.id}`
+    },
+    dropdownListId() {
+      return `dropdown-list-${this.id}`
     }
   }
 };
