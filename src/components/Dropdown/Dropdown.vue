@@ -4,7 +4,9 @@
   <div>
     <label
       :id="id"
-      class="text-xs pb-2 text-gray-500"
+      :class="['pb-2 text-gray-500',
+               {'text-xs': small},
+               {'text-sm': large && !small}]"
     >{{ label }}</label>
     <div class="relative">
       <div
