@@ -1,0 +1,55 @@
+import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs/blocks';
+import Dropdown from './Dropdown.vue';
+
+# Dropdown
+
+Dropdown is a stylized, accessible component that mimics the behavior of a native HTML `<select>`.
+
+<Preview>
+  <Story id="components-dropdown--primary" />
+</Preview>
+
+## How to Use
+To use the dropdown component, you must provide a `v-model`, an `id`, a `label`, and an array of `options`.
+
+The dropdown will accept `options` as an array of string or objects. If you use objects, they must have at least the `label` property and optionally the `disabled` property. When an option is selected, the dropdown will emit an `input` event with the selected option (the full string or object).
+
+You can optionally provide a `placeholder` which will display in the select when a selection has not been made and will appear as a list header above the options.
+
+Like other input types, you can provide boolean props for `required`, `disabled`, and `error`.
+
+Customizations exist for<br />
+(1) the size of the dropdown (as booleans): `small` (default) or `large`<br />
+
+Example of using this component in a template with simple string options
+```js
+const options = ['Ginny', 'Prudence', 'Brie', 'Jenny']
+const modelValue = ''
+```
+```html
+<dropdown id="pet" v-model="modelValue" id="pet" label="Pet" :options="options" placeholder="Pick a pet" />
+```
+
+Example of the emitted event data
+```js
+'Ginny'
+```
+
+Example of using this component in a template with object options (for more complex use cases and to set disabled options).
+Note: only label is used in the component but the emitted event will include the entire option object
+```js
+const options = [{ label: 'Ginny', value: 'Beth' }, { label: 'Prudence', value: 'Mercedes' }, { label: 'Brie', value: 'Nina' }, {label: 'Jenny', value: 'Mercedes', disabled: true }]
+const modelValue = ''
+```
+```html
+<dropdown id="pet" v-model="modelValue" id="pet" label="Pet" :options="options" placeholder="Pick a pet" />
+```
+
+Example of the emitted event data
+```js
+{ label: 'Ginny', value: 'Beth' }
+```
+
+## Props
+
+<ArgsTable story={PRIMARY_STORY} />

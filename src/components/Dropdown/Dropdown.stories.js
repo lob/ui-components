@@ -1,17 +1,17 @@
 import Dropdown from './Dropdown.vue';
-//import mdx from './Dropdown.mdx';
+import mdx from './Dropdown.mdx';
 
 export default {
   title: 'Components/Dropdown',
   component: Dropdown,
   decorators: [
     () => ({ template: '<div class="w-48"><story /></div>' })
-  ]
-//	parameters: {
-//		docs: {
-//			page: mdx
-//		}
-//	},
+  ],
+  parameters: {
+    docs: {
+      page: mdx
+    }
+  }
 };
 const vModel = 'Squirtle';
 
