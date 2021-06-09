@@ -52,10 +52,10 @@
       <div
         :id="`${id}-listbox`"
         ref="listbox"
+        role="listbox"
         :class="[
           'lob-dropdown-options cursor-default max-h-96 bg-white rounded-sm text-sm py-4 overflow-y-auto absolute left-0 top-full hidden w-full z-100',
           {'!block': open }]"
-        role="listbox"
       >
         <div
           v-for="(option, i) in optionItems"
@@ -85,6 +85,11 @@
 
 <script>
 import { ChevronDown } from '../Icons';
+import { findLastIndex } from '../../utils';
+
+if (!Array.prototype.findLastIndex) {
+  Array.prototype.findLastIndex = findLastIndex; //eslint-disable-line 
+}
 
 const Keys = {
   Backspace: 'Backspace',
