@@ -205,7 +205,7 @@ Tertiary.args = {
 const TestTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   template: `
-    <select>
+    <select disabled="true">
       <option value="1">Opt 1</option>
       <option value="2">Opt 2</option>
       <option value="3" disabled="true">Opt 3</option>

@@ -123,7 +123,7 @@ module.exports = {
     extend: {
       translate: ['group-hover'],
       backgroundColor: ['disabled', 'important'],
-      borderColor: ['disabled'],
+      borderColor: ['disabled', 'important'],
       textColor: ['disabled', 'important'],
       display: ['important']
     }

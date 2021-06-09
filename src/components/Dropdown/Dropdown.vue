@@ -16,7 +16,10 @@
       :aria-expanded="open"
       :aria-labelledby="`${id} ${id}-value`"
       :aria-controls="`${id}-listbox`"
-      class="cursor-default bg-white py-1.5 px-2.5 border rounded border-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent"
+      :class="[
+        'lob-dropdown cursor-default bg-white py-1.5 px-2.5 border rounded border-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
+        {'!bg-white-300 !border-white-200 pointer-events-none': disabled}
+      ]"
       tabindex="0"
       @blur="onComboBlur"
       @click="updateMenuState(true)"
@@ -115,6 +118,10 @@ export default {
     options: {
       type: Array,
       required: true
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   emits: ['update:modelValue', 'input', 'change'],
@@ -374,7 +381,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
+$box-shadow: 0 5px 14px rgba(44, 67, 81, 0.13), 0 0 4px rgba(44, 67, 81, 0.02);
+
+.lob-dropdown {
+  &:hover {
+     box-shadow: $box-shadow;
+  }
+}
 .lob-dropdown-options {
-  box-shadow: 0 5px 14px rgba(44, 67, 81, 0.13), 0 0 4px rgba(44, 67, 81, 0.02);
+  box-shadow: $box-shadow;
 }
 </style>
