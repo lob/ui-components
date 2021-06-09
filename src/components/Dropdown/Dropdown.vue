@@ -145,7 +145,13 @@ export default {
     },
     options: {
       type: Array,
-      required: true
+      required: true,
+      validator: function (value) {
+        // The value must match be a string or an object with a label property
+        return value.every((o) => {
+          return typeof o === 'string' || o.hasOwnProperty('label');
+        });
+      }
     },
     small: {
       type: Boolean,
