@@ -27,7 +27,64 @@ export const Primary = Template.bind({});
 Primary.args = {
   id: 'test',
   label: 'Test dropdown',
-  options: ['Prudence', 'Jenny', 'Ginny', 'Brie']
+  options: [
+    { label: 'Alabama', value: 'AL' },
+    { label: 'Alaska', value: 'AK', disabled: true },
+    { label: 'Arizona', value: 'AZ' },
+    { label: 'Arkansas', value: 'AR' },
+    { label: 'California', value: 'CA' },
+    { label: 'Colorado', value: 'CO' },
+    { label: 'Connecticut', value: 'CT' },
+    { label: 'Delaware', value: 'DE' },
+    { label: 'District of Columbia', value: 'DC' },
+    { label: 'Florida', value: 'FL' },
+    { label: 'Georgia', value: 'GA' },
+    { label: 'Hawaii', value: 'HI', disabled: true },
+    { label: 'Idaho', value: 'ID' },
+    { label: 'Illinois', value: 'IL' },
+    { label: 'Indiana', value: 'IN' },
+    { label: 'Iowa', value: 'IA' },
+    { label: 'Kansas', value: 'KS' },
+    { label: 'Kentucky', value: 'KY' },
+    { label: 'Louisiana', value: 'LA' },
+    { label: 'Maine', value: 'ME' },
+    { label: 'Maryland', value: 'MD' },
+    { label: 'Massachusetts', value: 'MA' },
+    { label: 'Michigan', value: 'MI' },
+    { label: 'Minnesota', value: 'MN' },
+    { label: 'Mississippi', value: 'MS' },
+    { label: 'Missouri', value: 'MO' },
+    { label: 'Montana', value: 'MT' },
+    { label: 'Nebraska', value: 'NE' },
+    { label: 'Nevada', value: 'NV' },
+    { label: 'New Hampshire', value: 'NH' },
+    { label: 'New Jersey', value: 'NJ' },
+    { label: 'New Mexico', value: 'NM' },
+    { label: 'New York', value: 'NY' },
+    { label: 'North Carolina', value: 'NC' },
+    { label: 'North Dakota', value: 'ND' },
+    { label: 'Ohio', value: 'OH' },
+    { label: 'Oklahoma', value: 'OK' },
+    { label: 'Oregon', value: 'OR' },
+    { label: 'Pennsylvania', value: 'PA' },
+    { label: 'Rhode Island', value: 'RI' },
+    { label: 'South Carolina', value: 'SC' },
+    { label: 'South Dakota', value: 'SD' },
+    { label: 'Tennessee', value: 'TN' },
+    { label: 'Texas', value: 'TX' },
+    { label: 'Utah', value: 'UT' },
+    { label: 'Vermont', value: 'VT' },
+    { label: 'Virginia', value: 'VA' },
+    { label: 'Washington', value: 'WA' },
+    { label: 'West Virginia', value: 'WV' },
+    { label: 'Wisconsin', value: 'WI' },
+    { label: 'Wyoming', value: 'WY' },
+    { label: 'American Samoa', value: 'AS' },
+    { label: 'Guam', value: 'GU' },
+    { label: 'Northern Mariana Islands', value: 'MP' },
+    { label: 'Puerto Rico', value: 'PR' },
+    { label: 'Virgin Islands', value: 'VI' }
+  ]
 };
 
 export const Secondary = Template.bind({});
@@ -186,20 +243,5 @@ Secondary.args = {
     'Dragonite',
     'Mewtwo',
     'Mew'
-  ]
-};
-
-export const Tertiary = Template.bind({});
-Tertiary.args = {
-  id: 'test',
-  label: 'Test dropdown',
-  options: [
-    { label: 'Alaska', value: 'AK' },
-    { label: 'California', value: 'California' },
-    { label: 'Colorado', value: 'CO' },
-    { label: 'Hawaii', value: 'HI', disabled: true },
-    { label: 'Illinois', value: 'IL', disabled: true },
-    { label: 'Oklahoma', value: 'OK' },
-    { label: 'Texas', value: 'TX', disabled: true }
   ]
 };

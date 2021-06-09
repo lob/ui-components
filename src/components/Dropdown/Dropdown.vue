@@ -50,7 +50,7 @@
             'py-1 px-8 truncate',
             {'bg-turquoise-100': activeIndex === i},
             {'hover:bg-turquoise-100': !option.disabled},
-            { 'text-gray-300': option.disabled},
+            { 'text-gray-100': option.disabled},
             {'!bg-none': option.disabled && activeIndex === i}
           ]"
           :aria-disabled="option.disabled"
@@ -106,7 +106,7 @@ export default {
   components: { ChevronDown },
   props: {
     modelValue: {
-      type: String,
+      type: [String,Object],
       required: true
     },
     id: {
