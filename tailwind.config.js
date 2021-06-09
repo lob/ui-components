@@ -124,6 +124,7 @@ module.exports = {
       translate: ['group-hover'],
       backgroundColor: ['disabled', 'important'],
       borderColor: ['disabled'],
+      borderWidth: ['important'],
       textColor: ['disabled', 'important'],
       display: ['important'],
       padding: ['important']

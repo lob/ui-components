@@ -6,16 +6,28 @@
   >
     {{ label }}
   </label>
-  <div class="flex">
+  <div
+    :class="[
+      'flex input rounded border border-gray-100',
+      {'!border-0': withCopyBtn}
+    ]"
+  >
+    <div
+      v-if="iconLeft"
+      :class="['pl-2 pt-3 pb-4 w-full h-full text-gray-500', {'!pl-1 !py-2': small}]"
+    >
+      <slot name="iconLeft" />
+    </div>
     <input
       v-bind="$attrs"
       :id="id"
       ref="input"
       :type="type"
       :class="[
-        'input rounded px-4 pt-3 pb-4 border border-gray-100 leading-5 text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
-        {'!pl-3 !pr-3 !pt-2 !pb-2': small},
-        {'border-r-0 rounded-tr-none rounded-br-none': withCopyBtn},
+        'rounded pl-2 pt-3 pb-4 leading-5 text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
+        {'!pl-4': !iconLeft},
+        {'!pl-3 !pr-3 !py-2': small},
+        {'border border-r-0 border-gray-100 rounded-tr-none rounded-br-none': withCopyBtn},
         {'bg-white-300 cursor-not-allowed': disabled || readonly},
         {'border-error': error}
       ]"
@@ -23,6 +35,12 @@
       :placeholder="placeholder"
       :readonly="readonly"
     >
+    <div
+      v-if="iconRight"
+      :class="['pr-2 pt-3 pb-4 w-full h-full text-gray-500', {'!pr-1 !py-2': small}]"
+    >
+      <slot name="iconRight" />
+    </div>
     <lob-button
       v-if="withCopyBtn"
       :small="small"
@@ -84,6 +102,14 @@ export default {
     withCopyBtn: {
       type: Boolean,
       default: false
+    }
+  },
+  computed: {
+    iconLeft () {
+      return this.$slots.iconLeft;
+    },
+    iconRight () {
+      return this.$slots.iconRight;
     }
   },
   methods: {

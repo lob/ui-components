@@ -1,5 +1,9 @@
 import TextInput from './TextInput.vue';
 // import mdx from './TextInput.mdx';
+import Search from '../Icons/Search';
+import Close from '../Icons/Close';
+import ChevronLeft from '../Icons/ChevronLeft';
+import ChevronRight from '../Icons/ChevronRight';
 
 export default {
   title: 'Components/Text Input',
@@ -11,19 +15,79 @@ export default {
   }
 };
 
-const Template = (args, { argTypes }) => ({
+const PrimaryTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { TextInput },
   setup: () => ({ args }),
   template: '<text-input v-bind="args" />'
 });
 
-export const Primary = Template.bind({});
+export const Primary = PrimaryTemplate.bind({});
 Primary.args = {
   id: 'one',
   label: 'One',
-  placeholder: 'One',
-  withCopyBtn: true,
-  readonly: true,
-  value: 'something'
+  placeholder: 'One'
+};
+
+const IconLeftTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { TextInput, Search },
+  setup: () => ({ args }),
+  template: `
+    <text-input v-bind="args">
+      <template v-slot:iconLeft>
+        <search class="w-6 h-6" />
+      </template>
+    </text-input>
+  `
+});
+
+export const IconLeft = IconLeftTemplate.bind({});
+IconLeft.args = {
+  id: 'one',
+  label: 'One',
+  placeholder: 'One'
+};
+
+const IconRightTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { TextInput, Close },
+  setup: () => ({ args }),
+  template: `
+    <text-input v-bind="args">
+      <template v-slot:iconRight>
+        <close class="w-6 h-6" />
+      </template>
+    </text-input>
+  `
+});
+
+export const IconRight = IconRightTemplate.bind({});
+IconRight.args = {
+  id: 'one',
+  label: 'One',
+  placeholder: 'One'
+};
+
+const BothIconsTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { TextInput, Search, Close, ChevronLeft, ChevronRight },
+  setup: () => ({ args }),
+  template: `
+    <text-input v-bind="args">
+      <template v-slot:iconLeft>
+        <search class="w-6 h-6" />
+      </template>
+      <template v-slot:iconRight>
+        <close class="w-6 h-6" />
+      </template>
+    </text-input>
+  `
+});
+
+export const BothIcons = BothIconsTemplate.bind({});
+BothIcons.args = {
+  id: 'one',
+  label: 'One',
+  placeholder: 'One'
 };
