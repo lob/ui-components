@@ -99,7 +99,7 @@ describe('Dropdown', () => {
       expect(options[1]).toHaveAttribute('aria-disabled', 'true');
     });
 
-    it('will not allow selecting a disabled option', async () => {
+    it('will not allow keyboard navigating to a disabled option', async () => {
       const { queryByRole, queryAllByRole } = renderComponent({ props });
 
       const select = queryByRole('combobox');
@@ -112,6 +112,19 @@ describe('Dropdown', () => {
       await fireEvent.keyDown(select, { key: 'ArrowDown', code: 'ArrowDown' });
       const options = queryAllByRole('option');
       expect(options[2]).toHaveAttribute('aria-selected', 'true');
+    });
+
+    it('will not allow clicking a disabled option', async () => {
+      const { queryByRole, queryAllByRole } = renderComponent({ props });
+
+      const select = queryByRole('combobox');
+      const options = queryAllByRole('option');
+
+      // open select
+      await fireEvent.keyDown(select, { key: 'Enter', code: 'Enter' });
+      // choose disabled option
+      await fireEvent.click(options[1]);
+      expect(options[1]).not.toHaveAttribute('aria-selected', 'true');
     });
 
   });
@@ -189,7 +202,7 @@ describe('Dropdown', () => {
     let select;
 
     beforeEach(async () => {
-      props = initialProps;
+      props = { ...initialProps, options: [...initialProps.options, 'aaaa', 'aaab', 'aaac'] };
       component = renderComponent({ props });
       const { queryByRole } = component;
       select = queryByRole('combobox');
@@ -264,17 +277,14 @@ describe('Dropdown', () => {
 
       it('will not move if already on the last option', async () => {
         const { queryAllByRole } = component;
-        // key down to option a
-        await fireEvent.keyDown(select, { key: 'ArrowDown', code: 'ArrowDown' });
-        // key down to option b
-        await fireEvent.keyDown(select, { key: 'ArrowDown', code: 'ArrowDown' });
-        // key down to option b
-        await fireEvent.keyDown(select, { key: 'ArrowDown', code: 'ArrowDown' });
+        for (let i = 0; i < props.options.length; i++) {
+          await fireEvent.keyDown(select, { key: 'ArrowDown', code: 'ArrowDown' });
+        }
         // key down to "next" option
         await fireEvent.keyDown(select, { key: 'ArrowDown', code: 'ArrowDown' });
 
         const options = queryAllByRole('option');
-        expect(options[2]).toHaveAttribute('aria-selected', 'true');
+        expect(options[options.length - 1]).toHaveAttribute('aria-selected', 'true');
       });
 
       it('does not change the selection', async () => {
@@ -304,7 +314,46 @@ describe('Dropdown', () => {
       await fireEvent.keyDown(select, { key: 'End', code: 'End' });
 
       const options = queryAllByRole('option');
-      expect(options[2]).toHaveAttribute('aria-selected', 'true');
+      expect(options[options.length - 1]).toHaveAttribute('aria-selected', 'true');
+    });
+
+    it('typing a character, it focuses on the first match', async () => {
+      const { queryAllByRole } = component;
+
+      const options = queryAllByRole('option');
+
+      await fireEvent.keyDown(select, { key: 'b', code: 'KeyB' });
+
+      expect(options[1]).toHaveAttribute('aria-selected', 'true');
+    });
+
+    it('typing a string of characters, it selects the first option that matches the full string', async () => {
+      const { queryAllByRole } = component;
+
+      const options = queryAllByRole('option');
+
+      // search and go to 'aaab'
+      await fireEvent.keyDown(select, { key: 'a', code: 'KeyA' });
+      await fireEvent.keyDown(select, { key: 'a', code: 'KeyA' });
+      await fireEvent.keyDown(select, { key: 'a', code: 'KeyA' });
+      await fireEvent.keyDown(select, { key: 'c', code: 'KeyC' });
+
+      expect(options[5]).toHaveAttribute('aria-selected', 'true');
+    });
+
+    it('typing the same character multiple times, it cycles through the matches', async () => {
+      const { queryAllByRole } = component;
+
+      const options = queryAllByRole('option');
+
+      // search and go to 'a'
+      await fireEvent.keyDown(select, { key: 'a', code: 'KeyA' });
+      // search and go to 'aaaa'
+      await fireEvent.keyDown(select, { key: 'a', code: 'KeyA' });
+      // search and go to 'aaab'
+      await fireEvent.keyDown(select, { key: 'a', code: 'KeyA' });
+
+      expect(options[4]).toHaveAttribute('aria-selected', 'true');
     });
 
     it('on losing focus, it selects the current option and closes the listbox', async () => {
