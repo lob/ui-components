@@ -3,17 +3,13 @@ import { render, fireEvent } from '@testing-library/vue';
 import { constants } from '../../../config';
 import MegaMenu from '../MegaMenu.vue';
 
-const configureVue = (vue) => {
-  vue.use(constants);
-};
-
 const initialProps = {
   title: 'Products',
   mobileNavs: {},
   navKey: ''
 };
 
-const renderComponent = (options, configure = configureVue) => render(MegaMenu, { ...options }, configure);
+const renderComponent = (options, configure = null) => render(MegaMenu, { ...options, global: { plugins: [constants] } }, configure);
 
 describe('MegaMenu', () => {
 
