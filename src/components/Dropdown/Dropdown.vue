@@ -31,8 +31,13 @@
         @click="updateMenuState(true)"
         @keydown="onSelectKeydown"
       >
-        <span class="mr-8 text-sm">
-          {{ value }}
+        <span
+          :class="['mr-8',
+                   {'text-sm': small},
+                   {'underline': value && value !== placeholder}
+          ]"
+        >
+          {{ value || placeholder }}
         </span>
         <chevron-down
           :class="[
@@ -51,7 +56,7 @@
         role="listbox"
       >
         <div
-          v-for="(option, i) in options"
+          v-for="(option, i) in optionItems"
           :id="`${id}-${i}`"
           :key="option.label || option"
           :ref="activeIndex === i ? 'activeOption' : null"
@@ -60,7 +65,8 @@
             {'bg-turquoise-100': activeIndex === i},
             {'hover:bg-turquoise-100': !option.disabled},
             { 'text-gray-100': option.disabled},
-            {'!bg-none': option.disabled && activeIndex === i}
+            {'!bg-none': option.disabled && activeIndex === i},
+            {'!text-primary-300': option.label === placeholder }
           ]"
           :aria-disabled="option.disabled"
           :aria-selected="activeIndex === i"
@@ -126,6 +132,10 @@ export default {
       type: String,
       required: true
     },
+    placeholder: {
+      type: String,
+      default: ''
+    },
     options: {
       type: Array,
       required: true
@@ -165,25 +175,32 @@ export default {
       // timeout after each typed character
       searchTimeout: 0,
       // current accumulated search string
-      searchString: '',
-      // minIndex that user can select (with mouse or keyboard)
-      minIndex: this.options.findIndex((o) => !o.disabled),
-      // maxIndex that user can select (with mouse or keyboard)
-      maxIndex: this.options.findLastIndex((o) => !o.disabled)
+      searchString: ''
     };
   },
   computed: {
-    activeId () {
-      return this.open ? `${this.id}-${this.activeIndex}` : '';
+    optionItems () {
+      return this.placeholder ? [{ label: this.placeholder, disabled: this.required }, ...this.options] : [...this.options];
     },
     selectedOptionItem () {
-      return this.options[this.selectedIndex] || null;
+      return this.optionItems[this.selectedIndex] || null;
     },
     value () {
       if (this.selectedOptionItem) {
         return this.selectedOptionItem.label || this.selectedOptionItem;
       }
       return '';
+    },
+    // minIndex that user can select (with mouse or keyboard)
+    minIndex () {
+      return this.optionItems.findIndex((o) => !o.disabled);
+    },
+    // maxIndex that user can select (with mouse or keyboard)
+    maxIndex () {
+      return this.optionItems.findLastIndex((o) => !o.disabled);
+    },
+    activeId () {
+      return this.open ? `${this.id}-${this.activeIndex}` : '';
     }
   },
   updated () {
@@ -272,17 +289,17 @@ export default {
     // return the index of an option from an array of options, based on a search string
     // if the filter is multiple iterations of the same letter (e.g "aaa"), then cycle through first-letter matches
     getIndexByLetter (filter, startIndex = 0) {
-      const orderedOptions = [...this.options.slice(startIndex), ...this.options.slice(0, startIndex)];
-      const excludedOptions = [...this.options].filter((o) => o.disabled);
+      const orderedOptions = [...this.optionItems.slice(startIndex), ...this.optionItems.slice(0, startIndex)];
+      const excludedOptions = [...this.optionItems].filter((o) => o.disabled);
       const firstMatch = this.filterOptions(orderedOptions, filter, excludedOptions)[0];
       const allSameLetter = (array) => array.every((letter) => letter === array[0]);
 
       // first check if there is an exact match for the typed string
       if (firstMatch) {
-        return this.options.indexOf(firstMatch);
+        return this.optionItems.indexOf(firstMatch);
       } else if (allSameLetter(filter.split(''))) {
         const matches = this.filterOptions(orderedOptions, filter[0], excludedOptions);
-        return this.options.indexOf(matches[0]);
+        return this.optionItems.indexOf(matches[0]);
       } else {
         return -1;
       }
@@ -310,13 +327,13 @@ export default {
           return this.maxIndex;
         case MenuActions.Previous:
           let prevIndex = current - 1;
-          if (this.options[prevIndex] && this.options[prevIndex].disabled) {
+          if (this.optionItems[prevIndex] && this.optionItems[prevIndex].disabled) {
             prevIndex--;
           }
           return Math.max(this.minIndex, prevIndex);
         case MenuActions.Next:
           let nextIndex = current + 1;
-          if (this.options[nextIndex] && this.options[nextIndex].disabled) {
+          if (this.optionItems[nextIndex] && this.optionItems[nextIndex].disabled) {
             nextIndex++;
           }
           return Math.min(this.maxIndex, nextIndex);
@@ -384,7 +401,7 @@ export default {
       this.activeIndex = index;
     },
     onOptionClick ($event, index) {
-      if (this.options[index].disabled) {
+      if (this.optionItems[index].disabled) {
         return;
       }
 
@@ -398,7 +415,7 @@ export default {
     },
     selectOption ($event, index) {
       this.selectedIndex = index;
-      const selected = this.options[index];
+      const selected = this.optionItems[index];
       this.$emit('update:modelValue', selected);
       this.$emit('input', selected);
       this.$emit('change', $event);

@@ -25,8 +25,9 @@ const Template = (args, { argTypes }) => ({
 
 export const Primary = Template.bind({});
 Primary.args = {
-  id: 'test',
-  label: 'Test dropdown',
+  id: 'state',
+  label: 'State',
+  placeholder: 'Pick a state',
   options: [
     { label: 'Alabama', value: 'AL' },
     { label: 'Alaska', value: 'AK', disabled: true },
