@@ -11,15 +11,20 @@
         :id="`${id}-value`"
         ref="input"
         role="combobox"
-        :aria-activedescendant="activeId"
         aria-autocomplete="none"
         aria-haspopup="listbox"
+        :aria-activedescendant="activeId"
         :aria-expanded="open"
         :aria-labelledby="`${id} ${id}-value`"
         :aria-controls="`${id}-listbox`"
+        :aria-required="required"
+        :aria-disabled="disabled"
         :class="[
-          'lob-dropdown cursor-default bg-white py-1.5 px-2.5 border rounded border-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
-          {'!bg-white-300 !border-white-200 pointer-events-none': disabled}
+          'lob-dropdown cursor-default bg-white border rounded border-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
+          {'text-sm py-1.5 px-2.5': small},
+          {'py-3.5 px-4': large && !small},
+          {'!bg-white-300 !border-white-200 pointer-events-none': disabled},
+          {'border-error': error}
         ]"
         tabindex="0"
         @blur="onSelectBlur"
@@ -30,7 +35,11 @@
           {{ value }}
         </span>
         <chevron-down
-          class="w-4 h-4 absolute right-0 top-3 right-2"
+          :class="[
+            'w-4 h-4 absolute right-2',
+            {'top-3': small},
+            {'top-5': large && !small}
+          ]"
         />
       </div>
       <div
@@ -106,7 +115,7 @@ export default {
   components: { ChevronDown },
   props: {
     modelValue: {
-      type: [String,Object],
+      type: [String, Object],
       required: true
     },
     id: {
@@ -121,7 +130,23 @@ export default {
       type: Array,
       required: true
     },
+    small: {
+      type: Boolean,
+      default: true
+    },
+    large: {
+      type: Boolean,
+      default: false
+    },
+    required: {
+      type: Boolean,
+      default: false
+    },
     disabled: {
+      type: Boolean,
+      default: false
+    },
+    error: {
       type: Boolean,
       default: false
     }
@@ -387,9 +412,10 @@ $box-shadow: 0 5px 14px rgba(44, 67, 81, 0.13), 0 0 4px rgba(44, 67, 81, 0.02);
 
 .lob-dropdown {
   &:hover {
-     box-shadow: $box-shadow;
+    box-shadow: $box-shadow;
   }
 }
+
 .lob-dropdown-options {
   box-shadow: $box-shadow;
 }
