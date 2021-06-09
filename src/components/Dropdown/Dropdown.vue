@@ -1,64 +1,66 @@
 <!-- Implementation based on the accesible single select <div role="combobox" />  https://www.24a11y.com/2019/select-your-poison-part-2/ -->
 <!-- Code samples https://github.com/microsoft/sonder-ui/tree/master/src/components/select -->
 <template>
-  <label
-    :id="id"
-    class="text-xs pb-2 text-gray-500"
-  >{{ label }}</label>
-  <div class="relative">
-    <div
-      :id="`${id}-value`"
-      ref="input"
-      role="combobox"
-      :aria-activedescendant="activeId"
-      aria-autocomplete="none"
-      aria-haspopup="listbox"
-      :aria-expanded="open"
-      :aria-labelledby="`${id} ${id}-value`"
-      :aria-controls="`${id}-listbox`"
-      :class="[
-        'lob-dropdown cursor-default bg-white py-1.5 px-2.5 border rounded border-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
-        {'!bg-white-300 !border-white-200 pointer-events-none': disabled}
-      ]"
-      tabindex="0"
-      @blur="onSelectBlur"
-      @click="updateMenuState(true)"
-      @keydown="onSelectKeydown"
-    >
-      <span class="mr-8 text-sm">
-        {{ value }}
-      </span>
-      <chevron-down
-        class="w-4 h-4 absolute right-0 top-3 right-2"
-      />
-    </div>
-    <div
-      :id="`${id}-listbox`"
-      ref="listbox"
-      :class="[
-        'lob-dropdown-options cursor-default max-h-96 bg-white rounded-sm text-sm py-4 overflow-y-auto absolute left-0 top-full hidden w-full z-100',
-        {'!block': open }]"
-      role="listbox"
-    >
+  <div>
+    <label
+      :id="id"
+      class="text-xs pb-2 text-gray-500"
+    >{{ label }}</label>
+    <div class="relative">
       <div
-        v-for="(option, i) in options"
-        :id="`${id}-${i}`"
-        :key="option.label || option"
-        :ref="activeIndex === i ? 'activeOption' : null"
+        :id="`${id}-value`"
+        ref="input"
+        role="combobox"
+        :aria-activedescendant="activeId"
+        aria-autocomplete="none"
+        aria-haspopup="listbox"
+        :aria-expanded="open"
+        :aria-labelledby="`${id} ${id}-value`"
+        :aria-controls="`${id}-listbox`"
         :class="[
-          'py-1 px-8 truncate',
-          {'bg-turquoise-100': activeIndex === i},
-          {'hover:bg-turquoise-100': !option.disabled},
-          { 'text-gray-300': option.disabled},
-          {'!bg-none': option.disabled && activeIndex === i}
+          'lob-dropdown cursor-default bg-white py-1.5 px-2.5 border rounded border-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
+          {'!bg-white-300 !border-white-200 pointer-events-none': disabled}
         ]"
-        :aria-disabled="option.disabled"
-        :aria-selected="activeIndex === i"
-        role="option"
-        @mousedown="onOptionMousedown"
-        @click="($event) => onOptionClick($event, i)"
+        tabindex="0"
+        @blur="onSelectBlur"
+        @click="updateMenuState(true)"
+        @keydown="onSelectKeydown"
       >
-        {{ option.label || option }}
+        <span class="mr-8 text-sm">
+          {{ value }}
+        </span>
+        <chevron-down
+          class="w-4 h-4 absolute right-0 top-3 right-2"
+        />
+      </div>
+      <div
+        :id="`${id}-listbox`"
+        ref="listbox"
+        :class="[
+          'lob-dropdown-options cursor-default max-h-96 bg-white rounded-sm text-sm py-4 overflow-y-auto absolute left-0 top-full hidden w-full z-100',
+          {'!block': open }]"
+        role="listbox"
+      >
+        <div
+          v-for="(option, i) in options"
+          :id="`${id}-${i}`"
+          :key="option.label || option"
+          :ref="activeIndex === i ? 'activeOption' : null"
+          :class="[
+            'py-1 px-8 truncate',
+            {'bg-turquoise-100': activeIndex === i},
+            {'hover:bg-turquoise-100': !option.disabled},
+            { 'text-gray-300': option.disabled},
+            {'!bg-none': option.disabled && activeIndex === i}
+          ]"
+          :aria-disabled="option.disabled"
+          :aria-selected="activeIndex === i"
+          role="option"
+          @mousedown="onOptionMousedown"
+          @click="($event) => onOptionClick($event, i)"
+        >
+          {{ option.label || option }}
+        </div>
       </div>
     </div>
   </div>
