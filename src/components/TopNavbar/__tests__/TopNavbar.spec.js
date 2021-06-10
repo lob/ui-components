@@ -1,10 +1,10 @@
 import '@testing-library/jest-dom';
 import { render  } from '@testing-library/vue';
-import TopNavBar from '../TopNavBar.vue';
+import TopNavbar from '../TopNavbar.vue';
 
-const renderComponent = (options, configure = null) => render(TopNavBar, { ...options }, configure);
+const renderComponent = (options, configure = null) => render(TopNavbar, { ...options }, configure);
 
-describe('TopNavBar', () => {
+describe('TopNavbar', () => {
 
   it('renders correctly', () => {
     const { queryByRole } = renderComponent();
