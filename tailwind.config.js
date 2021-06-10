@@ -110,6 +110,11 @@ module.exports = {
     fill: (theme) => ({
       ...theme('colors')
     }),
+    boxShadow: {
+      DEFAULT: '0 5px 14px rgba(44, 67, 81, 0.13), 0 0 4px rgba(44, 67, 81, 0.02)',
+      input: '0px 0px 4px 2px rgba(24, 118, 219, 0.2)',
+      'input-selected': '0px 0px 4px 2px rgba(24, 118, 219, 0.4)'
+    },
     extend: {
       borderWidth: {
         3: '3px'
