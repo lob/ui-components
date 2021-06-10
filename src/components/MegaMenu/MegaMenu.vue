@@ -13,7 +13,7 @@
       aria-haspopup="menu"
     >
       <div class="flex-nowrap flex width-100 mt-0 flex-row justify-between md:justify-start items-center">
-        {{ title }} 
+        {{ title }}
         <img
           :src="`${$getConst('lobAssetsUrl')}/dashboard/navbar/caret-down.svg`"
           width="24"
