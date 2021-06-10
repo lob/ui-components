@@ -94,15 +94,15 @@ export default {
   }
 
   .width330 {
-    width: 330px !important
+    width: 330px !important;
   }
 
   .width430 {
-    width: 430px !important
+    width: 430px !important;
   }
 
   .width550 {
-    width: 550px
+    width: 550px;
   }
 }
 </style>
