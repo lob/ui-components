@@ -4,7 +4,7 @@
     :ref="isFocused && el && focusedDayRef && focusedDayRef(el)"
 
     :class="[
-      'text-sm bg-transparent rounded-full px-2 py-1 cursor-pointer inline-flex items-center justify-center relative text-center',
+      'text-sm text-gray-900 bg-transparent rounded-full px-2 py-1 cursor-pointer inline-flex items-center justify-center w-6 h-6 relative text-center',
       {'!text-gray-100 !bg-transparent': disabled},
       {'cursor-default pointer-events-none': isOutsideRange},
       {'z-10 bg-primary-500 text-white': isToday},
@@ -13,7 +13,7 @@
     :role="disabled ? 'button' : null"
     :tab-index="isFocused ? 0: -1"
     :disabled="disabled || isOutsideRange"
-    :aria-pressed="disabled ? false : isSelected"
+    :aria-pressed="disabled ? false : selected"
     :aria-disabled="disabled"
     @click="onClick"
     @onKeydown="onKeyboardNavigation"
@@ -49,7 +49,7 @@ export default {
       type: Boolean,
       default: true
     },
-    isSelected: {
+    selected: {
       type: Boolean,
       default: false
     },
@@ -89,6 +89,9 @@ export default {
   methods: {
     onClick ($event) {
       this.$emit('click', $event);
+    },
+    onKeyboardNavigation () {
+      return;
     }
   }
 };
