@@ -22,9 +22,7 @@ export default {
       page: mdx
     }
   },
-  argTypes: {
-    
-  }
+  argTypes: {}
 };
 
 const Template = (args, { argTypes }) => ({
