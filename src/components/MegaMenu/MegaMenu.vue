@@ -26,13 +26,13 @@
     <nav
       :id="dropdownListId"
       :aria-labelledby="dropdownToggleId"
-      :class="['height-0 md:absolute min-w-full bg-white-200', {'hidden': !showNav && !showMobileNav}, {'block top-7': showNav && !showMobileNav}]"
+      :class="['hidden height-0 min-w-full bg-white-200 md:bg-white md:absolute', {'!block md:hidden': showMobileNav}, {'md:top-9 md:!block': showNav}, {'md:!hidden': !showNav}]"
     >
       <div
-        :class="['height-0 pt-6 pb-4 px-4',
-                 {'width550 absolute mt-1 border-none border-gray-100 rounded-lg bg-white boxShadowGray opacity-100 hidden md:block h-auto': showNav && !showMobileNav},
-                 {'!w-full mt-1 border-none border-gray-100 opacity-100 block md:hidden h-auto': showMobileNav},
-                 {'width430': small && !showMobileNav}, {'width330': smaller && !showMobileNav}]"
+        :class="['height-0 pt-6 pb-4 px-4 h-auto mt-1 border-gray-100 opacity-100',
+                 {'!w-full md:!mt-0': showMobileNav},
+                 {'boxShadowGray md:border-none md:width550 md:rounded-lg md:bg-white': showNav},
+                 {'width430': small}, {'width330': smaller}]"
       >
         <slot />
       </div>
@@ -89,11 +89,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.boxShadowGray {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.08);
-}
-
 @screen md {
+  .boxShadowGray {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.08);
+  }
+
   .width330 {
     width: 330px !important
   }
