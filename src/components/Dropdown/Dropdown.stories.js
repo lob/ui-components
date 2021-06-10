@@ -23,8 +23,8 @@ const Template = (args, { argTypes }) => ({
   template: '<dropdown v-bind="args" v-model="vModel"></dropdown>'
 });
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const WithObjectOptions = Template.bind({});
+WithObjectOptions.args = {
   id: 'state',
   label: 'State',
   placeholder: 'Pick a state',
@@ -88,8 +88,8 @@ Primary.args = {
   ]
 };
 
-export const Secondary = Template.bind({});
-Secondary.args = {
+export const WithStringOptions = Template.bind({});
+WithStringOptions.args = {
   id: 'pokemon',
   label: 'Choose a Pokemon',
   options: [
