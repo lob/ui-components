@@ -23,23 +23,21 @@ export default {
     }
   },
   argTypes: {
-    content: {
-    }
+    
   }
 };
 
-const templateStr = `
-<MegaMenu v-bind="args">
-  <MegaMenuItem id="1" to="/settings/main/account" :imageSource="$getConst('lobAssetsUrl')+'/dashboard/navbar/settings.svg'" small>
-    Some text
-  </MegaMenuItem>
-</MegaMenu>
-`;
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { MegaMenu, MegaMenuItem },
   setup: () => ({ args }),
-  template: templateStr
+  template: `
+    <MegaMenu v-bind="args">
+      <MegaMenuItem id="1" to="/settings/main/account" :imageSource="$getConst('lobAssetsUrl')+'/dashboard/navbar/settings.svg'" small>
+        Some text
+      </MegaMenuItem>
+    </MegaMenu>
+    `
 });
 
 export const Primary = Template.bind({});
@@ -47,26 +45,19 @@ Primary.args = {
   title: 'Products',
   smaller: true,
   navKey: '',
-  mobileNavs: {}
-};
-Primary.parameters = {
-  docs: {
-    source: {
-      code: templateStr
-    }
-  }
+  mobileNavs: {},
+  id: '1'
 };
 
-const itemTemplateStr = `
-<MegaMenuItem v-bind="args" :imageSource="$getConst('lobAssetsUrl')+'/dashboard/navbar/settings.svg'">
-  Some text
-</MegaMenuItem>
-`;
 const ItemTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { MegaMenuItem },
   setup: () => ({ args }),
-  template: itemTemplateStr
+  template: `
+    <MegaMenuItem v-bind="args" :imageSource="$getConst('lobAssetsUrl')+'/dashboard/navbar/settings.svg'">
+      Some text
+    </MegaMenuItem>
+    `
 });
 
 export const Item = ItemTemplate.bind({});
@@ -74,11 +65,3 @@ Item.args = {
   to: '/settings/main/account',
   small: true
 };
-Item.parameters = {
-  docs: {
-    source: {
-      code: itemTemplateStr
-    }
-  }
-};
-

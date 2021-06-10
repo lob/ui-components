@@ -8,7 +8,7 @@
     <component
       :is="isExternal ? 'a' : 'router-link'"
       :[linkProp]="to"
-      class="flex pt-1 flex-nowrap items-center hover:text-primary-500"
+      class="flex pt-1 flex-nowrap items-center hover:text-primary-500 w-64"
     >
       <img
         :src="imageSource"

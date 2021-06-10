@@ -12,7 +12,7 @@
       :aria-controls="dropdownListId"
       aria-haspopup="menu"
     >
-      <div class="flex-nowrap flex width-100 mt-0 flex-row justify-between md:justify-start items-center">
+      <div class="flex-nowrap flex mt-0 flex-row justify-between md:justify-start items-center">
         {{ title }}
         <img
           :src="`${$getConst('lobAssetsUrl')}/dashboard/navbar/caret-down.svg`"
@@ -28,10 +28,9 @@
       :class="['hidden height-0 min-w-full bg-white-200 md:bg-white md:absolute', {'!block md:hidden': showMobileNav}, {'md:top-9 md:!block': showNav}, {'md:!hidden': !showNav}]"
     >
       <div
-        :class="['height-0 pt-6 pb-4 px-4 h-auto mt-1 border-gray-100 opacity-100',
+        :class="['height-0 pt-6 pb-4 px-4 h-auto w-full mt-1 border-gray-100 opacity-100',
                  {'!w-full md:!mt-0': showMobileNav},
-                 {'boxShadowGray md:border-none md:width550 md:rounded-lg md:bg-white': showNav},
-                 {'width430': small}, {'width330': smaller}]"
+                 {'boxShadowGray md:border-none md:rounded-lg md:bg-white': showNav}]"
       >
         <slot />
       </div>
@@ -52,14 +51,6 @@ export default {
       required: true
     },
     collapsed: {
-      type: Boolean,
-      default: false
-    },
-    small: {
-      type: Boolean,
-      default: false
-    },
-    smaller: {
       type: Boolean,
       default: false
     }
@@ -91,18 +82,6 @@ export default {
 @screen md {
   .boxShadowGray {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.08);
-  }
-
-  .width330 {
-    width: 330px !important;
-  }
-
-  .width430 {
-    width: 430px !important;
-  }
-
-  .width550 {
-    width: 550px;
   }
 }
 </style>
