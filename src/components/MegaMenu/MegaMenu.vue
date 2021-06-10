@@ -11,7 +11,6 @@
       class="w-full md:w-auto outline-none mx-0 py-2.5 px-3 transition-colors duration-200 ease-linear text-gray-700 whitespace-nowrap active:text-primary-300 active:no-underline hover:text-primary-300 hover:no-underline inline-block cursor-pointer relative"
       :aria-controls="dropdownListId" 
       aria-haspopup="menu"
-      role="navigation"
     >
       <div class="flex-nowrap flex width-100 mt-0 flex-row justify-between md:justify-start items-center">
         {{ title }} 

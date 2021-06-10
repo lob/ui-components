@@ -6,7 +6,8 @@ import MegaMenu from '../MegaMenu.vue';
 const initialProps = {
   title: 'Products',
   mobileNavs: {},
-  navKey: ''
+  navKey: '',
+  id: '1'
 };
 
 const renderComponent = (options, configure = null) => render(MegaMenu, { ...options, global: { plugins: [constants] } }, configure);
@@ -37,7 +38,7 @@ describe('MegaMenu', () => {
     await fireEvent.mouseEnter(menuContainer);
 
     const nav = queryByRole('navigation');
-    expect(nav).not.toHaveClass('hidden');
+    expect(nav).toHaveClass('md:!block');
   });
 
 });
