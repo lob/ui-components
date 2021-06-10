@@ -1,7 +1,6 @@
 import routeDecorator from '../../../.storybook/routeDecorator';
 import TopNavbar from './TopNavbar.vue';
 import mdx from './TopNavbar.mdx';
-import { constants } from '../../config';
 import MegaMenu from '../MegaMenu/MegaMenu.vue';
 import MegaMenuItem from '../MegaMenu/MegaMenuItem.vue';
 
@@ -19,8 +18,7 @@ export default {
   ]
 };
 
-
-const Template = (args, {argTypes}) => ({
+const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { TopNavbar, MegaMenu, MegaMenuItem },
   setup: () => ({ args }),
@@ -53,4 +51,4 @@ const Template = (args, {argTypes}) => ({
 
 export const Primary = Template.bind({});
 Primary.args = {
-}
+};

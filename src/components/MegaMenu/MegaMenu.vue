@@ -8,9 +8,7 @@
   >
     <div
       :id="dropdownToggleId"
-      class="w-full md:w-auto outline-none mx-0 py-2.5 px-3 transition-colors duration-200 ease-linear text-gray-700 whitespace-nowrap active:text-primary-300 active:no-underline hover:text-primary-300 hover:no-underline inline-block cursor-pointer relative"
-      :aria-controls="dropdownListId" 
-      aria-haspopup="menu"
+      class="w-full md:w-auto outline-none mx-0 py-2.5 px-3 transition-colors duration-200 ease-linear text-gray-700 whitespace-nowrap active:text-primary-300 active:no-underline hover:text-primary-300 hover:no-underline inline-block cursor-pointer relative" :aria-controls="dropdownListId" aria-haspopup="menu"
     >
       <div class="flex-nowrap flex width-100 mt-0 flex-row justify-between md:justify-start items-center">
         {{ title }} 
@@ -71,17 +69,17 @@ export default {
     };
   },
   methods: {
-    onClick($evt) {
+    onClick ($evt) {
       this.showMobileNav = !this.showMobileNav;
       this.$emit('click', $evt);
     }
   },
   computed: {
-    dropdownToggleId() {
-      return `dropdown-toggle-${this.id}`
+    dropdownToggleId () {
+      return `dropdown-toggle-${this.id}`;
     },
-    dropdownListId() {
-      return `dropdown-list-${this.id}`
+    dropdownListId () {
+      return `dropdown-list-${this.id}`;
     }
   }
 };

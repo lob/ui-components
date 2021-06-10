@@ -1,2 +1,2 @@
-import TopNavbar from './TopNavbar.vue'
-export default TopNavbar
+import TopNavbar from './TopNavbar.vue';
+export default TopNavbar;
