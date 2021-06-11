@@ -1,8 +1,8 @@
 <template>
   <div
     :class="[
-      'duet-date__dialog shadow px-6 py-4.5',
-      { 'is-active': open }
+      'hidden shadow px-6 py-4.5 absolute',
+      { '!block': open }
     ]"
     role="dialog"
     aria-modal="true"
@@ -89,6 +89,10 @@ export default {
       type: String,
       default: ''
     },
+    open: {
+      type: Boolean,
+      default: false
+    },
     localization: {
       type: Object,
       default: () => ({})
@@ -114,10 +118,9 @@ export default {
       default: null
     }
   },
-  emits: ['update:modelValue', 'input', 'close'],
+  emits: ['update:modelValue', 'update:open', 'input', 'close'],
   data () {
     return {
-      open: true,
       activeFocus: false,
       dialogLabelId: 'TODO: dialog label',
       monthSelectId: 'TODO: monthselect label',
@@ -155,9 +158,7 @@ export default {
   },
   // TODO: this will be conditional on show?
   mounted () {
-    if (this.activeFocus && this.open) {
-      this.$refs.month.focusDay();
-    }
+    this.handleFirstFocusableKeydown();
   },
   updated () {
     if (this.activeFocus && this.open) {
@@ -175,6 +176,7 @@ export default {
     hide (moveFocusToButton = true) {
       // TODO: put this in when there's an input to hook it up to
       // this.open = false;
+      this.$emit('update:open', false);
       this.$emit('close');
       // this.duetClose.emit({
       //   component: "duet-date-picker",
@@ -228,7 +230,6 @@ export default {
       this.activeFocus = true;
     },
     handleDisabledDay (days) {
-      debugger;
       while (this.isDayDisabled(this.focusedDay)) {
         this.addDays(days);
       }
@@ -238,12 +239,8 @@ export default {
         this.hide();
       }
     },
-    handleFirstFocusableKeydown ($event) {
-    // this ensures focus is trapped inside the dialog
-      if ($event.key === Keys.Tab && $event.shiftKey) {
-        this.$refs.focusedDayNode.focus();
-        $event.preventDefault();
-      }
+    handleFirstFocusableKeydown () {
+      this.$refs.month.focusDay();
     },
     onKeydown ($event) {
       // handle tab separately, since it needs to be treated
