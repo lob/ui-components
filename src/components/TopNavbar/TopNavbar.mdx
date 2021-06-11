@@ -1,0 +1,41 @@
+import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs/blocks';
+import TopNavbar from './TopNavbar.vue';
+import MegaMenu from "../MegaMenu/MegaMenu.vue";
+import MegaMenuItem from "../MegaMenu/MegaMenuItem.vue";
+
+# Top Navbar
+
+This responsive component represents the fixed header of the webapp, with a default slot where to include (for example) the Lob logo, megaMenus, etc.
+
+<Preview>
+  <Story id="components-topnavbar--primary" />
+</Preview>
+
+## How to Use
+
+```html
+<topNavbar>
+  <img
+    src="${constants.lobAssetsUrl}/dashboard/navbar/lob-logo.svg"
+    width="95"
+    alt=""
+  >
+  <div class="pl-6">
+    <MegaMenu title="Some menu" navKey="" :mobileNavs="{}" smaller>
+      <MegaMenuItem to="/settings/main/account" imageSource="${constants.lobAssetsUrl}/dashboard/navbar/settings.svg" small>
+        Some menu item
+      </MegaMenuItem>
+    </MegaMenu>
+
+    <MegaMenu title="Another menu" navKey="" :mobileNavs="{}" smaller>
+      <MegaMenuItem to="/settings/main/account" imageSource="${constants.lobAssetsUrl}/dashboard/navbar/settings.svg" small>
+        Another menu item
+      </MegaMenuItem>
+    </MegaMenu>
+  </div>
+</topNavbar>
+```
+
+## Props
+
+<ArgsTable story={PRIMARY_STORY} />

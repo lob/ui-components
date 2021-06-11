@@ -97,7 +97,7 @@ module.exports = {
       xs: ['0.75rem', { lineHeight: '1rem' }],
       sm: ['0.875rem', { lineHeight: '1.25rem' }],
       base: ['1rem', { lineHeight: '1.5rem' }],
-      lg: ['1.25rem', { lineHeight: '1.75rem' }],
+      lg: ['1.125rem', { lineHeight: '1.75rem' }],
       xl: ['1.5rem', { lineHeight: '1.75rem' }],
       '2xl': ['1.75rem', { lineHeight: '2rem' }],
       '3xl': ['2rem', { lineHeight: '2.25rem' }],
@@ -110,6 +110,11 @@ module.exports = {
     fill: (theme) => ({
       ...theme('colors')
     }),
+    boxShadow: {
+      DEFAULT: '0 5px 14px rgba(44, 67, 81, 0.13), 0 0 4px rgba(44, 67, 81, 0.02)',
+      input: '0px 0px 4px 2px rgba(24, 118, 219, 0.2)',
+      'input-selected': '0px 0px 4px 2px rgba(24, 118, 219, 0.4)'
+    },
     extend: {
       borderWidth: {
         3: '3px'
