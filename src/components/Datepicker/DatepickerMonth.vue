@@ -62,8 +62,8 @@ export default {
       default: ''
     },
     localization: {
-      type: String,
-      default: ''
+      type: Object,
+      default: () => ({})
     },
     firstDayOfWeek: {
       type: Number,

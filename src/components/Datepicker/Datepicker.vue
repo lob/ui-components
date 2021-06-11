@@ -1,231 +1,345 @@
 <template>
   <div
     :class="[
-      'duet-date__dialog',
-      {'is-left': direction === 'left'},
+      'duet-date__dialog shadow px-6 py-4.5',
       { 'is-active': open }
     ]"
     role="dialog"
     aria-modal="true"
-    :aria-hidden:="this.open ? 'false' : 'true'"
+    :aria-hidden="!open"
     :aria-:labelledby="dialogLabelId"
-    :onTouchMove="handleTouchMove"
-    :onTouchStart="handleTouchStart"
-    :onTouchEnd="handleTouchEnd"
+    @touchmove="onTouchmove"
+    @touchstart="onTouchstart"
+    @touchend="onTouchend"
   >
     <div
-      :ref="element => (dialogWrapperNode = element)"
+      ref="dialogWrapperNode"
       class="duet-date__dialog-content"
-      :onKeyDown="handleEscKey"
+      @keydown="handleEscKey"
     >
       <div
-        class="duet-date__vhidden duet-date__instructions"
+        class="sr-only duet-date__instructions"
         aria-live="polite"
       >
-        {this.localization.keyboardInstruction}
+        {{ localization.keyboardInstruction }}
       </div>
-      {/**
-      * With onFocusIn, which is what TS types expect, Stencil ends up listening to a
-      * focusIn event, which is wrong as it needs to be focusin. So we had to use onFocusin
-      * here which is wrong for the TS types, but ends up with the correct event listener
-      * in Stencil. See issue: https://github.com/ionic-team/stencil/issues/2628
-      */}
-      {/* @ts-ignore */}
       <div
-        class="duet-date__mobile"
-        onFocusin:="this.disableActiveFocus"
+        class="duet-date__header flex justify-between pb-4.5"
+        @focusin="disableActiveFocus"
       >
-        <label class="duet-date__mobile-heading">{this.localization.calendarHeading}</label>
         <button
-          :ref="element =>(firstFocusableElement = element)"
-          class="duet-date__close"
-          :onKeyDown="handleFirstFocusableKeydown"
-          :onClick="() => hide()"
+          class="duet-date__prev text-primary-500"
+          :disabled="prevMonthDisabled"
           type="button"
+          @click="onPreviousMonthClick"
         >
-          <svg
-            aria-hidden="true"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M0 0h24v24H0V0z"
-              fill="none"
-            />
-            <path d="M18.3 5.71c-.39-.39-1.02-.39-1.41 0L12 10.59 7.11 5.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L10.59 12 5.7 16.89c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L12 13.41l4.89 4.89c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z" />
-          </svg>
-          <span class="duet-date__vhidden">{this.localization.closeLabel}</span>
+          <arrow-left class="w-4 h-4" />
+          <span class="sr-only">{{ localization.prevMonthLabel }}</span>
         </button>
-      </div>
-      {/* @ts-ignore */}
-      <div
-        class="duet-date__header"
-        onFocusin:="this.disableActiveFocus"
-      >
         <div>
-          <h2
+          <span
             :id="dialogLabelId"
-            class="duet-date__vhidden"
+            class="text-sm text-gray-900 font-medium"
             aria-live="polite"
             aria-atomic="true"
           >
-            {this.localization.monthNames[focusedMonth]} {this.focusedDay.getFullYear()}
-          </h2>
-
-          <label
-            :htmlFor="monthSelectId"
-            class="duet-date__vhidden"
-          >
-            {this.localization.monthSelectLabel}
-          </label>
-          <div class="duet-date__select">
-            <select
-              :id="monthSelectId"
-              :ref="element => (monthSelectNode = element)"
-              class="duet-date__select--month"
-              :onChange="handleMonthSelect"
-            >
-              {this.localization.monthNames.map((month, i) => (
-              <option
-                :key="month"
-                :value="i"
-                :selected="i === focusedMonth"
-              >
-                {month}
-              </option>
-              ))}
-            </select>
-            <div
-              class="duet-date__select-label"
-              aria-hidden="true"
-            >
-              <span>{this.localization.monthNamesShort[focusedMonth]}</span>
-              <svg
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-              >
-                <path d="M8.12 9.29L12 13.17l3.88-3.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-4.59 4.59c-.39.39-1.02.39-1.41 0L6.7 10.7c-.39-.39-.39-1.02 0-1.41.39-.38 1.03-.39 1.42 0z" />
-              </svg>
-            </div>
-          </div>
-
-          <label
-            :htmlFor="yearSelectId"
-            class="duet-date__vhidden"
-          >
-            {this.localization.yearSelectLabel}
-          </label>
-          <div class="duet-date__select">
-            <select
-              :id="yearSelectId"
-              class="duet-date__select--year"
-              onChange:="this.handleYearSelect"
-            >
-              {range(minYear, maxYear).map(year => (
-              <option
-                :key="year"
-                :selected="year === focusedYear"
-              >
-                {year}
-              </option>
-              ))}
-            </select>
-            <div
-              class="duet-date__select-label"
-              aria-hidden="true"
-            >
-              <span>{this.focusedDay.getFullYear()}</span>
-              <svg
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-              >
-                <path d="M8.12 9.29L12 13.17l3.88-3.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-4.59 4.59c-.39.39-1.02.39-1.41 0L6.7 10.7c-.39-.39-.39-1.02 0-1.41.39-.38 1.03-.39 1.42 0z" />
-              </svg>
-            </div>
-          </div>
+            {{ localization.monthNames[focusedMonth] }} {{ focusedDay.getFullYear() }}
+          </span>
         </div>
-
-        <div class="duet-date__nav">
-          <button
-            class="duet-date__prev"
-            :onClick="handlePreviousMonthClick"
-            :disabled="prevMonthDisabled"
-            type="button"
-          >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg"
-              width="21"
-              height="21"
-              viewBox="0 0 24 24"
-            >
-              <path d="M14.71 15.88L10.83 12l3.88-3.88c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0L8.71 11.3c-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0 .38-.39.39-1.03 0-1.42z" />
-            </svg>
-            <span class="duet-date__vhidden">{this.localization.prevMonthLabel}</span>
-          </button>
-          <button
-            class="duet-date__next"
-            :onClick="handleNextMonthClick"
-            :disabled="nextMonthDisabled"
-            type="button"
-          >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg"
-              width="21"
-              height="21"
-              viewBox="0 0 24 24"
-            >
-              <path d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z" />
-            </svg>
-            <span class="duet-date__vhidden">{this.localization.nextMonthLabel}</span>
-          </button>
-        </div>
+        <button
+          class="duet-date__next text-primary-500"
+          :disabled="nextMonthDisabled"
+          type="button"
+          @click="onNextMonthClick"
+        >
+          <arrow-right class="w-4 h-4" />
+          <span class="sr-only">{{ localization.nextMonthLabel }}</span>
+        </button>
       </div>
       <DatepickerMonth
-        :date-formatter="dateFormatShort"
+        :date-formatter="dateFormatter"
         :selected-date="valueAsDate"
-        :focused-date="focusedDay"
-        :on-date-select="handleDaySelect"
-        :on-keyboard-navigation="handleKeyboardNavigation"
+        :focused-day="focusedDay"
+        :on-date-select="onDaySelect"
+        :on-keyboard-navigation="onKeyboardNavigation"
         :labelled-by-id="dialogLabelId"
         :localization="localization"
         :first-day-of-week="firstDayOfWeek"
         :focused-day-ref="processFocusedDayNode"
         :min="minDate"
         :max="maxDate"
-        :is-date-disabled="isDateDisabled"
       />
     </div>
   </div>
 </template>
 
 <script>
+import  ArrowLeft from '../Icons/ArrowLeft';
+import  ArrowRight from '../Icons/ArrowRight';
 import DatepickerMonth from './DatepickerMonth.vue';
+import { Keys, startOfWeek, endOfWeek, startOfMonth, endOfMonth, setMonth, setYear, clamp, parseISODate, inRange, printISODate } from '../../utils';
+
+const TRANSITION_MS = 300;
 
 export default {
   name: 'Datepicker',
-  components: { DatepickerMonth },
+  components: { DatepickerMonth, ArrowLeft, ArrowRight },
   props: {
-
+    modelValue: {
+      type: String,
+      default: ''
+    },
+    localization: {
+      type: Object,
+      default: () => ({})
+    },
+    min: {
+      type: String,
+      default: null
+    },
+    max: {
+      type: String,
+      default: null
+    },
+    dateFormatter: {
+      type: Object,
+      default: null
+    },
+    firstDayOfWeek: {
+      type: Number,
+      default: 0
+    }
+  },
+  emits: ['update:modelValue', 'input', 'close'],
+  data () {
+    return {
+      open: false,
+      activeFocus: false,
+      dialogLabelId: 'TODO: dialog label',
+      monthSelectId: 'TODO: monthselect label',
+      yearSelectId: 'TODO: yearselect label',
+      initialTouchX: '',
+      initialTouchY: '',
+      focusTimeoutId: '',
+      focusedDay: new Date(),
+      minDate: parseISODate(this.min),
+      maxDate: parseISODate(this.max)
+    };
   },
   computed: {
-
+    focusedMonth () {
+      return this.focusedDay.getMonth();
+    },
+    focusedYear () {
+      return this.focusedDay.getFullYear();
+    },
+    prevMonthDisabled () {
+      return this.minDate && this.minDate.getMonth() === this.focusedMonth && this.minDate.getFullYear() === this.focusedYear;
+    },
+    nextMonthDisabled () {
+      return this.maxDate && this.maxDate.getMonth() === this.focusedMonth && this.maxDate.getFullYear() === this.focusedYear;
+    },
+    minYear () {
+      return this.minDate ? this.minDate.getFullYear() : this.selectedYear - 10;
+    },
+    maxYear () {
+      return this.maxDate ? this.maxDate.getFullYear() : this.selectedYear + 10;
+    },
+    valueAsDate () {
+      return parseISODate(this.modelValue);
+    }
   },
   methods: {
+    processFocusedDayNode (element) {
+      this.$refs.focusedDayNode = element;
 
+      if (this.activeFocus && this.open) {
+        setTimeout(() => element.focus(), 0);
+      }
+    },
+    range (from, to) {
+      const result = [];
+      for (let i = from; i <= to; i++) {
+        result.push(i);
+      }
+      return result;
+    },
+    hide (moveFocusToButton = true) {
+      this.open = false;
+      this.$emit('close');
+      // this.duetClose.emit({
+      //   component: "duet-date-picker",
+      // })
+
+      // in cases where calendar is quickly shown and hidden
+      // we should avoid moving focus to the button
+      clearTimeout(this.focusTimeoutId);
+
+      if (moveFocusToButton) {
+      // iOS VoiceOver needs to wait for all transitions to finish.
+        setTimeout(() => this.$refs.datePickerButton.focus(), TRANSITION_MS + 200);
+      }
+    },
+    addDays (days) {
+      this.setFocusedDay(this.addDays(this.focusedDay, days));
+    },
+
+    addMonths (months) {
+      this.setMonth(this.focusedDay.getMonth() + months);
+    },
+
+    addYears (years) {
+      this.setYear(this.focusedDay.getFullYear() + years);
+    },
+
+    startOfWeek () {
+      this.setFocusedDay(startOfWeek(this.focusedDay, this.firstDayOfWeek));
+    },
+
+    endOfWeek () {
+      this.setFocusedDay(endOfWeek(this.focusedDay, this.firstDayOfWeek));
+    },
+    setFocusedDay (day) {
+      this.focusedDay = clamp(day, parseISODate(this.min), parseISODate(this.max));
+    },
+    setMonth (month) {
+      const min = setMonth(startOfMonth(this.focusedDay), month);
+      const max = endOfMonth(min);
+      const date = setMonth(this.focusedDay, month);
+
+      this.setFocusedDay(clamp(date, min, max));
+    },
+    setYear (year) {
+      const min = setYear(startOfMonth(this.focusedDay), year);
+      const max = endOfMonth(min);
+      const date = setYear(this.focusedDay, year);
+
+      this.setFocusedDay(clamp(date, min, max));
+    },
+    disableActiveFocus () {
+      this.activeFocus = false;
+    },
+    handleEscKey ($event) {
+      if ($event.key === Keys.Escape) {
+        this.hide();
+      }
+    },
+    handleFirstFocusableKeydown ($event) {
+    // this ensures focus is trapped inside the dialog
+      if ($event.key === Keys.Tab && $event.shiftKey) {
+        this.$refs.focusedDayNode.focus();
+        $event.preventDefault();
+      }
+    },
+    onKeyboardNavigation ($event) {
+    // handle tab separately, since it needs to be treated
+    // differently to other keyboard interactions
+      if ($event.key === Keys.TAB && !$event.shiftKey) {
+        $event.preventDefault();
+        this.firstFocusableElement.focus();
+        return;
+      }
+
+      var handled = true;
+
+      switch ($event.key) {
+        case Keys.Right:
+          this.addDays(1);
+          break;
+        case Keys.Left:
+          this.addDays(-1);
+          break;
+        case Keys.Down:
+          this.addDays(7);
+          break;
+        case Keys.Up:
+          this.addDays(-7);
+          break;
+        case Keys.PageUp:
+          if ($event.shiftKey) {
+            this.addYears(-1);
+          } else {
+            this.addMonths(-1);
+          }
+          break;
+        case Keys.PageDown:
+          if ($event.shiftKey) {
+            this.addYears(1);
+          } else {
+            this.addMonths(1);
+          }
+          break;
+        case Keys.Home:
+          this.startOfWeek();
+          break;
+        case Keys.End:
+          this.endOfWeek();
+          break;
+        default:
+          handled = false;
+      }
+
+      if (handled) {
+        $event.preventDefault();
+        this.enableActiveFocus();
+      }
+    },
+    onDaySelect (_$event, day) {
+      if (!inRange(day, parseISODate(this.min), parseISODate(this.max))) {
+        return;
+      }
+
+      this.setValue(day);
+      this.hide();
+    },
+    onMonthSelect ($event) {
+      this.setMonth(parseInt($event.target.value, 10));
+    },
+    onYearSelect ($event) {
+      this.setYear(parseInt($event.target.value, 10));
+    },
+    onPreviousMonthClick ($event) {
+      $event.preventDefault();
+      this.addMonths(-1);
+    },
+    onNextMonthClick ($event) {
+      $event.preventDefault();
+      this.addMonths(1);
+    },
+    onTouchmove ($event) {
+      $event.preventDefault();
+    },
+    onTouchstart ($event) {
+      const touch = $event.changedTouches[0];
+      this.initialTouchX = touch.pageX;
+      this.initialTouchY = touch.pageY;
+    },
+    onTouchend ($event) {
+      const touch = $event.changedTouches[0];
+      const distX = touch.pageX - this.initialTouchX; // get horizontal dist traveled
+      const distY = touch.pageY - this.initialTouchY; // get vertical dist traveled
+      const threshold = 70;
+
+      const isHorizontalSwipe = Math.abs(distX) >= threshold && Math.abs(distY) <= threshold;
+      const isDownwardsSwipe = Math.abs(distY) >= threshold && Math.abs(distX) <= threshold && distY > 0;
+
+      if (isHorizontalSwipe) {
+        this.addMonths(distX < 0 ? 1 : -1);
+      } else if (isDownwardsSwipe) {
+        this.hide(false);
+        $event.preventDefault();
+      }
+
+      this.initialTouchY = null;
+      this.initialTouchX = null;
+    },
+    setValue (date) {
+      const value = printISODate(date);
+      this.$emit('input', value);
+      this.$emit('update:modelValue', value);
+    }
   }
+
 };
 </script>
 
