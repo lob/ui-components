@@ -58,7 +58,7 @@
         </button>
       </div>
       <DatepickerMonth
-        ref="focusedMonth"
+        ref="month"
         :date-formatter="dateFormatter"
         :selected-day="valueAsDate"
         :focused-day="focusedDay"
@@ -67,6 +67,7 @@
         :first-day-of-week="firstDayOfWeek"
         :min="minDate"
         :max="maxDate"
+        :is-day-disabled="isDayDisabled"
         @daySelect="onDaySelect"
         @keydown="onKeydown"
       />
@@ -107,6 +108,10 @@ export default {
     firstDayOfWeek: {
       type: Number,
       default: 0
+    },
+    isDayDisabled: {
+      type: Function,
+      default: null
     }
   },
   emits: ['update:modelValue', 'input', 'close'],
@@ -122,11 +127,13 @@ export default {
       focusTimeoutId: '',
       focusedDay: parseISODate(this.modelValue) || new Date(),
       minDate: parseISODate(this.min),
-      maxDate: parseISODate(this.max),
-      errorDirection: 1
+      maxDate: parseISODate(this.max)
     };
   },
   computed: {
+    valueAsDate () {
+      return parseISODate(this.modelValue);
+    },
     focusedMonth () {
       return this.focusedDay.getMonth();
     },
@@ -144,23 +151,17 @@ export default {
     },
     maxYear () {
       return this.maxDate ? this.maxDate.getFullYear() : this.selectedYear + 10;
-    },
-    valueAsDate () {
-      return parseISODate(this.modelValue);
     }
   },
   // TODO: this will be conditional on show?
   mounted () {
     if (this.activeFocus && this.open) {
-      this.$refs.focusedMonth.focusDay();
+      this.$refs.month.focusDay();
     }
   },
   updated () {
     if (this.activeFocus && this.open) {
-      this.$refs.focusedMonth.focusDay();
-      // if (this.$refs.focusedMonth.isFocusDayDisabled()) {
-      //   this.addDays(this.errorDirection);
-      // }
+      this.$refs.month.focusDay();
     }
   },
   methods: {
@@ -226,6 +227,12 @@ export default {
     enableActiveFocus () {
       this.activeFocus = true;
     },
+    handleDisabledDay (days) {
+      debugger;
+      while (this.isDayDisabled(this.focusedDay)) {
+        this.addDays(days);
+      }
+    },
     handleEscKey ($event) {
       if ($event.key === Keys.Escape) {
         this.hide();
@@ -252,45 +259,45 @@ export default {
       switch ($event.key) {
         case Keys.Right:
           this.addDays(1);
-          this.errorDirection = 1;
+          this.handleDisabledDay(1);
           break;
         case Keys.Left:
           this.addDays(-1);
-          this.errorDirection = -1;
+          this.handleDisabledDay(-1);
           break;
         case Keys.Down:
           this.addDays(7);
-          this.errorDirection = 1;
+          this.handleDisabledDay(1);
           break;
         case Keys.Up:
           this.addDays(-7);
-          this.errorDirection = -1;
+          this.handleDisabledDay(-1);
           break;
         case Keys.PageUp:
           if ($event.shiftKey) {
             this.addYears(-1);
-            this.errorDirection = -1;
+            this.handleDisabledDay(-1);
           } else {
             this.addMonths(-1);
-            this.errorDirection = -1;
+            this.handleDisabledDay(-1);
           }
           break;
         case Keys.PageDown:
           if ($event.shiftKey) {
             this.addYears(1);
-            this.errorDirection = 1;
+            this.handleDisabledDay(1);
           } else {
             this.addMonths(1);
-            this.errorDirection = 1;
+            this.handleDisabledDay(1);
           }
           break;
         case Keys.Home:
           this.startOfWeek();
-          this.errorDirection = 1;
+          this.handleDisabledDay(1);
           break;
         case Keys.End:
           this.endOfWeek();
-          this.errorDirection = -1;
+          this.handleDisabledDay(-1);
           break;
         default:
           handled = false;

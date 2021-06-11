@@ -1,7 +1,7 @@
 import Datepicker from './Datepicker.vue';
 import DatepickerMonth from './DatepickerMonth.vue';
 import DatepickerDay from './DatepickerDay.vue';
-import { printISODate } from '../../utils';
+import { printISODate, DaysOfWeek } from '../../utils';
 
 //import mdx from './Datepicker.mdx';
 
@@ -31,10 +31,16 @@ const oneYearFromNow = new Date();
 oneYearAgo.setMonth(today.getMonth() - 12);
 oneYearFromNow.setMonth(today.getMonth() + 12);
 
+const isDayDisabled = (day) => {
+  const dayOfWeek = day.getDay();
+  return dayOfWeek === DaysOfWeek.Saturday || dayOfWeek === DaysOfWeek.Sunday;
+};
+
 export const Primary = Template.bind({});
 Primary.args = {
   focusedDay: new Date(),
   dateFormatter: new Intl.DateTimeFormat('en-US', { day: 'numeric', month: 'long' }),
+  isDayDisabled,
   localization: {
     keyboardInstruction: 'You can use arrow keys to navigate dates',
     calendarHeading: 'Calendar',

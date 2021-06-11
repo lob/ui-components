@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import { getViewOfMonth, isEqual, DaysOfWeek, inRange } from '../../utils';
+import { getViewOfMonth, isEqual, inRange } from '../../utils';
 import DatepickerDay from './DatepickerDay.vue';
 
 export default {
@@ -79,6 +79,10 @@ export default {
     },
     dateFormatter: {
       type: Object,
+      default: null
+    },
+    isDayDisabled: {
+      type: Function,
       default: null
     }
   },
@@ -119,8 +123,7 @@ export default {
       return isEqual(day, this.selectedDay);
     },
     isDisabled (day) {
-      const dayOfWeek = day.getDay();
-      return dayOfWeek === DaysOfWeek.Saturday || dayOfWeek === DaysOfWeek.Sunday;
+      return this.isDayDisabled ? this.isDayDisabled(day) : false;
     },
     isInRange (day) {
       return inRange(day, this.min, this.max);
@@ -133,9 +136,6 @@ export default {
     },
     focusDay () {
       this.$refs.focusedDay.focus();
-    },
-    isFocusDayDisabled () {
-      return this.$refs.focusedDay.isDisabled();
     }
   }
 };

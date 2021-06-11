@@ -80,11 +80,6 @@ export default {
     },
     focus () {
       this.$refs.day.focus();
-    },
-    isDisabled () {
-      console.log('this.day:', this.day);
-      console.log('this.$refs.day.getAttribute(\'disabled\'):', this.$refs.day.getAttribute('disabled'));
-      return this.$refs.day.getAttribute('disabled') === 'true';
     }
   }
 };
