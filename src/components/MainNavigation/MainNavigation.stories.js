@@ -97,8 +97,8 @@ const Template = (args, { argTypes }) => ({
   `
 });
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const FullNavigation = Template.bind({});
+FullNavigation.args = {
   iconSrc: iconOverview
 };
 
@@ -108,6 +108,7 @@ const ItemTemplate = (args, { argTypes }) => ({
   setup: () => ({ args }),
   template: '<main-navigation-item v-bind="args" />'
 });
+
 export const Item = ItemTemplate.bind({});
 Item.args = {
   title: 'Overview',
@@ -123,6 +124,7 @@ const ChildItemTemplate = (args, { argTypes }) => ({
   setup: () => ({ args }),
   template: '<main-navigation-child-item v-bind="args" />'
 });
+
 export const ChildItem = ChildItemTemplate.bind({});
 ChildItem.args = {
   title: 'Postcards',
