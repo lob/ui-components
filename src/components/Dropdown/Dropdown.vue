@@ -217,7 +217,7 @@ export default {
     }
   },
   updated () {
-    if (this.open && this.isScrollable(this.listbox)) {
+    if (this.open && this.isScrollable(this.$refs.listbox) && this.$refs.activeOption) {
       this.maintainScrollVisibility(this.$refs.activeOption, this.$refs.listbox);
     }
   },
