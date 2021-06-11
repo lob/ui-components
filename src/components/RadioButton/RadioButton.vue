@@ -115,8 +115,7 @@ export default {
   }
 
   &:checked + label::after {
-    box-shadow: 0 0 4px var(--color-primary-rgb-xl);
-
+    @apply shadow-input-selected;
     @apply bg-primary-500;
     @apply border-l;
   }
@@ -126,7 +125,7 @@ export default {
   }
 
   &:hover + label::before {
-    box-shadow: 0 0 4px var(--color-primary-rgb-l);
+    @apply shadow-input;
   }
 
   &:focus + label::before {
