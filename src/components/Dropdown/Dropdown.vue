@@ -30,7 +30,7 @@
         ]"
         tabindex="0"
         @blur="onSelectBlur"
-        @click="updateMenuState(true)"
+        @click="updateMenuState(!open)"
         @keydown="onSelectKeydown"
       >
         <span

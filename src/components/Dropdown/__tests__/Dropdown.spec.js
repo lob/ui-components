@@ -367,6 +367,20 @@ describe('Dropdown', () => {
       expect(emittedEvent.input[0][0]).toEqual(props.options[0]);
     });
 
+    it('clicking the select, it closes the listbox and retains focus', async () => {
+      const { queryByRole } = component;
+
+      const select = queryByRole('combobox');
+      const optionContainer = queryByRole('listbox');
+
+      expect(optionContainer).toHaveClass('!block');
+
+      await fireEvent.click(select);
+
+      expect(optionContainer).toHaveClass('hidden');
+      expect(select).toHaveFocus();
+    });
+
     it('clicking an option, it selects the current option and closes the listbox', async () => {
       const { queryAllByRole, emitted } = component;
       const options = queryAllByRole('option');
