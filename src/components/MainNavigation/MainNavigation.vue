@@ -7,7 +7,7 @@
         { collapsed: collapsible && !expanded }
       ]"
     >
-      <chevron-left 
+      <chevron-left
         v-if="collapsible"
         :class="['w-6 h-6 pr-0.5 cursor-pointer absolute z-10 text-gray-300 bg-white bg-opacity-100 border-2 border-white-300 rounded-xl -right-3 mt-3', { 'transform rotate-180': expanded }]"
         role="button"

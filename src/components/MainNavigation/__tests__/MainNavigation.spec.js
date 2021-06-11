@@ -35,7 +35,7 @@ describe('Main Navigation', () => {
 
       const collapseButton = queryByRole('button');
 
-      expect(collapseButton).not.toBeInTheDocument()
+      expect(collapseButton).not.toBeInTheDocument();
     });
 
   });
