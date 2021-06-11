@@ -105,7 +105,7 @@ export default {
 
 <style scoped lang="scss">
 .checkbox:hover input ~ .checkmark {
-  box-shadow: 0 0 4px var(--color-primary-rgb-l);
+  @apply shadow-input;
 }
 
 .checkbox input:focus ~ .checkmark {

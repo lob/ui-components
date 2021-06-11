@@ -1,0 +1,57 @@
+import {
+  Preview,
+  Story,
+  ArgsTable,
+  PRIMARY_STORY,
+} from "@storybook/addon-docs/blocks";
+import MegaMenu from "./MegaMenu.vue";
+import MegaMenuItem from "./MegaMenuItem.vue";
+
+# MegaMenu
+
+The mega menu component is used for displaying a big navigation menu with nested submenus displaying on hover.
+
+<Preview>
+  <Story id="components-megamenu--primary" />
+</Preview>
+
+## How to Use
+
+The mega menu renders a semantic `nav` element. It is made to work with `mega-menu-item` components. However, you can also write custom components for its slot.
+
+
+Example of using this component in a template, with a MegaMenuItem
+```html
+<mega-menu title="Some menu" navKey="" :mobileNavs="{}">
+  <mega-menu-item to="/settings/main/account" imageSource="${constants.lobAssetsUrl}/dashboard/navbar/settings.svg" small>
+    Some menu item
+  </mega-menu-item>
+</mega-menu>
+```
+
+# Mega Menu Item
+
+The mega menu item component is used for displaying a single item in the nested submenu that's displayed on hover.
+
+<Preview>
+  <Story id="components-megamenu--item" />
+</Preview>
+
+## How to Use
+
+The main navigation item component can render as a traditional link (hooked up to your app's routing) or as an anchor tag depending on if the link is internal to your app's routing or external.
+
+You must provide an image source and optionally a subtitle to display for the item.
+
+You can also choose to pass in the `small` prop in order to limit the amount of white space around the item.
+
+Example of using this component in a template
+```html
+<mega-menu-item to="/overview" imageSource="overviewIconSrcFile" subtitle="Optional subtitle text here" :small="true">
+  Overview
+</mega-menu-item>
+```
+
+## Props
+
+<ArgsTable story={PRIMARY_STORY} />
