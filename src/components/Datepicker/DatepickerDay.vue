@@ -1,22 +1,21 @@
 <template>
   <component
     :is="tag"
-    :ref="isFocused && el && focusedDayRef && focusedDayRef(el)"
-
+    ref="day"
     :class="[
-      'text-sm text-gray-900 bg-transparent rounded-full px-2 py-1 cursor-pointer inline-flex items-center justify-center w-6 h-6 relative text-center',
+      'text-sm text-gray-900 bg-transparent px-2 py-1 cursor-pointer inline-flex items-center justify-center w-6 h-6 relative text-center',
       {'!text-gray-100 !bg-transparent': disabled},
       {'cursor-default pointer-events-none': isOutsideRange},
-      {'z-10 bg-primary-500 text-white': isToday},
-      {'is-month': isMonth}
+      {'bg-white-300': today},
+      {'z-10 bg-primary-500 text-white rounded-full': selected}
     ]"
     :role="disabled ? 'button' : null"
-    :tab-index="isFocused ? 0: -1"
+    :tab-index="focused ? 0: -1"
     :disabled="disabled || isOutsideRange"
     :aria-pressed="disabled ? false : selected"
     :aria-disabled="disabled"
     @click="onClick"
-    @onKeydown="onKeyboardNavigation"
+    @keydown="onKeydown"
   >
     <span aria-hidden="true">{{ currentDate }}</span>
     <span class="sr-only">{{ formattedCurrentDate }}</span>
@@ -24,22 +23,24 @@
 </template>
 
 <script>
-import { isEqual, isEqualMonth } from '../../utils';
-
 export default {
   name: 'DatepickerDay',
   props: {
-    focusedDay: {
+    day: {
       type: Date,
       default: ''
     },
     today: {
-      type: Date,
-      default: ''
+      type: Boolean,
+      default: false
     },
-    day: {
-      type: Date,
-      default: ''
+    focused: {
+      type: Boolean,
+      default: false
+    },
+    selected: {
+      type: Boolean,
+      default: false
     },
     disabled: {
       type: Boolean,
@@ -49,20 +50,12 @@ export default {
       type: Boolean,
       default: true
     },
-    selected: {
-      type: Boolean,
-      default: false
-    },
     dateFormatter: {
       type: Object,
       default: null
     }
-    // onDaySelect: (event: MouseEvent, day: Date) => void
-    // onKeyboardNavigation: (event: KeyboardEvent) => void
-    // focusedDayRef?: (element: HTMLElement) => void
-
   },
-  emits: ['click'],
+  emits: ['click', 'daySelect', 'keydown'],
   computed: {
     tag () {
       return this.disabled ? 'span' : 'button';
@@ -73,15 +66,6 @@ export default {
     formattedCurrentDate () {
       return this.dateFormatter.format(this.day);
     },
-    isToday () {
-      return isEqual(this.day, this.today);
-    },
-    isMonth () {
-      return isEqualMonth(this.day, this.focusedDay);
-    },
-    isFocused () {
-      return isEqual(this.day, this.focusedDay);
-    },
     isOutsideRange () {
       return !this.inRange;
     }
@@ -89,15 +73,20 @@ export default {
   methods: {
     onClick ($event) {
       this.$emit('click', $event);
+      this.$emit('daySelect', this.day);
     },
-    onKeyboardNavigation () {
-      return;
+    onKeydown ($event) {
+      this.$emit('keydown', $event);
+    },
+    focus () {
+      this.$refs.day.focus();
+    },
+    isDisabled () {
+      console.log('this.day:', this.day);
+      console.log('this.$refs.day.getAttribute(\'disabled\'):', this.$refs.day.getAttribute('disabled'));
+      return this.$refs.day.getAttribute('disabled') === 'true';
     }
   }
 };
 </script>
-
-<style scoped lang="scss">
-
-</style>
 

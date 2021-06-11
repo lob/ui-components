@@ -36,7 +36,7 @@ Primary.args = {
   focusedDay: new Date(),
   dateFormatter: new Intl.DateTimeFormat('en-US', { day: 'numeric', month: 'long' }),
   localization: {
-    keyboardInstruction: 'use the keyboard',
+    keyboardInstruction: 'You can use arrow keys to navigate dates',
     calendarHeading: 'Calendar',
     closeLabel: 'Close',
     dayNames: [
@@ -53,6 +53,7 @@ Primary.args = {
       'February',
       'March',
       'April',
+      'May',
       'June',
       'July',
       'August',
@@ -66,6 +67,7 @@ Primary.args = {
       'Feb',
       'Mar',
       'Apr',
+      'May',
       'Jun',
       'Jul',
       'Aug',
@@ -93,6 +95,7 @@ const MonthTemplate = (args, { argTypes }) => ({
 export const Month = MonthTemplate.bind({});
 Month.args = {
   focusedDay: new Date(),
+  selectedDay: null,
   dateFormatter: new Intl.DateTimeFormat('en-US', { day: 'numeric', month: 'long' }),
   localization: {
     dayNames: [
@@ -116,8 +119,8 @@ const DayTemplate = (args, { argTypes }) => ({
 
 export const Day = DayTemplate.bind({});
 Day.args = {
-  focusedDay: new Date(),
   day: new Date(),
-  today: new Date(),
+  today: true,
+  // selected: true,
   dateFormatter: new Intl.DateTimeFormat('en-US', { day: 'numeric', month: 'long' })
 };

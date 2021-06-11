@@ -28,6 +28,7 @@
         @focusin="disableActiveFocus"
       >
         <button
+          ref="firstFocusableElement"
           class="duet-date__prev text-primary-500"
           :disabled="prevMonthDisabled"
           type="button"
@@ -57,17 +58,17 @@
         </button>
       </div>
       <DatepickerMonth
+        ref="focusedMonth"
         :date-formatter="dateFormatter"
-        :selected-date="valueAsDate"
+        :selected-day="valueAsDate"
         :focused-day="focusedDay"
-        :on-date-select="onDaySelect"
-        :on-keyboard-navigation="onKeyboardNavigation"
         :labelled-by-id="dialogLabelId"
         :localization="localization"
         :first-day-of-week="firstDayOfWeek"
-        :focused-day-ref="processFocusedDayNode"
         :min="minDate"
         :max="maxDate"
+        @daySelect="onDaySelect"
+        @keydown="onKeydown"
       />
     </div>
   </div>
@@ -77,9 +78,7 @@
 import  ArrowLeft from '../Icons/ArrowLeft';
 import  ArrowRight from '../Icons/ArrowRight';
 import DatepickerMonth from './DatepickerMonth.vue';
-import { Keys, startOfWeek, endOfWeek, startOfMonth, endOfMonth, setMonth, setYear, clamp, parseISODate, inRange, printISODate } from '../../utils';
-
-const TRANSITION_MS = 300;
+import { Keys, startOfWeek, endOfWeek, startOfMonth, endOfMonth, setMonth, setYear, addDays, clamp, parseISODate, inRange, printISODate } from '../../utils';
 
 export default {
   name: 'Datepicker',
@@ -113,7 +112,7 @@ export default {
   emits: ['update:modelValue', 'input', 'close'],
   data () {
     return {
-      open: false,
+      open: true,
       activeFocus: false,
       dialogLabelId: 'TODO: dialog label',
       monthSelectId: 'TODO: monthselect label',
@@ -121,9 +120,10 @@ export default {
       initialTouchX: '',
       initialTouchY: '',
       focusTimeoutId: '',
-      focusedDay: new Date(),
+      focusedDay: parseISODate(this.modelValue) || new Date(),
       minDate: parseISODate(this.min),
-      maxDate: parseISODate(this.max)
+      maxDate: parseISODate(this.max),
+      errorDirection: 1
     };
   },
   computed: {
@@ -149,14 +149,21 @@ export default {
       return parseISODate(this.modelValue);
     }
   },
+  // TODO: this will be conditional on show?
+  mounted () {
+    if (this.activeFocus && this.open) {
+      this.$refs.focusedMonth.focusDay();
+    }
+  },
+  updated () {
+    if (this.activeFocus && this.open) {
+      this.$refs.focusedMonth.focusDay();
+      // if (this.$refs.focusedMonth.isFocusDayDisabled()) {
+      //   this.addDays(this.errorDirection);
+      // }
+    }
+  },
   methods: {
-    processFocusedDayNode (element) {
-      this.$refs.focusedDayNode = element;
-
-      if (this.activeFocus && this.open) {
-        setTimeout(() => element.focus(), 0);
-      }
-    },
     range (from, to) {
       const result = [];
       for (let i = from; i <= to; i++) {
@@ -165,7 +172,8 @@ export default {
       return result;
     },
     hide (moveFocusToButton = true) {
-      this.open = false;
+      // TODO: put this in when there's an input to hook it up to
+      // this.open = false;
       this.$emit('close');
       // this.duetClose.emit({
       //   component: "duet-date-picker",
@@ -177,25 +185,21 @@ export default {
 
       if (moveFocusToButton) {
       // iOS VoiceOver needs to wait for all transitions to finish.
-        setTimeout(() => this.$refs.datePickerButton.focus(), TRANSITION_MS + 200);
+        // setTimeout(() => this.$refs.datePickerButton.focus(), TRANSITION_MS + 200);
       }
     },
     addDays (days) {
-      this.setFocusedDay(this.addDays(this.focusedDay, days));
+      this.setFocusedDay(addDays(this.focusedDay, days));
     },
-
     addMonths (months) {
       this.setMonth(this.focusedDay.getMonth() + months);
     },
-
     addYears (years) {
       this.setYear(this.focusedDay.getFullYear() + years);
     },
-
     startOfWeek () {
       this.setFocusedDay(startOfWeek(this.focusedDay, this.firstDayOfWeek));
     },
-
     endOfWeek () {
       this.setFocusedDay(endOfWeek(this.focusedDay, this.firstDayOfWeek));
     },
@@ -219,6 +223,9 @@ export default {
     disableActiveFocus () {
       this.activeFocus = false;
     },
+    enableActiveFocus () {
+      this.activeFocus = true;
+    },
     handleEscKey ($event) {
       if ($event.key === Keys.Escape) {
         this.hide();
@@ -231,9 +238,9 @@ export default {
         $event.preventDefault();
       }
     },
-    onKeyboardNavigation ($event) {
-    // handle tab separately, since it needs to be treated
-    // differently to other keyboard interactions
+    onKeydown ($event) {
+      // handle tab separately, since it needs to be treated
+      // differently to other keyboard interactions
       if ($event.key === Keys.TAB && !$event.shiftKey) {
         $event.preventDefault();
         this.firstFocusableElement.focus();
@@ -245,35 +252,45 @@ export default {
       switch ($event.key) {
         case Keys.Right:
           this.addDays(1);
+          this.errorDirection = 1;
           break;
         case Keys.Left:
           this.addDays(-1);
+          this.errorDirection = -1;
           break;
         case Keys.Down:
           this.addDays(7);
+          this.errorDirection = 1;
           break;
         case Keys.Up:
           this.addDays(-7);
+          this.errorDirection = -1;
           break;
         case Keys.PageUp:
           if ($event.shiftKey) {
             this.addYears(-1);
+            this.errorDirection = -1;
           } else {
             this.addMonths(-1);
+            this.errorDirection = -1;
           }
           break;
         case Keys.PageDown:
           if ($event.shiftKey) {
             this.addYears(1);
+            this.errorDirection = 1;
           } else {
             this.addMonths(1);
+            this.errorDirection = 1;
           }
           break;
         case Keys.Home:
           this.startOfWeek();
+          this.errorDirection = 1;
           break;
         case Keys.End:
           this.endOfWeek();
+          this.errorDirection = -1;
           break;
         default:
           handled = false;
@@ -284,19 +301,13 @@ export default {
         this.enableActiveFocus();
       }
     },
-    onDaySelect (_$event, day) {
+    onDaySelect (day) {
       if (!inRange(day, parseISODate(this.min), parseISODate(this.max))) {
         return;
       }
 
       this.setValue(day);
       this.hide();
-    },
-    onMonthSelect ($event) {
-      this.setMonth(parseInt($event.target.value, 10));
-    },
-    onYearSelect ($event) {
-      this.setYear(parseInt($event.target.value, 10));
     },
     onPreviousMonthClick ($event) {
       $event.preventDefault();

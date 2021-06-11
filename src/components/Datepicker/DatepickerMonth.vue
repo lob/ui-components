@@ -25,16 +25,16 @@
         class=""
       >
         <DatepickerDay
+          :ref="isFocused(day) ? 'focusedDay' : null"
           :day="day"
-          :today="today"
-          :focused-day="focusedDay"
-          :selected="isSelected(day, selectedDay)"
+          :today="isToday(day)"
+          :focused="isFocused(day)"
+          :selected="isSelected(day)"
           :disabled="isDisabled(day)"
           :in-range="isInRange(day, min, max)"
-          :on-day-select="onDateSelect"
           :date-formatter="dateFormatter"
-          :on-keyboard-navigation="onKeyboardNavigation"
-          :focused-day-ref="focusedDayRef"
+          @keydown="onKeydown"
+          @daySelect="onDaySelect"
         />
       </div>
     </div>
@@ -49,11 +49,11 @@ export default {
   name: 'DatepickerMonth',
   components: { DatepickerDay },
   props: {
-    selectedDay: {
+    focusedDay: {
       type: Date,
       default: null
     },
-    focusedDay: {
+    selectedDay: {
       type: Date,
       default: null
     },
@@ -81,14 +81,11 @@ export default {
       type: Object,
       default: null
     }
-    // onDateSelect,
-    // onKeyboardNavigation,
-    // focusedDayRef
   },
+  emits: ['daySelect', 'keyboardNavigation', 'keydown'],
   data () {
     return {
-      today: new Date(),
-      focusedDayRef: null
+      today: new Date()
     };
   },
   computed: {
@@ -112,6 +109,12 @@ export default {
         return array[adjustedIndex];
       });
     },
+    isToday (day) {
+      return isEqual(day, this.today);
+    },
+    isFocused (day) {
+      return isEqual(day, this.focusedDay);
+    },
     isSelected (day) {
       return isEqual(day, this.selectedDay);
     },
@@ -122,11 +125,17 @@ export default {
     isInRange (day) {
       return inRange(day, this.min, this.max);
     },
-    onDateSelect () {
-      return;
+    onDaySelect (value) {
+      this.$emit('daySelect', value);
     },
-    onKeyboardNavigation () {
-      return;
+    onKeydown ($event) {
+      this.$emit('keydown', $event);
+    },
+    focusDay () {
+      this.$refs.focusedDay.focus();
+    },
+    isFocusDayDisabled () {
+      return this.$refs.focusedDay.isDisabled();
     }
   }
 };
