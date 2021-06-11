@@ -64,7 +64,7 @@ textarea {
   min-height: 10rem;
 
   &:hover:not(:disabled) {
-    box-shadow: 0 5px 14px rgba(44, 67, 81, 0.13), 0 0 4px rgba(44, 67, 81, 0.02);
+    @apply shadow;
   }
 }
 </style>
