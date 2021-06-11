@@ -47,6 +47,7 @@ const isDayDisabled = (day) => {
 
 export const Primary = Template.bind({});
 Primary.args = {
+  id: 'test',
   focusedDay: new Date(),
   dateFormatter: new Intl.DateTimeFormat('en-US', { day: 'numeric', month: 'long' }),
   isDayDisabled,
