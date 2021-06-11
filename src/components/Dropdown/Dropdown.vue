@@ -368,11 +368,14 @@ export default {
         case MenuActions.First:
         case MenuActions.Previous:
           $event.preventDefault();
-          return this.onOptionChange(this.getUpdatedIndex(this.activeIndex, action));
+          const updatedIndex = this.getUpdatedIndex(this.activeIndex, action);
+          this.onOptionChange(updatedIndex);
+          return this.selectOption($event, updatedIndex);
         case MenuActions.CloseSelect:
         case MenuActions.Space:
           $event.preventDefault();
           this.selectOption($event, this.activeIndex);
+          return this.updateMenuState(false);
         case MenuActions.Close:
           $event.preventDefault();
           return this.updateMenuState(false);

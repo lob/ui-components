@@ -256,8 +256,10 @@ describe('Dropdown', () => {
         await fireEvent.keyDown(select, { key: 'ArrowDown', code: 'ArrowDown' });
         // key up to option a
         await fireEvent.keyDown(select, { key: 'ArrowUp', code: 'ArrowUp' });
+
         const emittedEvent = emitted();
-        expect(emittedEvent).not.toHaveProperty('input');
+        expect(emittedEvent).toHaveProperty('input');
+        expect(emittedEvent.input[2][0]).toEqual(props.options[0]);
       });
 
     });
@@ -287,14 +289,14 @@ describe('Dropdown', () => {
         expect(options[options.length - 1]).toHaveAttribute('aria-selected', 'true');
       });
 
-      it('does not change the selection', async () => {
+      it('changes the selection', async () => {
         const { emitted } = component;
         // key down to option a
         await fireEvent.keyDown(select, { key: 'ArrowDown', code: 'ArrowDown' });
-        // key down to option b
-        await fireEvent.keyDown(select, { key: 'ArrowDown', code: 'ArrowDown' });
+
         const emittedEvent = emitted();
-        expect(emittedEvent).not.toHaveProperty('input');
+        expect(emittedEvent).toHaveProperty('input');
+        expect(emittedEvent.input[0][0]).toEqual(props.options[0]);
       });
 
     });
