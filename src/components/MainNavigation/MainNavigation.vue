@@ -2,21 +2,28 @@
   <nav>
     <ul
       :class="[
-        'bg-white-100 h-screen',
-        { 'cursor-pointer': collapsible },
+        'bg-white-100 h-screen relative border-r-2 border-white-300',
         { expanded: collapsible && expanded },
         { collapsed: collapsible && !expanded }
       ]"
-      @[clickEvent]="animateDrawer"
+      
     >
+      <chevron-left 
+        v-if="collapsible"
+        @click="animateDrawer"
+        :class="['w-6 h-6 pr-0.5 cursor-pointer absolute z-10 text-gray-300 bg-white bg-opacity-100 border-2 border-white-300 rounded-xl -right-3 mt-3', { 'transform rotate-180': expanded }]" 
+      />
       <slot :expanded="expanded" />
     </ul>
+
   </nav>
 </template>
 
 <script>
+import ChevronLeft from '../Icons/ChevronLeft';
 export default {
   name: 'MainNavigation',
+  components: { ChevronLeft },
   props: {
     collapsible: {
       type: Boolean,
@@ -25,7 +32,7 @@ export default {
   },
   data () {
     return {
-      expanded: true
+      expanded: false
     };
   },
   computed: {
