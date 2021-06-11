@@ -22,7 +22,7 @@
         :aria-required="required"
         :aria-disabled="disabled"
         :class="[
-          'lob-dropdown cursor-default bg-white border rounded border-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
+          'cursor-default bg-white border rounded border-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent hover:shadow',
           {'text-sm py-1.5 px-2.5': small},
           {'py-3.5 px-4': large && !small},
           {'!bg-white-300 !border-white-200 pointer-events-none': disabled},
@@ -54,7 +54,7 @@
         ref="listbox"
         role="listbox"
         :class="[
-          'lob-dropdown-options cursor-default max-h-96 bg-white rounded-sm text-sm py-4 overflow-y-auto absolute left-0 top-full hidden w-full z-100',
+          'cursor-default max-h-96 bg-white rounded-sm text-sm py-4 overflow-y-auto absolute left-0 top-full hidden w-full z-100 shadow',
           {'!block': open }]"
       >
         <div
@@ -436,17 +436,3 @@ export default {
   }
 };
 </script>
-
-<style scoped lang="scss">
-$box-shadow: 0 5px 14px rgba(44, 67, 81, 0.13), 0 0 4px rgba(44, 67, 81, 0.02);
-
-.lob-dropdown {
-  &:hover {
-    box-shadow: $box-shadow;
-  }
-}
-
-.lob-dropdown-options {
-  box-shadow: $box-shadow;
-}
-</style>
