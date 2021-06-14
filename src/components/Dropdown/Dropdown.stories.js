@@ -246,3 +246,28 @@ WithStringOptions.args = {
     'Mew'
   ]
 };
+
+export const WithOptGroups = Template.bind({});
+WithOptGroups.args = {
+  id: 'dinosaur',
+  label: 'Pick a dinosaur',
+  options: [
+    {
+      label: 'Theropods',
+      options: [
+        'Tyrannosaurus',
+        'Velociraptor',
+        'Deinonychus'
+      ]
+    },
+    {
+      label: 'Sauropods',
+      options: [
+        'Diplodocus',
+        'Saltasaurus',
+        'Apatosaurus'
+      ]
+    },
+    'Brontosaurus'
+  ]
+};

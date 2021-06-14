@@ -58,25 +58,38 @@
           {'!block': open }]"
       >
         <div
-          v-for="(option, i) in optionItems"
-          :id="`${id}-${i}`"
-          :key="option.label || option"
-          :ref="activeIndex === i ? 'activeOption' : null"
-          :class="[
-            'py-1 px-8 truncate',
-            {'bg-turquoise-100': activeIndex === i},
-            {'hover:bg-turquoise-100': !option.disabled},
-            { 'text-gray-100': option.disabled},
-            {'!bg-none': option.disabled && activeIndex === i},
-            {'!text-primary-300': option.label === placeholder }
-          ]"
-          :aria-disabled="option.disabled"
-          :aria-selected="activeIndex === i"
-          role="option"
-          @mousedown="onOptionMousedown"
-          @click="($event) => onOptionClick($event, i)"
+          v-for="item in optionItems"
+          :key="item.label || item"
         >
-          {{ option.label || option }}
+          <div
+            v-if="isOptGroup(item)"
+            role="group"
+          >
+            <dropdown-item-group
+              :id="id"
+              :ref="activeIndex === flattenedOptions.indexOf(item) ? 'activeOption' : null"
+              :group="item"
+              :active-index="activeIndex"
+              :placeholder-text="placeholder"
+              :flattened-options="flattenedOptions"
+              @mousedown="onOptionMousedown"
+              @click="($event) => onOptionClick($event, flattenedOptions.indexOf(item))"
+            />
+          </div>
+          <div
+            v-else
+          >
+            <dropdown-item
+              :id="`${id}-${flattenedOptions.indexOf(item)}`"
+              :ref="activeIndex === flattenedOptions.indexOf(item) ? 'activeOption' : null"
+              :option="item"
+              :index="flattenedOptions.indexOf(item)"
+              :active="activeIndex === flattenedOptions.indexOf(item)"
+              :placeholder="item.label === placeholder"
+              @mousedown="onOptionMousedown"
+              @click="($event) => onOptionClick($event, flattenedOptions.indexOf(item))"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -85,6 +98,8 @@
 
 <script>
 import { ChevronDown } from '../Icons';
+import DropdownItemGroup from './DropdownItemGroup';
+import DropdownItem from './DropdownItem';
 import { findLastIndex } from '../../utils';
 
 if (!Array.prototype.findLastIndex) {
@@ -125,7 +140,7 @@ const MenuActions = {
 
 export default {
   name: 'Dropdown',
-  components: { ChevronDown },
+  components: { ChevronDown, DropdownItemGroup, DropdownItem },
   props: {
     modelValue: {
       type: [String, Object],
@@ -147,9 +162,12 @@ export default {
       type: Array,
       required: true,
       validator: function (value) {
-        // The value must match be a string or an object with a label property
+        // The value must match be a string, an object with a label property, or an object with label and options
         return value.every((o) => {
-          return typeof o === 'string' || o.hasOwnProperty('label');
+          const isString = typeof o === 'string';
+          const isOption = typeof o === 'object' && o.hasOwnProperty('label');
+          const isOptGroup = typeof o === 'object' && o.hasOwnProperty('label') && o.hasOwnProperty('options');
+          return isString || isOption || isOptGroup;
         });
       }
     },
@@ -193,10 +211,14 @@ export default {
   },
   computed: {
     optionItems () {
-      return this.placeholder ? [{ label: this.placeholder, disabled: this.required }, ...this.options] : [...this.options];
+      return this.placeholder ? [{ label: this.placeholder, disabled: this.required }, ...this.options] : this.options;
+    },
+    flattenedOptions () {
+      const flattened = [...this.options].flatMap((o) => o.options || o);
+      return this.placeholder ? [{ label: this.placeholder, disabled: this.required }, ...flattened] : flattened;
     },
     selectedOptionItem () {
-      return this.optionItems[this.selectedIndex] || null;
+      return this.flattenedOptions[this.selectedIndex] || null;
     },
     value () {
       if (this.selectedOptionItem) {
@@ -206,11 +228,11 @@ export default {
     },
     // minIndex that user can select (with mouse or keyboard)
     minIndex () {
-      return this.optionItems.findIndex((o) => !o.disabled);
+      return this.flattenedOptions.findIndex((item) => !item.disabled);
     },
     // maxIndex that user can select (with mouse or keyboard)
     maxIndex () {
-      return this.optionItems.findLastIndex((o) => !o.disabled);
+      return this.flattenedOptions.findLastIndex((item) => !item.disabled);
     },
     activeId () {
       return this.open ? `${this.id}-${this.activeIndex}` : '';
@@ -222,6 +244,10 @@ export default {
     }
   },
   methods: {
+    isOptGroup (optionItem) {
+      return optionItem.hasOwnProperty('options');
+    },
+
     /* SCROLL UTILITIES */
 
     // check if an element is currently scrollable
@@ -230,7 +256,9 @@ export default {
     },
     // ensure given child element is within the parent's visible scroll area
     maintainScrollVisibility (activeElement, scrollParent) {
-      const { offsetHeight, offsetTop } = activeElement;
+      // const { offsetHeight, offsetTop } = activeElement;
+      const offsetHeight = activeElement.getOffsetHeight();
+      const offsetTop = activeElement.getOffsetTop();
       const { offsetHeight: parentOffsetHeight, scrollTop } = scrollParent;
 
       const isAbove = offsetTop < scrollTop;
@@ -302,17 +330,17 @@ export default {
     // return the index of an option from an array of options, based on a search string
     // if the filter is multiple iterations of the same letter (e.g "aaa"), then cycle through first-letter matches
     getIndexByLetter (filter, startIndex = 0) {
-      const orderedOptions = [...this.optionItems.slice(startIndex), ...this.optionItems.slice(0, startIndex)];
-      const excludedOptions = [...this.optionItems].filter((o) => o.disabled);
+      const orderedOptions = [...this.flattenedOptions.slice(startIndex), ...this.flattenedOptions.slice(0, startIndex)];
+      const excludedOptions = [...this.flattenedOptions].filter((item) => item.disabled);
       const firstMatch = this.filterOptions(orderedOptions, filter, excludedOptions)[0];
       const allSameLetter = (array) => array.every((letter) => letter === array[0]);
 
       // first check if there is an exact match for the typed string
       if (firstMatch) {
-        return this.optionItems.indexOf(firstMatch);
+        return this.flattenedOptions.indexOf(firstMatch);
       } else if (allSameLetter(filter.split(''))) {
         const matches = this.filterOptions(orderedOptions, filter[0], excludedOptions);
-        return this.optionItems.indexOf(matches[0]);
+        return this.flattenedOptions.indexOf(matches[0]);
       } else {
         return -1;
       }
@@ -340,13 +368,13 @@ export default {
           return this.maxIndex;
         case MenuActions.Previous:
           let prevIndex = current - 1;
-          if (this.optionItems[prevIndex] && this.optionItems[prevIndex].disabled) {
+          if (this.flattenedOptions[prevIndex] && this.flattenedOptions[prevIndex].disabled) {
             prevIndex--;
           }
           return Math.max(this.minIndex, prevIndex);
         case MenuActions.Next:
           let nextIndex = current + 1;
-          if (this.optionItems[nextIndex] && this.optionItems[nextIndex].disabled) {
+          if (this.flattenedOptions[nextIndex] && this.flattenedOptions[nextIndex].disabled) {
             nextIndex++;
           }
           return Math.min(this.maxIndex, nextIndex);
@@ -417,7 +445,7 @@ export default {
       this.activeIndex = index;
     },
     onOptionClick ($event, index) {
-      if (this.optionItems[index].disabled) {
+      if (this.flattenedOptions[index].disabled) {
         return;
       }
 
@@ -431,7 +459,7 @@ export default {
     },
     selectOption ($event, index) {
       this.selectedIndex = index;
-      const selected = this.optionItems[index];
+      const selected = this.flattenedOptions[index];
       this.$emit('update:modelValue', selected);
       this.$emit('input', selected);
       this.$emit('change', $event);
