@@ -7,11 +7,10 @@ const realDate = Date;
 const dateMock = class extends Date {
   constructor (...args) {
     if (args.length > 0) {
-      // eslint-disable-next-line constructor-super, no-constructor-return
+      // eslint-disable-next-line constructor-super
       return super(...args);
     }
 
-    // eslint-disable-next-line no-constructor-return
     return testDate;
   }
 };
