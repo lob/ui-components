@@ -58,8 +58,8 @@
         :labelled-by-id="id"
         :localization="localization"
         :first-day-of-week="firstDayOfWeek"
-        :min="minDate"
-        :max="maxDate"
+        :min="min"
+        :max="max"
         :is-day-disabled="isDayDisabled"
         @daySelect="onDaySelect"
         @keydown="onKeydown"
@@ -72,15 +72,15 @@
 import  ArrowLeft from '../Icons/ArrowLeft';
 import  ArrowRight from '../Icons/ArrowRight';
 import DatepickerMonth from './DatepickerMonth.vue';
-import { Keys, startOfWeek, endOfWeek, startOfMonth, endOfMonth, setMonth, setYear, addDays, clamp, parseISODate, inRange, printISODate } from '../../utils';
+import { Keys, startOfWeek, endOfWeek, startOfMonth, endOfMonth, setMonth, setYear, addDays, clamp, inRange } from '../../utils';
 
 export default {
   name: 'Datepicker',
   components: { DatepickerMonth, ArrowLeft, ArrowRight },
   props: {
     modelValue: {
-      type: String,
-      default: ''
+      type: Date,
+      default: new Date()
     },
     id: {
       type: String,
@@ -95,12 +95,12 @@ export default {
       default: () => ({})
     },
     min: {
-      type: String,
-      default: null
+      type: Date,
+      default: new Date(new Date().setMonth(new Date().getMonth() - 12))
     },
     max: {
-      type: String,
-      default: null
+      type: Date,
+      default: new Date(new Date().setMonth(new Date().getMonth() + 12))
     },
     dateFormatter: {
       type: Object,
@@ -119,14 +119,12 @@ export default {
   data () {
     return {
       activeFocus: false,
-      focusedDay: parseISODate(this.modelValue) || new Date(),
-      minDate: parseISODate(this.min),
-      maxDate: parseISODate(this.max)
+      focusedDay: this.modelValue || new Date()
     };
   },
   computed: {
     selectedDay () {
-      return parseISODate(this.modelValue);
+      return this.modelValue;
     },
     focusedMonth () {
       return this.focusedDay.getMonth();
@@ -135,16 +133,16 @@ export default {
       return this.focusedDay.getFullYear();
     },
     prevMonthDisabled () {
-      return this.minDate && this.minDate.getMonth() === this.focusedMonth && this.minDate.getFullYear() === this.focusedYear;
+      return this.min && this.min.getMonth() === this.focusedMonth && this.min.getFullYear() === this.focusedYear;
     },
     nextMonthDisabled () {
-      return this.maxDate && this.maxDate.getMonth() === this.focusedMonth && this.maxDate.getFullYear() === this.focusedYear;
+      return this.max && this.max.getMonth() === this.focusedMonth && this.max.getFullYear() === this.focusedYear;
     },
     minYear () {
-      return this.minDate ? this.minDate.getFullYear() : this.selectedYear - 10;
+      return this.min ? this.min.getFullYear() : this.selectedYear - 10;
     },
     maxYear () {
-      return this.maxDate ? this.maxDate.getFullYear() : this.selectedYear + 10;
+      return this.max ? this.max.getFullYear() : this.selectedYear + 10;
     }
   },
   mounted () {
@@ -179,7 +177,7 @@ export default {
       this.setFocusedDay(endOfWeek(this.focusedDay, this.firstDayOfWeek));
     },
     setFocusedDay (day) {
-      this.focusedDay = clamp(day, parseISODate(this.min), parseISODate(this.max));
+      this.focusedDay = clamp(day, this.min, this.max);
     },
     setMonth (month) {
       const min = setMonth(startOfMonth(this.focusedDay), month);
@@ -280,7 +278,7 @@ export default {
       }
     },
     onDaySelect (day) {
-      if (!inRange(day, parseISODate(this.min), parseISODate(this.max))) {
+      if (!inRange(day, this.min, this.max)) {
         return;
       }
 
@@ -291,7 +289,7 @@ export default {
       this.$emit('update:open', false);
     },
     setValue (date) {
-      const value = printISODate(date);
+      const value = date;
       this.$emit('input', value);
       this.$emit('update:modelValue', value);
     }

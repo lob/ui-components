@@ -16,7 +16,7 @@ export default {
 //	},
 };
 
-const dateModel = '';
+const dateModel = null;
 const show = false;
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
@@ -48,7 +48,6 @@ const isDayDisabled = (day) => {
 export const Primary = Template.bind({});
 Primary.args = {
   id: 'test',
-  focusedDay: new Date(),
   dateFormatter: new Intl.DateTimeFormat('en-US', { day: 'numeric', month: 'long' }),
   isDayDisabled,
   localization: {
@@ -97,8 +96,8 @@ Primary.args = {
     prevMonthLabel: 'Previous',
     nextMonthLabel: 'Next'
   },
-  min: printISODate(oneYearAgo),
-  max: printISODate(oneYearFromNow)
+  min: oneYearAgo,
+  max: oneYearFromNow
 };
 
 const MonthTemplate = (args, { argTypes }) => ({
