@@ -27,7 +27,7 @@ describe('MegaMenu', () => {
     const { queryByRole } = renderComponent({ props });
 
     const nav = queryByRole('navigation');
-    expect(nav).toHaveClass('hidden');
+    expect(nav).not.toHaveClass('md:!block');
   });
 
   it('shows the nested submenu on hover', async () => {
