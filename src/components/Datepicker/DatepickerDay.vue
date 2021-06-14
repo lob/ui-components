@@ -7,10 +7,10 @@
       {'!text-gray-100 !bg-transparent': disabled},
       {'cursor-default pointer-events-none': isOutsideRange},
       {'bg-white-300': today},
-      {'z-10 bg-primary-500 text-white rounded-full': selected}
+      {'z-10 !bg-primary-500 text-white rounded-full': selected}
     ]"
     :role="disabled ? 'button' : null"
-    :tab-index="focused ? 0: -1"
+    :tabindex="focused ? 0: -1"
     :disabled="disabled || isOutsideRange"
     :aria-pressed="disabled ? false : selected"
     :aria-disabled="disabled"

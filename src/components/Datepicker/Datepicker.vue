@@ -18,11 +18,19 @@
       >
         {{ localization.keyboardInstruction }}
       </div>
+      <button
+        ref="firstFocusableElement"
+        class="close text-gray-700 opacity-0 focus:opacity-100 absolute right-2 top-2"
+        @keydown="handleFirstFocusableKeydown"
+        @click="hide"
+      >
+        <close class="w-4 h-4 p-1" />
+        <span class="sr-only">{{ localization.closeLabel }}</span>
+      </button>
       <div
         class="flex justify-between pb-4.5"
       >
         <button
-          ref="firstFocusableElement"
           class="text-primary-500"
           :disabled="prevMonthDisabled"
           @click="onPreviousMonthClick"
@@ -68,14 +76,13 @@
 </template>
 
 <script>
-import  ArrowLeft from '../Icons/ArrowLeft';
-import  ArrowRight from '../Icons/ArrowRight';
+import { ArrowLeft, ArrowRight, Close } from '../Icons';
 import DatepickerMonth from './DatepickerMonth.vue';
 import { Keys, startOfWeek, endOfWeek, startOfMonth, endOfMonth, setMonth, setYear, addDays, clamp, inRange } from '../../utils';
 
 export default {
   name: 'Datepicker',
-  components: { DatepickerMonth, ArrowLeft, ArrowRight },
+  components: { DatepickerMonth, ArrowLeft, ArrowRight, Close },
   props: {
     modelValue: {
       type: Date,
@@ -145,12 +152,12 @@ export default {
   },
   mounted () {
     if (this.open) {
-      this.handleFirstFocusableKeydown();
+      this.$refs.month.focusDate();
     }
   },
   updated () {
     if (this.open) {
-      this.handleFirstFocusableKeydown();
+      this.$refs.month.focusDate();
     }
   },
   methods: {
@@ -203,8 +210,12 @@ export default {
         this.hide();
       }
     },
-    handleFirstFocusableKeydown () {
-      this.$refs.month.focusDate();
+    handleFirstFocusableKeydown ($event) {
+      // this ensures focus is trapped inside the dialog
+      if ($event.key === Keys.Tab && $event.shiftKey) {
+        this.$refs.month.focusDate();
+        $event.preventDefault();
+      }
     },
     onPreviousMonthClick ($event) {
       $event.preventDefault();
@@ -217,9 +228,9 @@ export default {
     onKeydown ($event) {
       // handle tab separately, since it needs to be treated
       // differently to other keyboard interactions
-      if ($event.key === Keys.TAB && !$event.shiftKey) {
+      if ($event.key === Keys.Tab && !$event.shiftKey) {
         $event.preventDefault();
-        this.firstFocusableElement.focus();
+        this.$refs.firstFocusableElement.focus();
         return;
       }
 
