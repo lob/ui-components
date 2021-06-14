@@ -1,3 +1,5 @@
+<!-- Implementation inspired by Duet Date Picker https://github.com/duetds/date-picker -->
+
 <template>
   <div
     ref="container"
