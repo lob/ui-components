@@ -32,7 +32,6 @@
           :selected="isSelected(date)"
           :disabled="isDisabled(date)"
           :in-range="isInRange(date, min, max)"
-          :date-formatter="dateFormatter"
           @keydown="onKeydown"
           @dateSelect="onDateSelect"
         />

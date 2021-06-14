@@ -49,10 +49,6 @@ export default {
     inRange: {
       type: Boolean,
       default: true
-    },
-    dateFormatter: {
-      type: Object,
-      default: null
     }
   },
   emits: ['click', 'dateSelect', 'keydown'],
@@ -64,7 +60,7 @@ export default {
       return this.date.getDate();
     },
     formattedCurrentDate () {
-      return this.dateFormatter.format(this.date);
+      return new Intl.DateTimeFormat().format(this.date);
     },
     isOutsideRange () {
       return !this.inRange;

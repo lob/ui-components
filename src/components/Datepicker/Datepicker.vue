@@ -60,7 +60,6 @@
       </div>
       <DatepickerMonth
         ref="month"
-        :date-formatter="dateFormatter"
         :selected-date="selectedDate"
         :focused-date="focusedDate"
         :labelled-by-id="id"
@@ -108,10 +107,6 @@ export default {
     max: {
       type: Date,
       default: new Date(new Date().setMonth(new Date().getMonth() + 12))
-    },
-    dateFormatter: {
-      type: Object,
-      default: null
     },
     firstDayOfWeek: {
       type: Number,

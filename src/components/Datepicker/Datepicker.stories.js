@@ -48,8 +48,9 @@ const isDateDisabled = (date) => {
 export const Primary = Template.bind({});
 Primary.args = {
   id: 'test',
-  dateFormatter: new Intl.DateTimeFormat('en-US', { day: 'numeric', month: 'long' }),
   isDateDisabled,
+  min: oneYearAgo,
+  max: oneYearFromNow,
   localization: {
     keyboardInstruction: 'You can use arrow keys to navigate dates',
     calendarHeading: 'Calendar',
@@ -95,9 +96,7 @@ Primary.args = {
     yearSelectLabel: 'Choose year',
     prevMonthLabel: 'Previous',
     nextMonthLabel: 'Next'
-  },
-  min: oneYearAgo,
-  max: oneYearFromNow
+  }
 };
 
 const MonthTemplate = (args, { argTypes }) => ({
@@ -111,7 +110,6 @@ export const Month = MonthTemplate.bind({});
 Month.args = {
   focusedDate: new Date(),
   selectedDate: null,
-  dateFormatter: new Intl.DateTimeFormat('en-US', { day: 'numeric', month: 'long' }),
   localization: {
     dayNames: [
       'Sunday',
@@ -135,7 +133,5 @@ const DayTemplate = (args, { argTypes }) => ({
 export const Day = DayTemplate.bind({});
 Day.args = {
   date: new Date(),
-  today: true,
-  // selected: true,
-  dateFormatter: new Intl.DateTimeFormat('en-US', { day: 'numeric', month: 'long' })
+  today: true
 };
