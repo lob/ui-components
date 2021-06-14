@@ -1,7 +1,7 @@
 import Datepicker from './Datepicker.vue';
 import DatepickerMonth from './DatepickerMonth.vue';
 import DatepickerDay from './DatepickerDay.vue';
-import { printISODate, DaysOfWeek } from '../../utils';
+import { DaysOfWeek } from '../../utils';
 
 //import mdx from './Datepicker.mdx';
 
@@ -40,8 +40,8 @@ const oneYearFromNow = new Date();
 oneYearAgo.setMonth(today.getMonth() - 12);
 oneYearFromNow.setMonth(today.getMonth() + 12);
 
-const isDayDisabled = (day) => {
-  const dayOfWeek = day.getDay();
+const isDateDisabled = (date) => {
+  const dayOfWeek = date.getDay();
   return dayOfWeek === DaysOfWeek.Saturday || dayOfWeek === DaysOfWeek.Sunday;
 };
 
@@ -49,7 +49,7 @@ export const Primary = Template.bind({});
 Primary.args = {
   id: 'test',
   dateFormatter: new Intl.DateTimeFormat('en-US', { day: 'numeric', month: 'long' }),
-  isDayDisabled,
+  isDateDisabled,
   localization: {
     keyboardInstruction: 'You can use arrow keys to navigate dates',
     calendarHeading: 'Calendar',
@@ -109,8 +109,8 @@ const MonthTemplate = (args, { argTypes }) => ({
 
 export const Month = MonthTemplate.bind({});
 Month.args = {
-  focusedDay: new Date(),
-  selectedDay: null,
+  focusedDate: new Date(),
+  selectedDate: null,
   dateFormatter: new Intl.DateTimeFormat('en-US', { day: 'numeric', month: 'long' }),
   localization: {
     dayNames: [
@@ -134,7 +134,7 @@ const DayTemplate = (args, { argTypes }) => ({
 
 export const Day = DayTemplate.bind({});
 Day.args = {
-  day: new Date(),
+  date: new Date(),
   today: true,
   // selected: true,
   dateFormatter: new Intl.DateTimeFormat('en-US', { day: 'numeric', month: 'long' })

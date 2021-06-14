@@ -38,7 +38,7 @@
             aria-live="polite"
             aria-atomic="true"
           >
-            {{ localization.monthNames[focusedMonth] }} {{ focusedDay.getFullYear() }}
+            {{ localization.monthNames[focusedMonth] }} {{ focusedDate.getFullYear() }}
           </span>
         </div>
         <button
@@ -53,15 +53,15 @@
       <DatepickerMonth
         ref="month"
         :date-formatter="dateFormatter"
-        :selected-day="selectedDay"
-        :focused-day="focusedDay"
+        :selected-date="selectedDate"
+        :focused-date="focusedDate"
         :labelled-by-id="id"
         :localization="localization"
         :first-day-of-week="firstDayOfWeek"
         :min="min"
         :max="max"
-        :is-day-disabled="isDayDisabled"
-        @daySelect="onDaySelect"
+        :is-date-disabled="isDateDisabled"
+        @dateSelect="onDateSelect"
         @keydown="onKeydown"
       />
     </div>
@@ -110,7 +110,7 @@ export default {
       type: Number,
       default: 0
     },
-    isDayDisabled: {
+    isDateDisabled: {
       type: Function,
       default: null
     }
@@ -119,18 +119,18 @@ export default {
   data () {
     return {
       activeFocus: false,
-      focusedDay: this.modelValue || new Date()
+      focusedDate: this.modelValue || new Date()
     };
   },
   computed: {
-    selectedDay () {
+    selectedDate () {
       return this.modelValue;
     },
     focusedMonth () {
-      return this.focusedDay.getMonth();
+      return this.focusedDate.getMonth();
     },
     focusedYear () {
-      return this.focusedDay.getFullYear();
+      return this.focusedDate.getFullYear();
     },
     prevMonthDisabled () {
       return this.min && this.min.getMonth() === this.focusedMonth && this.min.getFullYear() === this.focusedYear;
@@ -150,7 +150,7 @@ export default {
   },
   updated () {
     if (this.activeFocus && this.open) {
-      this.$refs.month.focusDay();
+      this.$refs.month.focusDate();
     }
   },
   methods: {
@@ -162,39 +162,39 @@ export default {
       return result;
     },
     addDays (days) {
-      this.setFocusedDay(addDays(this.focusedDay, days));
+      this.setFocusedDate(addDays(this.focusedDate, days));
     },
     addMonths (months) {
-      this.setMonth(this.focusedDay.getMonth() + months);
+      this.setMonth(this.focusedDate.getMonth() + months);
     },
     addYears (years) {
-      this.setYear(this.focusedDay.getFullYear() + years);
+      this.setYear(this.focusedDate.getFullYear() + years);
     },
     startOfWeek () {
-      this.setFocusedDay(startOfWeek(this.focusedDay, this.firstDayOfWeek));
+      this.setFocusedDate(startOfWeek(this.focusedDate, this.firstDayOfWeek));
     },
     endOfWeek () {
-      this.setFocusedDay(endOfWeek(this.focusedDay, this.firstDayOfWeek));
+      this.setFocusedDate(endOfWeek(this.focusedDate, this.firstDayOfWeek));
     },
-    setFocusedDay (day) {
-      this.focusedDay = clamp(day, this.min, this.max);
+    setFocusedDate (date) {
+      this.focusedDate = clamp(date, this.min, this.max);
     },
     setMonth (month) {
-      const min = setMonth(startOfMonth(this.focusedDay), month);
+      const min = setMonth(startOfMonth(this.focusedDate), month);
       const max = endOfMonth(min);
-      const date = setMonth(this.focusedDay, month);
+      const date = setMonth(this.focusedDate, month);
 
-      this.setFocusedDay(clamp(date, min, max));
+      this.setFocusedDate(clamp(date, min, max));
     },
     setYear (year) {
-      const min = setYear(startOfMonth(this.focusedDay), year);
+      const min = setYear(startOfMonth(this.focusedDate), year);
       const max = endOfMonth(min);
-      const date = setYear(this.focusedDay, year);
+      const date = setYear(this.focusedDate, year);
 
-      this.setFocusedDay(clamp(date, min, max));
+      this.setFocusedDate(clamp(date, min, max));
     },
-    handleDisabledDay (days) {
-      while (this.isDayDisabled(this.focusedDay)) {
+    handleDisabledDate (days) {
+      while (this.isDateDisabled(this.focusedDate)) {
         this.addDays(days);
       }
     },
@@ -204,7 +204,7 @@ export default {
       }
     },
     handleFirstFocusableKeydown () {
-      this.$refs.month.focusDay();
+      this.$refs.month.focusDate();
     },
     onPreviousMonthClick ($event) {
       $event.preventDefault();
@@ -228,45 +228,45 @@ export default {
       switch ($event.key) {
         case Keys.Right:
           this.addDays(1);
-          this.handleDisabledDay(1);
+          this.handleDisabledDate(1);
           break;
         case Keys.Left:
           this.addDays(-1);
-          this.handleDisabledDay(-1);
+          this.handleDisabledDate(-1);
           break;
         case Keys.Down:
           this.addDays(7);
-          this.handleDisabledDay(1);
+          this.handleDisabledDate(1);
           break;
         case Keys.Up:
           this.addDays(-7);
-          this.handleDisabledDay(-1);
+          this.handleDisabledDate(-1);
           break;
         case Keys.PageUp:
           if ($event.shiftKey) {
             this.addYears(-1);
-            this.handleDisabledDay(-1);
+            this.handleDisabledDate(-1);
           } else {
             this.addMonths(-1);
-            this.handleDisabledDay(-1);
+            this.handleDisabledDate(-1);
           }
           break;
         case Keys.PageDown:
           if ($event.shiftKey) {
             this.addYears(1);
-            this.handleDisabledDay(1);
+            this.handleDisabledDate(1);
           } else {
             this.addMonths(1);
-            this.handleDisabledDay(1);
+            this.handleDisabledDate(1);
           }
           break;
         case Keys.Home:
           this.startOfWeek();
-          this.handleDisabledDay(1);
+          this.handleDisabledDate(1);
           break;
         case Keys.End:
           this.endOfWeek();
-          this.handleDisabledDay(-1);
+          this.handleDisabledDate(-1);
           break;
         default:
           handled = false;
@@ -277,12 +277,12 @@ export default {
         this.activeFocus = true;
       }
     },
-    onDaySelect (day) {
-      if (!inRange(day, this.min, this.max)) {
+    onDateSelect (date) {
+      if (!inRange(date, this.min, this.max)) {
         return;
       }
 
-      this.setValue(day);
+      this.setValue(date);
       this.hide();
     },
     hide () {

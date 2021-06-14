@@ -1,7 +1,7 @@
 <template>
   <component
     :is="tag"
-    ref="day"
+    ref="date"
     :class="[
       'text-sm text-gray-900 bg-transparent px-2 py-1 cursor-pointer inline-flex items-center justify-center w-6 h-6 relative text-center',
       {'!text-gray-100 !bg-transparent': disabled},
@@ -26,7 +26,7 @@
 export default {
   name: 'DatepickerDay',
   props: {
-    day: {
+    date: {
       type: Date,
       default: ''
     },
@@ -55,16 +55,16 @@ export default {
       default: null
     }
   },
-  emits: ['click', 'daySelect', 'keydown'],
+  emits: ['click', 'dateSelect', 'keydown'],
   computed: {
     tag () {
       return this.disabled ? 'span' : 'button';
     },
     currentDate () {
-      return this.day.getDate();
+      return this.date.getDate();
     },
     formattedCurrentDate () {
-      return this.dateFormatter.format(this.day);
+      return this.dateFormatter.format(this.date);
     },
     isOutsideRange () {
       return !this.inRange;
@@ -73,13 +73,13 @@ export default {
   methods: {
     onClick ($event) {
       this.$emit('click', $event);
-      this.$emit('daySelect', this.day);
+      this.$emit('dateSelect', this.date);
     },
     onKeydown ($event) {
       this.$emit('keydown', $event);
     },
     focus () {
-      this.$refs.day.focus();
+      this.$refs.date.focus();
     }
   }
 };

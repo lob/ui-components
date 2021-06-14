@@ -20,21 +20,21 @@
       class="grid grid-cols-7 gap-3"
     >
       <div
-        v-for="day in week"
-        :key="day"
+        v-for="date in week"
+        :key="date"
         class=""
       >
         <DatepickerDay
-          :ref="isFocused(day) ? 'focusedDay' : null"
-          :day="day"
-          :today="isToday(day)"
-          :focused="isFocused(day)"
-          :selected="isSelected(day)"
-          :disabled="isDisabled(day)"
-          :in-range="isInRange(day, min, max)"
+          :ref="isFocused(date) ? 'focusedDate' : null"
+          :date="date"
+          :today="isToday(date)"
+          :focused="isFocused(date)"
+          :selected="isSelected(date)"
+          :disabled="isDisabled(date)"
+          :in-range="isInRange(date, min, max)"
           :date-formatter="dateFormatter"
           @keydown="onKeydown"
-          @daySelect="onDaySelect"
+          @dateSelect="onDateSelect"
         />
       </div>
     </div>
@@ -49,11 +49,11 @@ export default {
   name: 'DatepickerMonth',
   components: { DatepickerDay },
   props: {
-    focusedDay: {
+    focusedDate: {
       type: Date,
       default: null
     },
-    selectedDay: {
+    selectedDate: {
       type: Date,
       default: null
     },
@@ -81,12 +81,12 @@ export default {
       type: Object,
       default: null
     },
-    isDayDisabled: {
+    isDateDisabled: {
       type: Function,
       default: null
     }
   },
-  emits: ['daySelect', 'keyboardNavigation', 'keydown'],
+  emits: ['dateSelect', 'keyboardNavigation', 'keydown'],
   data () {
     return {
       today: new Date()
@@ -94,7 +94,7 @@ export default {
   },
   computed: {
     days () {
-      return getViewOfMonth(this.focusedDay, this.firstDayOfWeek);
+      return getViewOfMonth(this.focusedDate, this.firstDayOfWeek);
     }
   },
   methods: {
@@ -113,29 +113,29 @@ export default {
         return array[adjustedIndex];
       });
     },
-    isToday (day) {
-      return isEqual(day, this.today);
+    isToday (date) {
+      return isEqual(date, this.today);
     },
-    isFocused (day) {
-      return isEqual(day, this.focusedDay);
+    isFocused (date) {
+      return isEqual(date, this.focusedDate);
     },
-    isSelected (day) {
-      return isEqual(day, this.selectedDay);
+    isSelected (date) {
+      return isEqual(date, this.selectedDate);
     },
-    isDisabled (day) {
-      return this.isDayDisabled ? this.isDayDisabled(day) : false;
+    isDisabled (date) {
+      return this.isDateDisabled ? this.isDateDisabled(date) : false;
     },
-    isInRange (day) {
-      return inRange(day, this.min, this.max);
+    isInRange (date) {
+      return inRange(date, this.min, this.max);
     },
-    onDaySelect (value) {
-      this.$emit('daySelect', value);
+    onDateSelect (value) {
+      this.$emit('dateSelect', value);
     },
     onKeydown ($event) {
       this.$emit('keydown', $event);
     },
-    focusDay () {
-      this.$refs.focusedDay.focus();
+    focusDate () {
+      this.$refs.focusedDate.focus();
     }
   }
 };
