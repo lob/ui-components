@@ -33,6 +33,7 @@
           :disabled="isDisabled(date)"
           :in-range="isInRange(date, min, max)"
           @keydown="onKeydown"
+          @click="onClick"
           @dateSelect="onDateSelect"
         />
       </div>
@@ -62,7 +63,17 @@ export default {
     },
     localization: {
       type: Object,
-      default: () => ({})
+      default: () => ({
+        dayNames: [
+          'Sunday',
+          'Monday',
+          'Tuesday',
+          'Wednesday',
+          'Thursday',
+          'Friday',
+          'Saturday'
+        ]
+      })
     },
     firstDayOfWeek: {
       type: Number,
@@ -70,22 +81,18 @@ export default {
     },
     min: {
       type: Date,
-      default: null
+      required: true
     },
     max: {
       type: Date,
-      default: null
-    },
-    dateFormatter: {
-      type: Object,
-      default: null
+      required: true
     },
     isDateDisabled: {
       type: Function,
       default: null
     }
   },
-  emits: ['dateSelect', 'keyboardNavigation', 'keydown'],
+  emits: ['dateSelect', 'click', 'keydown'],
   data () {
     return {
       today: new Date()
@@ -129,6 +136,9 @@ export default {
     },
     onDateSelect (value) {
       this.$emit('dateSelect', value);
+    },
+    onClick (value) {
+      this.$emit('click', value);
     },
     onKeydown ($event) {
       this.$emit('keydown', $event);
