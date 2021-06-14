@@ -59,4 +59,5 @@ describe('DropdownItemGroup', () => {
     const emittedEvent = emitted();
     expect(emittedEvent).toHaveProperty('click');
   });
+
 });
