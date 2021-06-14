@@ -1,5 +1,6 @@
 <template>
   <div
+    ref="container"
     :class="[
       'hidden shadow px-6 py-4.5 absolute',
       { '!block': open }
@@ -154,6 +155,10 @@ export default {
     if (this.open) {
       this.$refs.month.focusDate();
     }
+    window.addEventListener('click', this.onClickOutside);
+  },
+  unmounted () {
+    window.removeEventListener('click', this.onClickOutside);
   },
   updated () {
     if (this.open) {
@@ -294,6 +299,19 @@ export default {
 
       this.setValue(date);
       this.hide();
+    },
+    onClickOutside ($event) {
+      const hasBoundElement = Boolean(this.$parent.$refs.boundToDatepicker);
+
+      if (hasBoundElement) {
+        const clickOnTheDatepickerContainer = this.$refs.container === $event.target;
+        const clickOnDatepickerChild = this.$refs.container.contains($event.target);
+        const clickOnBoundElement = this.$parent.$refs.boundToDatepicker === $event.target;
+
+        if (!clickOnTheDatepickerContainer && !clickOnDatepickerChild && !clickOnBoundElement) {
+          this.hide();
+        }
+      }
     },
     hide () {
       this.$emit('update:open', false);

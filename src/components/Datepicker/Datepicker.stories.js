@@ -25,9 +25,9 @@ const Template = (args, { argTypes }) => ({
   setup: () => ({ args }),
   template: `
   <div class="relative">
-  <label>
-  Enter a date
-    <input @click="show = !show" :value="dateModel" class="border border-gray-300">
+    <label>
+      Enter a date
+      <input @click="show = !show" :value="dateModel" class="border border-gray-300" ref="boundToDatepicker">
     </label>
     <datepicker v-bind="args" v-model="dateModel" v-model:open="show"></datepicker>
   </div>
