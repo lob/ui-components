@@ -20,10 +20,7 @@
 </template>
 
 <script>
-import SkipToLeft from '../Icons/SkipToLeft.vue';
-import ChevronLeft from '../Icons/ChevronLeft.vue';
-import ChevronRight from '../Icons/ChevronRight.vue';
-import SkipToRight from '../Icons/SkipToRight.vue';
+import { SkipToLeft, ChevronLeft, ChevronRight, SkipToRight }  from '../Icons';
 
 export default {
   name: 'PageArrowIcon',
