@@ -54,7 +54,7 @@ export function isEqual (a, b) {
   return isEqualMonth(a, b) && a.getDate() === b.getDate();
 }
 
-export function startOfWeek (date, firstDayOfWeek = DaysOfWeek.Monday) {
+export function startOfWeek (date, firstDayOfWeek = DaysOfWeek.Sunday) {
   var d = new Date(date);
   var day = d.getDay();
   var diff = (day < firstDayOfWeek ? 7 : 0) + day - firstDayOfWeek;
@@ -63,7 +63,7 @@ export function startOfWeek (date, firstDayOfWeek = DaysOfWeek.Monday) {
   return d;
 }
 
-export function endOfWeek (date, firstDayOfWeek = DaysOfWeek.Monday) {
+export function endOfWeek (date, firstDayOfWeek = DaysOfWeek.Sunday) {
   var d = new Date(date);
   var day = d.getDay();
   var diff = (day < firstDayOfWeek ? -7 : 0) + 6 - (day - firstDayOfWeek);
@@ -106,7 +106,7 @@ function getDaysInRange (start, end) {
  * @param {number} firstDayOfWeek The number of the first day of the week
  * @returns {Date[]}
  */
-export function getViewOfMonth (date, firstDayOfWeek = DaysOfWeek.Monday) {
+export function getViewOfMonth (date, firstDayOfWeek = DaysOfWeek.Sunday) {
   const start = startOfWeek(startOfMonth(date), firstDayOfWeek);
   const end = endOfWeek(endOfMonth(date), firstDayOfWeek);
 
