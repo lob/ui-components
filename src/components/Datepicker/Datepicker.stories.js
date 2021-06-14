@@ -2,18 +2,17 @@ import Datepicker from './Datepicker.vue';
 import DatepickerMonth from './DatepickerMonth.vue';
 import DatepickerDay from './DatepickerDay.vue';
 import { DaysOfWeek } from '../../utils';
-
-//import mdx from './Datepicker.mdx';
+import mdx from './Datepicker.mdx';
 
 export default {
   title: 'Components/Datepicker',
   component: Datepicker,
-  subcomponents: { DatepickerMonth, DatepickerDay }
-//	parameters: {
-//		docs: {
-//			page: mdx
-//		}
-//	},
+  subcomponents: { DatepickerMonth, DatepickerDay },
+  parameters: {
+    docs: {
+      page: mdx
+    }
+  }
 };
 
 const dateModel = null;
@@ -97,41 +96,4 @@ Primary.args = {
     prevMonthLabel: 'Previous',
     nextMonthLabel: 'Next'
   }
-};
-
-const MonthTemplate = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
-  components: {  DatepickerMonth },
-  setup: () => ({ args }),
-  template: '<datepicker-month v-bind="args"></datepicker-month>'
-});
-
-export const Month = MonthTemplate.bind({});
-Month.args = {
-  focusedDate: new Date(),
-  selectedDate: null,
-  localization: {
-    dayNames: [
-      'Sunday',
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday'
-    ]
-  }
-};
-
-const DayTemplate = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
-  components: {  DatepickerDay },
-  setup: () => ({ args }),
-  template: '<datepicker-day v-bind="args"></datepicker-day>'
-});
-
-export const Day = DayTemplate.bind({});
-Day.args = {
-  date: new Date(),
-  today: true
 };

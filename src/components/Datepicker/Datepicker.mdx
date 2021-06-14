@@ -1,0 +1,94 @@
+import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs/blocks';
+import Datepicker from './Datepicker.vue';
+
+# Datepicker
+
+Datepicker is a stylized, accessible component for seeing a calendar and choosing a date.
+
+<Preview>
+  <Story id="components-datepicker--primary" />
+</Preview>
+
+## How to Use
+To use the datepicker component, you must provide a `v-model` of type Date, a `v-model:open` of type Boolean (controls whether the calendar is visible), an `id`, and localization strings (TODO: localization strategy TBD).
+
+The datepicker will also accept `min` and `max` properties (also Date objects) to control how far forward or back the calendar will render. By default, it will go 1 year in the past and 1 year in the future.
+
+You can also provide an `isDateDisabled` prop which is function that takes a single Date object parameter and returns a boolean for whether that date is disabled. You can use this to disable weekends, holidays, etc. if needed.
+
+If you would prefer that the calendar start on Mondays instead of Sundays,  you can provide a `firstDayOfWeek` prop set to 1 (the index of Monday) or any other index you'd like. By default, calendar weeks start on Sunday.
+
+Finally, to hook up the functionality to close the calendar when clicking outside of the datepicker and its parent element, you can provide a `boundComponent` prop which is a ref to the element that the user can click in to hide/show the calendar (usually an input).
+
+This component will emit `input` and `update:modelValue` events with the selected date as a vanilla JS Date object. It is up to you to decide how you would like to format and display that value in any inputs or presentation components. ([dayjs](https://day.js.org/) is a great little library for easy parsing and formatting)
+
+It will also emit `update:open` events with a boolean for whether the calendar is visible or not.
+
+Example of using this component in a template with simple string options
+```js
+const dateModel = new Date()
+const open = false
+const isDateDisabled = (date) => {
+  const dayOfWeek = date.getDay();
+  return dayOfWeek === DaysOfWeek.Saturday || dayOfWeek === DaysOfWeek.Sunday;
+};
+// TODO: localization strategy TBD
+const localization =   localization: {
+    keyboardInstruction: 'You can use arrow keys to navigate dates',
+    calendarHeading: 'Calendar',
+    closeLabel: 'Close',
+    dayNames: [
+      'Sunday',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday'
+    ],
+    monthNames: [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December'
+    ],
+    monthNamesShort: [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sept',
+      'Oct',
+      'Nov',
+      'Dec'
+    ],
+    monthSelectLabel: 'Choose month',
+    yearSelectLabel: 'Choose year',
+    prevMonthLabel: 'Previous',
+    nextMonthLabel: 'Next'
+  }
+```
+```html
+<label>
+  Enter a date
+  <input @click="open = !open" :value="dateModel" ref="input">
+</label>
+<datepicker v-model="dateModel" v-model:open="show" :boundComponent="$refs.input"></datepicker>
+```
+
+
+## Props
+
+<ArgsTable story={PRIMARY_STORY} />
