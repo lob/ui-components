@@ -9,69 +9,66 @@
     aria-modal="true"
     :aria-hidden="!open"
     :aria-:labelledby="id"
+    @keydown="handleEscKey"
   >
     <div
-      @keydown="handleEscKey"
+      class="sr-only"
+      aria-live="polite"
     >
-      <div
-        class="sr-only duet-date__instructions"
-        aria-live="polite"
+      {{ localization.keyboardInstruction }}
+    </div>
+    <button
+      ref="firstFocusableElement"
+      class="text-gray-700 opacity-0 focus:opacity-100 absolute right-2 top-2 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent"
+      @keydown="handleFirstFocusableKeydown"
+      @click="hide"
+    >
+      <close class="w-4 h-4 p-1" />
+      <span class="sr-only">{{ localization.closeLabel }}</span>
+    </button>
+    <div
+      class="flex justify-between pb-4.5"
+    >
+      <button
+        class="text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent"
+        :disabled="prevMonthDisabled"
+        @click="onPreviousMonthClick"
       >
-        {{ localization.keyboardInstruction }}
+        <arrow-left class="w-4 h-4" />
+        <span class="sr-only">{{ localization.prevMonthLabel }}</span>
+      </button>
+      <div>
+        <span
+          :id="id"
+          class="text-sm text-gray-900 font-medium"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          {{ localization.monthNames[focusedMonth] }} {{ focusedDate.getFullYear() }}
+        </span>
       </div>
       <button
-        ref="firstFocusableElement"
-        class="close text-gray-700 opacity-0 focus:opacity-100 absolute right-2 top-2"
-        @keydown="handleFirstFocusableKeydown"
-        @click="hide"
+        class="text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent"
+        :disabled="nextMonthDisabled"
+        @click="onNextMonthClick"
       >
-        <close class="w-4 h-4 p-1" />
-        <span class="sr-only">{{ localization.closeLabel }}</span>
+        <arrow-right class="w-4 h-4" />
+        <span class="sr-only">{{ localization.nextMonthLabel }}</span>
       </button>
-      <div
-        class="flex justify-between pb-4.5"
-      >
-        <button
-          class="text-primary-500"
-          :disabled="prevMonthDisabled"
-          @click="onPreviousMonthClick"
-        >
-          <arrow-left class="w-4 h-4" />
-          <span class="sr-only">{{ localization.prevMonthLabel }}</span>
-        </button>
-        <div>
-          <span
-            :id="id"
-            class="text-sm text-gray-900 font-medium"
-            aria-live="polite"
-            aria-atomic="true"
-          >
-            {{ localization.monthNames[focusedMonth] }} {{ focusedDate.getFullYear() }}
-          </span>
-        </div>
-        <button
-          class="text-primary-500"
-          :disabled="nextMonthDisabled"
-          @click="onNextMonthClick"
-        >
-          <arrow-right class="w-4 h-4" />
-          <span class="sr-only">{{ localization.nextMonthLabel }}</span>
-        </button>
-      </div>
-      <DatepickerMonth
-        ref="month"
-        :selected-date="selectedDate"
-        :focused-date="focusedDate"
-        :labelled-by-id="id"
-        :localization="localization"
-        :first-day-of-week="firstDayOfWeek"
-        :min="min"
-        :max="max"
-        :is-date-disabled="isDateDisabled"
-        @dateSelect="onDateSelect"
-        @keydown="onKeydown"
-      />
     </div>
+    <DatepickerMonth
+      ref="month"
+      :selected-date="selectedDate"
+      :focused-date="focusedDate"
+      :labelled-by-id="id"
+      :localization="localization"
+      :first-day-of-week="firstDayOfWeek"
+      :min="min"
+      :max="max"
+      :is-date-disabled="isDateDisabled"
+      @dateSelect="onDateSelect"
+      @keydown="onKeydown"
+    />
   </div>
 </template>
 
@@ -114,6 +111,10 @@ export default {
     },
     isDateDisabled: {
       type: Function,
+      default: () => false
+    },
+    boundComponent: {
+      type: Object,
       default: null
     }
   },
@@ -296,12 +297,12 @@ export default {
       this.hide();
     },
     onClickOutside ($event) {
-      const hasBoundElement = Boolean(this.$parent.$refs.boundToDatepicker);
+      const hasBoundElement = Boolean(this.boundComponent);
 
       if (hasBoundElement) {
         const clickOnTheDatepickerContainer = this.$refs.container === $event.target;
         const clickOnDatepickerChild = this.$refs.container.contains($event.target);
-        const clickOnBoundElement = this.$parent.$refs.boundToDatepicker === $event.target;
+        const clickOnBoundElement = this.boundComponent === $event.target;
 
         if (!clickOnTheDatepickerContainer && !clickOnDatepickerChild && !clickOnBoundElement) {
           this.hide();

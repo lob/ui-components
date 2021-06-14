@@ -3,7 +3,7 @@
     :is="tag"
     ref="date"
     :class="[
-      'text-sm text-gray-900 bg-transparent px-2 py-1 cursor-pointer inline-flex items-center justify-center w-6 h-6 relative text-center hover:bg-white-300',
+      'text-sm text-gray-900 bg-transparent px-2 py-1 cursor-pointer inline-flex items-center justify-center w-6 h-6 relative text-center hover:bg-white-300 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
       {'!text-gray-100 !bg-transparent': disabled},
       {'cursor-default pointer-events-none': isOutsideRange},
       {'bg-gray-100': today},
