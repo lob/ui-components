@@ -20,7 +20,6 @@
       </div>
       <div
         class="flex justify-between pb-4.5"
-        @focusin="activeFocus = false"
       >
         <button
           ref="firstFocusableElement"
@@ -118,7 +117,6 @@ export default {
   emits: ['update:modelValue', 'update:open', 'input'],
   data () {
     return {
-      activeFocus: false,
       focusedDate: this.modelValue || new Date()
     };
   },
@@ -146,11 +144,13 @@ export default {
     }
   },
   mounted () {
-    this.handleFirstFocusableKeydown();
+    if (this.open) {
+      this.handleFirstFocusableKeydown();
+    }
   },
   updated () {
-    if (this.activeFocus && this.open) {
-      this.$refs.month.focusDate();
+    if (this.open) {
+      this.handleFirstFocusableKeydown();
     }
   },
   methods: {
@@ -274,7 +274,6 @@ export default {
 
       if (handled) {
         $event.preventDefault();
-        this.activeFocus = true;
       }
     },
     onDateSelect (date) {
