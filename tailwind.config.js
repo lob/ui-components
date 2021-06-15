@@ -25,21 +25,21 @@ module.exports = {
         900: '#0154ac'
       },
       lemon: {
-        100: '#fbf3dc',
-        300: '#f6e2aa',
+        100: '#F6F2E5',
+        300: '#F2E5C2',
         500: '#ffda74',
-        700: '#fbc150',
-        900: '#ed9107'
+        700: '#EEC200',
+        900: '#966408'
       },
       turquoise: {
-        100: '#E5F1F5,',
+        100: '#DBF0F9',
         300: '#BBDCEA',
         500: '#57A1B9',
         700: '#4890A8',
         900: '#1F667D'
       },
       flint: {
-        100: '#E3F1FB',
+        100: '#DCE7FC',
         300: '#BFD6F2',
         500: '#7798C8',
         700: '#5279B4',
@@ -97,7 +97,7 @@ module.exports = {
       xs: ['0.75rem', { lineHeight: '1rem' }],
       sm: ['0.875rem', { lineHeight: '1.25rem' }],
       base: ['1rem', { lineHeight: '1.5rem' }],
-      lg: ['1.25rem', { lineHeight: '1.75rem' }],
+      lg: ['1.125rem', { lineHeight: '1.75rem' }],
       xl: ['1.5rem', { lineHeight: '1.75rem' }],
       '2xl': ['1.75rem', { lineHeight: '2rem' }],
       '3xl': ['2rem', { lineHeight: '2.25rem' }],
@@ -110,6 +110,11 @@ module.exports = {
     fill: (theme) => ({
       ...theme('colors')
     }),
+    boxShadow: {
+      DEFAULT: '0 5px 14px rgba(44, 67, 81, 0.13), 0 0 4px rgba(44, 67, 81, 0.02)',
+      input: '0px 0px 4px 2px rgba(24, 118, 219, 0.2)',
+      'input-selected': '0px 0px 4px 2px rgba(24, 118, 219, 0.4)'
+    },
     extend: {
       borderWidth: {
         3: '3px'
@@ -123,8 +128,8 @@ module.exports = {
     extend: {
       translate: ['group-hover'],
       backgroundColor: ['disabled', 'important'],
-      borderColor: ['disabled'],
       borderWidth: ['important'],
+      borderColor: ['disabled', 'important'],
       textColor: ['disabled', 'important'],
       display: ['important'],
       padding: ['important']

@@ -13,7 +13,7 @@ export default {
 
 const checkboxVModel = false;
 
-const PrimaryTemplate = (args, { argTypes }) => ({
+const SingleTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { Checkbox },
   setup: () => ({ args }),
@@ -28,15 +28,15 @@ const PrimaryTemplate = (args, { argTypes }) => ({
     `
 });
 
-export const Primary = PrimaryTemplate.bind({});
-Primary.args = {
+export const Single = SingleTemplate.bind({});
+Single.args = {
   label: 'Agree to Terms and Conditions',
   name: 'terms'
 };
 
 const arrayVModel = [];
 
-const SecondaryTemplate = (args, { argTypes }) => ({
+const GroupTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { Checkbox },
   setup: () => ({ args }),
@@ -77,7 +77,7 @@ const SecondaryTemplate = (args, { argTypes }) => ({
     `
 });
 
-export const Secondary = SecondaryTemplate.bind({});
-Secondary.args = {
+export const Group = GroupTemplate.bind({});
+Group.args = {
   sameLine: true
 };
