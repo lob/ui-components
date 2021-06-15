@@ -11,6 +11,14 @@ export default {
     docs: {
       page: mdx
     }
+  },
+  argTypes: {
+    size: {
+      options: ['small', 'large'],
+      control: {
+        type: 'select'
+      }
+    }
   }
 };
 const vModel = 'Squirtle';

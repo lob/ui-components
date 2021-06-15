@@ -6,7 +6,7 @@
       :id="id"
       :class="['pb-2 text-gray-500',
                {'text-xs': small},
-               {'text-sm': large && !small}]"
+               {'text-sm': large}]"
     >{{ label }}</label>
     <div class="relative">
       <div
@@ -24,7 +24,7 @@
         :class="[
           'cursor-default bg-white border rounded border-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent hover:shadow',
           {'text-sm py-1.5 px-2.5': small},
-          {'py-3.5 px-4': large && !small},
+          {'py-3.5 px-4': large},
           {'!bg-white-300 !border-white-200 pointer-events-none': disabled},
           {'border-error': error}
         ]"
@@ -45,7 +45,7 @@
           :class="[
             'w-4 h-4 absolute right-2',
             {'top-3': small},
-            {'top-5': large && !small}
+            {'top-5': large}
           ]"
         />
       </div>
@@ -171,13 +171,12 @@ export default {
         });
       }
     },
-    small: {
-      type: Boolean,
-      default: true
-    },
-    large: {
-      type: Boolean,
-      default: false
+    size: {
+      type: String,
+      default: 'small',
+      validator: function (value) {
+        return ['small', 'large'].includes(value);
+      }
     },
     required: {
       type: Boolean,
@@ -210,6 +209,12 @@ export default {
     };
   },
   computed: {
+    small () {
+      return this.size === 'small';
+    },
+    large () {
+      return this.size === 'large';
+    },
     optionItems () {
       return this.placeholder ? [{ label: this.placeholder, disabled: this.required }, ...this.options] : this.options;
     },
