@@ -22,6 +22,7 @@
       v-bind="$attrs"
       :id="id"
       ref="input"
+      :value="modelValue"
       :type="type"
       :class="[
         'rounded pl-2 pt-3 pb-4 leading-5 text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
@@ -34,6 +35,8 @@
       :disabled="disabled"
       :placeholder="placeholder"
       :readonly="readonly"
+      @input="onInput"
+      @change="onChange"
     >
     <div
       v-if="iconRight"
@@ -61,6 +64,10 @@ export default {
     LobButton
   },
   props: {
+    modelValue: {
+      type: String,
+      default: null
+    },
     id: {
       type: String,
       default: '',
@@ -104,6 +111,7 @@ export default {
       default: false
     }
   },
+  emits: ['update:modelValue', 'input', 'change'],
   computed: {
     iconLeft () {
       return this.$slots.iconLeft;
@@ -116,6 +124,13 @@ export default {
     copyToClipboard () {
       this.$refs.input.select();
       document.execCommand('copy');
+    },
+    onInput ($event) {
+      this.$emit('update:modelValue', $event.target.value);
+      this.$emit('input', $event.target.value);
+    },
+    onChange ($event) {
+      this.$emit('change', $event);
     }
   }
 };
