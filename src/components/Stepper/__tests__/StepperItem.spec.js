@@ -5,8 +5,6 @@ import { constants } from '../../../config';
 import StepperItem from '../StepperItem.vue';
 
 const initialProps = {
-  to: '/settings',
-  imageSource: 'image.svg'
 };
 
 const routes = [
