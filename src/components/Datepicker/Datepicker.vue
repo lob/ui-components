@@ -32,7 +32,10 @@
       class="flex justify-between pb-4.5"
     >
       <button
-        class="text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent"
+        :class="[
+          'text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
+          {'!text-gray-100': prevMonthDisabled}
+        ]"
         :disabled="prevMonthDisabled"
         @click="onPreviousMonthClick"
       >
@@ -50,7 +53,10 @@
         </span>
       </div>
       <button
-        class="text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent"
+        :class="[
+          'text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
+          {'!text-gray-100': nextMonthDisabled}
+        ]"
         :disabled="nextMonthDisabled"
         @click="onNextMonthClick"
       >
