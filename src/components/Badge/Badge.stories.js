@@ -1,9 +1,9 @@
-import Card from './Card.vue';
-import mdx from './Card.mdx';
+import Badge from './Badge.vue';
+import mdx from './Badge.mdx';
 
 export default {
-  title: 'Components/Card',
-  component: Card,
+  title: 'Components/Badge',
+  component: Badge,
   parameters: {
     docs: {
       page: mdx
@@ -21,18 +21,30 @@ export default {
           summary: 'html or component'
         }
       }
+    },
+    variant: {
+      options: ['info', 'success', 'warning', 'error', 'turquoise', 'flint'],
+      control: {
+        type: 'select'
+      }
+    },
+    shape: {
+      options: ['rounded', 'square'],
+      control: {
+        type: 'select'
+      }
     }
   }
 };
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { Card },
+  components: {  Badge },
   setup: () => ({ args }),
-  template: '<card v-slot>{{ args.content }}</card>'
+  template: '<badge v-slot v-bind="args">{{ args.content }}</badge>'
 });
 
 export const Primary = Template.bind({});
 Primary.args = {
-  content: 'I am a card.'
+  content: 'Badge text.'
 };

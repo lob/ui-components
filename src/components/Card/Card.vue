@@ -1,6 +1,6 @@
 <template>
   <div class="shadow p-6">
-    <slot name="content" />
+    <slot />
   </div>
 </template>
 
