@@ -21,6 +21,18 @@ export default {
           summary: 'html or component'
         }
       }
+    },
+    variant: {
+      options: ['info', 'success', 'warning', 'error', 'turquoise', 'flint'],
+      control: {
+        type: 'select'
+      }
+    },
+    shape: {
+      options: ['rounded', 'square'],
+      control: {
+        type: 'select'
+      }
     }
   }
 };

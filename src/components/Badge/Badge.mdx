@@ -11,11 +11,13 @@ Badges are a flexible component used to display small nuggets of text prominentl
 
 ## How to Use
 
-There are 6 types of badges: info, success, warning, error, turquoise, and flint. By default, the badge will display as info.
+There are 6 variants of badges: info, success, warning, error, turquoise, and flint. By default, the badge will display as info.
 
-You can change the type of the badge by adding the prop to the component.
+You can change the variant of the badge by adding the `variant` prop to the component.
 
 There are also 2 shapes of badges: rounded and square. By default, the badge will display as rounded.
+
+You can change the shape of the badge by adding the `shape` prop to the component.
 
 Please note: though you can only insert text in the Storybook demo, the card component will accept any valid HTML or Vue component.
 
@@ -30,7 +32,7 @@ Example of using this component as a default rounded info badge in a template
 Example of using this component as a square warning badge in a template
 
 ```html
-<Badge warning square>
+<Badge variant="warning" shape="square">
   <p>You are in <span class="bold">LIVE</span> mode, all verifications will be charged according to your <a href="#">chosen plan</a>.</p>
 </Badge>
 ```
