@@ -55,6 +55,7 @@ export default {
       default: false
     }
   },
+  emits: ['click'],
   data () {
     return {
       showNav: false,
@@ -70,9 +71,9 @@ export default {
     }
   },
   methods: {
-    onClick ($evt) {
+    onClick ($event) {
       this.showMobileNav = !this.showMobileNav;
-      this.$emit('click', $evt);
+      this.$emit('click', $event);
     }
   }
 };
