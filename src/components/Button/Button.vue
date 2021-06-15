@@ -7,15 +7,15 @@
       },
       {
         'secondary bg-white-200 border border-primary-500 text-primary-500 active:text-primary-700 active:border-primary-700 disabled:border-gray-100':
-          secondary && !primary
+          secondary
       },
       {
         'tertiary bg-white border border-gray-100 text-gray-500 active:border-gray-300 disabled:border-white-300':
-          tertiary && !primary && !secondary
+          tertiary
       },
-      { 'px-6 py-3.5': !small && !large },
+      { 'px-6 py-3.5': defaultSize },
       { 'px-3 py-2': small },
-      { 'px-6 py-4.5': large && !small }
+      { 'px-6 py-4.5': large }
     ]"
     :disabled="disabled"
     @click="handleClick"
@@ -30,25 +30,19 @@
 export default {
   name: 'LobButton',
   props: {
-    primary: {
-      type: Boolean,
-      default: true
+    variant: {
+      type: String,
+      default: 'primary',
+      validator: function (value) {
+        return ['primary', 'secondary', 'tertiary'].includes(value);
+      }
     },
-    secondary: {
-      type: Boolean,
-      default: false
-    },
-    tertiary: {
-      type: Boolean,
-      default: false
-    },
-    small: {
-      type: Boolean,
-      default: false
-    },
-    large: {
-      type: Boolean,
-      default: false
+    size: {
+      type: String,
+      default: 'default',
+      validator: function (value) {
+        return ['default', 'small', 'large'].includes(value);
+      }
     },
     disabled: {
       type: Boolean,
@@ -56,6 +50,26 @@ export default {
     }
   },
   emits: ['click'],
+  computed: {
+    primary () {
+      return this.variant === 'primary';
+    },
+    secondary () {
+      return this.variant === 'secondary';
+    },
+    tertiary () {
+      return this.variant === 'tertiary';
+    },
+    defaultSize () {
+      return this.size === 'default';
+    },
+    small () {
+      return this.size === 'small';
+    },
+    large () {
+      return this.size === 'large';
+    }
+  },
   methods: {
     handleClick ($event) {
       this.$emit('click', $event);
