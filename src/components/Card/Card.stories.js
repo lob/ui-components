@@ -29,7 +29,7 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { Card },
   setup: () => ({ args }),
-  template: '<card v-slot:content>{{ args.content }}</card>'
+  template: '<card v-slot>{{ args.content }}</card>'
 });
 
 export const Primary = Template.bind({});
