@@ -31,16 +31,16 @@ const Template = (args, { argTypes }) => ({
   setup: () => ({ args }),
   template: `
     <Stepper>
-      <StepperItem position="first" variant="finished">
+      <StepperItem position="first" variant="finished" v-bind="args">
         Finished
       </StepperItem>
-      <StepperItem variant="active">
+      <StepperItem variant="active" v-bind="args">
         Active
       </StepperItem>
-      <StepperItem variant="error">
+      <StepperItem variant="error" v-bind="args">
         Error
       </StepperItem>
-      <StepperItem position="last" variant="unfinished">
+      <StepperItem position="last" variant="unfinished" v-bind="args">
         Unfinished
       </StepperItem>
     </Stepper>
@@ -49,6 +49,8 @@ const Template = (args, { argTypes }) => ({
 
 export const Primary = Template.bind({});
 Primary.args = {
+  alignLeft: false,
+  dashedBorder: false
 };
 
 const ItemTemplate = (args, { argTypes }) => ({
@@ -56,7 +58,7 @@ const ItemTemplate = (args, { argTypes }) => ({
   components: { StepperItem },
   setup: () => ({ args }),
   template: `
-    <StepperItem>
+    <StepperItem v-bind="args">
       Some text
     </StepperItem>
     `
@@ -64,4 +66,8 @@ const ItemTemplate = (args, { argTypes }) => ({
 
 export const Item = ItemTemplate.bind({});
 Item.args = {
+  variant: 'active',
+  position: 'middle',
+  alignLeft: false,
+  dashedBorder: false
 };

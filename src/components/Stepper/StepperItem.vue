@@ -1,14 +1,17 @@
 <template>
   <div
-    :class="['w-16 text-xs md:text-base md:w-32 text-center inline-block border-t relative marker',
+    :class="['w-16 text-xs md:text-base md:w-32 inline-block border-t relative marker',
+             {'border-dashed': dashedBorder},
+             {'text-center': !alignLeft},
+             {'marker-center': !alignLeft},
              {'border-primary-500': finished || active},
              {'marker-finished': finished},
              {'marker-active': active},
              {'border-error marker-error': error},
              {'border-gray-100 marker-unfinished': unfinished},
-             {'half-border': first || last},
-             {'half-border-right': first},
-             {'half-border-left': last}]"
+             {'half-border half-border-right': first && !alignLeft},
+             {'half-border half-border-left': last && !alignLeft},
+             {'border-none': last && alignLeft}]"
   >
     <slot />
   </div>
@@ -27,6 +30,14 @@ export default {
       type: String,
       default: 'finished',
       validator: (prop) => ['finished', 'active', 'error', 'unfinished'].includes(prop)
+    },
+    alignLeft: {
+      type: Boolean,
+      default: false
+    },
+    dashedBorder: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -57,6 +68,7 @@ export default {
   .marker-finished::before {
     @apply bg-primary-500;
     @apply text-white;
+    @apply text-center;
 
     content: "✔" !important;
     font-size: 9px;
@@ -90,6 +102,9 @@ export default {
 
     top: -7px;
     content: "";
+  }
+
+  .marker-center::before {
     margin-left: calc(50% - 7px);
   }
 
