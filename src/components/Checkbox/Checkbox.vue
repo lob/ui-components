@@ -16,6 +16,7 @@
       :disabled="disabled"
       :required="required"
       @input="onInput"
+      @click="onClick"
     >
     <span
       style="content: '';"

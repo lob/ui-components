@@ -10,6 +10,8 @@ const initialProps = {
   disabled: false
 };
 
+const renderComponent = (options) => render(Checkbox, { ...options });
+
 describe('Checkbox', () => {
 
   it('renders correctly', () => {
@@ -18,9 +20,7 @@ describe('Checkbox', () => {
       disabled: true
     };
 
-    const { queryByText, queryByLabelText } = render(Checkbox, {
-      props
-    });
+    const { queryByText, queryByLabelText } = renderComponent({ props });
 
     const label = queryByText(props.label);
     expect(label).toBeInTheDocument();
@@ -34,9 +34,7 @@ describe('Checkbox', () => {
       disabled: true
     };
 
-    const { getByLabelText } = render(Checkbox, {
-      props
-    });
+    const { getByLabelText } = renderComponent({ props });
 
     const checkbox = getByLabelText(props.label);
     expect(checkbox).toBeDisabled();
@@ -48,9 +46,7 @@ describe('Checkbox', () => {
       required: true
     };
 
-    const { getByLabelText } = render(Checkbox, {
-      props
-    });
+    const { getByLabelText } = renderComponent({ props });
 
     const checkbox = getByLabelText(`${props.label}*`);
     expect(checkbox).toBeRequired();
@@ -62,9 +58,7 @@ describe('Checkbox', () => {
       error: true
     };
 
-    const { getByTestId } = render(Checkbox, {
-      props
-    });
+    const { getByTestId } = renderComponent({ props });
 
     const checkmark = getByTestId('checkmark');
     expect(checkmark).toHaveClass('border-error');
@@ -72,9 +66,7 @@ describe('Checkbox', () => {
 
   it('fires the input event when the input is clicked', async () => {
     const props = initialProps;
-    const { getByLabelText, emitted } = render(Checkbox, {
-      props
-    });
+    const { getByLabelText, emitted } = renderComponent({ props });
 
     const checkbox = getByLabelText(props.label);
 
@@ -82,31 +74,76 @@ describe('Checkbox', () => {
     const emittedEvent = emitted();
     expect(emittedEvent).toHaveProperty('input');
     expect(emittedEvent.input[0]).toEqual([true]);
+    expect(checkbox).toBeChecked();
+  });
+
+  it('fires the click event when the input is clicked', async () => {
+    const props = initialProps;
+    const { getByLabelText, emitted } = renderComponent({ props });
+
+    const checkbox = getByLabelText(props.label);
+
+    await fireEvent.click(checkbox); // checks de checkbox
+    const emittedEvent = emitted();
+    expect(emittedEvent).toHaveProperty('click');
   });
 
   describe('when the v-model is a simple boolean', () => {
 
-    it('does not check the input when the v-model is false', () => {
-      const props = initialProps;
-      const { getByLabelText } = render(Checkbox, {
-        props
+    describe('when the v-model is false', () => {
+
+      it('does not check the input', () => {
+        const props = initialProps;
+        const { getByLabelText } = renderComponent({ props });
+
+        const checkbox = getByLabelText(props.label);
+        expect(checkbox).not.toBeChecked();
       });
 
-      const checkbox = getByLabelText(props.label);
-      expect(checkbox).not.toBeChecked();
+      it('emits an input event with the value true when clicked', async () => {
+        const props = initialProps;
+        const { getByLabelText, emitted } = renderComponent({ props });
+
+        const checkbox = getByLabelText(props.label);
+
+        await fireEvent.click(checkbox);
+        const emittedEvent = emitted();
+        expect(emittedEvent).toHaveProperty('input');
+        expect(emittedEvent.input[0]).toEqual([true]);
+        expect(checkbox).toBeChecked();
+      });
+
     });
 
-    it('checks the input when the v-model is true', () => {
-      const props = {
-        ...initialProps,
-        modelValue: true
-      };
-      const { getByLabelText } = render(Checkbox, {
-        props
+    describe('when the v-model is true', () => {
+
+      it('checks the input when the v-model is true', () => {
+        const props = {
+          ...initialProps,
+          modelValue: true
+        };
+        const { getByLabelText } = renderComponent({ props });
+
+        const checkbox = getByLabelText(props.label);
+        expect(checkbox).toBeChecked();
       });
 
-      const checkbox = getByLabelText(props.label);
-      expect(checkbox).toBeChecked();
+      it('emits an input event with the value true when clicked', async () => {
+        const props = {
+          ...initialProps,
+          modelValue: true
+        };
+        const { getByLabelText, emitted } = renderComponent({ props });
+
+        const checkbox = getByLabelText(props.label);
+
+        await fireEvent.click(checkbox);
+        const emittedEvent = emitted();
+        expect(emittedEvent).toHaveProperty('input');
+        expect(emittedEvent.input[0]).toEqual([false]);
+        expect(checkbox).not.toBeChecked();
+      });
+
     });
 
   });
@@ -120,9 +157,7 @@ describe('Checkbox', () => {
         modelValue: ['not test', 'also not test']
       };
 
-      const { getByLabelText } = render(Checkbox, {
-        props
-      });
+      const { getByLabelText } = renderComponent({ props });
 
       const checkbox = getByLabelText(props.label);
       expect(checkbox).not.toBeChecked();
@@ -134,11 +169,26 @@ describe('Checkbox', () => {
         value: 'test',
         modelValue: ['not test', 'test']
       };
-      const { getByLabelText } = render(Checkbox, {
-        props
-      });
+      const { getByLabelText } = renderComponent({ props });
 
       const checkbox = getByLabelText(props.label);
+      expect(checkbox).toBeChecked();
+    });
+
+    it('emits an input event that contains value of the checkbox when clicked', async () => {
+      const props = {
+        ...initialProps,
+        value: 'test',
+        modelValue: ['not a test']
+      };
+      const { getByLabelText, emitted } = renderComponent({ props });
+
+      const checkbox = getByLabelText(props.label);
+
+      await fireEvent.click(checkbox);
+      const emittedEvent = emitted();
+      expect(emittedEvent).toHaveProperty('input');
+      expect(emittedEvent.input[0][0]).toContain('test');
       expect(checkbox).toBeChecked();
     });
 
