@@ -11,24 +11,10 @@ export default {
       page: mdx
     }
   },
-  argTypes: {
-    variant: {
-      options: ['finished', 'active', 'error', 'unfinished'],
-      control: {
-        type: 'select'
-      }
-    },
-    position: {
-      options: ['first', 'middle', 'last'],
-      control: {
-        type: 'select'
-      }
-    }
-  }
+  argTypes: {}
 };
 
-const Template = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
+const Template = (args) => ({
   components: { Stepper, StepperItem },
   setup: () => ({ args }),
   template: `
@@ -67,6 +53,21 @@ const ItemTemplate = (args, { argTypes }) => ({
 });
 
 export const Item = ItemTemplate.bind({});
+Item.argTypes = {
+  variant: {
+    options: ['finished', 'active', 'error', 'unfinished'],
+    control: {
+      type: 'select'
+    }
+  },
+  position: {
+    options: ['first', 'middle', 'last'],
+    control: {
+      type: 'select'
+    }
+  }
+};
+
 Item.args = {
   variant: 'active',
   position: 'middle',
