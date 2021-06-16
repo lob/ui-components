@@ -11,11 +11,13 @@ Buttons are styled semantic buttons that will handle all of the appropriate butt
 
 ## How to Use
 
-There are 3 types of buttons: primary, secondary, and tertiary. By default, the button will display as primary.
+There are 3 variants of buttons: primary, secondary, and tertiary. By default, the button will display as primary.
+
+You can change the variant of the button by adding the `variant` prop to the component.
 
 There are 3 sizes of buttons: default, small, and large.
 
-You can change the type and size of the button by adding the prop to the component.
+You can change the size of the button by adding the `size` prop to the component.
 
 Please note: though you can only insert text in the Storybook demo, the button component will accept any valid HTML or Vue component.
 
@@ -30,7 +32,7 @@ Example of using this component as a primary button in a template
 Example of using this component as a secondary, small button in a template
 
 ```html
-<lob-button secondary small>
+<lob-button variant="secondary" size="small">
   Sign up
 </lob-button>
 ```
