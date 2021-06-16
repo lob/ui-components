@@ -11,9 +11,9 @@ Alerts are a flexible component used to display highlighted content prominently.
 
 ## How to Use
 
-There are 4 types of alerts: info, success, warning, and error. By default, the alert will display as info.
+There are 4 variants of alerts: info, success, warning, and error. By default, the alert will display as info.
 
-You can change the type of the alert by adding the prop to the component.
+You can change the variant of the alert by adding the `variant` prop to the component.
 
 Please note: though you can only insert text in the Storybook demo, the card component will accept any valid HTML or Vue component.
 
@@ -28,7 +28,7 @@ Example of using this component as a default info alert in a template
 Example of using this component as a warning alert in a template
 
 ```html
-<alert warning>
+<alert variant="warning">
   <p>You are in <span class="bold">LIVE</span> mode, all verifications will be charged according to your <a href="#">chosen plan</a>.</p>
 </alert>
 ```

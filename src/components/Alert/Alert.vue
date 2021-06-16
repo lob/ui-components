@@ -2,9 +2,9 @@
   <div
     :class="['w-full p-4.5 rounded-md flex justify-center align-center',
              { 'bg-turquoise-100': info },
-             { 'bg-mint-100': success && !info },
-             { 'bg-lemon-100': warning && !info && !success },
-             { 'bg-coral-100': error && !info && !success && !warning }
+             { 'bg-mint-100': success },
+             { 'bg-lemon-100': warning },
+             { 'bg-coral-100': error }
     ]"
   >
     <slot />
@@ -15,21 +15,26 @@
 export default {
   name: 'Alert',
   props: {
-    info: {
-      type: Boolean,
-      default: true
+    variant: {
+      type: String,
+      default: 'info',
+      validator: function (value) {
+        return ['info', 'success', 'warning', 'error'].includes(value);
+      }
+    }
+  },
+  computed: {
+    info () {
+      return this.variant === 'info';
     },
-    success: {
-      type: Boolean,
-      default: false
+    success () {
+      return this.variant === 'success';
     },
-    warning: {
-      type: Boolean,
-      default: false
+    warning () {
+      return this.variant === 'warning';
     },
-    error: {
-      type: Boolean,
-      default: false
+    error () {
+      return this.variant === 'error';
     }
   }
 };
