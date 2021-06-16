@@ -17,6 +17,12 @@ export default {
       control: {
         type: null
       }
+    },
+    size: {
+      options: ['default', 'small'],
+      control: {
+        type: 'select'
+      }
     }
   }
 };

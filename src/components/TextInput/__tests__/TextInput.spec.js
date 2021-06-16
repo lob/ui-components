@@ -86,6 +86,7 @@ describe('Text input', () => {
 
     const emittedEvent = emitted();
     expect(emittedEvent).toHaveProperty('input');
+    expect(emittedEvent).toHaveProperty('change');
     expect(emittedEvent.input[0]).toEqual([updatedValue]);
   });
 

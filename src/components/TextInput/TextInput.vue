@@ -7,6 +7,7 @@
     {{ label }}
   </label>
   <div
+    v-bind="$attrs"
     :class="[
       'flex input rounded border border-gray-100',
       {'!border-0': withCopyButton}
@@ -19,7 +20,6 @@
       <slot name="iconLeft" />
     </div>
     <input
-      v-bind="$attrs"
       :id="id"
       ref="input"
       type="text"
@@ -37,7 +37,6 @@
       :placeholder="placeholder"
       :readonly="readonly"
       @input="onInput"
-      @change="onChange"
     >
     <div
       v-if="iconRight"
@@ -98,9 +97,12 @@ export default {
       type: Boolean,
       default: false
     },
-    small: {
-      type: Boolean,
-      default: false
+    size: {
+      type: String,
+      default: 'default',
+      validator: function (value) {
+        return ['default', 'small'].includes(value);
+      }
     },
     readonly: {
       type: Boolean,
@@ -113,6 +115,9 @@ export default {
   },
   emits: ['update:modelValue', 'input', 'change'],
   computed: {
+    small () {
+      return this.size === 'small';
+    },
     iconLeft () {
       return this.$slots.iconLeft;
     },
@@ -128,8 +133,6 @@ export default {
     onInput ($event) {
       this.$emit('update:modelValue', $event.target.value);
       this.$emit('input', $event.target.value);
-    },
-    onChange ($event) {
       this.$emit('change', $event);
     }
   }
