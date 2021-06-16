@@ -79,15 +79,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.primary:hover:not(:disabled) {
+.primary:hover:not(:disabled):not(:focus) {
   box-shadow: 0 0 10px 2px rgba(24, 118, 219, 0.6);
 }
 
-.secondary:hover:not(:disabled) {
+.secondary:hover:not(:disabled):not(:focus) {
   box-shadow: 0 0 10px rgba(65, 101, 129, 0.2);
 }
 
-.tertiary:hover:not(:disabled) {
+.tertiary:hover:not(:disabled):not(:focus) {
   box-shadow: 0 0 10px 2px rgba(0, 153, 215, 0.2);
 }
 </style>
