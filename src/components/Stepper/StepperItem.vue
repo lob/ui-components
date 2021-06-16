@@ -102,7 +102,7 @@ export default {
     @apply bg-white;
     @apply absolute;
     @apply -top-1;
-    
+
     content: "";
   }
 
