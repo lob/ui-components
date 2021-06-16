@@ -57,6 +57,7 @@ export default {
   .marker-finished::before {
     @apply bg-primary-500;
     @apply text-white;
+
     content: "✔" !important;
     font-size: 9px;
     line-height: 15px;
@@ -67,6 +68,7 @@ export default {
     @apply p-1;
     @apply border-2;
     @apply border-white;
+
     box-shadow: 0 0 0 1px var(--color-primary-rgb);
   }
 
@@ -85,6 +87,7 @@ export default {
     @apply w-3.5;
     @apply h-3.5;
     @apply z-10;
+
     top: -7px;
     content: "";
     margin-left: calc(50% - 7px);
@@ -99,6 +102,7 @@ export default {
     @apply bg-white;
     @apply absolute;
     @apply -top-1;
+    
     content: "";
   }
 
