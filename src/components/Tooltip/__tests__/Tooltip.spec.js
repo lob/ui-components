@@ -9,8 +9,44 @@ const slots = {
 
 describe('Tooltip', () => {
 
-  it('renders correctly', () => {
+  it('renders correctly in the bottom position', () => {
     const { queryByText } = render(Tooltip, {
+      slots
+    });
+
+    const tooltip = queryByText(slots.content);
+    const trigger = queryByText(slots.trigger);
+    expect(tooltip).toBeInTheDocument();
+    expect(trigger).toBeInTheDocument();
+  });
+
+  it('renders correctly in the top position', () => {
+    const { queryByText } = render(Tooltip, {
+      props: { position: 'top' },
+      slots
+    });
+
+    const tooltip = queryByText(slots.content);
+    const trigger = queryByText(slots.trigger);
+    expect(tooltip).toBeInTheDocument();
+    expect(trigger).toBeInTheDocument();
+  });
+
+  it('renders correctly in the left position', () => {
+    const { queryByText } = render(Tooltip, {
+      props: { position: 'left' },
+      slots
+    });
+
+    const tooltip = queryByText(slots.content);
+    const trigger = queryByText(slots.trigger);
+    expect(tooltip).toBeInTheDocument();
+    expect(trigger).toBeInTheDocument();
+  });
+
+  it('renders correctly in the right position', () => {
+    const { queryByText } = render(Tooltip, {
+      props: { position: 'right' },
       slots
     });
 

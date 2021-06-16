@@ -12,7 +12,6 @@
         {'border-white-200': disabled}
       ]"
       @input="onInput"
-      @change="onChange"
     />
   </label>
 </template>
@@ -51,8 +50,6 @@ export default {
     onInput ($event) {
       this.$emit('update:modelValue', $event.target.value);
       this.$emit('input', $event.target.value);
-    },
-    onChange ($event) {
       this.$emit('change', $event);
     }
   }

@@ -78,4 +78,16 @@ describe('Textarea', () => {
     expect(emittedEvent.input[0]).toEqual([updatedValue]);
   });
 
+  it('fires the change event on textarea input', async () => {
+    const props = initialProps;
+    const { getByLabelText, emitted } = renderComponent({ props });
+    const textarea = getByLabelText(props.label);
+
+    const updatedValue = 'hello!';
+    await fireEvent.update(textarea, updatedValue);
+
+    const emittedEvent = emitted();
+    expect(emittedEvent).toHaveProperty('change');
+  });
+
 });
