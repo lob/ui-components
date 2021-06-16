@@ -9,47 +9,46 @@ import StepperItem from "./StepperItem.vue";
 
 # Stepper
 
-The mega menu component is used for displaying a big navigation menu with nested submenus displaying on hover.
+The stepper component is just a container with a margin for stepperItem components.
 
 <Preview>
-  <Story id="components-Stepper--primary" />
+  <Story id="components-stepper--primary" />
 </Preview>
 
 ## How to Use
 
-The mega menu renders a semantic `nav` element. It is made to work with `mega-menu-item` components. However, you can also write custom components for its slot.
+The stepper renders some space for `stepper-item` components. However, you can also write custom components for its slot.
 
 
-Example of using this component in a template, with a StepperItem
+Example of using this component with two stepper-items.
 ```html
-<mega-menu title="Some menu" navKey="" :mobileNavs="{}">
-  <mega-menu-item to="/settings/main/account" imageSource="${constants.lobAssetsUrl}/dashboard/navbar/settings.svg" small>
-    Some menu item
-  </mega-menu-item>
-</mega-menu>
+<stepper>
+  <stepper-item position="first" variant="finished">
+    First step
+  </stepper-item>
+  <stepper-item position="last" variant="active">
+    Last step
+  </stepper-item>
+</stepper>
 ```
 
-# Mega Menu Item
+# Stepper Item
 
-The mega menu item component is used for displaying a single item in the nested submenu that's displayed on hover.
+The stepper item component is used for displaying a single item in the nested stepper.
 
 <Preview>
-  <Story id="components-Stepper--item" />
+  <Story id="components-stepper--item" />
 </Preview>
 
 ## How to Use
 
-The main navigation item component can render as a traditional link (hooked up to your app's routing) or as an anchor tag depending on if the link is internal to your app's routing or external.
+The stepper item component accepts two props: `variant` and `position`. Variant is used for the state of the step (finished, active, unfinished, error) and position is used for indicating if the step is the first, an intermediate one, or the last one.
 
-You must provide an image source and optionally a subtitle to display for the item.
-
-You can also choose to pass in the `small` prop in order to limit the amount of white space around the item.
-
-Example of using this component in a template
+Example of using this component.
 ```html
-<mega-menu-item to="/overview" imageSource="overviewIconSrcFile" subtitle="Optional subtitle text here" :small="true">
-  Overview
-</mega-menu-item>
+<stepper-item variant="unfinished" position="last">
+  Last step
+</stepper-item>
 ```
 
 ## Props

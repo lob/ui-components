@@ -1,67 +1,64 @@
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/vue';
-import { createRouter, createMemoryHistory } from 'vue-router';
-import { constants } from '../../../config';
 import StepperItem from '../StepperItem.vue';
 
-const initialProps = {
-};
-
-const routes = [
-  { path: '', component: { template: '<div></div>' } },
-  { path: '/', component: { template: '<div>/</div>' } },
-  { path: '/settings', component: { template: '<div>settings</div>' } }
-];
-const router = createRouter({
-  history: createMemoryHistory(),
-  routes
-});
-
-const renderComponent = async (options) => {
+const renderComponent =  (options) => {
   const result = render(StepperItem, {
-    ...options,
-    global: { plugins: [router, constants] }
+    ...options
   });
-  await router.isReady();
   return result;
 };
 
 describe('StepperItem', () => {
 
-  it('renders correctly when an internal link', async () => {
-    const props = initialProps;
-    const { queryByRole } = await renderComponent({ props });
+  it('renders as finished and middle step by default', async () => {
+    const { container } = renderComponent({});
 
-    const link = queryByRole('link');
-    expect(link).toBeInTheDocument();
+    const item = container.querySelector('.marker-finished');
+    expect(item).toBeInTheDocument();
 
-    const img = queryByRole('img');
-    expect(img).toBeInTheDocument();
+    const noItem = container.querySelector('.half-border');
+    expect(noItem).not.toBeInTheDocument();
   });
 
-  it('renders correctly when an external link', async () => {
+  it('renders half a right border when it is the first item of the stepper', async () => {
     const props = {
-      ...initialProps,
-      to: 'https://google.com'
+      position: 'first'
     };
-    const { queryByRole } = await renderComponent({ props });
+    const { container } = renderComponent({ props });
 
-    const link = queryByRole('link');
-    expect(link).toBeInTheDocument();
-
-    const img = queryByRole('img');
-    expect(img).toBeInTheDocument();
+    const item = container.querySelector('.half-border-right');
+    expect(item).toBeInTheDocument();
   });
 
-  it('renders the subtitle when a subtitle is passed in', async () => {
+  it('renders half a left border when it is the last item of the stepper', async () => {
     const props = {
-      ...initialProps,
-      subtitle: 'subtitle'
+      position: 'last'
     };
-    const { queryByText } = await renderComponent({ props });
+    const { container } = renderComponent({ props });
 
-    const subtitle = queryByText(props.subtitle);
-    expect(subtitle).toBeInTheDocument();
+    const item = container.querySelector('.half-border-left');
+    expect(item).toBeInTheDocument();
+  });
+
+  it('renders with error state when there is an error in the step', async () => {
+    const props = {
+      variant: 'error'
+    };
+    const { container } = renderComponent({ props });
+
+    const item = container.querySelector('.border-error.marker-error');
+    expect(item).toBeInTheDocument();
+  });
+
+  it('renders with unfinished state when the step is not finished', async () => {
+    const props = {
+      variant: 'unfinished'
+    };
+    const { container } = renderComponent({ props });
+
+    const item = container.querySelector('.border-gray-100.marker-unfinished');
+    expect(item).toBeInTheDocument();
   });
 
 });

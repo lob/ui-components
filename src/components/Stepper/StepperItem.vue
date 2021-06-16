@@ -1,14 +1,16 @@
 <template>
-  <div :class="['w-16 text-xs md:text-base md:w-32 text-center inline-block border-t relative marker',
-                {'border-primary-500': finished || active}, 
-                {'marker-finished': finished},
-                {'marker-active': active},
-                {'border-error marker-error': error},
-                {'border-gray-100 marker-unfinished': unfinished},
-                {'half-border': first || last},
-                {'half-border-right': first},
-                {'half-border-left': last}]">
-    <slot></slot>
+  <div
+    :class="['w-16 text-xs md:text-base md:w-32 text-center inline-block border-t relative marker',
+             {'border-primary-500': finished || active},
+             {'marker-finished': finished},
+             {'marker-active': active},
+             {'border-error marker-error': error},
+             {'border-gray-100 marker-unfinished': unfinished},
+             {'half-border': first || last},
+             {'half-border-right': first},
+             {'half-border-left': last}]"
+  >
+    <slot />
   </div>
 </template>
 
@@ -19,33 +21,33 @@ export default {
     position: {
       type: String,
       default: 'middle',
-      validator: (prop) => [ 'first', 'middle', 'last' ].includes(prop)
+      validator: (prop) => ['first', 'middle', 'last'].includes(prop)
     },
     variant: {
       type: String,
       default: 'finished',
-      validator: (prop) => [ 'finished', 'active', 'error', 'unfinished' ].includes(prop)
-    },
+      validator: (prop) => ['finished', 'active', 'error', 'unfinished'].includes(prop)
+    }
   },
   computed: {
-    finished() {
+    finished () {
       return this.variant === 'finished';
     },
-    active() {
+    active () {
       return this.variant === 'active';
     },
-    error() {
+    error () {
       return this.variant === 'error';
     },
-    unfinished() {
+    unfinished () {
       return this.variant === 'unfinished';
     },
-    first() {
+    first () {
       return this.position === 'first';
     },
-    last() {
+    last () {
       return this.position === 'last';
-    },
+    }
   }
 };
 </script>
