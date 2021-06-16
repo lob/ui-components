@@ -4,6 +4,7 @@ export { default as Breadcrumb } from './Breadcrumb/Breadcrumb';
 export { default as Button } from './Button/Button';
 export { default as Card } from './Card/Card';
 export { default as Checkbox } from './Checkbox/Checkbox';
+export { default as Datepicker } from './Datepicker/Datepicker';
 export { default as Dropdown } from './Dropdown/Dropdown';
 export * from './Icons';
 export { default as MainNavigation } from './MainNavigation/MainNavigation';
@@ -19,5 +20,6 @@ export { default as SubnavigationItem } from './Subnavigation/SubnavigationItem'
 export { default as SwitchGroup } from './Switch/SwitchGroup';
 export { default as SwitchItem } from './Switch/SwitchItem';
 export { default as Textarea } from './Textarea/Textarea';
+export { default as TextInput } from './TextInput/TextInput';
 export { default as Tooltip } from './Tooltip/Tooltip';
 export { default as TopNavbar } from './TopNavbar/TopNavbar';
