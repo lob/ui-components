@@ -25,7 +25,7 @@
       @keydown="handleFirstFocusableKeydown"
       @click="hide"
     >
-      <close class="w-4 h-4 p-1" />
+      <close class="w-4 h-4 p-0.5" />
       <span class="sr-only">{{ localization.closeLabel }}</span>
     </button>
     <div
