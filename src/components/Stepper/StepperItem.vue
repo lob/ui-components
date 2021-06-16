@@ -53,7 +53,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .marker-finished:before {
+
+  .marker-finished::before {
     @apply bg-primary-500;
     @apply text-white;
     content: "✔" !important;
@@ -61,7 +62,7 @@ export default {
     line-height: 15px;
   }
 
-  .marker-active:before {
+  .marker-active::before {
     @apply bg-primary-500;
     @apply p-1;
     @apply border-2;
@@ -69,15 +70,15 @@ export default {
     box-shadow: 0 0 0 1px var(--color-primary-rgb);
   }
 
-  .marker-error:before {
+  .marker-error::before {
     @apply bg-error;
   }
 
-  .marker-unfinished:before {
+  .marker-unfinished::before {
     @apply bg-gray-100;
   }
 
-  .marker:before {
+  .marker::before {
     @apply rounded-full;
     @apply relative;
     @apply block;
@@ -89,7 +90,7 @@ export default {
     margin-left: calc(50% - 7px);
   }
 
-  .half-border:after {
+  .half-border::after {
     @apply p-0;
     @apply m-0;
     @apply block;
@@ -101,11 +102,11 @@ export default {
     content: "";
   }
 
-  .half-border-left:after {
+  .half-border-left::after {
     @apply right-0;
   }
 
-  .half-border-right:after {
+  .half-border-right::after {
     @apply left-0;
   }
 </style>
