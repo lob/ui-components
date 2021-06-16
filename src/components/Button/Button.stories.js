@@ -21,6 +21,18 @@ export default {
           summary: 'html or component'
         }
       }
+    },
+    variant: {
+      options: ['primary', 'secondary', 'tertiary'],
+      control: {
+        type: 'select'
+      }
+    },
+    size: {
+      options: ['default', 'small', 'large'],
+      control: {
+        type: 'select'
+      }
     }
   }
 };
