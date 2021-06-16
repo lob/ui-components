@@ -4,7 +4,7 @@ import Alert from '../Alert.vue';
 
 let slots;
 
-const renderComponent = (options, configure = null) => render(Alert, { ...options }, configure);
+const renderComponent = (options) => render(Alert, { ...options });
 
 describe('Alert', () => {
 
