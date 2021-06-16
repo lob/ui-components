@@ -17,11 +17,6 @@
 * @return {number} The index
 */
 export function findLastIndex (predicate, thisArg) {
-  // Method cannot be run on an array that does not exist.
-  if (this === null) {
-    throw new TypeError('this is null or not defined');
-  }
-
   // The callback must be a function.
   if (typeof predicate !== 'function') {
     throw new TypeError();
