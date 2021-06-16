@@ -1,4 +1,3 @@
-import routeDecorator, { routeTemplate } from '../../../.storybook/routeDecorator';
 import Stepper from './Stepper.vue';
 import StepperItem from './StepperItem.vue';
 import mdx from './Stepper.mdx';
@@ -7,22 +6,25 @@ export default {
   title: 'Components/Stepper',
   component: Stepper,
   subcomponents: { StepperItem },
-  decorators: [
-    routeDecorator('/', [
-      {
-        path: '/settings/main/account',
-        component: {
-          template: routeTemplate('account')
-        }
-      }
-    ])
-  ],
   parameters: {
     docs: {
       page: mdx
     }
   },
-  argTypes: {}
+  argTypes: {
+    variant: {
+      options: ['finished', 'active', 'error', 'unfinished'],
+      control: {
+        type: 'select'
+      }
+    },
+    position: {
+      options: ['first', 'middle', 'last'],
+      control: {
+        type: 'select'
+      }
+    }
+  }
 };
 
 const Template = (args, { argTypes }) => ({
@@ -31,16 +33,16 @@ const Template = (args, { argTypes }) => ({
   setup: () => ({ args }),
   template: `
     <Stepper>
-      <StepperItem position="first" variant="finished" v-bind="args">
+      <StepperItem position="first" variant="finished" :alignLeft="args.alignLeft" :dashedBorder="args.dashedBorder">
         Finished
       </StepperItem>
-      <StepperItem variant="active" v-bind="args">
+      <StepperItem variant="active" :alignLeft="args.alignLeft" :dashedBorder="args.dashedBorder">
         Active
       </StepperItem>
-      <StepperItem variant="error" v-bind="args">
+      <StepperItem variant="error" :alignLeft="args.alignLeft" :dashedBorder="args.dashedBorder">
         Error
       </StepperItem>
-      <StepperItem position="last" variant="unfinished" v-bind="args">
+      <StepperItem position="last" variant="unfinished" :alignLeft="args.alignLeft" :dashedBorder="args.dashedBorder">
         Unfinished
       </StepperItem>
     </Stepper>
