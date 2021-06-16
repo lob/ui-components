@@ -9,7 +9,7 @@
   <div
     :class="[
       'flex input rounded border border-gray-100',
-      {'!border-0': withCopyBtn}
+      {'!border-0': withCopyButton}
     ]"
   >
     <div
@@ -22,17 +22,18 @@
       v-bind="$attrs"
       :id="id"
       ref="input"
+      type="text"
       :value="modelValue"
-      :type="type"
       :class="[
         'rounded pl-2 pt-3 pb-4 leading-5 text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
         {'!pl-4': !iconLeft},
         {'!pl-3 !pr-3 !py-2': small},
-        {'border border-r-0 border-gray-100 rounded-tr-none rounded-br-none': withCopyBtn},
+        {'border border-r-0 border-gray-100 rounded-tr-none rounded-br-none': withCopyButton},
         {'bg-white-300 cursor-not-allowed': disabled || readonly},
         {'border-error': error}
       ]"
       :disabled="disabled"
+      :required="required"
       :placeholder="placeholder"
       :readonly="readonly"
       @input="onInput"
@@ -45,7 +46,7 @@
       <slot name="iconRight" />
     </div>
     <lob-button
-      v-if="withCopyBtn"
+      v-if="withCopyButton"
       :small="small"
       class="rounded-tl-none rounded-bl-none pl-3 pr-3"
       @click="copyToClipboard"
@@ -75,8 +76,7 @@ export default {
     },
     label: {
       type: String,
-      default: '',
-      required: true
+      default: ''
     },
     srOnlyLabel: {
       type: Boolean,
@@ -86,11 +86,11 @@ export default {
       type: String,
       default: ''
     },
-    type: { // can we restrict this to a subset of values?
-      type: String,
-      default: 'text'
-    },
     disabled: {
+      type: Boolean,
+      default: false
+    },
+    required: {
       type: Boolean,
       default: false
     },
@@ -106,7 +106,7 @@ export default {
       type: Boolean,
       default: false
     },
-    withCopyBtn: {
+    withCopyButton: {
       type: Boolean,
       default: false
     }

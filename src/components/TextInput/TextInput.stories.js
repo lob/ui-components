@@ -1,17 +1,23 @@
 import TextInput from './TextInput.vue';
-// import mdx from './TextInput.mdx';
+import mdx from './TextInput.mdx';
+
 import Search from '../Icons/Search';
 import Close from '../Icons/Close';
-import ChevronLeft from '../Icons/ChevronLeft';
-import ChevronRight from '../Icons/ChevronRight';
 
 export default {
   title: 'Components/Text Input',
   component: TextInput,
   parameters: {
-  // docs: {
-  //   page: mdx
-  // }
+    docs: {
+      page: mdx
+    }
+  },
+  argTypes: {
+    'v-model': {
+      control: {
+        type: null
+      }
+    }
   }
 };
 
@@ -71,7 +77,7 @@ IconRight.args = {
 
 const BothIconsTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { TextInput, Search, Close, ChevronLeft, ChevronRight },
+  components: { TextInput, Search, Close },
   setup: () => ({ args }),
   template: `
     <text-input v-bind="args">
