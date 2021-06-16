@@ -22,6 +22,12 @@ export default {
           summary: 'html or component'
         }
       }
+    },
+    variant: {
+      options: ['info', 'success', 'warning', 'error'],
+      control: {
+        type: 'select'
+      }
     }
   }
 };
