@@ -4,7 +4,7 @@
     class="flex md:justify-between mt-0 relative pt-0 px-2 pb-1 -top-1 w-full"
   >
     <div>
-      <p>{{ totalNumber }} result<span v-if="totalNumber !== 1">s</span></p>
+      <p>{{ total }} result<span v-if="total !== 1">s</span></p>
     </div>
 
     <div class="hidden md:flex items-center">
@@ -42,29 +42,29 @@
       <button
         :class="[
           'border-none bg-transparent my-0 mx-4 relative hover:text-primary-300',
-          { 'text-gray-100 pointer-none': offset + limit >= totalNumber }
+          { 'text-gray-100 pointer-none': offset + limit >= total }
         ]"
-        :disabled="offset + limit >= totalNumber"
+        :disabled="offset + limit >= total"
         @click="pageClick(page + 1)"
       >
         <span class="sr-only">Go to next page</span>
         <page-arrow-icon
           :next="true"
-          :disabled="offset + limit >= totalNumber"
+          :disabled="offset + limit >= total"
         />
       </button>
       <button
         :class="[
           'border-none bg-transparent my-0 mx-4 relative hover:text-primary-300',
-          { 'text-gray-100 pointer-none': offset + limit >= totalNumber }
+          { 'text-gray-100 pointer-none': offset + limit >= total }
         ]"
-        :disabled="offset + limit >= totalNumber"
+        :disabled="offset + limit >= total"
         @click="pageClick(lastPage)"
       >
         <span class="sr-only">Go to last page</span>
         <page-arrow-icon
           :last="true"
-          :disabled="offset + limit >= totalNumber"
+          :disabled="offset + limit >= total"
         />
       </button>
     </div>
@@ -74,10 +74,10 @@
         <button
           :class="[
             'border-none bg-transparent my-0 mx-4 relative hover:text-primary-300 items-center text-gray-900 flex md-hidden text-sm transition-transform duration-500 ease-linear transform group',
-            { 'text-gray-100 pointer-none': offset + limit >= totalNumber },
+            { 'text-gray-100 pointer-none': offset + limit >= total },
             { hidden: page == lastPage }
           ]"
-          :disabled="offset + limit >= totalNumber"
+          :disabled="offset + limit >= total"
           @click="pageClick(page + 1)"
         >
           Next
@@ -134,20 +134,17 @@ export default {
     shouldRender () {
       return this.collection && this.collection.length > 0;
     },
-    totalNumber () {
-      return typeof this.total === 'number' ? this.total : 0;
-    },
     paginationText () {
       return `${this.offset + 1} - ${Math.min(
         this.offset + this.limit,
-        this.totalNumber
-      )} of ${this.totalNumber}`;
+        this.total
+      )} of ${this.total}`;
     },
     offset () {
       return (this.page - 1) * this.limit;
     },
     lastPage () {
-      return Math.ceil(this.totalNumber / this.limit);
+      return Math.ceil(this.total / this.limit);
     }
   },
   methods: {
