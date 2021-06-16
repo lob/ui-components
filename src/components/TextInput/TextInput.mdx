@@ -1,0 +1,32 @@
+import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs/blocks';
+import TextInput from './TextInput.vue';
+
+# Text Input
+
+A text input component for entering a line of text in a form.
+
+<Preview>
+  <Story id="components-text-input--primary" />
+</Preview>
+
+## How to Use
+
+You can pass in the `v-model` prop to bind the text input to the parent component's data model.
+
+If you want a `copy` button, you can pass in the `withCopyButton` prop.
+
+Icons are available for the left, right, or both sides of the input via `iconLeft` and `iconRight` named slots.
+
+You can pass in a `@change` handler to trigger a custom function on change events. The `event` object will be emitted along with the `change` event.
+
+```html
+<text-input>
+  <template v-slot:iconLeft>
+    <searchIcon class="w-6 h-6" />
+  </template>
+</text-input>
+```
+
+## Props
+
+<ArgsTable story={PRIMARY_STORY} />
