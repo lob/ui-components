@@ -15,7 +15,7 @@
   >
     <div
       v-if="iconLeft"
-      :class="['pl-2 pt-3 pb-4 w-full h-full text-gray-500', {'!pl-1 !py-2': small}]"
+      :class="['pl-2 pt-3 pb-4 text-gray-500', {'!pl-1 !py-2': small}]"
     >
       <slot name="iconLeft" />
     </div>
@@ -25,7 +25,7 @@
       type="text"
       :value="modelValue"
       :class="[
-        'rounded pl-2 pt-3 pb-4 leading-5 text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
+        'rounded pl-2 pt-3 pb-4 leading-5 w-full text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
         {'!pl-4': !iconLeft},
         {'!pl-3 !pr-3 !py-2': small},
         {'border border-r-0 border-gray-100 rounded-tr-none rounded-br-none': withCopyButton},
@@ -40,7 +40,7 @@
     >
     <div
       v-if="iconRight"
-      :class="['pr-2 pt-3 pb-4 w-full h-full text-gray-500', {'!pr-1 !py-2': small}]"
+      :class="['pr-2 pt-3 pb-4 text-gray-500', {'!pr-1 !py-2': small}]"
     >
       <slot name="iconRight" />
     </div>
