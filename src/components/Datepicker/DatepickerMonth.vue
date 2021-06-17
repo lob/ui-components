@@ -5,7 +5,7 @@
   >
     <header class="grid grid-cols-7 gap-3">
       <div
-        v-for="dayName in mapWithOffset(localization.dayNames, firstDayOfWeek)"
+        v-for="dayName in mapWithOffset(t('dayNames'), firstDayOfWeek)"
         :key="dayName"
         class="text-gray-500"
         scope="col"
@@ -60,20 +60,6 @@ export default {
     labelledById: {
       type: String,
       default: ''
-    },
-    localization: {
-      type: Object,
-      default: () => ({
-        dayNames: [
-          'Sunday',
-          'Monday',
-          'Tuesday',
-          'Wednesday',
-          'Thursday',
-          'Friday',
-          'Saturday'
-        ]
-      })
     },
     firstDayOfWeek: {
       type: Number,

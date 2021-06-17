@@ -17,7 +17,7 @@
       class="sr-only"
       aria-live="polite"
     >
-      {{ localization.keyboardInstruction }}
+      {{ t('keyboardInstruction') }}
     </div>
     <button
       ref="firstFocusableElement"
@@ -26,7 +26,7 @@
       @click="hide"
     >
       <close class="w-4 h-4 p-0.5" />
-      <span class="sr-only">{{ localization.closeLabel }}</span>
+      <span class="sr-only">{{ t('closeLabel') }}</span>
     </button>
     <div
       class="flex justify-between pb-4.5"
@@ -40,7 +40,7 @@
         @click="onPreviousMonthClick"
       >
         <arrow-left class="w-4 h-4" />
-        <span class="sr-only">{{ localization.prevMonthLabel }}</span>
+        <span class="sr-only">{{ t('prevMonthLabel') }}</span>
       </button>
       <div>
         <span
@@ -49,7 +49,7 @@
           aria-live="polite"
           aria-atomic="true"
         >
-          {{ localization.monthNames[focusedMonth] }} {{ focusedDate.getFullYear() }}
+          {{ t('monthNames')[focusedMonth] }} {{ focusedDate.getFullYear() }}
         </span>
       </div>
       <button
@@ -61,7 +61,7 @@
         @click="onNextMonthClick"
       >
         <arrow-right class="w-4 h-4" />
-        <span class="sr-only">{{ localization.nextMonthLabel }}</span>
+        <span class="sr-only">{{ t('nextMonthLabel') }}</span>
       </button>
     </div>
     <DatepickerMonth
@@ -69,7 +69,6 @@
       :selected-date="selectedDate"
       :focused-date="focusedDate"
       :labelled-by-id="id"
-      :localization="localization"
       :first-day-of-week="firstDayOfWeek"
       :min="min"
       :max="max"
@@ -100,10 +99,6 @@ export default {
     open: {
       type: Boolean,
       default: false
-    },
-    localization: {
-      type: Object,
-      default: () => ({})
     },
     min: {
       type: Date,
