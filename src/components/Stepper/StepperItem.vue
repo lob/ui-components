@@ -106,7 +106,8 @@ export default {
   }
 
   .check {
-    width: 14px;
+    @apply w-3.5;
+
     padding-left: 2px;
     padding-top: 1px;
   }
