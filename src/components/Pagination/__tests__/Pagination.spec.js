@@ -1,6 +1,9 @@
 import '@testing-library/jest-dom';
 import { render, fireEvent } from '@testing-library/vue';
+import { translate } from '../../../mixins';
 import Pagination from '../Pagination.vue';
+
+const mixins = [translate];
 
 const initialProps = {
   collection: [{}],
@@ -8,6 +11,8 @@ const initialProps = {
   total: 30,
   limit: 10
 };
+
+const renderComponent = (options) => render(Pagination, { ...options, global: { mixins } });
 
 describe('Pagination', () => {
 
@@ -20,28 +25,28 @@ describe('Pagination', () => {
     });
 
     it('disables the first page button', () => {
-      const { getByRole } = render(Pagination, { props });
+      const { getByRole } = renderComponent({ props });
 
       const button = getByRole('button', { name: /first page/i });
       expect(button).toBeDisabled();
     });
 
     it('disables the previous page button', () => {
-      const { getByRole } = render(Pagination, { props });
+      const { getByRole } = renderComponent({ props });
 
       const button = getByRole('button', { name: /previous page/i });
       expect(button).toBeDisabled();
     });
 
     it('does not disable the next page button', () => {
-      const { getByRole } = render(Pagination, { props });
+      const { getByRole } = renderComponent({ props });
 
       const button = getByRole('button', { name: /next page/i });
       expect(button).not.toBeDisabled();
     });
 
     it('does not disable the last page button', () => {
-      const { getByRole } = render(Pagination, { props });
+      const { getByRole } = renderComponent({ props });
 
       const button = getByRole('button', { name: /last page/i });
       expect(button).not.toBeDisabled();
@@ -61,28 +66,28 @@ describe('Pagination', () => {
     });
 
     it('does not disable the first page button', () => {
-      const { getByRole } = render(Pagination, { props });
+      const { getByRole } = renderComponent({ props });
 
       const button = getByRole('button', { name: /first page/i });
       expect(button).not.toBeDisabled();
     });
 
     it('does not disable the previous page button', () => {
-      const { getByRole } = render(Pagination, { props });
+      const { getByRole } = renderComponent({ props });
 
       const button = getByRole('button', { name: /previous page/i });
       expect(button).not.toBeDisabled();
     });
 
     it('does not disable the next page button', () => {
-      const { getByRole } = render(Pagination, { props });
+      const { getByRole } = renderComponent({ props });
 
       const button = getByRole('button', { name: /next page/i });
       expect(button).not.toBeDisabled();
     });
 
     it('does not disable the last page button', () => {
-      const { getByRole } = render(Pagination, { props });
+      const { getByRole } = renderComponent({ props });
 
       const button = getByRole('button', { name: /last page/i });
       expect(button).not.toBeDisabled();
@@ -102,28 +107,28 @@ describe('Pagination', () => {
     });
 
     it('does not disable the first page button', () => {
-      const { getByRole } = render(Pagination, { props });
+      const { getByRole } = renderComponent({ props });
 
       const button = getByRole('button', { name: /first page/i });
       expect(button).not.toBeDisabled();
     });
 
     it('does not disable the previous page button', () => {
-      const { getByRole } = render(Pagination, { props });
+      const { getByRole } = renderComponent({ props });
 
       const button = getByRole('button', { name: /previous page/i });
       expect(button).not.toBeDisabled();
     });
 
     it('disables the next page button', () => {
-      const { getByRole } = render(Pagination, { props });
+      const { getByRole } = renderComponent({ props });
 
       const button = getByRole('button', { name: /next page/i });
       expect(button).toBeDisabled();
     });
 
     it('disables the last page button', () => {
-      const { getByRole } = render(Pagination, { props });
+      const { getByRole } = renderComponent({ props });
 
       const button = getByRole('button', { name: /last page/i });
       expect(button).toBeDisabled();
@@ -139,7 +144,7 @@ describe('Pagination', () => {
         collection: null
       };
 
-      const { queryByText } = render(Pagination, { props });
+      const { queryByText } = renderComponent({ props });
 
       expect(queryByText(/result/i)).toBeNull();
     });
@@ -158,7 +163,7 @@ describe('Pagination', () => {
     });
 
     it('emits an event with the first page data when first page button is clicked', async () => {
-      const { getByRole, emitted } = render(Pagination, { props });
+      const { getByRole, emitted } = renderComponent({ props });
 
       const button = getByRole('button', { name: /first page/i });
 
@@ -169,7 +174,7 @@ describe('Pagination', () => {
     });
 
     it('emits an event with the previous page data when previous page button is clicked', async () => {
-      const { getByRole, emitted } = render(Pagination, { props });
+      const { getByRole, emitted } = renderComponent({ props });
 
       const button = getByRole('button', { name: /previous page/i });
 
@@ -180,7 +185,7 @@ describe('Pagination', () => {
     });
 
     it('emits an event with the next page data when next page button is clicked', async () => {
-      const { getByRole, emitted } = render(Pagination, { props });
+      const { getByRole, emitted } = renderComponent({ props });
 
       const button = getByRole('button', { name: /next page/i });
 
@@ -191,7 +196,7 @@ describe('Pagination', () => {
     });
 
     it('emits an event with the last page data when last page button is clicked', async () => {
-      const { getByRole, emitted } = render(Pagination, { props });
+      const { getByRole, emitted } = renderComponent({ props });
 
       const button = getByRole('button', { name: /last page/i });
 
