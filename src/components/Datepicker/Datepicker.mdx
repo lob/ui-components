@@ -10,7 +10,7 @@ Datepicker is a stylized, accessible component for seeing a calendar and choosin
 </Preview>
 
 ## How to Use
-To use the datepicker component, you must provide a `v-model` of type Date, a `v-model:open` of type Boolean (controls whether the calendar is visible), an `id`, and localization strings (TODO: localization strategy TBD).
+To use the datepicker component, you must provide a `v-model` of type Date, a `v-model:open` of type Boolean (controls whether the calendar is visible), and an `id`.
 
 The datepicker will also accept `min` and `max` properties (also Date objects) to control how far forward or back the calendar will render. By default, it will go 1 year in the past and 1 year in the future.
 
@@ -32,53 +32,6 @@ const isDateDisabled = (date) => {
   const dayOfWeek = date.getDay();
   return dayOfWeek === DaysOfWeek.Saturday || dayOfWeek === DaysOfWeek.Sunday;
 };
-// TODO: localization strategy TBD
-const localization =   localization: {
-    keyboardInstruction: 'You can use arrow keys to navigate dates',
-    calendarHeading: 'Calendar',
-    closeLabel: 'Close',
-    dayNames: [
-      'Sunday',
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday'
-    ],
-    monthNames: [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December'
-    ],
-    monthNamesShort: [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sept',
-      'Oct',
-      'Nov',
-      'Dec'
-    ],
-    monthSelectLabel: 'Choose month',
-    yearSelectLabel: 'Choose year',
-    prevMonthLabel: 'Previous',
-    nextMonthLabel: 'Next'
-  }
 ```
 ```html
 <label>
