@@ -41,6 +41,59 @@ const isDateDisabled = (date) => {
 <datepicker v-model="dateModel" v-model:open="show" :boundComponent="$refs.input"></datepicker>
 ```
 
+### Internationalization
+
+By default, the calendar labels, months, and days will display in English.
+
+If you'd like to localize these labels, you can install `vue-i18n` into your application and provide the following translations in your required languages (please note that `dayNames`, `monthNames`, and `monthNamesShort` must be arrays for calendar iteration).
+```js
+{
+  keyboardInstruction: 'You can use arrow keys to navigate dates',
+  calendarHeading: 'Calendar',
+  closeLabel: 'Close',
+  dayNames: [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday'
+  ],
+  monthNames: [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ],
+  monthNamesShort: [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sept',
+    'Oct',
+    'Nov',
+    'Dec'
+  ],
+  monthSelectLabel: 'Choose month',
+  yearSelectLabel: 'Choose year',
+  prevMonthLabel: 'Previous',
+  nextMonthLabel: 'Next'
+}
+```
 
 ## Props
 
