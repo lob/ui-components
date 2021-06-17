@@ -16,7 +16,7 @@ export default {
      * @returns {String}
      */
     t (str) {
-      if (this.$t) {
+      if ('$t' in this) {
         return this.$t(str);
       }
 
