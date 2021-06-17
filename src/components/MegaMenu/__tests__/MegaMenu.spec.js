@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import { render, fireEvent } from '@testing-library/vue';
-import { constants } from '../../../config';
+import { constants } from '@/config';
 import MegaMenu from '../MegaMenu.vue';
 
 const initialProps = {

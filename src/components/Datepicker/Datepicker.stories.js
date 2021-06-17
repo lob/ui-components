@@ -1,7 +1,7 @@
 import Datepicker from './Datepicker.vue';
 import DatepickerMonth from './DatepickerMonth.vue';
 import DatepickerDay from './DatepickerDay.vue';
-import { DaysOfWeek } from '../../utils';
+import { DaysOfWeek } from '@/utils';
 import mdx from './Datepicker.mdx';
 
 export default {
