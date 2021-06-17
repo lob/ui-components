@@ -317,6 +317,7 @@ export default {
     },
     setValue (date) {
       const value = date;
+      this.focusedDate = date;
       this.$emit('input', value);
       this.$emit('update:modelValue', value);
     }
