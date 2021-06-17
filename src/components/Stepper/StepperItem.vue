@@ -111,8 +111,8 @@ export default {
     padding-top: 1px;
   }
 
-  .marker-center::before, .check-center {
-
+  .marker-center::before,
+  .check-center {
     margin-left: calc(50% - 7px);
   }
 
