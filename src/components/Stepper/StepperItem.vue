@@ -13,13 +13,20 @@
              {'half-border half-border-left': last && !alignLeft},
              {'border-none': last && alignLeft}]"
   >
+    <check
+      v-if="finished"
+      :class="['check absolute -top-1 z-30 text-white',
+               {'check-center': !alignLeft}]"
+    />
     <slot />
   </div>
 </template>
 
 <script>
+import { Check } from '../Icons';
 export default {
   name: 'StepperItem',
+  components: { Check },
   props: {
     position: {
       type: String,
@@ -67,12 +74,6 @@ export default {
 
   .marker-finished::before {
     @apply bg-primary-500;
-    @apply text-white;
-    @apply text-center;
-
-    content: "✔" !important;
-    font-size: 9px;
-    line-height: 15px;
   }
 
   .marker-active::before {
@@ -104,7 +105,13 @@ export default {
     content: "";
   }
 
-  .marker-center::before {
+  .check {
+    width: 14px;
+    padding-left: 2px;
+    padding-top: 1px;
+  }
+
+  .marker-center::before, .check-center {
     margin-left: calc(50% - 7px);
   }
 
