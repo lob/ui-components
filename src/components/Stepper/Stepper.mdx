@@ -1,0 +1,56 @@
+import {
+  Preview,
+  Story,
+  ArgsTable,
+  PRIMARY_STORY,
+} from "@storybook/addon-docs/blocks";
+import Stepper from "./Stepper.vue";
+import StepperItem from "./StepperItem.vue";
+
+# Stepper
+
+The stepper component is just a container with a margin for `stepper-item` components.
+
+<Preview>
+  <Story id="components-stepper--primary" />
+</Preview>
+
+## How to Use
+
+The stepper renders some space for `stepper-item` components. However, you can also write custom components for its slot.
+
+
+Example of using this component with two stepper-items.
+```html
+<stepper>
+  <stepper-item position="first" variant="finished">
+    First step
+  </stepper-item>
+  <stepper-item position="last" variant="active">
+    Last step
+  </stepper-item>
+</stepper>
+```
+
+# Stepper Item
+
+The `stepper-item` component is used for displaying a single item in the nested stepper.
+
+<Preview>
+  <Story id="components-stepper--item" />
+</Preview>
+
+## How to Use
+
+The stepper item component accepts four props: `variant`, `position`, `dashedBorder` and `leftAlign`. `Variant` is used for the state of the step (finished, active, unfinished, error) and `position` is used for indicating if the step is the first, an intermediate one, or the last one.
+
+Example of using this component.
+```html
+<stepper-item variant="unfinished" position="last">
+  Last step
+</stepper-item>
+```
+
+## Props
+
+<ArgsTable story={PRIMARY_STORY} />
