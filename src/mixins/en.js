@@ -42,5 +42,13 @@ export default {
   monthSelectLabel: 'Choose month',
   yearSelectLabel: 'Choose year',
   prevMonthLabel: 'Previous',
-  nextMonthLabel: 'Next'
+  nextMonthLabel: 'Next',
+  pageSingleResultLabel: 'result',
+  pageResultsLabel: 'results',
+  firstPageLabel: 'Go to first page',
+  prevPageLabel: 'Go to previous page',
+  nextPageLabel: 'Go to next page',
+  lastPageLabel: 'Go to last page',
+  prevPageLabelMobile: 'Prev',
+  nextPageLabelMobile: 'Next'
 };
