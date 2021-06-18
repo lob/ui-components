@@ -23,3 +23,4 @@ export { default as Textarea } from './Textarea/Textarea';
 export { default as TextInput } from './TextInput/TextInput';
 export { default as Tooltip } from './Tooltip/Tooltip';
 export { default as TopNavbar } from './TopNavbar/TopNavbar';
+export * from './Typography';
