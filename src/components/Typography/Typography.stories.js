@@ -5,7 +5,6 @@ import mdx from './Typography.mdx';
 export default {
   title: 'Components/Typography',
   component: Typography,
-  subcomponents: { H1, H2, H3, P, Caption },
   parameters: {
     docs: {
       page: mdx
