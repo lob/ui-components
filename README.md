@@ -189,7 +189,7 @@ We consider a component PR complete when it has the following:
 - Existing tests & lint passes (integrated with CircleCI, but you can also run both locally)
 ## Publish to NPM
 ```bash
-npm run build-bundle
+npm run build-library
 npm publish
 ```
 
