@@ -31,8 +31,9 @@
 </template>
 
 <script>
-import { theme } from '../../../tailwind.config';
+import { config } from 'tailwind-plugin-lob';
 
+const { theme } = config;
 const { colors } = theme;
 
 export default {

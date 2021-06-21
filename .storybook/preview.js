@@ -1,7 +1,7 @@
 import { app } from '@storybook/vue3';
-import * as configs from '../src/config';
+import * as configs from '@/config';
 
-import '../src/assets/styles/main.scss';
+import '@/assets/styles/main.scss';
 
 app.use(configs.constants);
 

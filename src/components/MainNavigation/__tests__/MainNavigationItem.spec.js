@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import { createRouter, createMemoryHistory } from 'vue-router';
 import { render, fireEvent, waitFor } from '@testing-library/vue';
-import { constants } from '../../../config';
+import { constants } from '@/config';
 import MainNavigationItem from '../MainNavigationItem.vue';
 
 const initialProps = {

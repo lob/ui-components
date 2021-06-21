@@ -1,8 +1,8 @@
 import routeDecorator from '../../../.storybook/routeDecorator';
 import TopNavbar from './TopNavbar.vue';
 import mdx from './TopNavbar.mdx';
-import MegaMenu from '../MegaMenu/MegaMenu.vue';
-import MegaMenuItem from '../MegaMenu/MegaMenuItem.vue';
+import MegaMenu from '@/components/MegaMenu/MegaMenu.vue';
+import MegaMenuItem from '@/components/MegaMenu/MegaMenuItem.vue';
 
 export default {
   title: 'Components/TopNavbar',

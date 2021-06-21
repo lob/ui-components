@@ -13,8 +13,9 @@
 </template>
 
 <script>
-import { theme } from '../../../tailwind.config';
+import { config } from 'tailwind-plugin-lob';
 
+const { theme } = config;
 const { fontSize } = theme;
 
 export default {

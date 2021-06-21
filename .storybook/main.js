@@ -15,6 +15,9 @@ module.exports = {
       use: ['vue-style-loader', 'css-loader', 'sass-loader', 'postcss-loader'],
       include: path.resolve(__dirname, '../')
     });
+
+    config.resolve.alias['@'] = path.resolve(__dirname, '../src');
+
     return config;
   }
 };
