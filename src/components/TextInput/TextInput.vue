@@ -8,6 +8,7 @@
   </label>
   <div
     v-bind="$attrs"
+    data-testId="input-container"
     :class="[
       'flex rounded border border-gray-100',
       {'!border-0': withCopyButton},
