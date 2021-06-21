@@ -11,15 +11,12 @@ export default {
   }
 };
 
-const SearchBarVModel = false;
-
 const PrimaryTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { SearchBar },
   setup: () => ({ args }),
-  data: () => ({ SearchBarVModel }),
   template: `
-    <SearchBar></SearchBar>
+    <SearchBar v-bind="args"></SearchBar>
     `
 });
 

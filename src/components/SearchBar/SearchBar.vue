@@ -1,19 +1,18 @@
 <template>
-  <text-input v-model="searchValue" class="w-full">
+  <text-input v-model="modelValue" class="w-max">
     <template v-slot:iconLeft>
       <search class="w-6 h-6" />
+    </template>
+    <template v-slot:iconRight>
+      <close class="w-6 h-6"/>
     </template>
   </text-input>
   <div class="bg-primary-500">
     <table class="table-auto">
     <tbody>
-      <tr><td colspan="5" class="text-center">View all 3566 results...</td></tr>
+      <tr><td colspan="5" class="text-center">View all {{ searchResults.length }} results...</td></tr>
       <tr v-for="result in searchResults">
-        <td>{{result.img}}</td>
-        <td>{{result.description}}</td>
-        <td>{{result.user}}</td>
-        <td>{{result.date}}</td>
-        <td>{{result.type}}</td>
+        <td v-for="key in Object.keys(result)">{{key}} {{result[key]}}</td>
       </tr>
     </tbody>
   </table>
@@ -21,39 +20,25 @@
 </template>
 
 <script>
-// SEARCH RESULTS DROPDOWN
 import textInput from '../TextInput/TextInput';
 import search from '../Icons/Search';
+import close from '../Icons/Close';
 export default {
   name: 'SearchBar',
-  components: { textInput, search },
+  components: { textInput, search, close },
   props: {
-  },
-  watch: {
-    searchValue(val) {
-      // API call
-      // log results
-      if (val) {
-        this.searchResults.push({
-          img: 'image',
-          description: 'description',
-          user: this.number++,
-          date: new Date(),
-          type: 'Postcard'
-        })
-      } else {
-        this.searchResults = []
-      }
+    modelValue: {
+      type: String,
+      default: ''
     },
-  },
-  data() {
-    return {
-      number: 1,
-      searchValue: '',
-      searchResults: []
+    searchResults: {
+      type: Object,
+      default: () => ([])
     }
   },
-  emits: [],
+  data() {
+  },
+  emits: ['update:modelValue', 'input', 'change'],
   computed: {
     
   },
