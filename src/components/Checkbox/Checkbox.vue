@@ -1,8 +1,8 @@
 <template>
   <label
     :class="[
-      'checkbox relative block mt-0 mb-1 ml-6 mr-3 cursor-pointer text-left min-h-5',
-      { 'cursor-not-allowed': disabled },
+      'checkbox relative block mt-0 mb-1 ml-6 mr-3 text-left min-h-5',
+      { 'cursor-not-allowed': disabled || readonly },
       { 'inline-block': sameLine }
     ]"
   >
@@ -14,6 +14,7 @@
       :value="value"
       :name="name"
       :disabled="disabled"
+      :readonly="readonly"
       :required="required"
       @input="onInput"
       @click="onClick"
@@ -22,14 +23,14 @@
       style="content: '';"
       :class="[
         'checkmark w-4 h-4 mr-1 rounded-sm border-solid border border-gray-100 -left-5 absolute top-1',
-        { 'bg-white-300': disabled },
-        { 'bg-gray-100': disabled && checked },
+        { 'bg-white-300': disabled || readonly },
+        { 'bg-gray-100': (disabled || readonly) && checked },
         { 'border-error': error },
         { 'border-primary-500 bg-primary-500': checked }
       ]"
       data-testId="checkmark"
     />
-    <span class="cursor-pointer">
+    <span>
       {{ required ? label + "*" : label }}
     </span>
   </label>
@@ -48,6 +49,10 @@ export default {
       default: null
     },
     disabled: {
+      type: Boolean,
+      default: false
+    },
+    readonly: {
       type: Boolean,
       default: false
     },
@@ -105,12 +110,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.checkbox:hover input ~ .checkmark {
+.checkbox:hover input:not(:disabled):not([readonly]) ~ .checkmark {
   @apply shadow-input;
 }
 
 .checkbox input:focus ~ .checkmark {
-  @apply border-primary-300;
+  @apply outline-none;
+  @apply ring-2;
+  @apply ring-primary-100;
+  @apply border-transparent;
 }
 
 .checkmark::after {
