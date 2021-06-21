@@ -24,7 +24,7 @@ export default {
       }
     },
     type: {
-      options: ['date', 'email', 'number', 'tel', 'text', 'url'],
+      options: ['date', 'email', 'number', 'password', 'tel', 'text', 'url'],
       control: {
         type: 'select'
       }
