@@ -1,5 +1,4 @@
-import Typography from './Typography.vue';
-import { H1, H2, H3, P, Caption } from './TypographyAliases.vue';
+import { Typography, H1, H2, H3, P, Caption } from '../Typography';
 import mdx from './Typography.mdx';
 
 export default {
