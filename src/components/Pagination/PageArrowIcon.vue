@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { SkipToLeft, ChevronLeft, ChevronRight, SkipToRight }  from '../Icons';
+import { SkipToLeft, ChevronLeft, ChevronRight, SkipToRight }  from '@/components/Icons';
 
 export default {
   name: 'PageArrowIcon',

@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/vue';
 import { createRouter, createMemoryHistory } from 'vue-router';
-import { constants } from '../../../config';
+import { constants } from '@/config';
 import MegaMenuItem from '../MegaMenuItem.vue';
 
 const initialProps = {
