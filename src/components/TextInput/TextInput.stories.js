@@ -22,6 +22,12 @@ export default {
       control: {
         type: 'select'
       }
+    },
+    type: {
+      options: ['date', 'email', 'number', 'tel', 'text', 'url'],
+      control: {
+        type: 'select'
+      }
     }
   }
 };
