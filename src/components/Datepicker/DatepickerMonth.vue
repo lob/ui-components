@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import { getViewOfMonth, isEqual, inRange, isEqualMonth } from '../../utils';
+import { getViewOfMonth, isEqual, inRange, isEqualMonth } from '@/utils';
 import DatepickerDay from './DatepickerDay.vue';
 
 export default {

@@ -80,9 +80,9 @@
 </template>
 
 <script>
-import { ArrowLeft, ArrowRight, Close } from '../Icons';
+import { ArrowLeft, ArrowRight, Close } from '@/components/Icons';
 import DatepickerMonth from './DatepickerMonth.vue';
-import { Keys, startOfWeek, endOfWeek, startOfMonth, endOfMonth, setMonth, setYear, addDays, clamp, inRange } from '../../utils';
+import { Keys, startOfWeek, endOfWeek, startOfMonth, endOfMonth, setMonth, setYear, addDays, clamp, inRange } from '@/utils';
 
 export default {
   name: 'Datepicker',

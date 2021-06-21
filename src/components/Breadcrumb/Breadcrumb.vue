@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import ChevronRight from '../Icons/ChevronRight';
+import { ChevronRight } from '@/components/Icons';
 import { START_LOCATION } from 'vue-router';
 
 export default {

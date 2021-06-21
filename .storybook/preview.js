@@ -1,8 +1,8 @@
 import { app } from '@storybook/vue3';
-import * as mixins from '../src/mixins';
-import * as configs from '../src/config';
+import * as mixins from '@/mixins';
+import * as configs from '@/config';
 
-import '../src/assets/styles/main.scss';
+import '@/assets/styles/main.scss';
 
 app.use(configs.constants);
 for (const mixinName in mixins) {

@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import ChevronLeft from '../Icons/ChevronLeft';
+import ChevronLeft from '@/components/Icons/ChevronLeft';
 export default {
   name: 'MainNavigation',
   components: { ChevronLeft },

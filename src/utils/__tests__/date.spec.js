@@ -1,5 +1,4 @@
-import { startOfWeek, endOfWeek, startOfMonth, endOfMonth, setMonth, setYear, addDays, clamp, inRange, isEqualMonth, isEqual } from '../../utils';
-import { DaysOfWeek, getViewOfMonth } from '../date';
+import { DaysOfWeek, getViewOfMonth, startOfWeek, endOfWeek, startOfMonth, endOfMonth, setMonth, setYear, addDays, clamp, inRange, isEqualMonth, isEqual } from '@/utils';
 
 const testDate = new Date('2021-05-03T11:01:58.135Z');
 const realDate = Date;
