@@ -7,3 +7,4 @@ export { default as Close } from './Close';
 export { default as Search } from './Search';
 export { default as SkipToLeft } from './SkipToLeft';
 export { default as SkipToRight } from './SkipToRight';
+export { default as Check } from './Check';
