@@ -16,10 +16,7 @@ for (const component of components) {
   describe('typography', () => {
 
     it('renders correctly', () => {
-      let content = 'This is text that will render inside the component';
-      if (component.value === H3) {
-        content = content.toUpperCase();
-      }
+      const content = 'This is text that will render inside the component';
       const slots = { default: content };
       const { queryByText } = render(component.value, { slots });
       const contentElement = queryByText(content);
