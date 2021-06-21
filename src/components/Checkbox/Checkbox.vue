@@ -110,15 +110,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.checkbox:hover input:not(:disabled):not([readonly]) ~ .checkmark {
-  @apply shadow-input;
-}
-
 .checkbox input:focus ~ .checkmark {
   @apply outline-none;
   @apply ring-2;
   @apply ring-primary-100;
   @apply border-transparent;
+}
+
+.checkbox:hover input:not(:disabled):not([readonly]) ~ .checkmark {
+  @apply shadow-input;
 }
 
 .checkmark::after {

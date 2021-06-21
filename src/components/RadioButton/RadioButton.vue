@@ -138,10 +138,6 @@ input {
     @apply border-error;
   }
 
-  &:hover:not(:disabled):not([readonly]) + label::before {
-    @apply shadow-input;
-  }
-
   &:focus + label::before {
     @apply outline-none;
     @apply ring-2;
@@ -165,6 +161,10 @@ input {
 
   &[readonly] + label::after {
     @apply hidden;
+  }
+
+  &:hover:not(:disabled):not([readonly]) + label::before {
+    @apply shadow-input;
   }
 }
 </style>
