@@ -6,10 +6,13 @@
       :name="name"
       :required="required"
       :disabled="disabled"
+      :readonly="readonly"
+      :placeholder="placeholder"
       :class="[
-        'bg-white text-gray-500 p-4 resize-none rounded-sm border border-gray-100 focus:outline-none focus:border-primary-300',
+        'bg-white text-gray-500 p-4 resize-none rounded border border-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
         {'border-error': error},
-        {'border-white-200': disabled}
+        {'!bg-white-300 cursor-not-allowed': disabled || readonly},
+        {'hover:shadow': !disabled && !readonly}
       ]"
       @input="onInput"
     />
@@ -32,6 +35,10 @@ export default {
       type: String,
       default: ''
     },
+    placeholder: {
+      type: String,
+      default: ''
+    },
     required: {
       type: Boolean,
       default: false
@@ -41,6 +48,10 @@ export default {
       default: false
     },
     disabled: {
+      type: Boolean,
+      default: false
+    },
+    readonly: {
       type: Boolean,
       default: false
     }
@@ -59,9 +70,9 @@ export default {
 <style scoped lang="scss">
 textarea {
   min-height: 10rem;
+}
 
-  &:hover:not(:disabled) {
-    @apply shadow;
-  }
+textarea::placeholder {
+  @apply text-gray-100;
 }
 </style>
