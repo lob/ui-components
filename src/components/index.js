@@ -15,6 +15,7 @@ export { default as MegaMenuItem } from './MegaMenu/MegaMenuItem';
 export { default as Pagination } from './Pagination/Pagination';
 export { default as RadioButton } from './RadioButton/RadioButton';
 export { default as RadioGroup } from './RadioGroup/RadioGroup';
+export { default as SearchBar } from './SearchBar/SearchBar';
 export { default as Subnavigation } from './Subnavigation/Subnavigation';
 export { default as SubnavigationItem } from './Subnavigation/SubnavigationItem';
 export { default as SwitchGroup } from './Switch/SwitchGroup';

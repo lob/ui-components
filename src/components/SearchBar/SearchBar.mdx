@@ -1,0 +1,57 @@
+import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs/blocks';
+import SearchBar from './SearchBar.vue';
+
+# SearchBar
+
+A SearchBar represents a value a form that can either be true or false.
+
+<Preview>
+  <Story id="components-SearchBar--single" />
+</Preview>
+
+## How to Use
+
+This SearchBar component is designed to be used on its own in the case of a simple true/false or within a list to indicate a selection of options.
+
+The label and v-model are required. The other props are optional.
+
+To use this SearchBar as a simple boolean, here is an example
+
+```html
+<SearchBar
+  label="I am a SearchBar"
+  v-model="mySwitch"
+>
+</SearchBar>
+```
+
+To use this SearchBar in a list to indicate an array of selected options, use the same v-model for all SearchBares. It will be an array of strings.
+
+Here is an example
+
+```html
+<div>
+    <SearchBar
+      label="Chocolate"
+      v-model="selectedIceCreamFlavors"
+      name="chocolate"
+      value="chocolate"
+    />
+    <SearchBar
+      label="Vanilla"
+      v-model="selectedIceCreamFlavors"
+      name="vanilla"
+      value="vanilla"
+    />
+    <SearchBar
+      label="Strawberry"
+      v-model="selectedIceCreamFlavors"
+      name="strawberry"
+      value="strawberry"
+    />
+  </div>
+```
+
+## Props
+
+<ArgsTable story={PRIMARY_STORY} />
