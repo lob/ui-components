@@ -1,28 +1,34 @@
 <template>
   <div
     :class="[
-      'inline-block mr-4 mt-1 cursor-pointer',
+      'inline-block mr-4 mt-1',
       { '!block mb-1': parent.props.separateLines },
-      { 'cursor-not-allowed': disabled }
+      { 'cursor-not-allowed': disabled || readonly }
     ]"
   >
     <input
       :id="value"
       type="radio"
       :class="[
-        'absolute m-0 p-0 w-0 h-0 opacity-0 pointer-events-none mt-2 radio__input',
-        { 'radio__input--error': error }
+        'absolute m-0 p-0 w-0 h-0 opacity-0 pointer-events-none mt-2',
+        { 'radio__input--error': error },
+        { 'cursor-not-allowed': disabled || readonly }
       ]"
       :name="name"
       :value="value"
       :checked="checked"
       :disabled="disabled"
+      :readonly="readonly"
+      :required="required"
       @input="onInput"
       @click="onClick"
     >
     <label
       :for="value"
-      class="text-sm font-light relative inline-block cursor-pointer ml-6"
+      :class="[
+        'text-sm font-light relative inline-block ml-6',
+        { 'cursor-not-allowed': disabled || readonly }
+      ]"
     >{{ label }}</label>
   </div>
 </template>
@@ -37,10 +43,6 @@ export default {
       type: String,
       default: null
     },
-    error: {
-      type: Boolean,
-      default: false
-    },
     name: {
       type: String,
       default: ''
@@ -53,7 +55,19 @@ export default {
       type: String,
       default: ''
     },
+    error: {
+      type: Boolean,
+      default: false
+    },
+    required: {
+      type: Boolean,
+      default: false
+    },
     disabled: {
+      type: Boolean,
+      default: false
+    },
+    readonly: {
       type: Boolean,
       default: false
     }
@@ -85,7 +99,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.radio__input {
+input {
   + label::before {
     content: "";
     left: -20px;
@@ -124,12 +138,15 @@ export default {
     @apply border-error;
   }
 
-  &:hover + label::before {
+  &:hover:not(:disabled):not([readonly]) + label::before {
     @apply shadow-input;
   }
 
   &:focus + label::before {
-    @apply border-primary-100;
+    @apply outline-none;
+    @apply ring-2;
+    @apply ring-primary-100;
+    @apply border-transparent;
   }
 
   &:disabled + label::before {
@@ -138,6 +155,15 @@ export default {
   }
 
   &:disabled + label::after {
+    @apply hidden;
+  }
+
+  &[readonly] + label::before {
+    @apply bg-white-300;
+    @apply border-gray-100;
+  }
+
+  &[readonly] + label::after {
     @apply hidden;
   }
 }
