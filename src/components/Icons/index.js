@@ -6,3 +6,4 @@ export { default as ChevronRight } from './ChevronRight';
 export { default as Close } from './Close';
 export { default as SkipToLeft } from './SkipToLeft';
 export { default as SkipToRight } from './SkipToRight';
+export { default as Check } from './Check';
