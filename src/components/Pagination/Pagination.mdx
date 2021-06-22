@@ -36,6 +36,27 @@ Example of using this component in a template
 />
 ```
 
+### Internationalization
+
+By default, the screen reader and mobile labels will display in English.
+
+If you'd like to localize these labels, you can install `vue-i18n` into your application and provide the following translations in your required languages.
+
+```js
+{
+  pageSingleResultLabel: 'result',
+  pageResultsLabel: 'results',
+  firstPageLabel: 'Go to first page',
+  prevPageLabel: 'Go to previous page',
+  nextPageLabel: 'Go to next page',
+  lastPageLabel: 'Go to last page',
+  prevPageLabelMobile: 'Prev',
+  nextPageLabelMobile: 'Next'
+}
+```
+
+
+
 ## Props
 
 <ArgsTable story={PRIMARY_STORY} />
