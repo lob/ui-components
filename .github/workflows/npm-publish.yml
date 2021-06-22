@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Read node from package.json
+      - name: Read node version from node-version file
         id: node_version
         run: |
           content=`cat ./node-version`
