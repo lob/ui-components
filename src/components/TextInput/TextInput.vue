@@ -24,6 +24,9 @@
       ref="input"
       :type="type"
       :value="modelValue"
+      :min="min"
+      :max="max"
+      :pattern="pattern"
       :class="[
         'rounded pl-2 pt-3 pb-4 leading-5 w-full text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
         {'!pl-4': !iconLeft},
