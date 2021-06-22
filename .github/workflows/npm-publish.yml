@@ -11,7 +11,7 @@ jobs:
         id: node_version
         uses: juliangruber/read-file-action@v1.1.4
         with:
-          path: ./node-version
+          path: "${{ env.GITHUB_WORKSPACE }}/node-version"
       - name: Echo node version
         run: |
           echo "Node version found: ${{ steps.node_version.outputs.content }}"
