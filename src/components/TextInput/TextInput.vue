@@ -22,8 +22,11 @@
     <input
       :id="id"
       ref="input"
-      type="text"
+      :type="type"
       :value="modelValue"
+      :min="min"
+      :max="max"
+      :pattern="pattern"
       :class="[
         'rounded pl-2 pt-3 pb-4 leading-5 w-full text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
         {'!pl-4': !iconLeft},
@@ -72,6 +75,28 @@ export default {
       type: String,
       default: '',
       required: true
+    },
+    type: {
+      type: String,
+      default: 'text',
+      validator: function (value) {
+        return ['date', 'email', 'number', 'password', 'tel', 'text', 'url'].includes(value);
+      }
+    },
+    // Used by number inputs.
+    min: {
+      type: String,
+      default: null
+    },
+    // Used by number inputs.
+    max: {
+      type: String,
+      default: null
+    },
+    // Used by tel inputs.
+    pattern: {
+      type: String,
+      default: null
     },
     label: {
       type: String,
