@@ -1,8 +1,7 @@
 import TextInput from './TextInput.vue';
 import mdx from './TextInput.mdx';
 
-import Search from '../Icons/Search';
-import Close from '../Icons/Close';
+import { Close, Search } from '@/components/Icons';
 
 export default {
   title: 'Components/Text Input',

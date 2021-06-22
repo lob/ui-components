@@ -97,10 +97,10 @@
 </template>
 
 <script>
-import { ChevronDown } from '../Icons';
+import { ChevronDown } from '@/components/Icons';
 import DropdownItemGroup from './DropdownItemGroup';
 import DropdownItem from './DropdownItem';
-import { findLastIndex } from '../../utils';
+import { findLastIndex } from '@/utils';
 
 if (!Array.prototype.findLastIndex) {
   Array.prototype.findLastIndex = findLastIndex; //eslint-disable-line 

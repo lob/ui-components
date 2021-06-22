@@ -2,7 +2,7 @@ import routeDecorator, { routeTemplate } from '../../../.storybook/routeDecorato
 
 import Breadcrumb from './Breadcrumb.vue';
 import mdx from './Breadcrumb.mdx';
-import iconOverview from '../../assets/images/iconOverview.svg';
+import iconOverview from '@/assets/images/iconOverview.svg';
 
 export default {
   title: 'Components/Breadcrumb',

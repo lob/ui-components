@@ -4,7 +4,7 @@ import MainNavigation from './MainNavigation.vue';
 import MainNavigationItem from './MainNavigationItem.vue';
 import MainNavigationChildItem from './MainNavigationChildItem.vue';
 import mdx from './MainNavigation.mdx';
-import iconOverview from '../../assets/images/iconOverview.svg';
+import iconOverview from '@/assets/images/iconOverview.svg';
 
 export default {
   title: 'Components/Main Navigation',
