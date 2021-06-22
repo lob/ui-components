@@ -6,7 +6,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Read node from package.json
-        uses: culshaw/read-package-node-version-actions@v1
+        uses: culshaw/read-package-node-version-actions@v2
         id: package-node-version
       - run: |
           echo "Node version found: ${{ steps.package-node-version.outputs.version }}"

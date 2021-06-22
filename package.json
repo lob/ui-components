@@ -1,9 +1,9 @@
 {
   "name": "@lob/ui-components",
-  "version": "0.0.16",
   "engines": {
     "node": "14.6.1"
   },
+  "version": "0.0.16",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
