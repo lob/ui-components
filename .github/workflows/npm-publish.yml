@@ -1,18 +1,22 @@
 name: NPM Publish
-on: [push]
+on:
+  push:
+    branches: [main]
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Read node from package.json
-        uses: culshaw/read-package-node-version-actions@v2.0.0
-        id: package-node-version
+        id: node_version
+        run: |
+          content=`cat ./node-version`
+          echo "::set-output name=version::$content"
       - run: |
-          echo "Node version found: ${{ steps.package-node-version.outputs.version }}"
+          echo "Node version found: ${{ steps.node_version.outputs.version }}"
       - uses: actions/setup-node@v2
         with:
-          node-version: ${{ steps.package-node-version.outputs.version }}
+          node-version: ${{ steps.node_version.outputs.version }}
       - run: npm install
       - run: npm run lint
       - run: npm run test:unit
