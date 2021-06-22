@@ -1,21 +1,25 @@
 <template>
-  <text-input v-model="modelValue" class="w-max">
+  <text-input v-model="searchTerm" class="w-max bg-white-300">
     <template v-slot:iconLeft>
-      <search class="w-6 h-6" />
+      <search class="w-6 h-6 bg-white-300" />
     </template>
     <template v-slot:iconRight>
-      <close class="w-6 h-6"/>
+      <button v-if="searchTerm !== ''" @click="eraseSearchTerm">
+        <close class="w-6 h-6"/>
+      </button>
     </template>
   </text-input>
-  <div class="bg-primary-500">
+  <div class="bg-white shadow">
     <table class="table-auto">
-    <tbody>
-      <tr><td colspan="5" class="text-center">View all {{ searchResults.length }} results...</td></tr>
-      <tr v-for="result in searchResults">
-        <td v-for="key in Object.keys(result)">{{key}} {{result[key]}}</td>
-      </tr>
-    </tbody>
-  </table>
+      <tbody>
+        <tr class="border-b border-white-300"><td colspan=5 class="text-center py-4">View all {{ searchResults.length }} results...</td></tr>
+        <tr v-for="result in searchResults">
+          <td class="max-w-md px-4 py-2" v-for="key in Object.keys(result)">
+            {{result[key]}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
@@ -27,23 +31,32 @@ export default {
   name: 'SearchBar',
   components: { textInput, search, close },
   props: {
-    modelValue: {
-      type: String,
-      default: ''
+    searchFunction: {
+      type: Function,
+      required : true,
     },
-    searchResults: {
-      type: Object,
-      default: () => ([])
-    }
   },
   data() {
+    return {
+      searchTerm : '',
+      searchResults : [],
+    }
+
   },
-  emits: ['update:modelValue', 'input', 'change'],
-  computed: {
-    
+  watch: {
+    searchTerm(val) {
+      this.searchFunction(val).then(results=>{
+        this.searchResults = results
+      })
+      .catch(e=>{
+        console.error("error searching for results", e)
+      })
+    },
   },
   methods: {
-    
+    eraseSearchTerm() {
+      this.searchTerm = '';
+    },
   }
 };
 </script>
