@@ -10,7 +10,7 @@ jobs:
       - name: Read node version from node-version file
         id: node_version
         run: |
-          content=`cat ./node-version`
+          content=`cat ../../node-version`
           echo "::set-output name=version::$content"
       - run: |
           echo "Node version found: ${{ steps.node_version.outputs.version }}"
