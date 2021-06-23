@@ -48,7 +48,7 @@ describe('Checkbox', () => {
 
     const { getByLabelText } = renderComponent({ props });
 
-    const checkbox = getByLabelText(`${props.label}*`);
+    const checkbox = getByLabelText(new RegExp(props.label));
     expect(checkbox).toBeRequired();
   });
 

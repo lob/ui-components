@@ -8,7 +8,12 @@
                {'text-xs': small},
                {'text-sm': default_}]"
     >{{ label }}</label>
-    <div class="relative">
+    <div
+      :class="[
+        'relative',
+        {'cursor-not-allowed': disabled}
+      ]"
+    >
       <div
         :id="`${id}-value`"
         ref="input"
@@ -25,7 +30,7 @@
           'cursor-default bg-white border rounded border-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent hover:shadow',
           {'text-sm py-2 px-2.5': small},
           {'py-3 px-4': default_},
-          {'!bg-white-300 !border-white-200 pointer-events-none': disabled},
+          {'!bg-white-300 pointer-events-none': disabled},
           {'border-error': error}
         ]"
         tabindex="0"
@@ -54,8 +59,9 @@
         ref="listbox"
         role="listbox"
         :class="[
-          'cursor-default max-h-96 bg-white rounded-sm text-sm py-4 overflow-y-auto absolute left-0 top-full hidden w-full z-100 shadow',
-          {'!block': open }]"
+          'max-h-96 bg-white rounded-sm text-sm py-4 overflow-y-auto absolute left-0 top-full hidden w-full z-100 shadow',
+          {'!block': open }
+        ]"
       >
         <div
           v-for="item in optionItems"
