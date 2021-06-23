@@ -34,4 +34,28 @@ describe('Modal', () => {
 
   });
 
+  it('does not have a header when no-header prop is true', () => {
+    const props = {
+      ...initialProps,
+      noHeader: true
+    };
+
+    const { container } = renderComponent({ props });
+    const header = container.querySelector('header');
+    expect(header).not.toBeInTheDocument();
+
+  });
+
+  it('does not have a footer when no-footer prop is true', () => {
+    const props = {
+      ...initialProps,
+      noFooter: true
+    };
+
+    const { container } = renderComponent({ props });
+    const footer = container.querySelector('footer');
+    expect(footer).not.toBeInTheDocument();
+
+  });
+
 });
