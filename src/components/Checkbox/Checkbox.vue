@@ -30,7 +30,13 @@
       data-testId="checkmark"
     />
     <span>
-      {{ required ? label + "*" : label }}
+      {{ label }}
+      <span
+        v-if="required"
+        class="text-sm text-turquoise-900"
+      >
+        *
+      </span>
     </span>
   </label>
 </template>

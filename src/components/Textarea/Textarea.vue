@@ -1,6 +1,14 @@
 <template>
   <label class="flex flex-col">
-    <span class="mb-2.5 text-gray-500 text-sm">{{ label }}</span>
+    <span class="mb-2.5 text-gray-500 text-sm">
+      {{ label }}
+      <span
+        v-if="required"
+        class="text-sm text-turquoise-900"
+      >
+        *
+      </span>
+    </span>
     <textarea
       :value="modelValue"
       :name="name"

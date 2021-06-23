@@ -5,6 +5,12 @@
     :class="['block mb-2 text-sm text-gray-500', {'sr-only': srOnlyLabel}]"
   >
     {{ label }}
+    <span
+      v-if="required"
+      class="text-sm text-turquoise-900"
+    >
+      *
+    </span>
   </label>
   <div
     v-bind="$attrs"
