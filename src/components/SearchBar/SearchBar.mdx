@@ -3,55 +3,27 @@ import SearchBar from './SearchBar.vue';
 
 # SearchBar
 
-A SearchBar represents a value a form that can either be true or false.
+A SearchBar that takes a custom function to return search results.
 
 <Preview>
-  <Story id="components-SearchBar--single" />
+  <Story id="components-SearchBar--primary" />
 </Preview>
 
 ## How to Use
 
-This SearchBar component is designed to be used on its own in the case of a simple true/false or within a list to indicate a selection of options.
+This SearchBar component is designed to be used for search in any list of items.
 
-The label and v-model are required. The other props are optional.
+The searchFunction is required.
 
-To use this SearchBar as a simple boolean, here is an example
+To use this SearchBar, here is an example
 
 ```html
 <SearchBar
-  label="I am a SearchBar"
-  v-model="mySwitch"
+  searchFunction="myCustomSearch"
 >
 </SearchBar>
 ```
 
-To use this SearchBar in a list to indicate an array of selected options, use the same v-model for all SearchBares. It will be an array of strings.
-
-Here is an example
-
-```html
-<div>
-    <SearchBar
-      label="Chocolate"
-      v-model="selectedIceCreamFlavors"
-      name="chocolate"
-      value="chocolate"
-    />
-    <SearchBar
-      label="Vanilla"
-      v-model="selectedIceCreamFlavors"
-      name="vanilla"
-      value="vanilla"
-    />
-    <SearchBar
-      label="Strawberry"
-      v-model="selectedIceCreamFlavors"
-      name="strawberry"
-      value="strawberry"
-    />
-  </div>
-```
-
 ## Props
 
-<ArgsTable story={PRIMARY_STORY} />
+SearchFunction - wrapper function that displays the correct serach results

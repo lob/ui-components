@@ -1,5 +1,5 @@
 <template>
-  <text-input v-model="searchTerm" class="w-max bg-white-300">
+  <text-input v-model="searchTerm" class="w-max bg-white-300" id="searchBar">
     <template v-slot:iconLeft>
       <search class="w-6 h-6 bg-white-300" />
     </template>
@@ -11,10 +11,10 @@
   </text-input>
   <div class="bg-white shadow">
     <table class="table-auto">
-      <tbody>
-        <tr class="border-b border-white-300"><td colspan=5 class="text-center py-4">View all {{ searchResults.length }} results...</td></tr>
+      <tbody v-if="searchTerm !== ''">
+        <tr class="border-b border-white-300 rounded-t-lg"><td colspan=5 class="text-center py-4">View all {{ searchResults.length }} results...</td></tr>
         <tr v-for="result in searchResults">
-          <td class="max-w-md px-4 py-2" v-for="key in Object.keys(result)">
+          <td class="max-w-md px-4 py-2 text-gray-500" v-for="key in Object.keys(result)">
             {{result[key]}}
           </td>
         </tr>
