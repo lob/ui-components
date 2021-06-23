@@ -2,7 +2,7 @@
   <label
     :class="[
       'checkbox relative block mt-0 mb-1 ml-6 mr-3 text-left min-h-5',
-      { 'cursor-not-allowed': disabled || readonly },
+      { 'cursor-not-allowed': disabled },
       { 'inline-block': sameLine }
     ]"
   >
@@ -14,7 +14,6 @@
       :value="value"
       :name="name"
       :disabled="disabled"
-      :readonly="readonly"
       :required="required"
       @input="onInput"
       @click="onClick"
@@ -23,8 +22,8 @@
       style="content: '';"
       :class="[
         'checkmark w-4 h-4 mr-1 rounded-sm border-solid border border-gray-100 -left-5 absolute top-1',
-        { 'bg-white-300': disabled || readonly },
-        { 'bg-gray-100': (disabled || readonly) && checked },
+        { 'bg-white-300': disabled },
+        { '!bg-gray-100': disabled && checked },
         { 'border-error': error },
         { 'border-primary-500 bg-primary-500': checked }
       ]"
@@ -49,10 +48,6 @@ export default {
       default: null
     },
     disabled: {
-      type: Boolean,
-      default: false
-    },
-    readonly: {
       type: Boolean,
       default: false
     },
@@ -117,7 +112,7 @@ export default {
   @apply border-transparent;
 }
 
-.checkbox:hover input:not(:disabled):not([readonly]) ~ .checkmark {
+.checkbox:hover input:not(:disabled) ~ .checkmark {
   @apply shadow-input;
 }
 
