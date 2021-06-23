@@ -1,6 +1,9 @@
 import '@testing-library/jest-dom';
 import { render, fireEvent } from '@testing-library/vue';
+import { translate } from '@/mixins';
 import DatepickerMonth from '../DatepickerMonth.vue';
+
+const mixins = [translate];
 
 const initialProps = {
   focusedDate: new Date(2021, 5, 14),
@@ -8,7 +11,7 @@ const initialProps = {
   max: new Date(2022, 5, 14)
 };
 
-const renderComponent = (options) => render(DatepickerMonth, { ...options });
+const renderComponent = (options) => render(DatepickerMonth, { ...options, global: { mixins } });
 
 describe('DatepickerMonth', () => {
 

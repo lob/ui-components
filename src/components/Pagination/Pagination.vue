@@ -4,7 +4,11 @@
     class="flex md:justify-between mt-0 relative pt-0 px-2 pb-1 -top-1 w-full"
   >
     <div>
-      <p>{{ total }} result<span v-if="total !== 1">s</span></p>
+      <p>
+        {{ total }}
+        <span v-if="total !== 1">{{ t('pageResultsLabel') }}</span>
+        <span v-else>{{ t('pageSingleResultLabel') }}</span>
+      </p>
     </div>
 
     <div class="hidden md:flex items-center">
@@ -19,7 +23,7 @@
         :disabled="page === 1"
         @click="pageClick(1)"
       >
-        <span class="sr-only">Go to first page</span>
+        <span class="sr-only">{{ t('firstPageLabel') }}</span>
         <page-arrow-icon
           :first="true"
           :disabled="page === 1"
@@ -33,7 +37,7 @@
         :disabled="page <= 1"
         @click="pageClick(page - 1)"
       >
-        <span class="sr-only">Go to previous page</span>
+        <span class="sr-only">{{ t('prevPageLabel') }}</span>
         <page-arrow-icon
           :previous="true"
           :disabled="page <= 1"
@@ -47,7 +51,7 @@
         :disabled="offset + limit >= total"
         @click="pageClick(page + 1)"
       >
-        <span class="sr-only">Go to next page</span>
+        <span class="sr-only">{{ t('nextPageLabel') }}</span>
         <page-arrow-icon
           :next="true"
           :disabled="offset + limit >= total"
@@ -61,7 +65,7 @@
         :disabled="offset + limit >= total"
         @click="pageClick(lastPage)"
       >
-        <span class="sr-only">Go to last page</span>
+        <span class="sr-only">{{ t('lastPageLabel') }}</span>
         <page-arrow-icon
           :last="true"
           :disabled="offset + limit >= total"
@@ -80,7 +84,7 @@
           :disabled="offset + limit >= total"
           @click="pageClick(page + 1)"
         >
-          Next
+          {{ t('nextPageLabelMobile') }}
           <page-arrow-icon
             :next="true"
             class="transform group-hover:translate-x-1 group-hover:text-primary-300"
@@ -98,7 +102,7 @@
             :previous="true"
             class="transform group-hover:-translate-x-1 group-hover:text-primary-300"
           />
-          Prev
+          {{ t('prevPageLabelMobile') }}
         </button>
       </p>
     </div>
