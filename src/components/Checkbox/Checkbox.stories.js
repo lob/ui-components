@@ -11,7 +11,7 @@ export default {
   }
 };
 
-const checkboxVModel = false;
+const checkboxVModel = true;
 
 const SingleTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
