@@ -16,7 +16,7 @@ describe('Textarea', () => {
     const props = initialProps;
     const { getByLabelText } = renderComponent({ props });
 
-    const textarea = getByLabelText(props.label);
+    const textarea = getByLabelText(new RegExp(props.label));
     expect(textarea).toBeInTheDocument();
   });
 
@@ -27,7 +27,7 @@ describe('Textarea', () => {
     };
 
     const { getByLabelText } = renderComponent({ props });
-    const textarea = getByLabelText(props.label);
+    const textarea = getByLabelText(new RegExp(props.label));
 
     expect(textarea).toBeRequired();
   });

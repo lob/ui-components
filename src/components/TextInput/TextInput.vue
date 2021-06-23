@@ -5,12 +5,21 @@
     :class="['block mb-2 text-sm text-gray-500', {'sr-only': srOnlyLabel}]"
   >
     {{ label }}
+    <span
+      v-if="required"
+      class="text-sm text-turquoise-900"
+    >
+      *
+    </span>
   </label>
   <div
     v-bind="$attrs"
+    data-testId="input-container"
     :class="[
-      'flex input rounded border border-gray-100',
-      {'!border-0': withCopyButton}
+      'flex rounded border border-gray-100',
+      {'!border-0': withCopyButton},
+      {'hover:shadow': !disabled && !readonly},
+      {'border-error': error}
     ]"
   >
     <div
@@ -32,8 +41,7 @@
         {'!pl-4': !iconLeft},
         {'!pl-3 !pr-3 !py-2': small},
         {'border border-r-0 border-gray-100 rounded-tr-none rounded-br-none': withCopyButton},
-        {'bg-white-300 cursor-not-allowed': disabled || readonly},
-        {'border-error': error}
+        {'bg-white-300 cursor-not-allowed': disabled || readonly}
       ]"
       :disabled="disabled"
       :required="required"
@@ -165,13 +173,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .input {
-    &:hover:not(:disabled):not(:focus) {
-      box-shadow: 0 5px 14px rgba(44, 67, 81, 0.13), 0 0 4px rgba(44, 67, 81, 0.02);
-    }
-  }
-
-  .input::placeholder {
+  input::placeholder {
     @apply text-gray-100;
   }
 </style>

@@ -30,7 +30,7 @@ describe('Text input', () => {
     const { getByLabelText } = render(TextInput, {
       props
     });
-    const textInput = getByLabelText(props.label);
+    const textInput = getByLabelText(new RegExp(props.label));
 
     expect(textInput).toBeRequired();
   });
@@ -55,10 +55,10 @@ describe('Text input', () => {
       error: true
     };
 
-    const { getByLabelText } = render(TextInput, {
+    const { getByTestId } = render(TextInput, {
       props
     });
-    const textInput = getByLabelText(props.label);
+    const textInput = getByTestId('input-container');
 
     expect(textInput).toHaveClass('border-error');
   });
