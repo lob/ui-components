@@ -1,7 +1,10 @@
 import '@testing-library/jest-dom';
 import { render, fireEvent } from '@testing-library/vue';
+import { translate } from '@/mixins';
 import userEvent from '@testing-library/user-event';
 import Datepicker from '../Datepicker.vue';
+
+const mixins = [translate];
 
 const modelValue = new Date(2021, 5, 14);
 const open = false;
@@ -57,7 +60,7 @@ const initialProps = {
   open
 };
 
-const renderComponent = (options) => render(Datepicker, { ...options });
+const renderComponent = (options) => render(Datepicker, { ...options, global: { mixins } });
 
 describe('Datepicker', () => {
 
