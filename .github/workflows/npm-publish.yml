@@ -7,14 +7,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Read node version from node-version file
+      - name: Read node version from package.json
         id: node_version
-        uses: juliangruber/read-file-action@v1.1.4
+        uses: notiz-dev/github-action-json-property@release
         with:
-          path: "${{ env.GITHUB_WORKSPACE }}/node-version"
+          path: "package.json"
+          prop_path: "engines.node"
       - name: Echo node version
         run: |
-          echo "Node version found: ${{ steps.node_version.outputs.content }}"
+          echo "Node version found: ${{ steps.node_version.outputs.prop }}"
       - uses: actions/setup-node@v2
         with:
           node-version: ${{ steps.node_version.outputs.content }}
