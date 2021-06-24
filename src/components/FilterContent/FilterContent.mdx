@@ -1,0 +1,66 @@
+import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs/blocks';
+import FilterContent from './FilterContent.vue';
+
+# FilterContent
+
+FilterContent is a stylized, accessible component for seeing a calendar and choosing a date.
+
+<Preview>
+  <Story id="components-filtercontent--primary" />
+</Preview>
+
+## How to Use
+To use the filter content component, you must provide a `v-model:open` of type Boolean (controls whether the filter content is visible).
+
+The filter content is positioned absolutely so you'll want to be sure to position its parent `relative` in order to have it show up in the proper position (it will always be positioned absolutely to its nearest ancestor that is positioned relative).
+
+There are 2 slots. The default slot is for the various inputs and buttons that you want to display in your filters. The `header` slot is for rendering a user-friendly header to add further context to the filter content.
+
+Finally, to hook up the functionality to close the calendar when clicking outside of the datepicker and its parent element, you can provide a `boundComponent` prop which is a ref to the element that the user can click in to hide/show the calendar (usually an input).
+
+This component will emit `update:open` events with a boolean for whether the filter content is visible or not.
+
+Example of using this component in a template without a header
+```html
+<div class="relative">
+  <Button @click.stop="open = !open" size="small">Filter by</Button>
+  <filter-content v-model:open="open">
+    <checkbox
+      label="Postcards"
+      v-model="selectedFilters"
+      name="postcards"
+      value="postcards"
+      class="mb-2"
+    />
+    <checkbox
+      label="Letters"
+      v-model="selectedFilters"
+      name="letters"
+      value="letters"
+      class="mb-2"
+    />
+    <checkbox
+      label="Checks"
+      v-model="selectedFilters"
+      name="checks"
+      value="checks"
+      class="mb-2"
+    />
+    <checkbox
+      label="Self Mailer"
+      v-model="selectedFilters"
+      name="selfMailer"
+      value="selfMailer"
+      class="mb-2"
+    />
+    <div class="mt-4 flex">
+      <Button variant="secondary" size="small" @click="selectedFilters = []">Reset</Button>
+      <Button size="small" class="ml-2" @click="open = false">Apply</Button>
+    </div>
+  </filter-content>
+</div>
+```
+
+## Props
+
+<ArgsTable story={PRIMARY_STORY} />
