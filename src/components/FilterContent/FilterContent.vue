@@ -2,6 +2,7 @@
   <div
     v-if="open"
     ref="container"
+    data-testId="container"
     class="absolute z-10 shadow"
   >
     <div
