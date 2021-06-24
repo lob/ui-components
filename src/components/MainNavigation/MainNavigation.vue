@@ -1,8 +1,8 @@
 <template>
-  <nav>
+  <nav class="bg-white-100 border-r-2 border-white-300">
     <ul
       :class="[
-        'bg-white-100 h-screen relative border-r-2 border-white-300',
+        'min-h-full relative ',
         { expanded: collapsible && expanded },
         { collapsed: collapsible && !expanded }
       ]"
