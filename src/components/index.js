@@ -1,7 +1,7 @@
 export { default as Alert } from './Alert/Alert';
 export { default as Badge } from './Badge/Badge';
 export { default as Breadcrumb } from './Breadcrumb/Breadcrumb';
-export { default as Button } from './Button/Button';
+export { default as LobButton } from './Button/Button';
 export { default as Card } from './Card/Card';
 export { default as Checkbox } from './Checkbox/Checkbox';
 export { default as Datepicker } from './Datepicker/Datepicker';

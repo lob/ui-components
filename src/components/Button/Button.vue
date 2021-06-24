@@ -28,7 +28,7 @@
 
 <script>
 export default {
-  name: 'Button',
+  name: 'LobButton',
   props: {
     variant: {
       type: String,

@@ -1,7 +1,7 @@
 <template>
   <label
     :class="[
-      'checkbox relative block mt-0 mb-1 ml-6 mr-3 cursor-pointer text-left min-h-5',
+      'checkbox relative block mt-0 mb-1 ml-6 mr-3 text-left min-h-5',
       { 'cursor-not-allowed': disabled },
       { 'inline-block': sameLine }
     ]"
@@ -23,14 +23,20 @@
       :class="[
         'checkmark w-4 h-4 mr-1 rounded-sm border-solid border border-gray-100 -left-5 absolute top-1',
         { 'bg-white-300': disabled },
-        { 'bg-gray-100': disabled && checked },
+        { '!bg-gray-100': disabled && checked },
         { 'border-error': error },
         { 'border-primary-500 bg-primary-500': checked }
       ]"
       data-testId="checkmark"
     />
-    <span class="cursor-pointer">
-      {{ required ? label + "*" : label }}
+    <span>
+      {{ label }}
+      <span
+        v-if="required"
+        class="text-sm text-turquoise-900"
+      >
+        *
+      </span>
     </span>
   </label>
 </template>
@@ -105,12 +111,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.checkbox:hover input ~ .checkmark {
-  @apply shadow-input;
+.checkbox input:focus ~ .checkmark {
+  @apply outline-none;
+  @apply ring-2;
+  @apply ring-primary-100;
+  @apply border-transparent;
 }
 
-.checkbox input:focus ~ .checkmark {
-  @apply border-primary-300;
+.checkbox:hover input:not(:disabled) ~ .checkmark {
+  @apply shadow-input;
 }
 
 .checkmark::after {
