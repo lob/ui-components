@@ -1,5 +1,5 @@
 import FilterContent from './FilterContent.vue';
-import { Button, Checkbox, RadioGroup, RadioButton } from '@/components';
+import { LobButton, Checkbox, RadioGroup, RadioButton } from '@/components';
 import mdx from './FilterContent.mdx';
 
 export default {
@@ -17,12 +17,12 @@ const selectedFilters = [];
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: {  FilterContent, Button, Checkbox },
+  components: {  FilterContent, LobButton, Checkbox },
   data: () => ({ open, selectedFilters }),
   setup: () => ({ args }),
   template: `
     <div class="relative">
-      <Button @click.stop="open = !open" size="small">Filter by</Button>
+      <LobButton @click.stop="open = !open" size="small">Filter by</LobButton>
       <filter-content v-model:open="open">
         <checkbox
           label="Postcards"
@@ -53,8 +53,8 @@ const Template = (args, { argTypes }) => ({
           class="mb-2"
         />
         <div class="mt-4 flex">
-          <Button variant="secondary" size="small" @click="selectedFilters = []">Reset</Button>
-          <Button size="small" class="ml-2" @click="open = false">Apply</Button>
+          <LobButton variant="secondary" size="small" @click="selectedFilters = []">Reset</LobButton>
+          <LobButton size="small" class="ml-2" @click="open = false">Apply</LobButton>
         </div>
       </filter-content>
     </div>
@@ -67,12 +67,12 @@ const selectedFilter = '';
 
 const WithHeaderTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: {  FilterContent, Button, RadioGroup, RadioButton },
+  components: {  FilterContent, LobButton, RadioGroup, RadioButton },
   data: () => ({ open, selectedFilter }),
   setup: () => ({ args }),
   template: `
     <div class="relative">
-      <Button @click.stop="open = !open" size="small">Filter by</Button>
+      <LobButton @click.stop="open = !open" size="small">Filter by</LobButton>
       <filter-content v-model:open="open">
         <template v-slot:header>
           <div>
@@ -96,8 +96,8 @@ const WithHeaderTemplate = (args, { argTypes }) => ({
           />
         </radio-group>
         <div class="mt-4 flex">
-          <Button variant="secondary" size="small" @click="selectedFilter = ''">Reset</Button>
-          <Button size="small" class="ml-2" @click="open = false">Apply</Button>
+          <LobButton variant="secondary" size="small" @click="selectedFilter = ''">Reset</LobButton>
+          <LobButton size="small" class="ml-2" @click="open = false">Apply</LobButton>
         </div>
       </filter-content>
     </div>
