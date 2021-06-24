@@ -115,10 +115,6 @@ export default {
     isDateDisabled: {
       type: Function,
       default: () => false
-    },
-    boundComponent: {
-      type: Object,
-      default: null
     }
   },
   emits: ['update:modelValue', 'update:open', 'input'],
@@ -300,14 +296,11 @@ export default {
       this.hide();
     },
     onClickOutside ($event) {
-      const hasBoundElement = Boolean(this.boundComponent);
-
-      if (hasBoundElement) {
+      if (typeof this.$refs.container !== 'undefined') {
         const clickOnTheDatepickerContainer = this.$refs.container === $event.target;
-        const clickOnDatepickerChild = this.$refs.container.contains($event.target);
-        const clickOnBoundElement = this.boundComponent === $event.target;
+        const clickOnDatepickerChild = this.$refs.container && this.$refs.container.contains($event.target);
 
-        if (!clickOnTheDatepickerContainer && !clickOnDatepickerChild && !clickOnBoundElement) {
+        if (!clickOnTheDatepickerContainer && !clickOnDatepickerChild) {
           this.hide();
         }
       }
