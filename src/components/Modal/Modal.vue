@@ -32,7 +32,7 @@
           id="modalDescription"
           class="relative py-5"
         >
-          <slot name="body">
+          <slot>
             Default body
           </slot>
         </section>

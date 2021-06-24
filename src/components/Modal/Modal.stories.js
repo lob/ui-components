@@ -1,4 +1,4 @@
-import Button from '../Button/Button.vue';
+import LobButton from '../Button/Button.vue';
 import RadioButton from '../RadioButton/RadioButton.vue';
 import RadioGroup from '../RadioGroup/RadioGroup.vue';
 import Modal from './Modal.vue';
@@ -19,13 +19,13 @@ const radioModel = 'yes';
 
 const PrimaryTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { Modal, Button, RadioButton, RadioGroup },
+  components: { Modal, LobButton, RadioButton, RadioGroup },
   setup: () => ({ args }),
   data: () => ({ isModalVisible, radioModel }),
   template: `
-    <Button @click="isModalVisible = true">
+    <LobButton @click="isModalVisible = true">
       Open Modal
-    </Button>
+    </LobButton>
 
     <Modal
       v-bind="args"
@@ -36,18 +36,16 @@ const PrimaryTemplate = (args, { argTypes }) => ({
         <h4>Select Tracking Events</h4>
       </template>
 
-      <template v-slot:body>
-        Would you like to export an additional CSV of associated tracking events?
-        <RadioGroup>
-          <radio-button name="exportCSV" value="yes" label="Yes" v-model="radioModel"/>
-          <radio-button name="exportCSV" value="no" label="No" v-model="radioModel" />
-        </RadioGroup>
-      </template>
+      Would you like to export an additional CSV of associated tracking events?
+      <RadioGroup>
+        <radio-button name="exportCSV" value="yes" label="Yes" v-model="radioModel"/>
+        <radio-button name="exportCSV" value="no" label="No" v-model="radioModel" />
+      </RadioGroup>
 
       <template v-slot:footer>
         <div class="flex self-end">
-          <Button variant="secondary">Go back</Button>
-          <Button variant="primary" class="ml-2">Submit</Button>
+          <LobButton variant="secondary">Go back</LobButton>
+          <LobButton variant="primary" class="ml-2">Submit</LobButton>
         </div>
       </template>
     </Modal>

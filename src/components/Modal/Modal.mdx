@@ -11,7 +11,7 @@ A modal is a card that is opened upon action to display information.
 
 ## How to Use
 
-This Modal component is designed to be used with slots to fill in its header, body and footer.
+This Modal component is designed to be used with slots to fill in its header and footer, and the default slot for its body.
 
 Here is an example of a button opening a modal.
 
@@ -20,9 +20,9 @@ Visibility is controlled from the parent component using v-model.
 If no header or no footer slot is provided, nothing will be rendered in their place.
 
 ```html
-<Button @click="isModalVisible = true">
+<LobButton @click="isModalVisible = true">
   Open Modal
-</Button>
+</LobButton>
 
 <Modal
   v-bind="args"
@@ -33,18 +33,16 @@ If no header or no footer slot is provided, nothing will be rendered in their pl
     <h4>Select Tracking Events</h4>
   </template>
 
-  <template v-slot:body>
-    Would you like to export an additional CSV of associated tracking events?
-    <RadioGroup>
-      <radio-button name="exportCSV" value="yes" label="Yes" v-model="radioModel"/>
-      <radio-button name="exportCSV" value="no" label="No" v-model="radioModel" />
-    </RadioGroup>
-  </template>
+  Would you like to export an additional CSV of associated tracking events?
+  <RadioGroup>
+    <radio-button name="exportCSV" value="yes" label="Yes" v-model="radioModel"/>
+    <radio-button name="exportCSV" value="no" label="No" v-model="radioModel" />
+  </RadioGroup>
 
   <template v-slot:footer>
     <div class="flex self-end">
-      <Button variant="secondary">Go back</Button>
-      <Button variant="primary" class="ml-2">Submit</Button>
+      <LobButton variant="secondary">Go back</LobButton>
+      <LobButton variant="primary" class="ml-2">Submit</LobButton>
     </div>
   </template>
 </Modal>
