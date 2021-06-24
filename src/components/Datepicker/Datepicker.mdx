@@ -18,7 +18,7 @@ You can also provide an `isDateDisabled` prop which is function that takes a sin
 
 If you would prefer that the calendar start on Mondays instead of Sundays,  you can provide a `firstDayOfWeek` prop set to 1 (the index of Monday) or any other index you'd like. By default, calendar weeks start on Sunday.
 
-Finally, to hook up the functionality to close the calendar when clicking outside of the datepicker and its parent element, you can provide a `boundComponent` prop which is a ref to the element that the user can click in to hide/show the calendar (usually an input).
+Finally, to hook up the functionality to close the calendar when clicking outside of the datepicker and its parent element, make sure to include `.stop` on the click event bound to the element that the user can click in to hide/show the calendar (usually an input). For example `<input @click.stop="open = !open" />`
 
 This component will emit `input` and `update:modelValue` events with the selected date as a vanilla JS Date object. It is up to you to decide how you would like to format and display that value in any inputs or presentation components. ([dayjs](https://day.js.org/) is a great little library for easy parsing and formatting)
 
@@ -36,7 +36,7 @@ const isDateDisabled = (date) => {
 ```html
 <label>
   Enter a date
-  <input @click="open = !open" :value="dateModel" ref="input">
+  <input @click.stop="open = !open" :value="dateModel" ref="input">
 </label>
 <datepicker v-model="dateModel" v-model:open="show" :boundComponent="$refs.input"></datepicker>
 ```
