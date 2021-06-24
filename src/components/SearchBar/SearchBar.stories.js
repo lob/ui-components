@@ -1,5 +1,6 @@
 import SearchBar from './SearchBar.vue';
 import mdx from './SearchBar.mdx';
+import iconOverview from '@/assets/images/iconOverview.svg';
 
 export default {
   title: 'Components/SearchBar',
@@ -25,23 +26,83 @@ Primary.args = {
   searchFunction : (searchTerm) => {
     const allPostCards = [
       {
-        "img": 1,
+        "img": `/${iconOverview}`,
         "description": "campaign ad",
         "type": "postcard"
       },
       {
-        "img": 2,
+        "img": `/${iconOverview}`,
         "description": "soccer postcard",
         "type": "postcard"
       },
       {
-        "img": 3,
+        "img": `/${iconOverview}`,
         "description": "baseball mail",
         "type": "postcard"
       },
       {
-        "img": 4,
+        "img": `/${iconOverview}`,
         "description": "basketball email",
+        "type": "postcard"
+      },
+      {
+        "img": `https://upload.wikimedia.org/wikipedia/commons/1/13/Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg`,
+        "description": "campaign ad 1000",
+        "type": "postcard"
+      },
+      {
+        "img": `https://upload.wikimedia.org/wikipedia/commons/1/13/Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg`,
+        "description": "soccer postcard 1000",
+        "type": "postcard"
+      },
+      {
+        "img": `https://upload.wikimedia.org/wikipedia/commons/1/13/Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg`,
+        "description": "baseball mail 1000",
+        "type": "postcard"
+      },
+      {
+        "img": `https://upload.wikimedia.org/wikipedia/commons/1/13/Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg`,
+        "description": "basketball email 1000",
+        "type": "postcard"
+      },
+      {
+        "img": `/${iconOverview}`,
+        "description": "campaign ad",
+        "type": "postcard"
+      },
+      {
+        "img": `/${iconOverview}`,
+        "description": "soccer postcard",
+        "type": "postcard"
+      },
+      {
+        "img": `/${iconOverview}`,
+        "description": "baseball mail",
+        "type": "postcard"
+      },
+      {
+        "img": `/${iconOverview}`,
+        "description": "basketball email",
+        "type": "postcard"
+      },
+      {
+        "img": `https://upload.wikimedia.org/wikipedia/commons/1/13/Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg`,
+        "description": "campaign ad 1000",
+        "type": "postcard"
+      },
+      {
+        "img": `https://upload.wikimedia.org/wikipedia/commons/1/13/Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg`,
+        "description": "soccer postcard 1000",
+        "type": "postcard"
+      },
+      {
+        "img": `https://upload.wikimedia.org/wikipedia/commons/1/13/Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg`,
+        "description": "baseball mail 1000",
+        "type": "postcard"
+      },
+      {
+        "img": `https://upload.wikimedia.org/wikipedia/commons/1/13/Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg`,
+        "description": "basketball email 1000",
         "type": "postcard"
       }
     ]
