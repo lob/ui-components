@@ -30,7 +30,8 @@ export default {
   ::v-deep {
     th,
     td {
-      @apply p-1;
+      @apply py-1;
+      @apply px-2;
     }
   }
 }
