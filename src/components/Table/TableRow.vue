@@ -3,10 +3,7 @@ import { h } from 'vue';
 export default {
   name: 'TableRow',
   props: {
-    items: {
-      type: Array,
-      required: true
-    }
+
   },
   computed: {
 
