@@ -3,17 +3,17 @@ import TableHeader from './TableHeader.vue';
 import TableBody from './TableBody.vue';
 import TableRow from './TableRow.vue';
 import Button from '../Button/Button.vue';
-//import mdx from './Table.mdx';
+import mdx from './Table.mdx';
 
 export default {
   title: 'Components/Table',
   component: Table,
   subcomponents: { TableHeader, TableRow, TableBody, Button },
-  //	parameters: {
-  //		docs: {
-  //			page: mdx
-  //		}
-  //	},
+  parameters: {
+    docs: {
+      page: mdx
+    }
+  },
   argTypes: {
     space: {
       options: ['sm', 'md', 'lg'],
