@@ -43,7 +43,6 @@ export default {
       return colors;
     },
     theme () {
-      console.log(theme);
       return theme;
     }
   }
