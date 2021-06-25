@@ -11,7 +11,7 @@ Table is a flexible component that display sets of data
 ## How to Use
 
 ```html
-<Table>
+<Table space="md">
   <TableHeader>
     <div>Name</div>
     <div>Description</div>
@@ -23,6 +23,15 @@ Table is a flexible component that display sets of data
     </TableRow>
   </TableBody>
 </Table>
+```
+There are 3 variants of space to set a space to the cell: sm, md, lg.
+
+You can still set tailwindcss classes to a table cell.
+```html
+  <TableHeader>
+    <div class="px-3 py-4">Name</div>
+    <div>Description</div>
+  </TableHeader>
 ```
 
 ## Props
