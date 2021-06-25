@@ -14,13 +14,13 @@
           tertiary
       },
       {
-        'success bg-success text-white active:bg-success-700': success
+        'success bg-success !text-white active:bg-success-700': success
       },
       {
-        'error bg-error text-white active:bg-error-700': error
+        'error bg-error !text-white active:bg-error-700': error
       },
       {
-        'bg-opacity-40 !text-gray-300': (success || error) && disabled
+        'bg-opacity-50': (success || error) && disabled
       },
       { 'px-6 py-3.5': defaultSize },
       { 'px-3 py-2': small },
