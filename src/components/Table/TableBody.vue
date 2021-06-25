@@ -4,15 +4,6 @@
 
 <script>
 export default {
-  name: 'TableBody',
-  props: {
-
-  },
-  computed: {
-
-  },
-  methods: {
-
-  }
+  name: 'TableBody'
 };
 </script>
