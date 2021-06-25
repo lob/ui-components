@@ -1,7 +1,10 @@
 import '@testing-library/jest-dom';
 import { render, fireEvent } from '@testing-library/vue';
+import { translate } from '@/mixins';
 import userEvent from '@testing-library/user-event';
 import Datepicker from '../Datepicker.vue';
+
+const mixins = [translate];
 
 const modelValue = new Date(2021, 5, 14);
 const open = false;
@@ -57,7 +60,7 @@ const initialProps = {
   open
 };
 
-const renderComponent = (options) => render(Datepicker, { ...options });
+const renderComponent = (options) => render(Datepicker, { ...options, global: { mixins } });
 
 describe('Datepicker', () => {
 
@@ -404,22 +407,16 @@ describe('Datepicker', () => {
 
     });
 
-    describe('when its parent has a bound element ref', () => {
+    it('closes the datepicker when clicking outside the component', async () => {
+      props = { ...initialProps, open: true };
 
-      it('closes the datepicker when clicking outside the component and bound elements', async () => {
-        const input = document.createElement('input');
-        document.body.appendChild(input);
-        props = { ...initialProps, open: true, boundComponent: input };
+      const { emitted } = renderComponent({ props });
+      await fireEvent.click(document);
 
-        const { emitted } = renderComponent({ props });
-        await fireEvent.click(document);
+      const emittedEvent = emitted();
+      expect(emittedEvent).toHaveProperty('update:open');
 
-        const emittedEvent = emitted();
-        expect(emittedEvent).toHaveProperty('update:open');
-
-        expect(emittedEvent['update:open'][0][0]).toEqual(false);
-      });
-
+      expect(emittedEvent['update:open'][0][0]).toEqual(false);
     });
 
   });

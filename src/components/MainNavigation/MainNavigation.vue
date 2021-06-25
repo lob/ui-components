@@ -1,19 +1,19 @@
 <template>
-  <nav>
+  <nav class="relative bg-white-100 border-r-2 border-white-300">
+    <chevron-left
+      v-if="collapsible"
+      :class="['hidden md:block w-6 h-6 pr-0.5 cursor-pointer absolute z-10 text-gray-300 bg-white bg-opacity-100 border-2 border-white-300 rounded-xl -right-3 mt-3', { 'transform rotate-180': !expanded }]"
+      role="button"
+      :aria-expanded="expanded"
+      @click="animateDrawer"
+    />
     <ul
       :class="[
-        'bg-white-100 h-screen relative border-r-2 border-white-300',
+        'min-h-full relative',
         { expanded: collapsible && expanded },
         { collapsed: collapsible && !expanded }
       ]"
     >
-      <chevron-left
-        v-if="collapsible"
-        :class="['w-6 h-6 pr-0.5 cursor-pointer absolute z-10 text-gray-300 bg-white bg-opacity-100 border-2 border-white-300 rounded-xl -right-3 mt-3', { 'transform rotate-180': !expanded }]"
-        role="button"
-        :aria-expanded="expanded"
-        @click="animateDrawer"
-      />
       <slot :expanded="expanded" />
     </ul>
   </nav>

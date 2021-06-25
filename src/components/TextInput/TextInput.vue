@@ -5,12 +5,21 @@
     :class="['block mb-2 text-sm text-gray-500', {'sr-only': srOnlyLabel}]"
   >
     {{ label }}
+    <span
+      v-if="required"
+      class="text-sm text-turquoise-900"
+    >
+      *
+    </span>
   </label>
   <div
     v-bind="$attrs"
+    data-testId="input-container"
     :class="[
-      'flex input rounded border border-gray-100',
-      {'!border-0': withCopyButton}
+      'flex rounded border border-gray-100',
+      {'!border-0': withCopyButton},
+      {'hover:shadow': !disabled && !readonly},
+      {'border-error': error}
     ]"
   >
     <div
@@ -22,8 +31,11 @@
     <input
       :id="id"
       ref="input"
-      type="text"
+      :type="type"
       :value="modelValue"
+      :min="min"
+      :max="max"
+      :pattern="pattern"
       :class="[
         'rounded pl-2 pt-3 pb-4 leading-5 w-full text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
         {'!pl-4': !iconLeft},
@@ -73,6 +85,28 @@ export default {
       type: String,
       default: '',
       required: true
+    },
+    type: {
+      type: String,
+      default: 'text',
+      validator: function (value) {
+        return ['date', 'email', 'number', 'password', 'tel', 'text', 'url'].includes(value);
+      }
+    },
+    // Used by number inputs.
+    min: {
+      type: Number,
+      default: null
+    },
+    // Used by number inputs.
+    max: {
+      type: Number,
+      default: null
+    },
+    // Used by tel inputs.
+    pattern: {
+      type: String,
+      default: null
     },
     label: {
       type: String,
@@ -145,13 +179,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .input {
-    &:hover:not(:disabled):not(:focus) {
-      box-shadow: 0 5px 14px rgba(44, 67, 81, 0.13), 0 0 4px rgba(44, 67, 81, 0.02);
-    }
-  }
-
-  .input::placeholder {
+  input::placeholder {
     @apply text-gray-100;
   }
 </style>

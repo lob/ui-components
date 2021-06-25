@@ -1,6 +1,9 @@
 {
   "name": "@lob/ui-components",
-  "version": "0.0.16",
+  "version": "0.0.24",
+  "engines": {
+    "node": "14.16.1"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -60,6 +63,9 @@
     "vue-eslint-parser": "^7.6.0",
     "vue-jest": "^5.0.0-0",
     "vue-loader": "^16.2.0"
+  },
+  "peerDependencies": {
+    "vue-i18n": "^9.0.0"
   },
   "browserslist": [
     "> 1%",

@@ -6,9 +6,14 @@
       :id="id"
       :class="['pb-2 text-gray-500',
                {'text-xs': small},
-               {'text-sm': large}]"
+               {'text-sm': default_}]"
     >{{ label }}</label>
-    <div class="relative">
+    <div
+      :class="[
+        'relative',
+        {'cursor-not-allowed': disabled}
+      ]"
+    >
       <div
         :id="`${id}-value`"
         ref="input"
@@ -23,9 +28,9 @@
         :aria-disabled="disabled"
         :class="[
           'cursor-default bg-white border rounded border-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent hover:shadow',
-          {'text-sm py-1.5 px-2.5': small},
-          {'py-3.5 px-4': large},
-          {'!bg-white-300 !border-white-200 pointer-events-none': disabled},
+          {'text-sm py-2 px-2.5': small},
+          {'py-3 px-4': default_},
+          {'!bg-white-300 pointer-events-none': disabled},
           {'border-error': error}
         ]"
         tabindex="0"
@@ -45,7 +50,7 @@
           :class="[
             'w-4 h-4 absolute right-2',
             {'top-3': small},
-            {'top-5': large}
+            {'top-5': default_}
           ]"
         />
       </div>
@@ -54,8 +59,9 @@
         ref="listbox"
         role="listbox"
         :class="[
-          'cursor-default max-h-96 bg-white rounded-sm text-sm py-4 overflow-y-auto absolute left-0 top-full hidden w-full z-100 shadow',
-          {'!block': open }]"
+          'max-h-96 bg-white rounded-sm text-sm py-4 overflow-y-auto absolute left-0 top-full hidden w-full z-100 shadow',
+          {'!block': open }
+        ]"
       >
         <div
           v-for="item in optionItems"
@@ -173,9 +179,9 @@ export default {
     },
     size: {
       type: String,
-      default: 'small',
+      default: 'default',
       validator: function (value) {
-        return ['small', 'large'].includes(value);
+        return ['default', 'small'].includes(value);
       }
     },
     required: {
@@ -212,8 +218,8 @@ export default {
     small () {
       return this.size === 'small';
     },
-    large () {
-      return this.size === 'large';
+    default_ () {
+      return this.size === 'default';
     },
     optionItems () {
       return this.placeholder ? [{ label: this.placeholder, disabled: this.required }, ...this.options] : this.options;

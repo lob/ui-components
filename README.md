@@ -187,7 +187,12 @@ We consider a component PR complete when it has the following:
 - Base level of accessibility
 - Tests added/updated for any code added/updated
 - Existing tests & lint passes (integrated with CircleCI, but you can also run both locally)
+
 ## Publish to NPM
+
+We have a GitHub Action set up to publish this package automatically to NPM when the version number in `package.json` is incremented on the `main` branch.
+
+If you need to publish manually, you can do:
 ```bash
 npm run build-library
 npm publish

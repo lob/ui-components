@@ -31,7 +31,7 @@ const Template = (args, { argTypes }) => ({
       >
       <div class="md:pl-6">
         <MegaMenu id="1" title="Some menu" navKey="" :mobileNavs="{}">
-          <MegaMenuItem to="/settings/main/account" :imageSource="$getConst('lobAssetsUrl') + '/dashboard/navbar/settings.svg'" small>
+          <MegaMenuItem to="/settings/main/account" small>
             Some menu item
           </MegaMenuItem>
           <MegaMenuItem to="/settings/main/account" :imageSource="$getConst('lobAssetsUrl') + '/dashboard/navbar/settings.svg'" small>

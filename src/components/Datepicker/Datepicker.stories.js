@@ -26,9 +26,9 @@ const Template = (args, { argTypes }) => ({
   <div class="relative">
     <label>
       Enter a date
-      <input @click="show = !show" :value="dateModel" class="border border-gray-300" ref="input">
+      <input @click.stop="show = !show" :value="dateModel" class="border border-gray-300">
     </label>
-    <datepicker v-bind="args" v-model="dateModel" v-model:open="show" :boundComponent="$refs.input"></datepicker>
+    <datepicker v-bind="args" v-model="dateModel" v-model:open="show"></datepicker>
   </div>
   `
 });
@@ -49,51 +49,5 @@ Primary.args = {
   id: 'test',
   isDateDisabled,
   min: oneYearAgo,
-  max: oneYearFromNow,
-  localization: {
-    keyboardInstruction: 'You can use arrow keys to navigate dates',
-    calendarHeading: 'Calendar',
-    closeLabel: 'Close',
-    dayNames: [
-      'Sunday',
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday'
-    ],
-    monthNames: [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December'
-    ],
-    monthNamesShort: [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sept',
-      'Oct',
-      'Nov',
-      'Dec'
-    ],
-    monthSelectLabel: 'Choose month',
-    yearSelectLabel: 'Choose year',
-    prevMonthLabel: 'Previous',
-    nextMonthLabel: 'Next'
-  }
+  max: oneYearFromNow
 };
