@@ -9,6 +9,9 @@ export default {
   title: 'Components/Table',
   component: Table,
   subcomponents: { TableHeader, TableRow, TableBody, Button },
+  decorators: [
+    () => ({ template: '<div style="width: 700px"><story /></div>' })
+  ],
   parameters: {
     docs: {
       page: mdx
@@ -29,7 +32,6 @@ const SimpleTableTemplate = (args, { argTypes }) => ({
   components: { Table, TableHeader, TableRow, TableBody },
   setup: () => ({ args }),
   template: `
-  <div style="width: 700px">
     <Table class="min-w-full divide-y divide-gray-200" :space="args.space">
       <TableHeader>
         <div class="text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</div>
@@ -42,7 +44,6 @@ const SimpleTableTemplate = (args, { argTypes }) => ({
         </TableRow>
       </TableBody>
     </Table>
-  </div>
   `
 });
 
@@ -65,7 +66,6 @@ const TableWithActionTemplate = (args, { argTypes }) => ({
   components: { Table, TableHeader, TableRow, TableBody, Button },
   setup: () => ({ args }),
   template: `
-  <div style="width: 700px">
     <Table class="min-w-full divide-y divide-gray-200" :space="args.space">
       <TableHeader>
         <div class="text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</div>
@@ -80,7 +80,6 @@ const TableWithActionTemplate = (args, { argTypes }) => ({
         </TableRow>
       </TableBody>
     </Table>
-  </div>
   `
 });
 
@@ -104,7 +103,6 @@ const TableWithRowHoverEffectTemplate = (args, { argTypes }) => ({
   components: { Table, TableHeader, TableRow, TableBody, Button },
   setup: () => ({ args }),
   template: `
-  <div style="width: 700px">
     <Table class="min-w-full divide-y divide-gray-200" :space="args.space">
       <TableHeader>
         <div class="text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</div>
@@ -119,7 +117,6 @@ const TableWithRowHoverEffectTemplate = (args, { argTypes }) => ({
         </TableRow>
       </TableBody>
     </Table>
-  </div>
   `
 });
 
