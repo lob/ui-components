@@ -22,7 +22,7 @@
             v-if="typeof themeColors[color][nestedColor] === 'string' && nestedColor !== 'DEFAULT'"
             :class="`text-${color}-${nestedColor}`"
           >
-            {{ color }}-{{ nestedColor }}
+            {{ color }}-{{ nestedColor }} ({{ theme.colors[color][nestedColor].toUpperCase() }})
           </h1>
         </div>
       </template>
@@ -41,6 +41,9 @@ export default {
   computed: {
     themeColors () {
       return colors;
+    },
+    theme () {
+      return theme;
     }
   }
 };
