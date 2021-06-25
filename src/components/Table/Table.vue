@@ -30,11 +30,11 @@ export default {
   ::v-deep {
     th,
     td {
-      padding: 1rem;
       @apply p-1;
     }
   }
 }
+
 .space-md {
   ::v-deep {
     th,
@@ -43,6 +43,7 @@ export default {
     }
   }
 }
+
 .space-lg {
   ::v-deep {
     th,
