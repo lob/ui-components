@@ -1,11 +1,11 @@
 <template>
-  <text-input v-model="searchTerm" class="w-max bg-white-300" id="searchBar">
+  <text-input v-model="searchTerm" class="w-max bg-white-300 h-12" id="searchBar" :grey=true>
     <template v-slot:iconLeft>
-      <search class="w-6 h-6 bg-white-300" />
+      <search class="w-4 h-6" />
     </template>
     <template v-slot:iconRight>
       <button :disabled="!searchTerm" @click="eraseSearchTerm">
-        <close class="w-6 h-6"/>
+        <close class="w-4 h-6"/>
       </button>
     </template>
   </text-input>

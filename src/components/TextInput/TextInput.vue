@@ -30,6 +30,7 @@
         {'!pl-3 !pr-3 !py-2': small},
         {'border border-r-0 border-gray-100 rounded-tr-none rounded-br-none': withCopyButton},
         {'bg-white-300 cursor-not-allowed': disabled || readonly},
+        {'bg-white-300': grey},
         {'border-error': error}
       ]"
       :disabled="disabled"
@@ -86,6 +87,10 @@ export default {
       default: ''
     },
     disabled: {
+      type: Boolean,
+      default: false
+    },
+    grey: {
       type: Boolean,
       default: false
     },
