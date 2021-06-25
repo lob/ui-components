@@ -9,7 +9,8 @@ module.exports = {
     '!src/**/index.js', // No need to cover index files for exports
     '!src/main.js', // No need to cover bootstrap file
     '!src/**/*.stories.js', // No need to cover stories file
-    '!src/theme/**' // No need to cover components just for showing theming
+    '!src/theme/**', // No need to cover components just for showing theming
+    '!src/components/Icons/**' // No need to cover components just for rendering svg icons
   ],
   coverageThreshold: {
     global: {
