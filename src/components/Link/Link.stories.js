@@ -23,7 +23,7 @@ export default {
   },
   argTypes: {
     variant: {
-      options: ['default', 'primary-button', 'secondary-button'],
+      options: ['default', 'primary-button', 'primary-button-small', 'secondary-button', 'secondary-button-small'],
       control: {
         type: 'select'
       }
