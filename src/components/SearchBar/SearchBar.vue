@@ -20,42 +20,24 @@
     </template>
   </text-input>
   <div class="bg-white shadow overflow-y-auto max-h-56">
-    <table class="table-auto">
-      <tbody v-if="searchTerm !== ''">
-        <tr class="border-b border-white-300 rounded-t-lg">
-          <td
-            colspan="5"
-            class="text-center py-4"
-          >
-            View all {{ searchResults.length }} results...
-          </td>
-        </tr>
-        <tr
-          v-for="(result, index) in searchResults"
-          :key="index"
-        >
-          <td
-            v-for="(key, slots) in Object.keys(result)"
-            :key="slots"
-            class="max-w-md px-4 py-2 text-gray-500"
-          >
+    <div class="text-center py-4" v-if="searchTerm">View all {{ searchResults.length }} results...</div>
+    <Table class="min-w-full divide-y divide-gray-200" space="sm">
+      <TableBody>
+        <TableRow v-for="(result, index) in searchResults" class="rounded-md">
+          <div class="whitespace-nowrap" v-for="(key, slots) in Object.keys(result)">
             <img
               v-if="key === 'img'"
               :src="result[key]"
               class="w-5 h-5"
             >
-            <p v-else>
+            <template v-else>
               {{ result[key] }}
-            </p>
-          </td>
-          <td>
-            <button @click="tempFunction">
-              <chevron-right class="pt-2 pl-2 w-6 h-6" />
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+            </template>
+          </div>
+          <div class="text-right text-xl">></div>
+        </TableRow>
+      </TableBody>
+    </Table>
   </div>
 </template>
 
@@ -64,9 +46,12 @@ import textInput from '../TextInput/TextInput';
 import search from '../Icons/Search';
 import close from '../Icons/Close';
 import ChevronRight from '../Icons/ChevronRight.vue';
+import Table from '../Table/Table';
+import TableBody from '../Table/TableBody';
+import TableRow from '../Table/TableRow';
 export default {
   name: 'SearchBar',
-  components: { textInput, search, close, ChevronRight },
+  components: { textInput, search, close, ChevronRight, Table, TableBody, TableRow },
   props: {
     searchFunction: {
       type: Function,
