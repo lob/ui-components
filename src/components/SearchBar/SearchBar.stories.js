@@ -106,9 +106,7 @@ Primary.args = {
         type: 'postcard'
       }
     ];
-    const results = allPostCards.filter((postCard) => {
-      postCard.description.includes(searchTerm);
-    });
+    const results = allPostCards.filter((postCard) => postCard.description.includes(searchTerm));
     return new Promise((resolve) => {
       resolve(results);
     });
