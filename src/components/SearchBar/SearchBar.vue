@@ -1,5 +1,6 @@
 <template>
   <text-input
+    id="searchBar"
     v-model="searchTerm"
     class="w-max bg-white-300 h-12"
     grey
@@ -9,10 +10,12 @@
     </template>
     <template #iconRight>
       <button
-        :disabled="!searchTerm"
+        :role="disabled ? 'button' : null"
+        aria-label="Close"
+        :disabled="disabled"
         @click="eraseSearchTerm"
       >
-        <close class="w-4 h-6" />
+        <close class="w-4 h-6"/>
       </button>
     </template>
   </text-input>
@@ -71,6 +74,11 @@ export default {
     }
   },
   emits: ['update:open'],
+  computed: {
+    disabled () {
+      return !this.searchTerm
+    }
+  },
   data () {
     return {
       searchTerm: '',

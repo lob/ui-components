@@ -1,30 +1,43 @@
 import '@testing-library/jest-dom';
-import { render } from '@testing-library/vue';
+import { render, fireEvent } from '@testing-library/vue';
 import SearchBar from '../SearchBar.vue';
 
 const initialProps = {
-  modelValue: false,
-  name: 'Test name',
-  label: 'Test',
-  error: false,
-  disabled: false
+  searchFunction: () => null
 };
 
 const renderComponent = (options) => render(SearchBar, { ...options });
 
 describe('SearchBar', () => {
 
-  it('renders correctly', () => {
+  it('has the x button disabled when no text was entered', () => {
     const props = {
-      ...initialProps,
-      disabled: true
+      ...initialProps
     };
 
-    const { queryByText, queryByLabelText } = renderComponent({ props });
+    const { queryByRole } = renderComponent({ props });
 
-    const label = queryByText(props.label);
-    expect(label).toBeInTheDocument();
-    const SearchBar = queryByLabelText(props.label);
+    const button = queryByRole('button');
+    expect(button).toBeDisabled();
+  });
+
+  it('removes entered search query when x button is clicked', async () => {
+    const props = {
+      ...initialProps
+    };
+
+    const searchTerm = 'something';
+    const data = {
+      searchTerm
+    }
+
+    const { queryByRole, queryByText } = renderComponent({ props, ...data });
+
+    const input = queryByText(searchTerm)
+    expect(input).toContain(searchTerm)
+
+    const button = queryByRole('button');
+    await fireEvent.click(button);
     expect(SearchBar).toBeInTheDocument();
   });
 
