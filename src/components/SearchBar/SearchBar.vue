@@ -1,26 +1,53 @@
 <template>
-  <text-input v-model="searchTerm" class="w-max bg-white-300 h-12" id="searchBar" grey>
-    <template v-slot:iconLeft>
+  <text-input
+    v-model="searchTerm"
+    class="w-max bg-white-300 h-12"
+    grey
+  >
+    <template #iconLeft>
       <search class="w-4 h-6" />
     </template>
-    <template v-slot:iconRight>
-      <button :disabled="!searchTerm" @click="eraseSearchTerm">
-        <close class="w-4 h-6"/>
+    <template #iconRight>
+      <button
+        :disabled="!searchTerm"
+        @click="eraseSearchTerm"
+      >
+        <close class="w-4 h-6" />
       </button>
     </template>
   </text-input>
   <div class="bg-white shadow overflow-y-auto max-h-56">
     <table class="table-auto">
       <tbody v-if="searchTerm !== ''">
-        <tr class="border-b border-white-300 rounded-t-lg"><td colspan=5 class="text-center py-4">View all {{ searchResults.length }} results...</td></tr>
-        <tr v-for="(result, index) in searchResults" :key="index">
-          <td class="max-w-md px-4 py-2 text-gray-500" v-for="(key, index) in Object.keys(result)" :key="index">
-            <img :src="result[key]"  v-if="key === 'img'" class="w-5 h-5">
-            <p v-else>{{result[key]}}</p>
+        <tr class="border-b border-white-300 rounded-t-lg">
+          <td
+            colspan="5"
+            class="text-center py-4"
+          >
+            View all {{ searchResults.length }} results...
+          </td>
+        </tr>
+        <tr
+          v-for="(result, index) in searchResults"
+          :key="index"
+        >
+          <td
+            v-for="(key, slots) in Object.keys(result)"
+            :key="slots"
+            class="max-w-md px-4 py-2 text-gray-500"
+          >
+            <img
+              v-if="key === 'img'"
+              :src="result[key]"
+              class="w-5 h-5"
+            >
+            <p v-else>
+              {{ result[key] }}
+            </p>
           </td>
           <td>
             <button @click="tempFunction">
-              <chevron-right class="pt-2 pl-2 w-6 h-6"/>
+              <chevron-right class="pt-2 pl-2 w-6 h-6" />
             </button>
           </td>
         </tr>
@@ -40,38 +67,49 @@ export default {
   props: {
     searchFunction: {
       type: Function,
-      required : true,
-    },
-  },
-  data() {
-    return {
-      searchTerm : '',
-      searchResults : [],
+      required: true
     }
-
+  },
+  emits: ['update:open'],
+  data () {
+    return {
+      searchTerm: '',
+      searchResults: []
+    };
   },
   watch: {
-    searchTerm(val) {
-      this.searchFunction(val).then(results=>{
-        this.searchResults = results
-      })
-      .catch(e=>{
-        console.error("error searching for results", e)
-      })
-    },
+    searchTerm (val) {
+      this.searchFunction(val).then((results) => {
+        this.searchResults = results;
+      });
+    }
+  },
+  mounted () {
+    window.addEventListener('click', this.onClickOutside);
+  },
+  unmounted () {
+    window.removeEventListener('click', this.onClickOutside);
   },
   methods: {
-    eraseSearchTerm() {
+    eraseSearchTerm () {
       this.searchTerm = '';
     },
-    tempFunction() {
+    tempFunction () {
 
     },
+    onClickOutside ($event) {
+      if (typeof this.$refs.container !== 'undefined') {
+        const clickOnTheContainer = this.$refs.container === $event.target;
+        const clickOnChild = this.$refs.container && this.$refs.container.contains($event.target);
+
+        if (!clickOnTheContainer && !clickOnChild) {
+          this.hide();
+        }
+      }
+    },
+    hide () {
+      this.$emit('update:open', false);
+    }
   }
 };
 </script>
-
-<style scoped lang="scss">
-
-</style>
-

@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { render, fireEvent } from '@testing-library/vue';
+import { render } from '@testing-library/vue';
 import SearchBar from '../SearchBar.vue';
 
 const initialProps = {
@@ -27,6 +27,5 @@ describe('SearchBar', () => {
     const SearchBar = queryByLabelText(props.label);
     expect(SearchBar).toBeInTheDocument();
   });
-
 
 });
