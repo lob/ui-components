@@ -1,0 +1,27 @@
+import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs/blocks';
+
+# Icons
+
+<Preview>
+  <Story id="components-icons--primary" />
+</Preview>
+
+## How to Use
+To use an icon, just import it as a component and it is ready to use. You can later apply classes to customize it.
+
+Example:
+```html
+<script>
+  import { ChevronDown } from '@/components/Icons';
+  ...
+</script>
+
+<template>
+  <chevron-down class="w-4 h-4 absolute right-2" />
+  ...
+</template>
+```
+
+## Props
+
+<ArgsTable story={PRIMARY_STORY} />
