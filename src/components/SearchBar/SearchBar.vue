@@ -27,8 +27,8 @@
     </div>
     <Table class="min-w-full divide-y divide-gray-200" space="sm" v-if="!searching && searchResults.length">
       <TableBody>
-        <TableRow v-for="(result, index) in searchResults" class="rounded-md">
-          <div class="whitespace-nowrap" v-for="(key, slots) in Object.keys(result)">
+        <TableRow v-for="(result, index) in searchResults" class="rounded-md w-max" :key="index">
+          <div class="whitespace-nowrap" v-for="(key, slots) in Object.keys(result)" :key="slots">
             <img
               v-if="key === 'img'"
               :src="result[key]"
