@@ -29,14 +29,13 @@
       ]"
       data-testId="checkmark"
     />
-    <span>
-      {{ label }}
-      <span
-        v-if="required"
-        class="text-sm text-turquoise-900"
-      >
-        *
-      </span>
+    <!-- eslint-disable-next-line vue/no-v-html -->
+    <span v-html="label" />
+    <span
+      v-if="required"
+      class="text-sm text-turquoise-900"
+    >
+      *
     </span>
   </label>
 </template>
