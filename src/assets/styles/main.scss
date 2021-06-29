@@ -40,4 +40,12 @@
   h6 {
     @apply text-lg;
   }
+
+  a {
+    @apply text-primary-300;
+
+    &:hover {
+      @apply text-primary-500;
+    }
+  }
 }
