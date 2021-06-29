@@ -16,7 +16,7 @@
     v-bind="$attrs"
     data-testId="input-container"
     :class="[
-      'flex rounded border border-gray-100',
+      'flex rounded border border-gray-100 focus-within:outline-none focus-within:ring-2 focus-within:ring-primary-100 focus-within:border-transparent',
       {'!border-0': withCopyButton},
       {'hover:shadow': !disabled && !readonly},
       {'border-error': error}
@@ -37,7 +37,7 @@
       :max="max"
       :pattern="pattern"
       :class="[
-        'rounded pl-2 pt-3 pb-4 leading-5 w-full text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
+        'rounded pl-2 pt-3 pb-4 leading-5 w-full text-gray-500 outline-none',
         {'!pl-4': !iconLeft},
         {'!pl-3 !pr-3 !py-2': small},
         {'border border-r-0 border-gray-100 rounded-tr-none rounded-br-none': withCopyButton},
