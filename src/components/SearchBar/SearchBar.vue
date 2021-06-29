@@ -1,73 +1,75 @@
 <template>
-  <text-input
-    id="searchBar"
-    ref="searchBar"
-    v-model="searchTerm"
-    class="w-max bg-white-300 h-12"
-    grey
-  >
-    <template #iconLeft>
-      <search class="w-4 h-6" />
-    </template>
-    <template #iconRight>
-      <button
-        :role="disabled ? 'button' : null"
-        aria-label="Close"
-        :disabled="disabled"
-        data-testid="clearSearchButton"
-        @click="clearSearch"
-      >
-        <close class="w-4 h-6" />
-      </button>
-    </template>
-  </text-input>
-  <div class="bg-white shadow overflow-y-auto max-h-56">
-    <div
-      v-if="searchTerm"
-      class="text-center py-4"
+  <div ref="searchBar">
+    <text-input
+      id="searchBar"
+      v-model="searchTerm"
+      class="w-max bg-white-300 h-12"
+      grey
     >
-      <template v-if="searching">
-        Loading, please wait...
+      <template #iconLeft>
+        <search class="w-4 h-6" />
       </template>
-      <template v-else-if="searchResults.length">
-        View all {{ searchResults.length }} results...
-      </template>
-      <template v-else>
-        No results found
-      </template>
-    </div>
-    <Table
-      v-if="!searching && searchResults.length"
-      class="min-w-full divide-y divide-gray-200"
-      space="sm"
-    >
-      <TableBody>
-        <TableRow
-          v-for="result in searchResults"
-          :key="result"
-          class="hover:shadow rounded-md cursor-pointer"
+      <template #iconRight>
+        <button
+          :role="disabled ? 'button' : null"
+          aria-label="Close"
+          :disabled="disabled"
+          data-testid="clearSearchButton"
+          @click="clearSearch"
         >
-          <div
-            v-for="key in Object.keys(result)"
-            :key="key"
-            class="whitespace-nowrap"
+          <close class="w-4 h-6" />
+        </button>
+      </template>
+    </text-input>
+    <div class="bg-white shadow overflow-y-auto max-h-56">
+      <div
+        v-if="searchTerm"
+        class="text-center py-4"
+      >
+        <template v-if="searching">
+          Loading, please wait...
+        </template>
+        <template v-else-if="searchResults.length">
+          View all {{ searchResults.length }} results...
+        </template>
+        <template v-else>
+          No results found
+        </template>
+      </div>
+      <Table
+        v-if="!searching && searchResults.length"
+        class="min-w-full divide-y divide-gray-200"
+        space="sm"
+      >
+        <TableBody>
+          <TableRow
+            v-for="result in searchResults"
+            :key="result"
+            class="hover:shadow rounded-md cursor-pointer"
           >
-            <img
-              v-if="key === 'img'"
-              :src="result[key]"
-              class="w-5 h-5"
+            <div
+              v-for="key in Object.keys(result)"
+              :key="key"
+              class="whitespace-nowrap"
             >
-            <template v-else>
-              {{ result[key] }}
-            </template>
-          </div>
-          <div class="text-right text-xl">
-            >
-          </div>
-        </TableRow>
-      </TableBody>
-    </Table>
+              <img
+                v-if="key === 'img'"
+                :src="result[key]"
+                class="w-5 h-5"
+              >
+              <template v-else>
+                {{ result[key] }}
+              </template>
+            </div>
+            <div class="text-right text-xl">
+              >
+            </div>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </div>
   </div>
+  
 </template>
 
 <script>
@@ -135,14 +137,15 @@ export default {
       if (typeof this.$refs.searchBar !== 'undefined') {
         const clickOnTheContainer = this.$refs.searchBar === $event.target;
         const clickOnChild = this.$refs.searchBar && this.$refs.searchBar.contains($event.target);
-
         if (!clickOnTheContainer && !clickOnChild) {
+          console.log("hello")
           this.hide();
         }
       }
     },
     hide () {
-      this.$emit('update:open', false);
+      this.searchResults = [];
+      this.searching = false;
     }
   }
 };
