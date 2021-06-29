@@ -1,6 +1,7 @@
 <template>
   <text-input
     id="searchBar"
+    ref="searchBar"
     v-model="searchTerm"
     class="w-max bg-white-300 h-12"
     grey
@@ -131,9 +132,9 @@ export default {
       this.searchResults = [];
     },
     onClickOutside ($event) {
-      if (typeof this.$refs.container !== 'undefined') {
-        const clickOnTheContainer = this.$refs.container === $event.target;
-        const clickOnChild = this.$refs.container && this.$refs.container.contains($event.target);
+      if (typeof this.$refs.searchBar !== 'undefined') {
+        const clickOnTheContainer = this.$refs.searchBar === $event.target;
+        const clickOnChild = this.$refs.searchBar && this.$refs.searchBar.contains($event.target);
 
         if (!clickOnTheContainer && !clickOnChild) {
           this.hide();

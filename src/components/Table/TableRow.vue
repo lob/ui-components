@@ -6,7 +6,7 @@ export default {
     const index = this.$slots
       .default()
     const children = []
-    for(var i = 0; i < index.length; ++i){
+    for (let i = 0; i < index.length; ++i) {
       children.push(index[i].children)
     }
     const rows = children
