@@ -4,10 +4,10 @@ export default {
   name: 'TableRow',
   render () {
     const index = this.$slots
-      .default()
-    const children = []
+      .default();
+    const children = [];
     for (let i = 0; i < index.length; ++i) {
-      children.push(index[i].children)
+      children.push(index[i].children);
     }
     const rows = children
       .flat()

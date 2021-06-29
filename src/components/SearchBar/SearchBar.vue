@@ -69,7 +69,6 @@
       </Table>
     </div>
   </div>
-  
 </template>
 
 <script>
@@ -138,7 +137,6 @@ export default {
         const clickOnTheContainer = this.$refs.searchBar === $event.target;
         const clickOnChild = this.$refs.searchBar && this.$refs.searchBar.contains($event.target);
         if (!clickOnTheContainer && !clickOnChild) {
-          console.log("hello")
           this.hide();
         }
       }
