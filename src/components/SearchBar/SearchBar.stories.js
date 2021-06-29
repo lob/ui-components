@@ -108,7 +108,9 @@ Primary.args = {
     ];
     const results = allPostCards.filter((postCard) => postCard.description.includes(searchTerm));
     return new Promise((resolve) => {
-      setTimeout(()=>{resolve(results)}, 1500); // waits for 1500ms before returning results, so it's more 'realistic'
+      setTimeout(() => {
+        resolve(results);
+      }, 1500); // waits for 1500ms before returning results, so it's more 'realistic'
     });
   }
 };

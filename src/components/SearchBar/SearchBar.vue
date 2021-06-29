@@ -13,22 +13,44 @@
         :role="disabled ? 'button' : null"
         aria-label="Close"
         :disabled="disabled"
-        @click="eraseSearchTerm"
+        data-testid="clearSearchButton"
+        @click="clearSearch"
       >
-        <close class="w-4 h-6"/>
+        <close class="w-4 h-6" />
       </button>
     </template>
   </text-input>
   <div class="bg-white shadow overflow-y-auto max-h-56">
-    <div class="text-center py-4" v-if="searchTerm">
-      <template v-if="searching">Loading, please wait...</template>
-      <template v-else-if="searchResults.length">View all {{ searchResults.length }} results...</template>
-      <template v-else>No results found</template>
+    <div
+      v-if="searchTerm"
+      class="text-center py-4"
+    >
+      <template v-if="searching">
+        Loading, please wait...
+      </template>
+      <template v-else-if="searchResults.length">
+        View all {{ searchResults.length }} results...
+      </template>
+      <template v-else>
+        No results found
+      </template>
     </div>
-    <Table class="min-w-full divide-y divide-gray-200" space="sm" v-if="!searching && searchResults.length">
+    <Table
+      v-if="!searching && searchResults.length"
+      class="min-w-full divide-y divide-gray-200"
+      space="sm"
+    >
       <TableBody>
-        <TableRow v-for="(result, index) in searchResults" class="rounded-md">
-          <div class="whitespace-nowrap" v-for="(key, slots) in Object.keys(result)">
+        <TableRow
+          v-for="result in searchResults"
+          :key="result"
+          class="rounded-md"
+        >
+          <div
+            v-for="key in Object.keys(result)"
+            :key="key"
+            class="whitespace-nowrap"
+          >
             <img
               v-if="key === 'img'"
               :src="result[key]"
@@ -38,7 +60,9 @@
               {{ result[key] }}
             </template>
           </div>
-          <div class="text-right text-xl">></div>
+          <div class="text-right text-xl">
+            >
+          </div>
         </TableRow>
       </TableBody>
     </Table>
@@ -49,13 +73,12 @@
 import textInput from '../TextInput/TextInput';
 import search from '../Icons/Search';
 import close from '../Icons/Close';
-import ChevronRight from '../Icons/ChevronRight.vue';
 import Table from '../Table/Table';
 import TableBody from '../Table/TableBody';
 import TableRow from '../Table/TableRow';
 export default {
   name: 'SearchBar',
-  components: { textInput, search, close, ChevronRight, Table, TableBody, TableRow },
+  components: { textInput, search, close, Table, TableBody, TableRow },
   props: {
     searchFunction: {
       type: Function,
@@ -63,11 +86,6 @@ export default {
     }
   },
   emits: ['update:open'],
-  computed: {
-    disabled () {
-      return !this.searchTerm
-    }
-  },
   data () {
     return {
       searchTerm: '',
@@ -76,9 +94,14 @@ export default {
       timeout: null
     };
   },
+  computed: {
+    disabled () {
+      return !this.searchTerm;
+    }
+  },
   watch: {
     searchTerm (val) {
-      val && this.debounceSearch(val)
+      val && this.debounceSearch(val);
     }
   },
   mounted () {
@@ -88,22 +111,22 @@ export default {
     window.removeEventListener('click', this.onClickOutside);
   },
   methods: {
-    debounceSearch(searchTerm, delayMs)  {
+    debounceSearch (searchTerm, delayMs)  {
       this.searching = true;
       clearTimeout(this.timeout);
       this.timeout = setTimeout(() => {
         this.search(searchTerm);
       }, delayMs || 500);
     },
-    search(val) {
+    search (val) {
       this.searchResults = [];
       this.searchFunction(val).then((results) => {
         this.searchResults = results;
-      }).finally(()=>{
+      }).finally(() => {
         this.searching = false;
-      })
+      });
     },
-    eraseSearchTerm () {
+    clearSearch () {
       this.searchTerm = '';
       this.searchResults = [];
     },

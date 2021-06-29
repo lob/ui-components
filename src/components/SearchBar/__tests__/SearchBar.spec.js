@@ -15,30 +15,27 @@ describe('SearchBar', () => {
       ...initialProps
     };
 
-    const { queryByRole } = renderComponent({ props });
+    const { queryByTestId } = renderComponent({ props });
 
-    const button = queryByRole('button');
+    const button = queryByTestId('clearSearchButton');
     expect(button).toBeDisabled();
   });
 
-  it('removes entered search query when x button is clicked', async () => {
+  it('clears entered searchTerm when x button is clicked', async () => {
+    const searchTerm = 'something';
     const props = {
       ...initialProps
     };
 
-    const searchTerm = 'something';
-    const data = {
-      searchTerm
-    }
+    const { queryByTestId, container } = renderComponent({ props });
 
-    const { queryByRole, queryByText } = renderComponent({ props, ...data });
+    const input = container.querySelector('#searchBar');
+    await fireEvent.update(input, searchTerm);
+    expect(input.value).toBe(searchTerm);
 
-    const input = queryByText(searchTerm)
-    expect(input).toContain(searchTerm)
-
-    const button = queryByRole('button');
+    const button = queryByTestId('clearSearchButton');
     await fireEvent.click(button);
-    expect(SearchBar).toBeInTheDocument();
+    expect(input.value).toBe('');
   });
 
 });
