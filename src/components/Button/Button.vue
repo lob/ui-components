@@ -1,7 +1,7 @@
 <template>
   <button
     :class="[
-      'rounded disabled:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
+      'flex justify-center items-center rounded disabled:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
       {
         'primary bg-primary-500 text-white active:bg-primary-700 disabled:bg-white-300': primary
       },
