@@ -27,30 +27,24 @@ export default {
 
 <style scoped lang="scss">
 .space-sm {
-  ::v-deep {
-    th,
-    td {
-      @apply py-1;
-      @apply px-2;
-    }
+  ::v-deep(th),
+  ::v-deep(td) {
+    @apply py-1;
+    @apply px-2;
   }
 }
 
 .space-md {
-  ::v-deep {
-    th,
-    td {
-      @apply p-2;
-    }
+  ::v-deep(th),
+  ::v-deep(td) {
+    @apply p-2;
   }
 }
 
 .space-lg {
-  ::v-deep {
-    th,
-    td {
-      @apply p-4;
-    }
+  ::v-deep(th),
+  ::v-deep(td) {
+    @apply p-4;
   }
 }
 </style>
