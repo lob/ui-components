@@ -20,8 +20,12 @@
     </template>
   </text-input>
   <div class="bg-white shadow overflow-y-auto max-h-56">
-    <div class="text-center py-4" v-if="searchTerm">View all {{ searchResults.length }} results...</div>
-    <Table class="min-w-full divide-y divide-gray-200" space="sm">
+    <div class="text-center py-4" v-if="searchTerm">
+      <template v-if="searching">Loading, please wait...</template>
+      <template v-else-if="searchResults.length">View all {{ searchResults.length }} results...</template>
+      <template v-else>No results found</template>
+    </div>
+    <Table class="min-w-full divide-y divide-gray-200" space="sm" v-if="!searching && searchResults.length">
       <TableBody>
         <TableRow v-for="(result, index) in searchResults" class="rounded-md">
           <div class="whitespace-nowrap" v-for="(key, slots) in Object.keys(result)">
@@ -67,14 +71,14 @@ export default {
   data () {
     return {
       searchTerm: '',
-      searchResults: []
+      searchResults: [],
+      searching: false,
+      timeout: null
     };
   },
   watch: {
     searchTerm (val) {
-      this.searchFunction(val).then((results) => {
-        this.searchResults = results;
-      });
+      val && this.debounceSearch(val)
     }
   },
   mounted () {
@@ -84,11 +88,24 @@ export default {
     window.removeEventListener('click', this.onClickOutside);
   },
   methods: {
+    debounceSearch(searchTerm, delayMs)  {
+      this.searching = true;
+      clearTimeout(this.timeout);
+      this.timeout = setTimeout(() => {
+        this.search(searchTerm);
+      }, delayMs || 500);
+    },
+    search(val) {
+      this.searchResults = [];
+      this.searchFunction(val).then((results) => {
+        this.searchResults = results;
+      }).finally(()=>{
+        this.searching = false;
+      })
+    },
     eraseSearchTerm () {
       this.searchTerm = '';
-    },
-    tempFunction () {
-
+      this.searchResults = [];
     },
     onClickOutside ($event) {
       if (typeof this.$refs.container !== 'undefined') {
