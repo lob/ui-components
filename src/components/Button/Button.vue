@@ -13,6 +13,15 @@
         'tertiary bg-white border border-gray-100 text-gray-500 active:border-gray-300 disabled:border-white-300':
           tertiary
       },
+      {
+        'success bg-success !text-white active:bg-success-700': success
+      },
+      {
+        'error bg-error !text-white active:bg-error-700': error
+      },
+      {
+        'bg-opacity-50': (success || error) && disabled
+      },
       { 'px-6 py-3.5': defaultSize },
       { 'px-3 py-2': small },
       { 'px-6 py-4.5': large }
@@ -34,7 +43,7 @@ export default {
       type: String,
       default: 'primary',
       validator: function (value) {
-        return ['primary', 'secondary', 'tertiary'].includes(value);
+        return ['primary', 'secondary', 'tertiary', 'success', 'error'].includes(value);
       }
     },
     size: {
@@ -59,6 +68,12 @@ export default {
     },
     tertiary () {
       return this.variant === 'tertiary';
+    },
+    success () {
+      return this.variant === 'success';
+    },
+    error () {
+      return this.variant === 'error';
     },
     defaultSize () {
       return this.size === 'default';
@@ -89,5 +104,13 @@ export default {
 
 .tertiary:hover:not(:disabled):not(:focus) {
   box-shadow: 0 0 10px 2px rgba(0, 153, 215, 0.2);
+}
+
+.success:hover:not(:disabled):not(:focus) {
+  box-shadow: 0 0 10px 2px rgba(75, 188, 133, 0.3);
+}
+
+.error:hover:not(:disabled):not(:focus) {
+  box-shadow: 0 0 10px 2px rgba(247, 110, 64, 0.3);
 }
 </style>
