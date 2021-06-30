@@ -11,7 +11,7 @@ export default {
   }
 };
 
-const checkboxVModel = false;
+const checkboxVModel = true;
 
 const SingleTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
@@ -30,7 +30,7 @@ const SingleTemplate = (args, { argTypes }) => ({
 
 export const Single = SingleTemplate.bind({});
 Single.args = {
-  label: 'Agree to Terms and Conditions',
+  label: 'Agree to <a href="https://lob.com/legal#legal_terms_of_service">Terms and Conditions</a>',
   name: 'terms'
 };
 

@@ -14,16 +14,16 @@ export default {
       control: {
         type: 'text'
       },
-      defaultValue: 'Sign up',
       description: 'Content to display inside of the button',
       table: {
+        defaultValue: 'Sign up',
         type: {
           summary: 'html or component'
         }
       }
     },
     variant: {
-      options: ['primary', 'secondary', 'tertiary'],
+      options: ['primary', 'secondary', 'tertiary', 'success', 'error'],
       control: {
         type: 'select'
       }

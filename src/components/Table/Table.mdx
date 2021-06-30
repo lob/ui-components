@@ -1,0 +1,39 @@
+import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
+import Table from './Table.vue';
+
+# Table
+Table is a flexible component that display sets of data
+
+<Preview>
+  <Story id="components-table--simple-table" />
+</Preview>
+
+## How to Use
+
+```html
+<Table space="md">
+  <TableHeader>
+    <div>Name</div>
+    <div>Description</div>
+  </TableHeader>
+  <TableBody>
+    <TableRow v-for="item in items">
+      <div>{{item.name}}</div>
+      <div>{{item.description}}</div>
+    </TableRow>
+  </TableBody>
+</Table>
+```
+There are 3 variants of space to set a space to the cell: sm, md, lg.
+
+You can still set tailwindcss classes to a table cell.
+```html
+  <TableHeader>
+    <div class="px-3 py-4">Name</div>
+    <div>Description</div>
+  </TableHeader>
+```
+
+## Props
+
+<ArgsTable story={PRIMARY_STORY} />

@@ -14,9 +14,9 @@ export default {
       control: {
         type: 'text'
       },
-      defaultValue: 'I am a card.',
       description: 'Content to display inside of the card',
       table: {
+        defaultValue: 'I am a card.',
         type: {
           summary: 'html or component'
         }

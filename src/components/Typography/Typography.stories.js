@@ -14,16 +14,16 @@ export default {
       control: {
         type: 'text'
       },
-      defaultValue: 'I am typography.',
       description: 'Text to display',
       table: {
+        defaultValue: 'I am typography.',
         type: 'text'
       }
     },
     variant: {
       options: ['heading1', 'heading2', 'heading3', 'body1', 'caption'],
-      defaultValue: 'body1',
       control: {
+        defaultValue: 'body1',
         type: 'select'
       }
     }
@@ -61,7 +61,12 @@ const LoremIpsumTemplate = (args, { argTypes }) => ({
 	and  until  the  terrible  catastrophe  occurred,  never  seen  or  heard  of  by  any  Earthman. 
 	Nevertheless,  a  wholly  remarkable  book.  
 	In  fact  it  was  probably  the  most  remarkable  book  ever  to  come  out  of  the  great  publishing  houses  of  Ursa  Minorʹof  which  no  Earthman  had  ever  heard  either. 
-	Not  only  is  it  a  wholly  remarkable  book,  it  is  also  a  highly  successful  one - more  popular  than  the  Celestial  Home  Care  Omnibus,  better  selling  than  Fifty  More  Things  to  do  in  Zero  Gravity,  and  more  controversial  than  Oolon  Colluphid's  trilogy  of  philosophical  blockbusters  Where  God  Went  Wrong,  Some  More  of  God's  Greatest  Mistakes  and  Who  is  this  God  Person  Anyway?  In  many  of  the  more  relaxed  civilizations  on  the  Outer  Eastern  Rim  ofthe  Galaxy,  the  Hitch  Hiker's  Guide  has  already  supplanted  the  great  Encyclopedia  Galactica  as  the  standard  repository  of  all  knowledge  and  wisdom,  for  though  it  has  many  omissions  and  contains  much  that  is  apocryphal,  or  at  least  wildly  inaccurate,  it  scores  over  the  older,  more  pedestrian  work  in  two  important  respects. 
+	</typography>
+	<typography variant="body1">
+	Not  only  is  it  a  wholly  remarkable  book,  it  is  also  a  highly  successful  one - more  popular  than  the  Celestial  Home  Care  Omnibus,  better  selling  than  Fifty  More  Things  to  do  in  Zero  Gravity,  and  more  controversial  than  Oolon  Colluphid's  trilogy  of  philosophical  blockbusters  Where  God  Went  Wrong,  Some  More  of  God's  Greatest  Mistakes  and  Who  is  this  God  Person  Anyway?  
+	</typography>
+	<typography variant="body1">
+  In  many  of  the  more  relaxed  civilizations  on  the  Outer  Eastern  Rim  ofthe  Galaxy,  the  Hitch  Hiker's  Guide  has  already  supplanted  the  great  Encyclopedia  Galactica  as  the  standard  repository  of  all  knowledge  and  wisdom,  for  though  it  has  many  omissions  and  contains  much  that  is  apocryphal,  or  at  least  wildly  inaccurate,  it  scores  over  the  older,  more  pedestrian  work  in  two  important  respects. 
 	</typography>
 	<typography variant="caption">
 	First,  it  is  slightly  cheaper;  and  secondly  it  has  the  words  DON'T  PANIC  inscribed  in  large  friendly  letters  on  its  cover. 
