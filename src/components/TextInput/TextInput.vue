@@ -1,69 +1,68 @@
 <template>
-  <label
-    v-bind="$attrs"
-    :for="id"
-    :class="['block mb-2 text-sm text-gray-500', {'sr-only': srOnlyLabel}]"
-  >
-    {{ label }}
+  <label class="flex flex-col">
     <span
-      v-if="required"
-      class="text-sm text-turquoise-900"
+      :class="['mb-2 text-sm text-gray-500', {'sr-only': srOnlyLabel}]"
     >
-      *
+      {{ label }}
+      <span
+        v-if="required"
+        class="text-sm text-turquoise-900"
+      >
+        *
+      </span>
     </span>
-  </label>
-  <div
-    v-bind="$attrs"
-    data-testId="input-container"
-    :class="[
-      'flex rounded border border-gray-100 focus-within:outline-none focus-within:ring-2 focus-within:ring-primary-100 focus-within:border-transparent',
-      {'!border-0': withCopyButton},
-      {'hover:shadow': !disabled && !readonly},
-      {'border-error': error}
-    ]"
-  >
     <div
-      v-if="iconLeft"
-      :class="['pl-2 pt-3 pb-4 text-gray-500', {'!pl-1 !py-2': small}]"
-    >
-      <slot name="iconLeft" />
-    </div>
-    <input
-      :id="id"
-      ref="input"
-      :type="type"
-      :value="modelValue"
-      :min="min"
-      :max="max"
-      :pattern="pattern"
+      data-testId="input-container"
       :class="[
-        'rounded pl-2 pt-3 pb-4 leading-5 w-full text-gray-500 outline-none',
-        {'!pl-4': !iconLeft},
-        {'!pl-3 !pr-3 !py-2': small},
-        {'border border-r-0 border-gray-100 rounded-tr-none rounded-br-none': withCopyButton},
-        {'bg-white-300 cursor-not-allowed': disabled || readonly}
+        'flex rounded border border-gray-100 focus-within:outline-none focus-within:ring-2 focus-within:ring-primary-100 focus-within:border-transparent',
+        {'!border-0': withCopyButton},
+        {'hover:shadow': !disabled && !readonly},
+        {'border-error': error}
       ]"
-      :disabled="disabled"
-      :required="required"
-      :placeholder="placeholder"
-      :readonly="readonly"
-      @input="onInput"
     >
-    <div
-      v-if="iconRight"
-      :class="['pr-2 pt-3 pb-4 text-gray-500', {'!pr-1 !py-2': small}]"
-    >
-      <slot name="iconRight" />
+      <div
+        v-if="iconLeft"
+        :class="['pl-2 pt-3 pb-4 text-gray-500', {'!pl-1 !py-2': small}]"
+      >
+        <slot name="iconLeft" />
+      </div>
+      <input
+        :id="id"
+        ref="input"
+        :type="type"
+        :value="modelValue"
+        :min="min"
+        :max="max"
+        :pattern="pattern"
+        :class="[
+          'rounded pl-2 pt-3 pb-4 leading-5 w-full text-gray-500 outline-none',
+          {'!pl-4': !iconLeft},
+          {'!pl-3 !pr-3 !py-2': small},
+          {'border border-r-0 border-gray-100 rounded-tr-none rounded-br-none': withCopyButton},
+          {'bg-white-300 cursor-not-allowed': disabled || readonly}
+        ]"
+        :disabled="disabled"
+        :required="required"
+        :placeholder="placeholder"
+        :readonly="readonly"
+        @input="onInput"
+      >
+      <div
+        v-if="iconRight"
+        :class="['pr-2 pt-3 pb-4 text-gray-500', {'!pr-1 !py-2': small}]"
+      >
+        <slot name="iconRight" />
+      </div>
+      <lob-button
+        v-if="withCopyButton"
+        :small="small"
+        class="rounded-tl-none rounded-bl-none pl-3 pr-3"
+        @click="copyToClipboard"
+      >
+        Copy
+      </lob-button>
     </div>
-    <lob-button
-      v-if="withCopyButton"
-      :small="small"
-      class="rounded-tl-none rounded-bl-none pl-3 pr-3"
-      @click="copyToClipboard"
-    >
-      Copy
-    </lob-button>
-  </div>
+  </label>
 </template>
 
 <script>
