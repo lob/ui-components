@@ -1,17 +1,17 @@
 import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
-import Table from './Table.vue';
+import LobTable from './Table.vue';
 
 # Table
 Table is a flexible component that display sets of data
 
 <Preview>
-  <Story id="components-table--simple-table" />
+  <Story id="components-lobtable--simple-table" />
 </Preview>
 
 ## How to Use
 
 ```html
-<Table space="md">
+<lob-table space="md">
   <TableHeader>
     <div>Name</div>
     <div>Description</div>
@@ -22,16 +22,16 @@ Table is a flexible component that display sets of data
       <div>{{item.description}}</div>
     </TableRow>
   </TableBody>
-</Table>
+</lob-table>
 ```
 There are 3 variants of space to set a space to the cell: sm, md, lg.
 
 You can still set tailwindcss classes to a table cell.
 ```html
-  <TableHeader>
-    <div class="px-3 py-4">Name</div>
-    <div>Description</div>
-  </TableHeader>
+<TableHeader>
+  <div class="px-3 py-4">Name</div>
+  <div>Description</div>
+</TableHeader>
 ```
 
 ## Props
