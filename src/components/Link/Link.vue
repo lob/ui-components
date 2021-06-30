@@ -11,7 +11,7 @@
       {'!px-3 !py-2': small}
     ]"
   >
-    {{ label }}
+    <slot />
   </component>
 </template>
 

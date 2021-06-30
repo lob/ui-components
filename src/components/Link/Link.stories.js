@@ -35,7 +35,7 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LobLink },
   setup: () => ({ args }),
-  template: '<lob-link v-bind="args" label="link" to="/internal" />'
+  template: '<LobLink v-bind="args" to="/internal">click me</LobLink>'
 });
 
 export const Primary = Template.bind({});
