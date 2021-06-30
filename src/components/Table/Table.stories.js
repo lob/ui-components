@@ -2,13 +2,13 @@ import LobTable from './Table.vue';
 import TableHeader from './TableHeader.vue';
 import TableBody from './TableBody.vue';
 import TableRow from './TableRow.vue';
-import Button from '../Button/Button.vue';
+import LobButton from '../Button/Button.vue';
 import mdx from './Table.mdx';
 
 export default {
   title: 'Components/LobTable',
   component: LobTable,
-  subcomponents: { TableHeader, TableRow, TableBody, Button },
+  subcomponents: { TableHeader, TableRow, TableBody, LobButton },
   decorators: [
     () => ({ template: '<div style="width: 700px"><story /></div>' })
   ],
@@ -63,7 +63,7 @@ SimpleTable.args = {
 
 const TableWithActionTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { LobTable, TableHeader, TableRow, TableBody, Button },
+  components: { LobTable, TableHeader, TableRow, TableBody, LobButton },
   setup: () => ({ args }),
   template: `
     <lob-table class="min-w-full divide-y divide-gray-200" :space="args.space">
@@ -76,7 +76,7 @@ const TableWithActionTemplate = (args, { argTypes }) => ({
         <TableRow v-for="item in args.items">
           <div class="whitespace-nowrap">{{item.name}}</div>
           <div class="whitespace-nowrap">{{item.description}}</div>
-          <div class="text-right"><Button size="small">Edit</Button></div>
+          <div class="text-right"><lob-button size="small">Edit</lob-button></div>
         </TableRow>
       </TableBody>
     </lob-table>
@@ -100,7 +100,7 @@ TableWithAction.args = {
 
 const TableWithRowHoverEffectTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { LobTable, TableHeader, TableRow, TableBody, Button },
+  components: { LobTable, TableHeader, TableRow, TableBody },
   setup: () => ({ args }),
   template: `
     <lob-table class="min-w-full divide-y divide-gray-200" :space="args.space">
