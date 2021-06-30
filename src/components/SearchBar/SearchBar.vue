@@ -147,8 +147,6 @@ export default {
       }
     },
     hide () {
-      this.searchResults = [];
-      this.searching = false;
       this.outsideClick = true;
     }
   }
