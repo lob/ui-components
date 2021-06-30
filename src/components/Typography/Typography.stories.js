@@ -14,16 +14,16 @@ export default {
       control: {
         type: 'text'
       },
-      defaultValue: 'I am typography.',
       description: 'Text to display',
       table: {
+        defaultValue: 'I am typography.',
         type: 'text'
       }
     },
     variant: {
       options: ['heading1', 'heading2', 'heading3', 'body1', 'caption'],
-      defaultValue: 'body1',
       control: {
+        defaultValue: 'body1',
         type: 'select'
       }
     }
