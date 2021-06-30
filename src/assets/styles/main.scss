@@ -47,5 +47,12 @@
     &:hover {
       @apply text-primary-500;
     }
+
+    &:focus {
+      @apply outline-none;
+      @apply ring-2;
+      @apply ring-primary-100;
+      @apply border-transparent;
+    }
   }
 }

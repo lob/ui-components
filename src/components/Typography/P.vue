@@ -1,4 +1,5 @@
 <script>
+import { h } from 'vue';
 import Typography from './Typography';
 
 export default {
@@ -6,6 +7,10 @@ export default {
   components: {
     Typography
   },
-  template: '<Typography variant="body1"><slot /></Typography>'
+  render () {
+    return h(Typography, { variant: 'body1' }, { default: this.$slots.default });
+  }
 };
+
 </script>
+

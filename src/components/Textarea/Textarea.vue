@@ -1,6 +1,8 @@
 <template>
   <label class="flex flex-col">
-    <span class="mb-2.5 text-gray-500 text-sm">
+    <span
+      :class="['mb-2 text-sm text-gray-500', {'sr-only': srOnlyLabel}]"
+    >
       {{ label }}
       <span
         v-if="required"
@@ -42,6 +44,10 @@ export default {
     label: {
       type: String,
       default: ''
+    },
+    srOnlyLabel: {
+      type: Boolean,
+      default: false
     },
     placeholder: {
       type: String,
