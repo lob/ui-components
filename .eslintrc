@@ -9,7 +9,8 @@
   },
   "parser": "vue-eslint-parser",
   "ignorePatterns": [
-    "!/.storybook"
+    "!/.storybook",
+    "!/storybook-static"
   ],
   "rules": {
     "lob/align-equals": 0,
