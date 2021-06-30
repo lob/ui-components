@@ -21,7 +21,10 @@
         </button>
       </template>
     </text-input>
-    <div class="bg-white shadow overflow-y-auto max-h-56">
+    <div
+      v-if="!outsideClick"
+      class="bg-white shadow overflow-y-auto max-h-56"
+    >
       <div
         v-if="searchTerm"
         class="text-center py-4"
@@ -93,7 +96,8 @@ export default {
       searchTerm: '',
       searchResults: [],
       searching: false,
-      timeout: null
+      timeout: null,
+      outsideClick: false
     };
   },
   computed: {
@@ -134,6 +138,7 @@ export default {
     },
     onClickOutside ($event) {
       if (typeof this.$refs.searchBar !== 'undefined') {
+        this.outsideClick = false;
         const clickOnTheContainer = this.$refs.searchBar === $event.target;
         const clickOnChild = this.$refs.searchBar && this.$refs.searchBar.contains($event.target);
         if (!clickOnTheContainer && !clickOnChild) {
@@ -144,6 +149,7 @@ export default {
     hide () {
       this.searchResults = [];
       this.searching = false;
+      this.outsideClick = true;
     }
   }
 };
