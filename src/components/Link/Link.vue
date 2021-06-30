@@ -1,8 +1,7 @@
 <template>
   <component
     :is="tag"
-    :href="to"
-    :to="to"
+    :[linkProp]="to"
     :class="[
       'underline',
       {'primary py-3 px-6 bg-primary-500 text-white active:bg-primary-700 disabled:bg-white-300': primary},
@@ -23,7 +22,14 @@ export default {
       type: String,
       default: 'default',
       validator: function (value) {
-        return ['default', 'primary-button', 'primary-button-small', 'secondary-button', 'secondary-button-small'].includes(value);
+        return ['default', 'primary-button', 'secondary-button'].includes(value);
+      }
+    },
+    size: {
+      type: String,
+      default: 'default',
+      validator: function (value) {
+        return ['default', 'small'].includes(value);
       }
     },
     to: {
@@ -40,17 +46,17 @@ export default {
       return this.variant === 'default';
     },
     primary () {
-      return this.variant === 'primary-button' || this.variant === 'primary-button-small';
+      return this.variant === 'primary-button';
     },
     secondary () {
-      return this.variant === 'secondary-button' || this.variant === 'secondary-button-small';
+      return this.variant === 'secondary-button';
     },
     small () {
-      return this.variant === 'primary-button-small' || this.variant === 'secondary-button-small';
+      return this.size === 'small';
     },
     isExternal () {
-      const r = new RegExp('^(?:[a-z]+:)?//', 'i'); // from https://stackoverflow.com/a/19709846
-      return r.test(this.to);
+      const protocolRelativePattern = /^https?:\/\/|^\/\//i;
+      return protocolRelativePattern.test(this.to);
     },
     tag () {
       if (this.isExternal) {
@@ -58,6 +64,9 @@ export default {
       } else {
         return 'router-link';
       }
+    },
+    linkProp () {
+      return this.isExternal ? 'href' : 'to';
     }
   }
 };

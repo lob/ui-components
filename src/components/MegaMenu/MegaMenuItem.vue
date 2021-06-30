@@ -57,15 +57,6 @@ export default {
       type: Boolean,
       default: false
     }
-  },
-  computed: {
-    isExternal () {
-      const protocolRelativePattern = /^https?:\/\/|^\/\//i;
-      return protocolRelativePattern.test(this.to);
-    },
-    linkProp () {
-      return this.isExternal ? 'href' : 'to';
-    }
   }
 };
 </script>

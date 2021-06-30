@@ -1,10 +1,10 @@
 import routeDecorator, { routeTemplate } from '../../../.storybook/routeDecorator';
 
 import LobLink from './Link.vue';
-// import mdx from './Link.mdx';
+import mdx from './Link.mdx';
 
 export default {
-  title: 'Components/Link',
+  title: 'Components/LobLink',
   component: LobLink,
   decorators: [
     routeDecorator('/', [
@@ -17,13 +17,19 @@ export default {
     ])
   ],
   parameters: {
-    // docs: {
-    //   page: mdx
-    // }
+    docs: {
+      page: mdx
+    }
   },
   argTypes: {
     variant: {
-      options: ['default', 'primary-button', 'primary-button-small', 'secondary-button', 'secondary-button-small'],
+      options: ['default', 'primary-button', 'secondary-button'],
+      control: {
+        type: 'select'
+      }
+    },
+    size: {
+      options: ['default', 'small'],
       control: {
         type: 'select'
       }
@@ -35,11 +41,7 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LobLink },
   setup: () => ({ args }),
-  template: '<LobLink v-bind="args" to="/internal">click me</LobLink>'
+  template: '<lob-link v-bind="args" to="/internal">Click me</lob-link>'
 });
 
 export const Primary = Template.bind({});
-// Primary.args = {
-//   label: 'link',
-//   to: 'https://dashboard.lob.com'
-// };
