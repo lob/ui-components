@@ -8,7 +8,7 @@
   >
     <router-link
       :to="to"
-      class="w-full py-1 pl-8 overflow-hidden focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent"
+      class="w-full py-1 pl-8 overflow-hidden text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent"
       @click.stop
     >
       {{ title }}
