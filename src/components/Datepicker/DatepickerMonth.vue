@@ -5,7 +5,7 @@
   >
     <header class="grid grid-cols-7 gap-3">
       <div
-        v-for="dayName in mapWithOffset(t('dayNames'), firstDayOfWeek)"
+        v-for="dayName in mapWithOffset(dayNames, firstDayOfWeek)"
         :key="dayName"
         class="text-gray-500"
         scope="col"
@@ -87,6 +87,17 @@ export default {
   computed: {
     days () {
       return getViewOfMonth(this.focusedDate, this.firstDayOfWeek);
+    },
+    dayNames () {
+      return [
+        this.t('datepicker.dayNameZero'),
+        this.t('datepicker.dayNameOne'),
+        this.t('datepicker.dayNameTwo'),
+        this.t('datepicker.dayNameThree'),
+        this.t('datepicker.dayNameFour'),
+        this.t('datepicker.dayNameFive'),
+        this.t('datepicker.dayNameSix')
+      ];
     }
   },
   methods: {
