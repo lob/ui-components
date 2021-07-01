@@ -20,7 +20,12 @@ export default {
         return this.$t(str);
       }
 
-      const localEnglishTranslation = en[str];
+      const strParts = str.split('.');
+      const localEnglishTranslation = strParts.reduce((accumulator, currentValue) => {
+        accumulator = accumulator[currentValue];
+        return accumulator;
+      }, en);
+
       if (localEnglishTranslation) {
         return localEnglishTranslation;
       }

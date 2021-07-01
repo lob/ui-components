@@ -1,6 +1,7 @@
 import '@testing-library/jest-dom';
 import { render, fireEvent } from '@testing-library/vue';
 import { translate } from '@/mixins';
+import en from '@/mixins/en';
 import userEvent from '@testing-library/user-event';
 import Datepicker from '../Datepicker.vue';
 
@@ -10,52 +11,6 @@ const modelValue = new Date(2021, 5, 14);
 const open = false;
 const initialProps = {
   id: 'test',
-  localization: {
-    keyboardInstruction: 'You can use arrow keys to navigate dates',
-    calendarHeading: 'Calendar',
-    closeLabel: 'Close',
-    dayNames: [
-      'Sunday',
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday'
-    ],
-    monthNames: [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December'
-    ],
-    monthNamesShort: [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sept',
-      'Oct',
-      'Nov',
-      'Dec'
-    ],
-    monthSelectLabel: 'Choose month',
-    yearSelectLabel: 'Choose year',
-    prevMonthLabel: 'Previous',
-    nextMonthLabel: 'Next'
-  },
   modelValue,
   open
 };
@@ -95,21 +50,21 @@ describe('Datepicker', () => {
     it('renders a close button', () => {
       const { queryByText } = renderComponent({ props });
 
-      const button = queryByText(props.localization.closeLabel);
+      const button = queryByText(en.datepicker.closeLabel);
       expect(button).toBeInTheDocument();
     });
 
     it('renders a previous month button', () => {
       const { queryByText } = renderComponent({ props });
 
-      const button = queryByText(props.localization.prevMonthLabel);
+      const button = queryByText(en.datepicker.prevMonthLabel);
       expect(button).toBeInTheDocument();
     });
 
     it('renders a next month button', () => {
       const { queryByText } = renderComponent({ props });
 
-      const button = queryByText(props.localization.nextMonthLabel);
+      const button = queryByText(en.datepicker.nextMonthLabel);
       expect(button).toBeInTheDocument();
     });
 
@@ -134,7 +89,7 @@ describe('Datepicker', () => {
     it('emits an update:open event with value false when clicking close button', async () => {
       const { queryByText, emitted } = renderComponent({ props });
 
-      const close = queryByText(props.localization.closeLabel).closest('button');
+      const close = queryByText(en.datepicker.closeLabel).closest('button');
       // enter to close datepicker
       await fireEvent.click(close);
       const emittedEvent = emitted();
@@ -147,7 +102,7 @@ describe('Datepicker', () => {
 
       // tab to close button
       userEvent.tab();
-      const close = queryByText(props.localization.closeLabel).closest('button');
+      const close = queryByText(en.datepicker.closeLabel).closest('button');
       expect(close).toHaveFocus();
     });
 
@@ -159,7 +114,7 @@ describe('Datepicker', () => {
       // tab to prev button
       userEvent.tab();
 
-      const prev = queryByText(props.localization.prevMonthLabel).closest('button');
+      const prev = queryByText(en.datepicker.prevMonthLabel).closest('button');
       expect(prev).toHaveFocus();
     });
 
@@ -173,7 +128,7 @@ describe('Datepicker', () => {
       // tab to next button
       userEvent.tab();
 
-      const next = queryByText(props.localization.nextMonthLabel).closest('button');
+      const next = queryByText(en.datepicker.nextMonthLabel).closest('button');
       expect(next).toHaveFocus();
     });
 
@@ -196,7 +151,7 @@ describe('Datepicker', () => {
     it('goes to the previous month when clicking previous month button', async () => {
       const { queryByText } = renderComponent({ props });
 
-      const button = queryByText(props.localization.prevMonthLabel);
+      const button = queryByText(en.datepicker.prevMonthLabel);
       await fireEvent.click(button);
 
       const monthText = queryByText('May 2021');
@@ -206,7 +161,7 @@ describe('Datepicker', () => {
     it('goes to the next month when clicking next month button', async () => {
       const { queryByText } = renderComponent({ props });
 
-      const button = queryByText(props.localization.nextMonthLabel);
+      const button = queryByText(en.datepicker.nextMonthLabel);
       await fireEvent.click(button);
 
       const monthText = queryByText('July 2021');
