@@ -1,6 +1,6 @@
 {
   "name": "@lob/ui-components",
-  "version": "0.0.31",
+  "version": "0.0.32",
   "engines": {
     "node": "14.16.1"
   },
@@ -76,4 +76,4 @@
     "type": "git",
     "url": "https://github.com/lob/ui-components"
   }
-}
+}g
