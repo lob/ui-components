@@ -30,31 +30,6 @@ const renderComponent = async (options) => {
 
 describe('MegaMenuItem', () => {
 
-  it('renders correctly when an internal link', async () => {
-    const props = initialProps;
-    const { queryByRole } = await renderComponent({ props });
-
-    const link = queryByRole('link');
-    expect(link).toBeInTheDocument();
-
-    const img = queryByRole('img');
-    expect(img).toBeInTheDocument();
-  });
-
-  it('renders correctly when an external link', async () => {
-    const props = {
-      ...initialProps,
-      to: 'https://google.com'
-    };
-    const { queryByRole } = await renderComponent({ props });
-
-    const link = queryByRole('link');
-    expect(link).toBeInTheDocument();
-
-    const img = queryByRole('img');
-    expect(img).toBeInTheDocument();
-  });
-
   it('renders the subtitle when a subtitle is passed in', async () => {
     const props = {
       ...initialProps,
