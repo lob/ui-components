@@ -5,11 +5,7 @@
       {'pb-4': !small}
     ]"
   >
-    <component
-      :is="isExternal ? 'a' : 'router-link'"
-      :[linkProp]="to"
-      class="flex pt-1 flex-nowrap items-center hover:text-primary-500 w-64"
-    >
+    <LobLink class="flex pt-1 flex-nowrap items-center hover:text-primary-500 w-64">
       <img
         :src="imageSource"
         alt=""
@@ -33,13 +29,16 @@
           {{ subtitle }}
         </div>
       </div>
-    </component>
+    </LobLink>
   </div>
 </template>
 
 <script>
+import { LobLink } from '@/components/Link/Link.vue';
+
 export default {
   name: 'MegaMenuItem',
+  components: { LobLink },
   props: {
     to: {
       type: String,
@@ -57,15 +56,6 @@ export default {
     small: {
       type: Boolean,
       default: false
-    }
-  },
-  computed: {
-    isExternal () {
-      const protocolRelativePattern = /^https?:\/\/|^\/\//i;
-      return protocolRelativePattern.test(this.to);
-    },
-    linkProp () {
-      return this.isExternal ? 'href' : 'to';
     }
   }
 };
