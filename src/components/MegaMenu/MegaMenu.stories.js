@@ -1,12 +1,13 @@
 import routeDecorator, { routeTemplate } from '../../../.storybook/routeDecorator';
 import MegaMenu from './MegaMenu.vue';
 import MegaMenuItem from './MegaMenuItem.vue';
+import MegaMenuSubtitle from './MegaMenuSubtitle.vue';
 import mdx from './MegaMenu.mdx';
 
 export default {
   title: 'Components/MegaMenu',
   component: MegaMenu,
-  subcomponents: { MegaMenuItem },
+  subcomponents: { MegaMenuItem, MegaMenuSubtitle },
   decorators: [
     routeDecorator('/', [
       {
@@ -27,12 +28,13 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { MegaMenu, MegaMenuItem },
+  components: { MegaMenu, MegaMenuItem, MegaMenuSubtitle },
   setup: () => ({ args }),
   template: `
     <MegaMenu v-bind="args">
+      <MegaMenuSubtitle>A subtitle</MegaMenuSubtitle>
       <MegaMenuItem id="1" to="/settings/main/account" :imageSource="$getConst('lobAssetsUrl')+'/dashboard/navbar/settings.svg'" small>
-        Some text
+        And some text
       </MegaMenuItem>
     </MegaMenu>
     `

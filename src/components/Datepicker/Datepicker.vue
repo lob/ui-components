@@ -4,7 +4,7 @@
   <div
     ref="container"
     :class="[
-      'hidden shadow px-6 py-4.5 absolute',
+      'bg-white hidden shadow px-6 py-4.5 absolute',
       { '!block': open }
     ]"
     role="dialog"

@@ -12,7 +12,7 @@
       :aria-controls="dropdownListId"
       aria-haspopup="menu"
     >
-      <div class="flex-nowrap flex mt-0 flex-row justify-between md:justify-start items-center">
+      <div class="flex-nowrap flex mt-0 flex-row justify-between md:justify-start items-center px-2 py-1 md:px-0 md:py-0">
         {{ title }}
         <img
           :src="`${$getConst('lobAssetsUrl')}/dashboard/navbar/caret-down.svg`"
