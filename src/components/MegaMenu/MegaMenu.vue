@@ -25,7 +25,7 @@
     <nav
       :id="dropdownListId"
       :aria-labelledby="dropdownToggleId"
-      :class="['hidden height-0 min-w-full bg-white-200 md:bg-white md:absolute', {'!block md:hidden': showMobileNav}, {'md:top-9 md:!block': showNav}, {'md:!hidden': !showNav}]"
+      :class="['hidden height-0 min-w-full bg-white-200 md:bg-white md:absolute', {'!block md:hidden': showMobileNav}, {'md:top-9 md:!block': showNav}, {'md:!hidden': !showNav}, {'md:right-0': right}]"
     >
       <div
         :class="['height-0 pt-6 pb-4 px-4 h-auto w-full mt-1 border-gray-100 opacity-100',
@@ -51,6 +51,10 @@ export default {
       required: true
     },
     collapsed: {
+      type: Boolean,
+      default: false
+    },
+    right: {
       type: Boolean,
       default: false
     }
