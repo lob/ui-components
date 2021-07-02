@@ -1,14 +1,14 @@
-import Table from './Table.vue';
+import LobTable from './Table.vue';
 import TableHeader from './TableHeader.vue';
 import TableBody from './TableBody.vue';
 import TableRow from './TableRow.vue';
-import Button from '../Button/Button.vue';
+import LobButton from '../Button/Button.vue';
 import mdx from './Table.mdx';
 
 export default {
-  title: 'Components/Table',
-  component: Table,
-  subcomponents: { TableHeader, TableRow, TableBody, Button },
+  title: 'Components/LobTable',
+  component: LobTable,
+  subcomponents: { TableHeader, TableRow, TableBody, LobButton },
   decorators: [
     () => ({ template: '<div style="width: 700px"><story /></div>' })
   ],
@@ -29,10 +29,10 @@ export default {
 
 const SimpleTableTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { Table, TableHeader, TableRow, TableBody },
+  components: { LobTable, TableHeader, TableRow, TableBody },
   setup: () => ({ args }),
   template: `
-    <Table class="min-w-full divide-y divide-gray-200" :space="args.space">
+    <lob-table class="min-w-full divide-y divide-gray-200" :space="args.space">
       <TableHeader>
         <div class="text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</div>
         <div class="text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</div>
@@ -43,7 +43,7 @@ const SimpleTableTemplate = (args, { argTypes }) => ({
           <div class="whitespace-nowrap">{{item.description}}</div>
         </TableRow>
       </TableBody>
-    </Table>
+    </lob-table>
   `
 });
 
@@ -63,10 +63,10 @@ SimpleTable.args = {
 
 const TableWithActionTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { Table, TableHeader, TableRow, TableBody, Button },
+  components: { LobTable, TableHeader, TableRow, TableBody, LobButton },
   setup: () => ({ args }),
   template: `
-    <Table class="min-w-full divide-y divide-gray-200" :space="args.space">
+    <lob-table class="min-w-full divide-y divide-gray-200" :space="args.space">
       <TableHeader>
         <div class="text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</div>
         <div class="text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</div>
@@ -76,10 +76,10 @@ const TableWithActionTemplate = (args, { argTypes }) => ({
         <TableRow v-for="item in args.items">
           <div class="whitespace-nowrap">{{item.name}}</div>
           <div class="whitespace-nowrap">{{item.description}}</div>
-          <div class="text-right"><Button size="small">Edit</Button></div>
+          <div class="text-right"><lob-button size="small">Edit</lob-button></div>
         </TableRow>
       </TableBody>
-    </Table>
+    </lob-table>
   `
 });
 
@@ -100,10 +100,10 @@ TableWithAction.args = {
 
 const TableWithRowHoverEffectTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { Table, TableHeader, TableRow, TableBody, Button },
+  components: { LobTable, TableHeader, TableRow, TableBody },
   setup: () => ({ args }),
   template: `
-    <Table class="min-w-full divide-y divide-gray-200" :space="args.space">
+    <lob-table class="min-w-full divide-y divide-gray-200" :space="args.space">
       <TableHeader>
         <div class="text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</div>
         <div class="text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</div>
@@ -116,7 +116,7 @@ const TableWithRowHoverEffectTemplate = (args, { argTypes }) => ({
           <div class="text-right text-xl">></div>
         </TableRow>
       </TableBody>
-    </Table>
+    </lob-table>
   `
 });
 
