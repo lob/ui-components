@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { LobLink } from '@/components/Link/Link.vue';
+import LobLink from '@/components/Link/Link.vue';
 
 export default {
   name: 'MegaMenuItem',
