@@ -63,7 +63,7 @@ export default {
   data () {
     return {
       showNav: false,
-      showMobileNav: this.collapsed
+      showMobileNav: !this.collapsed
     };
   },
   computed: {

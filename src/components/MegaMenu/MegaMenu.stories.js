@@ -43,10 +43,8 @@ const Template = (args, { argTypes }) => ({
 export const Primary = Template.bind({});
 Primary.args = {
   title: 'Products',
-  smaller: true,
-  navKey: '',
-  mobileNavs: {},
-  id: '1'
+  id: '1',
+  collapsed: true
 };
 
 const ItemTemplate = (args, { argTypes }) => ({
