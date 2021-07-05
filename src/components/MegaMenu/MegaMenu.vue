@@ -74,6 +74,11 @@ export default {
       return `dropdown-list-${this.id}`;
     }
   },
+  watch: {
+    open (val) {
+      this.showMobileNav = val;
+    }
+  },
   methods: {
     onClick ($event) {
       this.showMobileNav = !this.showMobileNav;
