@@ -44,7 +44,7 @@ export const Primary = Template.bind({});
 Primary.args = {
   title: 'Products',
   id: '1',
-  collapsed: true
+  open: false
 };
 
 const ItemTemplate = (args, { argTypes }) => ({

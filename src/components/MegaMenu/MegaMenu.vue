@@ -50,7 +50,7 @@ export default {
       type: String,
       required: true
     },
-    collapsed: {
+    open: {
       type: Boolean,
       default: false
     },
@@ -63,7 +63,7 @@ export default {
   data () {
     return {
       showNav: false,
-      showMobileNav: !this.collapsed
+      showMobileNav: this.open
     };
   },
   computed: {
