@@ -23,6 +23,8 @@ export { default as SubnavigationItem } from './Subnavigation/SubnavigationItem'
 export { default as SwitchGroup } from './Switch/SwitchGroup';
 export { default as SwitchItem } from './Switch/SwitchItem';
 export { default as LobTable } from './Table/Table';
+export { default as TableBody } from './Table/TableBody';
+export { default as TableRow } from './Table/TableRow';
 export { default as Textarea } from './Textarea/Textarea';
 export { default as TextInput } from './TextInput/TextInput';
 export { default as Tooltip } from './Tooltip/Tooltip';

@@ -10,7 +10,7 @@
       grey
     >
       <template #iconLeft>
-        <search class="w-4 h-6" />
+        <Search class="w-4 h-6" />
       </template>
       <template #iconRight>
         <button
@@ -19,7 +19,7 @@
           data-testid="clearSearchButton"
           @click="clearSearch"
         >
-          <close class="w-4 h-6" />
+          <Close class="w-4 h-6" />
         </button>
       </template>
     </text-input>
@@ -42,7 +42,7 @@
           No results found
         </template>
       </div>
-      <Table
+      <LobTable
         v-if="!searching && searchResults.length"
         class="min-w-max divide-y divide-gray-200"
         space="sm"
@@ -72,23 +72,23 @@
             </div>
           </TableRow>
         </TableBody>
-      </Table>
+      </LobTable>
     </div>
   </div>
 </template>
 
 <script>
-// import { TextInput, Table, TableBody, TableRow } from '@/components'
-
+// import { TextInput, LobTable, TableBody, TableRow, Search, Close } from '@/components';
 import TextInput from '../TextInput/TextInput';
-import search from '../Icons/Search';
-import close from '../Icons/Close';
-import Table from '../Table/Table';
+import LobTable from '../Table/Table';
 import TableBody from '../Table/TableBody';
 import TableRow from '../Table/TableRow';
+import Search from '../Icons/Search';
+import Close from '../Icons/Close';
+
 export default {
   name: 'SearchBar',
-  components: { TextInput, search, close, Table, TableBody, TableRow },
+  components: { TextInput, LobTable, TableBody, TableRow, Search, Close },
   props: {
     searchFunction: {
       type: Function,
