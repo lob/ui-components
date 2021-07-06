@@ -10,14 +10,27 @@ export default {
   decorators: [
     routeDecorator('/envelopes/create', [
       {
-        path: '/envelopes',
-        name: 'Envelopes',
+        path: '/',
         component: {
-          template: routeTemplate('envelopes')
+          template: routeTemplate('overview')
+        }
+      },
+      {
+        path: '/envelopes',
+        component: {
+          template: '<div><h1>Letters</h1><router-view /></div>'
         },
         children: [
           {
+            path: '',
+            name: 'Envelopes',
+            component: {
+              template: routeTemplate('envelopes')
+            }
+          },
+          {
             path: 'create',
+            name: 'Create Envelope',
             component: {
               template: routeTemplate('create')
             }

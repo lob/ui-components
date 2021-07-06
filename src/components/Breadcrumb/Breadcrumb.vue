@@ -43,10 +43,16 @@ export default {
   },
   computed: {
     crumbs () {
-      const routes = [
-        { name: this.startName, path: START_LOCATION.path },
-        ...this.$route.matched
+      let routes = [
+        { name: this.startName, path: START_LOCATION.path }
       ];
+
+      if (this.$route.path !== START_LOCATION.path) {
+        // unique matched route records by path, grabbing the last duplicated if more than one
+        const uniqueMatchedByPath = [...new Map(this.$route.matched.map((matched) => [matched.path, matched])).values()];
+        routes = [...routes, ...uniqueMatchedByPath];
+      }
+
       return routes.map((routeRecord) => {
         const pathSegments = routeRecord.path.split('/');
         const lastChildInPath = pathSegments[pathSegments.length - 1];
