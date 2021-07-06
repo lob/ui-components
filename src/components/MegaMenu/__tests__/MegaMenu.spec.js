@@ -27,7 +27,7 @@ describe('MegaMenu', () => {
     const { queryByRole } = renderComponent({ props });
 
     const nav = queryByRole('navigation');
-    expect(nav).not.toHaveClass('md:!block');
+    expect(nav).not.toHaveClass('xl:!block');
   });
 
   it('shows the nested submenu on hover', async () => {
@@ -38,7 +38,7 @@ describe('MegaMenu', () => {
     await fireEvent.mouseEnter(menuContainer);
 
     const nav = queryByRole('navigation');
-    expect(nav).toHaveClass('md:!block');
+    expect(nav).toHaveClass('xl:!block');
   });
 
 });
