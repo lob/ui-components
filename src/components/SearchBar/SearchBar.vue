@@ -1,5 +1,8 @@
 <template>
-  <div ref="searchBar">
+  <div
+    ref="searchBar"
+    class="relative"
+  >
     <text-input
       id="searchBar"
       v-model="searchTerm"
@@ -11,7 +14,6 @@
       </template>
       <template #iconRight>
         <button
-          :role="disabled ? 'button' : null"
           aria-label="Close"
           :disabled="disabled"
           data-testid="clearSearchButton"
@@ -23,7 +25,8 @@
     </text-input>
     <div
       v-if="!outsideClick"
-      class="bg-white shadow overflow-y-auto max-h-56"
+      class="bg-white shadow overflow-y-auto max-h-56 absolute"
+      role="results"
     >
       <div
         v-if="searchTerm"
@@ -41,7 +44,7 @@
       </div>
       <Table
         v-if="!searching && searchResults.length"
-        class="min-w-full divide-y divide-gray-200"
+        class="min-w-max divide-y divide-gray-200"
         space="sm"
       >
         <TableBody>
@@ -75,7 +78,9 @@
 </template>
 
 <script>
-import textInput from '../TextInput/TextInput';
+// import { TextInput, Table, TableBody, TableRow } from '@/components'
+
+import TextInput from '../TextInput/TextInput';
 import search from '../Icons/Search';
 import close from '../Icons/Close';
 import Table from '../Table/Table';
@@ -83,14 +88,13 @@ import TableBody from '../Table/TableBody';
 import TableRow from '../Table/TableRow';
 export default {
   name: 'SearchBar',
-  components: { textInput, search, close, Table, TableBody, TableRow },
+  components: { TextInput, search, close, Table, TableBody, TableRow },
   props: {
     searchFunction: {
       type: Function,
       required: true
     }
   },
-  emits: ['update:open'],
   data () {
     return {
       searchTerm: '',

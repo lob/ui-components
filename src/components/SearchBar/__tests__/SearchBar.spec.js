@@ -38,4 +38,22 @@ describe('SearchBar', () => {
     expect(input.value).toBe('');
   });
 
+  it('executes the search function when the user types', async () => {
+    const searchTerm = 'baseball mail 1000';
+    const props = {
+      ...initialProps
+    };
+
+    const { queryByRole, container } = renderComponent({ props });
+
+    const input = container.querySelector('#searchBar');
+    await fireEvent.update(input, searchTerm);
+    expect(input.value).toBe(searchTerm);
+
+    setTimeout(() => {
+      const searchResults = queryByRole('results');
+      expect(searchResults).toBe('View all 2 results...');
+    }, 1000);
+  });
+
 });
