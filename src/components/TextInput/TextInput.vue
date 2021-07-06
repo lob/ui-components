@@ -70,7 +70,6 @@
 
 <script>
 import LobButton from './../Button/Button.vue';
-
 export default {
   name: 'TextInput',
   components: {

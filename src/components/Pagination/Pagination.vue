@@ -6,8 +6,8 @@
     <div>
       <p>
         {{ total }}
-        <span v-if="total !== 1">{{ t('pageResultsLabel') }}</span>
-        <span v-else>{{ t('pageSingleResultLabel') }}</span>
+        <span v-if="total !== 1">{{ t('pagination.pageResultsLabel') }}</span>
+        <span v-else>{{ t('pagination.pageSingleResultLabel') }}</span>
       </p>
     </div>
 
@@ -23,7 +23,7 @@
         :disabled="page === 1"
         @click="pageClick(1)"
       >
-        <span class="sr-only">{{ t('firstPageLabel') }}</span>
+        <span class="sr-only">{{ t('pagination.firstPageLabel') }}</span>
         <page-arrow-icon
           :first="true"
           :disabled="page === 1"
@@ -37,7 +37,7 @@
         :disabled="page <= 1"
         @click="pageClick(page - 1)"
       >
-        <span class="sr-only">{{ t('prevPageLabel') }}</span>
+        <span class="sr-only">{{ t('pagination.prevPageLabel') }}</span>
         <page-arrow-icon
           :previous="true"
           :disabled="page <= 1"
@@ -51,7 +51,7 @@
         :disabled="offset + limit >= total"
         @click="pageClick(page + 1)"
       >
-        <span class="sr-only">{{ t('nextPageLabel') }}</span>
+        <span class="sr-only">{{ t('pagination.nextPageLabel') }}</span>
         <page-arrow-icon
           :next="true"
           :disabled="offset + limit >= total"
@@ -65,7 +65,7 @@
         :disabled="offset + limit >= total"
         @click="pageClick(lastPage)"
       >
-        <span class="sr-only">{{ t('lastPageLabel') }}</span>
+        <span class="sr-only">{{ t('pagination.lastPageLabel') }}</span>
         <page-arrow-icon
           :last="true"
           :disabled="offset + limit >= total"
@@ -84,7 +84,7 @@
           :disabled="offset + limit >= total"
           @click="pageClick(page + 1)"
         >
-          {{ t('nextPageLabelMobile') }}
+          {{ t('pagination.nextPageLabelMobile') }}
           <page-arrow-icon
             :next="true"
             class="transform group-hover:translate-x-1 group-hover:text-primary-300"
@@ -102,7 +102,7 @@
             :previous="true"
             class="transform group-hover:-translate-x-1 group-hover:text-primary-300"
           />
-          {{ t('prevPageLabelMobile') }}
+          {{ t('pagination.prevPageLabelMobile') }}
         </button>
       </p>
     </div>

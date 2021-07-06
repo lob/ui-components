@@ -14,9 +14,9 @@ export default {
       control: {
         type: 'text'
       },
-      defaultValue: 'I am a tooltip.',
       description: 'Content to display inside of the tooltip',
       table: {
+        defaultValue: 'I am a tooltip.',
         type: {
           summary: 'html or component'
         }
@@ -26,9 +26,9 @@ export default {
       control: {
         type: 'text'
       },
-      defaultValue: 'Hover me.',
       description: 'Content to trigger display of tooltip on hover',
       table: {
+        defaultValue: 'Hover me.',
         type: {
           summary: 'html or component'
         }

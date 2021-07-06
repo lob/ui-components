@@ -5,11 +5,7 @@
       {'pb-4': !small}
     ]"
   >
-    <component
-      :is="isExternal ? 'a' : 'router-link'"
-      :[linkProp]="to"
-      class="flex pt-1 flex-nowrap items-center hover:text-primary-500 w-64"
-    >
+    <LobLink class="flex pt-1 flex-nowrap items-center hover:text-primary-500 w-64 no-underline">
       <img
         :src="imageSource"
         alt=""
@@ -22,24 +18,27 @@
       >
       <div class="pl-2 text-gray-900">
         <span
-          :class="['pt-1 opacity-75 transition-colors transition-opacity no-underline md:pb-0.5 block relative align-top mx-auto whitespace-nowrap border-none text-normal text-lg hover:text-primary-500', {'py-1': small}]"
+          :class="['pt-1 opacity-75 transition-colors transition-opacity no-underline xl:pb-0.5 block relative align-top mx-auto whitespace-nowrap border-none text-normal text-lg hover:text-primary-500', {'py-1': small}]"
         >
           <slot />
         </span>
         <div
           v-if="subtitle"
-          class="opacity-80 pr-0 text-gray-700 text-sm hidden md:block"
+          class="opacity-80 pr-0 text-gray-700 text-sm hidden xl:block"
         >
           {{ subtitle }}
         </div>
       </div>
-    </component>
+    </LobLink>
   </div>
 </template>
 
 <script>
+import LobLink from '@/components/Link/Link.vue';
+
 export default {
   name: 'MegaMenuItem',
+  components: { LobLink },
   props: {
     to: {
       type: String,
@@ -57,15 +56,6 @@ export default {
     small: {
       type: Boolean,
       default: false
-    }
-  },
-  computed: {
-    isExternal () {
-      const protocolRelativePattern = /^https?:\/\/|^\/\//i;
-      return protocolRelativePattern.test(this.to);
-    },
-    linkProp () {
-      return this.isExternal ? 'href' : 'to';
     }
   }
 };

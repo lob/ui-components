@@ -4,7 +4,7 @@
   <div
     ref="container"
     :class="[
-      'hidden shadow px-6 py-4.5 absolute',
+      'bg-white hidden shadow px-6 py-4.5 absolute',
       { '!block': open }
     ]"
     role="dialog"
@@ -17,7 +17,7 @@
       class="sr-only"
       aria-live="polite"
     >
-      {{ t('keyboardInstruction') }}
+      {{ t('datepicker.keyboardInstruction') }}
     </div>
     <button
       ref="firstFocusableElement"
@@ -26,7 +26,7 @@
       @click="hide"
     >
       <close class="w-4 h-4 p-0.5" />
-      <span class="sr-only">{{ t('closeLabel') }}</span>
+      <span class="sr-only">{{ t('datepicker.closeLabel') }}</span>
     </button>
     <div
       class="flex justify-between pb-4.5"
@@ -40,7 +40,7 @@
         @click="onPreviousMonthClick"
       >
         <arrow-left class="w-4 h-4" />
-        <span class="sr-only">{{ t('prevMonthLabel') }}</span>
+        <span class="sr-only">{{ t('datepicker.prevMonthLabel') }}</span>
       </button>
       <div>
         <span
@@ -49,7 +49,7 @@
           aria-live="polite"
           aria-atomic="true"
         >
-          {{ t('monthNames')[focusedMonth] }} {{ focusedDate.getFullYear() }}
+          {{ monthNames[focusedMonth] }} {{ focusedDate.getFullYear() }}
         </span>
       </div>
       <button
@@ -61,7 +61,7 @@
         @click="onNextMonthClick"
       >
         <arrow-right class="w-4 h-4" />
-        <span class="sr-only">{{ t('nextMonthLabel') }}</span>
+        <span class="sr-only">{{ t('datepicker.nextMonthLabel') }}</span>
       </button>
     </div>
     <DatepickerMonth
@@ -144,6 +144,22 @@ export default {
     },
     maxYear () {
       return this.max ? this.max.getFullYear() : this.selectedYear + 10;
+    },
+    monthNames () {
+      return [
+        this.t('datepicker.monthNameZero'),
+        this.t('datepicker.monthNameOne'),
+        this.t('datepicker.monthNameTwo'),
+        this.t('datepicker.monthNameThree'),
+        this.t('datepicker.monthNameFour'),
+        this.t('datepicker.monthNameFive'),
+        this.t('datepicker.monthNameSix'),
+        this.t('datepicker.monthNameSeven'),
+        this.t('datepicker.monthNameEight'),
+        this.t('datepicker.monthNameNine'),
+        this.t('datepicker.monthNameTen'),
+        this.t('datepicker.monthNameEleven')
+      ];
     }
   },
   mounted () {

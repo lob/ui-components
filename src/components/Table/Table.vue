@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'Table',
+  name: 'LobTable',
   props: {
     space: {
       type: String,

@@ -25,7 +25,7 @@
     </text-input>
     <div
       v-if="!outsideClick"
-      class="bg-white shadow overflow-y-auto max-h-56 absolute"
+      class="bg-white shadow overflow-y-auto max-h-56 min-w-full absolute"
       role="results"
     >
       <div
