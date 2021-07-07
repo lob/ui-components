@@ -19,7 +19,7 @@
         :class="[
           'pl-4',
           { expanded: expanded },
-          { 'collapsed md:hidden': !expanded }
+          { 'collapsed xl:hidden': !expanded }
         ]"
         data-testid="collapsibleElement"
       >
@@ -38,7 +38,7 @@
 
     <ul
       v-if="subNavOpen"
-      :class="['pl-12', { 'md:hidden': !expanded }]"
+      :class="['pl-12', { 'xl:hidden': !expanded }]"
     >
       <slot />
     </ul>
