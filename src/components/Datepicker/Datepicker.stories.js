@@ -16,19 +16,30 @@ export default {
 };
 
 const dateModel = null;
+const dateModel2 = null;
 const show = false;
+const show2 = false;
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: {  Datepicker },
-  data: () => ({ dateModel, show }),
+  data: () => ({ dateModel, show, dateModel2, show2 }),
   setup: () => ({ args }),
   template: `
+  <div class="flex">
   <div class="relative">
     <label>
       Enter a date
       <input @click.stop="show = !show" :value="dateModel" class="border border-gray-300">
     </label>
     <datepicker v-bind="args" v-model="dateModel" v-model:open="show"></datepicker>
+  </div>
+  <div class="relative">
+    <label>
+      Enter a date
+      <input @click.stop="show2 = !show2" :value="dateModel2" class="border border-gray-300">
+    </label>
+    <datepicker v-bind="args" v-model="dateModel2" v-model:open="show2"></datepicker>
+  </div>
   </div>
   `
 });
