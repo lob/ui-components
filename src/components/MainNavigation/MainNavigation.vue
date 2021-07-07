@@ -52,7 +52,7 @@ export default {
 nav {
   width: 100%;
 
-  @screen md {
+  @screen xl {
     ul:not(.collapsed) {
       width: 222px;
     }

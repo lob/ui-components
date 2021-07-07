@@ -105,7 +105,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@screen md {
+@screen xl {
   .expanded {
     max-width: 100%;
     transition: max-width 0.3s ease-in;
