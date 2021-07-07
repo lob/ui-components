@@ -86,7 +86,6 @@ describe('SearchBar', () => {
     jest.runAllTimers();
   });
 
-
   it('hides the search results when the user clicks outside the search bar', async () => {
     const searchTerm = 'baseball mail 1000';
     const props = {
