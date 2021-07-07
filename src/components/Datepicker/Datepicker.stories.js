@@ -51,3 +51,38 @@ Primary.args = {
   min: oneYearAgo,
   max: oneYearFromNow
 };
+
+const dateModel2 = null;
+const show2 = false;
+const WithMultipleTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: {  Datepicker },
+  data: () => ({ dateModel, show, dateModel2, show2 }),
+  setup: () => ({ args }),
+  template: `
+  <div class="flex">
+  <div class="relative">
+    <label>
+      Enter a date
+      <input @click.stop="show = !show" :value="dateModel" class="border border-gray-300">
+    </label>
+    <datepicker v-bind="args" v-model="dateModel" v-model:open="show"></datepicker>
+  </div>
+  <div class="relative">
+    <label>
+      Enter a date
+      <input @click.stop="show2 = !show2" :value="dateModel2" class="border border-gray-300">
+    </label>
+    <datepicker v-bind="args" v-model="dateModel2" v-model:open="show2"></datepicker>
+  </div>
+  </div>
+  `
+});
+
+export const WithMultipleDatepickers = WithMultipleTemplate.bind({});
+WithMultipleDatepickers.args = {
+  id: 'test',
+  isDateDisabled,
+  min: oneYearAgo,
+  max: oneYearFromNow
+};
