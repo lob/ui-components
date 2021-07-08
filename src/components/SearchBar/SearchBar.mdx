@@ -1,0 +1,29 @@
+import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs/blocks';
+import SearchBar from './SearchBar.vue';
+
+# SearchBar
+
+A SearchBar that takes a custom function to return search results.
+
+<Preview>
+  <Story id="components-SearchBar--primary" />
+</Preview>
+
+## How to Use
+
+This SearchBar component is designed to be used for search in any list of items.
+
+The searchFunction is required.
+
+To use this SearchBar, here is an example
+
+```html
+<SearchBar
+  searchFunction="myCustomSearch"
+>
+</SearchBar>
+```
+
+## Props
+
+SearchFunction - wrapper function that displays the correct serach results
