@@ -7,6 +7,7 @@ export { default as Checkbox } from './Checkbox/Checkbox';
 export { default as Datepicker } from './Datepicker/Datepicker';
 export { default as Dropdown } from './Dropdown/Dropdown';
 export * from './Icons';
+export { default as LobLink } from './Link/Link';
 export { default as MainNavigation } from './MainNavigation/MainNavigation';
 export { default as MainNavigationItem } from './MainNavigation/MainNavigationItem';
 export { default as MainNavigationChildItem } from './MainNavigation/MainNavigationChildItem';
