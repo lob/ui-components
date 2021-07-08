@@ -4,7 +4,7 @@
   <div
     ref="container"
     :class="[
-      'bg-white hidden shadow px-6 py-4.5 absolute',
+      'z-30 bg-white hidden shadow px-6 py-4.5 absolute',
       { '!block': open }
     ]"
     role="dialog"
@@ -83,6 +83,11 @@
 import { ArrowLeft, ArrowRight, Close } from '@/components/Icons';
 import DatepickerMonth from './DatepickerMonth.vue';
 import { Keys, startOfWeek, endOfWeek, startOfMonth, endOfMonth, setMonth, setYear, addDays, clamp, inRange } from '@/utils';
+import mitt from 'mitt';
+
+const emitter = mitt();
+
+const DATEPICKER_OPEN_EVENT = 'datepicker-open';
 
 export default {
   name: 'Datepicker',
@@ -162,6 +167,9 @@ export default {
       ];
     }
   },
+  created () {
+    emitter.on(DATEPICKER_OPEN_EVENT, this.handleOtherDatepickerOpened);
+  },
   mounted () {
     if (this.open) {
       this.$refs.month.focusDate();
@@ -170,9 +178,11 @@ export default {
   },
   unmounted () {
     window.removeEventListener('click', this.onClickOutside);
+    emitter.off(DATEPICKER_OPEN_EVENT, this.handleOtherDatepickerOpened);
   },
   updated () {
     if (this.open) {
+      emitter.emit(DATEPICKER_OPEN_EVENT, this.$refs.container);
       this.$refs.month.focusDate();
     }
   },
@@ -319,6 +329,11 @@ export default {
         if (!clickOnTheDatepickerContainer && !clickOnDatepickerChild) {
           this.hide();
         }
+      }
+    },
+    handleOtherDatepickerOpened (datepickerEl) {
+      if (this.$refs.container !== datepickerEl) {
+        this.hide();
       }
     },
     hide () {
