@@ -1,7 +1,8 @@
 <template>
   <button
     :class="[
-      'flex justify-center items-center rounded disabled:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
+      'flex justify-center items-center disabled:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
+      { 'rounded': !link },
       {
         'primary bg-primary-500 text-white active:bg-primary-700 disabled:bg-white-300': primary
       },
@@ -19,12 +20,14 @@
       {
         'error bg-error !text-white active:bg-error-700': error
       },
+      { 'underline text-primary-300 hover:text-primary-500': link },
       {
         'bg-opacity-50': (success || error) && disabled
       },
       { 'px-6 py-3.5': defaultSize },
       { 'px-3 py-2': small },
-      { 'px-6 py-4.5': large }
+      { 'px-6 py-4.5': large },
+      { '!p-0': link }
     ]"
     :disabled="disabled"
     @click="handleClick"
@@ -43,7 +46,7 @@ export default {
       type: String,
       default: 'primary',
       validator: function (value) {
-        return ['primary', 'secondary', 'tertiary', 'success', 'error'].includes(value);
+        return ['primary', 'secondary', 'tertiary', 'success', 'error', 'link'].includes(value);
       }
     },
     size: {
@@ -74,6 +77,9 @@ export default {
     },
     error () {
       return this.variant === 'error';
+    },
+    link () {
+      return this.variant === 'link';
     },
     defaultSize () {
       return this.size === 'default';
