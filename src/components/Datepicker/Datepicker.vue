@@ -4,8 +4,9 @@
   <div
     ref="container"
     :class="[
-      'z-30 bg-white hidden shadow px-6 py-4.5 absolute',
-      { '!block': open }
+      'hidden shadow px-6 py-4.5',
+      { '!block': open },
+      { 'bg-white z-30 absolute' : positionAbsolute}
     ]"
     role="dialog"
     aria-modal="true"
@@ -120,6 +121,14 @@ export default {
     isDateDisabled: {
       type: Function,
       default: () => false
+    },
+    hideable: {
+      type: Boolean,
+      default: true
+    },
+    positionAbsolute: {
+      type: Boolean,
+      default: true
     }
   },
   emits: ['update:modelValue', 'update:open', 'input'],
@@ -337,7 +346,9 @@ export default {
       }
     },
     hide () {
-      this.$emit('update:open', false);
+      if (this.hideable) {
+        this.$emit('update:open', false);
+      }
     },
     setValue (date) {
       const value = date;
