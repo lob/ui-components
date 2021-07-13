@@ -5,7 +5,7 @@
     <router-link
       :to="to"
       class="relative pb-4"
-      active-class="lob-active-border"
+      exact-active-class="lob-active-border"
       data-testid="subnav-item"
     >
       {{ title }}
