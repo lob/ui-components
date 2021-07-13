@@ -122,6 +122,10 @@ export default {
       type: Function,
       default: () => false
     },
+    hideable: {
+      type: Boolean,
+      default: true
+    },
     positionAbsolute: {
       type: Boolean,
       default: true
@@ -342,7 +346,9 @@ export default {
       }
     },
     hide () {
-      this.$emit('update:open', false);
+      if (this.hideable) {
+        this.$emit('update:open', false);
+      }
     },
     setValue (date) {
       const value = date;
