@@ -3,7 +3,7 @@
     v-if="open"
     ref="container"
     data-testId="container"
-    class="absolute z-10 shadow"
+    class="absolute z-20 shadow bg-white"
   >
     <div
       v-if="hasHeaderContent"
