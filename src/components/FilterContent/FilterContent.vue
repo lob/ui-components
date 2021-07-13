@@ -53,7 +53,7 @@ export default {
     emitter.on(FILTER_OPEN_EVENT, this.handleOtherFilterOpened);
   },
   mounted () {
-    window.addEventListener('click', this.onClickOutside);
+    window.addEventListener('click', this.onClickOutside, true);
   },
   unmounted () {
     window.removeEventListener('click', this.onClickOutside);

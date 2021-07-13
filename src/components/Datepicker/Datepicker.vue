@@ -21,6 +21,7 @@
       {{ t('datepicker.keyboardInstruction') }}
     </div>
     <button
+      v-if="hideable"
       ref="firstFocusableElement"
       class="text-gray-700 opacity-0 focus:opacity-100 absolute right-2 top-2 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent"
       @keydown="handleFirstFocusableKeydown"
@@ -183,7 +184,7 @@ export default {
     if (this.open) {
       this.$refs.month.focusDate();
     }
-    window.addEventListener('click', this.onClickOutside);
+    window.addEventListener('click', this.onClickOutside, true);
   },
   unmounted () {
     window.removeEventListener('click', this.onClickOutside);
