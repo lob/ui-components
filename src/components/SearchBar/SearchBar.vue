@@ -9,7 +9,7 @@
       class="min-w-full"
       :label="t('search.textLabel')"
       :sr-only-label="true"
-      inputClass="focus-within:bg-white-300"
+      input-class="focus-within:bg-white-300"
     >
       <template #iconLeft>
         <Search class="w-6 h-6" />
@@ -22,7 +22,7 @@
           data-testid="clearSearchButton"
           @click="clearSearch"
         >
-          <Close class="w-6 h-6"/>
+          <Close class="w-6 h-6" />
         </button>
       </template>
     </text-input>

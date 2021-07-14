@@ -146,7 +146,7 @@ export default {
     },
     inputClass: {
       type: String,
-      default: ""
+      default: ''
     }
   },
   emits: ['update:modelValue', 'input', 'change'],
