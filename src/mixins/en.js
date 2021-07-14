@@ -33,5 +33,13 @@ export default {
     lastPageLabel: 'Go to last page',
     prevPageLabelMobile: 'Prev',
     nextPageLabelMobile: 'Next'
+  },
+  search: {
+    textLabel: 'Search term',
+    closeLabel: 'Close',
+    loading: 'Loading, please wait...',
+    resultsPrefix: 'View all',
+    resultsSuffix: 'results...',
+    noResults: 'No results found'
   }
 };
