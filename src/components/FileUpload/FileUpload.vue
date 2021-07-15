@@ -17,6 +17,7 @@
     type="file"
     :accept="accept"
     readonly
+    class="hidden"
     @change="onFilePicked"
   >
 </template>
@@ -48,11 +49,11 @@ export default {
     onKeydown () {
       this.$refs.fileInput.click();
     },
-    onFilePicked ($event) {
-      const file = $event.target.files[0];
+    onFilePicked (event) {
+      const file = event.target.files[0];
       if (file) {
         this.fileSelected = file.name;
-        this.$emit('fileUpload', $event);
+        this.$emit('fileUpload', event);
       }
     }
   }
