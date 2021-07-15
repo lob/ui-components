@@ -1,4 +1,4 @@
-import SearchBar from './SearchBar.vue';
+import { SearchBar } from '@/components';
 import mdx from './SearchBar.mdx';
 import iconOverview from '@/assets/images/iconOverview.svg';
 

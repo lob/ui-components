@@ -232,8 +232,10 @@ describe('Datepicker', () => {
     });
 
     it('typing PageUp with shift key, it focuses on the same date one year previously', async () => {
-      props = { ...initialProps, open: true, min: new Date(new Date().setMonth(new Date().getMonth() - 13)) };
+      const min = new Date(2020, 4, 13);
+      props = { ...initialProps, open: true, min };
       const { queryByText, emitted } = renderComponent({ props });
+
       let focusedDate = queryByText(modelValue.getDate()).closest('button');
 
       await fireEvent.keyDown(focusedDate, { key: 'PageUp', code: 'PageUp', shiftKey: true });

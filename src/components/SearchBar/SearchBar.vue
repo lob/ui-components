@@ -6,20 +6,23 @@
     <text-input
       id="searchBar"
       v-model="searchTerm"
-      class="w-max bg-white-300 h-12"
-      grey
+      class="min-w-full"
+      :label="t('search.textLabel')"
+      :sr-only-label="true"
+      input-class="focus-within:bg-white-300"
     >
       <template #iconLeft>
-        <Search class="w-4 h-6" />
+        <Search class="w-6 h-6" />
       </template>
       <template #iconRight>
         <button
-          aria-label="Close"
+          class="block"
+          :aria-label="t('search.closeLabel')"
           :disabled="disabled"
           data-testid="clearSearchButton"
           @click="clearSearch"
         >
-          <Close class="w-4 h-6" />
+          <Close class="w-6 h-6" />
         </button>
       </template>
     </text-input>
@@ -33,13 +36,13 @@
         class="text-center py-4"
       >
         <template v-if="searching">
-          Loading, please wait...
+          {{ t('search.loading') }}
         </template>
         <template v-else-if="searchResults.length">
-          View all {{ searchResults.length }} results...
+          {{ t('search.resultsPrefix') }} {{ searchResults.length }} {{ t('search.resultsSuffix') }}
         </template>
         <template v-else>
-          No results found
+          {{ t('search.noResults') }}
         </template>
       </div>
       <LobTable
