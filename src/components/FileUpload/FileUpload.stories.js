@@ -1,14 +1,14 @@
 import FileUpload from './FileUpload.vue';
-// import mdx from './FileUpload.mdx';
+import mdx from './FileUpload.mdx';
 
 export default {
   title: 'Components/FileUpload',
-  component: FileUpload
-  // parameters: {
-  //   docs: {
-  //     page: mdx
-  //   }
-  // },
+  component: FileUpload,
+  parameters: {
+    docs: {
+      page: mdx
+    }
+  }
 };
 
 const Template = (args, { argTypes }) => ({
