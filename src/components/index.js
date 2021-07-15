@@ -6,6 +6,7 @@ export { default as Card } from './Card/Card';
 export { default as Checkbox } from './Checkbox/Checkbox';
 export { default as Datepicker } from './Datepicker/Datepicker';
 export { default as Dropdown } from './Dropdown/Dropdown';
+export { default as FileUpload } from './FileUpload/FileUpload';
 export { default as FilterContent } from './FilterContent/FilterContent';
 export * from './Icons';
 export { default as LobLink } from './Link/Link';
