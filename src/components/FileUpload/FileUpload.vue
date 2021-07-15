@@ -45,9 +45,8 @@ export default {
     };
   },
   methods: {
-    onKeydown ($event) {
+    onKeydown () {
       this.$refs.fileInput.click();
-      this.$emit('keydown', $event);
     },
     onFilePicked ($event) {
       const file = $event.target.files[0];
