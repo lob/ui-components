@@ -232,7 +232,7 @@ describe('Datepicker', () => {
     });
 
     it('typing PageUp with shift key, it focuses on the same date one year previously', async () => {
-      const min = new Date(new Date(new Date().setMonth(new Date().getMonth() - 13)).setDate(new Date().getDate() - 1));
+      const min = new Date(2020, 4, 13);
       props = { ...initialProps, open: true, min };
       const { queryByText, emitted } = renderComponent({ props });
 
