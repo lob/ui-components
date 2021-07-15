@@ -1,6 +1,9 @@
 import '@testing-library/jest-dom';
 import { render, fireEvent, waitFor } from '@testing-library/vue';
 import SearchBar from '../SearchBar.vue';
+import { translate } from '@/mixins';
+
+const mixins = [translate];
 
 const initialProps = {
   searchFunction: (searchTerm) => {
@@ -37,7 +40,7 @@ afterEach(() => {
   jest.useRealTimers();
 });
 
-const renderComponent = (options) => render(SearchBar, { ...options });
+const renderComponent = (options) => render(SearchBar, { ...options, global: { mixins } });
 
 describe('SearchBar', () => {
 

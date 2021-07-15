@@ -17,7 +17,7 @@
       <template #iconRight>
         <button
           class="block"
-          aria-label="t('search.closeLabel')"
+          :aria-label="t('search.closeLabel')"
           :disabled="disabled"
           data-testid="clearSearchButton"
           @click="clearSearch"
