@@ -5,8 +5,8 @@
       aria-controls="filename"
       tabindex="0"
       class="button py-3 px-6 bg-white-200 border border-primary-500 text-primary-500 active:text-primary-700 active:border-primary-700 disabled:border-gray-100 rounded disabled:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent cursor-pointer"
-      @keyup.enter="onKeyup"
-      @keyup.space="onKeyup"
+      @keydown.enter="onKeydown"
+      @keydown.space="onKeydown"
     >
       {{ fileSelected ? fileSelected : label }}
     </span>
@@ -17,7 +17,6 @@
     type="file"
     :accept="accept"
     readonly
-    class="hidden"
     @change="onFilePicked"
   >
 </template>
@@ -46,14 +45,15 @@ export default {
     };
   },
   methods: {
-    onKeyup () {
+    onKeydown ($event) {
       this.$refs.fileInput.click();
+      this.$emit('keydown', $event);
     },
-    onFilePicked (event) {
-      const file = event.target.files[0];
+    onFilePicked ($event) {
+      const file = $event.target.files[0];
       if (file) {
         this.fileSelected = file.name;
-        this.$emit('fileUpload', event);
+        this.$emit('fileUpload', $event);
       }
     }
   }
