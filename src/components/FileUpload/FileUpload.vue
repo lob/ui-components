@@ -1,5 +1,9 @@
 <template>
-  <label :for="id">
+  <label
+    :for="id"
+    v-bind="$attrs"
+    class="text-center"
+  >
     <span
       role="button"
       aria-controls="filename"
@@ -12,6 +16,7 @@
     </span>
   </label>
   <input
+    v-bind="$attrs"
     :id="id"
     ref="fileInput"
     type="file"
