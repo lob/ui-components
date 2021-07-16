@@ -4,7 +4,7 @@
       role="button"
       aria-controls="filename"
       tabindex="0"
-      class="button py-3 px-6 bg-white-200 border border-primary-500 text-primary-500 active:text-primary-700 active:border-primary-700 disabled:border-gray-100 rounded disabled:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent cursor-pointer"
+      class="button py-3 px-6 bg-white-200 border border-primary-500 text-primary-500 active:text-primary-700 active:border-primary-700 disabled:border-gray-100 rounded disabled:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent cursor-pointer inline-block truncate w-full"
       @keydown.enter="onKeydown"
       @keydown.space="onKeydown"
     >
