@@ -2,7 +2,7 @@
   <label
     :for="id"
     v-bind="$attrs"
-    class="w-full text-center"
+    class="text-center"
   >
     <span
       role="button"
