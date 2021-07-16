@@ -106,7 +106,7 @@
 import { ChevronDown } from '@/components/Icons';
 import DropdownItemGroup from './DropdownItemGroup';
 import DropdownItem from './DropdownItem';
-import { findLastIndex } from '@/utils';
+import { findLastIndex, shallowEquals } from '@/utils';
 
 if (!Array.prototype.findLastIndex) {
   Array.prototype.findLastIndex = findLastIndex; //eslint-disable-line 
@@ -201,9 +201,9 @@ export default {
   data () {
     return {
       // active option index
-      activeIndex: (this.options && this.options.findIndex((o) => o.label === this.modelValue || o === this.modelValue)) || -1,
+      activeIndex: -1,
       // selected option index
-      selectedIndex: (this.options && this.options.findIndex((o) => o.label === this.modelValue || o === this.modelValue)) || -1,
+      selectedIndex: -1,
       // menu state
       open: false,
       // prevent menu closing before click completed
@@ -248,6 +248,11 @@ export default {
     activeId () {
       return this.open ? `${this.id}-${this.activeIndex}` : '';
     }
+  },
+  created () {
+    const index = (this.flattenedOptions && this.flattenedOptions.findIndex((o) => o.label === this.modelValue || shallowEquals(o, this.modelValue))) || -1;
+    this.activeIndex = index;
+    this.selectedIndex = index;
   },
   updated () {
     if (this.open && this.isScrollable(this.$refs.listbox) && this.$refs.activeOption) {
