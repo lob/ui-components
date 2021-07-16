@@ -1,0 +1,36 @@
+import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
+import FileUpload from './FileUpload.vue';
+
+# File Upload 'Button'
+
+The file upload 'button' is actually an input field with `type=file`, styled to look and act like Lob's secondary button. In addition to a mouse click, it can be triggered via the enter or space keys.
+
+If placed in a container that has its width constrained in some way (e.g. with width or max-width) and the filename is long, the filename will be truncated with an ellipsis.
+
+<Preview>
+  <Story id="components-fileupload--primary" />
+</Preview>
+
+## How to Use
+
+An ID, a label, and an `accept` are all required props.
+
+The label you pass in will be the button text when there is no file selected. When a file is selected, the label will change to be the file name.
+
+The `accept` prop takes a string that defines the file types that the file input should accept. As with its corresponding HTML input, if you pass in multiple types, they should be comma-separated. You can read about file type specifiers [on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#unique_file_type_specifiers).
+
+Only one file is able to be uploaded per button.
+
+When a file is selected, a `fileUpload` event will be emitted along with the event object itself.
+
+```html
+<FileUpload
+  id="file-upload"
+  label="Choose File"
+  accept=".pdf"
+/>
+```
+
+## Props
+
+<ArgsTable story={PRIMARY_STORY} />
