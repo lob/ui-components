@@ -7,7 +7,7 @@
       ]"
       :to="to"
       active-class="text-normal bg-white-300 font-medium"
-      @click.stop
+      @click.stop="handleNavigation"
       @[clickEvent].stop="toggleSubNav"
     >
       <img
@@ -78,6 +78,7 @@ export default {
       default: true
     }
   },
+  emits: ['nav'],
   data () {
     return {
       subNavOpen: this.expanded && !this.subNavCollapsed
@@ -98,6 +99,11 @@ export default {
     toggleSubNav () {
       if (this.collapsible) {
         this.subNavOpen = !this.subNavOpen;
+      }
+    },
+    handleNavigation () {
+      if (this.to) {
+        this.$emit('nav', this.to);
       }
     }
   }

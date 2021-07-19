@@ -9,7 +9,7 @@
     <router-link
       :to="to"
       class="w-full py-1 pl-8 overflow-hidden text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent"
-      @click.stop
+      @click.stop="handleNavigation"
     >
       {{ title }}
     </router-link>
@@ -29,9 +29,15 @@ export default {
       required: true
     }
   },
+  emits: ['nav'],
   computed: {
     active () {
       return this.$route.path === this.to;
+    }
+  },
+  methods: {
+    handleNavigation () {
+      this.$emit('nav', this.to);
     }
   }
 };
