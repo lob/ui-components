@@ -18,7 +18,7 @@ export default {
     t (str) {
       if ('$t' in this) {
         const translation = this.$t(str);
-        if (translation) {
+        if (translation && translation !== str) {
           return translation;
         }
       }
