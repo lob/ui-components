@@ -17,7 +17,10 @@ export default {
      */
     t (str) {
       if ('$t' in this) {
-        return this.$t(str);
+        const translation = this.$t(str);
+        if (translation) {
+          return translation;
+        }
       }
 
       const strParts = str.split('.');
