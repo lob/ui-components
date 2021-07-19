@@ -60,6 +60,26 @@ describe('Main Navigation Item', () => {
       expect(button).not.toBeInTheDocument();
     });
 
+    describe('when clicked', () => {
+
+      it('emits a nav event', async () => {
+        const props = {
+          ...initialProps,
+          to: '/overview'
+        };
+        const { queryByRole, emitted } = await renderComponent({ props });
+
+        const link = queryByRole('link');
+        expect(link).toBeInTheDocument();
+
+        await fireEvent.click(link);
+        const emittedEvent = emitted();
+        expect(emittedEvent).toHaveProperty('nav');
+        expect(emittedEvent.nav[0][0]).toEqual('/overview');
+      });
+
+    });
+
   });
 
   describe('without a to prop', () => {
@@ -73,6 +93,18 @@ describe('Main Navigation Item', () => {
 
       const button = queryByRole('button');
       expect(button).toBeInTheDocument();
+    });
+
+    it('does not emit a nav event', async () => {
+      const props = initialProps;
+      const { queryByRole, emitted } = await renderComponent({ props });
+
+      const button = queryByRole('button');
+      expect(button).toBeInTheDocument();
+
+      await fireEvent.click(button);
+      const emittedEvent = emitted();
+      expect(emittedEvent).not.toHaveProperty('nav');
     });
 
     describe('without chld nav items', () => {

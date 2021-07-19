@@ -2,7 +2,7 @@
   <button
     :class="[
       'flex justify-center items-center disabled:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
-      { 'rounded': !link },
+      { 'rounded': !link || !none },
       {
         'primary bg-primary-500 text-white active:bg-primary-700 disabled:bg-white-300': primary
       },
@@ -21,13 +21,14 @@
         'error bg-error !text-white active:bg-error-700': error
       },
       { 'underline text-primary-300 hover:text-primary-500': link },
+      { 'block': none },
       {
         'bg-opacity-50': (success || error) && disabled
       },
       { 'px-6 py-3.5': defaultSize },
       { 'px-3 py-2': small },
       { 'px-6 py-4.5': large },
-      { '!p-0': link }
+      { '!p-0': link || none }
     ]"
     :disabled="disabled"
     @click="handleClick"
@@ -46,7 +47,7 @@ export default {
       type: String,
       default: 'primary',
       validator: function (value) {
-        return ['primary', 'secondary', 'tertiary', 'success', 'error', 'link'].includes(value);
+        return ['primary', 'secondary', 'tertiary', 'success', 'error', 'link', 'none'].includes(value);
       }
     },
     size: {
@@ -80,6 +81,9 @@ export default {
     },
     link () {
       return this.variant === 'link';
+    },
+    none () {
+      return this.variant === 'none';
     },
     defaultSize () {
       return this.size === 'default';

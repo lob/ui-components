@@ -6,7 +6,7 @@
       'underline',
       {'primary py-3 px-6 bg-primary-500 text-white active:bg-primary-700 disabled:bg-white-300': primary},
       {'secondary py-3 px-6 bg-white-200 border border-primary-500 text-primary-500 active:text-primary-700 active:border-primary-700 disabled:border-gray-100': secondary},
-      {'rounded disabled:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent': primary || secondary},
+      {'flex justify-center items-center rounded disabled:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent': primary || secondary},
       {'hover:text-white': primary},
       {'!px-3 !py-2': small}
     ]"

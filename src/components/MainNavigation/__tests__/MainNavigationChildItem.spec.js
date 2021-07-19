@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import { createRouter, createMemoryHistory } from 'vue-router';
-import { render } from '@testing-library/vue';
+import { render, fireEvent } from '@testing-library/vue';
 import MainNavigationChildItem from '../MainNavigationChildItem.vue';
 
 const initialProps = {
@@ -46,6 +46,25 @@ describe('Main Navigation Child Item', () => {
 
     const navItem = queryByTestId('nav-child-item');
     expect(navItem).toHaveClass('font-medium bg-white-300 rounded-l-full');
+  });
+
+  describe('when clicked', () => {
+
+    it('emits a nav event', async () => {
+      const props = initialProps;
+
+      const { queryByRole, emitted } = await renderComponent({ props });
+      await router.isReady();
+
+      const link = queryByRole('link');
+      expect(link).toBeInTheDocument();
+
+      await fireEvent.click(link);
+      const emittedEvent = emitted();
+      expect(emittedEvent).toHaveProperty('nav');
+      expect(emittedEvent.nav[0][0]).toEqual('/overview');
+    });
+
   });
 
 });
