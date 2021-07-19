@@ -23,7 +23,7 @@ export default {
       }
     },
     variant: {
-      options: ['primary', 'secondary', 'tertiary', 'success', 'error', 'link'],
+      options: ['primary', 'secondary', 'tertiary', 'success', 'error', 'link', 'none'],
       control: {
         type: 'select'
       }
