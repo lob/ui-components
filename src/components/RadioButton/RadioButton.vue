@@ -29,7 +29,10 @@
         'text-sm font-light relative inline-block ml-6',
         { 'cursor-not-allowed': disabled || readonly }
       ]"
-    >{{ label }}</label>
+    >
+      {{ label }}
+      <slot />
+    </label>
   </div>
 </template>
 
