@@ -26,7 +26,7 @@
     <label
       :for="value"
       :class="[
-        'text-sm font-light relative inline-block ml-6',
+        'text-sm font-light relative flex ml-6',
         { 'cursor-not-allowed': disabled || readonly }
       ]"
     >
@@ -121,14 +121,14 @@ input {
 
   + label::after {
     content: "";
-    left: -18px;
+    left: -17px;
+    top: 7px;
 
     @apply absolute;
-    @apply h-2.5;
+    @apply h-2;
     @apply inline-block;
     @apply rounded-full;
-    @apply top-1.5;
-    @apply w-2.5;
+    @apply w-2;
   }
 
   &:checked + label::after {
