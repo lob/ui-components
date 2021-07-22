@@ -5,6 +5,7 @@
       :style="tooltipPositionStyle"
     >
       <div
+        v-if="$slots.content"
         ref="tooltipContainer"
         :class="[
           'px-4 py-3 text-xs rounded-md m-auto bg-gray-700 text-white relative',
@@ -147,18 +148,22 @@ export default {
       this.$emit('mouseleave', $event);
     },
     getXOffset () {
-      return (
-        (this.$refs.triggerContainer.clientWidth -
-          this.$refs.tooltipContainer.clientWidth) /
-        2
-      );
+      if (this.$slots.content) {
+        return (
+          (this.$refs.triggerContainer.clientWidth -
+            this.$refs.tooltipContainer.clientWidth) /
+          2
+        );
+      }
     },
     getYOffset () {
-      return (
-        (this.$refs.triggerContainer.clientHeight -
+      if (this.$slots.content) {
+        return (
+          (this.$refs.triggerContainer.clientHeight -
           this.$refs.tooltipContainer.clientHeight) /
         2
-      );
+        );
+      }
     }
   }
 };

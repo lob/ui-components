@@ -9,7 +9,6 @@
       v-if="hasHeaderContent"
       class="flex items-center px-5 pt-2.5 pb-3 bg-white-200 border-b-2 border-gray-100"
     >
-      <chevron-left class="w-4.5 h-4.5 mr-1" />
       <slot
         name="header"
       />
@@ -27,7 +26,6 @@
 </template>
 
 <script>
-import { ChevronLeft } from '../Icons';
 import mitt from 'mitt';
 
 const emitter = mitt();
@@ -36,7 +34,6 @@ const FILTER_OPEN_EVENT = 'filter-open';
 
 export default {
   name: 'FilterContent',
-  components: { ChevronLeft },
   props: {
     open: {
       type: Boolean,

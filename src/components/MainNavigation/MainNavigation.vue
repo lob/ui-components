@@ -35,11 +35,6 @@ export default {
       expanded: true
     };
   },
-  computed: {
-    clickEvent () {
-      return this.collapsible ? 'click' : null;
-    }
-  },
   methods: {
     animateDrawer () {
       this.expanded = !this.expanded;
