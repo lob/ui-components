@@ -4,7 +4,7 @@
       'flex justify-center items-center disabled:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
       { 'rounded': !link || !none },
       {
-        'primary bg-primary-500 text-white active:bg-primary-700 disabled:bg-white-300': primary
+        'primary bg-primary-500 border border-primary-500 text-white active:bg-primary-700 disabled:bg-white-300': primary
       },
       {
         'secondary bg-white-200 border border-primary-500 text-primary-500 active:text-primary-700 active:border-primary-700 disabled:border-gray-100':
@@ -15,10 +15,10 @@
           tertiary
       },
       {
-        'success bg-success !text-white active:bg-success-700': success
+        'success bg-success border border-success-500 !text-white active:bg-success-700': success
       },
       {
-        'error bg-error !text-white active:bg-error-700': error
+        'error bg-error border border-error-500 !text-white active:bg-error-700': error
       },
       { 'underline text-primary-300 hover:text-primary-500': link },
       { 'block': none },
