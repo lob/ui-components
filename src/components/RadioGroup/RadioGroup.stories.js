@@ -23,18 +23,21 @@ const Template = (args, { argTypes }) => ({
   template: `
     <radio-group v-bind="args">
       <radio-button
+        id="4x6"
         name="postcard-size"
         label="4x6"
         value="4x6"
         v-model="radioModel"
       />
       <radio-button
+        id="5x7"
         name="postcard-size"
         label="5x7"
         value="5x7"
         v-model="radioModel"
       />
       <radio-button
+        id="big"
         name="postcard-size"
         label="Really Big"
         value="big"
