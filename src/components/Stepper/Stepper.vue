@@ -6,16 +6,6 @@
 
 <script>
 export default {
-  name: 'Stepper',
-  props: {
-  },
-  data () {
-    return {
-    };
-  },
-  computed: {
-  },
-  methods: {
-  }
+  name: 'Stepper'
 };
 </script>

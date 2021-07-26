@@ -1,7 +1,7 @@
 <template>
   <div
     class="text-sm grid gap-y-3"
-    aria-labelledby="{labelledById}"
+    :aria-labelledby="labelledById"
   >
     <header class="grid grid-cols-7 gap-3">
       <div
@@ -127,8 +127,9 @@ export default {
     },
     isDisabled (date) {
       const isInSameMonth = isEqualMonth(date, this.focusedDate);
+      const isInRange = inRange(date, this.min, this.max);
       const isDateDisabled = this.isDateDisabled ? this.isDateDisabled(date) : false;
-      return !isInSameMonth || isDateDisabled;
+      return !isInSameMonth || !isInRange || isDateDisabled;
     },
     isInRange (date) {
       return inRange(date, this.min, this.max);

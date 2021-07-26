@@ -75,7 +75,7 @@ const WithHeaderTemplate = (args, { argTypes }) => ({
       <LobButton @click.stop="open = !open" size="small">Filter by</LobButton>
       <filter-content v-model:open="open">
         <template v-slot:header>
-          <div>
+          <div class="text-center w-full">
             Filter By
           </div>
         </template>

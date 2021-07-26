@@ -56,23 +56,7 @@
             :key="result"
             class="hover:shadow rounded-md cursor-pointer"
           >
-            <div
-              v-for="key in Object.keys(result)"
-              :key="key"
-              class="whitespace-nowrap"
-            >
-              <img
-                v-if="key === 'img'"
-                :src="result[key]"
-                class="w-5 h-5"
-              >
-              <template v-else>
-                {{ result[key] }}
-              </template>
-            </div>
-            <div class="text-right text-xl">
-              >
-            </div>
+            <slot :result="result" />
           </TableRow>
         </TableBody>
       </LobTable>

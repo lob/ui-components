@@ -41,4 +41,15 @@ describe('MegaMenu', () => {
     expect(nav).toHaveClass('xl:!block');
   });
 
+  it('emits a click event', async () => {
+    const props = initialProps;
+    const { getByTestId, emitted } = renderComponent({ props });
+
+    const menuContainer = getByTestId('menu-container');
+    await fireEvent.click(menuContainer);
+
+    const emittedEvent = emitted();
+    expect(emittedEvent).toHaveProperty('click');
+  });
+
 });
