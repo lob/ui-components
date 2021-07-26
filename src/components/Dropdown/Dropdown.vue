@@ -6,7 +6,8 @@
       :id="id"
       :class="['pb-2 text-gray-500',
                {'text-xs': small},
-               {'text-sm': default_}]"
+               {'text-sm': default_},
+               {'sr-only': srOnlyLabel}]"
     >{{ label }}</label>
     <div
       :class="[
@@ -159,6 +160,10 @@ export default {
     label: {
       type: String,
       required: true
+    },
+    srOnlyLabel: {
+      type: Boolean,
+      default: false
     },
     placeholder: {
       type: String,
