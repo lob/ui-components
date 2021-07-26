@@ -11,7 +11,7 @@
           secondary
       },
       {
-        'alert bg-white hover:bg-lemon-700 border border-lemon-700 text-primary-500 active:text-primary-700 disabled:border-gray-100':
+        'alert bg-white hover:bg-lemon-700 border border-lemon-700 text-lemon-900 focus:ring-lemon-700 disabled:border-gray-100':
           alert
       },
       {
