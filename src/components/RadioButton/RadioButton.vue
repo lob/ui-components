@@ -7,7 +7,7 @@
     ]"
   >
     <input
-      :id="value"
+      :id="id"
       type="radio"
       :class="[
         'absolute m-0 p-0 w-0 h-0 opacity-0 pointer-events-none mt-2',
@@ -15,7 +15,7 @@
         { 'cursor-not-allowed': disabled || readonly }
       ]"
       :name="name"
-      :value="value"
+      :value="value.toString()"
       :checked="checked"
       :disabled="disabled"
       :readonly="readonly"
@@ -24,7 +24,7 @@
       @click="onClick"
     >
     <label
-      :for="value"
+      :for="id"
       :class="[
         'text-sm font-light relative flex ml-6',
         { 'cursor-not-allowed': disabled || readonly }
@@ -42,6 +42,10 @@ import { getCurrentInstance } from 'vue';
 export default {
   name: 'RadioButton',
   props: {
+    id: {
+      type: String,
+      required: true
+    },
     modelValue: {
       type: String,
       default: null
@@ -51,7 +55,7 @@ export default {
       default: ''
     },
     value: {
-      type: String,
+      type: [String, Boolean],
       default: ''
     },
     label: {

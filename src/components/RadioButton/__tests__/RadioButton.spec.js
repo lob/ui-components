@@ -3,6 +3,7 @@ import { render, fireEvent } from '@testing-library/vue';
 import RadioButton from '../RadioButton.vue';
 
 const initialProps = {
+  id: 'test',
   modelValue: '',
   name: 'test name',
   label: 'Test',
