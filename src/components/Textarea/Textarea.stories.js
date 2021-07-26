@@ -27,6 +27,7 @@ const Template = (args, { argTypes }) => ({
 
 export const Primary = Template.bind({});
 Primary.args = {
+  id: 'textarea',
   label: 'Interesting text area',
   placeholder: 'Enter a fun fact'
 };
