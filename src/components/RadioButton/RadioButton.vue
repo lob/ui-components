@@ -15,7 +15,7 @@
         { 'cursor-not-allowed': disabled || readonly }
       ]"
       :name="name"
-      :value="value"
+      :value="value.toString()"
       :checked="checked"
       :disabled="disabled"
       :readonly="readonly"
@@ -55,7 +55,7 @@ export default {
       default: ''
     },
     value: {
-      type: String,
+      type: [String, Boolean],
       default: ''
     },
     label: {
