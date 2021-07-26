@@ -6,7 +6,8 @@
       :id="id"
       :class="['pb-2 text-gray-500',
                {'text-xs': small},
-               {'text-sm': default_}]"
+               {'text-sm': default_},
+               {'sr-only': srOnlyLabel}]"
     >{{ label }}</label>
     <div
       :class="[
@@ -160,6 +161,10 @@ export default {
       type: String,
       required: true
     },
+    srOnlyLabel: {
+      type: Boolean,
+      default: false
+    },
     placeholder: {
       type: String,
       default: ''
@@ -249,10 +254,13 @@ export default {
       return this.open ? `${this.id}-${this.activeIndex}` : '';
     }
   },
+  watch: {
+    options () {
+      this.setSelectedInLifecycle();
+    }
+  },
   created () {
-    const index = (this.flattenedOptions && this.flattenedOptions.findIndex((o) => o.label === this.modelValue || shallowEquals(o, this.modelValue))) || -1;
-    this.activeIndex = index;
-    this.selectedIndex = index;
+    this.setSelectedInLifecycle();
   },
   updated () {
     if (this.open && this.isScrollable(this.$refs.listbox) && this.$refs.activeOption) {
@@ -262,6 +270,17 @@ export default {
   methods: {
     isOptGroup (optionItem) {
       return optionItem.hasOwnProperty('options');
+    },
+    setSelectedInLifecycle () {
+      if (this.flattenedOptions) {
+        const stringIndex = this.flattenedOptions.findIndex((o) => o === this.modelValue);
+        const labelIndex = stringIndex === -1 ? this.flattenedOptions.findIndex((o) => o.label === this.modelValue) : -1;
+        const objectIndex = labelIndex === -1 ? this.flattenedOptions.findIndex((o) =>  shallowEquals(o, this.modelValue)) : -1;
+        const index = Math.max(stringIndex, labelIndex, objectIndex);
+
+        this.activeIndex = index;
+        this.selectedIndex = index;
+      }
     },
 
     /* SCROLL UTILITIES */
