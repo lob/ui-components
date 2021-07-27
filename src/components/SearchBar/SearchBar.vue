@@ -47,7 +47,7 @@
       </div>
       <LobTable
         v-if="!searching && searchResults.length"
-        class="min-w-max divide-y divide-gray-200"
+        class="min-w-full divide-y divide-gray-200"
         space="sm"
       >
         <TableBody>
