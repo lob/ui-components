@@ -11,6 +11,9 @@
           secondary
       },
       {
+        'alert bg-white hover:bg-lemon-300 border border-lemon-700 text-lemon-900 focus:ring-lemon-700 disabled:border-gray-100': alert
+      },
+      {
         'tertiary bg-white border border-gray-100 text-gray-500 active:border-gray-300 disabled:border-white-300':
           tertiary
       },
@@ -47,7 +50,7 @@ export default {
       type: String,
       default: 'primary',
       validator: function (value) {
-        return ['primary', 'secondary', 'tertiary', 'success', 'error', 'link', 'none'].includes(value);
+        return ['primary', 'secondary', 'tertiary', 'success', 'alert', 'error', 'link', 'none'].includes(value);
       }
     },
     size: {
@@ -75,6 +78,9 @@ export default {
     },
     success () {
       return this.variant === 'success';
+    },
+    alert () {
+      return this.variant === 'alert';
     },
     error () {
       return this.variant === 'error';
@@ -114,6 +120,10 @@ export default {
 
 .tertiary:hover:not(:disabled):not(:focus) {
   box-shadow: 0 0 10px 2px rgba(0, 153, 215, 0.2);
+}
+
+.alert:hover:not(:disabled):not(:focus) {
+  box-shadow: 0 0 10px 2px rgba(245, 158, 11, 0.3);
 }
 
 .success:hover:not(:disabled):not(:focus) {
