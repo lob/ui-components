@@ -17,7 +17,25 @@ const PrimaryTemplate = (args, { argTypes }) => ({
   components: { SearchBar },
   setup: () => ({ args }),
   template: `
-    <SearchBar v-bind='args'></SearchBar>
+    <SearchBar v-bind='args'>
+      <template
+        #default="{ result }"
+        class="min-w-full"
+      >
+        <td>
+          <img class="w-5 h-5" :src="result.img" />
+        </td>
+        <td>
+          {{ result.description }}
+        </td>
+        <td>
+          {{ result.type }}
+        </td>
+        <td>
+          >
+        </td>
+      </template>
+    </SearchBar>
     `
 });
 

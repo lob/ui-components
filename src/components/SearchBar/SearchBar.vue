@@ -39,7 +39,7 @@
           {{ t('search.loading') }}
         </template>
         <template v-else-if="searchResults.length">
-          {{ t('search.resultsPrefix') }} {{ searchResults.length }} {{ t('search.resultsSuffix') }}
+          {{ t('search.resultsPrefix') }} {{ totalResults }} {{ t('search.resultsSuffix') }}
         </template>
         <template v-else>
           {{ t('search.noResults') }}
@@ -54,7 +54,7 @@
           <TableRow
             v-for="result in searchResults"
             :key="result"
-            class="hover:shadow rounded-md cursor-pointer"
+            class="text-gray-500 hover:text-primary-700"
           >
             <slot :result="result" />
           </TableRow>
@@ -94,6 +94,9 @@ export default {
   computed: {
     disabled () {
       return !this.searchTerm;
+    },
+    totalResults () {
+      return this.searchResults.total_count ? this.searchResults.total_count : this.searchResults.length;
     }
   },
   watch: {
