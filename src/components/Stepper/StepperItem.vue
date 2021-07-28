@@ -107,9 +107,9 @@ export default {
 
   .check {
     @apply w-3.5;
-    @apply pl-0.5;
 
     padding-top: 1px;
+    margin-top: -4px;
   }
 
   .marker-center::before,
