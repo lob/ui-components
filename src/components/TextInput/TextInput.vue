@@ -1,17 +1,11 @@
 <template>
   <div>
-    <label
-      :for="id"
-      :class="['block mb-2 text-sm text-gray-500', {'sr-only': srOnlyLabel}]"
-    >
-      {{ label }}
-      <span
-        v-if="required"
-        class="text-sm text-turquoise-900"
-      >
-        *
-      </span>
-    </label>
+    <lob-label
+      :label="label"
+      :label-for="id"
+      :required="required"
+      :sr-only-label="srOnlyLabel"
+    />
     <div
       data-testId="input-container"
       :class="[
@@ -36,7 +30,7 @@
         :max="max"
         :pattern="pattern"
         :class="[
-          `rounded pl-2 pt-3 pb-3 leading-5 w-full text-gray-500 outline-none ${inputClass}`,
+          `rounded pl-2 pt-3 pb-3 leading-5 w-full text-gray-500 placeholder-gray-100 outline-none ${inputClass}`,
           {'!pl-4': !iconLeft},
           {'!pl-3 !pr-3 !py-2': small},
           {'border border-r-0 border-gray-100 rounded-tr-none rounded-br-none': withCopyButton},
@@ -68,11 +62,13 @@
 </template>
 
 <script>
+import LobLabel from '../LobLabel/LobLabel.vue';
 import LobButton from './../Button/Button.vue';
 export default {
   name: 'TextInput',
   components: {
-    LobButton
+    LobButton,
+    LobLabel
   },
   props: {
     modelValue: {
@@ -107,7 +103,7 @@ export default {
     },
     label: {
       type: String,
-      default: ''
+      required: true
     },
     srOnlyLabel: {
       type: Boolean,
@@ -115,7 +111,7 @@ export default {
     },
     placeholder: {
       type: String,
-      default: ''
+      default: null
     },
     disabled: {
       type: Boolean,
@@ -174,9 +170,3 @@ export default {
   }
 };
 </script>
-
-<style scoped lang="scss">
-  input::placeholder {
-    @apply text-gray-100;
-  }
-</style>

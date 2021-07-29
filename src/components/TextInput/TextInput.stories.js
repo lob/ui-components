@@ -4,7 +4,7 @@ import mdx from './TextInput.mdx';
 import { Close, Search } from '@/components/Icons';
 
 export default {
-  title: 'Components/Text Input',
+  title: 'Components/TextInput',
   component: TextInput,
   parameters: {
     docs: {
