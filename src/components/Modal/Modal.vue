@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
     <div
-      v-show="modelValue"
+      v-show="visible"
       :class="['fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 z-30']"
       @click="closeModal"
     >
@@ -54,7 +54,7 @@ export default {
   name: 'Modal',
   components: { Close },
   props: {
-    modelValue: {
+    visible: {
       type: Boolean,
       default: false
     }
