@@ -1,5 +1,4 @@
 import LobLabel from './LobLabel.vue';
-import TextInput from '../TextInput/TextInput.vue';
 import mdx from './LobLabel.mdx';
 
 export default {
@@ -19,18 +18,18 @@ export default {
   }
 };
 
-const WithTextInputTemplate = (args, { argTypes }) => ({
+const WithInputTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { LobLabel, TextInput },
+  components: { LobLabel },
   setup: () => ({ args }),
   template: `
     <lob-label v-bind="args"/>
-    <text-input id="1" placeholder="Name" label="Name" srOnlyLabel/>
+    <input class="border rounded p-2 text-gray-500" />
   `
 });
 
-export const WithTextInput = WithTextInputTemplate.bind({});
-WithTextInput.args = {
+export const WithInput = WithInputTemplate.bind({});
+WithInput.args = {
   label: 'Name',
   labelFor: 'Name',
   required: true
@@ -38,11 +37,11 @@ WithTextInput.args = {
 
 const WithNestedInputTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { LobLabel, TextInput },
+  components: { LobLabel },
   setup: () => ({ args }),
   template: `
     <lob-label v-bind="args">
-    <text-input id="1" placeholder="Name" label="Name" srOnlyLabel/>
+    <input class="border rounded p-2 text-gray-500" />
     </lob-label>
   `
 });
