@@ -5,7 +5,7 @@ import MegaMenu from '@/components/MegaMenu/MegaMenu.vue';
 import MegaMenuItem from '@/components/MegaMenu/MegaMenuItem.vue';
 
 export default {
-  title: 'Components/TopNavbar',
+  title: 'Components/Top Navbar',
   component: TopNavbar,
   subcomponents: { MegaMenu, MegaMenuItem },
   parameters: {

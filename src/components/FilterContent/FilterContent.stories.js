@@ -3,7 +3,7 @@ import { LobButton, Checkbox, RadioGroup, RadioButton } from '@/components';
 import mdx from './FilterContent.mdx';
 
 export default {
-  title: 'Components/FilterContent',
+  title: 'Components/Filter Content',
   component: FilterContent,
   parameters: {
     docs: {

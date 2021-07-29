@@ -3,7 +3,7 @@ import mdx from './SearchBar.mdx';
 import iconOverview from '@/assets/images/iconOverview.svg';
 
 export default {
-  title: 'Components/SearchBar',
+  title: 'Components/Search Bar',
   component: SearchBar,
   parameters: {
     docs: {

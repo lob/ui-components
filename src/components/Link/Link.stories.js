@@ -4,7 +4,7 @@ import LobLink from './Link.vue';
 import mdx from './Link.mdx';
 
 export default {
-  title: 'Components/LobLink',
+  title: 'Components/Link',
   component: LobLink,
   decorators: [
     routeDecorator('/', [
