@@ -1,0 +1,31 @@
+import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
+import LobLabel from './LobLabel.vue';
+
+# Lob Label
+
+A label component for all input components to have consistent labels.
+
+<Preview>
+  <Story label="name" />
+</Preview>
+
+## How to Use
+
+The `label` prop populates the label text, and the `labelFor` the for="" attribute of the `<label>` element.
+
+If the field is required, you can pass in the `required` prop to show the asterisk next to the label.
+
+You can hide the label by setting the `srOnlyLabel` to true (it will still be read by a screen reader).
+
+```html
+  <lob-label  
+    :label="label"
+    :labelFor="labelFor"
+    :required="required"
+    :srOnlyLabel="srOnlyLabel"
+  />
+```
+
+## Props
+
+<ArgsTable story={PRIMARY_STORY} />

@@ -3,6 +3,7 @@ import { render, fireEvent } from '@testing-library/vue';
 import Textarea from '../Textarea.vue';
 
 const initialProps = {
+  id: 'test',
   name: 'test',
   label: 'label',
   'v-model': ''
