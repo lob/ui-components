@@ -2,13 +2,12 @@
 <!-- Code samples https://github.com/microsoft/sonder-ui/tree/master/src/components/select -->
 <template>
   <div>
-    <label
-      :id="id"
-      :class="['pb-2 text-gray-500',
-               {'text-xs': small},
-               {'text-sm': default_},
-               {'sr-only': srOnlyLabel}]"
-    >{{ label }}</label>
+    <lob-label
+      :label="label"
+      :label-for="id"
+      :required="required"
+      :sr-only-label="srOnlyLabel"
+    />
     <div
       :class="[
         'relative',
@@ -80,7 +79,7 @@
               :placeholder-text="placeholder"
               :flattened-options="flattenedOptions"
               @mousedown="onOptionMousedown"
-              @click="($event) => onOptionClick($event, flattenedOptions.indexOf(item))"
+              @click="onOptionClick"
             />
           </div>
           <div
@@ -94,7 +93,7 @@
               :active="activeIndex === flattenedOptions.indexOf(item)"
               :placeholder="item.label === placeholder"
               @mousedown="onOptionMousedown"
-              @click="($event) => onOptionClick($event, flattenedOptions.indexOf(item))"
+              @click="onOptionClick"
             />
           </div>
         </div>
@@ -108,6 +107,7 @@ import { ChevronDown } from '@/components/Icons';
 import DropdownItemGroup from './DropdownItemGroup';
 import DropdownItem from './DropdownItem';
 import { findLastIndex, shallowEquals } from '@/utils';
+import LobLabel from '../LobLabel/LobLabel.vue';
 
 if (!Array.prototype.findLastIndex) {
   Array.prototype.findLastIndex = findLastIndex; //eslint-disable-line 
@@ -147,7 +147,7 @@ const MenuActions = {
 
 export default {
   name: 'Dropdown',
-  components: { ChevronDown, DropdownItemGroup, DropdownItem },
+  components: { ChevronDown, DropdownItemGroup, DropdownItem, LobLabel },
   props: {
     modelValue: {
       type: [String, Object],

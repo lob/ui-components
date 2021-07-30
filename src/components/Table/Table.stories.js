@@ -6,7 +6,7 @@ import LobButton from '../Button/Button.vue';
 import mdx from './Table.mdx';
 
 export default {
-  title: 'Components/LobTable',
+  title: 'Components/Table',
   component: LobTable,
   subcomponents: { TableHeader, TableRow, TableBody, LobButton },
   decorators: [

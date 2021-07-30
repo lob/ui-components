@@ -2,7 +2,7 @@ import FileUpload from './FileUpload.vue';
 import mdx from './FileUpload.mdx';
 
 export default {
-  title: 'Components/FileUpload',
+  title: 'Components/File Upload',
   component: FileUpload,
   parameters: {
     docs: {

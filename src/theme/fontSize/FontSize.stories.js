@@ -2,7 +2,7 @@ import FontSize from './FontSize.vue';
 import mdx from './FontSize.mdx';
 
 export default {
-  title: 'Theme (Dev Only)/FontSize',
+  title: 'Theme (Dev Only)/Font Size',
   component: FontSize,
   parameters: {
     docs: {

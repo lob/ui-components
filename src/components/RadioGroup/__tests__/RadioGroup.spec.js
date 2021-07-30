@@ -7,7 +7,7 @@ const initialProps = {
   srOnlyLegend: true
 };
 
-describe('Switch Group', () => {
+describe('Radio Group', () => {
 
   it('renders a legend for accessibility', () => {
     const props = initialProps;

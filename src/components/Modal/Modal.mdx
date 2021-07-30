@@ -15,7 +15,7 @@ This Modal component is designed to be used with slots to fill in its header and
 
 Here is an example of a button opening a modal.
 
-Visibility is controlled from the parent component using v-model.
+Visibility is controlled from the parent component using the `visible` prop. Note: this is not a `v-model`. You will need to update this when the `close` event is emitted.
 
 If no header or no footer slot is provided, nothing will be rendered in their place.
 
@@ -25,8 +25,7 @@ If no header or no footer slot is provided, nothing will be rendered in their pl
 </LobButton>
 
 <Modal
-  v-bind="args"
-  v-model="isModalVisible"
+  :visible="isModalVisible"
   @close="isModalVisible = false"
 >
   <template v-slot:header>

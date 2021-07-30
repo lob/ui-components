@@ -1,6 +1,6 @@
 {
   "name": "@lob/ui-components",
-  "version": "0.0.73",
+  "version": "0.0.78",
   "engines": {
     "node": "14.16.1"
   },
@@ -9,6 +9,7 @@
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "npm run lint:js && npm run lint:css",
+    "lint-fix": "vue-cli-service lint --fix",
     "build-library": "vue-cli-service build --target lib --name ui-components src/main.js",
     "build-storybook": "build-storybook",
     "lint:css": "stylelint 'src/**/*.vue'",
