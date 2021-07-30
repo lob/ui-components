@@ -3,7 +3,10 @@
     ref="group"
     role="group"
   >
-    <div class="ml-5 text-primary-500 uppercase text-xs">
+    <div
+      class="ml-5 text-primary-500 uppercase text-xs cursor-default"
+      @mousedown="onMousedown"
+    >
       {{ group.label }}
     </div>
     <dropdown-item
@@ -66,8 +69,8 @@ export default {
     onMousedown ($event) {
       this.$emit('mousedown', $event);
     },
-    onClick ($event) {
-      this.$emit('click', $event, this.index);
+    onClick ($event, index) {
+      this.$emit('click', $event, index);
     },
     getOffsetHeight () {
       return this.$refs.activeOption.offsetHeight;

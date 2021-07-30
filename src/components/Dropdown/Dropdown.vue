@@ -79,7 +79,7 @@
               :placeholder-text="placeholder"
               :flattened-options="flattenedOptions"
               @mousedown="onOptionMousedown"
-              @click="($event) => onOptionClick($event, flattenedOptions.indexOf(item))"
+              @click="onOptionClick"
             />
           </div>
           <div
@@ -93,7 +93,7 @@
               :active="activeIndex === flattenedOptions.indexOf(item)"
               :placeholder="item.label === placeholder"
               @mousedown="onOptionMousedown"
-              @click="($event) => onOptionClick($event, flattenedOptions.indexOf(item))"
+              @click="onOptionClick"
             />
           </div>
         </div>

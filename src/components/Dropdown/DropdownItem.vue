@@ -5,8 +5,8 @@
     :class="[
       'py-1 px-8 truncate',
       {'bg-turquoise-100': active},
-      {'hover:bg-turquoise-100': !option.disabled},
-      { 'text-gray-100': option.disabled},
+      {'hover:bg-turquoise-100 cursor-default': !option.disabled},
+      { 'text-gray-100 cursor-not-allowed': option.disabled},
       {'!bg-none': option.disabled && active},
       {'!text-primary-300': placeholder }
     ]"
@@ -57,7 +57,9 @@ export default {
       this.$emit('mousedown', $event);
     },
     onClick ($event) {
-      this.$emit('click', $event, this.index);
+      if (!this.placeholder && !(this.option.hasOwnProperty('disabled') && this.option.disabled)) {
+        this.$emit('click', $event, this.index);
+      }
     },
     getOffsetHeight () {
       return this.$refs.option.offsetHeight;
