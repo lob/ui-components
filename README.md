@@ -1,5 +1,7 @@
 # UI Components
-Lob's Vue component library
+Lob's Vue component library. This repo is public. We are building our components in public to showcase the work that Lob is doing to create a consistent design system as well as follow best practices in modern web development and accessibility.
+
+This component library can be found at [https://ui-components.lob.com/](https://ui-components.lob.com/).
 
 - [To use in project](#to-use-in-project)
   - [Styling](#styling)

@@ -3,7 +3,7 @@ import SearchBar from './SearchBar.vue';
 
 # SearchBar
 
-A SearchBar that takes a custom function to return search results.
+This search bar component is designed to render an input for the user to enter their search term and then a table with the search results. 
 
 <Preview>
   <Story id="components-searchbar--primary" />
@@ -11,19 +11,36 @@ A SearchBar that takes a custom function to return search results.
 
 ## How to Use
 
-This SearchBar component is designed to be used for search in any list of items.
+To use this component, you must provide a `searchFunction` to fetch search results. The function must return an array.
 
-The searchFunction is required.
+The table has a slot for you to define how to render a single result row which it will use to iterate and render each result. You can provide whatever markup you want to be rendered within the TableRow.
 
-To use this SearchBar, here is an example
+To use this component, here is an example
 
 ```html
 <SearchBar
   searchFunction="myCustomSearch"
 >
+  <template
+    #default="{ result }"
+    class="min-w-full"
+  >
+    <td>
+      <img class="w-5 h-5" :src="result.img" />
+    </td>
+    <td>
+      {{ result.description }}
+    </td>
+    <td>
+      {{ result.type }}
+    </td>
+    <td>
+      >
+    </td>
+  </template>
 </SearchBar>
 ```
 
 ## Props
 
-SearchFunction - wrapper function that displays the correct search results
+<ArgsTable story={PRIMARY_STORY} />

@@ -2,7 +2,7 @@ import LobButton from './Button.vue';
 import mdx from './Button.mdx';
 
 export default {
-  title: 'Components/LobButton',
+  title: 'Components/Button',
   component: LobButton,
   parameters: {
     docs: {

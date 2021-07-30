@@ -5,7 +5,7 @@ import MegaMenuSubtitle from './MegaMenuSubtitle.vue';
 import mdx from './MegaMenu.mdx';
 
 export default {
-  title: 'Components/MegaMenu',
+  title: 'Components/Mega Menu',
   component: MegaMenu,
   subcomponents: { MegaMenuItem, MegaMenuSubtitle },
   decorators: [
