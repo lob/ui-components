@@ -29,7 +29,7 @@ const PrimaryTemplate = (args, { argTypes }) => ({
 
     <Modal
       v-bind="args"
-      v-model="isModalVisible"
+      :visible="isModalVisible"
       @close="isModalVisible = false"
     >
       <template v-slot:header>
