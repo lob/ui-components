@@ -32,6 +32,14 @@ describe('Button', () => {
     expect(button).toBeDisabled();
   });
 
+  it('shows cursor-not-allowed when disabled prop is true', () => {
+    const props = { disabled: true };
+    const { queryByRole } = renderComponent({ props, slots });
+
+    const button = queryByRole('button');
+    expect(button).toHaveClass('cursor-not-allowed');
+  });
+
   it('fires the click event when clicked', async () => {
     const { queryByRole, emitted } = renderComponent({ slots });
 
