@@ -49,25 +49,25 @@
       >
         <slot name="iconRight" />
       </div>
-      <lob-button
+      <button
         v-if="withCopyButton"
-        :small="small"
-        class="rounded-tl-none rounded-bl-none pl-3 pr-3"
+        :class="['rounded-tr-md rounded-br-md text-white bg-primary-500 border px-3',
+                 { 'h-12': !small },
+                 { 'h-10': small }
+        ]"
         @click="copyToClipboard"
       >
         Copy
-      </lob-button>
+      </button>
     </div>
   </div>
 </template>
 
 <script>
 import LobLabel from '../LobLabel/LobLabel.vue';
-import LobButton from './../Button/Button.vue';
 export default {
   name: 'TextInput',
   components: {
-    LobButton,
     LobLabel
   },
   props: {
