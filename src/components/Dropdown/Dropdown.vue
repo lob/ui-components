@@ -59,7 +59,7 @@
         ref="listbox"
         role="listbox"
         :class="[
-          'max-h-96 bg-white rounded-sm text-sm py-4 overflow-y-auto absolute left-0 top-full hidden w-full z-100 shadow',
+          'max-h-80 bg-white rounded-sm text-sm py-4 overflow-y-auto absolute left-0 top-full hidden w-full z-100 shadow',
           {'!block': open }
         ]"
       >
