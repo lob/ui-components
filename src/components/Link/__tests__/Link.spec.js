@@ -57,4 +57,45 @@ describe('Link', () => {
     expect(linkContent).toBeInTheDocument();
   });
 
+  it('renders underline text by default', async () => {
+    const slotContent = 'Hello, this is a link.';
+    const slots = { default: slotContent };
+    const props = {
+      ...initialProps
+    };
+    const { queryByText } = await renderComponent({ props, slots });
+
+    const linkContent = queryByText(slotContent);
+    expect(linkContent).toBeInTheDocument();
+    expect(linkContent).toHaveClass('underline');
+  });
+
+  it('renders normal text if underline is set to false', async () => {
+    const slotContent = 'Hello, this is a link.';
+    const slots = { default: slotContent };
+    const props = {
+      ...initialProps,
+      underline: false
+    };
+    const { queryByText } = await renderComponent({ props, slots });
+
+    const linkContent = queryByText(slotContent);
+    expect(linkContent).toBeInTheDocument();
+    expect(linkContent).not.toHaveClass('underline');
+  });
+
+  it('renders alert button', async () => {
+    const slotContent = 'Hello, this is a link.';
+    const slots = { default: slotContent };
+    const props = {
+      ...initialProps,
+      variant: 'alert-button'
+    };
+    const { queryByText } = await renderComponent({ props, slots });
+
+    const linkContent = queryByText(slotContent);
+    expect(linkContent).toBeInTheDocument();
+    expect(linkContent).toHaveClass('alert');
+  });
+
 });
