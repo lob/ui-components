@@ -38,6 +38,10 @@ export default {
     open: {
       type: Boolean,
       default: false
+    },
+    boundElement: {
+      type: Object,
+      default: null
     }
   },
   emits: ['update:open'],
@@ -68,12 +72,18 @@ export default {
       }
     },
     onClickOutside ($event) {
-      if (typeof this.$refs.container !== 'undefined') {
+      if (this.$refs.container) {
         const clickOnTheContainer = this.$refs.container === $event.target;
         const clickOnChild = this.$refs.container && this.$refs.container.contains($event.target);
 
+        const clickToOpenElement = this.boundElement && (this.boundElement.$el || this.boundElement);
+        const clickOnBoundElement = clickToOpenElement && (clickToOpenElement === $event.target || clickToOpenElement.contains($event.target));
+
         if (!clickOnTheContainer && !clickOnChild) {
-          this.hide();
+          if (clickOnBoundElement) {
+            $event.stopPropagation();
+          }
+          this.hide($event);
         }
       }
     },

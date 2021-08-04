@@ -34,16 +34,78 @@ describe('FilterContent', () => {
     expect(emittedEvent['update:open'][0][0]).toEqual(false);
   });
 
+  describe('without a bound element', () => {
+
+    const Component = {
+      components: { FilterContent },
+      template: `
+        <div>
+          <button @click="filterOpen = !filterOpen">button</button>
+          <filter-content v-model:open="filterOpen"><span>content</span></filter-content>
+        </div>
+      `,
+      data () {
+        return {
+          filterOpen: false
+        };
+      }
+    };
+
+    it('always bubbles the click event when the element mutation v-model:open is clicked', async () => {
+      const { getByText, findByText  } = render(Component);
+      const button = getByText('button');
+      await fireEvent.click(button);
+      await findByText('content');
+      await fireEvent.click(button);
+
+      const content = await findByText('content');
+      expect(content).toBeInTheDocument();
+    });
+
+  });
+
+  describe('with a bound element', () => {
+
+    const Component = {
+      components: { FilterContent },
+      template: `
+        <div>
+          <button ref="filterContentCtrl" @click="filterOpen = !filterOpen">button</button>
+          <filter-content v-model:open="filterOpen" :bound-element="$refs.filterContentCtrl"><span>content</span></filter-content>
+        </div>
+      `,
+      data () {
+        return {
+          filterOpen: false
+        };
+      }
+    };
+
+    it('does not bubble the click event when the element mutation v-model:open is clicked', async () => {
+      const { getByText, queryByText, findByText  } = render(Component);
+      const button = getByText('button');
+      await fireEvent.click(button);
+      await findByText('content');
+      await fireEvent.click(button);
+
+      await waitFor(() => {
+        const content = queryByText('content');
+        expect(content).not.toBeInTheDocument();
+      });
+    });
+
+  });
+
   describe('only one FilterContent can be open at a time', () => {
 
     const Component = {
       components: { FilterContent },
       template: `
         <div>
-          <button @click="filter1Open = true">button 1</button>
-          <filter-content v-model:open="filter1Open"><span>content 1</span></filter-content>
-          <button @click="filter2Open = true" data-testId="buttonToClick">button 2</button>
-          <filter-content v-model:open="filter2Open"><span>content 2</span></filter-content>
+          <button ref="buttonOne" @click="filter1Open = true">button 1</button>
+          <filter-content v-model:open="filter1Open" :bound-element="$refs.buttonOne"><span>content 1</span></filter-content>
+          <button ref="buttonTwo" @click="filter2Open = true" data-testId="buttonToClick">button 2</button>
+          <filter-content v-model:open="filter2Open" :bound-element="$refs.buttonTwo"><span>content 2</span></filter-content>
         </div>
       `,
       data () {
