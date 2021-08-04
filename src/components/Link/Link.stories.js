@@ -23,13 +23,19 @@ export default {
   },
   argTypes: {
     variant: {
-      options: ['default', 'primary-button', 'secondary-button'],
+      options: ['default', 'primary-button', 'secondary-button', 'alert-button'],
       control: {
         type: 'select'
       }
     },
     size: {
       options: ['default', 'small'],
+      control: {
+        type: 'select'
+      }
+    },
+    underline: {
+      options: [true, false],
       control: {
         type: 'select'
       }
