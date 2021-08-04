@@ -3,7 +3,7 @@ import FilterContent from './FilterContent.vue';
 
 # FilterContent
 
-FilterContent is a stylized, accessible component for seeing a calendar and choosing a date.
+FilterContent is a stylized component for displaying some content (usually filters and form fields) in a popover element when the user interacts with an element in some way (usually a button click).
 
 <Preview>
   <Story id="components-filtercontent--primary" />
@@ -11,6 +11,8 @@ FilterContent is a stylized, accessible component for seeing a calendar and choo
 
 ## How to Use
 To use the filter content component, you must provide a `v-model:open` of type Boolean (controls whether the filter content is visible).
+
+If you want to make it so that clicking the button (or whatever element changes the `v-model:open` value) toggles the filter content (rather than just opening), be sure to add a ref to the element and then pass that ref to FilterContent using the `bound-element` prop.
 
 The filter content is positioned absolutely so you'll want to be sure to position its parent `relative` in order to have it show up in the proper position (it will always be positioned absolutely to its nearest ancestor that is positioned relative).
 
@@ -23,8 +25,8 @@ This component will emit `update:open` events with a boolean for whether the fil
 Example of using this component in a template without a header
 ```html
 <div class="relative">
-  <Button @click.stop="open = !open" size="small">Filter by</Button>
-  <filter-content v-model:open="open">
+  <Button ref="filterContentCtrl" @click.stop="open = !open" size="small">Filter by</Button>
+  <filter-content v-model:open="open" :bound-element="$refs.filterContentCtrl">
     <checkbox
       label="Postcards"
       v-model="selectedFilters"

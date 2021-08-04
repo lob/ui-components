@@ -40,10 +40,10 @@ describe('FilterContent', () => {
       components: { FilterContent },
       template: `
         <div>
-          <button @click="filter1Open = true">button 1</button>
-          <filter-content v-model:open="filter1Open"><span>content 1</span></filter-content>
-          <button @click="filter2Open = true" data-testId="buttonToClick">button 2</button>
-          <filter-content v-model:open="filter2Open"><span>content 2</span></filter-content>
+          <button ref="buttonOne" @click="filter1Open = true">button 1</button>
+          <filter-content v-model:open="filter1Open" :bound-element="$refs.buttonOne"><span>content 1</span></filter-content>
+          <button ref="buttonTwo" @click="filter2Open = true" data-testId="buttonToClick">button 2</button>
+          <filter-content v-model:open="filter2Open" :bound-element="$refs.buttonTwo"><span>content 2</span></filter-content>
         </div>
       `,
       data () {

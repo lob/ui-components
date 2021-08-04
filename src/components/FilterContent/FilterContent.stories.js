@@ -22,8 +22,8 @@ const Template = (args, { argTypes }) => ({
   setup: () => ({ args }),
   template: `
     <div class="relative">
-      <LobButton @click.stop="open = !open" size="small">Filter by</LobButton>
-      <filter-content v-model:open="open">
+      <LobButton ref="filterContentCtrl" @click.stop="open = !open" size="small">Filter by</LobButton>
+      <filter-content v-model:open="open" :bound-element="$refs.filterContentCtrl">
         <checkbox
           label="Postcards"
           v-model="selectedFilters"
@@ -72,8 +72,8 @@ const WithHeaderTemplate = (args, { argTypes }) => ({
   setup: () => ({ args }),
   template: `
     <div class="relative">
-      <LobButton @click.stop="open = !open" size="small">Filter by</LobButton>
-      <filter-content v-model:open="open">
+      <LobButton ref="filterContentCtrl" @click.stop="open = !open" size="small">Filter by</LobButton>
+      <filter-content v-model:open="open" :bound-element="$refs.filterContentCtrl">
         <template v-slot:header>
           <div class="text-center w-full">
             Filter By
