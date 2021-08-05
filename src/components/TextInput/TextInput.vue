@@ -65,6 +65,7 @@
 
 <script>
 import LobLabel from '../LobLabel/LobLabel.vue';
+
 export default {
   name: 'TextInput',
   components: {
