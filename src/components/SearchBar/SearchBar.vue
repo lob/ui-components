@@ -28,18 +28,24 @@
     </text-input>
     <div
       v-if="!outsideClick"
-      class="bg-white shadow overflow-y-auto max-h-56 min-w-full absolute"
+      class="bg-white shadow overflow-y-auto min-w-full absolute"
       role="results"
     >
       <div
-        v-if="searchTerm"
-        class="text-center py-4"
+        v-if="searchTerm && header"
+        class="text-center py-4 border-white-300 border-b-2 text-gray-500"
       >
         <template v-if="searching">
           {{ t('search.loading') }}
         </template>
         <template v-else-if="searchResults.length">
-          {{ t('search.resultsPrefix') }} {{ totalResults }} {{ t('search.resultsSuffix') }}
+          <LobLink
+            :to="link"
+            :underline="false"
+            class="hover:text-primary-700"
+          >
+            {{ t('search.resultsPrefix') }} {{ totalResults }} {{ t('search.resultsSuffix') }}
+          </LobLink>
         </template>
         <template v-else>
           {{ t('search.noResults') }}
@@ -70,16 +76,32 @@ import TextInput from '../TextInput/TextInput';
 import LobTable from '../Table/Table';
 import TableBody from '../Table/TableBody';
 import TableRow from '../Table/TableRow';
+import LobLink from '../Link/Link.vue';
 import Search from '../Icons/Search';
 import Close from '../Icons/Close';
 
 export default {
   name: 'SearchBar',
-  components: { TextInput, LobTable, TableBody, TableRow, Search, Close },
+  components: { TextInput, LobTable, TableBody, TableRow, LobLink, Search, Close },
   props: {
     searchFunction: {
       type: Function,
       required: true
+    },
+    count: {
+      type: Number,
+      required: false,
+      default: 0
+    },
+    link: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    header: {
+      type: Boolean,
+      required: false,
+      default: true
     }
   },
   data () {
@@ -96,7 +118,7 @@ export default {
       return !this.searchTerm;
     },
     totalResults () {
-      return this.searchResults.total_count ? this.searchResults.total_count : this.searchResults.length;
+      return this.count ? this.count : this.searchResults.length;
     }
   },
   watch: {
