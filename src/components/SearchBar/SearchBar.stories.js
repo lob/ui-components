@@ -1,10 +1,21 @@
 import { SearchBar } from '@/components';
 import mdx from './SearchBar.mdx';
 import iconOverview from '@/assets/images/iconOverview.svg';
+import routeDecorator, { routeTemplate } from '../../../.storybook/routeDecorator';
 
 export default {
   title: 'Components/Search Bar',
   component: SearchBar,
+  decorators: [
+    routeDecorator('/', [
+      {
+        path: '/search',
+        component: {
+          template: routeTemplate('search')
+        }
+      }
+    ])
+  ],
   parameters: {
     docs: {
       page: mdx
@@ -130,5 +141,7 @@ Primary.args = {
         resolve(results);
       }, 1500); // waits for 1500ms before returning results, so it's more 'realistic'
     });
-  }
+  },
+  link: '/search',
+  count: 10
 };
