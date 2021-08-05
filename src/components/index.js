@@ -4,6 +4,7 @@ export { default as Breadcrumb } from './Breadcrumb/Breadcrumb';
 export { default as LobButton } from './Button/Button';
 export { default as Card } from './Card/Card';
 export { default as Checkbox } from './Checkbox/Checkbox';
+export { default as DateInput } from './DateInput/DateInput';
 export { default as Datepicker } from './Datepicker/Datepicker';
 export { default as Dropdown } from './Dropdown/Dropdown';
 export { default as FileUpload } from './FileUpload/FileUpload';
