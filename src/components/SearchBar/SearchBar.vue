@@ -90,17 +90,14 @@ export default {
     },
     count: {
       type: Number,
-      required: false,
       default: 0
     },
     link: {
       type: String,
-      required: false,
       default: ''
     },
     header: {
       type: Boolean,
-      required: false,
       default: true
     }
   },
