@@ -57,7 +57,7 @@ export { default as Settings } from './Settings';
 export { default as Shuffle } from './Shuffle';
 export { default as SkipToLeft } from './SkipToLeft';
 export { default as SkipToRight } from './SkipToRight';
-export { default as Table } from './Table';
+export { default as TableIcon } from './Table';
 export { default as Tag } from './Tag';
 export { default as Task } from './Task';
 export { default as Trash } from './Trash';
