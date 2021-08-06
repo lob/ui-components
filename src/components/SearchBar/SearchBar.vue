@@ -52,7 +52,7 @@
         </template>
       </div>
       <LobTable
-        v-if="!searching && searchResults.length"
+        v-if="searchTerm && !searching && searchResults.length"
         class="min-w-full divide-y divide-gray-200"
         space="sm"
       >
