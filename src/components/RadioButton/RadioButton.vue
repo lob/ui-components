@@ -115,9 +115,9 @@ input {
 
     &::before {
       content: "";
-      left: -20px;
       top: 3px;
 
+      @apply -left-5;
       @apply absolute;
       @apply bg-transparent;
       @apply border-gray-100;
