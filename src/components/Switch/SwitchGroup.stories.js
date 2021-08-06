@@ -23,8 +23,8 @@ const Template = (args, { argTypes }) => ({
   setup: () => ({ args }),
   template: `
     <switch-group v-bind="args">
-      <switch-item name='mode' label="Test" value='test' v-model="switchModel" />
-      <switch-item name='mode' label="Live" value='live' v-model="switchModel" />
+      <switch-item name="mode" label="Test" value="test" v-model="switchModel" />
+      <switch-item name="mode" label="Live" value="live" v-model="switchModel" />
     </switch-group>
   `
 });
@@ -44,8 +44,24 @@ const WithIconsTemplate = (args, { argTypes }) => ({
   setup: () => ({ args }),
   template: `
     <switch-group v-bind="args">
-      <switch-item name='chart' label="Map view" value='map' v-model="withIconsModel" sr-only-label><earth class="w-6 h-6" /></switch-item>
-      <switch-item name='chart' label="List view" value='list' v-model="withIconsModel" sr-only-label><table-icon class="w-6 h-6" /></switch-item>
+      <switch-item 
+        v-model="withIconsModel" 
+        name="chart" 
+        label="Map view" 
+        value="map" 
+        sr-only-label
+      >
+        <earth class="w-6 h-6" />
+      </switch-item>
+      <switch-item 
+        v-model="withIconsModel" 
+        name="chart" 
+        label="List view" 
+        value="list" 
+        sr-only-label
+      >
+        <table-icon class="w-6 h-6" />
+      </switch-item>
     </switch-group>
   `
 });
