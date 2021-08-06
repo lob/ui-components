@@ -8,6 +8,28 @@ export default {
     docs: {
       page: mdx
     }
+  },
+  argTypes: {
+    open: {
+      table: {
+        disable: true
+      }
+    },
+    modelValue: {
+      table: {
+        disable: true
+      }
+    },
+    min: {
+      control: {
+        type: 'date'
+      }
+    },
+    max: {
+      control: {
+        type: 'date'
+      }
+    }
   }
 };
 
@@ -18,7 +40,11 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: {  DateInput },
   data: () => ({ startDate, startDateOpen }),
-  setup: () => ({ args }),
+  setup: () => {
+    args.min = args.min ? new Date(args.min) : undefined;
+    args.max = args.max ? new Date(args.max) : undefined;
+    return { args };
+  },
   template: '<date-input v-bind="args" v-model="startDate" v-model:open="startDateOpen"></date-input>'
 });
 
