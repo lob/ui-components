@@ -6,6 +6,7 @@
       :label="label"
       :sr-only-label="srOnlyLabel"
       @click.stop="isOpen = !isOpen"
+      @keydown.space.stop="isOpen = !isOpen"
     />
     <Datepicker
       :id="datepickerId"
