@@ -33,4 +33,6 @@ export { default as Textarea } from './Textarea/Textarea';
 export { default as TextInput } from './TextInput/TextInput';
 export { default as Tooltip } from './Tooltip/Tooltip';
 export { default as TopNavbar } from './TopNavbar/TopNavbar';
+export { default as Stepper } from './Stepper/Stepper';
+export { default as StepperItem } from './Stepper/StepperItem';
 export * from './Typography';
