@@ -10,7 +10,7 @@
       :id="id"
       type="radio"
       :class="[
-        'absolute m-0 p-0 w-0 h-0 opacity-0 pointer-events-none mt-2',
+        'm-0 p-0 opacity-0 mt-2',
         { 'radio__input--error': error },
         { 'cursor-not-allowed': disabled || readonly }
       ]"
@@ -26,12 +26,13 @@
     <label
       :for="id"
       :class="[
-        'text-sm font-light relative flex ml-6',
+        'text-sm font-light relative flex ml-1.5',
         { 'cursor-not-allowed': disabled || readonly }
       ]"
     >
-      {{ label }}
-      <slot />
+      <slot>
+        {{ label }}
+      </slot>
     </label>
   </div>
 </template>
@@ -107,32 +108,38 @@ export default {
 
 <style scoped lang="scss">
 input {
-  + label::before {
-    content: "";
-    left: -20px;
-
-    @apply absolute;
-    @apply bg-transparent;
-    @apply border-gray-100;
-    @apply border-solid;
-    @apply border;
-    @apply h-3.5;
+  + label {
+    @apply relative;
     @apply inline-block;
-    @apply rounded-full;
-    @apply top-1;
-    @apply w-3.5;
-  }
+    @apply cursor-pointer;
 
-  + label::after {
-    content: "";
-    left: -17px;
-    top: 7px;
+    &::before {
+      content: "";
+      top: 3px;
+      left: -19px;
 
-    @apply absolute;
-    @apply h-2;
-    @apply inline-block;
-    @apply rounded-full;
-    @apply w-2;
+      @apply absolute;
+      @apply bg-transparent;
+      @apply border-gray-100;
+      @apply border-solid;
+      @apply border;
+      @apply h-3.5;
+      @apply inline-block;
+      @apply rounded-full;
+      @apply w-3.5;
+    }
+
+    &::after {
+      content: "";
+
+      @apply -left-4;
+      @apply top-1.5;
+      @apply absolute;
+      @apply h-2;
+      @apply inline-block;
+      @apply rounded-full;
+      @apply w-2;
+    }
   }
 
   &:checked + label::after {
