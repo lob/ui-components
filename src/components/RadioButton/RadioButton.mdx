@@ -17,16 +17,33 @@ You can pass in the `v-model` prop to bind radio buttons to the parent component
 
 You can pass in a `@click` handler to trigger a custom function on click events. The `event` object will be emitted along with the `click` event.
 
-There is an option to pass a slot through as part of the label. In Lob's use case, this is to add an icon and a tooltip to further explain radio button choices.
+If nothing is provided in the slot, the label will be rendered by default. Alternatively, you can provide any sort of content to be rendered in place of the label.
 
 ```html
-<radio-button
+<RadioButton
   name="postcard-size"
   value="4x6"
   label="4x6"
   v-model="postcard.size"
   @click="handleClick"
 />
+```
+
+Example with slot that contains label and tooltip
+
+```html
+<RadioButton
+  name="postcard-size"
+  value="4x6"
+  label="4x6"
+  v-model="postcard.size"
+  @click="handleClick"
+>
+  <div class="flex">
+    {{ service.description }} <!-- this becomes the label -->
+    <Tooltip /> 
+  </div>
+</RadioButton>
 ```
 
 ## Props
