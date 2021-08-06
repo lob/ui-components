@@ -19,7 +19,12 @@
     <label
       :for="value"
       class="px-6 py-1.5 cursor-pointer"
-    >{{ label }}</label>
+    >
+      <span :class="[{'sr-only': srOnlyLabel}]">
+        {{ label }}
+      </span>
+      <slot />
+    </label>
   </div>
 </template>
 
@@ -44,6 +49,10 @@ export default {
       required: true
     },
     disabled: {
+      type: Boolean,
+      default: false
+    },
+    srOnlyLabel: {
       type: Boolean,
       default: false
     }

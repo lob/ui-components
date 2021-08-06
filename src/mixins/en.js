@@ -1,4 +1,5 @@
 export default {
+  dateFormat: 'yyyy-MM-dd',
   datepicker: {
     keyboardInstruction: 'You can use arrow keys to navigate dates',
     closeLabel: 'Close',

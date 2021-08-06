@@ -1,6 +1,6 @@
 {
   "name": "@lob/ui-components",
-  "version": "0.0.87",
+  "version": "0.0.88",
   "engines": {
     "node": "14.16.1"
   },
@@ -23,6 +23,7 @@
   ],
   "dependencies": {
     "core-js": "^3.6.5",
+    "date-fns": "^2.23.0",
     "mitt": "^3.0.0",
     "vue": "^3.0.0",
     "vue-router": "^4.0.8"

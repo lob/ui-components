@@ -2,7 +2,7 @@ import LobLabel from './LobLabel.vue';
 import mdx from './LobLabel.mdx';
 
 export default {
-  title: 'Components/LobLabel',
+  title: 'Components/Label',
   component: LobLabel,
   parameters: {
     docs: {

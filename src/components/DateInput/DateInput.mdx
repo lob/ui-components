@@ -1,0 +1,54 @@
+import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
+import DateInput from './DateInput.vue';
+
+# DateInput
+
+DateInput is a wrapper component to bind a Datepicker to a TextInput. It's been added to this component library so Lob projects use the same date input throughout.
+
+<Preview>
+  <Story id="components-date-input--primary" />
+</Preview>
+
+## How to Use
+To use the date input component, you must provide a `v-model` of type Date, a `v-model:open` of type Boolean (controls whether the calendar is visible), an `id`, and a label.
+
+The date input will also accept `min` and `max` properties (also Date objects) to control how far forward or back the calendar will render. By default, it will go 1 year in the past and 1 year in the future.
+
+You can also provide an `srOnlyLabel` prop which will hide the label from sighted users if true.
+
+If you need the Datepicker to be right-justified when the calendar is open, set `rightJustified` to true.
+
+This component will emit an `update:modelValue` event with the selected date as a vanilla JS Date object.
+
+It will also emit `update:open` events with a boolean for whether the calendar is visible or not.
+
+Note: if this input does not format your date correctly or you need more functionality, you should make a custom component in your application's repo.
+
+Example of using this component in a template with simple string options
+```js
+const startDate = new Date();
+const startDateOpen = false;
+```
+```html
+<date-input 
+  v-model="startDate" 
+  v-model:open="startDateOpen"
+  id="startDate"
+  label="Start date"
+  :sr-only-label="true" />
+```
+
+### Internationalization
+
+By default, the date format will be `yyyy-MM-dd`.
+
+If you'd like to localize this format, you can install `vue-i18n` into your application and provide the following translation in your required languages.
+```js
+{
+  dateFormat: 'yyyy-MM-dd'
+}
+```
+
+## Props
+
+<ArgsTable story={PRIMARY_STORY} />
