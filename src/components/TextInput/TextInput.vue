@@ -167,6 +167,9 @@ export default {
       this.$emit('update:modelValue', $event.target.value);
       this.$emit('input', $event.target.value);
       this.$emit('change', $event);
+    },
+    focus () {
+      this.$refs.input.focus();
     }
   }
 };
