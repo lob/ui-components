@@ -4,7 +4,15 @@ import { h } from 'vue';
 export default {
   name: 'TableHeader',
   render () {
-    const columns = this.$slots.default().map((slotItem) => h('td', slotItem));
+    const defaultSlot = this.$slots.default();
+    const isNestedSlot = Array.isArray(defaultSlot[0].children);
+
+    let columns;
+    if (isNestedSlot) {
+      columns = defaultSlot.flatMap((slotItem) => slotItem.children).map((child) => h('td', child));
+    } else {
+      columns = defaultSlot.map((slotItem) => h('td', slotItem));
+    }
     const tr = h('tr', columns);
     return h('thead', tr);
   }
