@@ -19,6 +19,7 @@ const routes = [
     children: [
       {
         path: 'create',
+        name: 'Create envelopes',
         component: {
           template: '<div>create</div>'
         }
@@ -36,11 +37,17 @@ const renderComponent = (options) =>
 
 describe('Breadcrumb', () => {
 
-  it('renders a semantic nav element', async () => {
+  let component;
+
+  beforeEach(async () => {
     const props = initialProps;
-    const { queryByRole } = renderComponent({ props });
+    component = renderComponent({ props });
     router.push('/envelopes/create');
     await router.isReady();
+  });
+
+  it('renders a semantic nav element', async () => {
+    const { queryByRole } = component;
 
     const nav = queryByRole('navigation');
     expect(nav).toBeInTheDocument();
@@ -57,25 +64,24 @@ describe('Breadcrumb', () => {
   });
 
   it('renders the correct number of breadcrumbs', async () => {
-    const props = initialProps;
-
-    const { queryAllByRole } = renderComponent({ props });
-    router.push('/envelopes/create');
-    await router.isReady();
+    const { queryAllByRole } = component;
 
     const links = queryAllByRole('link');
     expect(links).toHaveLength(3);
   });
 
   it('renders the last item as active', async () => {
-    const props = initialProps;
-
-    const { queryAllByRole } = renderComponent({ props });
-    router.push('/envelopes/create');
-    await router.isReady();
+    const { queryAllByRole } = component;
 
     const links = queryAllByRole('link');
     expect(links[2]).toHaveClass('router-link-active');
+  });
+
+  it('renders the text title-cased', async () => {
+    const { queryByText } = component;
+
+    const navLink = queryByText('Create Envelopes');
+    expect(navLink).toBeInTheDocument();
   });
 
 });

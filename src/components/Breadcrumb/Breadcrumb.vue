@@ -58,7 +58,7 @@ export default {
         const lastChildInPath = pathSegments[pathSegments.length - 1];
 
         return {
-          name: routeRecord.name || this.titleize(lastChildInPath),
+          name: this.titleize(routeRecord.name) || this.titleize(lastChildInPath),
           path: routeRecord.path
         };
       });
@@ -66,7 +66,19 @@ export default {
   },
   methods: {
     titleize (str) {
-      return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+      if (!str) {
+        return null;
+      }
+
+      let sanitizedStr = str.toLowerCase();
+
+      let splitStr = sanitizedStr.split(' ');
+      splitStr = splitStr.map((word) => word.replace(/^[a-z]/i, (letter) => {
+        return letter.toUpperCase();
+      }));
+
+      sanitizedStr = splitStr.join(' ');
+      return sanitizedStr.trim();
     }
   }
 };
