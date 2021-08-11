@@ -84,7 +84,7 @@ export default {
       type: String,
       default: 'text',
       validator: function (value) {
-        return ['date', 'email', 'number', 'password', 'tel', 'text', 'url'].includes(value);
+        return ['date', 'email', 'number', 'password', 'tel', 'text', 'url', 'time'].includes(value);
       }
     },
     // Used by number inputs.
