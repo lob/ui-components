@@ -19,6 +19,14 @@ const renderComponent = (options) => render(Datepicker, { ...options, global: { 
 
 describe('Datepicker', () => {
 
+  beforeAll(() => {
+    jest.useFakeTimers();
+  });
+
+  afterAll(() => {
+    jest.useRealTimers();
+  });
+
   describe('when closed', () => {
 
     it('renders correctly', () => {
@@ -101,7 +109,7 @@ describe('Datepicker', () => {
       const { queryByText } = renderComponent({ props });
 
       // tab to close button
-      userEvent.tab();
+      await userEvent.tab();
       const close = queryByText(en.datepicker.closeLabel).closest('button');
       expect(close).toHaveFocus();
     });
@@ -110,9 +118,9 @@ describe('Datepicker', () => {
       const { queryByText } = renderComponent({ props });
 
       // tab to close button
-      userEvent.tab();
+      await userEvent.tab();
       // tab to prev button
-      userEvent.tab();
+      await userEvent.tab();
 
       const prev = queryByText(en.datepicker.prevMonthLabel).closest('button');
       expect(prev).toHaveFocus();
@@ -122,11 +130,11 @@ describe('Datepicker', () => {
       const { queryByText } = renderComponent({ props });
 
       // tab to close button
-      userEvent.tab();
+      await userEvent.tab();
       // tab to prev button
-      userEvent.tab();
+      await userEvent.tab();
       // tab to next button
-      userEvent.tab();
+      await userEvent.tab();
 
       const next = queryByText(en.datepicker.nextMonthLabel).closest('button');
       expect(next).toHaveFocus();
@@ -136,13 +144,13 @@ describe('Datepicker', () => {
       const { queryByText } = renderComponent({ props });
 
       // tab to close button
-      userEvent.tab();
+      await userEvent.tab();
       // tab to prev button
-      userEvent.tab();
+      await userEvent.tab();
       // tab to next button
-      userEvent.tab();
+      await userEvent.tab();
       // tab back to focused date
-      userEvent.tab();
+      await userEvent.tab();
 
       const focusedDate = queryByText(modelValue.getDate()).closest('button');
       expect(focusedDate).toHaveFocus();
