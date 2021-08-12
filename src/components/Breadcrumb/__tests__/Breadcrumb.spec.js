@@ -8,8 +8,12 @@ const initialProps = {
 };
 
 const routes = [
-  { path: '' },
-  { path: '/' },
+  {
+    path: '',
+    component: {
+      template: '<div>home</div>'
+    }
+  },
   {
     path: '/envelopes',
     name: 'Envelopes',
@@ -22,6 +26,12 @@ const routes = [
         name: 'Create envelopes',
         component: {
           template: '<div>create</div>'
+        }
+      },
+      {
+        path: 'edit',
+        component: {
+          template: '<div>edit</div>'
         }
       }
     ]
@@ -37,17 +47,10 @@ const renderComponent = (options) =>
 
 describe('Breadcrumb', () => {
 
-  let component;
-
-  beforeEach(async () => {
-    const props = initialProps;
-    component = renderComponent({ props });
-    router.push('/envelopes/create');
-    await router.isReady();
-  });
-
   it('renders a semantic nav element', async () => {
-    const { queryByRole } = component;
+    const props = initialProps;
+    const { queryByRole } = renderComponent({ props });
+    await router.isReady();
 
     const nav = queryByRole('navigation');
     expect(nav).toBeInTheDocument();
@@ -64,23 +67,42 @@ describe('Breadcrumb', () => {
   });
 
   it('renders the correct number of breadcrumbs', async () => {
-    const { queryAllByRole } = component;
+    const props = initialProps;
+    const { queryAllByRole } = renderComponent({ props });
+    router.push('/envelopes/create');
+    await router.isReady();
 
     const links = queryAllByRole('link');
     expect(links).toHaveLength(3);
   });
 
   it('renders the last item as active', async () => {
-    const { queryAllByRole } = component;
+    const props = initialProps;
+    const { queryAllByRole } = renderComponent({ props });
+    router.push('/envelopes/create');
+    await router.isReady();
 
     const links = queryAllByRole('link');
     expect(links[2]).toHaveClass('router-link-active');
   });
 
-  it('renders the text title-cased', async () => {
-    const { queryByText } = component;
+  it('renders the text title-cased when there\'s a name', async () => {
+    const props = initialProps;
+    const { queryByText } = renderComponent({ props });
+    router.push('/envelopes/create');
+    await router.isReady();
 
     const navLink = queryByText('Create Envelopes');
+    expect(navLink).toBeInTheDocument();
+  });
+
+  it('renders the text title-cased when there\'s not a name', async () => {
+    const props = initialProps;
+    const { queryByText } = renderComponent({ props });
+    router.push('/envelopes/edit');
+    await router.isReady();
+
+    const navLink = queryByText('Edit');
     expect(navLink).toBeInTheDocument();
   });
 
