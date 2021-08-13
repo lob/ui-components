@@ -37,7 +37,7 @@ export default {
       required: true
     },
     modelValue: {
-      type: [Date, null],
+      type: Date,
       required: true
     },
     open: {
