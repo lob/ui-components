@@ -10,6 +10,7 @@
         role="dialog"
         aria-labelledby="modalTitle"
         aria-describedby="modalDescription"
+        :style="{'width': width}"
         @click.stop
       >
         <header
@@ -57,6 +58,10 @@ export default {
     visible: {
       type: Boolean,
       default: false
+    },
+    width: {
+      type: String,
+      default: ''
     }
   },
   emits: ['close'],
