@@ -22,7 +22,7 @@
     >
       <div
         class="rounded-full w-3 h-3 absolute bg-current"
-        style="left: 0.1875rem; top: 0.1875rem; color: ${color}"
+        style="left: 0.1875rem; top: 0.1875rem; color: ${color};"
       >
         <check
           v-if="finished"
