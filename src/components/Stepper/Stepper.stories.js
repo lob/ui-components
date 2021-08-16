@@ -1,6 +1,10 @@
 import Stepper from './Stepper.vue';
 import StepperItem from './StepperItem.vue';
 import mdx from './Stepper.mdx';
+import { config } from 'tailwind-plugin-lob';
+
+const { theme } = config;
+const { colors } = theme;
 
 export default {
   title: 'Components/Stepper',
@@ -19,27 +23,90 @@ const Template = (args) => ({
   setup: () => ({ args }),
   template: `
     <Stepper>
-      <StepperItem position="first" variant="finished" :alignLeft="args.alignLeft" :dashedBorder="args.dashedBorder">
-        Finished
+      <StepperItem position="first" :finished="true">
+        <div class="text-center">
+          Finished
+        </div>
       </StepperItem>
-      <StepperItem variant="active" :alignLeft="args.alignLeft" :dashedBorder="args.dashedBorder">
-        Active
+      <StepperItem variant="default" :active="true">
+        <div class="text-center">
+          Active
+        </div>
       </StepperItem>
-      <StepperItem variant="error" :alignLeft="args.alignLeft" :dashedBorder="args.dashedBorder">
-        Error
+      <StepperItem color="${colors.error}">
+        <div class="text-center">
+          Error
+        </div>
       </StepperItem>
-      <StepperItem position="last" variant="unfinished" :alignLeft="args.alignLeft" :dashedBorder="args.dashedBorder">
-        Unfinished
+      <StepperItem position="last" color="${colors.gray['100']}">
+        <div class="text-center">
+          Unfinished
+        </div>
       </StepperItem>
     </Stepper>
     `
 });
 
 export const Primary = Template.bind({});
-Primary.args = {
-  alignLeft: false,
-  dashedBorder: false
-};
+
+const ComplexTemplate = (args) => ({
+  components: { Stepper, StepperItem },
+  setup: () => ({ args }),
+  template: `
+    <Stepper>
+      <StepperItem position="first" alignment="left" color="#6db6ff" border-color="#ccc">
+        <p class="font-medium mr-4">
+          Mail Sent
+        </p>
+        <p>
+          22,677 (100%)
+        </p>
+      </StepperItem>
+      <StepperItem alignment="left" color="#185cb7" border-color="#ccc">
+         <p class="font-medium mr-4">
+          Mailed
+        </p>
+        <p>
+          21,343 (97.6%)
+        </p>
+      </StepperItem>
+      <StepperItem alignment="left" color="#db6d00" border-color="#ccc">
+         <p class="font-medium mr-4">
+          In Transit
+        </p>
+        <p>
+          21,201 (96.2%)
+        </p>
+      </StepperItem>
+      <StepperItem alignment="left" color="#009292" border-color="#ccc" :dashed-border="true">
+         <p class="font-medium mr-4">
+          Processed for Delivery
+        </p>
+        <p>
+          20,334 (93.2%)
+        </p>
+      </StepperItem>
+      <StepperItem alignment="left" color="#ffb6db" border-color="#ccc" :dashed-border="true">
+         <p class="font-medium mr-4">
+          Re-routed
+        </p>
+        <p>
+          252 (0.3%)
+        </p>
+      </StepperItem>
+      <StepperItem position="last" alignment="left" color="#920000" border-color="#ccc">
+         <p class="font-medium mr-4">
+          Returned to sender
+        </p>
+        <p>
+          25 (0.0%)
+        </p>
+      </StepperItem>
+    </Stepper>
+    `
+});
+
+export const Complex = ComplexTemplate.bind({});
 
 const ItemTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
@@ -54,14 +121,14 @@ const ItemTemplate = (args, { argTypes }) => ({
 
 export const Item = ItemTemplate.bind({});
 Item.argTypes = {
-  variant: {
-    options: ['finished', 'active', 'error', 'unfinished'],
+  position: {
+    options: ['first', 'middle', 'last'],
     control: {
       type: 'select'
     }
   },
-  position: {
-    options: ['first', 'middle', 'last'],
+  alignment: {
+    options: ['left', 'center', 'right'],
     control: {
       type: 'select'
     }
@@ -69,8 +136,8 @@ Item.argTypes = {
 };
 
 Item.args = {
-  variant: 'active',
+  active: true,
+  finished: true,
   position: 'middle',
-  alignLeft: false,
   dashedBorder: false
 };
