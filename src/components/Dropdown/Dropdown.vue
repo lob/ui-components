@@ -3,6 +3,7 @@
 <template>
   <div>
     <lob-label
+      :id="`${id}-label`"
       :label="label"
       :label-for="id"
       :required="required"
@@ -22,7 +23,7 @@
         aria-haspopup="listbox"
         :aria-activedescendant="activeId"
         :aria-expanded="open"
-        :aria-labelledby="`${id} ${id}-value`"
+        :aria-labelledby="`${id}-label`"
         :aria-controls="`${id}-listbox`"
         :aria-required="required"
         :aria-disabled="disabled"

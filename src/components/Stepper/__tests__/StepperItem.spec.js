@@ -11,17 +11,20 @@ const renderComponent =  (options) => {
 
 describe('StepperItem', () => {
 
-  it('renders as finished and middle step by default', async () => {
+  it('renders as a middle step with center alignment by default', async () => {
     const { container } = renderComponent({});
 
-    const item = container.querySelector('.marker-finished');
+    const item = container.querySelector('.items-center');
     expect(item).toBeInTheDocument();
 
-    const noItem = container.querySelector('.half-border');
+    let noItem = container.querySelector('.half-border-left');
+    expect(noItem).not.toBeInTheDocument();
+
+    noItem = container.querySelector('.half-border-right');
     expect(noItem).not.toBeInTheDocument();
   });
 
-  it('renders half a right border when it is the first item of the stepper', async () => {
+  it('renders half a right border when it is center alignment and the first item of the stepper', async () => {
     const props = {
       position: 'first'
     };
@@ -31,33 +34,13 @@ describe('StepperItem', () => {
     expect(item).toBeInTheDocument();
   });
 
-  it('renders half a left border when it is the last item of the stepper', async () => {
+  it('renders half a left border when it is center alignment and the last item of the stepper', async () => {
     const props = {
       position: 'last'
     };
     const { container } = renderComponent({ props });
 
     const item = container.querySelector('.half-border-left');
-    expect(item).toBeInTheDocument();
-  });
-
-  it('renders with error state when there is an error in the step', async () => {
-    const props = {
-      variant: 'error'
-    };
-    const { container } = renderComponent({ props });
-
-    const item = container.querySelector('.border-error.marker-error');
-    expect(item).toBeInTheDocument();
-  });
-
-  it('renders with unfinished state when the step is not finished', async () => {
-    const props = {
-      variant: 'unfinished'
-    };
-    const { container } = renderComponent({ props });
-
-    const item = container.querySelector('.border-gray-100.marker-unfinished');
     expect(item).toBeInTheDocument();
   });
 

@@ -23,10 +23,10 @@ The stepper renders some space for `stepper-item` components. However, you can a
 Example of using this component with two stepper-items.
 ```html
 <stepper>
-  <stepper-item position="first" variant="finished">
+  <stepper-item position="first" :finished="true">
     First step
   </stepper-item>
-  <stepper-item position="last" variant="active">
+  <stepper-item position="last" :active="true">
     Last step
   </stepper-item>
 </stepper>
@@ -42,11 +42,30 @@ The `stepper-item` component is used for displaying a single item in the nested 
 
 ## How to Use
 
-The stepper item component accepts four props: `variant`, `position`, `dashedBorder` and `leftAlign`. `Variant` is used for the state of the step (finished, active, unfinished, error) and `position` is used for indicating if the step is the first, an intermediate one, or the last one.
+The stepper item is an atomic component that will render its state according to the props you pass in.
+
+The `position` prop indicates its position within the parent `Stepper`. By default, all StepperItems will assume they are in a middle position but you can specify `first` or `last` for the first child and last child.
+
+The `alignment` prop indicates what alignment you would like the marker within the item. By default, the alignment is `center` which will have the border line both to the left and right of the marker. You can specify either `left` or `right` alignment in order to move the marker so that there is a border on only one side. It is recommended that all StepperItems within a parent Stepper share the same alignment.
+
+The `textVerticalAlign` prop indicates whether you want your stepper item text above (`top`) or below (`bottom`) of the markers. By default, the textVerticalAlign is `bottom`. It is recommended that all StepperItems within a parent Stepper share the same textVerticalAlign.
+
+You can specify the `color` prop of the StepperItem. By default the marker and border will render in Lob's primary blue. If you provide a color, the marker and border will be updated to that color (we recommend importing the Tailwind colors into your component so you can be sure you are using approved brand colors).
+
+If you'd like to control the border color independently of the marker color, you can provide a `borderColor` prop.
+
+The final few props are booleans that toggle some state of the StepperItem. 
+
+`active` will add a larger border around the marker.
+
+`finished` will add a checkmark inside the marker.
+
+And `dashedBorder` will make the border behind the marker a dashed instead of a solid line.
+
 
 Example of using this component.
 ```html
-<stepper-item variant="unfinished" position="last">
+<stepper-item alignment="left" color="#ffb6db" border-color="#ccc" :dashed-border="true">
   Last step
 </stepper-item>
 ```
