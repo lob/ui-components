@@ -23,22 +23,22 @@ const Template = (args) => ({
   setup: () => ({ args }),
   template: `
     <Stepper>
-      <StepperItem position="first" :finished="true">
+      <StepperItem position="first" :finished="true" :alignment="args.alignment" :text-vertical-align="args.textVerticalAlign">
         <div class="text-center">
           Finished
         </div>
       </StepperItem>
-      <StepperItem variant="default" :active="true">
+      <StepperItem :active="true" :alignment="args.alignment" :text-vertical-align="args.textVerticalAlign">
         <div class="text-center">
           Active
         </div>
       </StepperItem>
-      <StepperItem color="${colors.error}">
+      <StepperItem color="${colors.error}" :alignment="args.alignment" :text-vertical-align="args.textVerticalAlign">
         <div class="text-center">
           Error
         </div>
       </StepperItem>
-      <StepperItem position="last" color="${colors.gray['100']}">
+      <StepperItem position="last" color="${colors.gray['100']}" :alignment="args.alignment" :text-vertical-align="args.textVerticalAlign">
         <div class="text-center">
           Unfinished
         </div>
@@ -48,6 +48,24 @@ const Template = (args) => ({
 });
 
 export const Primary = Template.bind({});
+Primary.argTypes = {
+  alignment: {
+    options: ['left', 'center', 'right'],
+    control: {
+      type: 'select'
+    }
+  },
+  textVerticalAlign: {
+    options: ['bottom', 'top'],
+    control: {
+      type: 'select'
+    }
+  }
+};
+Primary.args = {
+  alignment: 'center',
+  textVerticalAlign: 'bottom'
+};
 
 const ComplexTemplate = (args) => ({
   components: { Stepper, StepperItem },
@@ -129,6 +147,12 @@ Item.argTypes = {
   },
   alignment: {
     options: ['left', 'center', 'right'],
+    control: {
+      type: 'select'
+    }
+  },
+  textVerticalAlign: {
+    options: ['bottom', 'top'],
     control: {
       type: 'select'
     }

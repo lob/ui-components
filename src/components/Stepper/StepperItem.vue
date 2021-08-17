@@ -1,22 +1,36 @@
 <template>
   <div
     :class="[
-      'w-16 md:w-32 min-w-max flex flex-col border-t relative border-current',
+      'w-16 md:w-32 min-w-max flex flex-col relative border-current',
       {'items-start': alignLeft},
       {'items-center': alignCenter},
       {'items-end': alignRight},
       {'border-none': alignLeft && last},
-      {'half-border half-border-right': alignCenter && first},
-      {'half-border half-border-left': alignCenter && last},
+      {'half-border': alignCenter},
+      {'half-border-right': first},
+      {'half-border-left': last},
+      {'half-border-bottom': (first || last) && textBottom},
+      {'half-border-top': (first || last) && textTop},
       {'border-none': alignRight && first},
-      {'border-dashed ': dashedBorder}
+      {'border-dashed ': dashedBorder},
+      { 'border-t ': textBottom },
+      { 'border-b': textTop }
+
     ]"
     :style="`border-color: ${borderColor || color}`"
   >
     <div
+      v-if="textTop"
+      class="mb-6"
+    >
+      <slot />
+    </div>
+    <div
       :class="[
-        'z-10 rounded-full w-5 h-5 absolute mb-2 border border-transparent bg-white -top-2.5',
-        { '!border-current': active }
+        'z-10 rounded-full w-5 h-5 absolute border border-transparent bg-white',
+        { '!border-current': active },
+        { '-top-2.5': textBottom },
+        { 'top-10': textTop }
       ]"
       :style="`color: ${color}`"
     >
@@ -30,7 +44,10 @@
         />
       </div>
     </div>
-    <div class="mt-6">
+    <div
+      v-if="textBottom"
+      class="mt-6"
+    >
       <slot />
     </div>
   </div>
@@ -56,6 +73,11 @@ export default {
       type: String,
       default: 'center',
       validator: (prop) => ['left', 'center', 'right'].includes(prop)
+    },
+    textVerticalAlign: {
+      type: String,
+      default: 'bottom',
+      validator: (prop) => ['bottom', 'top'].includes(prop)
     },
     color: {
       type: String,
@@ -94,6 +116,12 @@ export default {
     },
     alignRight () {
       return this.alignment === 'right';
+    },
+    textTop () {
+      return this.textVerticalAlign === 'top';
+    },
+    textBottom () {
+      return this.textVerticalAlign === 'bottom';
     }
   }
 };
@@ -108,7 +136,6 @@ export default {
     @apply h-1;
     @apply bg-white;
     @apply absolute;
-    @apply -top-1;
 
     content: "";
   }
@@ -119,5 +146,13 @@ export default {
 
   .half-border-right::after {
     @apply left-0;
+  }
+
+  .half-border-bottom::after {
+    @apply -top-1;
+  }
+
+  .half-border-top::after {
+    @apply top-12;
   }
 </style>
