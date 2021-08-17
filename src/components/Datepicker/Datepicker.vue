@@ -97,7 +97,7 @@ export default {
   props: {
     modelValue: {
       type: Date,
-      default: new Date()
+      default: null
     },
     id: {
       type: String,

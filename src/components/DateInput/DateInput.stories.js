@@ -33,7 +33,7 @@ export default {
   }
 };
 
-const startDate = new Date();
+const startDate = null;
 const startDateOpen = false;
 
 const Template = (args, { argTypes }) => ({

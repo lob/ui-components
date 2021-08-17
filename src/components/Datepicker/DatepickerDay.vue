@@ -28,7 +28,7 @@ export default {
   props: {
     date: {
       type: Date,
-      default: ''
+      default: null
     },
     today: {
       type: Boolean,
