@@ -17,7 +17,10 @@ describe('StepperItem', () => {
     const item = container.querySelector('.items-center');
     expect(item).toBeInTheDocument();
 
-    const noItem = container.querySelector('.half-border');
+    let noItem = container.querySelector('.half-border-left');
+    expect(noItem).not.toBeInTheDocument();
+
+    noItem = container.querySelector('.half-border-right');
     expect(noItem).not.toBeInTheDocument();
   });
 
