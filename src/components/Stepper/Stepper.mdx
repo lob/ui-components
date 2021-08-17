@@ -48,6 +48,8 @@ The `position` prop indicates its position within the parent `Stepper`. By defau
 
 The `alignment` prop indicates what alignment you would like the marker within the item. By default, the alignment is `center` which will have the border line both to the left and right of the marker. You can specify either `left` or `right` alignment in order to move the marker so that there is a border on only one side. It is recommended that all StepperItems within a parent Stepper share the same alignment.
 
+The `textVerticalAlign` prop indicates whether you want your stepper item text above (`top`) or below (`bottom`) of the markers. By default, the textVerticalAlign is `bottom`. It is recommended that all StepperItems within a parent Stepper share the same textVerticalAlign.
+
 You can specify the `color` prop of the StepperItem. By default the marker and border will render in Lob's primary blue. If you provide a color, the marker and border will be updated to that color (we recommend importing the Tailwind colors into your component so you can be sure you are using approved brand colors).
 
 If you'd like to control the border color independently of the marker color, you can provide a `borderColor` prop.
