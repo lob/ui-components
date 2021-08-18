@@ -5,6 +5,7 @@
       v-model="dateString"
       :label="label"
       :sr-only-label="srOnlyLabel"
+      :size="size"
       @click.stop="isOpen = !isOpen"
       @keydown.space.stop="isOpen = !isOpen"
     />
@@ -59,6 +60,13 @@ export default {
     rightJustified: {
       type: Boolean,
       default: false
+    },
+    size: {
+      type: String,
+      default: 'default',
+      validator: function (value) {
+        return ['default', 'small'].includes(value);
+      }
     }
   },
   emits: ['update:modelValue', 'update:open'],
