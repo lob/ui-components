@@ -39,7 +39,7 @@ export default {
     },
     modelValue: {
       type: Date,
-      required: true
+      default: null
     },
     open: {
       type: Boolean,
@@ -88,7 +88,11 @@ export default {
       }
     },
     dateString () {
-      return format(this.date, this.t('dateFormat'));
+      if (this.date) {
+        return format(this.date, this.t('dateFormat'));
+      } else {
+        return '';
+      }
     },
     datepickerId () {
       return `${this.id}-datepicker`;
