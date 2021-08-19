@@ -14,7 +14,7 @@ export default {
       columns = defaultSlot.map((slotItem) => h('td', slotItem));
     }
     const tr = h('tr', columns);
-    return h('thead', tr);
+    return h('thead', this.$attrs, tr);
   }
 };
 </script>

@@ -102,6 +102,11 @@ const TableWithRowHoverEffectTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LobTable, TableHeader, TableRow, TableBody },
   setup: () => ({ args }),
+  methods: {
+    handleClick (item) {
+      console.log(`clicked row: ${item.name}`); //eslint-disable-line
+    }
+  },
   template: `
     <lob-table class="min-w-full divide-y divide-gray-200" :space="args.space">
       <TableHeader>
@@ -110,7 +115,7 @@ const TableWithRowHoverEffectTemplate = (args, { argTypes }) => ({
         <div class="sr-only">Edit</div>
       </TableHeader>
       <TableBody>
-        <TableRow v-for="item in args.items" class="hover:shadow rounded-md cursor-pointer">
+        <TableRow v-for="item in args.items" class="hover:shadow rounded-md cursor-pointer" @click="handleClick(item)">
           <div class="whitespace-nowrap">{{item.name}}</div>
           <div class="whitespace-nowrap">{{item.description}}</div>
           <div class="text-right text-xl">></div>
