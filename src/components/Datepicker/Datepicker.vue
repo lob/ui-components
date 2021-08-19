@@ -332,7 +332,7 @@ export default {
       this.hide();
     },
     onClickOutside ($event) {
-      if (typeof this.$refs.container !== 'undefined') {
+      if (this.$refs.container) {
         const clickOnTheDatepickerContainer = this.$refs.container === $event.target;
         const clickOnDatepickerChild = this.$refs.container && this.$refs.container.contains($event.target);
 
