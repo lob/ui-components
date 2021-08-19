@@ -13,7 +13,7 @@ export default {
       rows = defaultSlot.map((slotItem) => h('td', slotItem));
     }
 
-    return h('tr', rows);
+    return h('tr', this.$attrs, rows);
   }
 };
 </script>
