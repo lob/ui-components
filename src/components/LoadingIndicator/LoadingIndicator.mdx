@@ -1,0 +1,24 @@
+import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
+import LoadingIndicator from './LoadingIndicator.vue';
+
+# LoadingIndicator
+
+LoadingIndicator is a "dumb" component used to display a loading spinner until content is present in its default slot.
+
+To display the loading spinner, wrap all of your conditional content with this component and put a v-if on it so that it renders when loading is complete (data is fetched, calculations are done, etc). The loading spinner will display automatically until your content is rendered.
+
+<Preview>
+  <Story id="components-loading-indicator--primary" />
+</Preview>
+
+## How to Use
+
+```html
+<loading-indicator>
+  <p v-if="someLoadingCondition">I am a card.</p>
+</loading-indicator>
+```
+
+## Props
+
+<ArgsTable story={PRIMARY_STORY} />
