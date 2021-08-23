@@ -22,28 +22,31 @@ const Template = (args) => ({
   components: { Stepper, StepperItem },
   setup: () => ({ args }),
   template: `
+  <div class="bg-white-300 py-8">
     <Stepper>
-      <StepperItem position="first" :finished="true" :alignment="args.alignment" :text-vertical-align="args.textVerticalAlign">
+    <template v-slot="{ alignment, textVerticalAlign }">
+      <StepperItem position="first" :finished="true" :alignment="args.alignment" :text-vertical-align="args.textVerticalAlign" backgroundColor="${colors.white['300']}">
         <div class="text-center">
           Finished
         </div>
       </StepperItem>
-      <StepperItem :active="true" :alignment="args.alignment" :text-vertical-align="args.textVerticalAlign">
+      <StepperItem :active="true" :alignment="args.alignment" :text-vertical-align="args.textVerticalAlign" backgroundColor="${colors.white['300']}">
         <div class="text-center">
           Active
         </div>
       </StepperItem>
-      <StepperItem color="${colors.error}" :alignment="args.alignment" :text-vertical-align="args.textVerticalAlign">
+      <StepperItem color="${colors.error}" :alignment="args.alignment" :text-vertical-align="args.textVerticalAlign" backgroundColor="${colors.white['300']}">
         <div class="text-center">
           Error
         </div>
       </StepperItem>
-      <StepperItem position="last" color="${colors.gray['100']}" :alignment="args.alignment" :text-vertical-align="args.textVerticalAlign">
+      <StepperItem position="last" color="${colors.gray['100']}" :alignment="args.alignment" :text-vertical-align="args.textVerticalAlign" backgroundColor="${colors.white['300']}">
         <div class="text-center">
           Unfinished
         </div>
       </StepperItem>
     </Stepper>
+    </div>
     `
 });
 
