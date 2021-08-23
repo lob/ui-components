@@ -1,0 +1,33 @@
+<template>
+  <div
+    :class="loading ? 'loading-gif' : ''"
+    aria-live="polite"
+    :aria-busy="loading"
+    data-testId="loading-indicator"
+  >
+    <slot />
+  </div>
+</template>
+
+<script>
+import { Comment } from 'vue';
+
+export default {
+  name: 'Loading',
+  computed: {
+    loading () {
+      return !this.$slots.default || this.$slots.default().findIndex((o) => o.type !== Comment) === -1;
+    }
+  }
+};
+</script>
+
+<style lang="scss" scoped>
+.loading-gif {
+  background: #fff url(https://s3-us-west-2.amazonaws.com/public.lob.com/sites/loading-gif.svg) no-repeat center;
+  background-size: 12px 12px;
+  width: 100%;
+  height: 50px;
+  margin: 0 auto;
+}
+</style>
