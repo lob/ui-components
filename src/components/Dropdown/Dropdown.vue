@@ -264,6 +264,7 @@ export default {
     this.setSelectedInLifecycle();
   },
   updated () {
+    this.setSelectedInLifecycle();
     if (this.open && this.isScrollable(this.$refs.listbox) && this.$refs.activeOption) {
       this.maintainScrollVisibility(this.$refs.activeOption, this.$refs.listbox);
     }
