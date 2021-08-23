@@ -258,13 +258,15 @@ export default {
   watch: {
     options () {
       this.setSelectedInLifecycle();
+    },
+    modelValue () {
+      this.setSelectedInLifecycle();
     }
   },
   created () {
     this.setSelectedInLifecycle();
   },
   updated () {
-    this.setSelectedInLifecycle();
     if (this.open && this.isScrollable(this.$refs.listbox) && this.$refs.activeOption) {
       this.maintainScrollVisibility(this.$refs.activeOption, this.$refs.listbox);
     }
