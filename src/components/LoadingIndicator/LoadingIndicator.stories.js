@@ -5,7 +5,8 @@ export default {
   title: 'Components/Loading Indicator',
   component: LoadingIndicator,
   decorators: [
-    () => ({ template: '<div class="w-96 h-48"><story /></div>' })
+    // hard-coding height and width b/c PurgeCSS removes classes not used in our components
+    () => ({ template: '<div style="height: 12rem; width: 24rem;"><story /></div>' })
   ],
   parameters: {
     docs: {
