@@ -6,18 +6,16 @@
       { 'inline-block': sameLine }
     ]"
   >
-    <input
-      :id="name"
-      type="checkbox"
+    <BaseCheckbox
+      v-model="checkboxValue"
       class="absolute m-0 p-0 h-0 w-0 opacity-0 pointer-events-none"
-      :checked="checked"
       :value="value"
       :name="name"
       :disabled="disabled"
       :required="required"
-      @input="onInput"
-      @click="onClick"
-    >
+      @input="(checked) => $emit('input', checked)"
+      @click="($event) => $emit('click', $event)"
+    />
     <span
       style="content: '';"
       :class="[
@@ -41,8 +39,11 @@
 </template>
 
 <script>
+import BaseCheckbox from './BaseCheckbox.vue';
+
 export default {
   name: 'Checkbox',
+  components: { BaseCheckbox },
   props: {
     label: {
       type: String,
@@ -79,31 +80,19 @@ export default {
   },
   emits: ['update:modelValue', 'input', 'click'],
   computed: {
-    checked () {
-      if (this.modelValue && typeof this.modelValue === 'object') {
-        return this.modelValue.includes(this.value);
-      }
-      return this.modelValue;
-    }
-  },
-  methods: {
-    onInput ($event) {
-      if (this.modelValue && typeof this.modelValue === 'object') {
-        const checked = [...this.modelValue];
-        if (checked.includes(this.value)) {
-          checked.splice(checked.indexOf(this.value), 1);
-        } else {
-          checked.push(this.value);
-        }
+    checkboxValue: {
+      get () {
+        return this.modelValue;
+      },
+      set (checked) {
         this.$emit('update:modelValue', checked);
-        this.$emit('input', checked);
-      } else {
-        this.$emit('update:modelValue', $event.target.checked);
-        this.$emit('input', $event.target.checked);
       }
     },
-    onClick ($event) {
-      this.$emit('click', $event);
+    checked () {
+      if (this.checkboxValue && typeof this.checkboxValue === 'object') {
+        return this.checkboxValue.includes(this.value);
+      }
+      return this.checkboxValue;
     }
   }
 };
