@@ -258,6 +258,9 @@ export default {
   watch: {
     options () {
       this.setSelectedInLifecycle();
+    },
+    modelValue () {
+      this.setSelectedInLifecycle();
     }
   },
   created () {
