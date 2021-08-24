@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import { render, fireEvent } from '@testing-library/vue';
-import Checkbox from '../Checkbox.vue';
+import ToggleButton from '../ToggleButton.vue';
 
 const initialProps = {
   modelValue: false,
@@ -10,9 +10,9 @@ const initialProps = {
   disabled: false
 };
 
-const renderComponent = (options) => render(Checkbox, { ...options });
+const renderComponent = (options) => render(ToggleButton, { ...options });
 
-describe('Checkbox', () => {
+describe('ToggleButton', () => {
 
   it('renders correctly', () => {
     const props = {
@@ -23,8 +23,8 @@ describe('Checkbox', () => {
 
     const label = queryByText(props.label);
     expect(label).toBeInTheDocument();
-    const checkbox = queryByLabelText(props.label);
-    expect(checkbox).toBeInTheDocument();
+    const toggleButton = queryByLabelText(props.label);
+    expect(toggleButton).toBeInTheDocument();
   });
 
   it('disables the input when disabled prop is true', () => {
@@ -35,8 +35,8 @@ describe('Checkbox', () => {
 
     const { getByLabelText } = renderComponent({ props });
 
-    const checkbox = getByLabelText(props.label);
-    expect(checkbox).toBeDisabled();
+    const toggleButton = getByLabelText(props.label);
+    expect(toggleButton).toBeDisabled();
   });
 
   it('requires the input when required prop is true', () => {
@@ -47,8 +47,8 @@ describe('Checkbox', () => {
 
     const { getByLabelText } = renderComponent({ props });
 
-    const checkbox = getByLabelText(new RegExp(props.label));
-    expect(checkbox).toBeRequired();
+    const toggleButton = getByLabelText(new RegExp(props.label));
+    expect(toggleButton).toBeRequired();
   });
 
   it('adds an error class when error prop is true', () => {
@@ -59,30 +59,30 @@ describe('Checkbox', () => {
 
     const { getByTestId } = renderComponent({ props });
 
-    const checkmark = getByTestId('checkmark');
-    expect(checkmark).toHaveClass('border-error');
+    const toggle = getByTestId('toggle');
+    expect(toggle).toHaveClass('!border-error');
   });
 
   it('fires the input event when the input is clicked', async () => {
     const props = initialProps;
     const { getByLabelText, emitted } = renderComponent({ props });
 
-    const checkbox = getByLabelText(props.label);
+    const toggleButton = getByLabelText(props.label);
 
-    await fireEvent.click(checkbox); // checks de checkbox
+    await fireEvent.click(toggleButton);
     const emittedEvent = emitted();
     expect(emittedEvent).toHaveProperty('input');
     expect(emittedEvent.input[0]).toEqual([true]);
-    expect(checkbox).toBeChecked();
+    expect(toggleButton).toBeChecked();
   });
 
   it('fires the click event when the input is clicked', async () => {
     const props = initialProps;
     const { getByLabelText, emitted } = renderComponent({ props });
 
-    const checkbox = getByLabelText(props.label);
+    const toggleButton = getByLabelText(props.label);
 
-    await fireEvent.click(checkbox); // checks de checkbox
+    await fireEvent.click(toggleButton);
     const emittedEvent = emitted();
     expect(emittedEvent).toHaveProperty('click');
   });
@@ -95,21 +95,21 @@ describe('Checkbox', () => {
         const props = initialProps;
         const { getByLabelText } = renderComponent({ props });
 
-        const checkbox = getByLabelText(props.label);
-        expect(checkbox).not.toBeChecked();
+        const toggleButton = getByLabelText(props.label);
+        expect(toggleButton).not.toBeChecked();
       });
 
       it('emits an input event with the value true when clicked', async () => {
         const props = initialProps;
         const { getByLabelText, emitted } = renderComponent({ props });
 
-        const checkbox = getByLabelText(props.label);
+        const toggleButton = getByLabelText(props.label);
 
-        await fireEvent.click(checkbox);
+        await fireEvent.click(toggleButton);
         const emittedEvent = emitted();
         expect(emittedEvent).toHaveProperty('input');
         expect(emittedEvent.input[0]).toEqual([true]);
-        expect(checkbox).toBeChecked();
+        expect(toggleButton).toBeChecked();
       });
 
     });
@@ -123,8 +123,8 @@ describe('Checkbox', () => {
         };
         const { getByLabelText } = renderComponent({ props });
 
-        const checkbox = getByLabelText(props.label);
-        expect(checkbox).toBeChecked();
+        const toggleButton = getByLabelText(props.label);
+        expect(toggleButton).toBeChecked();
       });
 
       it('emits an input event with the value true when clicked', async () => {
@@ -134,13 +134,13 @@ describe('Checkbox', () => {
         };
         const { getByLabelText, emitted } = renderComponent({ props });
 
-        const checkbox = getByLabelText(props.label);
+        const toggleButton = getByLabelText(props.label);
 
-        await fireEvent.click(checkbox);
+        await fireEvent.click(toggleButton);
         const emittedEvent = emitted();
         expect(emittedEvent).toHaveProperty('input');
         expect(emittedEvent.input[0]).toEqual([false]);
-        expect(checkbox).not.toBeChecked();
+        expect(toggleButton).not.toBeChecked();
       });
 
     });
@@ -158,8 +158,8 @@ describe('Checkbox', () => {
 
       const { getByLabelText } = renderComponent({ props });
 
-      const checkbox = getByLabelText(props.label);
-      expect(checkbox).not.toBeChecked();
+      const toggleButton = getByLabelText(props.label);
+      expect(toggleButton).not.toBeChecked();
     });
 
     it('checks the input when the v-model does contain the value', () => {
@@ -170,11 +170,11 @@ describe('Checkbox', () => {
       };
       const { getByLabelText } = renderComponent({ props });
 
-      const checkbox = getByLabelText(props.label);
-      expect(checkbox).toBeChecked();
+      const toggleButton = getByLabelText(props.label);
+      expect(toggleButton).toBeChecked();
     });
 
-    it('emits an input event that contains value of the checkbox when clicked', async () => {
+    it('emits an input event that contains value of the toggle button when clicked', async () => {
       const props = {
         ...initialProps,
         value: 'test',
@@ -182,13 +182,13 @@ describe('Checkbox', () => {
       };
       const { getByLabelText, emitted } = renderComponent({ props });
 
-      const checkbox = getByLabelText(props.label);
+      const toggleButton = getByLabelText(props.label);
 
-      await fireEvent.click(checkbox);
+      await fireEvent.click(toggleButton);
       const emittedEvent = emitted();
       expect(emittedEvent).toHaveProperty('input');
       expect(emittedEvent.input[0][0]).toContain('test');
-      expect(checkbox).toBeChecked();
+      expect(toggleButton).toBeChecked();
     });
 
   });

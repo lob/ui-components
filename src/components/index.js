@@ -32,6 +32,7 @@ export { default as TableBody } from './Table/TableBody';
 export { default as TableRow } from './Table/TableRow';
 export { default as Textarea } from './Textarea/Textarea';
 export { default as TextInput } from './TextInput/TextInput';
+export { default as ToggleButton } from './ToggleButton/ToggleButton';
 export { default as Tooltip } from './Tooltip/Tooltip';
 export { default as TopNavbar } from './TopNavbar/TopNavbar';
 export { default as Stepper } from './Stepper/Stepper';
