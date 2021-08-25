@@ -7,30 +7,20 @@
       {'items-end': alignRight}
     ]"
   >
-    <div
-      :style="`color: ${backgroundColor}`"
-    >
-      <div
-        :class="[
-          'w-16 md:w-32 min-w-max flex flex-col relative border-current',
-          {'items-start': alignLeft},
-          {'items-center': alignCenter},
-          {'items-end': alignRight},
-          {'border-none': alignLeft && last},
-          {'half-border': alignCenter},
-          {'half-border-right': first},
-          {'half-border-left': last},
-          {'half-border-bottom': (first || last) && textBottom},
-          {'half-border-top': (first || last) && textTop},
-          {'border-none': alignRight && first},
-          {'border-dashed ': dashedBorder},
-          { 'border-t ': textBottom },
-          { 'border-b': textTop }
-
-        ]"
-        :style="`border-color: ${borderColor || color}`"
-      />
-    </div>
+    <StepperItemBorder
+      v-if="textBottom"
+      :background-color="backgroundColor"
+      :align-left="alignLeft"
+      :align-center="alignCenter"
+      :align-right="alignRight"
+      :first="first"
+      :last="last"
+      :text-bottom="textBottom"
+      :text-top="textTop"
+      :dashed-border="dashedBorder"
+      :border-color="borderColor"
+      :color="color"
+    />
     <div
       :class="[
         'w-16 md:w-32 min-w-max  flex flex-col relative',
@@ -71,11 +61,26 @@
         <slot />
       </div>
     </div>
+    <StepperItemBorder
+      v-if="textTop"
+      :background-color="backgroundColor"
+      :align-left="alignLeft"
+      :align-center="alignCenter"
+      :align-right="alignRight"
+      :first="first"
+      :last="last"
+      :text-bottom="textBottom"
+      :text-top="textTop"
+      :dashed-border="dashedBorder"
+      :border-color="borderColor"
+      :color="color"
+    />
   </div>
 </template>
 
 <script>
 import { Check } from '../Icons';
+import StepperItemBorder from './StepperItemBorder.vue';
 import { config } from 'tailwind-plugin-lob';
 
 const { theme } = config;
@@ -83,7 +88,7 @@ const { colors } = theme;
 
 export default {
   name: 'StepperItem',
-  components: { Check },
+  components: { Check, StepperItemBorder },
   props: {
     position: {
       type: String,
@@ -111,7 +116,7 @@ export default {
     },
     backgroundColor: {
       type: String,
-      default: null
+      default: 'transparent'
     },
     active: {
       type: Boolean,
@@ -152,32 +157,3 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-  .half-border::after {
-    @apply p-0;
-    @apply m-0;
-    @apply block;
-    @apply w-1/2;
-    @apply h-1;
-    @apply bg-current;
-    @apply absolute;
-
-    content: "";
-  }
-
-  .half-border-left::after {
-    @apply right-0;
-  }
-
-  .half-border-right::after {
-    @apply left-0;
-  }
-
-  .half-border-bottom::after {
-    @apply -top-1;
-  }
-
-  .half-border-top::after {
-    @apply top-12;
-  }
-</style>
