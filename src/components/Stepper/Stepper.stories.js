@@ -24,7 +24,6 @@ const Template = (args) => ({
   template: `
   <div class="bg-white-300 py-8">
     <Stepper>
-    <template v-slot="{ alignment, textVerticalAlign }">
       <StepperItem position="first" :finished="true" :alignment="args.alignment" :text-vertical-align="args.textVerticalAlign" backgroundColor="${colors.white['300']}">
         <div class="text-center">
           Finished
