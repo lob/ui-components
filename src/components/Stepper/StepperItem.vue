@@ -164,6 +164,5 @@ export default {
   @screen md {
     min-width: 8rem;
   }
-
 }
 </style>

@@ -87,35 +87,35 @@ export default {
   }
 }
 
-  .half-border::after {
-    @apply p-0;
-    @apply m-0;
-    @apply block;
-    @apply w-1/2;
-    @apply h-1;
-    @apply bg-current;
-    @apply absolute;
+.half-border::after {
+  @apply p-0;
+  @apply m-0;
+  @apply block;
+  @apply w-1/2;
+  @apply h-1;
+  @apply bg-current;
+  @apply absolute;
 
-    content: "";
-  }
+  content: "";
+}
 
-  .half-border.border-b:not(.half-border-left):not(.half-border-right):after {
-    @apply -top-3;
-  }
+.half-border.border-b:not(.half-border-left):not(.half-border-right)::after {
+  @apply -top-3;
+}
 
-  .half-border-left::after {
-    @apply right-0;
-  }
+.half-border-left::after {
+  @apply right-0;
+}
 
-  .half-border-right::after {
-    @apply left-0;
-  }
+.half-border-right::after {
+  @apply left-0;
+}
 
-  .half-border-bottom::after {
-    @apply -top-1;
-  }
+.half-border-bottom::after {
+  @apply -top-1;
+}
 
-  .half-border-top::after {
-    @apply top-0;
-  }
+.half-border-top::after {
+  @apply top-0;
+}
 </style>
