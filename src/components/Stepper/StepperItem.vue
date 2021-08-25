@@ -1,60 +1,86 @@
 <template>
   <div
     :class="[
-      'w-16 md:w-32 min-w-max flex flex-col relative border-current',
+      'stepper-item flex flex-col relative border-current',
       {'items-start': alignLeft},
       {'items-center': alignCenter},
-      {'items-end': alignRight},
-      {'border-none': alignLeft && last},
-      {'half-border': alignCenter},
-      {'half-border-right': first},
-      {'half-border-left': last},
-      {'half-border-bottom': (first || last) && textBottom},
-      {'half-border-top': (first || last) && textTop},
-      {'border-none': alignRight && first},
-      {'border-dashed ': dashedBorder},
-      { 'border-t ': textBottom },
-      { 'border-b': textTop }
-
+      {'items-end': alignRight}
     ]"
-    :style="`border-color: ${borderColor || color}`"
   >
-    <div
-      v-if="textTop"
-      class="mb-6"
-    >
-      <slot />
-    </div>
+    <StepperItemBorder
+      v-if="textBottom"
+      :background-color="backgroundColor"
+      :align-left="alignLeft"
+      :align-center="alignCenter"
+      :align-right="alignRight"
+      :first="first"
+      :last="last"
+      :text-bottom="textBottom"
+      :text-top="textTop"
+      :dashed-border="dashedBorder"
+      :border-color="borderColor"
+      :color="color"
+    />
     <div
       :class="[
-        'z-10 rounded-full w-5 h-5 absolute border border-transparent bg-white',
-        { '!border-current': active },
-        { '-top-2.5': textBottom },
-        { 'top-10': textTop }
+        'w-16 md:w-32 min-w-max  flex flex-col relative',
+        {'items-start': alignLeft},
+        {'items-center': alignCenter},
+        {'items-end': alignRight}
       ]"
-      :style="`color: ${color}`"
     >
       <div
-        class="rounded-full w-3 h-3 absolute bg-current"
-        style="left: 0.1875rem; top: 0.1875rem; color: ${color};"
+        v-if="textTop"
+        class="mb-6"
       >
-        <check
-          v-if="finished"
-          class="w-2 absolute top-0.5 left-0.5 z-20 text-white"
-        />
+        <slot />
+      </div>
+      <div
+        :class="[
+          'z-10 rounded-full w-5 h-5 absolute border border-transparent',
+          { '!border-current': active },
+          { '-top-2.5': textBottom },
+          { 'top-10': textTop }
+        ]"
+        :style="`color: ${color}; background-color: ${backgroundColor}`"
+      >
+        <div
+          class="rounded-full w-3 h-3 absolute bg-current"
+          style="left: 0.1875rem; top: 0.1875rem; color: ${color};"
+        >
+          <check
+            v-if="finished"
+            class="w-2 absolute top-0.5 left-0.5 z-20 text-white"
+          />
+        </div>
+      </div>
+      <div
+        v-if="textBottom"
+        class="mt-6"
+      >
+        <slot />
       </div>
     </div>
-    <div
-      v-if="textBottom"
-      class="mt-6"
-    >
-      <slot />
-    </div>
+    <StepperItemBorder
+      v-if="textTop"
+      :background-color="backgroundColor"
+      :align-left="alignLeft"
+      :align-center="alignCenter"
+      :align-right="alignRight"
+      :first="first"
+      :last="last"
+      :text-bottom="textBottom"
+      :text-top="textTop"
+      :dashed-border="dashedBorder"
+      :border-color="borderColor"
+      :color="color"
+    />
   </div>
 </template>
 
 <script>
 import { Check } from '../Icons';
+import StepperItemBorder from './StepperItemBorder.vue';
 import { config } from 'tailwind-plugin-lob';
 
 const { theme } = config;
@@ -62,7 +88,7 @@ const { colors } = theme;
 
 export default {
   name: 'StepperItem',
-  components: { Check },
+  components: { Check, StepperItemBorder },
   props: {
     position: {
       type: String,
@@ -87,6 +113,10 @@ export default {
     borderColor: {
       type: String,
       default: null
+    },
+    backgroundColor: {
+      type: String,
+      default: colors.white.DEFAULT
     },
     active: {
       type: Boolean,
@@ -128,31 +158,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .half-border::after {
-    @apply p-0;
-    @apply m-0;
-    @apply block;
-    @apply w-1/2;
-    @apply h-1;
-    @apply bg-white;
-    @apply absolute;
+.stepper-item {
+  min-width: 4rem;
 
-    content: "";
+  @screen md {
+    min-width: 8rem;
   }
-
-  .half-border-left::after {
-    @apply right-0;
-  }
-
-  .half-border-right::after {
-    @apply left-0;
-  }
-
-  .half-border-bottom::after {
-    @apply -top-1;
-  }
-
-  .half-border-top::after {
-    @apply top-12;
-  }
+}
 </style>
