@@ -22,7 +22,7 @@ const Template = (args) => ({
   components: { Stepper, StepperItem },
   setup: () => ({ args }),
   template: `
-  <div class="bg-white-300 py-8">
+  <div class="bg-white-300" style="padding: 2rem 0;">
     <Stepper>
       <StepperItem position="first" :finished="true" :alignment="args.alignment" :text-vertical-align="args.textVerticalAlign" backgroundColor="${colors.white['300']}">
         <div class="text-center">
