@@ -5,7 +5,7 @@ export default {
   name: 'TableHeader',
   render () {
     const defaultSlot = this.$slots.default();
-    const isNestedSlot = Array.isArray(defaultSlot[0].children);
+    const isNestedSlot = defaultSlot[0].type === 'template';
 
     let columns;
     if (isNestedSlot) {

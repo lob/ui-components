@@ -1,7 +1,7 @@
 <template>
   <div
     :class="[
-      'stepper-item flex flex-col relative border-current',
+      'stepper-item flex flex-col relative border-current mb-8',
       {'items-start': alignLeft},
       {'items-center': alignCenter},
       {'items-end': alignRight}
