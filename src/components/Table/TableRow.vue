@@ -4,7 +4,7 @@ export default {
   name: 'TableRow',
   render () {
     const defaultSlot = this.$slots.default();
-    const isNestedSlot = defaultSlot[0].type === 'template';
+    const isNestedSlot = defaultSlot[0].type === 'template' || defaultSlot[0].type.toString() === 'Symbol(Fragment)';
 
     let rows;
     if (isNestedSlot) {
