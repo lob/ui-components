@@ -1,7 +1,7 @@
 <template>
   <div
     :class="[
-      'w-16 md:w-32 min-w-max flex flex-col relative border-current',
+      'stepper-item flex flex-col relative border-current',
       {'items-start': alignLeft},
       {'items-center': alignCenter},
       {'items-end': alignRight}
@@ -37,12 +37,12 @@
       </div>
       <div
         :class="[
-          'z-10 rounded-full w-5 h-5 absolute border border-transparent bg-white',
+          'z-10 rounded-full w-5 h-5 absolute border border-transparent',
           { '!border-current': active },
           { '-top-2.5': textBottom },
           { 'top-10': textTop }
         ]"
-        :style="`color: ${color}`"
+        :style="`color: ${color}; background-color: ${backgroundColor}`"
       >
         <div
           class="rounded-full w-3 h-3 absolute bg-current"
@@ -116,7 +116,7 @@ export default {
     },
     backgroundColor: {
       type: String,
-      default: 'transparent'
+      default: colors.white.DEFAULT
     },
     active: {
       type: Boolean,
@@ -157,3 +157,13 @@ export default {
 };
 </script>
 
+<style scoped lang="scss">
+.stepper-item {
+  min-width: 4rem;
+
+  @screen md {
+    min-width: 8rem;
+  }
+
+}
+</style>

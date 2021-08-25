@@ -1,10 +1,11 @@
 <template>
   <div
+    class="w-full"
     :style="`color: ${backgroundColor}`"
   >
     <div
       :class="[
-        'w-16 md:w-32 min-w-max flex flex-col relative border-current',
+        'stepper-item-border flex flex-col relative border-current',
         {'items-start': alignLeft},
         {'items-center': alignCenter},
         {'items-end': alignRight},
@@ -78,6 +79,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.stepper-item-border {
+  min-width: 4rem;
+
+  @screen md {
+    min-width: 8rem;
+  }
+}
+
   .half-border::after {
     @apply p-0;
     @apply m-0;
