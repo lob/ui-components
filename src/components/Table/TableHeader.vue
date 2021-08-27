@@ -5,7 +5,7 @@ export default {
   name: 'TableHeader',
   render () {
     const defaultSlot = this.$slots.default();
-    const isNestedSlot = defaultSlot[0].type === 'template' || defaultSlot[0].type.toString() === 'Symbol(Fragment)';
+    const isNestedSlot = defaultSlot[0].type === 'template' || defaultSlot[0].type.toString() === 'Symbol(Fragment)' || defaultSlot[0].type.toString() === 'Symbol()';
 
     let columns;
     if (isNestedSlot) {
