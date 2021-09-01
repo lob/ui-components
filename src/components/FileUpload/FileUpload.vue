@@ -83,6 +83,9 @@ export default {
         this.fileSelected = file.name;
         this.$emit('fileUpload', event);
       }
+    },
+    clear () {
+      this.$refs.fileInput.value = null;
     }
   }
 };
