@@ -10,6 +10,7 @@ export { default as Dropdown } from './Dropdown/Dropdown';
 export { default as FileUpload } from './FileUpload/FileUpload';
 export { default as FilterContent } from './FilterContent/FilterContent';
 export * from './Icons';
+export { default as LoadingIndicator } from './LoadingIndicator/LoadingIndicator';
 export { default as LobLink } from './Link/Link';
 export { default as MainNavigation } from './MainNavigation/MainNavigation';
 export { default as MainNavigationItem } from './MainNavigation/MainNavigationItem';
