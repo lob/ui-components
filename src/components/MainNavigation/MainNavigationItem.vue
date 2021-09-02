@@ -46,8 +46,11 @@
 </template>
 
 <script>
+import LobLink from '../Link/Link';
+
 export default {
   name: 'MainNavigationItem',
+  components: { LobLink },
   props: {
     title: {
       type: String,
@@ -89,7 +92,7 @@ export default {
       return Boolean(this.$slots.default);
     },
     tag () {
-      return this.to ? 'router-link' : 'button';
+      return this.to ? 'LobLink' : 'button';
     },
     clickEvent () {
       return !this.to ? 'click' : null;

@@ -6,19 +6,22 @@
     ]"
     data-testid="nav-child-item"
   >
-    <router-link
+    <LobLink
       :to="to"
       class="w-full py-1 pl-8 overflow-hidden text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent"
       @click.stop="handleNavigation"
     >
       {{ title }}
-    </router-link>
+    </LobLink>
   </li>
 </template>
 
 <script>
+import LobLink from '../Link/Link';
+
 export default {
   name: 'MainNavigationChildItem',
+  components: { LobLink },
   props: {
     title: {
       type: String,
@@ -32,7 +35,7 @@ export default {
   emits: ['nav'],
   computed: {
     active () {
-      return this.$route.path === this.to;
+      return this.$route.path.includes(this.to);
     }
   },
   methods: {
