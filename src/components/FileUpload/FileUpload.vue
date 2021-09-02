@@ -86,6 +86,7 @@ export default {
     },
     clear () {
       this.$refs.fileInput.value = null;
+      this.fileSelected = '';
     }
   }
 };
