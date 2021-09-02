@@ -9,7 +9,7 @@
       aria-controls="filename"
       tabindex="0"
       :class="[
-        'button bg-white-200 border border-primary-500 text-primary-500 active:text-primary-700 active:border-primary-700 disabled:border-gray-100 rounded disabled:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent cursor-pointer inline-block truncate',
+        'button bg-white-200 border border-primary-500 text-primary-500 active:text-primary-700 active:border-primary-700 disabled:border-gray-100 rounded disabled:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent cursor-pointer inline-block truncate w-full',
         { 'px-6 py-3.5': defaultSize },
         { 'px-3 py-2': small },
         { 'px-6 py-4.5': large }
