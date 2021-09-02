@@ -15,6 +15,7 @@ jobs:
     # You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     docker:
       - image: cimg/node:14.16.1-browsers
+    resource_class: large
     # Then run your tests!
     steps:
       # Checkout the code as the first step.
