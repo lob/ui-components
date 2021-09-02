@@ -6,6 +6,7 @@
         'no-underline py-4 px-6 max-h-12 flex items-center w-full font-light text-sm text-left text-gray-500 relative overflow-hidden hover:text-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent'
       ]"
       :to="to"
+      :underline="false"
       active-class="text-normal bg-white-300 font-medium"
       @click.stop="handleNavigation"
       @[clickEvent].stop="toggleSubNav"
