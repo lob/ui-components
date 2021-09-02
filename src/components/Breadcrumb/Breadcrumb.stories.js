@@ -8,7 +8,7 @@ export default {
   title: 'Components/Breadcrumb',
   component: Breadcrumb,
   decorators: [
-    routeDecorator('/envelopes/create', [
+    routeDecorator('/envelopes/env_f488a53a4801c87f5', [
       {
         path: '/',
         component: {
@@ -18,21 +18,27 @@ export default {
       {
         path: '/envelopes',
         component: {
-          template: '<div><h1>Letters</h1><router-view /></div>'
+          template: '<div><h1>Envelopes</h1><router-view /></div>'
         },
         children: [
           {
             path: '',
-            name: 'Envelopes',
+            name: 'EnvelopesList',
             component: {
               template: routeTemplate('envelopes')
+            },
+            meta: {
+              displayName: 'Envelopes'
             }
           },
           {
-            path: 'create',
-            name: 'Create Envelope',
+            path: ':id',
+            name: 'ViewEnvelope',
             component: {
-              template: routeTemplate('create')
+              template: routeTemplate('view')
+            },
+            meta: {
+              useParamsForDisplay: true
             }
           }
         ]
