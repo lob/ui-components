@@ -1,10 +1,30 @@
 <template>
-  <TextInput
-    :id="id"
-    :label="label"
-    :sr-only-label="srOnlyLabel"
-    :size="size"
-  />
+  <div class="relative">
+    <TextInput
+      :id="id"
+      ref="input"
+      v-model="search"
+      :label="label"
+      :sr-only-label="srOnlyLabel"
+      :size="size"
+      @focus="open = true"
+      @blur="open = false"
+    />
+    <div
+      v-if="open"
+      role="listbox"
+      :aria-expanded="open"
+      class="absolute rounded border border-gray-100 mt-0.5 w-full left-0"
+    >
+      <option
+        v-for="option in options"
+        :key="option.value"
+        class="my-1 mx-4"
+      >
+        {{ option.label }}
+      </option>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -42,6 +62,12 @@ export default {
       required: true
     }
   },
-  emits: ['update:modelValue']
+  emits: ['update:modelValue'],
+  data () {
+    return {
+      open: false,
+      search: ''
+    };
+  }
 };
 </script>
