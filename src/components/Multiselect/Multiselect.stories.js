@@ -3,6 +3,9 @@ import Multiselect from './Multiselect.vue';
 export default {
   title: 'Components/Multiselect',
   component: Multiselect,
+  decorators: [
+    () => ({ template: '<div class="w-72"><story /></div>' })
+  ],
   argTypes: {
     modelValue: {
       table: {
@@ -11,6 +14,8 @@ export default {
     }
   }
 };
+
+const selected = [];
 
 const options = [
   { label: 'Egypt', value: 'EG' },
@@ -21,13 +26,15 @@ const options = [
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: {  Multiselect },
+  data: () => ({ selected }),
   setup: () => ({ args }),
-  template: '<multiselect v-bind="args"></multiselect>'
+  template: '<multiselect v-bind="args" v-model="selected"></multiselect>'
 });
 
 export const Primary = Template.bind({});
 Primary.args = {
   id: 'country',
   label: 'Destination Country',
-  options
+  options,
+  inputWidthClass: 'w-40'
 };

@@ -9,7 +9,8 @@
     <div
       data-testId="input-container"
       :class="[
-        `flex items-center rounded border border-gray-100 focus-within:outline-none focus-within:ring-2 focus-within:ring-primary-100 focus-within:border-transparent ${inputClass}`,
+        'rounded border border-gray-100 focus-within:outline-none focus-within:ring-2 focus-within:ring-primary-100 focus-within:border-transparent',
+        {'flex items-center': !selectedOptions},
         {'!border-0': withCopyButton},
         {'hover:shadow': !disabled && !readonly},
         {'border-error': error}
@@ -21,6 +22,7 @@
       >
         <slot name="iconLeft" />
       </div>
+      <slot name="selectedOptions" />
       <input
         :id="id"
         ref="input"
@@ -43,7 +45,6 @@
         :readonly="readonly"
         @input="onInput"
         @focus="$emit('focus')"
-        @blur="$emit('blur')"
       >
       <div
         v-if="iconRight"
@@ -158,6 +159,9 @@ export default {
     },
     iconRight () {
       return this.$slots.iconRight;
+    },
+    selectedOptions () {
+      return this.$slots.selectedOptions;
     }
   },
   methods: {

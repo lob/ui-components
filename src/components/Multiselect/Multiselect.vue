@@ -10,8 +10,21 @@
       :label="label"
       :sr-only-label="srOnlyLabel"
       :size="size"
+      :input-class="`!${inputWidthClass}`"
       @focus="open = true"
-    />
+    >
+      <template #selectedOptions>
+        <Badge
+          v-for="option in modelValue"
+          :key="option.value"
+          variant="turquoise"
+          :size="size"
+          class="mt-1 ml-1"
+        >
+          {{ option.label }}
+        </Badge>
+      </template>
+    </TextInput>
     <ul
       v-show="open"
       role="listbox"
@@ -19,7 +32,8 @@
       class="absolute rounded border border-gray-100 mt-0.5 w-full left-0"
     >
       <li
-        v-for="option in options"
+        v-for="option in availableOptions"
+        :id="option.value"
         :key="option.value"
         class="my-1 mx-4 cursor-pointer"
         @click="handleOptionClick"
@@ -32,10 +46,11 @@
 
 <script>
 import TextInput from '../TextInput/TextInput';
+import Badge from '../Badge/Badge';
 
 export default {
   name: 'Multiselect',
-  components: { TextInput },
+  components: { TextInput, Badge },
   props: {
     modelValue: { // selected
       type: Array,
@@ -63,12 +78,17 @@ export default {
     options: {
       type: Object,
       required: true
+    },
+    inputWidthClass: {
+      type: String,
+      default: ''
     }
   },
   emits: ['update:modelValue'],
   data () {
     return {
       open: false,
+      availableOptions: this.options,
       search: ''
     };
   },
@@ -90,8 +110,21 @@ export default {
       }
     },
     handleOptionClick ($event) {
-      // eslint-disable-next-line
-      console.log($event);
+      const label = $event.target.innerText;
+      const value = $event.target.id;
+
+      // emit new selected array to update v-model
+      const newSelected = [...this.modelValue];
+      newSelected.push({ label, value });
+      this.$emit('update:modelValue', newSelected);
+
+      // remove selected from availableOptions array
+      const newOptions = [...this.availableOptions];
+      const index = newOptions.findIndex((option) => option.value === value);
+      newOptions.splice(index, 1);
+      this.availableOptions = newOptions;
+
+      // close the dropdown
       this.open = false;
     }
   }
