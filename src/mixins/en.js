@@ -35,6 +35,11 @@ export default {
     prevPageLabelMobile: 'Prev',
     nextPageLabelMobile: 'Next'
   },
+  multiselect: {
+    deselectLabel: 'Deselect',
+    noMatch: 'No available options match your search.',
+    allSelected: 'No more options are available to select.'
+  },
   search: {
     textLabel: 'Search term',
     closeLabel: 'Close',

@@ -9,7 +9,7 @@
       v-model="search"
       :label="label"
       :sr-only-label="srOnlyLabel"
-      :placeholder="inputPlaceholder"
+      :placeholder="modelValue && modelValue.length ? '' : placeholder"
       :size="size"
       :input-class="`!${inputWidthClass}`"
       @focus="open = true"
@@ -30,6 +30,7 @@
               @click="() => handleOptionDeselect(option)"
             >
               <Close class="w-4 h-4" />
+              <span class="sr-only">{{ t('multiselect.deselectLabel') }}</span>
             </LobButton>
           </div>
         </Badge>
@@ -54,13 +55,13 @@
         v-if="displayedOptions.length === 0 && search"
         class="my-1 mx-4"
       >
-        No options match your search.
+        {{ t('multiselect.noMatch') }}
       </li>
       <li
         v-if="displayedOptions.length === 0 && !search"
         class="my-1 mx-4"
       >
-        No more options are available to select.
+        {{ t('multiselect.allSelected') }}
       </li>
     </ul>
   </div>
@@ -79,7 +80,7 @@ export default {
   props: {
     modelValue: { // selected
       type: Array,
-      default: null
+      required: true
     },
     id: {
       type: String,
@@ -124,8 +125,7 @@ export default {
   data () {
     return {
       open: false,
-      inputPlaceholder: this.placeholder,
-      availableOptions: this.options,
+      availableOptions: filterArrOfObj(this.options, this.modelValue),
       search: ''
     };
   },
@@ -164,8 +164,7 @@ export default {
       }
     },
     handleOptionSelect (selectedOpt) {
-      const newSelectedList = [...this.modelValue];
-      newSelectedList.push(selectedOpt);
+      const newSelectedList = [...this.modelValue, selectedOpt];
       this.$emit('update:modelValue', newSelectedList);
 
       this.availableOptions = this.availableOptions.filter((opt) => opt.value !== selectedOpt.value);
@@ -173,18 +172,11 @@ export default {
       if (this.search) {
         this.search = '';
       }
-      if (this.inputPlaceholder) {
-        this.inputPlaceholder = '';
-      }
       this.open = false;
     },
     handleOptionDeselect (deselectedOpt) {
       const newSelectedList = this.modelValue.filter((opt) => opt.value !== deselectedOpt.value);
       this.$emit('update:modelValue', newSelectedList);
-
-      if (newSelectedList.length === 0) {
-        this.inputPlaceholder = this.placeholder; // reset placeholder if nothing is selected
-      }
 
       // filter all options by selected, so that the newly deselected value gets put in the same order in the list that it was in before
       this.availableOptions = filterArrOfObj(this.options, newSelectedList);
