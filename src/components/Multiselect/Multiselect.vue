@@ -9,6 +9,7 @@
       v-model="search"
       :label="label"
       :sr-only-label="srOnlyLabel"
+      :placeholder="inputPlaceholder"
       :size="size"
       :input-class="`!${inputWidthClass}`"
       @focus="open = true"
@@ -92,6 +93,10 @@ export default {
       type: Boolean,
       default: false
     },
+    placeholder: {
+      type: String,
+      required: true
+    },
     size: {
       type: String,
       default: 'default',
@@ -112,6 +117,7 @@ export default {
   data () {
     return {
       open: false,
+      inputPlaceholder: this.placeholder,
       availableOptions: this.options,
       search: ''
     };
@@ -152,11 +158,19 @@ export default {
         this.availableOptions = this.availableOptions.filter((opt) => opt.value !== selectedOpt.value);
       }
 
+      if (this.inputPlaceholder) {
+        this.inputPlaceholder = ''; // clear placeholder if there is one
+      }
+
       this.open = false;
     },
     handleOptionDeselect (deselectedOpt) {
       const newSelectedList = this.modelValue.filter((opt) => opt.value !== deselectedOpt.value);
       this.$emit('update:modelValue', newSelectedList);
+
+      if (newSelectedList.length === 0) {
+        this.inputPlaceholder = this.placeholder; // reset placeholder if nothing is selected
+      }
 
       // filter all options by selected, so that the newly deselected value gets put in the same order in the list that it was in before
       this.availableOptions = filterArrOfObj(this.options, newSelectedList);

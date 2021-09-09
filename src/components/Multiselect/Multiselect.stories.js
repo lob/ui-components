@@ -35,6 +35,7 @@ export const Primary = Template.bind({});
 Primary.args = {
   id: 'country',
   label: 'Destination Country',
+  placeholder: 'Country',
   options,
   inputWidthClass: 'w-40'
 };
