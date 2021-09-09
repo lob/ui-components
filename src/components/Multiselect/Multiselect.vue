@@ -45,6 +45,7 @@
       <li
         v-for="option in availableOptions"
         :key="option.value"
+        role="option"
         class="my-1 mx-4 cursor-pointer"
         @click="() => handleOptionSelect(option)"
       >
@@ -141,7 +142,10 @@ export default {
     },
     handleSearchInput () {
       if (this.search) {
-        this.availableOptions = this.availableOptions.filter((opt) => opt.label.toLowerCase().includes(this.search.toLowerCase()));
+        this.availableOptions = this.availableOptions.filter((opt) => {
+          return opt.label.toLowerCase().includes(this.search.toLowerCase()) ||
+            opt.value.toLowerCase().includes(this.search.toLowerCase());
+        });
       } else {
         this.availableOptions = filterArrOfObj(this.options, this.modelValue);
       }
