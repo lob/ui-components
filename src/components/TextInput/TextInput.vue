@@ -44,7 +44,6 @@
         :placeholder="placeholder"
         :readonly="readonly"
         @input="onInput"
-        @focus="$emit('focus')"
       >
       <div
         v-if="iconRight"
@@ -149,7 +148,7 @@ export default {
       default: ''
     }
   },
-  emits: ['update:modelValue', 'input', 'change', 'focus', 'blur'],
+  emits: ['update:modelValue', 'input', 'change', 'blur'],
   computed: {
     small () {
       return this.size === 'small';

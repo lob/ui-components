@@ -12,7 +12,8 @@
       :placeholder="modelValue && modelValue.length ? '' : placeholder"
       :size="size"
       :input-class="`!${inputWidthClass}`"
-      @focus="open = true"
+      @click.stop="open = !open"
+      @input="handleSearchInput"
     >
       <template #selectedOptions>
         <Badge
@@ -161,6 +162,11 @@ export default {
         if (!clickOnContainer && !clickOnChild) {
           this.open = false;
         }
+      }
+    },
+    handleSearchInput () {
+      if (this.search && !this.open) {
+        this.open = true;
       }
     },
     handleOptionSelect (selectedOpt) {
