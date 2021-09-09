@@ -148,7 +148,7 @@ export default {
       default: ''
     }
   },
-  emits: ['update:modelValue', 'input', 'change', 'blur'],
+  emits: ['update:modelValue', 'input', 'change'],
   computed: {
     small () {
       return this.size === 'small';

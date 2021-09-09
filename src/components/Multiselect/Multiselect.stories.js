@@ -17,6 +17,12 @@ export default {
       table: {
         disable: true
       }
+    },
+    size: {
+      options: ['default', 'small'],
+      control: {
+        type: 'select'
+      }
     }
   }
 };
