@@ -21,7 +21,16 @@
           :size="size"
           class="mt-1 ml-1"
         >
-          {{ option.label }}
+          <div class="flex items-center">
+            {{ option.label }}
+            <LobButton
+              variant="none"
+              class="mt-0.5 ml-1"
+              @click="() => handleOptionDeselect(option)"
+            >
+              <Close class="w-4 h-4" />
+            </LobButton>
+          </div>
         </Badge>
       </template>
     </TextInput>
@@ -33,10 +42,9 @@
     >
       <li
         v-for="option in availableOptions"
-        :id="option.value"
         :key="option.value"
         class="my-1 mx-4 cursor-pointer"
-        @click="handleOptionClick"
+        @click="() => handleOptionSelect(option)"
       >
         {{ option.label }}
       </li>
@@ -47,10 +55,12 @@
 <script>
 import TextInput from '../TextInput/TextInput';
 import Badge from '../Badge/Badge';
+import LobButton from '../Button/Button';
+import Close from '../Icons/Close';
 
 export default {
   name: 'Multiselect',
-  components: { TextInput, Badge },
+  components: { TextInput, Badge, LobButton, Close },
   props: {
     modelValue: { // selected
       type: Array,
@@ -109,23 +119,23 @@ export default {
         }
       }
     },
-    handleOptionClick ($event) {
-      const label = $event.target.innerText;
-      const value = $event.target.id;
-
+    handleOptionSelect (selectedOpt) {
       // emit new selected array to update v-model
-      const newSelected = [...this.modelValue];
-      newSelected.push({ label, value });
-      this.$emit('update:modelValue', newSelected);
+      const newSelectedList = [...this.modelValue];
+      newSelectedList.push(selectedOpt);
+      this.$emit('update:modelValue', newSelectedList);
 
-      // remove selected from availableOptions array
-      const newOptions = [...this.availableOptions];
-      const index = newOptions.findIndex((option) => option.value === value);
-      newOptions.splice(index, 1);
-      this.availableOptions = newOptions;
-
-      // close the dropdown
+      // remove selected from availableOptions array & close the dropdown
+      this.availableOptions = this.availableOptions.filter((opt) => opt.value !== selectedOpt.value);
       this.open = false;
+    },
+    handleOptionDeselect (deselectedOpt) {
+      // remove from selected list and update v-model
+      const newSelectedList = this.modelValue.filter((opt) => opt.value !== deselectedOpt.value);
+      this.$emit('update:modelValue', newSelectedList);
+
+      // filter all options by selected, so that the newly deselected value gets put in the same order in the list that it was in before
+      this.availableOptions = this.options.filter((obj1) => !newSelectedList.some((obj2) => obj1.value === obj2.value));
     }
   }
 };
