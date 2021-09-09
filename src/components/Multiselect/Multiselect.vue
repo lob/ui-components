@@ -104,6 +104,13 @@ export default {
         return ['default', 'small'].includes(value);
       }
     },
+    matchOn: {
+      type: String,
+      default: 'label',
+      validator: function (value) {
+        return ['label', 'value', 'both'].includes(value);
+      }
+    },
     options: {
       type: Object,
       required: true
@@ -126,7 +133,14 @@ export default {
     displayedOptions () {
       if (this.search) {
         const search = this.search.toLowerCase();
-        return this.availableOptions.filter((opt) => (opt.label.toLowerCase().includes(search) || opt.value.toLowerCase().includes(search)));
+        switch (this.matchOn) {
+          case 'value':
+            return this.availableOptions.filter((opt) => opt.value.toLowerCase().includes(search));
+          case 'both':
+            return this.availableOptions.filter((opt) => opt.label.toLowerCase().includes(search) || opt.value.toLowerCase().includes(search));
+          default:
+            return this.availableOptions.filter((opt) => opt.label.toLowerCase().includes(search));
+        }
       } else {
         return this.availableOptions;
       }

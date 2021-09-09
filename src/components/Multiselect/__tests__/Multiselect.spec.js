@@ -3,12 +3,14 @@ import { render } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
 import Multiselect from '../Multiselect.vue';
 
-const props = {
+const initialProps = {
   id: 'country',
   label: 'Destination Country',
   placeholder: 'Country',
   options: [
+    { label: 'Angola', value: 'AO' },
     { label: 'Egypt', value: 'EG' },
+    { label: 'Lao PDR', value: 'LA' },
     { label: 'United States', value: 'US' },
     { label: 'Uruguay', value: 'UR' }
   ]
@@ -18,13 +20,9 @@ const renderComponent = (options, configure = null) => render(Multiselect, { ...
 
 describe('Multiselect', () => {
 
-  let component;
-  beforeEach(() => {
-    component = renderComponent({ props });
-  });
-
   it('renders correctly', async () => {
-    const { findByLabelText } = component;
+    const props = initialProps;
+    const { findByLabelText } = renderComponent({ props });
 
     const input = await findByLabelText(props.label);
     expect(input).toBeInTheDocument();
@@ -33,7 +31,8 @@ describe('Multiselect', () => {
   describe('placeholder', () => {
 
     it('renders initially', async () => {
-      const { findByPlaceholderText } = component;
+      const props = initialProps;
+      const { findByPlaceholderText } = renderComponent({ props });
 
       const placeholder = await findByPlaceholderText(props.placeholder);
       expect(placeholder).toBeInTheDocument();
@@ -43,7 +42,12 @@ describe('Multiselect', () => {
 
   describe('input click', () => {
 
+    let props;
+    let component;
+
     beforeEach(async () => {
+      props = initialProps;
+      component = renderComponent({ props });
       const { findByLabelText } = component;
 
       const input = await findByLabelText(props.label);
@@ -76,7 +80,8 @@ describe('Multiselect', () => {
   describe('typing in the input', () => {
 
     it('renders a filtered dropdown of options based on what was typed', async () => {
-      const { findByLabelText, findAllByRole } = component;
+      const props = initialProps;
+      const { findByLabelText, findAllByRole } = renderComponent({ props });
 
       const input = await findByLabelText(props.label);
       userEvent.click(input);
@@ -88,9 +93,52 @@ describe('Multiselect', () => {
       expect(options).toHaveLength(1);
     });
 
-    // it('should match on either label or value', () => {
+    describe('should match on', () => {
 
-    // });
+      it('label only if \'label\' is passed in (or by default)', async () => {
+        const props = { ...initialProps, matchOn: 'label' };
+        const { findByLabelText, findAllByRole } = renderComponent({ props });
+
+        const input = await findByLabelText(props.label);
+        userEvent.click(input);
+
+        await userEvent.type(input, 'ao');
+
+        const options = await findAllByRole('option');
+        expect(options).toHaveLength(1);
+        expect(options[0]).toHaveTextContent('Lao PDR');
+      });
+
+      it('value only if \'value\' is passed in', async () => {
+        const props = { ...initialProps, matchOn: 'value' };
+        const { findByLabelText, findAllByRole } = renderComponent({ props });
+
+        const input = await findByLabelText(props.label);
+        userEvent.click(input);
+
+        await userEvent.type(input, 'ao');
+
+        const options = await findAllByRole('option');
+        expect(options).toHaveLength(1);
+        expect(options[0]).toHaveTextContent('Angola');
+      });
+
+      it('label and value if \'both\' is passed in', async () => {
+        const props = { ...initialProps, matchOn: 'both' };
+        const { findByLabelText, findAllByRole } = renderComponent({ props });
+
+        const input = await findByLabelText(props.label);
+        userEvent.click(input);
+
+        await userEvent.type(input, 'ao');
+
+        const options = await findAllByRole('option');
+        expect(options).toHaveLength(2);
+        expect(options[0]).toHaveTextContent('Angola');
+        expect(options[1]).toHaveTextContent('Lao PDR');
+      });
+
+    });
 
   });
 
