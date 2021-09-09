@@ -97,7 +97,7 @@ export default {
     },
     placeholder: {
       type: String,
-      required: true
+      default: ''
     },
     size: {
       type: String,

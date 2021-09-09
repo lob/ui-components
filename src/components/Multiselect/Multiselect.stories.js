@@ -1,4 +1,5 @@
 import Multiselect from './Multiselect.vue';
+import mdx from './Multiselect.mdx';
 
 export default {
   title: 'Components/Multiselect',
@@ -6,6 +7,11 @@ export default {
   decorators: [
     () => ({ template: '<div class="w-72"><story /></div>' })
   ],
+  parameters: {
+    docs: {
+      page: mdx
+    }
+  },
   argTypes: {
     modelValue: {
       table: {

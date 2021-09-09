@@ -1,0 +1,55 @@
+import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
+import Multiselect from './Multiselect.vue';
+
+# Multiselect Autocomplete/Dropdown
+
+Multiselect is a stylized, (soon-to-be**) accessible component that allows a user to filter a list of options based on what they type and select multiple options.
+
+**Keyboard navigation and compatibility with screen readers will be worked on in part 2.
+
+<Preview>
+  <Story id="components-multiselect--primary" />
+</Preview>
+
+## How to Use
+To use the multiselect component, you must provide a `v-model`, an `id`, a `label`, and an array of `options`.
+
+The multiselect will only accept `options` as an array of objects. They must have at least a `label` property and a `value` property. When an option is selected, the dropdown will emit an `update:modelValue` event with the updated array of selected options.
+
+You can optionally provide a `placeholder` which will display in the select when a selection has not been made and will appear as a list header above the options.
+
+Customizations exist for<br/>
+(1) the size of the input/badges with the `size` prop: "default" or "small"<br/>
+(2) Whether you want the search to match on `label`, `value`, or both<br/>
+(3) The width of the input box - provide this in the form of a Tailwind width class, and it will constrain the actual text input box itself to whatever width you'd like
+
+Example of using this component in a template
+
+```js
+const options = [
+  { label: 'Ginny', value: 'Beth' },
+  { label: 'Prudence', value: 'Mercedes' },
+  { label: 'Brie', value: 'Nina' },
+  { label: 'Jenny', value: 'Mercedes' }
+];
+const modelValue = [];
+```
+```html
+<Multiselect
+  id="pet"
+  v-model="modelValue"
+  id="pet" label="Pet"
+  :options="options"
+  placeholder="Pick a pet"
+  inputWidthClass="w-40"
+/>
+```
+
+Example of the emitted event data
+```js
+[{ label: 'Ginny', value: 'Beth' }]
+```
+
+## Props
+
+<ArgsTable story={PRIMARY_STORY} />
