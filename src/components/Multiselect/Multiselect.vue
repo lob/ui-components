@@ -13,7 +13,6 @@
       :size="size"
       :input-class="`!${inputWidthClass}`"
       @focus="open = true"
-      @update:modelValue="handleSearchInput"
     >
       <template #selectedOptions>
         <Badge
@@ -43,7 +42,7 @@
       class="absolute rounded border border-gray-100 mt-0.5 w-full left-0"
     >
       <li
-        v-for="option in availableOptions"
+        v-for="option in displayedOptions"
         :key="option.value"
         role="option"
         class="my-1 mx-4 cursor-pointer"
@@ -52,13 +51,13 @@
         {{ option.label }}
       </li>
       <li
-        v-if="availableOptions.length === 0 && search"
+        v-if="displayedOptions.length === 0 && search"
         class="my-1 mx-4"
       >
         No options match your search.
       </li>
       <li
-        v-if="availableOptions.length === 0 && !search"
+        v-if="displayedOptions.length === 0 && !search"
         class="my-1 mx-4"
       >
         No more options are available to select.
@@ -123,6 +122,16 @@ export default {
       search: ''
     };
   },
+  computed: {
+    displayedOptions () {
+      if (this.search) {
+        const search = this.search.toLowerCase();
+        return this.availableOptions.filter((opt) => (opt.label.toLowerCase().includes(search) || opt.value.toLowerCase().includes(search)));
+      } else {
+        return this.availableOptions;
+      }
+    }
+  },
   mounted () {
     window.addEventListener('click', this.onClickOutside, true);
   },
@@ -140,32 +149,19 @@ export default {
         }
       }
     },
-    handleSearchInput () {
-      if (this.search) {
-        this.availableOptions = this.availableOptions.filter((opt) => {
-          return opt.label.toLowerCase().includes(this.search.toLowerCase()) ||
-            opt.value.toLowerCase().includes(this.search.toLowerCase());
-        });
-      } else {
-        this.availableOptions = filterArrOfObj(this.options, this.modelValue);
-      }
-    },
     handleOptionSelect (selectedOpt) {
       const newSelectedList = [...this.modelValue];
       newSelectedList.push(selectedOpt);
       this.$emit('update:modelValue', newSelectedList);
 
+      this.availableOptions = this.availableOptions.filter((opt) => opt.value !== selectedOpt.value);
+
       if (this.search) {
         this.search = '';
-        this.$nextTick(() => this.handleSearchInput());
-      } else {
-        this.availableOptions = this.availableOptions.filter((opt) => opt.value !== selectedOpt.value);
       }
-
       if (this.inputPlaceholder) {
-        this.inputPlaceholder = ''; // clear placeholder if there is one
+        this.inputPlaceholder = '';
       }
-
       this.open = false;
     },
     handleOptionDeselect (deselectedOpt) {
