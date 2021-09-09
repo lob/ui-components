@@ -12,6 +12,7 @@
       :size="size"
       :input-class="`!${inputWidthClass}`"
       @focus="open = true"
+      @update:modelValue="handleSearchInput"
     >
       <template #selectedOptions>
         <Badge
@@ -48,6 +49,18 @@
       >
         {{ option.label }}
       </li>
+      <li
+        v-if="availableOptions.length === 0 && search"
+        class="my-1 mx-4"
+      >
+        No options match your search.
+      </li>
+      <li
+        v-if="availableOptions.length === 0 && !search"
+        class="my-1 mx-4"
+      >
+        No more options are available to select.
+      </li>
     </ul>
   </div>
 </template>
@@ -57,6 +70,7 @@ import TextInput from '../TextInput/TextInput';
 import Badge from '../Badge/Badge';
 import LobButton from '../Button/Button';
 import Close from '../Icons/Close';
+import { filterArrOfObj } from '../../utils/array';
 
 export default {
   name: 'Multiselect',
@@ -119,23 +133,33 @@ export default {
         }
       }
     },
+    handleSearchInput () {
+      if (this.search) {
+        this.availableOptions = this.availableOptions.filter((opt) => opt.label.toLowerCase().includes(this.search.toLowerCase()));
+      } else {
+        this.availableOptions = filterArrOfObj(this.options, this.modelValue);
+      }
+    },
     handleOptionSelect (selectedOpt) {
-      // emit new selected array to update v-model
       const newSelectedList = [...this.modelValue];
       newSelectedList.push(selectedOpt);
       this.$emit('update:modelValue', newSelectedList);
 
-      // remove selected from availableOptions array & close the dropdown
-      this.availableOptions = this.availableOptions.filter((opt) => opt.value !== selectedOpt.value);
+      if (this.search) {
+        this.search = '';
+        this.$nextTick(() => this.handleSearchInput());
+      } else {
+        this.availableOptions = this.availableOptions.filter((opt) => opt.value !== selectedOpt.value);
+      }
+
       this.open = false;
     },
     handleOptionDeselect (deselectedOpt) {
-      // remove from selected list and update v-model
       const newSelectedList = this.modelValue.filter((opt) => opt.value !== deselectedOpt.value);
       this.$emit('update:modelValue', newSelectedList);
 
       // filter all options by selected, so that the newly deselected value gets put in the same order in the list that it was in before
-      this.availableOptions = this.options.filter((obj1) => !newSelectedList.some((obj2) => obj1.value === obj2.value));
+      this.availableOptions = filterArrOfObj(this.options, newSelectedList);
     }
   }
 };

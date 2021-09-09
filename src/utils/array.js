@@ -30,3 +30,13 @@ export function findLastIndex (predicate, thisArg) {
   }
   return -1;
 }
+
+/**
+ * A function that 'filters' a base array by the secondary array and returns the different elements in the base array
+ * @param {Array} baseArr The base array
+ * @param {Array} secondaryArr The secondary array to 'filter' by
+ * @returns {Array} The elements of the base array that do not exist in the secondary array
+ */
+export function filterArrOfObj (baseArr, secondaryArr) {
+  return baseArr.filter((obj1) => !secondaryArr.some((obj2) => obj1.value === obj2.value));
+}
