@@ -12,19 +12,19 @@
       :placeholder="modelValue && modelValue.length ? '' : placeholder"
       :size="size"
       :input-class="`!${inputWidthClass}`"
-      @click.stop="open = !open"
+      @focus="open = true"
       @input="handleSearchInput"
     >
       <template #selectedOptions>
         <Badge
           v-for="option in modelValue"
-          :key="option.label"
+          :key="option.label || option"
           variant="turquoise"
           :size="size"
           class="mt-1 ml-1"
         >
           <div class="flex items-center">
-            {{ option.label }}
+            {{ option.label || option }}
             <LobButton
               variant="none"
               class="mt-0.5 ml-1"
@@ -45,12 +45,12 @@
     >
       <li
         v-for="option in displayedOptions"
-        :key="option.label"
+        :key="option.label || option"
         role="option"
         class="my-1 mx-4 cursor-pointer"
         @click="() => handleOptionSelect(option)"
       >
-        {{ option.label }}
+        {{ option.label || option }}
       </li>
       <li
         v-if="displayedOptions.length === 0 && search"
@@ -73,7 +73,7 @@ import TextInput from '../TextInput/TextInput';
 import Badge from '../Badge/Badge';
 import LobButton from '../Button/Button';
 import Close from '../Icons/Close';
-import { filterArrOfObj } from '../../utils/array';
+import { filterArrayByArray } from '../../utils/array';
 
 export default {
   name: 'Multiselect',
@@ -115,7 +115,13 @@ export default {
     },
     options: {
       type: Array,
-      required: true
+      required: true,
+      validator: function (value) {
+        // The value must be an array of strings or objects with label properties
+        const isString = value.every((o) => typeof o === 'string');
+        const isOption = value.every((o) => typeof o === 'object' && o.hasOwnProperty('label'));
+        return isString || isOption;
+      }
     },
     inputWidthClass: {
       type: String,
@@ -126,21 +132,31 @@ export default {
   data () {
     return {
       open: false,
-      availableOptions: filterArrOfObj(this.options, this.modelValue),
+      availableOptions: filterArrayByArray(this.options, this.modelValue),
       search: ''
     };
   },
   computed: {
+    optionsHasObjects () {
+      return this.availableOptions.length && this.availableOptions.every((o) => typeof o === 'object');
+    },
+    optionsHasValueProp () {
+      return this.availableOptions.every((o) => o.hasOwnProperty('value'));
+    },
     displayedOptions () {
       if (this.search) {
         const search = this.search.toLowerCase();
-        switch (this.matchOn) {
-          case 'value':
-            return this.availableOptions.filter((opt) => opt.value.toLowerCase().includes(search));
-          case 'both':
-            return this.availableOptions.filter((opt) => opt.label.toLowerCase().includes(search) || opt.value.toLowerCase().includes(search));
-          default:
-            return this.availableOptions.filter((opt) => opt.label.toLowerCase().includes(search));
+        if (this.optionsHasObjects) {
+          switch (this.matchOn) {
+            case 'value':
+              return this.availableOptions.filter((o) => o.value.toLowerCase().includes(search));
+            case 'both':
+              return this.availableOptions.filter((o) => o.label.toLowerCase().includes(search) || o.value.toLowerCase().includes(search));
+            default:
+              return this.availableOptions.filter((o) => o.label.toLowerCase().includes(search));
+          }
+        } else {
+          return this.availableOptions.filter((o) => o.includes(search));
         }
       } else {
         return this.availableOptions;
@@ -173,7 +189,11 @@ export default {
       const newSelectedList = [...this.modelValue, selectedOpt];
       this.$emit('update:modelValue', newSelectedList);
 
-      this.availableOptions = this.availableOptions.filter((opt) => opt.label !== selectedOpt.label);
+      if (this.optionsHasObjects) {
+        this.availableOptions = this.availableOptions.filter((o) => o.label !== selectedOpt.label);
+      } else {
+        this.availableOptions = filterArrayByArray(this.options, newSelectedList);
+      }
 
       if (this.search) {
         this.search = '';
@@ -181,11 +201,16 @@ export default {
       this.open = false;
     },
     handleOptionDeselect (deselectedOpt) {
-      const newSelectedList = this.modelValue.filter((opt) => opt.label !== deselectedOpt.label);
+      let newSelectedList;
+      if (this.optionsHasObjects) {
+        newSelectedList = this.modelValue.filter((o) => o.label !== deselectedOpt.label);
+      } else {
+        newSelectedList = this.modelValue.filter((o) => o !== deselectedOpt);
+      }
       this.$emit('update:modelValue', newSelectedList);
 
       // filter all options by selected, so that the newly deselected value gets put in the same order in the list that it was in before
-      this.availableOptions = filterArrOfObj(this.options, newSelectedList);
+      this.availableOptions = filterArrayByArray(this.options, newSelectedList);
     }
   }
 };
