@@ -18,7 +18,7 @@
       <template #selectedOptions>
         <Badge
           v-for="option in modelValue"
-          :key="option.value"
+          :key="option.label"
           variant="turquoise"
           :size="size"
           class="mt-1 ml-1"
@@ -45,7 +45,7 @@
     >
       <li
         v-for="option in displayedOptions"
-        :key="option.value"
+        :key="option.label"
         role="option"
         class="my-1 mx-4 cursor-pointer"
         @click="() => handleOptionSelect(option)"
@@ -114,7 +114,7 @@ export default {
       }
     },
     options: {
-      type: Object,
+      type: Array,
       required: true
     },
     inputWidthClass: {
@@ -173,7 +173,7 @@ export default {
       const newSelectedList = [...this.modelValue, selectedOpt];
       this.$emit('update:modelValue', newSelectedList);
 
-      this.availableOptions = this.availableOptions.filter((opt) => opt.value !== selectedOpt.value);
+      this.availableOptions = this.availableOptions.filter((opt) => opt.label !== selectedOpt.label);
 
       if (this.search) {
         this.search = '';
@@ -181,7 +181,7 @@ export default {
       this.open = false;
     },
     handleOptionDeselect (deselectedOpt) {
-      const newSelectedList = this.modelValue.filter((opt) => opt.value !== deselectedOpt.value);
+      const newSelectedList = this.modelValue.filter((opt) => opt.label !== deselectedOpt.label);
       this.$emit('update:modelValue', newSelectedList);
 
       // filter all options by selected, so that the newly deselected value gets put in the same order in the list that it was in before

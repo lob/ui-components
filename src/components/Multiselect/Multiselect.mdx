@@ -14,13 +14,15 @@ Multiselect is a stylized, (soon-to-be**) accessible component that allows a use
 ## How to Use
 To use the multiselect component, you must provide a `v-model`, an `id`, a `label`, and an array of `options`.
 
-The multiselect will only accept `options` as an array of objects. They must have at least a `label` property and a `value` property. When an option is selected, the dropdown will emit an `update:modelValue` event with the updated array of selected options.
+The multiselect will only accept `options` as an array of objects. Each object must have at least a `label` property. When an option is selected, the dropdown will emit an `update:modelValue` event with the updated array of selected options.
+
+Each object can optionally have a `value` property that you can key off for search as well. An example of when this might be useful is if you're creating a dropdown for a states list, and you want people to be able to search by both `Arizona` and `AZ`.
 
 You can optionally provide a `placeholder` which will display in the select when a selection has not been made and will appear as a list header above the options.
 
 Customizations exist for<br/>
 (1) the size of the input/badges with the `size` prop: "default" or "small"<br/>
-(2) Whether you want the search to match on `label`, `value`, or both<br/>
+(2) Whether you want the search to match on `label`, `value`, or both (if `value` or `both`, each object should have a `value` property)<br/>
 (3) The width of the input box - provide this in the form of a Tailwind width class, and it will constrain the actual text input box itself to whatever width you'd like
 
 Example of using this component in a template
