@@ -266,4 +266,76 @@ describe('Multiselect', () => {
 
   });
 
+  describe('passing in an array of strings as options', () => {
+
+    let props;
+
+    beforeEach(async () => {
+      props = { ...initialProps, options: ['Egypt', 'United States', 'Uruguay'] };
+    });
+
+    it('renders correctly', async () => {
+      const { findByLabelText } = renderComponent({ props });
+
+      const input = await findByLabelText(props.label);
+      expect(input).toBeInTheDocument();
+    });
+
+    it('options show in dropdown correctly', async () => {
+      const { findByLabelText, findAllByRole } = renderComponent({ props });
+
+      const input = await findByLabelText(props.label);
+      userEvent.click(input);
+
+      const options = await findAllByRole('option');
+      expect(options).toHaveLength(props.options.length);
+    });
+
+    it('filters correctly when searching', async () => {
+      const { findByLabelText, findAllByRole } = renderComponent({ props });
+
+      const input = await findByLabelText(props.label);
+      userEvent.click(input);
+
+      await userEvent.type(input, 'uni');
+      expect(input).toHaveValue('uni');
+
+      const options = await findAllByRole('option');
+      expect(options).toHaveLength(1);
+    });
+
+    it('filters the dropdown correctly when selecting', async () => {
+      const { findByLabelText, findAllByRole, emitted, queryByRole } = renderComponent({ props });
+
+      const input = await findByLabelText(props.label);
+      userEvent.click(input);
+
+      const options = await findAllByRole('option');
+      userEvent.click(options[0]);
+
+      const emittedEvent = emitted();
+      expect(emittedEvent).toHaveProperty('update:modelValue');
+      expect(emittedEvent['update:modelValue'][0][0]).toHaveLength(1);
+
+      const option = await queryByRole('option', { name: 'Egypt' });
+      expect(option).not.toBeInTheDocument();
+    });
+
+    it('adds the option back to the dropdown correctly when deselecting', async () => {
+      props = { ...props, modelValue: ['Egypt'] };
+      const { findByText, findByLabelText, findAllByRole } = renderComponent({ props });
+
+      const button = await findByText(en.multiselect.deselectLabel);
+      await userEvent.click(button);
+
+      const input = await findByLabelText(props.label);
+      userEvent.click(input);
+
+      const options = await findAllByRole('option');
+      expect(options).toHaveLength(props.options.length);
+      expect(options[0]).toHaveTextContent(props.options[0]);
+    });
+
+  });
+
 });

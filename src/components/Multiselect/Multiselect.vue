@@ -156,7 +156,7 @@ export default {
               return this.availableOptions.filter((o) => o.label.toLowerCase().includes(search));
           }
         } else {
-          return this.availableOptions.filter((o) => o.includes(search));
+          return this.availableOptions.filter((o) => o.toLowerCase().includes(search));
         }
       } else {
         return this.availableOptions;
