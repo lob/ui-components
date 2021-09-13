@@ -23,6 +23,12 @@ export default {
       control: {
         type: 'select'
       }
+    },
+    matchOn: {
+      options: ['label', 'value', 'both'],
+      control: {
+        type: 'select'
+      }
     }
   }
 };

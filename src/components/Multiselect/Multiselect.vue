@@ -165,6 +165,14 @@ export default {
   },
   mounted () {
     window.addEventListener('click', this.onClickOutside, true);
+
+    // checking if a user has specified matchOn 'value' or 'both' but doesn't have 'value' in object
+    if (this.matchOn !== 'label') {
+      const hasValueProp = this.options.every((o) => o.hasOwnProperty('value'));
+      if (!hasValueProp) {
+        throw new Error('You\'ve specified matching on \'value\' or \'both\' but some objects in your options array don\'t have \'value\' properties.');
+      }
+    }
   },
   unmounted () {
     window.removeEventListener('click', this.onClickOutside);

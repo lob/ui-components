@@ -18,6 +18,8 @@ The multiselect will accept `options` as an array of strings or an array of obje
 
 Each object can optionally have a `value` property that you can key off for search as well. An example of when this might be useful is if you're creating a dropdown for a states list, and you want people to be able to search by both `Arizona` and `AZ`.
 
+If you choose `value` or `both` to match on, and not every object in your options array has a `value` property, you will receive an error that says: "You've specified matching on 'value' or 'both' but some objects in your options array don't have 'value' properties." Please double-check the structure of the objects you're passing in and ensure each has a `value` property.
+
 You can optionally provide a `placeholder` which will display in the select when a selection has not been made and will appear as a list header above the options.
 
 Customizations exist for<br/>
