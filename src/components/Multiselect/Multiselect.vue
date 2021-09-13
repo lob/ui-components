@@ -11,7 +11,7 @@
       :sr-only-label="srOnlyLabel"
       :placeholder="modelValue && modelValue.length ? '' : placeholder"
       :size="size"
-      :input-class="`!${inputWidthClass}`"
+      :input-class="inputWidthClass"
       @focus="open = true"
       @input="handleSearchInput"
     >
@@ -125,7 +125,7 @@ export default {
     },
     inputWidthClass: {
       type: String,
-      default: ''
+      default: '!w-40'
     }
   },
   emits: ['update:modelValue'],
