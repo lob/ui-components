@@ -35,7 +35,7 @@ export default {
       }
     },
     to: {
-      type: String,
+      type: [String, Object],
       default: ''
     },
     label: {
@@ -65,7 +65,7 @@ export default {
     },
     isExternal () {
       const protocolRelativePattern = /^https?:\/\/|^\/\//i;
-      return protocolRelativePattern.test(this.to);
+      return typeof this.to === 'string' && protocolRelativePattern.test(this.to);
     },
     tag () {
       if (this.isExternal) {

@@ -10,6 +10,7 @@ export default {
     routeDecorator('/', [
       {
         path: '/internal',
+        name: 'InternalLink',
         component: {
           template: routeTemplate('internal')
         }

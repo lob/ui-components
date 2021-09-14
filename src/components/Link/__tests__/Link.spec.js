@@ -11,7 +11,7 @@ const initialProps = {
 const routes = [
   { path: '', component: { template: '<div></div>' } },
   { path: '/', component: { template: '<div>/</div>' } },
-  { path: '/settings', component: { template: '<div>settings</div>' } }
+  { path: '/settings', name: 'Settings', component: { template: '<div>settings</div>' } }
 ];
 const router = createRouter({
   history: createMemoryHistory(),
@@ -29,8 +29,19 @@ const renderComponent = async (options) => {
 
 describe('Link', () => {
 
-  it('renders correctly when an internal link', async () => {
+  it('renders correctly when an internal link with a string', async () => {
     const props = initialProps;
+    const { queryByRole } = await renderComponent({ props });
+
+    const link = queryByRole('link');
+    expect(link).toBeInTheDocument();
+  });
+
+  it('renders correctly when an internal link with an object', async () => {
+    const props = {
+      ...initialProps,
+      to: { name: 'Settings' }
+    };
     const { queryByRole } = await renderComponent({ props });
 
     const link = queryByRole('link');
