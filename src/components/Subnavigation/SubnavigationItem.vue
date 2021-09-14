@@ -2,20 +2,23 @@
   <li
     class="list-none mr-12"
   >
-    <router-link
+    <LobLink
       :to="to"
-      class="relative pb-4"
-      exact-active-class="lob-active-border"
+      class="relative pb-4 no-underline text-black font-light"
+      exact-active-class="lob-active-border font-normal"
       data-testid="subnav-item"
     >
       {{ title }}
-    </router-link>
+    </LobLink>
   </li>
 </template>
 
 <script>
+import LobLink from '../Link/Link';
+
 export default {
   name: 'SubnavigationItem',
+  components: { LobLink },
   props: {
     title: {
       type: String,
