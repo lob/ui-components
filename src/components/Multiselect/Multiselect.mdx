@@ -1,0 +1,81 @@
+import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
+import Multiselect from './Multiselect.vue';
+
+# Multiselect
+
+Multiselect is a stylized, (soon-to-be**) accessible component that allows a user to filter a list of options based on what they type and select multiple options from the list.
+
+**Keyboard navigation and compatibility with screen readers will be worked on in part 2.
+
+<Preview>
+  <Story id="components-multiselect--primary" />
+</Preview>
+
+## How to Use
+To use the multiselect component, you must provide a `v-model`, an `id`, a `label`, and an array of `options`.
+
+The multiselect will accept `options` as an array of strings or an array of objects. If objects, each must have at least a `label` property. When an option is selected, the dropdown will emit an `update:modelValue` event with the updated array of selected options.
+
+Each object can optionally have a `value` property that you can key off for search as well. An example of when this might be useful is if you're creating a dropdown for a states list, and you want people to be able to search by both `Arizona` and `AZ`.
+
+If you choose `value` or `both` to match on, and not every object in your options array has a `value` property, you will receive an error that says: "You've specified matching on 'value' or 'both' but some objects in your options array don't have 'value' properties." Please double-check the structure of the objects you're passing in and ensure each has a `value` property.
+
+You can optionally provide a `placeholder` which will display in the select when a selection has not been made and will appear as a list header above the options.
+
+Customizations exist for<br/>
+(1) the size of the input/badges with the `size` prop: "default" or "small"<br/>
+(2) Whether you want the search to match on `label`, `value`, or both (if `value` or `both`, each object should have a `value` property)<br/>
+(3) The width of the input box - provide this in the form of a Tailwind width class, and it will constrain the actual text input box itself to whatever width you'd like. **IMPORTANT NOTE: in order for this to take effect, you _must_ preface this class with an important operator (`!`).**
+
+Example of using this component in a template with an array of strings
+
+```js
+const options = ['Ginny', 'Prudence', 'Brie', 'Jenny'];
+const modelValue = [];
+```
+```html
+<Multiselect
+  id="pet"
+  v-model="modelValue"
+  id="pet" label="Pet"
+  :options="options"
+  placeholder="Pick a pet"
+  inputWidthClass="w-40"
+/>
+```
+
+Example of the emitted event data if Ginny and Prudence were selected
+```js
+['Ginny', 'Prudence']
+```
+
+Example of using this component in a template with an array of objects
+
+```js
+const options = [
+  { label: 'Ginny', value: 'Beth' },
+  { label: 'Prudence', value: 'Mercedes' },
+  { label: 'Brie', value: 'Nina' },
+  { label: 'Jenny', value: 'Mercedes' }
+];
+const modelValue = [];
+```
+```html
+<Multiselect
+  id="pet"
+  v-model="modelValue"
+  id="pet" label="Pet"
+  :options="options"
+  placeholder="Pick a pet"
+  inputWidthClass="w-40"
+/>
+```
+
+Example of the emitted event data if Ginny and Prudence were selected
+```js
+[{ label: 'Ginny', value: 'Beth' }, { label: 'Prudence', value: 'Mercedes' }]
+```
+
+## Props
+
+<ArgsTable story={PRIMARY_STORY} />

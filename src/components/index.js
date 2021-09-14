@@ -19,6 +19,7 @@ export { default as MegaMenu } from './MegaMenu/MegaMenu';
 export { default as MegaMenuItem } from './MegaMenu/MegaMenuItem';
 export { default as MegaMenuSubtitle } from './MegaMenu/MegaMenuSubtitle';
 export { default as Modal } from './Modal/Modal';
+export { default as Multiselect } from './Multiselect/Multiselect';
 export { default as Pagination } from './Pagination/Pagination';
 export { default as RadioButton } from './RadioButton/RadioButton';
 export { default as RadioGroup } from './RadioGroup/RadioGroup';

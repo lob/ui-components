@@ -9,7 +9,8 @@
                { 'bg-lemon-100 text-lemon-900 hover:bg-lemon-300': warning },
                { 'bg-coral-100 text-coral-900 hover:bg-coral-300': error },
                { 'bg-turquoise-100 text-turquoise-900 hover:bg-turquoise-300': turquoise },
-               { 'bg-flint-100 text-gray-700 hover:bg-flint-300': flint }
+               { 'bg-flint-100 text-gray-700 hover:bg-flint-300': flint },
+               { '!py-0.5': small }
       ]"
     >
       <slot />
@@ -33,6 +34,13 @@ export default {
       default: 'rounded',
       validator: function (value) {
         return ['rounded', 'square'].includes(value);
+      }
+    },
+    size: {
+      type: String,
+      default: 'default',
+      validator: function (value) {
+        return ['default', 'small'].includes(value);
       }
     }
   },
@@ -60,6 +68,9 @@ export default {
     },
     square () {
       return this.shape === 'square';
+    },
+    small () {
+      return this.size === 'small';
     }
   }
 };
