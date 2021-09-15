@@ -23,15 +23,29 @@ const routes = [
     children: [
       {
         path: 'create',
-        name: 'Create envelopes',
+        name: 'Create',
         component: {
           template: '<div>create</div>'
+        },
+        meta: {
+          displayName: 'Create Envelope'
         }
       },
       {
-        path: 'edit',
+        path: ':id/edit',
+        name: 'Edit Envelope',
         component: {
           template: '<div>edit</div>'
+        }
+      },
+      {
+        path: ':id',
+        name: 'View Envelope',
+        component: {
+          template: '<div>view</div>'
+        },
+        meta: {
+          useParamsForDisplay: true
         }
       }
     ]
@@ -86,24 +100,64 @@ describe('Breadcrumb', () => {
     expect(links[2]).toHaveClass('router-link-active');
   });
 
-  it('renders the text title-cased when there\'s a name', async () => {
-    const props = initialProps;
-    const { queryByText } = renderComponent({ props });
-    router.push('/envelopes/create');
-    await router.isReady();
+  describe('when a display name is provided', () => {
 
-    const navLink = queryByText('Create Envelopes');
-    expect(navLink).toBeInTheDocument();
+    it('renders the correct text title-cased', async () => {
+      const props = initialProps;
+      const { getByText } = renderComponent({ props });
+      router.push('/envelopes/create');
+      await router.isReady();
+
+      const navLink = getByText('Create Envelope');
+      expect(navLink).toBeInTheDocument();
+    });
+
   });
 
-  it('renders the text title-cased when there\'s not a name', async () => {
-    const props = initialProps;
-    const { queryByText } = renderComponent({ props });
-    router.push('/envelopes/edit');
-    await router.isReady();
+  describe('when there is not a display name', () => {
 
-    const navLink = queryByText('Edit');
-    expect(navLink).toBeInTheDocument();
+    describe('when useParamsForDisplay is true', () => {
+
+      it('renders the correct text title-cased', async () => {
+        const props = initialProps;
+        const { getByText } = renderComponent({ props });
+        router.push('/envelopes/23');
+        await router.isReady();
+
+        const navLink = getByText('23');
+        expect(navLink).toBeInTheDocument();
+      });
+
+    });
+
+    describe('when useParamsForDisplay is false', () => {
+
+      it('renders the correct text title-cased', async () => {
+        const props = initialProps;
+        const { getByText } = renderComponent({ props });
+        router.push('/envelopes/23/edit');
+        await router.isReady();
+
+        const navLink = getByText('Edit Envelope');
+        expect(navLink).toBeInTheDocument();
+      });
+
+    });
+
+  });
+
+  describe('when the path portion has a param', () => {
+
+    it('interpolates the param into the route path', async () => {
+      const props = initialProps;
+      const { getByText } = renderComponent({ props });
+      router.push('/envelopes/23');
+      await router.isReady();
+
+      const navLink = getByText('23');
+      expect(navLink).toHaveAttribute('href', '/envelopes/23');
+    });
+
   });
 
 });

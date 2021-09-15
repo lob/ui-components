@@ -20,10 +20,12 @@ The subnavigation component is used for displaying a secondary, horizontal navig
 
 The subnavigation renders a semantic `nav` element with a `ul`. It is made to work with the `subnavigation-item` component. However, you can also write custom components for its slot as long as the root element is an `li` (for accessibility).
 
+It accepts an optional `ulClass` prop. For Lob's purposes, this is so that we can make the subnavigivation full-width, however, you may pass in any valid Tailwind class(es) to apply to the `ul` element.
+
 Example of using this component in a template:
 
 ```html
-<subnavigation v-bind="args">
+<subnavigation>
   <subnavigation-item title="Account" to="/account" />
   <subnavigation-item title="API Keys" to="/api-keys" />
   <subnavigation-item title="Payment" to="/payment" />

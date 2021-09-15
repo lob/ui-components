@@ -23,6 +23,8 @@
 import { ChevronRight } from '@/components/Icons';
 import { START_LOCATION } from 'vue-router';
 
+const URL_DELIMITER = '/';
+
 export default {
   name: 'Breadcrumb',
   components: { ChevronRight },
@@ -53,13 +55,10 @@ export default {
         routes = [...routes, ...uniqueMatchedByPath];
       }
 
-      return routes.map((routeRecord) => {
-        const pathSegments = routeRecord.path.split('/');
-        const lastChildInPath = pathSegments[pathSegments.length - 1];
-
+      return routes.map((routeRecord, index) => {
         return {
-          name: this.titleize(routeRecord.name) || this.titleize(lastChildInPath),
-          path: routeRecord.path
+          name: this.getCrumbDisplay(routeRecord),
+          path: this.getCrumbPath(routeRecord, index)
         };
       });
     }
@@ -79,6 +78,43 @@ export default {
 
       sanitizedStr = splitStr.join(' ');
       return sanitizedStr.trim();
+    },
+    getParamDisplay (lastChildInPath) {
+      const lastChildIsParam = lastChildInPath.match(/^:(.*)/);
+
+      let param;
+      if (lastChildIsParam) {
+        const paramName = lastChildIsParam[1];
+        param = this.$route.params[paramName];
+      }
+
+      return param;
+    },
+    getPathDisplay (lastChildInPath) {
+      return this.titleize(lastChildInPath);
+    },
+    getCrumbDisplay (routeRecord) {
+      const displayName = routeRecord.meta?.displayName || '';
+      const useParamsForDisplay = routeRecord.meta?.useParamsForDisplay || false;
+      const pathSegments = routeRecord.path.split(URL_DELIMITER);
+      const lastChildInPath = pathSegments[pathSegments.length - 1];
+
+      const paramDisplay = this.getParamDisplay(lastChildInPath);
+      const pathDisplay = this.getPathDisplay(lastChildInPath);
+      const routeNameDisplay = this.titleize(routeRecord.name);
+
+      let fallbackDisplay;
+      if (useParamsForDisplay) {
+        fallbackDisplay = paramDisplay || pathDisplay || routeNameDisplay;
+      } else {
+        fallbackDisplay = routeNameDisplay || pathDisplay;
+      }
+
+      return this.titleize(displayName) || fallbackDisplay;
+    },
+    getCrumbPath (routeRecord, index) {
+      const routeSubPathWithParams = this.$route.path.split(URL_DELIMITER).slice(0, index + 1).join(URL_DELIMITER);
+      return routeSubPathWithParams || routeRecord.path;
     }
   }
 };
