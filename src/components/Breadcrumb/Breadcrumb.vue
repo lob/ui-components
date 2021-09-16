@@ -110,7 +110,7 @@ export default {
         fallbackDisplay = routeNameDisplay || pathDisplay;
       }
 
-      return this.titleize(displayName) || fallbackDisplay;
+      return displayName || fallbackDisplay;
     },
     getCrumbPath (routeRecord, index) {
       const routeSubPathWithParams = this.$route.path.split(URL_DELIMITER).slice(0, index + 1).join(URL_DELIMITER);
