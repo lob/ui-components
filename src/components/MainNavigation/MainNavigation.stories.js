@@ -46,7 +46,15 @@ export default {
         path: '/postcards',
         component: {
           template: routeTemplate('postcards')
-        }
+        },
+        children: [
+          {
+            path: ':id',
+            component: {
+              template: routeTemplate('view postcard')
+            }
+          }
+        ]
       },
       {
         path: '/letters',

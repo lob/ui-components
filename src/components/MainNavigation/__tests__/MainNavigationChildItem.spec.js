@@ -8,8 +8,11 @@ const initialProps = {
   to: '/overview'
 };
 const routes = [
-  { path: '/overview', component: { template: '<div>Overview</div>' } },
-  { path: '/about', component: { template: '<div>About</div>' } },
+  {
+    path: '/overview',
+    component: { template: '<div>Overview</div>' },
+    children: [{ path: 'about', component: { template: '<div>About</div>' } }]
+  },
   { path: '/', component: { template: '<div>Home</div>' } }
 ];
 const router = createRouter({
@@ -41,8 +44,19 @@ describe('Main Navigation Child Item', () => {
     const props = initialProps;
 
     const { queryByTestId } = renderComponent({ props });
+    router.push('/overview/about');
+    await router.isReady();
+
+    const navItem = queryByTestId('nav-child-item');
+    expect(navItem).toHaveClass('font-medium bg-white-300 rounded-l-full');
+  });
+
+  it('adds the correct classes when the item is exact active', async () => {
+    const props = initialProps;
     router.push('/overview');
     await router.isReady();
+
+    const { queryByTestId } = renderComponent({ props });
 
     const navItem = queryByTestId('nav-child-item');
     expect(navItem).toHaveClass('font-medium bg-white-300 rounded-l-full');
