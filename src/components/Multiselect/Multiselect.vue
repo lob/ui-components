@@ -41,7 +41,7 @@
       v-show="open"
       role="listbox"
       :aria-expanded="open"
-      class="absolute rounded border border-gray-100 mt-0.5 w-full left-0"
+      class="absolute rounded border border-gray-100 mt-0.5 w-full left-0 bg-white z-30"
     >
       <li
         v-for="option in displayedOptions"

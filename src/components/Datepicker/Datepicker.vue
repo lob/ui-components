@@ -79,6 +79,7 @@
       @keydown="onKeydown"
     />
   </div>
+  el min: {{ min }}
 </template>
 
 <script>
@@ -108,11 +109,11 @@ export default {
       default: false
     },
     min: {
-      type: Date,
+      type: [Date, null],
       default: new Date(new Date().setMonth(new Date().getMonth() - 12))
     },
     max: {
-      type: Date,
+      type: [Date, null],
       default: new Date(new Date().setMonth(new Date().getMonth() + 12))
     },
     firstDayOfWeek: {
