@@ -48,7 +48,7 @@ export const Primary = Template.bind({});
 Primary.args = {
   id: 'test',
   isDateDisabled,
-  min: null,
+  min: oneYearAgo,
   max: oneYearFromNow
 };
 
