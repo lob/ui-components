@@ -149,7 +149,7 @@ export default {
       default: ''
     }
   },
-  emits: ['update:modelValue', 'input', 'change', 'focus'],
+  emits: ['update:modelValue', 'input', 'change', 'focus', 'copy'],
   computed: {
     small () {
       return this.size === 'small';
@@ -168,6 +168,7 @@ export default {
     copyToClipboard () {
       this.$refs.input.select();
       document.execCommand('copy');
+      this.$emit('copy');
     },
     onInput ($event) {
       this.$emit('update:modelValue', $event.target.value);

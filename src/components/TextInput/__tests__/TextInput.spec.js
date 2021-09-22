@@ -95,12 +95,17 @@ describe('Text input', () => {
       ...initialProps,
       withCopyButton: true
     };
-    const { getByRole } = render(TextInput, {
+    const { getByRole, emitted } = render(TextInput, {
       props
     });
 
     const button = getByRole('button', { name: /copy/i });
     expect(button).toBeInTheDocument();
+
+    document.execCommand = jest.fn();
+    await fireEvent.click(button);
+    const emittedEvent = emitted();
+    expect(emittedEvent).toHaveProperty('copy');
   });
 
   it('renders the slot content', async () => {
