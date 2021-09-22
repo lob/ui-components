@@ -1,6 +1,7 @@
 import '@testing-library/jest-dom';
 import { render, fireEvent } from '@testing-library/vue';
 import TextInput from '../TextInput.vue';
+import userEvent from '@testing-library/user-event';
 
 const initialProps = {
   id: 'test',
@@ -106,6 +107,24 @@ describe('Text input', () => {
     await fireEvent.click(button);
     const emittedEvent = emitted();
     expect(emittedEvent).toHaveProperty('copy');
+  });
+
+  it('selects on click when selectOnClick prop is true', async () => {
+    const props = {
+      ...initialProps,
+      selectOnClick: true
+    };
+    const { getByLabelText } = render(TextInput, {
+      props
+    });
+
+    const textInput = getByLabelText(props.label);
+    const updatedValue = 'hello!';
+    await fireEvent.update(textInput, updatedValue);
+
+    await userEvent.click(textInput);
+    expect(textInput.selectionStart).toEqual(0);
+    expect(textInput.selectionEnd).toEqual(updatedValue.length);
   });
 
   it('renders the slot content', async () => {

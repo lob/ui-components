@@ -44,7 +44,7 @@
         :placeholder="placeholder"
         :readonly="readonly"
         @input="onInput"
-        @focus="$emit('focus')"
+        @focus="onFocus"
       >
       <div
         v-if="iconRight"
@@ -144,6 +144,10 @@ export default {
       type: Boolean,
       default: false
     },
+    selectOnClick: {
+      type: Boolean,
+      default: false
+    },
     inputClass: {
       type: String,
       default: ''
@@ -174,6 +178,12 @@ export default {
       this.$emit('update:modelValue', $event.target.value);
       this.$emit('input', $event.target.value);
       this.$emit('change', $event);
+    },
+    onFocus ($event) {
+      if (this.selectOnClick) {
+        this.$refs.input.select();
+      }
+      this.$emit('focus', $event);
     },
     focus () {
       this.$refs.input.focus();
