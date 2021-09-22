@@ -15,11 +15,15 @@ You can pass in the `v-model` prop to bind the text input to the parent componen
 
 If you want a `copy` button, you can pass in the `withCopyButton` prop.
 
+If you want to select all text on clicking the text box, you can pass in the `selectOnClick` prop.
+
 Icons are available for the left, right, or both sides of the input via `iconLeft` and `iconRight` named slots.
 
 The `selectedOptions` named slot is specifically for the Multiselect component.
 
 You can pass in a `@change` handler to trigger a custom function on change events. The `event` object will be emitted along with the `change` event.
+
+You can pass in a `@copy` handler to trigger a custom function on copy button click.
 
 ```html
 <text-input>
