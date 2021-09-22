@@ -26,7 +26,7 @@
     <label
       :for="id"
       :class="[
-        'text-sm font-light relative flex ml-1.5',
+        `text-sm font-light relative flex ml-1.5 ${labelClass}`,
         { 'cursor-not-allowed': disabled || readonly }
       ]"
     >
@@ -78,6 +78,10 @@ export default {
     readonly: {
       type: Boolean,
       default: false
+    },
+    labelClass: {
+      type: String,
+      default: ''
     }
   },
   emits: ['update:modelValue', 'input', 'click'],
