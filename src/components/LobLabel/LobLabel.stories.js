@@ -31,14 +31,14 @@ const WithIconTemplate = (args, { argTypes }) => ({
       </template>
     </lob-label>
     <input class="border rounded p-2 text-gray-500" />
-  `
+  `,
 });
 
 export const WithIcon = WithIconTemplate.bind({});
 WithIcon.args = {
-  label: 'Name',
-  labelFor: 'Name',
-  required: true
+  label: "Name",
+  labelFor: "Name",
+  required: true,
 };
 
 const WithInputTemplate = (args, { argTypes }) => ({
