@@ -96,7 +96,7 @@ const BothIconsTemplate = (args, { argTypes }) => ({
         <search class="w-6 h-6" />
       </template>
       <template v-slot:iconRight>
-        <close class="w-6 h-6" />
+        <close class="w-5 h-5" />
       </template>
     </text-input>
   `
