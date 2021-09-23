@@ -5,7 +5,11 @@
       :label-for="id"
       :required="required"
       :sr-only-label="srOnlyLabel"
-    />
+    >
+      <template v-slot:iconRight>
+	<slot name="iconRight" />
+      </template>
+    </lob-label>
     <div
       data-testId="input-container"
       :class="[
@@ -46,12 +50,6 @@
         @input="onInput"
         @focus="onFocus"
       >
-      <div
-        v-if="iconRight"
-        :class="['pr-2 pt-3 pb-3 text-gray-500', {'!pr-1 !py-2': small}]"
-      >
-        <slot name="iconRight" />
-      </div>
       <button
         v-if="withCopyButton"
         :class="['rounded-tr-md rounded-br-md text-white bg-primary-500 border px-3',
