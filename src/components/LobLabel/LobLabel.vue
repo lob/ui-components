@@ -20,6 +20,7 @@
           <slot name="iconRight" />
         </span>
     </label>
+    <slot />
   </span>
 </template>
 
