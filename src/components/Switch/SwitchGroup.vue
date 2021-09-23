@@ -5,7 +5,7 @@
     <legend :class="['text-sm font-normal normal-case tracking-normal text-gray-500 mb-1 border-b-0', {'sr-only': srOnlyLegend}]">
       {{ legend }}
     </legend>
-    <div class="shadow flex flex-wrap p-1 bg-white rounded">
+    <div :class="['shadow flex flex-wrap p-1 bg-white rounded', { 'justify-center': center }]">
       <slot />
     </div>
   </fieldset>
@@ -20,6 +20,10 @@ export default {
       required: true
     },
     srOnlyLegend: {
+      type: Boolean,
+      default: false
+    },
+    center: {
       type: Boolean,
       default: false
     }
