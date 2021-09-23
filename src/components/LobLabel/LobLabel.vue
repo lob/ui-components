@@ -2,8 +2,9 @@
   <span>
     <label
       :for="labelFor"
-      :class="['block mb-2 text-sm text-gray-500', {'sr-only': srOnlyLabel}]"
+      :class="['flex items-center justify-between mb-2 text-sm text-gray-500', {'sr-only': srOnlyLabel}]"
     >
+    <span>
       {{ label }}
       <span
         v-if="required"
@@ -11,8 +12,14 @@
       >
         *
       </span>
+      </span>
+        <span
+          v-if="iconRight"
+          class="pt-1 pb-1"
+          >
+          <slot name="iconRight" />
+        </span>
     </label>
-    <slot />
   </span>
 </template>
 
@@ -25,6 +32,11 @@ export default defineComponent({
     labelFor: { type: String, required: true },
     required: { type: Boolean, default: false },
     srOnlyLabel: { type: Boolean, default: false }
+  },
+  computed: {
+    iconRight () {
+      return this.$slots.iconRight;
+    }
   }
 });
 </script>
