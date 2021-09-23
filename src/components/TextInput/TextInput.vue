@@ -7,7 +7,7 @@
       :sr-only-label="srOnlyLabel"
     >
       <template v-slot:iconRight>
-	<slot name="iconRight" />
+	      <slot name="iconRight" />
       </template>
     </lob-label>
     <div
