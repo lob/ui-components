@@ -1,6 +1,8 @@
 import Dropdown from './Dropdown.vue';
 import mdx from './Dropdown.mdx';
 
+import { Eye } from '@/components/Icons';
+
 export default {
   title: 'Components/Dropdown',
   component: Dropdown,
@@ -277,5 +279,31 @@ WithOptGroups.args = {
       ]
     },
     'Brontosaurus'
+  ]
+};
+
+const IconTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: {  Dropdown, Eye },
+  data: () => ({ vModel }),
+  setup: () => ({ args }),
+  template: `
+    <dropdown v-bind="args" v-model="vModel">
+      <template v-slot:iconRight>
+        <eye class="w-5 h-5" />
+      </template>
+    </dropdown>
+  `
+});
+
+export const WithIcon = IconTemplate.bind({});
+WithIcon.args = {
+  id: 'galilean-moons',
+  label: 'Destination',
+  options: [
+    'Io',
+    'Europa',
+    'Ganymede',
+    'Callisto'
   ]
 };

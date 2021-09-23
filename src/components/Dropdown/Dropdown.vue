@@ -8,7 +8,11 @@
       :label-for="id"
       :required="required"
       :sr-only-label="srOnlyLabel"
-    />
+    >
+      <template v-slot:iconRight>
+        <slot name="iconRight" />
+      </template>
+    </lob-label>
     <div
       :class="[
         'relative',
