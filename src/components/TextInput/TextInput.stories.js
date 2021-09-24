@@ -66,21 +66,21 @@ IconLeft.args = {
   placeholder: 'One'
 };
 
-const IconRightTemplate = (args, { argTypes }) => ({
+const LabelIconTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { TextInput, Close },
   setup: () => ({ args }),
   template: `
     <text-input v-bind="args">
-      <template v-slot:iconRight>
+      <template v-slot:labelIcon>
         <close class="w-5 h-5" />
       </template>
     </text-input>
   `
 });
 
-export const IconRight = IconRightTemplate.bind({});
-IconRight.args = {
+export const LabelIcon = LabelIconTemplate.bind({});
+LabelIcon.args = {
   id: 'one',
   label: 'One',
   placeholder: 'One'
@@ -95,7 +95,7 @@ const BothIconsTemplate = (args, { argTypes }) => ({
       <template v-slot:iconLeft>
         <search class="w-6 h-6" />
       </template>
-      <template v-slot:iconRight>
+      <template v-slot:labelIcon>
         <close class="w-5 h-5" />
       </template>
     </text-input>

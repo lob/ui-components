@@ -7,7 +7,7 @@
       :sr-only-label="srOnlyLabel"
     >
       <template v-slot:iconRight>
-	      <slot name="iconRight" />
+	      <slot name="labelIcon" />
       </template>
     </lob-label>
     <div
@@ -159,8 +159,8 @@ export default {
     iconLeft () {
       return this.$slots.iconLeft;
     },
-    iconRight () {
-      return this.$slots.iconRight;
+    labelIcon () {
+      return this.$slots.labelIcon;
     },
     selectedOptions () {
       return this.$slots.selectedOptions;
