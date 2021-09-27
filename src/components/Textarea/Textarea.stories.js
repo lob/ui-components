@@ -1,6 +1,8 @@
 import Textarea from './Textarea.vue';
 import mdx from './Textarea.mdx';
 
+import { Close } from '@/components/Icons';
+
 export default {
   title: 'Components/Textarea',
   component: Textarea,
@@ -32,3 +34,22 @@ Primary.args = {
   placeholder: 'Enter a fun fact'
 };
 
+const LabelIconTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { Textarea, Close },
+  setup: () => ({ args }),
+  template: `
+    <Textarea v-bind="args">
+        <template v-slot:labelIcon>
+          <close class="w-5 h-5" />
+        </template>
+    </Textarea>
+  `,
+});
+
+export const LabelIcon = LabelIconTemplate.bind({});
+LabelIcon.args = {
+  id: "textarea",
+  label: "Cat nicknames",
+  placeholder: "Please list at least 8 of your cat's most interesting nicknames",
+ };
