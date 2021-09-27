@@ -1,6 +1,6 @@
 {
   "name": "@lob/ui-components",
-  "version": "0.0.125",
+  "version": "0.0.126",
   "engines": {
     "node": "14.16.1"
   },
@@ -60,7 +60,7 @@
     "sass-loader": "^10.1.1",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^22.0.0",
-    "tailwind-plugin-lob": "^0.0.17",
+    "tailwind-plugin-lob": "^0.0.19",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.4",
     "typescript": "~3.9.3",
     "vue-eslint-parser": "^7.6.0",
