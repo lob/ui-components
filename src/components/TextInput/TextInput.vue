@@ -5,11 +5,8 @@
       :label-for="id"
       :required="required"
       :sr-only-label="srOnlyLabel"
-    >
-      <template v-slot:iconRight>
-        <slot name="labelIcon" />
-      </template>
-    </lob-label>
+      v-if="label"
+    />
     <div
       data-testId="input-container"
       :class="[
@@ -50,6 +47,12 @@
         @input="onInput"
         @focus="onFocus"
       >
+      <div
+        v-if="iconRight"
+        :class="['pr-2 pt-3 pb-3 text-gray-500', {'!pr-1 !py-2': small}]"
+      >
+        <slot name="iconRight" />
+      </div>
       <button
         v-if="withCopyButton"
         :class="['rounded-tr-md rounded-br-md text-white bg-primary-500 border px-3',
@@ -105,7 +108,7 @@ export default {
     },
     label: {
       type: String,
-      required: true
+      default: ""
     },
     srOnlyLabel: {
       type: Boolean,
@@ -159,8 +162,8 @@ export default {
     iconLeft () {
       return this.$slots.iconLeft;
     },
-    labelIcon () {
-      return this.$slots.labelIcon;
+    iconRight () {
+      return this.$slots.iconRight;
     },
     selectedOptions () {
       return this.$slots.selectedOptions;
