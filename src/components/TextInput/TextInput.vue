@@ -1,6 +1,7 @@
 <template>
   <div>
     <lob-label
+      v-if="label"
       :label="label"
       :label-for="id"
       :required="required"
@@ -107,7 +108,7 @@ export default {
     },
     label: {
       type: String,
-      required: true
+      default: ''
     },
     srOnlyLabel: {
       type: Boolean,

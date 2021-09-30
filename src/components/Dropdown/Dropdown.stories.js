@@ -1,6 +1,10 @@
 import Dropdown from './Dropdown.vue';
 import mdx from './Dropdown.mdx';
 
+import LobLabel from '@/components/LobLabel/LobLabel.vue';
+import Tooltip from '@/components/Tooltip/Tooltip.vue';
+import { Eye } from '@/components/Icons';
+
 export default {
   title: 'Components/Dropdown',
   component: Dropdown,
@@ -277,5 +281,43 @@ WithOptGroups.args = {
       ]
     },
     'Brontosaurus'
+  ]
+};
+
+const moonVModel = 'Ganymede';
+
+const WithTooltipTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: {  Dropdown, Eye, LobLabel, Tooltip },
+  data: () => ({ moonVModel }),
+  setup: () => ({ args }),
+  template: `
+    <LobLabel
+      label="Favorite Galilean Moon"
+      labelFor="galilean-moons"
+    >
+      <template v-slot:tooltip>
+        <Tooltip>
+          <template #trigger>
+            <Eye class="w-5 h-5" />
+          </template>
+          <template #content>
+            Tough choice, I know!
+          </template>      
+        </Tooltip>
+      </template>
+    </LobLabel>
+    <dropdown v-bind="args" v-model="moonVModel" />
+  `
+});
+
+export const WithTooltip = WithTooltipTemplate.bind({});
+WithTooltip.args = {
+  id: 'galilean-moons',
+  options: [
+    'Io',
+    'Europa',
+    'Ganymede',
+    'Callisto'
   ]
 };

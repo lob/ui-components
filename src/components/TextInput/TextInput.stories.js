@@ -1,7 +1,9 @@
 import TextInput from './TextInput.vue';
 import mdx from './TextInput.mdx';
 
-import { Close, Search } from '@/components/Icons';
+import LobLabel from '@/components/LobLabel/LobLabel.vue';
+import Tooltip from '@/components/Tooltip/Tooltip.vue';
+import { Close, Search, Info } from '@/components/Icons';
 
 export default {
   title: 'Components/Text Input',
@@ -84,6 +86,36 @@ IconRight.args = {
   id: 'one',
   label: 'One',
   placeholder: 'One'
+};
+
+const WithTooltipTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { TextInput, LobLabel, Info, Tooltip },
+  setup: () => ({ args }),
+  template: `
+    <LobLabel
+      label="Favorite Lunar Maria"
+      labelFor="one"
+    >
+      <template v-slot:tooltip>
+        <Tooltip>
+          <template #trigger>
+            <Info class="w-5 h-5" />
+          </template>
+          <template #content>
+            Moon
+          </template>      
+        </Tooltip>
+      </template>
+    </LobLabel>
+    <text-input v-bind="args" />
+  `
+});
+
+export const WithTooltip = WithTooltipTemplate.bind({});
+WithTooltip.args = {
+  id: 'one',
+  placeholder: 'Mare Nectaris'
 };
 
 const BothIconsTemplate = (args, { argTypes }) => ({

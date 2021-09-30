@@ -2,14 +2,25 @@
   <span>
     <label
       :for="labelFor"
-      :class="['block mb-2 text-sm text-gray-500', {'sr-only': srOnlyLabel}]"
+      :class="[
+        'flex items-center justify-between mb-2 text-sm text-gray-500',
+        { 'sr-only': srOnlyLabel }
+      ]"
     >
-      {{ label }}
+      <span>
+        {{ label }}
+        <span
+          v-if="required"
+          class="text-sm text-turquoise-900"
+        >
+          *
+        </span>
+      </span>
       <span
-        v-if="required"
-        class="text-sm text-turquoise-900"
+        v-if="tooltip"
+        class="pt-1 pb-1"
       >
-        *
+        <slot name="tooltip" />
       </span>
     </label>
     <slot />
@@ -25,6 +36,11 @@ export default defineComponent({
     labelFor: { type: String, required: true },
     required: { type: Boolean, default: false },
     srOnlyLabel: { type: Boolean, default: false }
+  },
+  computed: {
+    tooltip () {
+      return this.$slots.tooltip;
+    }
   }
 });
 </script>
