@@ -1,7 +1,9 @@
 import Textarea from './Textarea.vue';
 import mdx from './Textarea.mdx';
 
-import { Close } from '@/components/Icons';
+import { Info } from '@/components/Icons';
+import LobLabel from '@/components/LobLabel/LobLabel.vue'
+import Tooltip from '@/components/Tooltip/Tooltip.vue'
 
 export default {
   title: 'Components/Textarea',
@@ -34,22 +36,32 @@ Primary.args = {
   placeholder: 'Enter a fun fact'
 };
 
-const LabelIconTemplate = (args, { argTypes }) => ({
+const WithTooltipTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { Textarea, Close },
+  components: { Textarea, Info, LobLabel, Tooltip },
   setup: () => ({ args }),
   template: `
-    <Textarea v-bind="args">
-        <template v-slot:labelIcon>
-          <close class="w-5 h-5" />
-        </template>
-    </Textarea>
+    <LobLabel
+      label="Cat nicknames"
+      labelFor="textarea"
+    >
+      <template v-slot:tooltip>
+        <Tooltip>
+          <template #trigger>
+            <Info class="w-5 h-5" />
+          </template>
+          <template #content>
+            Cat
+          </template>      
+        </Tooltip>
+      </template>
+    </LobLabel>
+    <Textarea v-bind="args" />
   `,
 });
 
-export const LabelIcon = LabelIconTemplate.bind({});
-LabelIcon.args = {
+export const WithTooltip = WithTooltipTemplate.bind({});
+WithTooltip.args = {
   id: "textarea",
-  label: "Cat nicknames",
   placeholder: "Please list at least 8 of your cat's most interesting nicknames",
  };
