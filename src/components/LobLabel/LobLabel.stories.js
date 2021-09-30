@@ -1,7 +1,8 @@
 import LobLabel from './LobLabel.vue';
 import mdx from './LobLabel.mdx';
 
-import { Close } from '@/components/Icons';
+import { Info } from '@/components/Icons';
+import Tooltip from '@/components/Tooltip/Tooltip.vue';
 
 export default {
   title: 'Components/Label',
@@ -20,22 +21,29 @@ export default {
   }
 };
 
-const WithIconTemplate = (args, { argTypes }) => ({
+const WithTooltipTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { LobLabel, Close },
+  components: { LobLabel, Info, Tooltip },
   setup: () => ({ args }),
   template: `
     <lob-label v-bind="args">
-      <template v-slot:iconRight>
-        <close class="w-5 h-5" />
+      <template v-slot:tooltip>
+        <Tooltip position="left">
+          <template #trigger>
+            <Info class="w-5 h-5" />
+          </template>
+          <template #content>
+            Cat
+          </template>
+        </Tooltip>
       </template>
     </lob-label>
     <input class="border rounded p-2 text-gray-500" />
   `,
 });
 
-export const WithIcon = WithIconTemplate.bind({});
-WithIcon.args = {
+export const WithTooltip = WithTooltipTemplate.bind({});
+WithTooltip.args = {
   label: "Name",
   labelFor: "Name",
   required: true,

@@ -11,8 +11,8 @@
         {{ label }}
         <span v-if="required" class="text-sm text-turquoise-900"> * </span>
       </span>
-      <span v-if="iconRight" class="pt-1 pb-1">
-        <slot name="iconRight" />
+      <span v-if="tooltip" class="pt-1 pb-1">
+        <slot name="tooltip" />
       </span>
     </label>
     <slot />
@@ -30,8 +30,8 @@ export default defineComponent({
     srOnlyLabel: { type: Boolean, default: false }
   },
   computed: {
-    iconRight () {
-      return this.$slots.iconRight;
+    tooltip () {
+      return this.$slots.tooltip;
     }
   }
 });
