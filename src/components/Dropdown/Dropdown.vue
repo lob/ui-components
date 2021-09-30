@@ -3,17 +3,13 @@
 <template>
   <div>
     <lob-label
+      v-if="label"
       :id="`${id}-label`"
       :label="label"
       :label-for="id"
       :required="required"
       :sr-only-label="srOnlyLabel"
-      v-if="label"
-    >
-      <template v-slot:iconRight>
-        <slot name="iconRight" />
-      </template>
-    </lob-label>
+    />
     <div
       :class="[
         'relative',
