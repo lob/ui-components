@@ -8,6 +8,7 @@
       :label-for="id"
       :required="required"
       :sr-only-label="srOnlyLabel"
+      v-if="label"
     >
       <template v-slot:iconRight>
         <slot name="iconRight" />
@@ -164,7 +165,7 @@ export default {
     },
     label: {
       type: String,
-      required: true
+      default: ""
     },
     srOnlyLabel: {
       type: Boolean,

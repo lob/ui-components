@@ -1,6 +1,8 @@
 import Dropdown from './Dropdown.vue';
 import mdx from './Dropdown.mdx';
 
+import LobLabel from '@/components/LobLabel/LobLabel.vue';
+import Tooltip from '@/components/Tooltip/Tooltip.vue';
 import { Eye } from '@/components/Icons';
 
 export default {
@@ -282,24 +284,36 @@ WithOptGroups.args = {
   ]
 };
 
-const IconTemplate = (args, { argTypes }) => ({
+const moonVModel = 'Ganymede';
+
+const WithTooltipTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: {  Dropdown, Eye },
-  data: () => ({ vModel }),
+  components: {  Dropdown, Eye, LobLabel, Tooltip },
+  data: () => ({ moonVModel }),
   setup: () => ({ args }),
   template: `
-    <dropdown v-bind="args" v-model="vModel">
-      <template v-slot:iconRight>
-        <eye class="w-5 h-5" />
+    <LobLabel
+      label="Favorite Galilean Moon"
+      labelFor="galilean-moons"
+    >
+      <template v-slot:tooltip>
+        <Tooltip>
+          <template #trigger>
+            <Eye class="w-5 h-5" />
+          </template>
+          <template #content>
+            Tough choice, I know!
+          </template>      
+        </Tooltip>
       </template>
-    </dropdown>
+    </LobLabel>
+    <dropdown v-bind="args" v-model="moonVModel" />
   `
 });
 
-export const WithIcon = IconTemplate.bind({});
-WithIcon.args = {
+export const WithTooltip = WithTooltipTemplate.bind({});
+WithTooltip.args = {
   id: 'galilean-moons',
-  label: 'Destination',
   options: [
     'Io',
     'Europa',
