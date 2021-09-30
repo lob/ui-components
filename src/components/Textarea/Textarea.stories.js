@@ -2,8 +2,8 @@ import Textarea from './Textarea.vue';
 import mdx from './Textarea.mdx';
 
 import { Info } from '@/components/Icons';
-import LobLabel from '@/components/LobLabel/LobLabel.vue'
-import Tooltip from '@/components/Tooltip/Tooltip.vue'
+import LobLabel from '@/components/LobLabel/LobLabel.vue';
+import Tooltip from '@/components/Tooltip/Tooltip.vue';
 
 export default {
   title: 'Components/Textarea',
@@ -57,11 +57,11 @@ const WithTooltipTemplate = (args, { argTypes }) => ({
       </template>
     </LobLabel>
     <Textarea v-bind="args" />
-  `,
+  `
 });
 
 export const WithTooltip = WithTooltipTemplate.bind({});
 WithTooltip.args = {
-  id: "textarea",
-  placeholder: "Please list at least 8 of your cat's most interesting nicknames",
- };
+  id: 'textarea',
+  placeholder: 'Please list at least 8 of your cat\'s most interesting nicknames'
+};

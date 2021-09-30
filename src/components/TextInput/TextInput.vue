@@ -1,11 +1,11 @@
 <template>
   <div>
     <lob-label
+      v-if="label"
       :label="label"
       :label-for="id"
       :required="required"
       :sr-only-label="srOnlyLabel"
-      v-if="label"
     />
     <div
       data-testId="input-container"
@@ -108,7 +108,7 @@ export default {
     },
     label: {
       type: String,
-      default: ""
+      default: ''
     },
     srOnlyLabel: {
       type: Boolean,

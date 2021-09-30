@@ -1,10 +1,10 @@
 <template>
   <lob-label
+    v-if="label"
     :label="label"
     :label-for="id"
     :required="required"
     :sr-only-label="srOnlyLabel"
-    v-if="label"
   />
   <textarea
     :id="id"
@@ -18,7 +18,7 @@
       'bg-white text-gray-500 placeholder-gray-100 p-4 resize-none rounded border border-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
       { 'border-error': error },
       { '!bg-white-300 cursor-not-allowed': disabled || readonly },
-      { 'hover:shadow': !disabled && !readonly },
+      { 'hover:shadow': !disabled && !readonly }
     ]"
     @input="onInput"
   />

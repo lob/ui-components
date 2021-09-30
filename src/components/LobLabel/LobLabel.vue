@@ -4,14 +4,22 @@
       :for="labelFor"
       :class="[
         'flex items-center justify-between mb-2 text-sm text-gray-500',
-        { 'sr-only': srOnlyLabel },
+        { 'sr-only': srOnlyLabel }
       ]"
     >
       <span>
         {{ label }}
-        <span v-if="required" class="text-sm text-turquoise-900"> * </span>
+        <span
+          v-if="required"
+          class="text-sm text-turquoise-900"
+        >
+          *
+        </span>
       </span>
-      <span v-if="tooltip" class="pt-1 pb-1">
+      <span
+        v-if="tooltip"
+        class="pt-1 pb-1"
+      >
         <slot name="tooltip" />
       </span>
     </label>

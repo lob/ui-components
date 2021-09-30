@@ -78,17 +78,15 @@ const IconRightTemplate = (args, { argTypes }) => ({
         <close class="w-6 h-6" />
       </template>
     </text-input>
-  `,
+  `
 });
 
 export const IconRight = IconRightTemplate.bind({});
 IconRight.args = {
-  id: "one",
-  label: "One",
-  placeholder: "One",
+  id: 'one',
+  label: 'One',
+  placeholder: 'One'
 };
-
-
 
 const WithTooltipTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
@@ -111,7 +109,7 @@ const WithTooltipTemplate = (args, { argTypes }) => ({
       </template>
     </LobLabel>
     <text-input v-bind="args" />
-  `,
+  `
 });
 
 export const WithTooltip = WithTooltipTemplate.bind({});

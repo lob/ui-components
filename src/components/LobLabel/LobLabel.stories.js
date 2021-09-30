@@ -39,14 +39,14 @@ const WithTooltipTemplate = (args, { argTypes }) => ({
       </template>
     </lob-label>
     <input class="border rounded p-2 text-gray-500" />
-  `,
+  `
 });
 
 export const WithTooltip = WithTooltipTemplate.bind({});
 WithTooltip.args = {
-  label: "Name",
-  labelFor: "Name",
-  required: true,
+  label: 'Name',
+  labelFor: 'Name',
+  required: true
 };
 
 const WithInputTemplate = (args, { argTypes }) => ({
