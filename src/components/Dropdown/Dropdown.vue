@@ -31,7 +31,7 @@
         :class="[
           'cursor-default bg-white border rounded border-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent hover:shadow',
           {'text-sm py-2 px-2.5': small},
-          {'py-2 px-4': default_},
+          {'py-2.5 px-4': default_},
           {'!bg-white-300 pointer-events-none': disabled},
           {'border-error': error}
         ]"
@@ -52,7 +52,7 @@
           :class="[
             'w-4 h-4 absolute right-2',
             {'top-3': small},
-            {'top-3.5': default_}
+            {'top-4': default_}
           ]"
         />
       </div>
