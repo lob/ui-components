@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <ul :class="`flex pb-3.5 border-b border-gray-100 ${ulClass}`">
+    <ul :class="`flex pb-0.5 border-b border-gray-100 ${ulClass}`">
       <slot />
     </ul>
   </nav>
