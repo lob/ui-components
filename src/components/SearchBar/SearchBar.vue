@@ -27,7 +27,7 @@
       </template>
     </text-input>
     <div
-      v-if="!outsideClick"
+      v-if="visible"
       class="bg-white shadow overflow-y-auto min-w-full absolute"
       role="results"
     >
@@ -43,6 +43,7 @@
             :to="link"
             :underline="false"
             class="hover:text-primary-700"
+            @click="hide"
           >
             {{ t('search.resultsPrefix') }} {{ totalResults }} {{ t('search.resultsSuffix') }}
           </LobLink>
@@ -107,7 +108,7 @@ export default {
       searchResults: [],
       searching: false,
       timeout: null,
-      outsideClick: false
+      visible: false
     };
   },
   computed: {
@@ -120,7 +121,10 @@ export default {
   },
   watch: {
     searchTerm (val) {
-      val && this.debounceSearch(val);
+      if (val) {
+        this.visible = true;
+        this.debounceSearch(val);
+      }
     }
   },
   mounted () {
@@ -150,17 +154,17 @@ export default {
       this.searchResults = [];
     },
     onClickOutside ($event) {
-      if (typeof this.$refs.searchBar !== 'undefined') {
-        this.outsideClick = false;
+      if (this.$refs.searchBar) {
         const clickOnTheContainer = this.$refs.searchBar === $event.target;
         const clickOnChild = this.$refs.searchBar && this.$refs.searchBar.contains($event.target);
+
         if (!clickOnTheContainer && !clickOnChild) {
           this.hide();
         }
       }
     },
     hide () {
-      this.outsideClick = true;
+      this.visible = false;
     }
   }
 };

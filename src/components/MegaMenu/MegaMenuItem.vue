@@ -5,7 +5,10 @@
       {'pb-4': !small}
     ]"
   >
-    <LobLink class="flex pt-1 flex-nowrap items-center hover:text-primary-500 w-64 no-underline">
+    <LobLink
+      :to="to"
+      class="flex pt-1 flex-nowrap items-center hover:text-primary-500 w-64 no-underline"
+    >
       <img
         :src="imageSource"
         alt=""
