@@ -2,18 +2,31 @@
 import { h } from 'vue';
 export default {
   name: 'TableRow',
+  props: {
+    singleCellRow: {
+      type: Boolean,
+      default: false
+    }
+  },
   render () {
     const defaultSlot = this.$slots.default();
     const isNestedSlot = defaultSlot[0].type === 'template' || defaultSlot[0].type.toString() === 'Symbol(Fragment)' || defaultSlot[0].type.toString() === 'Symbol()';
 
-    let rows;
+    let items;
     if (isNestedSlot) {
-      rows = defaultSlot.flatMap((slotItem) => slotItem.children).map((child) => h('td', child));
+      items = defaultSlot.flatMap((slotItem) => slotItem.children);
     } else {
-      rows = defaultSlot.map((slotItem) => h('td', slotItem));
+      items = defaultSlot;
     }
 
-    return h('tr', this.$attrs, rows);
+    let cells;
+    if (this.singleCellRow) {
+      cells = h('td', { colspan: '100%' }, items);
+    } else {
+      cells = items.map((item) => h('td', item));
+    }
+
+    return h('tr', this.$attrs, cells);
   }
 };
 </script>

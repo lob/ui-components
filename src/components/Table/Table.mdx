@@ -21,6 +21,9 @@ Table is a flexible component that display sets of data
       <div>{{item.name}}</div>
       <div>{{item.description}}</div>
     </TableRow>
+    <TableRow :single-cell-row="true">
+        <div>{{item.fullLineDescription}}</div>
+    </TableRow>
   </TableBody>
 </lob-table>
 ```
