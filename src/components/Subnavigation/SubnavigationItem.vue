@@ -5,7 +5,7 @@
     <LobLink
       :to="to"
       class="inline-block relative pb-4 no-underline text-black font-light"
-      exact-active-class="lob-active-border font-normal"
+      :exact-active-class="exactActiveClass"
       data-testid="subnav-item"
     >
       {{ title }}
@@ -27,6 +27,21 @@ export default {
     to: {
       type: String,
       default: ''
+    },
+    matchQueryString: {
+      type: Boolean,
+      default: false
+    }
+  },
+  computed: {
+    exactActiveClass () {
+      const activeClass = 'lob-active-border font-normal';
+      const matchWithQueryString = this.$route.fullPath === this.to;
+      if (this.matchQueryString) {
+        return matchWithQueryString ? activeClass : '';
+      } else {
+        return activeClass;
+      }
     }
   }
 };
