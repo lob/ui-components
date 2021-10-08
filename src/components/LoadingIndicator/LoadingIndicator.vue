@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="loading ? 'loading-gif' : ''"
+    :class="loading ? `loading-gif ${loadingClass}` : ''"
     aria-live="polite"
     :aria-busy="loading"
     data-testId="loading-indicator"
@@ -14,6 +14,10 @@ import { Comment } from 'vue';
 
 export default {
   name: 'LoadingIndicator',
+  loadingClass: {
+    type: String,
+    default: ''
+  },
   computed: {
     loading () {
       return !this.$slots.default || this.$slots.default().findIndex((o) => o.type !== Comment) === -1;
