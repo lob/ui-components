@@ -61,6 +61,47 @@ SimpleTable.args = {
   ]
 };
 
+const TableWithASingleCellRowTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { LobTable, TableHeader, TableRow, TableBody },
+  setup: () => ({ args }),
+  template: `
+    <lob-table class="min-w-full divide-y divide-gray-200" :space="args.space">
+      <TableHeader>
+        <div class="text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</div>
+        <div class="text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</div>
+      </TableHeader>
+      <TableBody>
+        <template v-for="item in args.items">
+          <TableRow>
+            <div class="whitespace-nowrap">{{item.name}}</div>
+            <div class="whitespace-nowrap">{{item.description}}</div>
+          </TableRow>
+          <TableRow :single-cell-row="true">
+            <div class="w-full text-center">{{item.extraDescription}}</div>
+          </TableRow>
+        </template>
+      </TableBody>
+    </lob-table>
+  `
+});
+
+export const TableWithASingleCellRow = TableWithASingleCellRowTemplate.bind({});
+TableWithASingleCellRow.args = {
+  items: [
+    {
+      name: 'Jane Cooper',
+      description: 'Regional Paradigm Technician',
+      extraDescription: 'Details: Jane Cooper joined in January 2015 and worked as a Paradigm Technician'
+    },
+    {
+      name: 'Cody Fisher',
+      description: 'Product Directives Officer',
+      extraDescription: 'Details: Cody Fisher joined in November 2000 and worked on the directives since establishment'
+    }
+  ]
+};
+
 const TableWithActionTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LobTable, TableHeader, TableRow, TableBody, LobButton },
