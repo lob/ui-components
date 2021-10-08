@@ -112,7 +112,7 @@ export default {
     // will default to color if not provided
     borderColor: {
       type: String,
-      default: null
+      default: ''
     },
     backgroundColor: {
       type: String,

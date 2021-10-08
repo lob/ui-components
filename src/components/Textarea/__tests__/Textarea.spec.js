@@ -6,7 +6,7 @@ const initialProps = {
   id: 'test',
   name: 'test',
   label: 'label',
-  'v-model': ''
+  modelValue: ''
 };
 
 const renderComponent = (options, configure = null) => render(Textarea, { ...options }, configure);
