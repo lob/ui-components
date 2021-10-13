@@ -55,6 +55,7 @@
       </div>
       <button
         v-if="withCopyButton"
+        type="button"
         :class="['rounded-tr-md rounded-br-md text-white bg-primary-500 border px-3',
                  { 'h-12': !small },
                  { 'h-10': small }
