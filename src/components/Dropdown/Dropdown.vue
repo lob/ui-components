@@ -40,12 +40,7 @@
         @click="updateMenuState(!open)"
         @keydown="onSelectKeydown"
       >
-        <span
-          :class="['mr-8',
-                   {'text-sm': small},
-                   {'underline': value && value !== placeholder}
-          ]"
-        >
+        <span :class="['mr-8', {'text-sm': small}]">
           {{ value || placeholder }}
         </span>
         <chevron-down
