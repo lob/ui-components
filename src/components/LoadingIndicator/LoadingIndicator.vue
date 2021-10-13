@@ -14,9 +14,11 @@ import { Comment } from 'vue';
 
 export default {
   name: 'LoadingIndicator',
-  loadingClass: {
-    type: String,
-    default: ''
+  props: {
+    loadingClass: {
+      type: String,
+      default: ''
+    }
   },
   computed: {
     loading () {
