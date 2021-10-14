@@ -3,7 +3,7 @@
     :is="tag"
     :[linkProp]="to"
     :class="[
-      {'underline' : underline},
+      {'underline text-primary-900' : underline},
       {'primary py-3 px-6 bg-primary-500 text-white active:bg-primary-700 disabled:bg-white-300': primary},
       {'secondary py-3 px-6 bg-white-200 border border-primary-500 text-primary-500 active:text-primary-700 active:border-primary-700 disabled:border-gray-100': secondary},
       {'alert py-3 px-6 bg-white hover:bg-lemon-300 border rounded border-lemon-700 text-lemon-900 hover:text-lemon-900 focus:ring-lemon-700 disabled:border-gray-100': alert},
