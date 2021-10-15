@@ -493,11 +493,16 @@ export default {
       focus && this.$refs.input.focus();
     },
     selectOption ($event, index) {
-      this.selectedIndex = index;
-      const selected = this.flattenedOptions[index];
-      this.$emit('update:modelValue', selected);
-      this.$emit('input', selected);
-      this.$emit('change', $event);
+      if (index !== -1) {
+        this.selectedIndex = index;
+        const selected = this.flattenedOptions[index];
+        this.$emit('update:modelValue', selected);
+        this.$emit('input', selected);
+        this.$emit('change', $event);
+      } else {
+        return;
+      }
+
     }
   }
 };
