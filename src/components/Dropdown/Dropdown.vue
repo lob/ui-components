@@ -493,6 +493,9 @@ export default {
       focus && this.$refs.input.focus();
     },
     selectOption ($event, index) {
+      if (index === -1) {
+        return;
+      }
       this.selectedIndex = index;
       const selected = this.flattenedOptions[index];
       this.$emit('update:modelValue', selected);
