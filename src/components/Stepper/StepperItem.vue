@@ -39,10 +39,8 @@
         :class="[
           'z-10 rounded-full w-5 h-5 absolute border border-transparent',
           { '!border-current': active },
-          { '-top-2.5': textBottom },
-          { 'top-10': textTop }
         ]"
-        :style="`color: ${color}; background-color: ${backgroundColor}`"
+        :style="`color: ${color}; background-color: ${backgroundColor}; top: ${textTop ? '2.427rem' : '-0.627rem'}`"
       >
         <div
           class="rounded-full w-3 h-3 absolute bg-current"
