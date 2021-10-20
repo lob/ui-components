@@ -42,12 +42,6 @@
   }
 
   a {
-    @apply text-primary-300;
-
-    &:hover {
-      @apply text-primary-500;
-    }
-
     &:focus {
       @apply outline-none;
       @apply ring-2;
