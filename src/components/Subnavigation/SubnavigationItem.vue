@@ -34,7 +34,7 @@ export default {
   },
   computed: {
     active () {
-      return this.$route.path.includes(this.to);
+      return this.matchQueryString ? this.$route.fullPath === this.to : this.$route.fullPath.includes(this.to);
     }
   }
 };
