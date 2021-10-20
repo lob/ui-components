@@ -4,8 +4,7 @@
   >
     <LobLink
       :to="to"
-      class="inline-block relative pb-4 no-underline text-black font-light"
-      :exact-active-class="exactActiveClass"
+      :class="['inline-block relative pb-4 no-underline text-black font-light', { 'lob-active-border font-normal': active }]"
       data-testid="subnav-item"
     >
       {{ title }}
@@ -34,14 +33,8 @@ export default {
     }
   },
   computed: {
-    exactActiveClass () {
-      const activeClass = 'lob-active-border font-normal';
-      const matchWithQueryString = this.$route.fullPath === this.to;
-      if (this.matchQueryString) {
-        return matchWithQueryString ? activeClass : '';
-      } else {
-        return activeClass;
-      }
+    active () {
+      return this.matchQueryString ? this.$route.fullPath === this.to : this.$route.fullPath.includes(this.to);
     }
   }
 };
