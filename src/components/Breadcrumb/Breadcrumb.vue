@@ -72,9 +72,9 @@ export default {
       let sanitizedStr = str.toLowerCase();
 
       let splitStr = sanitizedStr.split(' ');
-      splitStr = splitStr.map((word) => word.replace(/^[a-z]/i, (letter) => {
+      splitStr = splitStr.map((word) => (word === 'api' ? word.replace(word, 'API') : word.replace(/^[a-z]/i, (letter) => {
         return letter.toUpperCase();
-      }));
+      })));
 
       sanitizedStr = splitStr.join(' ');
       return sanitizedStr.trim();
