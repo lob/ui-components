@@ -1,6 +1,6 @@
 {
   "name": "@lob/ui-components",
-  "version": "0.0.144",
+  "version": "0.0.145",
   "engines": {
     "node": "14.16.1"
   },
