@@ -124,7 +124,7 @@ Item.args = {
   iconAltText: 'Overview icon',
   to: '/overview',
   expanded: true,
-  itemClass: "font-bold"
+  itemClass: 'font-bold'
 };
 
 const ChildItemTemplate = (args, { argTypes }) => ({
