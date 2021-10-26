@@ -259,12 +259,12 @@ describe('Main Navigation Item', () => {
 
   });
 
-  describe('with a bold prop', () => {
+  describe('with a itemClass prop', () => {
 
     it('renders a link', async () => {
       const props = {
         ...initialProps,
-        bold: true
+        itemClass: 'font-bold'
       };
       const { queryByText } = await renderComponent({ props });
 

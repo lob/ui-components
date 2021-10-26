@@ -21,7 +21,7 @@
           'pl-4',
           { expanded: expanded },
           { 'collapsed xl:hidden': !expanded },
-          { 'font-bold': bold }
+          itemClass
         ]"
         data-testid="collapsibleElement"
       >
@@ -82,9 +82,9 @@ export default {
       type: Boolean,
       default: true
     },
-    bold: {
-      type: Boolean,
-      default: false
+    itemClass: {
+      type: String,
+      default: null
     }
   },
   emits: ['nav'],
