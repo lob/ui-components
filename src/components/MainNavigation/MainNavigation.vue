@@ -8,8 +8,10 @@
       @click="animateDrawer"
     />
     <ul
+      data-testId="main-navigation-inner"
       :class="[
         'relative',
+        innerClass,
         { expanded: collapsible && expanded },
         { collapsed: collapsible && !expanded }
       ]"
@@ -28,6 +30,10 @@ export default {
     collapsible: {
       type: Boolean,
       default: true
+    },
+    innerClass: {
+      type: String,
+      default: ''
     }
   },
   data () {

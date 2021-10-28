@@ -40,5 +40,17 @@ describe('Main Navigation', () => {
 
   });
 
-});
+  describe('when inner class is passed', () => {
 
+    it('does have inneclass', async () => {
+      const props = { innerClass: 'font-bold' };
+      const { getByTestId } = renderComponent({ props });
+
+      const inner = getByTestId('main-navigation-inner');
+
+      expect(inner).toHaveClass('font-bold');
+    });
+
+  });
+
+});
