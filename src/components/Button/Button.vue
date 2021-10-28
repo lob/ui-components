@@ -4,11 +4,12 @@
       'flex justify-center items-center disabled:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
       { 'rounded': !link || !none },
       { 'cursor-not-allowed': disabled },
+      { 'border-none': disabled && primary },
       {
         'primary bg-primary-500 border border-primary-500 text-white active:bg-primary-700 disabled:bg-white-300': primary
       },
       {
-        'secondary bg-white-200 border border-primary-500 text-primary-500 active:text-primary-700 active:border-primary-700 disabled:border-gray-100':
+        'secondary bg-white-200 border border-primary-500 text-primary-500 active:text-primary-700 active:border-primary-700 disabled:border-gray-100 disabled:bg-white':
           secondary
       },
       {
