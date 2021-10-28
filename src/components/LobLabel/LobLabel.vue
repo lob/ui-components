@@ -3,7 +3,7 @@
     <label
       :for="labelFor"
       :class="[
-        'flex items-center justify-between mb-2 text-sm text-gray-500',
+        {'flex items-center justify-between mb-2 text-sm text-gray-500': !srOnlyLabel},
         { 'sr-only': srOnlyLabel }
       ]"
     >
