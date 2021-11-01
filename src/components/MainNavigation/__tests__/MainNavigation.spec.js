@@ -42,7 +42,7 @@ describe('Main Navigation', () => {
 
   describe('when inner class is passed', () => {
 
-    it('does have inneclass', async () => {
+    it('does have inner class', async () => {
       const props = { innerClass: 'font-bold' };
       const { getByTestId } = renderComponent({ props });
 
