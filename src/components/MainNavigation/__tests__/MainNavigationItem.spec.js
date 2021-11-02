@@ -259,6 +259,22 @@ describe('Main Navigation Item', () => {
 
   });
 
+  describe('with a itemClass prop', () => {
+
+    it('renders a link', async () => {
+      const props = {
+        ...initialProps,
+        itemClass: 'font-bold'
+      };
+      const { queryByText } = await renderComponent({ props });
+
+      const item = queryByText(props.title);
+      expect(item).toBeInTheDocument();
+      expect(item).toHaveClass('font-bold');
+    });
+
+  });
+
   describe('when parent nav is expanded', () => {
 
     it('expands its content appropriately', async () => {
