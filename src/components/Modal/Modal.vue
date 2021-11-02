@@ -3,7 +3,7 @@
     <div
       v-show="visible"
       :class="['fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 z-30']"
-      @click="closeModal"
+      @mousedown="closeModal"
     >
       <div
         class="bg-white flex flex-col overflow-auto shadow rounded-lg p-5 max-h-5/6"
@@ -11,7 +11,7 @@
         aria-labelledby="modalTitle"
         aria-describedby="modalDescription"
         :style="{'width': width}"
-        @click.stop
+        @mousedown.stop
       >
         <header
           v-if="hasHeader"
