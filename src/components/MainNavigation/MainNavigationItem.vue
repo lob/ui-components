@@ -20,7 +20,8 @@
         :class="[
           'pl-4',
           { expanded: expanded },
-          { 'collapsed xl:hidden': !expanded }
+          { 'collapsed xl:hidden': !expanded },
+          itemClass
         ]"
         data-testid="collapsibleElement"
       >
@@ -80,6 +81,10 @@ export default {
     expanded: {
       type: Boolean,
       default: true
+    },
+    itemClass: {
+      type: String,
+      default: null
     }
   },
   emits: ['nav'],
