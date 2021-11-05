@@ -4,6 +4,7 @@
     data-testId="menu-container"
     @mouseenter="showNav = true"
     @mouseleave="showNav = false"
+    @keyup.enter="onClick"
     @click="onClick"
   >
     <div
@@ -12,7 +13,10 @@
       :aria-controls="dropdownListId"
       aria-haspopup="menu"
     >
-      <div class="flex-nowrap flex mt-0 flex-row justify-between xl:justify-start items-center px-2 py-1 xl:px-0 xl:py-0">
+      <div 
+        tabindex="0"
+        class="focus:outline-none focus:opacity-100 focus:ring-2 focus:ring-primary-100 focus:border-transparent flex-nowrap flex mt-0 flex-row justify-between xl:justify-start items-center px-2 py-1 xl:px-0 xl:py-0"
+      >
         {{ title }}
         <img
           :src="`${$getConst('lobAssetsUrl')}/dashboard/navbar/caret-down.svg`"
