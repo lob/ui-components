@@ -85,6 +85,7 @@ export default {
   },
   methods: {
     onClick ($event) {
+      this.showNav = !this.showNav;
       this.showMobileNav = !this.showMobileNav;
       this.$emit('click', $event);
     }
