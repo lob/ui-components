@@ -87,6 +87,7 @@ export default {
   methods: {
     onBlur () {
       this.showNav = false;
+      this.showMobileNav = false;
     },
     onEscape () {
       this.showNav = false;
