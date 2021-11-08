@@ -4,6 +4,7 @@
       {'pb-2': small},
       {'pb-4': !small}
     ]"
+    @keyup.esc="onEscape"
   >
     <LobLink
       :to="to"
@@ -59,6 +60,11 @@ export default {
     small: {
       type: Boolean,
       default: false
+    }
+  },
+  methods: {
+    onEscape () {
+      this.$parent.onEscape();
     }
   }
 };
