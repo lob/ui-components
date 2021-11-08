@@ -33,6 +33,7 @@
       :class="['hidden height-0 min-w-full xl:rounded-lg xl:bg-white xl:absolute', {'!block xl:hidden': showMobileNav}, {'xl:top-9 xl:!block': showNav}, {'xl:!hidden': !showNav}, {'xl:right-0': right}]"
     >
       <div
+        ref="dropdownMenu"
         :class="['height-0 pt-6 pb-4 px-4 h-auto w-full mt-1 border-gray-100 opacity-100',
                  {'!w-full xl:!mt-0': showMobileNav},
                  {'boxShadowGray xl:border-none xl:rounded-lg xl:bg-white': showNav}]"

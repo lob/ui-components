@@ -65,7 +65,7 @@ export default {
   },
   methods: {
     onBlur ($event) {
-      const lastChild = $event.target.parentElement.parentElement.lastElementChild.firstChild;
+      const lastChild = this.$parent.$refs.dropdownMenu.lastElementChild.firstChild;
 
       if ($event.target === lastChild) {
         this.$parent.onBlur();
