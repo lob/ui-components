@@ -4,12 +4,10 @@
       {'pb-2': small},
       {'pb-4': !small}
     ]"
-    @keyup.esc="onEscape"
   >
     <LobLink
       :to="to"
       class="flex pt-1 flex-nowrap items-center hover:text-primary-500 w-64 no-underline"
-      @blur="onBlur"
     >
       <img
         :src="imageSource"
@@ -61,18 +59,6 @@ export default {
     small: {
       type: Boolean,
       default: false
-    }
-  },
-  methods: {
-    onBlur ($event) {
-      const lastChild = this.$parent.$refs.dropdownMenu.lastElementChild.firstChild;
-
-      if ($event.target === lastChild) {
-        this.$parent.onBlur();
-      }
-    },
-    onEscape () {
-      this.$parent.onEscape();
     }
   }
 };
