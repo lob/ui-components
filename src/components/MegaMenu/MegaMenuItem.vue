@@ -7,7 +7,7 @@
   >
     <LobLink
       :to="to"
-      class="flex pt-1 flex-nowrap items-center hover:text-primary-500 w-64 no-underline"
+      class="focus:outline-none focus:opacity-100 focus:ring-2 focus:ring-primary-100 focus:border-transparent flex pt-1 flex-nowrap items-center hover:text-primary-500 w-64 no-underline"
     >
       <img
         :src="imageSource"
