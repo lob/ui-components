@@ -8,8 +8,10 @@
       @click="animateDrawer"
     />
     <ul
+      data-testId="main-navigation-list"
       :class="[
         'relative',
+        listClass,
         { expanded: collapsible && expanded },
         { collapsed: collapsible && !expanded }
       ]"
@@ -28,6 +30,10 @@ export default {
     collapsible: {
       type: Boolean,
       default: true
+    },
+    listClass: {
+      type: String,
+      default: ''
     }
   },
   data () {
