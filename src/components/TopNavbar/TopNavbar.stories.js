@@ -45,6 +45,84 @@ const Template = (args, { argTypes }) => ({
           </MegaMenuItem>
         </MegaMenu>
       </div>
+
+      <MegaMenu id="3" title="Another menu" navKey="" :mobileNavs="{}"
+      >
+        <div class="flex flex-col xl:!flex-row">
+          <div class="xl:w-1/2">
+            <MegaMenuSubtitle>
+              {{ ('topNav.industrySubtitle') }}
+            </MegaMenuSubtitle>
+            <MegaMenuItem
+            to="/settings/main/account" :imageSource="$getConst('lobAssetsUrl')+'/dashboard/navbar/settings.svg'" small
+            >
+              {{ ('topNav.financialServices') }}
+            </MegaMenuItem>
+            <MegaMenuItem
+            to="/settings/main/account" :imageSource="$getConst('lobAssetsUrl')+'/dashboard/navbar/settings.svg'" small
+            >
+              {{ ('topNav.insurance') }}
+            </MegaMenuItem>
+            <MegaMenuItem
+            to="/settings/main/account" :imageSource="$getConst('lobAssetsUrl')+'/dashboard/navbar/settings.svg'" small
+            >
+              {{ ('topNav.healthcare') }}
+            </MegaMenuItem>
+            <MegaMenuItem
+            to="/settings/main/account" :imageSource="$getConst('lobAssetsUrl')+'/dashboard/navbar/settings.svg'" small
+            >
+              {{ ('topNav.retailAndEcommerce') }}
+            </MegaMenuItem>
+          </div>
+          <div class="xl:w-1/2">
+            <MegaMenuSubtitle>
+              {{ ('topNav.roleSubtitle') }}
+            </MegaMenuSubtitle>
+            <MegaMenuItem
+            to="/settings/main/account" :imageSource="$getConst('lobAssetsUrl')+'/dashboard/navbar/settings.svg'" small
+            >
+              {{ ('topNav.productManagers') }}
+            </MegaMenuItem>
+            <MegaMenuItem
+            to="/settings/main/account" :imageSource="$getConst('lobAssetsUrl')+'/dashboard/navbar/settings.svg'" small
+            >
+              {{ ('topNav.developers') }}
+            </MegaMenuItem>
+            <MegaMenuItem
+            to="/settings/main/account" :imageSource="$getConst('lobAssetsUrl')+'/dashboard/navbar/settings.svg'" small
+            >
+              {{ ('topNav.marketers') }}
+            </MegaMenuItem>
+          </div>
+        </div>
+      </MegaMenu>
+
+      <MegaMenu
+      id="4" title="Some menu" navKey="" :mobileNavs="{}"
+    >
+      <MegaMenuSubtitle>
+        {{ ('topNav.apisSubtitle') }}
+      </MegaMenuSubtitle>
+      <MegaMenuItem
+      to="/settings/main/account" :imageSource="$getConst('lobAssetsUrl')+'/dashboard/navbar/settings.svg'" small
+      >
+        {{ ('topNav.printAndMail') }}
+      </MegaMenuItem>
+      <MegaMenuItem
+      to="/settings/main/account" :imageSource="$getConst('lobAssetsUrl')+'/dashboard/navbar/settings.svg'" small
+      >
+        {{ ('topNav.addressVerification') }}
+      </MegaMenuItem>
+
+      <MegaMenuSubtitle>
+        {{ ('topNav.partnersSubtitle') }}
+      </MegaMenuSubtitle>
+      <MegaMenuItem
+      to="/settings/main/account" :imageSource="$getConst('lobAssetsUrl')+'/dashboard/navbar/settings.svg'" small
+      >
+        {{ ('topNav.buildOnLob') }}
+      </MegaMenuItem>
+    </MegaMenu>
     </topNavbar>
   `
 });

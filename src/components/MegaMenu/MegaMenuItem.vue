@@ -4,7 +4,6 @@
       {'pb-2': small},
       {'pb-4': !small}
     ]"
-    @keydown.enter="onEnter"
   >
     <LobLink
       :to="to"
@@ -60,11 +59,6 @@ export default {
     small: {
       type: Boolean,
       default: false
-    }
-  },
-  methods: {
-    onEnter () {
-      this.$parent.$refs.titleItem.focus();
     }
   }
 };

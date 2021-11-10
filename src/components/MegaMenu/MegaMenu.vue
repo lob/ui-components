@@ -89,9 +89,10 @@ export default {
   },
   methods: {
     onKeydown ($event) {
-      const lastMenuItem = this.$refs.dropdownMenu.lastElementChild.firstChild;
+      const anchorTags = this.$refs.dropdownMenu.getElementsByTagName('a');
+      const lastAnchorTag = anchorTags[anchorTags.length - 1];
 
-      if ($event.key === 'Tab' && !$event.shiftKey && $event.target === lastMenuItem) {
+      if ($event.key === 'Tab' && !$event.shiftKey && $event.target === lastAnchorTag) {
         this.onBlur();
       }
     },
