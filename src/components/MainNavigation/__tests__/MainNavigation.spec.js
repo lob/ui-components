@@ -40,15 +40,15 @@ describe('Main Navigation', () => {
 
   });
 
-  describe('when inner class is passed', () => {
+  describe('when list class is passed', () => {
 
-    it('does have inner class', async () => {
-      const props = { innerClass: 'font-bold' };
+    it('does have list class', async () => {
+      const props = { listClass: 'font-bold' };
       const { getByTestId } = renderComponent({ props });
 
-      const inner = getByTestId('main-navigation-inner');
+      const list = getByTestId('main-navigation-list');
 
-      expect(inner).toHaveClass('font-bold');
+      expect(list).toHaveClass('font-bold');
     });
 
   });
