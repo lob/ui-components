@@ -40,5 +40,17 @@ describe('Main Navigation', () => {
 
   });
 
-});
+  describe('when list class is passed', () => {
 
+    it('does have list class', async () => {
+      const props = { listClass: 'font-bold' };
+      const { getByTestId } = renderComponent({ props });
+
+      const list = getByTestId('main-navigation-list');
+
+      expect(list).toHaveClass('font-bold');
+    });
+
+  });
+
+});
