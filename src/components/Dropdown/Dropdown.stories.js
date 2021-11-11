@@ -295,6 +295,7 @@ const WithTooltipTemplate = (args, { argTypes }) => ({
     <LobLabel
       label="Favorite Galilean Moon"
       labelFor="galilean-moons"
+      tooltipContent="Dropdown tooltip"
     >
       <template v-slot:tooltip>
         <Tooltip>

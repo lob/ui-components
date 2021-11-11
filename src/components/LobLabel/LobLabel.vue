@@ -16,12 +16,19 @@
           *
         </span>
       </span>
-      <span
-        v-if="tooltip"
-        class="pt-1 pb-1"
+      <Tooltip
+        v-if="tooltipContent"
+        position="left"
       >
-        <slot name="tooltip" />
-      </span>
+        <template #trigger>
+          <Info class="w-5 h-5" />
+        </template>
+        <template #content>
+          <p class="w-48">
+            {{ tooltipContent }}
+          </p>
+        </template>
+      </Tooltip>
     </label>
     <slot />
   </span>
@@ -29,13 +36,21 @@
 
 <script>
 import { defineComponent } from 'vue';
+import Tooltip from '../Tooltip/Tooltip.vue';
+import Info from '../Icons/Info.vue';
+
 export default defineComponent({
   name: 'LobLabel',
+  components: {
+    Tooltip,
+    Info
+  },
   props: {
     label: { type: String, required: true },
     labelFor: { type: String, required: true },
     required: { type: Boolean, default: false },
-    srOnlyLabel: { type: Boolean, default: false }
+    srOnlyLabel: { type: Boolean, default: false },
+    tooltipContent: { type: String, default: null }
   },
   computed: {
     tooltip () {

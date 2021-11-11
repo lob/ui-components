@@ -46,7 +46,8 @@ export const WithTooltip = WithTooltipTemplate.bind({});
 WithTooltip.args = {
   label: 'Name',
   labelFor: 'Name',
-  required: true
+  required: true,
+  tooltipContent: 'Tooltip Content'
 };
 
 const WithInputTemplate = (args, { argTypes }) => ({

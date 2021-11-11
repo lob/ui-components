@@ -96,6 +96,7 @@ const WithTooltipTemplate = (args, { argTypes }) => ({
     <LobLabel
       label="Favorite Lunar Maria"
       labelFor="one"
+      tooltipContent="This is a tooltip"
     >
       <template v-slot:tooltip>
         <Tooltip>

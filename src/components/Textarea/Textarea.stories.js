@@ -44,6 +44,7 @@ const WithTooltipTemplate = (args, { argTypes }) => ({
     <LobLabel
       label="Cat nicknames"
       labelFor="textarea"
+      tooltipContent="This is another tooltip"
     >
       <template v-slot:tooltip>
         <Tooltip>
