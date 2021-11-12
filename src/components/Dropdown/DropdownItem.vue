@@ -29,7 +29,7 @@ export default {
       required: true
     },
     option: {
-      type: [String, Object],
+      type: [String, Object, undefined],
       required: true,
       validator: function (value) {
         // The value must match be a string or an object with a label property

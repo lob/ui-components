@@ -152,7 +152,7 @@ export default {
       default: null
     },
     modelValue: {
-      type: [String, Object],
+      type: [String, Object, undefined],
       required: true
     },
     id: {
