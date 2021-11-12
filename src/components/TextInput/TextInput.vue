@@ -114,7 +114,7 @@ export default {
     },
     label: {
       type: String,
-      default: ''
+      required: true
     },
     srOnlyLabel: {
       type: Boolean,
