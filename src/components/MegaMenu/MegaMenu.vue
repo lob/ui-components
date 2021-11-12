@@ -4,7 +4,10 @@
     data-testId="menu-container"
     @mouseenter="showNav = true"
     @mouseleave="showNav = false"
+    @keyup.enter="onClick"
     @click="onClick"
+    @keydown="onKeydown"
+    @keyup.esc="onEscape"
   >
     <div
       :id="dropdownToggleId"
@@ -12,7 +15,11 @@
       :aria-controls="dropdownListId"
       aria-haspopup="menu"
     >
-      <div class="flex-nowrap flex mt-0 flex-row justify-between xl:justify-start items-center px-2 py-1 xl:px-0 xl:py-0">
+      <div
+        ref="titleItem"
+        tabindex="0"
+        class="focus:outline-none focus:opacity-100 focus:ring-2 focus:ring-primary-100 focus:border-transparent flex-nowrap flex mt-0 flex-row justify-between xl:justify-start items-center px-2 py-1 xl:px-0 xl:py-0"
+      >
         {{ title }}
         <img
           :src="`${$getConst('lobAssetsUrl')}/dashboard/navbar/caret-down.svg`"
@@ -28,6 +35,7 @@
       :class="['hidden height-0 min-w-full xl:rounded-lg xl:bg-white xl:absolute', {'!block xl:hidden': showMobileNav}, {'xl:top-9 xl:!block': showNav}, {'xl:!hidden': !showNav}, {'xl:right-0': right}]"
     >
       <div
+        ref="dropdownMenu"
         :class="['height-0 pt-6 pb-4 px-4 h-auto w-full mt-1 border-gray-100 opacity-100',
                  {'!w-full xl:!mt-0': showMobileNav},
                  {'boxShadowGray xl:border-none xl:rounded-lg xl:bg-white': showNav}]"
@@ -80,7 +88,30 @@ export default {
     }
   },
   methods: {
+    onKeydown ($event) {
+      const anchorTags = this.$refs.dropdownMenu.getElementsByTagName('a');
+      const firstAnchorTag = anchorTags[0];
+      const lastAnchorTag = anchorTags[anchorTags.length - 1];
+
+      if ($event.key === 'Tab' && $event.shiftKey && $event.target === firstAnchorTag) {
+        this.onBlur();
+      }
+
+      if ($event.key === 'Tab' && !$event.shiftKey && $event.target === lastAnchorTag) {
+        this.onBlur();
+      }
+    },
+    onBlur () {
+      this.showNav = false;
+      this.showMobileNav = false;
+    },
+    onEscape () {
+      this.$refs.titleItem.focus();
+      this.showNav = false;
+      this.showMobileNav = false;
+    },
     onClick ($event) {
+      this.showNav = !this.showNav;
       this.showMobileNav = !this.showMobileNav;
       this.$emit('click', $event);
     }
