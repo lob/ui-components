@@ -6,6 +6,7 @@
       :label-for="id"
       :required="required"
       :sr-only-label="srOnlyLabel"
+      :tooltip-content="tooltipContent"
     />
     <div
       data-testId="input-container"
@@ -77,6 +78,10 @@ export default {
     LobLabel
   },
   props: {
+    tooltipContent: {
+      type: String,
+      default: null
+    },
     modelValue: {
       type: [String, Number],
       default: null
@@ -109,7 +114,7 @@ export default {
     },
     label: {
       type: String,
-      default: ''
+      required: true
     },
     srOnlyLabel: {
       type: Boolean,

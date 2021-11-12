@@ -6,6 +6,7 @@
       :label-for="id"
       :required="required"
       :sr-only-label="srOnlyLabel"
+      :tooltip-content="tooltipContent"
     />
     <textarea
       :id="id"
@@ -34,6 +35,10 @@ export default {
     LobLabel
   },
   props: {
+    tooltipContent: {
+      type: String,
+      default: null
+    },
     id: {
       type: String,
       required: true
@@ -48,7 +53,7 @@ export default {
     },
     label: {
       type: String,
-      default: ''
+      required: true
     },
     srOnlyLabel: {
       type: Boolean,

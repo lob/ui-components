@@ -9,6 +9,7 @@
       :label-for="id"
       :required="required"
       :sr-only-label="srOnlyLabel"
+      :tooltip-content="tooltipContent"
     />
     <div
       :class="[
@@ -146,6 +147,10 @@ export default {
   name: 'Dropdown',
   components: { ChevronDown, DropdownItemGroup, DropdownItem, LobLabel },
   props: {
+    tooltipContent: {
+      type: String,
+      default: null
+    },
     modelValue: {
       type: [String, Object],
       required: true
@@ -156,7 +161,7 @@ export default {
     },
     label: {
       type: String,
-      default: ''
+      required: true
     },
     srOnlyLabel: {
       type: Boolean,
