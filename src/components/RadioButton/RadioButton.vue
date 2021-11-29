@@ -26,7 +26,7 @@
     <label
       :for="id"
       :class="[
-        'text-sm font-light relative flex ml-1.5',
+        'relative flex ml-1.5',
         { 'cursor-not-allowed': disabled || readonly }
       ]"
     >
@@ -115,7 +115,7 @@ input {
 
     &::before {
       content: "";
-      top: 3px;
+      top: 5px;
       left: -19px;
 
       @apply absolute;
