@@ -133,7 +133,7 @@ input {
       content: "";
 
       @apply -left-4;
-      @apply top-1.5;
+      @apply top-2;
       @apply absolute;
       @apply h-2;
       @apply inline-block;
