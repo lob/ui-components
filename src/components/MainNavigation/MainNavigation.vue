@@ -36,6 +36,7 @@ export default {
       default: ''
     }
   },
+  emits: ['toggleCollapse'],
   data () {
     return {
       expanded: true
@@ -44,6 +45,7 @@ export default {
   methods: {
     animateDrawer () {
       this.expanded = !this.expanded;
+      this.$emit('toggleCollapse');
     }
   }
 };
