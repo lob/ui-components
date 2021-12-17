@@ -7,6 +7,7 @@
   >
     <LobLink
       :to="to"
+      :target="target"
       class="focus:outline-none focus:opacity-100 focus:ring-2 focus:ring-primary-100 focus:border-transparent flex pt-1 flex-nowrap items-center hover:text-primary-500 w-64 no-underline"
     >
       <img
@@ -46,6 +47,10 @@ export default {
     to: {
       type: String,
       required: true
+    },
+    target: {
+      type: String,
+      default: null
     },
     imageSource: {
       type: String,
