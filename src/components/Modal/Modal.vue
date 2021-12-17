@@ -6,7 +6,7 @@
       @mousedown="closeModal"
     >
       <div
-        class="bg-white flex flex-col overflow-auto shadow rounded-lg p-5 max-h-5/6"
+        class="bg-white flex flex-col overflow-x-visible shadow rounded-lg p-5 max-h-5/6"
         role="dialog"
         aria-labelledby="modalTitle"
         aria-describedby="modalDescription"
