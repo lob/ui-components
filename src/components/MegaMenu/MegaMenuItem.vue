@@ -50,7 +50,7 @@ export default {
     },
     target: {
       type: String,
-      default: null
+      default: '_self'
     },
     imageSource: {
       type: String,
