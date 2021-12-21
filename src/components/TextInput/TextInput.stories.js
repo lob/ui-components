@@ -141,3 +141,19 @@ BothIcons.args = {
   label: 'One',
   placeholder: 'One'
 };
+
+const WithCopyButtonTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { TextInput },
+  setup: () => ({ args }),
+  template: '<text-input v-bind="args"/>'
+});
+
+export const WithCopyButton = WithCopyButtonTemplate.bind({});
+WithCopyButton.args = {
+  id: 'copy-this',
+  label: 'Copy this',
+  modelValue: 'Something to Copy',
+  readonly: true,
+  withCopyButton: true
+};
