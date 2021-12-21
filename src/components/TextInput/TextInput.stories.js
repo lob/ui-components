@@ -153,7 +153,7 @@ export const WithCopyButton = WithCopyButtonTemplate.bind({});
 WithCopyButton.args = {
   id: 'copy-this',
   label: 'Copy this',
-  modelValue: 'Something to Copy',
+  modelValue: 'Direct Mail and Address Verification',
   readonly: true,
   withCopyButton: true
 };

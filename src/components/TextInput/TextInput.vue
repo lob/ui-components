@@ -54,7 +54,7 @@
           `rounded pl-2 pt-3 pb-3 leading-5 w-full text-gray-500 placeholder-gray-100 outline-none ${inputClass}`,
           {'!pl-4': !iconLeft},
           {'!pl-3 !pr-3 !py-2': small},
-          {'border border-r-0 border-gray-100 rounded-tr-none rounded-br-none': withCopyButton},
+          {'border border-r-0 border-gray-100 rounded-tr-none rounded-br-none truncate': withCopyButton},
           {'bg-white-300 cursor-not-allowed': disabled || readonly},
           {'border-error': error}
         ]"
