@@ -9,7 +9,7 @@
       :tooltip-content="tooltipContent"
     />
     <div
-      ref="copiedTip"
+      data-testId="copiedTip"
       :class="[
         'z-10 absolute w-20 p-2 text-xs rounded-md bg-gray-700 text-white',
         'transform translate-x-20 -translate-y-9 duration-300',

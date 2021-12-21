@@ -91,24 +91,6 @@ describe('Text input', () => {
     expect(emittedEvent.input[0]).toEqual([updatedValue]);
   });
 
-  it('renders when withCopyButton prop is true', async () => {
-    const props = {
-      ...initialProps,
-      withCopyButton: true
-    };
-    const { getByRole, emitted } = render(TextInput, {
-      props
-    });
-
-    const button = getByRole('button', { name: /copy/i });
-    expect(button).toBeInTheDocument();
-
-    document.execCommand = jest.fn();
-    await fireEvent.click(button);
-    const emittedEvent = emitted();
-    expect(emittedEvent).toHaveProperty('copy');
-  });
-
   it('selects on click when selectOnClick prop is true', async () => {
     const props = {
       ...initialProps,
@@ -136,6 +118,46 @@ describe('Text input', () => {
 
     const slot = getByText(new RegExp(slotContent));
     expect(slot).toBeInTheDocument();
+  });
+
+  describe('with Copy Button', () => {
+
+    let component;
+    beforeEach(async () => {
+      const props = {
+        ...initialProps,
+        withCopyButton: true
+      };
+      component = render(TextInput, {
+        props
+      });
+    });
+
+    it('renders the Copy button that emits \'copy\' event onClick', async () => {
+      const { getByRole, emitted } = component;
+
+      const button = getByRole('button', { name: /copy/i });
+      expect(button).toBeInTheDocument();
+
+      document.execCommand = jest.fn();
+      await fireEvent.click(button);
+      const emittedEvent = emitted();
+      expect(emittedEvent).toHaveProperty('copy');
+    });
+
+    it('shows the \'Copied\' tooltip when copied', async () => {
+      const { getByRole, queryByTestId, findByTestId } = component;
+
+      const notVisibleTip = queryByTestId('copiedTip');
+      expect(notVisibleTip).toHaveClass('opacity-0');
+
+      const button = getByRole('button', { name: /copy/i });
+      await userEvent.click(button);
+
+      const visibleCopiedTip = await findByTestId('copiedTip');
+      expect(visibleCopiedTip).toHaveClass('opacity-100');
+    });
+
   });
 
 });
