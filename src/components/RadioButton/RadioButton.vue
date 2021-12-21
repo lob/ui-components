@@ -162,19 +162,27 @@ input {
   &:disabled + label::before {
     @apply bg-white-300;
     @apply border-gray-100;
+    @apply cursor-not-allowed;
   }
 
-  &:disabled + label::after {
-    @apply hidden;
+  &:checked:disabled + label::after {
+    @apply bg-flint-500;
+    @apply border-flint-700;
+    @apply opacity-50;
+    @apply cursor-not-allowed;
   }
 
   &[readonly] + label::before {
     @apply bg-white-300;
     @apply border-gray-100;
+    @apply cursor-not-allowed;
   }
 
-  &[readonly] + label::after {
-    @apply hidden;
+  &:checked[readonly] + label::after {
+    @apply bg-flint-500;
+    @apply border-flint-700;
+    @apply opacity-50;
+    @apply cursor-not-allowed;
   }
 
   &:hover:not(:disabled):not([readonly]) + label::before {
