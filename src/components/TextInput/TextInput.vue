@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="relative">
     <lob-label
       v-if="label"
       :label="label"
@@ -8,6 +8,23 @@
       :sr-only-label="srOnlyLabel"
       :tooltip-content="tooltipContent"
     />
+    <div
+      ref="copiedTip"
+      :class="[
+        'z-10 absolute w-20 p-2 text-xs rounded-md bg-gray-700 text-white',
+        'transform translate-x-20 -translate-y-9 duration-300',
+        {'opacity-100 -translate-y-11': copied },
+        {'opacity-0': !copied }
+      ]"
+    >
+      <div class="flex">
+        <Check class="h-4 w-4" />
+        <div class="ml-1.5">
+          Copied
+        </div>
+      </div>
+      <div class="absolute bg-transparent w-0 h-0 m-auto border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-gray-700 -bottom-2 left-0 right-0" />
+    </div>
     <div
       data-testId="input-container"
       :class="[
@@ -71,11 +88,13 @@
 
 <script>
 import LobLabel from '../LobLabel/LobLabel.vue';
+import Check  from '../Icons/Check.vue';
 
 export default {
   name: 'TextInput',
   components: {
-    LobLabel
+    LobLabel,
+    Check
   },
   props: {
     tooltipContent: {
@@ -161,6 +180,11 @@ export default {
     }
   },
   emits: ['update:modelValue', 'input', 'change', 'focus', 'copy'],
+  data () {
+    return {
+      copied: false
+    };
+  },
   computed: {
     small () {
       return this.size === 'small';
@@ -180,6 +204,10 @@ export default {
       this.$refs.input.select();
       document.execCommand('copy');
       this.$emit('copy');
+      this.copied = true;
+      setTimeout(() => {
+        this.copied = false;
+      }, 1500);
     },
     onInput ($event) {
       this.$emit('update:modelValue', $event.target.value);
