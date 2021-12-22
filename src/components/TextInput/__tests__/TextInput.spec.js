@@ -149,13 +149,13 @@ describe('Text input', () => {
       const { getByRole, queryByTestId, findByTestId } = component;
 
       const notVisibleTip = queryByTestId('copiedTip');
-      expect(notVisibleTip).toHaveClass('opacity-0');
+      expect(notVisibleTip).not.toBeInTheDocument();
 
       const button = getByRole('button', { name: /copy/i });
       await userEvent.click(button);
 
       const visibleCopiedTip = await findByTestId('copiedTip');
-      expect(visibleCopiedTip).toHaveClass('opacity-100');
+      expect(visibleCopiedTip).toBeInTheDocument();
     });
 
   });

@@ -1,5 +1,5 @@
 <template>
-  <div class="relative">
+  <div :class="{ 'relative': withCopyButton }">
     <lob-label
       v-if="label"
       :label="label"
@@ -9,21 +9,33 @@
       :tooltip-content="tooltipContent"
     />
     <div
-      data-testId="copiedTip"
-      :class="[
-        'z-10 absolute w-20 p-2 text-xs rounded-md bg-gray-700 text-white',
-        'transform translate-x-20 -translate-y-9 duration-300',
-        {'opacity-100 -translate-y-11': copied },
-        {'opacity-0': !copied }
-      ]"
+      v-if="withCopyButton"
+      aria-role="alert"
+      aria-live="polite"
+      class="absolute -top-4 ml-20"
     >
-      <div class="flex">
-        <Check class="h-4 w-4" />
-        <div class="ml-1.5">
-          Copied
+      <transition
+        enter-active-class="duration-1000 ease-out"
+        enter-from-class="opacity-0 transform translate-y-2"
+        enter-to-class="opacity-100 transform translate-y-0"
+        leave-active-class="duration-500 ease-out"
+        leave-from-class="opacity-100 transform translate-y-0"
+        leave-to-class="opacity-0 transform translate-y-2"
+      >
+        <div
+          v-if="showCopied"
+          data-testId="copiedTip"
+          class="z-10 w-20 p-2 text-xs rounded-md bg-gray-700 text-white"
+        >
+          <div class="flex">
+            <Check class="h-4 w-4" />
+            <div class="ml-1.5">
+              Copied
+            </div>
+          </div>
+          <div class="absolute bg-transparent w-0 h-0 m-auto border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-gray-700 -bottom-2 left-0 right-0" />
         </div>
-      </div>
-      <div class="absolute bg-transparent w-0 h-0 m-auto border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-gray-700 -bottom-2 left-0 right-0" />
+      </transition>
     </div>
     <div
       data-testId="input-container"
@@ -182,7 +194,7 @@ export default {
   emits: ['update:modelValue', 'input', 'change', 'focus', 'copy'],
   data () {
     return {
-      copied: false
+      showCopied: false
     };
   },
   computed: {
@@ -201,12 +213,13 @@ export default {
   },
   methods: {
     copyToClipboard () {
+      this.showCopied = true;
       this.$refs.input.select();
       document.execCommand('copy');
       this.$emit('copy');
       this.copied = true;
       setTimeout(() => {
-        this.copied = false;
+        this.showCopied = false;
       }, 1500);
     },
     onInput ($event) {
