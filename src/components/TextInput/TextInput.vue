@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="{ 'relative': withCopyButton }">
     <lob-label
       v-if="label"
       :label="label"
@@ -8,6 +8,35 @@
       :sr-only-label="srOnlyLabel"
       :tooltip-content="tooltipContent"
     />
+    <div
+      v-if="withCopyButton"
+      aria-role="alert"
+      aria-live="polite"
+      class="absolute -top-4 ml-20"
+    >
+      <transition
+        enter-active-class="duration-1000 ease-out"
+        enter-from-class="opacity-0 transform translate-y-2"
+        enter-to-class="opacity-100 transform translate-y-0"
+        leave-active-class="duration-500 ease-out"
+        leave-from-class="opacity-100 transform translate-y-0"
+        leave-to-class="opacity-0 transform translate-y-2"
+      >
+        <div
+          v-if="showCopied"
+          data-testId="copiedTip"
+          class="z-10 w-20 p-2 text-xs rounded-md bg-gray-700 text-white"
+        >
+          <div class="flex">
+            <Check class="h-4 w-4" />
+            <div class="ml-1.5">
+              Copied
+            </div>
+          </div>
+          <div class="absolute bg-transparent w-0 h-0 m-auto border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-gray-700 -bottom-2 left-0 right-0" />
+        </div>
+      </transition>
+    </div>
     <div
       data-testId="input-container"
       :class="[
@@ -37,7 +66,7 @@
           `rounded pl-2 pt-3 pb-3 leading-5 w-full text-gray-500 placeholder-gray-100 outline-none ${inputClass}`,
           {'!pl-4': !iconLeft},
           {'!pl-3 !pr-3 !py-2': small},
-          {'border border-r-0 border-gray-100 rounded-tr-none rounded-br-none': withCopyButton},
+          {'border border-r-0 border-gray-100 rounded-tr-none rounded-br-none truncate': withCopyButton},
           {'bg-white-300 cursor-not-allowed': disabled || readonly},
           {'border-error': error}
         ]"
@@ -71,11 +100,13 @@
 
 <script>
 import LobLabel from '../LobLabel/LobLabel.vue';
+import Check  from '../Icons/Check.vue';
 
 export default {
   name: 'TextInput',
   components: {
-    LobLabel
+    LobLabel,
+    Check
   },
   props: {
     tooltipContent: {
@@ -161,6 +192,11 @@ export default {
     }
   },
   emits: ['update:modelValue', 'input', 'change', 'focus', 'copy'],
+  data () {
+    return {
+      showCopied: false
+    };
+  },
   computed: {
     small () {
       return this.size === 'small';
@@ -177,9 +213,14 @@ export default {
   },
   methods: {
     copyToClipboard () {
+      this.showCopied = true;
       this.$refs.input.select();
       document.execCommand('copy');
       this.$emit('copy');
+      this.copied = true;
+      setTimeout(() => {
+        this.showCopied = false;
+      }, 1500);
     },
     onInput ($event) {
       this.$emit('update:modelValue', $event.target.value);
