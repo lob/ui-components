@@ -12,7 +12,8 @@
       v-if="withCopyButton"
       aria-role="alert"
       aria-live="polite"
-      class="absolute -top-4 ml-20"
+      :class="['absolute -top-4 ml-20',
+               {'-top-11': srOnlyLabel }]"
     >
       <transition
         enter-active-class="duration-1000 ease-out"
