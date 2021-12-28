@@ -1,6 +1,6 @@
 <template>
   <li
-    class="list-none mr-12"
+    class="list-none mr-12 whitespace-nowrap"
   >
     <LobLink
       :to="to"

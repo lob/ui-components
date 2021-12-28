@@ -1,5 +1,5 @@
 <template>
-  <nav>
+  <nav class="overflow-x-scroll">
     <ul :class="`flex pb-0.5 border-b border-gray-100 ${ulClass}`">
       <slot />
     </ul>
