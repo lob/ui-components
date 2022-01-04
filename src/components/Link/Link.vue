@@ -2,6 +2,8 @@
   <component
     :is="tag"
     :[linkProp]="to"
+    :target="target"
+    :rel="target === '_blank' ? 'noopener noreferrer' : ''"
     :class="[
       {'underline text-primary-900' : underline},
       {'primary py-3 px-6 bg-primary-500 text-white active:bg-primary-700 disabled:bg-white-300': primary},
@@ -45,6 +47,10 @@ export default {
     underline: {
       type: Boolean,
       default: true
+    },
+    target: {
+      type: String,
+      default: '_self'
     }
   },
   computed: {
