@@ -15,6 +15,7 @@
         { expanded: collapsible && expanded },
         { collapsed: collapsible && !expanded }
       ]"
+      @click="navClick"
     >
       <slot :expanded="expanded" />
     </ul>
@@ -46,6 +47,12 @@ export default {
     animateDrawer () {
       this.expanded = !this.expanded;
       this.$emit('toggleCollapse');
+    },
+    navClick () {
+      if (!this.expanded) {
+        this.expanded = true;
+        this.$emit('toggleCollapse');
+      }
     }
   }
 };

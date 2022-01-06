@@ -9,7 +9,7 @@
       :underline="false"
       active-class="text-normal bg-white-300 font-medium"
       @click.stop="handleNavigation"
-      @[clickEvent].stop="toggleSubNav"
+      @[clickEvent]="toggleSubNav"
     >
       <img
         :src="iconSrc"
@@ -87,7 +87,7 @@ export default {
       default: null
     }
   },
-  emits: ['nav'],
+  emits: ['nav', 'subNavItemClick'],
   data () {
     return {
       subNavOpen: this.expanded && !this.subNavCollapsed
@@ -108,6 +108,10 @@ export default {
     toggleSubNav () {
       if (this.collapsible) {
         this.subNavOpen = !this.subNavOpen;
+      }
+
+      if (!this.expanded) {
+        this.$emit('subNavItemClick');
       }
     },
     handleNavigation () {
