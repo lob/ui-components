@@ -12,6 +12,7 @@
       @[clickEvent]="toggleSubNav"
     >
       <img
+        :id="`img-${id}`"
         :src="iconSrc"
         :alt="iconAltText"
         class="w-6 align-bottom"
@@ -85,6 +86,10 @@ export default {
     itemClass: {
       type: String,
       default: null
+    },
+    id: {
+      type: String,
+      default: ''
     }
   },
   emits: ['nav'],
@@ -109,6 +114,9 @@ export default {
       if (this.collapsible) {
         this.subNavOpen = !this.subNavOpen;
       }
+
+      this.$emit('navItemWithChildClick', $event.target.id);
+
     },
     handleNavigation () {
       if (this.to) {
