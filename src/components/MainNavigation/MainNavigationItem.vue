@@ -2,6 +2,7 @@
   <li class="list-none">
     <component
       :is="tag"
+      :id="id"
       :class="[
         'no-underline py-4 px-6 max-h-12 flex items-center w-full font-light text-sm text-left text-gray-500 relative overflow-hidden hover:text-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent'
       ]"
@@ -92,7 +93,7 @@ export default {
       default: ''
     }
   },
-  emits: ['nav'],
+  emits: ['nav', 'navItemWithChildClick'],
   data () {
     return {
       subNavOpen: this.expanded && !this.subNavCollapsed
@@ -110,7 +111,7 @@ export default {
     }
   },
   methods: {
-    toggleSubNav () {
+    toggleSubNav ($event) {
       if (this.collapsible) {
         this.subNavOpen = !this.subNavOpen;
       }
