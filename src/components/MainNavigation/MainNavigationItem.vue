@@ -2,7 +2,6 @@
   <li class="list-none">
     <component
       :is="tag"
-      :id="id"
       :class="[
         'no-underline py-4 px-6 max-h-12 flex items-center w-full font-light text-sm text-left text-gray-500 relative overflow-hidden hover:text-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent'
       ]"
@@ -13,7 +12,6 @@
       @[clickEvent]="toggleSubNav"
     >
       <img
-        :id="`img-${id}`"
         :src="iconSrc"
         :alt="iconAltText"
         class="w-6 align-bottom"
@@ -111,12 +109,12 @@ export default {
     }
   },
   methods: {
-    toggleSubNav ($event) {
+    toggleSubNav () {
       if (this.collapsible) {
         this.subNavOpen = !this.subNavOpen;
       }
 
-      this.$emit('navItemWithChildClick', $event.target.id);
+      this.$emit('navItemWithChildClick', this.id);
 
     },
     handleNavigation () {
