@@ -1,0 +1,33 @@
+import {
+  Preview,
+  Story,
+  ArgsTable,
+  PRIMARY_STORY,
+} from "@storybook/addon-docs";
+import ProgressBar from "./ProgressBar.vue";
+
+# ProgressBar
+
+ProgressBar is a component used in file-uploading to indicate the progress of the upload.
+
+<Preview>
+  <Story id="components-progressbar--indeterminate" />
+</Preview>
+
+## How to Use
+
+If there is no percentage given, the ProgressBar is by default indeterminate.
+
+```html
+<ProgressBar />
+```
+
+If percentage is given, the bar will grow according to it and will also display the number %.
+
+```html
+<ProgressBar :percentage="20" />
+```
+
+## Props
+
+<ArgsTable story={PRIMARY_STORY} />
