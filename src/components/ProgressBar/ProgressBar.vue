@@ -27,7 +27,7 @@
     <div class="mt-2 h-1.5 w-80 bg-gray-100 flex">
       <span
         data-testid="innerbar"
-        :style="percentage?`width:${percentage}%`:''"
+        :style="percentage ? `width: ${percentage}%` : ''"
         :class="['h-1.5 bg-turquoise-500 transition-all duration-500 ease-out',
                  {'animate-indybar bg-gradient-to-r from-turquoise-300 to-turquoise-500': !percentage}]"
       />
@@ -39,10 +39,13 @@
 export default {
   name: 'ProgressBar',
   props: {
-    percentage: { type: Number, default: 0,
+    percentage: {
+      type: Number,
+      default: 0,
       validator (value) {
         return value >= 0 && value <= 100;
-      } }
+      }
+    }
   }
 };
 </script>
