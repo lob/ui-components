@@ -24,7 +24,7 @@
         >.</span>
       </span>
     </div>
-    <div class="mt-2 h-1.5 w-80 bg-gray-100 flex">
+    <div class="mt-2 h-1.5 bg-gray-100 flex">
       <span
         data-testid="innerbar"
         :style="percentage ? `width: ${percentage}%` : ''"
