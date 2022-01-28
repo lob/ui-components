@@ -7,7 +7,7 @@
     :aria-valuemin="percentage ? 0 : ''"
     :aria-valuemax="percentage ? 100 : ''"
     :aria-busy="percentage > 0 && percentage < 100"
-    class="text-left w-full"
+    class="text-left"
   >
     <div>
       Progress
@@ -24,7 +24,7 @@
         >.</span>
       </span>
     </div>
-    <div class="mt-2 h-1.5 w-full bg-gray-100 flex">
+    <div class="mt-2 h-1.5 w-80 bg-gray-100 flex">
       <span
         data-testid="innerbar"
         :style="percentage?`width:${percentage}%`:''"

@@ -4,9 +4,6 @@ import mdx from './ProgressBar.mdx';
 export default {
   title: 'Components/ProgressBar',
   component: ProgressBar,
-  decorators: [
-    () => ({ template: '<div class="w-80"><story /></div>' })
-  ],
   parameters: {
     docs: {
       page: mdx
