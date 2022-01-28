@@ -7,7 +7,7 @@
     :aria-valuemin="percentage ? 0 : ''"
     :aria-valuemax="percentage ? 100 : ''"
     :aria-busy="percentage > 0 && percentage < 100"
-    class="text-left"
+    class="text-left w-full"
   >
     <div>
       Progress
