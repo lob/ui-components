@@ -52,7 +52,7 @@ export default {
         pb.setAttribute('aria-valuenow', this.percentage);
         pb.setAttribute('aria-valuenmin', 0);
         pb.setAttribute('aria-valuemax', 100);
-        pb.setAttribute('aria-busy', true);
+        pb.setAttribute('aria-busy', this.percentage === 100 ? false : true);
         pb.setAttribute('aria-valuetext', `In progress, ${this.percentage}%`);
       }
     }
