@@ -1,12 +1,10 @@
 <template>
   <div
+    ref="progressbar"
     role="progressbar"
     title="Progress"
     aria-live="polite"
-    :aria-valuenow="percentage ? percentage : ''"
-    :aria-valuemin="percentage ? 0 : ''"
-    :aria-valuemax="percentage ? 100 : ''"
-    :aria-busy="percentage > 0 && percentage < 100"
+    aria-valuetext="In progress, please wait"
     class="text-left"
   >
     <div>
@@ -44,6 +42,18 @@ export default {
       default: 0,
       validator (value) {
         return value >= 0 && value <= 100;
+      }
+    }
+  },
+  watch: {
+    percentage (value) {
+      if (value > 0) {
+        const pb = this.$refs.progressbar;
+        pb.setAttribute('aria-valuenow', this.percentage);
+        pb.setAttribute('aria-valuenmin', 0);
+        pb.setAttribute('aria-valuemax', 100);
+        pb.setAttribute('aria-busy', true);
+        pb.setAttribute('aria-valuetext', `In progress, ${this.percentage}%`);
       }
     }
   }
