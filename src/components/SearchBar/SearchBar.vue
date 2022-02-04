@@ -62,6 +62,7 @@
             v-for="result in searchResults"
             :key="result"
             class="text-gray-500 hover:text-primary-700"
+            @click="hide"
           >
             <slot :result="result" />
           </TableRow>
