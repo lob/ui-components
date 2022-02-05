@@ -1,0 +1,33 @@
+import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
+import Accordion from './Accordion.vue';
+
+# Accordion
+
+Accordions are vertically collapsing components used for displaying or hiding large chunks of content
+
+<Preview>
+  <Story id="components-accordion--primary" />
+</Preview>
+
+## How to Use
+
+Example of using this component as a default info alert in a template
+
+```html
+<alert>
+  <p>You are in <span class="bold">LIVE</span> mode, all verifications will be charged according to your <a href="#">chosen plan</a>.</p>
+</alert>
+```
+
+Example of using this component as 
+
+```html
+<accordion
+title="Content">
+  <p>I am hidden content</p>
+</accordion>
+```
+
+## Props
+
+<ArgsTable story={PRIMARY_STORY} />
