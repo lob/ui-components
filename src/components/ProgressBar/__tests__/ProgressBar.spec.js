@@ -48,4 +48,31 @@ describe('ProgressBar', () => {
 
   });
 
+  describe('test the watcher that adds aria attributes', () => {
+
+    let component;
+    beforeEach(() => {
+      component = renderComponent({ props: { percentage: 0 } });
+    });
+
+    it('starting with percentage: 0, it does not have aria-busy', async () => {
+      const { findByRole } = component;
+
+      const progressbar = await findByRole('progressbar');
+      expect(progressbar).not.toHaveAttribute('aria-busy');
+    });
+
+    it('adds the aria attributes when the percentage changes', async () => {
+      const { rerender, findByRole } = component;
+      await rerender({ percentage: 35 });
+
+      const progressbar = await findByRole('progressbar');
+      expect(progressbar).toHaveAttribute('aria-busy', 'true');
+      expect(progressbar).toHaveAttribute('aria-valuenow', '35');
+      expect(progressbar).toHaveAttribute('aria-valuemax', '100');
+      expect(progressbar).toHaveAttribute('aria-valuetext', 'In progress, 35%');
+    });
+
+  });
+
 });
