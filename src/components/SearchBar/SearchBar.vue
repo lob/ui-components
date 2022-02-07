@@ -61,7 +61,7 @@
           <TableRow
             v-for="result in searchResults"
             :key="result"
-            class="text-gray-500 hover:text-primary-700"
+            class="text-gray-500 hover:text-primary-700 cursor-pointer"
             @click="hide"
           >
             <slot :result="result" />
@@ -73,7 +73,6 @@
 </template>
 
 <script>
-// import { TextInput, LobTable, TableBody, TableRow, Search, Close } from '@/components';
 import TextInput from '../TextInput/TextInput';
 import LobTable from '../Table/Table';
 import TableBody from '../Table/TableBody';
