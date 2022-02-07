@@ -1,25 +1,34 @@
 <template>
-  <div
-    class="cursor-pointer flex justify-between min-w-full mb-6 t"
+  <button
+    id="accordion"
+    :class="expanded ? null : 'border-b border-gray-100'"
+    class="cursor-pointer flex justify-between min-w-full mb-6 focus:outline-none focus:ring-1 focus:ring-primary-100 focus:border-transparent"
+    :aria-expanded="expanded"
+    aria-controls="slotContent"
+    role="button"
     @click="expanded = !expanded"
-    :class="expanded ? null : 'border-b-2'"
   >
-    <div class="text-primary-500 font-thin text-lg">
+    <h2 class="text-primary-300 font-thin text-lg">
       <b>{{ title }}</b>
-    </div>
-    <div class="flex-end">
+    </h2>
+    <div
+      class="flex-end"
+    >
       <ChevronDown
         v-if="expanded"
-        class="w-6 h-6"
+        class="w-6 h-6 text-primary-300"
       />
       <ChevronRight
         v-else
-        class="w-6 h-6"
+        class="w-6 h-6 text-primary-300"
       />
     </div>
-  </div>
+  </button>
   <div
     v-if="expanded"
+    id="slotContent"
+    role="region"
+    aria-labelledby="accordion"
   >
     <slot />
   </div>
