@@ -14,7 +14,7 @@ export default {
       control: {
         type: 'text'
       },
-      description: 'Content to display inside of the card',
+      description: 'Content to display inside of the accordion',
       table: {
         defaultValue: 'I am the accordion title',
         type: {

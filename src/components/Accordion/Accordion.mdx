@@ -1,5 +1,10 @@
-import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
-import Accordion from './Accordion.vue';
+import {
+  Preview,
+  Story,
+  ArgsTable,
+  PRIMARY_STORY,
+} from "@storybook/addon-docs";
+import Accordion from "./Accordion.vue";
 
 # Accordion
 
@@ -11,19 +16,10 @@ Accordions are vertically collapsing components used for displaying or hiding la
 
 ## How to Use
 
-Example of using this component as a default info alert in a template
+Please note: though you can only insert text in the Storybook demo, the accordion component will accept any valid HTML or Vue component.
 
 ```html
-<alert>
-  <p>You are in <span class="bold">LIVE</span> mode, all verifications will be charged according to your <a href="#">chosen plan</a>.</p>
-</alert>
-```
-
-Example of using this component as 
-
-```html
-<accordion
-title="Content">
+<accordion title="Content">
   <p>I am hidden content</p>
 </accordion>
 ```
