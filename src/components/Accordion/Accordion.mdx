@@ -1,0 +1,29 @@
+import {
+  Preview,
+  Story,
+  ArgsTable,
+  PRIMARY_STORY,
+} from "@storybook/addon-docs";
+import Accordion from "./Accordion.vue";
+
+# Accordion
+
+Accordions are vertically collapsing components used for displaying or hiding large chunks of content
+
+<Preview>
+  <Story id="components-accordion--primary" />
+</Preview>
+
+## How to Use
+
+Please note: though you can only insert text in the Storybook demo, the accordion component will accept any valid HTML or Vue component.
+
+```html
+<accordion title="Content">
+  <p>I am hidden content</p>
+</accordion>
+```
+
+## Props
+
+<ArgsTable story={PRIMARY_STORY} />
