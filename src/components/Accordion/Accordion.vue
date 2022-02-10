@@ -8,19 +8,15 @@
     role="button"
     @click="expanded = !expanded"
   >
-    <h2 class="text-primary-300 font-thin text-lg">
-      <b>{{ title }}</b>
+    <h2 class="text-primary-300 py-3 font-light text-lg">
+      {{ title }}
     </h2>
     <div
-      class="flex-end"
+      class="flex-end py-3.5"
     >
-      <ChevronDown
-        v-if="expanded"
-        class="w-6 h-6 text-primary-300"
-      />
       <ChevronRight
-        v-else
         class="w-6 h-6 text-primary-300"
+        :class="['transition-transform duration-200 ease-linear -mr-1', {'xl:transform xl:rotate-90': expanded}]"
       />
     </div>
   </button>
@@ -36,11 +32,10 @@
 
 <script>
 import ChevronRight from '../Icons/ChevronRight';
-import ChevronDown from '../Icons/ChevronDown';
 
 export default {
   name: 'Accordion',
-  components: { ChevronRight, ChevronDown },
+  components: { ChevronRight },
   props: {
     title: {
       type: String,

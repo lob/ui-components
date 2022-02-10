@@ -20,7 +20,7 @@ describe('Accordion', () => {
 
   });
 
-  it('doesn\'t display accordion content', async () => {
+  it('doesn\'t display accordion content by default', async () => {
     const props = initialProps;
     const { queryByRole } = renderComponent({ props });
 
@@ -37,6 +37,22 @@ describe('Accordion', () => {
 
     const slotTag = queryByRole('region');
     expect(slotTag).toBeInTheDocument();
+
+  });
+
+  it('hides content when clicked again', async () => {
+    const props = initialProps;
+    const { queryByRole } = renderComponent({ props });
+
+    const title = queryByRole('button');
+    await userEvent.click(title);
+
+    const slotTag = queryByRole('region');
+    expect(slotTag).toBeInTheDocument();
+
+    await userEvent.click(title);
+
+    expect(slotTag).not.toBeInTheDocument();
 
   });
 
