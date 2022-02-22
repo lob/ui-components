@@ -40,12 +40,19 @@ export default {
     title: {
       type: String,
       default: 'Accordion Title'
+    },
+    open: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
     return {
       expanded: false
     };
+  },
+  created () {
+    this.expanded = this.defaultOpen;
   }
 
 };
