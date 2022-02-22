@@ -41,7 +41,7 @@ export default {
       type: String,
       default: 'Accordion Title'
     },
-    open: {
+    defaultOpen: {
       type: Boolean,
       default: false
     }
@@ -52,7 +52,7 @@ export default {
     };
   },
   created () {
-    this.expanded = this.open;
+    this.expanded = this.defaultOpen;
   }
 
 };

@@ -18,9 +18,17 @@ Accordions are vertically collapsing components used for displaying or hiding la
 
 Please note: though you can only insert text in the Storybook demo, the accordion component will accept any valid HTML or Vue component.
 
+The prop `defaultOpen` can be passed to the Accordion to have the Accordion render open by default
+
 ```html
 <accordion title="Content">
   <p>I am hidden content</p>
+</accordion>
+```
+
+```html
+<accordion title="Content" default-open="true">
+  <p>I am open by default</p>
 </accordion>
 ```
 
