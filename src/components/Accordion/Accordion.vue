@@ -52,7 +52,7 @@ export default {
     };
   },
   created () {
-    this.expanded = this.defaultOpen;
+    this.expanded = this.open;
   }
 
 };
