@@ -6,7 +6,7 @@
     :aria-expanded="expanded"
     aria-controls="slotContent"
     role="button"
-    @click="expanded = !expanded"
+    @click="expanded = !expanded;"
   >
     <h2 class="text-primary-300 py-3 font-light text-lg">
       {{ title }}
@@ -40,13 +40,19 @@ export default {
     title: {
       type: String,
       default: 'Accordion Title'
+    },
+    open: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
     return {
       expanded: false
     };
+  },
+  created () {
+    this.expanded = this.defaultOpen;
   }
-
 };
 </script>
