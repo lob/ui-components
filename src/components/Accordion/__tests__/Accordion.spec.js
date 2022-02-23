@@ -4,11 +4,11 @@ import userEvent from '@testing-library/user-event';
 import Accordion from '../Accordion';
 
 const initialProps = {
-  title: 'Accordion Title.'
+  title: 'Accordion Title',
+  defaultOpen: false
 };
 
-const renderComponent = () => render(Accordion);
-
+const renderComponent = (options = {}) => render(Accordion, { ...options });
 describe('Accordion', () => {
 
   it('renders correctly', () => {
@@ -20,7 +20,7 @@ describe('Accordion', () => {
 
   });
 
-  it('doesn\'t display accordion content by default', async () => {
+  it('doesn\'t display accordion content by default', () => {
     const props = initialProps;
     const { queryByRole } = renderComponent({ props });
 
@@ -31,7 +31,6 @@ describe('Accordion', () => {
   it('displays content when clicked', async () => {
     const props = initialProps;
     const { queryByRole } = renderComponent({ props });
-
     const title = queryByRole('button');
     await userEvent.click(title);
 
@@ -53,6 +52,22 @@ describe('Accordion', () => {
     await userEvent.click(title);
 
     expect(slotTag).not.toBeInTheDocument();
+
+  });
+
+  describe('When props are passed in', () => {
+
+    it('renders the accordion as open', () => {
+      const openProps = {
+        title: 'Accordion Title',
+        defaultOpen: true
+      };
+      const props = openProps;
+      const { queryByRole } = renderComponent({ props });
+      const slotTag = queryByRole('region');
+      expect(slotTag).toBeInTheDocument();
+
+    });
 
   });
 
