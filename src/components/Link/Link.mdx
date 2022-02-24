@@ -21,20 +21,22 @@ Please note: though you can only insert text in the Storybook demo, the link com
 
 Example of using this component as a default link in a template
 
-<!-- todo -->
 ```html
-<lob-link to="/internal">
-  Click me
-</lob-link>
+<lob-link to="/internal"> Click me </lob-link>
 ```
 
 Example of using this component as a secondary-button, small link in a template
 
-<!-- todo -->
 ```html
 <lob-link variant="secondary-button" size="small" to="/internal">
   Click me
 </lob-link>
+```
+
+Using the component with `target="_blank"` will automatically add `rel="noopener noreferrer"` to the link
+
+```html
+<lob-link target="_blank"> Click me </lob-link>
 ```
 
 ## Props
