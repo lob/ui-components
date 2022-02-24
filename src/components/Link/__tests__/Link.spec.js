@@ -59,6 +59,18 @@ describe('Link', () => {
     expect(link).toBeInTheDocument();
   });
 
+  it('adds rel="noopener noreferrer" when the target is _blank', async () => {
+    const props = {
+      ...initialProps,
+      to: 'https://google.com',
+      target: '_blank'
+    };
+    const { queryByRole } = await renderComponent({ props });
+
+    const link = queryByRole('link');
+    expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+  });
+
   it('renders slot content correctly', async () => {
     const slotContent = 'Hello, this is a link.';
     const slots = { default: slotContent };
