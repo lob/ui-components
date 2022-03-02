@@ -2,7 +2,7 @@
   <transition name="fade">
     <div
       v-show="visible"
-      :class="['fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 z-30']"
+      :class="['fixed inset-0 flex items-center justify-center bg-black bg-opacity-10 z-30']"
       @mousedown="closeModal"
     >
       <div
