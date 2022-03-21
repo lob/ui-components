@@ -18,7 +18,7 @@ describe('array utils', () => {
       const subject = null;
       expect(() => {
         subject.findLastIndex((el) => el === 'a');
-      }).toThrow('Cannot read property \'findLastIndex\' of null');
+      }).toThrow();
     });
 
     it('throws an error when the predicate is not a function', () => {
@@ -26,6 +26,12 @@ describe('array utils', () => {
       expect(() => {
         subject.findLastIndex('a');
       }).toThrow();
+    });
+
+    it('returns the index of the only element that satisfies the predicate', () => {
+      const subject = ['a', 'b', 'c'];
+      const index = subject.findLastIndex((el) => el === 'a');
+      expect(index).toEqual(0);
     });
 
     it('returns the last index of an element that satisfies the predicate', () => {
