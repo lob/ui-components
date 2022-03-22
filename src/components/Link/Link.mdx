@@ -17,6 +17,8 @@ There are 2 sizes of buttons: default and small. You can change the size of the 
 
 There is an underline property for the text which is enabled by default.
 
+There is a disabled property that applies disabled styles as well as prevents clicks via CSS. Please note: It is strongly recommended that when disabling <Link> you wrap the component in a `<div>` or `<span>` and apply the class `cursor-not-allowed` to the wrapper. Adding this functionality to this component would be a potentially breaking change and so will be made in the future.
+
 Please note: though you can only insert text in the Storybook demo, the link component will accept any valid HTML or Vue component.
 
 Example of using this component as a default link in a template
