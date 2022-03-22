@@ -14,9 +14,13 @@ jobs:
       npm_version: ${{ steps.npm_version.outputs.prop }}
 
     steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
     - name: Read node version from package.json
       id: node_version
-      uses: notiz-dev/github-action-json-property@release
+      uses: notiz-dev/github-action-json-property@v0.1.0
       with:
         path: "package.json"
         prop_path: "engines.node"
@@ -26,7 +30,7 @@ jobs:
 
     - name: Read npm version from package.json
       id: npm_version
-      uses: notiz-dev/github-action-json-property@release
+      uses: notiz-dev/github-action-json-property@v0.1.0
       with:
         path: "package.json"
         prop_path: "engines.npm"
