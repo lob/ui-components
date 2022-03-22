@@ -59,6 +59,19 @@ describe('Link', () => {
     expect(link).toBeInTheDocument();
   });
 
+  it('renders correctly when disabled', async () => {
+    const props = {
+      ...initialProps,
+      to: 'https://google.com',
+      disabled: true
+    };
+    const { queryByRole } = await renderComponent({ props });
+
+    const link = queryByRole('link');
+    expect(link).toBeInTheDocument();
+    expect(link).toHaveAttribute('aria-disabled', 'true');
+  });
+
   it('adds rel="noopener noreferrer" when the target is _blank', async () => {
     const props = {
       ...initialProps,
