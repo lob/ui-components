@@ -18,7 +18,7 @@
       {'bg-white-300': disabled && primary},
       {'border-gray-100': disabled && secondary},
       {'border-white-300': disabled && tertiary},
-      {'border-gray-100 hover:bg-white': disabled && alert},
+      {'border-gray-100 hover:bg-white': disabled && alert}
     ]"
   >
     <slot />
