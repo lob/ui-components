@@ -11,7 +11,7 @@ jobs:
   # Get the version of node as defined in the package.json engines
   get-versions:
     # Running on Lob's GitHub runners
-    runs-on: [self-hosted, Linux, x64, lob-runner]
+    runs-on: ubuntu-latest
 
     outputs:
       node_version: ${{ steps.node_version.outputs.prop }}
@@ -33,7 +33,7 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     # Running on Lob's GitHub runners
-    runs-on: [self-hosted, Linux, x64, lob-runner]
+    runs-on: ubuntu-latest
 
     needs: get-versions
 
