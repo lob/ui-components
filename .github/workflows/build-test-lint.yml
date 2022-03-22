@@ -1,0 +1,82 @@
+name: Node Build / Test / Lint
+
+# Run this when someone pushes a branch
+on: [push]
+
+jobs:
+  # Get the versions of node and npm as defined in the package.json engines
+  get-versions:
+    # Running on Lob's GitHub runners
+    runs-on: [self-hosted, Linux, x64, lob-runner]
+
+    outputs:
+      node_version: ${{ steps.node_version.outputs.prop }}
+      npm_version: ${{ steps.npm_version.outputs.prop }}
+
+    steps:
+    - name: Read node version from package.json
+      id: node_version
+      uses: notiz-dev/github-action-json-property@release
+      with:
+        path: "package.json"
+        prop_path: "engines.node"
+
+    - run: |
+        echo "Node version found: ${{ steps.node_version.outputs.prop }}"
+
+    - name: Read npm version from package.json
+      id: npm_version
+      uses: notiz-dev/github-action-json-property@release
+      with:
+        path: "package.json"
+        prop_path: "engines.npm"
+
+    - run: |
+        echo "npm version found: ${{ steps.npm_version.outputs.prop }}"
+
+  # Run lint and tests
+  run-tests:
+    # Running on Lob's GitHub runners
+    runs-on: [self-hosted, Linux, x64, lob-runner]
+
+    needs: get-versions
+
+    env:
+      NODE_VERSION: ${{ needs.get-versions.outputs.node_version }}
+      NPM_VERSION: ${{ needs.get-versions.outputs.npm_version }}
+      # Used to checkout the Lob Github Actions repo
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - uses: actions/checkout@v2
+        with:
+          repository: lob/github-actions
+          ref: main
+          token: "${{ secrets.PRIVATE_GITHUB_ACTION_TOKEN }}"
+          path: ./.github/lob
+
+      - uses: actions/cache@v2
+        with:
+          path: ~/.node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      # Setup node with the set node version. This step will use the cache specified in the actions/cache step.
+      - name: Use Node ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      # Runs the node lint / test jobs
+      - id: node_suite
+        name: Running the install, lint, and test commands with npm ${{ env.NPM_VERSION }}
+        uses: "./.github/lob/actions/node-lint-test"
+        with:
+          npm_version: ${{ env.NPM_VERSION }}
+          npm_token: ${{ env.NPM_TOKEN }}
