@@ -15,10 +15,8 @@
     }
   },
   "scripts": {
-    "dev": "vite",
     "build": "vite build",
     "build-storybook": "build-storybook",
-    "preview": "vite preview",
     "lint:css": "stylelint 'src/**/*.vue'",
     "lint:js": "eslint --ext .js,.vue .",
     "lint": "npm run lint:js && npm run lint:css",
