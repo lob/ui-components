@@ -142,7 +142,7 @@ If your component has multiple stories, we name each story semantically to descr
 
 If you need a wrapper container around your story (for example, because you have multiple elements, or you need to apply styling to the container), use a decorator.
 
-See the [main navigation component story file](https://github.com/lob/ui-components/blob/main/src/components/MainNavigation/MainNavigation.stories.js#L79) for an example. 
+See the [main navigation component story file](https://github.com/lob/ui-components/blob/main/src/components/MainNavigation/MainNavigation.stories.js#L79) for an example.
 
 ##### Documentation
 
@@ -159,7 +159,7 @@ At the minimum, each component's docs should have:
 
 We've included Vue Router and a `routeDecorator` (`.storybook/routeDecorator.js`) so you can use dynamic routing in your components. If your component needs to be route-aware, either because it uses `router-link` or it checks `this.$route` in a computed prop or method, you'll need the route decorator in your Story.
 
-See the [main navigation](https://github.com/lob/ui-components/blob/main/src/components/MainNavigation/MainNavigation.stories.js#L14) and [subnavigation component story](https://github.com/lob/ui-components/blob/main/src/components/Subnavigation/Subnavigation.stories.js#L20) files for examples. 
+See the [main navigation](https://github.com/lob/ui-components/blob/main/src/components/MainNavigation/MainNavigation.stories.js#L14) and [subnavigation component story](https://github.com/lob/ui-components/blob/main/src/components/Subnavigation/Subnavigation.stories.js#L20) files for examples.
 
 #### Accessibility
 
@@ -196,7 +196,7 @@ We have a GitHub Action set up to publish this package automatically to NPM when
 
 If you need to publish manually, you can do:
 ```bash
-npm run build-library
+npm run build
 npm publish
 ```
 

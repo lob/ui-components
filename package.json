@@ -5,10 +5,18 @@
     "node": ">=14.16.1",
     "npm": ">=7.13.0"
   },
+  "files": ["dist"],
+  "main": "./dist/ui-components.umd.js",
+  "module": "./dist/ui-components.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/ui-components.es.js",
+      "require": "./dist/ui-components.umd.js"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build-library": "vue-cli-service build --target lib --name ui-components src/main.js",
     "build-storybook": "build-storybook",
     "preview": "vite preview",
     "lint:css": "stylelint 'src/**/*.vue'",
@@ -20,11 +28,6 @@
     "test:unit": "vue-cli-service test:unit",
     "storybook": "start-storybook -p 6006"
   },
-  "main": "./dist/ui-components.umd.min.js",
-  "files": [
-    "dist/*",
-    "src/*"
-  ],
   "dependencies": {
     "date-fns": "^2.23.0",
     "mitt": "^3.0.0",
