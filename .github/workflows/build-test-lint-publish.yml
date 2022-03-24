@@ -1,4 +1,4 @@
-name: Node Build / Test / Lint
+name: Node Build / Test / Lint / Publish
 
 # Run this when someone pushes a branch
 on: [push]
