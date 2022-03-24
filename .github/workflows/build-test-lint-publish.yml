@@ -1,0 +1,120 @@
+name: Node Build / Test / Lint / Publish
+
+# Run this when someone pushes a branch
+on: [push]
+
+jobs:
+  # Get the versions of node and npm as defined in the package.json engines
+  get-versions:
+    runs-on: ubuntu-latest
+
+    outputs:
+      node_version: ${{ steps.node_version.outputs.prop }}
+      npm_version: ${{ steps.npm_version.outputs.prop }}
+
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Read node version from package.json
+      id: node_version
+      uses: notiz-dev/github-action-json-property@v0.1.0
+      with:
+        path: "package.json"
+        prop_path: "engines.node"
+
+    - run: |
+        echo "Node version found: ${{ steps.node_version.outputs.prop }}"
+
+    - name: Read npm version from package.json
+      id: npm_version
+      uses: notiz-dev/github-action-json-property@v0.1.0
+      with:
+        path: "package.json"
+        prop_path: "engines.npm"
+
+    - run: |
+        echo "npm version found: ${{ steps.npm_version.outputs.prop }}"
+
+  # Run lint and tests
+  run-tests:
+    runs-on: ubuntu-latest
+
+    needs: get-versions
+
+    env:
+      NODE_VERSION: ${{ needs.get-versions.outputs.node_version }}
+      NPM_VERSION: ${{ needs.get-versions.outputs.npm_version }}
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - uses: actions/cache@v2
+        with:
+          path: ~/.node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      # Setup node with the version defined in package.json engines.
+      # This step will use the cache specified in the actions/cache step.
+      - name: Use Node ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      # Setup npm with the version defined in package.json engines.
+      - name: Use npm ${{ env.NPM_VERSION }}
+        run: |
+          npm install -g npm@${{ env.NPM_VERSION }}
+
+      - name: Running the install, lint, and test commands with npm ${{ env.NPM_VERSION }}
+        run: |
+          npm ci
+          npm run lint
+          npm run test
+
+  # Publish package to npm
+  publish:
+    # Only run when pushing to the main branch
+    if: ${{ github.ref == 'refs/heads/main' }}
+
+    runs-on: ubuntu-latest
+
+    needs: [get-versions, run-tests]
+
+    env:
+      NODE_VERSION: ${{ needs.get-versions.outputs.node_version }}
+      # Used to publish the package to the npm registry
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Setup node. This step will use the cache specified in the actions/cache step in the build-test-lint workflow.
+      - name: Use Node ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Build the package
+        run: |
+          npm ci
+          npm run build-library
+
+      - name: Publish the package
+        id: publish
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ env.NPM_TOKEN }}
+
+      - if: steps.publish.outputs.type != 'none'
+        run: |
+          echo "Version changed: ${{ steps.publish.outputs.old-version }} => ${{ steps.publish.outputs.version }}"
