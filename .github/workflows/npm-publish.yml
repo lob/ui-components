@@ -10,7 +10,6 @@ on:
 jobs:
   # Get the version of node as defined in the package.json engines
   get-versions:
-    # Running on Lob's GitHub runners
     runs-on: ubuntu-latest
 
     outputs:
