@@ -35,7 +35,6 @@ jobs:
     # Only run if the "Node Build / Test / Lint" workflow ran on the main branch and completed successfully
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
-    # Running on Lob's GitHub runners
     runs-on: ubuntu-latest
 
     needs: get-versions
