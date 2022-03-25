@@ -2,7 +2,8 @@
   <div
     :class="[
       'rounded flex bg-white text-gray-500',
-      { '!bg-primary-500 !text-white checked': checked }
+      { '!bg-primary-500 !text-white checked': checked },
+      { '!bg-white-300': disabled }
     ]"
   >
     <input
@@ -18,7 +19,10 @@
     >
     <label
       :for="value"
-      class="px-6 py-1.5 cursor-pointer"
+      :class="[
+        'px-6 py-1.5 cursor-pointer',
+        { 'cursor-not-allowed': disabled }
+      ]"
     >
       <span :class="[{'sr-only': srOnlyLabel}]">
         {{ label }}

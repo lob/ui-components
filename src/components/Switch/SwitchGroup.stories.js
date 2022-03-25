@@ -35,6 +35,25 @@ Primary.args = {
   srOnlyLegend: true
 };
 
+const WithDisabledTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { SwitchGroup, SwitchItem },
+  data: () => ({ switchModel }),
+  setup: () => ({ args }),
+  template: `
+    <switch-group v-bind="args">
+      <switch-item name="mode" label="Test" value="test" v-model="switchModel" />
+      <switch-item name="mode" label="Live" value="live" v-model="switchModel" disabled />
+    </switch-group>
+  `
+});
+
+export const WithDisabled = WithDisabledTemplate.bind({});
+WithDisabled.args = {
+  legend: 'Environment mode',
+  srOnlyLegend: true
+};
+
 const withIconsModel = 'map';
 
 const WithIconsTemplate = (args, { argTypes }) => ({
