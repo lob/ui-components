@@ -1,7 +1,7 @@
 <template>
   <div class="relative">
     <div
-      :class="['absolute', { 'hidden': !hover }]"
+      class="absolute"
       :style="tooltipPositionStyle"
     >
       <div
