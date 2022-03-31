@@ -1,0 +1,39 @@
+import {
+  Preview,
+  Story,
+  ArgsTable,
+  PRIMARY_STORY,
+} from "@storybook/addon-docs";
+import NewButton from "./NewButton.vue";
+
+# Button
+
+Buttons are styled semantic buttons that will handle all of the appropriate button states.
+
+<Preview>
+  <Story id="components-newbutton--default" />
+</Preview>
+
+## How to Use
+
+There are 2 variants of buttons: 'primary' & 'secondary'.
+
+You can change the variant of the button by adding the `variant` prop to the component.
+
+Please note: though you can only insert text in the Storybook demo, the button component will accept any valid HTML or Vue component.
+
+Example of using this component as a primary button in a template
+
+```html
+<new-button> This is a button </new-button>
+```
+
+Example of using this component as a secondary button in a template
+
+```html
+<new-button variant="secondary"> This is a button </new-button>
+```
+
+## Props
+
+<ArgsTable story={PRIMARY_STORY} />
