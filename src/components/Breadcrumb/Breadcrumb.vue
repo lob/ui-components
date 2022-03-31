@@ -10,7 +10,7 @@
       v-for="crumb in crumbs"
       :key="crumb.name"
       :to="crumb.path"
-      class="flex items-center font-light customLineHeight customLetterSpacing text-gray-700"
+      class="flex items-center text-sm leading-4 customLetterSpacing text-gray-900"
       exact-active-class="!text-primary-500"
     >
       {{ crumb.name }}
@@ -125,10 +125,6 @@ a:last-child {
   svg {
     @apply hidden;
   }
-}
-
-.customLineHeight {
-  line-height: 1.125rem;
 }
 
 .customLetterSpacing {
