@@ -52,15 +52,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - uses: actions/cache@v2
-        with:
-          path: ~/.node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
       # Setup node with the version defined in package.json engines.
-      # This step will use the cache specified in the actions/cache step.
       - name: Use Node ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v2
         with:
@@ -97,12 +89,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # Setup node. This step will use the cache specified in the actions/cache step in the build-test-lint workflow.
+      # Setup node with the version defined in package.json engines.
       - name: Use Node ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
+
+      # Setup npm with the version defined in package.json engines.
+      - name: Use npm ${{ env.NPM_VERSION }}
+        run: |
+          npm install -g npm@${{ env.NPM_VERSION }}
 
       - name: Build the package
         run: |
