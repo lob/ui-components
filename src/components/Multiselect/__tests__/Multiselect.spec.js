@@ -56,7 +56,7 @@ describe('Multiselect', () => {
       const { findByLabelText } = component;
 
       const input = await findByLabelText(props.label);
-      userEvent.click(input);
+      await userEvent.click(input);
     });
 
     it('should focus on input', async () => {
@@ -89,7 +89,7 @@ describe('Multiselect', () => {
       const { findByLabelText, findAllByRole } = renderComponent({ props });
 
       const input = await findByLabelText(props.label);
-      userEvent.click(input);
+      await userEvent.click(input);
 
       await userEvent.type(input, 'uni');
       expect(input).toHaveValue('uni');
@@ -105,7 +105,7 @@ describe('Multiselect', () => {
         const { findByLabelText, findAllByRole } = renderComponent({ props });
 
         const input = await findByLabelText(props.label);
-        userEvent.click(input);
+        await userEvent.click(input);
 
         await userEvent.type(input, 'ao');
 
@@ -119,7 +119,7 @@ describe('Multiselect', () => {
         const { findByLabelText, findAllByRole } = renderComponent({ props });
 
         const input = await findByLabelText(props.label);
-        userEvent.click(input);
+        await userEvent.click(input);
 
         await userEvent.type(input, 'ao');
 
@@ -133,7 +133,7 @@ describe('Multiselect', () => {
         const { findByLabelText, findAllByRole } = renderComponent({ props });
 
         const input = await findByLabelText(props.label);
-        userEvent.click(input);
+        await userEvent.click(input);
 
         await userEvent.type(input, 'ao');
 
@@ -158,11 +158,11 @@ describe('Multiselect', () => {
       const { findByLabelText, findAllByRole } = component;
 
       const input = await findByLabelText(props.label);
-      userEvent.click(input);
+      await userEvent.click(input);
       await userEvent.type(input, 'uni');
 
       const options = await findAllByRole('option');
-      userEvent.click(options[0]);
+      await userEvent.click(options[0]);
     });
 
     it('closes the dropdown', () => {
@@ -192,7 +192,7 @@ describe('Multiselect', () => {
       const { queryByRole, findByLabelText } = component;
 
       const input = await findByLabelText(props.label);
-      userEvent.click(input);
+      await userEvent.click(input);
 
       const option = await queryByRole('option', { name: 'United States' });
       expect(option).not.toBeInTheDocument();
@@ -235,29 +235,30 @@ describe('Multiselect', () => {
 
   describe('deselecting an option', () => {
 
-    it('removes the badge from the input', async () => {
+    it('emits a update:modelValue event', async () => {
       const props = { ...initialProps, modelValue: [{ label: 'United States', value: 'US' }] };
-      const { findByText, findAllByText } = renderComponent({ props });
+      const { getAllByText, getByRole, emitted } = renderComponent({ props });
 
-      const beforeText = await findAllByText('United States');
+      const beforeText = getAllByText('United States');
       expect(beforeText).toHaveLength(1); // in the badge
 
-      const button = await findByText(en.multiselect.deselectLabel);
-      userEvent.click(button);
+      const button = getByRole('button', { name: en.multiselect.deselectLabel });
+      await userEvent.click(button);
 
-      const afterText = await findAllByText('United States');
-      expect(afterText).toHaveLength(1); // in the options list
+      const emittedEvent = emitted();
+      expect(emittedEvent).toHaveProperty('update:modelValue');
+      expect(emittedEvent['update:modelValue'][0][0]).toHaveLength(0);
     });
 
     it('adds the option back to the dropdown of options', async () => {
       const props = { ...initialProps, modelValue: [{ label: 'United States', value: 'US' }] };
-      const { findByText, findByLabelText, findAllByRole } = renderComponent({ props });
+      const { getByRole, findByLabelText, findAllByRole } = renderComponent({ props });
 
-      const button = await findByText(en.multiselect.deselectLabel);
+      const button = getByRole('button', { name: en.multiselect.deselectLabel });
       await userEvent.click(button);
 
       const input = await findByLabelText(props.label);
-      userEvent.click(input);
+      await userEvent.click(input);
 
       const options = await findAllByRole('option');
       expect(options).toHaveLength(props.options.length);
@@ -285,7 +286,7 @@ describe('Multiselect', () => {
       const { findByLabelText, findAllByRole } = renderComponent({ props });
 
       const input = await findByLabelText(props.label);
-      userEvent.click(input);
+      await userEvent.click(input);
 
       const options = await findAllByRole('option');
       expect(options).toHaveLength(props.options.length);
@@ -295,7 +296,7 @@ describe('Multiselect', () => {
       const { findByLabelText, findAllByRole } = renderComponent({ props });
 
       const input = await findByLabelText(props.label);
-      userEvent.click(input);
+      await userEvent.click(input);
 
       await userEvent.type(input, 'uni');
       expect(input).toHaveValue('uni');
@@ -308,10 +309,10 @@ describe('Multiselect', () => {
       const { findByLabelText, findAllByRole, emitted, queryByRole } = renderComponent({ props });
 
       const input = await findByLabelText(props.label);
-      userEvent.click(input);
+      await userEvent.click(input);
 
       const options = await findAllByRole('option');
-      userEvent.click(options[0]);
+      await userEvent.click(options[0]);
 
       const emittedEvent = emitted();
       expect(emittedEvent).toHaveProperty('update:modelValue');
@@ -329,7 +330,7 @@ describe('Multiselect', () => {
       await userEvent.click(button);
 
       const input = await findByLabelText(props.label);
-      userEvent.click(input);
+      await userEvent.click(input);
 
       const options = await findAllByRole('option');
       expect(options).toHaveLength(props.options.length);

@@ -73,7 +73,6 @@ describe('SearchBar', () => {
   });
 
   it('executes the search function when the user types', async () => {
-    vi.useFakeTimers();
     const searchTerm = 'baseball';
     const props = {
       ...initialProps
@@ -85,7 +84,6 @@ describe('SearchBar', () => {
     await fireEvent.update(input, searchTerm);
     expect(input.value).toBe(searchTerm);
 
-    vi.runOnlyPendingTimers();
     await waitFor(() => {
       expect(getByText('View all 1 results...')).toBeInTheDocument();
     });

@@ -8,30 +8,20 @@ import Datepicker from '../Datepicker.vue';
 const mixins = [translate];
 
 const modelValue = new Date(2021, 5, 14);
-const open = false;
 const initialProps = {
   id: 'test',
   modelValue,
-  open
+  open: false
 };
 
 const renderComponent = (options) => render(Datepicker, { ...options, global: { mixins } });
 
 describe('Datepicker', () => {
 
-  beforeAll(() => {
-    vi.useFakeTimers();
-  });
-
-  afterAll(() => {
-    vi.useRealTimers();
-  });
-
   describe('when closed', () => {
 
     it('renders correctly', () => {
-      const props = initialProps;
-      const { queryByRole } = renderComponent({ props });
+      const { queryByRole } = renderComponent({ props: { ...initialProps } });
 
       const dialog = queryByRole('dialog');
       expect(dialog).not.toBeInTheDocument();
@@ -41,11 +31,7 @@ describe('Datepicker', () => {
 
   describe('when open', () => {
 
-    let props;
-
-    beforeEach(() => {
-      props = { ...initialProps, open: true };
-    });
+    const props = { ...initialProps, open: true };
 
     it('renders a dialog', () => {
       const { queryByRole } = renderComponent({ props });
@@ -99,7 +85,7 @@ describe('Datepicker', () => {
 
       const close = queryByText(en.datepicker.closeLabel).closest('button');
       // enter to close datepicker
-      await fireEvent.click(close);
+      await userEvent.click(close);
       const emittedEvent = emitted();
       expect(emittedEvent).toHaveProperty('update:open');
       expect(emittedEvent['update:open'][0][0]).toEqual(false);
@@ -160,7 +146,7 @@ describe('Datepicker', () => {
       const { queryByText } = renderComponent({ props });
 
       const button = queryByText(en.datepicker.prevMonthLabel);
-      await fireEvent.click(button);
+      await userEvent.click(button);
 
       const monthText = queryByText('May 2021');
       expect(monthText).toBeInTheDocument();
@@ -170,7 +156,7 @@ describe('Datepicker', () => {
       const { queryByText } = renderComponent({ props });
 
       const button = queryByText(en.datepicker.nextMonthLabel);
-      await fireEvent.click(button);
+      await userEvent.click(button);
 
       const monthText = queryByText('July 2021');
       expect(monthText).toBeInTheDocument();
@@ -240,9 +226,8 @@ describe('Datepicker', () => {
     });
 
     it('typing PageUp with shift key, it focuses on the same date one year previously', async () => {
-      const min = new Date(2020, 4, 13);
-      props = { ...initialProps, open: true, min };
-      const { queryByText, emitted } = renderComponent({ props });
+      const minProps = { ...initialProps, open: true, min: new Date(2020, 4, 13) };
+      const { queryByText, emitted } = renderComponent({ props: minProps });
 
       let focusedDate = queryByText(modelValue.getDate()).closest('button');
 
@@ -314,8 +299,8 @@ describe('Datepicker', () => {
     describe('when a date is disabled', () => {
 
       it('using arrow keys skips over that date', async () => {
-        props = { ...initialProps, open: true, isDateDisabled: (date) => date.getDate() === 15 };
-        const { queryByText, emitted } = renderComponent({ props });
+        const disabledDateProps = { ...initialProps, open: true, isDateDisabled: (date) => date.getDate() === 15 };
+        const { queryByText, emitted } = renderComponent({ props: disabledDateProps });
         let focusedDate = queryByText(modelValue.getDate()).closest('button');
 
         await fireEvent.keyDown(focusedDate, { key: 'ArrowRight', code: 'ArrowRight' });
@@ -342,7 +327,7 @@ describe('Datepicker', () => {
       it('emits an update:open event with value false', async () => {
         const { emitted } = component;
 
-        await fireEvent.click(dateToSelect);
+        await userEvent.click(dateToSelect);
         const emittedEvent = emitted();
         expect(emittedEvent).toHaveProperty('update:open');
 
@@ -353,7 +338,7 @@ describe('Datepicker', () => {
       it('emits an input event', async () => {
         const { emitted } = component;
 
-        await fireEvent.click(dateToSelect);
+        await userEvent.click(dateToSelect);
         const emittedEvent = emitted();
         expect(emittedEvent).toHaveProperty('input');
 
@@ -363,7 +348,7 @@ describe('Datepicker', () => {
       it('emits an update:modelValue event', async () => {
         const { emitted } = component;
 
-        await fireEvent.click(dateToSelect);
+        await userEvent.click(dateToSelect);
         const emittedEvent = emitted();
         expect(emittedEvent).toHaveProperty('update:modelValue');
 
@@ -373,10 +358,8 @@ describe('Datepicker', () => {
     });
 
     it('closes the datepicker when clicking outside the component', async () => {
-      props = { ...initialProps, open: true };
-
       const { emitted } = renderComponent({ props });
-      await fireEvent.click(document);
+      await userEvent.click(document.body);
 
       const emittedEvent = emitted();
       expect(emittedEvent).toHaveProperty('update:open');
