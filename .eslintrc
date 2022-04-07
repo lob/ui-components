@@ -4,7 +4,8 @@
     "plugin:vue/vue3-recommended"
   ],
   "globals": {
-    "URLSearchParams": false
+    "URLSearchParams": false,
+    "vi": false
   },
   "parser": "vue-eslint-parser",
   "ignorePatterns": [
@@ -20,7 +21,9 @@
     "prefer-arrow-callback": 0,
     "prefer-reflect": 0,
     "prefer-template": 0,
-    "vue/comma-dangle": 2
+    "vue/comma-dangle": 2,
+    "vue/multi-word-component-names": 0,
+    "vue/v-on-event-hyphenation": 0
   },
   "overrides": [
     {
