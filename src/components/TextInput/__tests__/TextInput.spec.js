@@ -139,7 +139,7 @@ describe('Text input', () => {
       const button = getByRole('button', { name: /copy/i });
       expect(button).toBeInTheDocument();
 
-      document.execCommand = jest.fn();
+      document.execCommand = vi.fn();
       await fireEvent.click(button);
       const emittedEvent = emitted();
       expect(emittedEvent).toHaveProperty('copy');

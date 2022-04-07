@@ -37,7 +37,7 @@ const initialProps = {
 };
 
 afterEach(() => {
-  jest.useRealTimers();
+  vi.useRealTimers();
 });
 
 const renderComponent = (options) => render(SearchBar, { ...options, global: { mixins } });
@@ -73,7 +73,7 @@ describe('SearchBar', () => {
   });
 
   it('executes the search function when the user types', async () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     const searchTerm = 'baseball';
     const props = {
       ...initialProps
@@ -85,7 +85,7 @@ describe('SearchBar', () => {
     await fireEvent.update(input, searchTerm);
     expect(input.value).toBe(searchTerm);
 
-    jest.runOnlyPendingTimers();
+    vi.runOnlyPendingTimers();
     await waitFor(() => {
       expect(getByText('View all 1 results...')).toBeInTheDocument();
     });

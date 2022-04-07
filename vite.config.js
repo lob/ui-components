@@ -30,5 +30,10 @@ export default defineConfig({
         vue: 'Vue'
       }
     }
+  },
+  test: {
+    environment: 'jsdom',
+    globals: true
+    // TODO: coverage
   }
 });

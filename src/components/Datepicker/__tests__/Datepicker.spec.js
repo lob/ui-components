@@ -20,11 +20,11 @@ const renderComponent = (options) => render(Datepicker, { ...options, global: { 
 describe('Datepicker', () => {
 
   beforeAll(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
 
   afterAll(() => {
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   describe('when closed', () => {

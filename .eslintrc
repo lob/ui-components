@@ -1,8 +1,7 @@
 {
   "extends": [
     "lob/browser",
-    "plugin:vue/vue3-recommended",
-    "plugin:jest/recommended"
+    "plugin:vue/vue3-recommended"
   ],
   "globals": {
     "URLSearchParams": false
