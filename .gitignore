@@ -5,6 +5,7 @@
 .DS_Store
 node_modules
 dist
+ui-components.code-workspace
 
 # storybook-static
 coverage
