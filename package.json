@@ -25,6 +25,7 @@
     "lint-fix": "npm run lint --- --fix",
     "test": "vitest run",
     "test:watch": "vitest watch",
+    "test:ci": "npm run coverage",
     "coverage": "vitest run --coverage",
     "storybook": "start-storybook -p 6006"
   },

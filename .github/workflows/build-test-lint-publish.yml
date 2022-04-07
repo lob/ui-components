@@ -67,7 +67,7 @@ jobs:
         run: |
           npm ci --legacy-peer-deps
           npm run lint
-          npm run test
+          npm run test:ci
 
   # Publish package to npm
   publish:
