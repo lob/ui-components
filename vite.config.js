@@ -33,7 +33,20 @@ export default defineConfig({
   },
   test: {
     environment: 'jsdom',
-    globals: true
-    // TODO: coverage
+    globals: true,
+    coverage: {
+      include: ['src/**/*.{js,vue}'],
+      exclude: [
+        'src/**/index.js', // No need to cover index files for exports
+        'src/main.js', // No need to cover bootstrap file
+        'src/**/*.spec.js', // No need to cover test files
+        'src/**/*.stories.js', // No need to cover stories files
+        'src/theme/**', // No need to cover components just for showing theming
+        'src/components/Icons/**' // No need to cover components just for rendering svg icons
+      ],
+      branches: 80,
+      functions: 80,
+      lines: 80
+    }
   }
 });
