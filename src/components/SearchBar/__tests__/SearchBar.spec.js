@@ -36,10 +36,6 @@ const initialProps = {
   }
 };
 
-afterEach(() => {
-  vi.useRealTimers();
-});
-
 const renderComponent = (options) => render(SearchBar, { ...options, global: { mixins } });
 
 describe('SearchBar', () => {
