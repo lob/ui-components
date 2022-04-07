@@ -65,7 +65,7 @@ jobs:
 
       - name: Running the install, lint, and test commands with npm ${{ env.NPM_VERSION }}
         run: |
-          npm ci
+          npm ci --legacy-peer-deps
           npm run lint
           npm run test
 
@@ -101,7 +101,7 @@ jobs:
 
       - name: Build the package
         run: |
-          npm ci
+          npm ci --legacy-peer-deps
           npm run build-library
 
       - name: Publish the package
