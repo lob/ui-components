@@ -17,6 +17,7 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src')
     },
+    dedupe: ['vue'],
     extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue']
   },
   rollupOptions: {
@@ -29,6 +30,9 @@ export default defineConfig({
       globals: {
         vue: 'Vue'
       }
+    },
+    resolve: {
+      dedupe: ['vue']
     }
   },
   test: {
