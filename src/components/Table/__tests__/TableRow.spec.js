@@ -31,7 +31,7 @@ describe('TableRow', () => {
 
     const cell = queryByRole('cell');
     expect(cell).toBeInTheDocument();
-    expect(cell.outerHTML).toEqual('<td colspan=\"100%\">Hello Full Line Item</td>');
+    expect(cell.outerHTML).toEqual('<td colspan=\"100%\">HelloFull Line Item</td>');
   });
 
 });

@@ -1,5 +1,6 @@
 import '@testing-library/jest-dom';
-import { render, fireEvent } from '@testing-library/vue';
+import { render } from '@testing-library/vue';
+import userEvent from '@testing-library/user-event';
 import { translate } from '@/mixins';
 import DateInput from '../DateInput.vue';
 
@@ -56,7 +57,7 @@ describe('DateInput', () => {
 
     const textInput = getByLabelText(props.label);
 
-    await fireEvent.click(textInput);
+    await userEvent.click(textInput);
     const emittedEvent = emitted();
 
     expect(emittedEvent).toHaveProperty('update:open');
@@ -80,7 +81,7 @@ describe('DateInput', () => {
     it('emits an update:open event with value false', async () => {
       const { emitted } = component;
 
-      await fireEvent.click(dateToSelect);
+      await userEvent.click(dateToSelect);
       const emittedEvent = emitted();
       expect(emittedEvent).toHaveProperty('update:open');
 
@@ -91,7 +92,7 @@ describe('DateInput', () => {
     it('emits an update:modelValue event', async () => {
       const { emitted } = component;
 
-      await fireEvent.click(dateToSelect);
+      await userEvent.click(dateToSelect);
       const emittedEvent = emitted();
       expect(emittedEvent).toHaveProperty('update:modelValue');
 

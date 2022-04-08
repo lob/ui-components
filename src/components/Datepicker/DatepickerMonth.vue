@@ -144,7 +144,10 @@ export default {
       this.$emit('keydown', $event);
     },
     focusDate () {
-      this.$refs.focusedDate.focus();
+      if (this.$refs.focusedDate) {
+        // focusedDate is an array because it's set inside a v-for but there should only ever be 1
+        this.$refs.focusedDate[0].focus();
+      }
     }
   }
 };
