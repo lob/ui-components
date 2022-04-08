@@ -1,8 +1,8 @@
 <template>
   <div
     :class="[
-      'rounded flex bg-white text-gray-500',
-      { '!bg-primary-500 !text-white checked': checked },
+      'rounded-sm flex bg-white text-primary-500 font-thin',
+      { '!bg-primary-500 !text-white checked font-semibold': checked },
       { '!bg-white-300': disabled }
     ]"
   >
@@ -20,7 +20,7 @@
     <label
       :for="value"
       :class="[
-        'px-6 py-1.5 cursor-pointer',
+        'px-5 py-1.5 cursor-pointer',
         { 'cursor-not-allowed': disabled }
       ]"
     >
