@@ -10,7 +10,7 @@
       v-for="crumb in crumbs"
       :key="crumb.name"
       :to="crumb.path"
-      class="flex items-center text-sm text-gray-500"
+      class="flex items-center text-sm leading-4 font-light text-gray-900"
       exact-active-class="!text-primary-500"
     >
       {{ crumb.name }}
