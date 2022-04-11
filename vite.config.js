@@ -10,6 +10,21 @@ export default defineConfig({
       entry: path.resolve(__dirname, 'src/main.js'),
       name: 'ui-components',
       fileName: (format) => `ui-components.${format}.js`
+    },
+    rollupOptions: {
+      // make sure to externalize deps that shouldn't be bundled
+      // into your library
+      external: ['vue'],
+      output: {
+        // Provide global variables to use in the UMD build
+        // for externalized deps
+        globals: {
+          vue: 'Vue'
+        }
+      },
+      resolve: {
+        dedupe: ['vue']
+      }
     }
   },
   plugins: [vue()],
@@ -19,21 +34,6 @@ export default defineConfig({
     },
     dedupe: ['vue'],
     extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue']
-  },
-  rollupOptions: {
-    // make sure to externalize deps that shouldn't be bundled
-    // into your library
-    external: ['vue'],
-    output: {
-      // Provide global variables to use in the UMD build
-      // for externalized deps
-      globals: {
-        vue: 'Vue'
-      }
-    },
-    resolve: {
-      dedupe: ['vue']
-    }
   },
   test: {
     environment: 'jsdom',
