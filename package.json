@@ -1,6 +1,6 @@
 {
   "name": "@lob/ui-components",
-  "version": "0.0.181",
+  "version": "0.0.182",
   "engines": {
     "node": ">=14.18.2",
     "npm": ">=8.3.0"
@@ -14,7 +14,8 @@
     ".": {
       "import": "./dist/ui-components.es.js",
       "require": "./dist/ui-components.umd.js"
-    }
+    },
+    "./dist/ui-components.css": "./dist/style.css"
   },
   "scripts": {
     "build": "vite build",
