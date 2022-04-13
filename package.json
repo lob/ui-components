@@ -14,7 +14,8 @@
     ".": {
       "import": "./dist/ui-components.es.js",
       "require": "./dist/ui-components.umd.js"
-    }
+    },
+    "./dist/ui-components.css": "./dist/style.css"
   },
   "scripts": {
     "build": "vite build",
