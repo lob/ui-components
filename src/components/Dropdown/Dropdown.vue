@@ -63,7 +63,7 @@
       >
         <div
           v-for="item in optionItems"
-          :key="item.label || item"
+          :key="item.id || item"
         >
           <div
             v-if="isOptGroup(item)"
