@@ -7,17 +7,35 @@
              { 'bg-coral-100 border-coral-700': error }
     ]"
   >
-    <Info class="mr-2" />
+    <Info
+      v-if="info"
+      class="mr-2"
+    />
+    <Checkmark
+      v-if="success"
+      class="mr-2"
+    />
+    <Warning
+      v-if="warning"
+      class="mr-2"
+    />
+    <Error
+      v-if="error"
+      class="mr-2"
+    />
     <slot />
   </div>
 </template>
 
 <script>
 import Info from '../Icons/Info.vue';
+import Checkmark from '../Icons/Checkmark.vue';
+import Warning from '../Icons/Warning.vue';
+import Error from '../Icons/Error.vue';
 
 export default {
   name: 'Alert',
-  components: { Info },
+  components: { Info, Checkmark, Warning, Error },
   props: {
     variant: {
       type: String,
