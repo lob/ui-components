@@ -1,19 +1,23 @@
 <template>
   <div
-    :class="['w-full p-4.5 rounded-md flex justify-center align-center',
-             { 'bg-turquoise-100': info },
-             { 'bg-mint-100': success },
-             { 'bg-lemon-100': warning },
-             { 'bg-coral-100': error }
+    :class="['w-full border-l-4 p-4.5 rounded-r-lg flex justify-center align-center font-light',
+             { 'bg-turquoise-100 border-turquoise-500': info },
+             { 'bg-mint-100 border-success': success },
+             { 'bg-lemon-100 border-warning': warning },
+             { 'bg-coral-100 border-coral-700': error }
     ]"
   >
+  <Info />
     <slot />
   </div>
 </template>
 
 <script>
+import Info from '../Icons/Info.vue';
+
 export default {
   name: 'Alert',
+  components: { Info },
   props: {
     variant: {
       type: String,
