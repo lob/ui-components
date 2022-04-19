@@ -7,7 +7,7 @@
              { 'bg-coral-100 border-coral-700': error }
     ]"
   >
-  <Info />
+    <Info class="mr-2" />
     <slot />
   </div>
 </template>
