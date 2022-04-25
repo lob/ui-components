@@ -29,6 +29,12 @@ export default {
         type: 'select'
       }
     },
+    color: {
+      options: ['default', 'info', 'warning', 'success', 'error'],
+      control: {
+        type: 'select'
+      }
+    },
     size: {
       options: ['default', 'small'],
       control: {

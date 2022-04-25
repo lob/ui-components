@@ -1,4 +1,5 @@
 import Alert from './Alert.vue';
+import LobLink from '../Link/Link.vue';
 import mdx from './Alert.mdx';
 
 export default {
@@ -34,13 +35,14 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { Alert },
+  components: { Alert, LobLink },
   setup: () => ({ args }),
-  template: '<alert v-slot v-bind="args">{{ args.content }}</alert>'
+  template: '<alert v-slot v-bind="args">{{ args.content }}<LobLink :color="variant">{{ args.link }}</LobLink></alert>'
 });
 
 export const Primary = Template.bind({});
 Primary.args = {
   content:
-    'You are in LIVE mode, all verifications will be charged according to your chosen plan.'
+    'You are in LIVE mode, all verifications will be charged according to your chosen plan.',
+  link: 'Example Link'
 };

@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="['w-full border-l-4 p-4.5 rounded-r-lg flex justify-center align-center font-light',
+    :class="['w-full border-l-4 p-4.5 rounded-r-lg flex justify-start align-center font-light',
              { 'bg-turquoise-100 border-turquoise-500': info },
              { 'bg-mint-100 border-success': success },
              { 'bg-lemon-100 border-warning': warning },
@@ -9,19 +9,19 @@
   >
     <Info
       v-if="info"
-      class="mr-2"
+      class="mr-4"
     />
     <Checkmark
       v-if="success"
-      class="mr-2"
+      class="mr-4"
     />
     <Warning
       v-if="warning"
-      class="mr-2"
+      class="mr-4"
     />
     <Error
       v-if="error"
-      class="mr-2"
+      class="mr-4"
     />
     <slot />
   </div>
@@ -47,16 +47,16 @@ export default {
   },
   computed: {
     info () {
-      return this.variant === 'info';
+      return this.variant === 'info' ? 'info' : false;
     },
     success () {
-      return this.variant === 'success';
+      return this.variant === 'success' ? 'success' : false;
     },
     warning () {
-      return this.variant === 'warning';
+      return this.variant === 'warning' ? 'warning' : false;
     },
     error () {
-      return this.variant === 'error';
+      return this.variant === 'error' ? 'error' : false;
     }
   }
 };

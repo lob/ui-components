@@ -18,7 +18,11 @@
       {'bg-white-300': disabled && primary},
       {'border-gray-100': disabled && secondary},
       {'border-white-300': disabled && tertiary},
-      {'border-gray-100 hover:bg-white': disabled && alert}
+      {'border-gray-100 hover:bg-white': disabled && alert},
+      {'text-turquoise-700 font-bold' : info},
+      {'font-bold text-gray-700' : warning},
+      {'font-bold text-coral-700' : error},
+      {'font-bold text-mint-900' : success}
     ]"
   >
     <slot />
@@ -41,6 +45,13 @@ export default {
       default: 'default',
       validator: function (value) {
         return ['default', 'small'].includes(value);
+      }
+    },
+    color: {
+      type: String,
+      default: 'default',
+      validator: function (value) {
+        return ['default', 'info', 'warning', 'success', 'error'].includes(value);
       }
     },
     disabled: {
@@ -82,6 +93,18 @@ export default {
     },
     small () {
       return this.size === 'small';
+    },
+    info () {
+      return this.color === 'info';
+    },
+    error () {
+      return this.color === 'error';
+    },
+    warning () {
+      return this.color === 'warning';
+    },
+    success () {
+      return this.color === 'success';
     },
     isExternal () {
       const protocolRelativePattern = /^https?:\/\/|^\/\//i;
