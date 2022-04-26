@@ -7,20 +7,8 @@
              { 'bg-coral-100 border-coral-700': error }
     ]"
   >
-    <Info
-      v-if="info"
-      class="mr-4"
-    />
-    <Checkmark
-      v-if="success"
-      class="mr-4"
-    />
-    <Warning
-      v-if="warning"
-      class="mr-4"
-    />
-    <Error
-      v-if="error"
+    <component
+      :is="icon"
       class="mr-4"
     />
     <slot />
@@ -45,18 +33,27 @@ export default {
       }
     }
   },
+  data () {
+    return {
+      iconTypes: [{ variant: 'info', icon: 'Info' }, { variant: 'success', icon: 'Checkmark' }, { variant: 'warning', icon: 'Warning' }, { variant: 'error', icon: 'Error' }]
+    };
+  },
   computed: {
     info () {
-      return this.variant === 'info' ? 'info' : false;
+      return this.variant === 'info';
     },
     success () {
-      return this.variant === 'success' ? 'success' : false;
+      return this.variant === 'success';
     },
     warning () {
-      return this.variant === 'warning' ? 'warning' : false;
+      return this.variant === 'warning';
     },
     error () {
-      return this.variant === 'error' ? 'error' : false;
+      return this.variant === 'error';
+    },
+    icon () {
+      const selectedVariant = this.iconTypes.find((currentVariant) => currentVariant.variant === this.variant);
+      return selectedVariant.icon;
     }
   }
 };
