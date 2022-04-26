@@ -1,11 +1,14 @@
 <template>
   <button
     :class="[
-      'flex justify-center items-center px-8 py-2.5 rounded-lg focus:ring-4 font-bold textTwenty',
-      { 'cursor-not-allowed ': disabled },
+      'flex justify-center items-center rounded-lg focus:ring-4',
+      { 'px-8 py-2.5 font-bold textTwenty': primary || secondary },
+      { 'p-0 text-primary-500 underline disabled:text-gray-500': link },
+      { 'p-0 disabled:text-gray-500': none },
+      { 'cursor-not-allowed': disabled },
       { 'focus:ring-primary-100': !warning },
       { 'focus:ring-coral-700': warning },
-      { 'primary bg-primary-500 text-white active:bg-black disabled:bg-gray-100': primary && !warning },
+      { 'primary  bg-primary-500 text-white active:bg-black disabled:bg-gray-100': primary && !warning },
       { 'primary warning bg-coral-900 text-white active:bg-coral-700 disabled:bg-coral-200': primary && warning },
       { 'secondary border border-primary-500 bg-white text-primary-500': secondary && !warning,
         'disabled:border-gray-100 disabled:text-gray-100 active:border-black active:text-black': secondary && !warning },
@@ -29,7 +32,7 @@ export default {
       type: String,
       default: 'primary',
       validator: function (value) {
-        return ['primary', 'secondary'].includes(value);
+        return ['primary', 'secondary', 'link', 'none'].includes(value);
       }
     },
     disabled: {
@@ -48,6 +51,12 @@ export default {
     },
     secondary () {
       return this.variant === 'secondary';
+    },
+    link () {
+      return this.variant === 'link';
+    },
+    none () {
+      return this.variant === 'none';
     }
   },
   methods: {

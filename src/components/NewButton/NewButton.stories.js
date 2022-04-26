@@ -24,7 +24,7 @@ export default {
       }
     },
     variant: {
-      options: ['primary', 'secondary'],
+      options: ['primary', 'secondary', 'link', 'none'],
       control: {
         type: 'select'
       }
