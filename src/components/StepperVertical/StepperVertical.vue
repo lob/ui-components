@@ -4,8 +4,8 @@
       v-for="step in steps"
       :key="step"
       :ref="step === stepWithlongestPathName ? 'longest' : null"
+      :style="`min-width:${longestWidth}px;`"
       :step="step"
-      :min-width="minWidth"
       :dark-mode="darkMode"
       :index="steps.indexOf(step)+1"
       :active="activeStepPathName === step.pathName"
@@ -29,7 +29,7 @@ export default {
   data () {
     return {
       activeStepPathName: this.currentStep?.pathName || this.steps[0]?.pathName,
-      minWidth: null
+      longestWidth: null
     };
   },
   computed: {
@@ -40,8 +40,8 @@ export default {
     }
   },
   mounted () {
-    //get the longest element's width
-    this.minWidth = this.$refs.longest[0].$el.offsetWidth;
+    //get the longest element's width for setting the steps' min width
+    this.longestWidth = this.$refs.longest[0].$el.offsetWidth;
   },
   methods: {
     handleClick (step) {

@@ -20,12 +20,16 @@ describe('StepperVerticalItem', () => {
     expect(step).toBeInTheDocument();
   });
 
-  it('the active step has blue background', () => {
-    const props = initialProps;
-    const { getByText } = renderComponent({ props });
+  describe('active step', () => {
 
-    const stepWrap = getByText(props.step.pathName).closest('div');
-    expect(stepWrap).toHaveClass('bg-primary-500');
+    it('has blue background', () => {
+      const props = initialProps;
+      const { getByText } = renderComponent({ props });
+
+      const stepWrap = getByText(props.step.pathName).closest('div');
+      expect(stepWrap).toHaveClass('bg-primary-500');
+    });
+
   });
 
   describe('dark mode', () => {
@@ -38,7 +42,7 @@ describe('StepperVerticalItem', () => {
       component = renderComponent({ props });
     });
 
-    it('the active step has white background', () => {
+    it('active step has white background', () => {
       const { getByText } = component;
 
       const stepWrap = getByText(props.step.pathName).closest('div');
