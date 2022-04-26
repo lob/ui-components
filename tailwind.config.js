@@ -1,6 +1,6 @@
 module.exports = {
-  purge: ['./src/**/*.vue'],
-  darkMode: false, // or 'media' or 'class'
+  content: ['./src/**/*.vue'],
+  darkMode: 'media',
   plugins: [
     require('tailwind-plugin-lob')
   ]
