@@ -1,17 +1,18 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@import 'fonts';
+@import "fonts";
 
 :root {
   --color-primary-rgb: rgb(24, 120, 224);
-  --color-primary-rgb-l: rgba(24, 120, 224, .4);
-  --color-primary-rgb-xl: rgba(24, 120, 224, .2);
+  --color-primary-rgb-l: rgba(24, 120, 224, 0.4);
+  --color-primary-rgb-xl: rgba(24, 120, 224, 0.2);
 }
 
 @layer base {
-  html, body {
+  html,
+  body {
     font-size: 16px;
     @apply font-sans;
     @apply text-black;

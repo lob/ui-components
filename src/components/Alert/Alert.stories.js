@@ -5,7 +5,6 @@ export default {
   title: 'Components/Alert',
   component: Alert,
   parameters: {
-    layout: 'padded',
     docs: {
       page: mdx
     }

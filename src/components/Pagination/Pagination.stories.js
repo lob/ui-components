@@ -7,8 +7,7 @@ export default {
   parameters: {
     docs: {
       page: mdx
-    },
-    layout: 'padded'
+    }
   },
   argTypes: {}
 };
