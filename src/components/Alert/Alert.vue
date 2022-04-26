@@ -11,7 +11,7 @@
       :is="icon"
       class="mr-4"
     />
-    <slot />
+    <slot :link-color="linkColor" />
   </div>
 </template>
 
@@ -35,7 +35,14 @@ export default {
   },
   data () {
     return {
-      iconTypes: [{ variant: 'info', icon: 'Info' }, { variant: 'success', icon: 'Checkmark' }, { variant: 'warning', icon: 'Warning' }, { variant: 'error', icon: 'Error' }]
+      iconTypes: [{ variant: 'info', icon: 'Info' },
+        { variant: 'success', icon: 'Checkmark' },
+        { variant: 'warning', icon: 'Warning' },
+        { variant: 'error', icon: 'Error' }],
+      linkColors: [{ variant: 'info', linkColor: 'text-turquoise-700' },
+        { variant: 'success', linkColor: 'text-mint-900' },
+        { variant: 'warning', linkColor: 'text-gray-700' },
+        { variant: 'error', linkColor: 'text-coral-700' }]
     };
   },
   computed: {
@@ -54,6 +61,10 @@ export default {
     icon () {
       const selectedVariant = this.iconTypes.find((currentVariant) => currentVariant.variant === this.variant);
       return selectedVariant.icon;
+    },
+    linkColor () {
+      const selectedVariant = this.linkColors.find((currentVariant) => currentVariant.variant === this.variant);
+      return selectedVariant.linkColor;
     }
   }
 };

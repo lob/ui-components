@@ -6,7 +6,6 @@ export default {
   title: 'Components/Alert',
   component: Alert,
   parameters: {
-    layout: 'padded',
     docs: {
       page: mdx
     }
@@ -37,7 +36,16 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { Alert, LobLink },
   setup: () => ({ args }),
-  template: '<alert v-slot v-bind="args">{{ args.content }}<LobLink class="ml-1" :color="args.variant">{{ args.link }}</LobLink>.</alert>'
+  template: `
+    <alert v-bind="args">
+      <template v-slot:default="{linkColor}">
+        {{ args.content }}
+        <span :class="linkColor">
+          <LobLink bold inherit-text-color class="ml-1">{{ args.link }}</LobLink>.
+        </span>
+      </template>
+    </alert>
+  `
 });
 
 export const Primary = Template.bind({});
