@@ -1,7 +1,7 @@
 <template>
   <button
     :class="[
-      'flex justify-center items-center rounded-lg focus:ring-4',
+      'flex justify-center items-center rounded-lg focus:ring-4 focus:outline-none',
       { 'px-8 py-2.5 font-bold textTwenty': primary || secondary },
       { 'p-0 text-primary-500 underline disabled:text-gray-500': link },
       { 'p-0 disabled:text-gray-500': none },
