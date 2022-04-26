@@ -35,14 +35,12 @@ export default {
   },
   data () {
     return {
-      iconTypes: [{ variant: 'info', icon: 'Info' },
-        { variant: 'success', icon: 'Checkmark' },
-        { variant: 'warning', icon: 'Warning' },
-        { variant: 'error', icon: 'Error' }],
-      linkColors: [{ variant: 'info', linkColor: 'text-turquoise-700' },
-        { variant: 'success', linkColor: 'text-mint-900' },
-        { variant: 'warning', linkColor: 'text-gray-700' },
-        { variant: 'error', linkColor: 'text-coral-700' }]
+      variantDetails: [
+        { variant: 'info', icon: 'Info', linkColor: 'text-turquoise-700' },
+        { variant: 'success', icon: 'Checkmark', linkColor: 'text-mint-900' },
+        { variant: 'warning', icon: 'Warning', linkColor: 'text-gray-700' },
+        { variant: 'error', icon: 'Error', linkColor: 'text-coral-700' }
+      ]
     };
   },
   computed: {
@@ -59,11 +57,11 @@ export default {
       return this.variant === 'error';
     },
     icon () {
-      const selectedVariant = this.iconTypes.find((currentVariant) => currentVariant.variant === this.variant);
+      const selectedVariant = this.variantDetails.find((currentVariant) => currentVariant.variant === this.variant);
       return selectedVariant.icon;
     },
     linkColor () {
-      const selectedVariant = this.linkColors.find((currentVariant) => currentVariant.variant === this.variant);
+      const selectedVariant = this.variantDetails.find((currentVariant) => currentVariant.variant === this.variant);
       return selectedVariant.linkColor;
     }
   }
