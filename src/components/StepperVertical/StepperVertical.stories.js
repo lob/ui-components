@@ -18,34 +18,21 @@ export default {
       { path: '/creative', pathName: 'Compose creative' },
       { path: '/finalize', pathName: 'Finalize campaign' }
     ]
-  },
-  methods: {
-    handleClick (step) {
-      console.log(`clicked ${step.pathName}`); //eslint-disable-line
-    }
   }
 };
 
 const Template = (args) => ({
   components: { StepperVertical, StepperVerticalItem },
   setup: () => ({ args }),
-  template: `
-  <StepperVertical :steps="args.steps">
-    <StepperVerticalItem :v-for="args.steps" :key="step" :step="step" @click="handleClick"/>
-  </StepperVertical>
-  `
+  template: '<StepperVertical :steps="args.steps"/>'
 });
 
-export const Primary = Template.bind({});
+export const Default = Template.bind({});
 
 const DarkTemplate = (args) => ({
   components: { StepperVertical, StepperVerticalItem },
   setup: () => ({ args }),
-  template: `
-  <StepperVertical dark-mode :steps="args.steps" style="backgroundColor: #324350; padding: 4em 4em 4em 0;">
-    <StepperVerticalItem :v-for="args.steps" :key="step" :step="step" @click="handleClick"/>
-  </StepperVertical>
-  `
+  template: '<StepperVertical dark-mode :steps="args.steps" style="backgroundColor: #324350; padding: 4em 4em 4em 0;"/>'
 });
 
 export const DarkMode = DarkTemplate.bind({});

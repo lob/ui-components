@@ -1,9 +1,12 @@
 <template>
   <div
-    :class="['whitespace-nowrap cursor-pointer text-lg font-thin customHoverTrigger',
-             { 'text-primary-500': !darkMode },
-             { 'text-white': darkMode },
+    :class="['whitespace-nowrap cursor-pointer text-lg font-thin',
+             'customHoverTrigger focus-visible:font-bold',
+             { 'text-primary-500 focus-visible:outline-primary-500': !darkMode },
+             { 'text-white focus-visible:outline-white': darkMode },
              { 'font-bold': active }]"
+    tabindex="0"
+    @keydown.enter="selectStep"
   >
     <div
       :class="['rounded-r-full py-1 my-6',
@@ -40,6 +43,11 @@ export default {
     index: { type: Number, required: true },
     active: { type: Boolean, default: false },
     darkMode: { type: Boolean, default: false }
+  },
+  methods: {
+    selectStep (step) {
+      step.path[0].click();
+    }
   }
 };
 </script>
