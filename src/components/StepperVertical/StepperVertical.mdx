@@ -31,7 +31,7 @@ dark-mode:
 
 The `StepperVertical` will render its steps according to the `steps` prop you pass in.
 
-It emits the selected step on-click with the `goToStep` property and the selected step Object.
+It emits the selected step on-click with the `stepChange` property and the selected step Object.
 
 To show the dark mode version, use the prop `darkMode` set to true.
 
@@ -41,7 +41,7 @@ Example of using the component:
 <StepperVertical
   :steps="[{ path: '/settings', pathName: 'Choose campaign settings' },
     { path: '/audience', pathName: 'Add target audience' }]"
-  @goToStep="handleGoToStep"
+  @stepChange="handleStepChange"
 />
 ```
 

@@ -25,7 +25,7 @@ export default {
     currentStep: { type: Object, default: null },
     darkMode: { type: Boolean, default: false }
   },
-  emits: ['goToStep'],
+  emits: ['stepChange'],
   data () {
     return {
       activeStepPathName: this.currentStep?.pathName || this.steps[0]?.pathName,
@@ -46,7 +46,7 @@ export default {
   methods: {
     handleClick (step) {
       this.activeStepPathName = step.pathName;
-      this.$emit('goToStep', step);
+      this.$emit('stepChange', step);
     }
   }
 };

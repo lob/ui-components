@@ -70,8 +70,8 @@ describe('StepperVertical', () => {
       const { emitted } = component;
 
       const emittedEvent = emitted();
-      expect(emittedEvent).toHaveProperty('goToStep');
-      expect(emittedEvent.goToStep[0]).toEqual([props.steps[1]]);
+      expect(emittedEvent).toHaveProperty('stepChange');
+      expect(emittedEvent.stepChange[0]).toEqual([props.steps[1]]);
     });
 
     it('the step clicked-on becomes active', () => {
