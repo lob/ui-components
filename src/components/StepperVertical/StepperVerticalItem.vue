@@ -45,8 +45,8 @@ export default {
     darkMode: { type: Boolean, default: false }
   },
   methods: {
-    selectStep (step) {
-      step.path[0].click();
+    selectStep (kbdEvent) {
+      kbdEvent.path[0].click();
     }
   }
 };
