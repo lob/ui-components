@@ -1,5 +1,6 @@
 import '@testing-library/jest-dom';
-import { render, fireEvent } from '@testing-library/vue';
+import { render } from '@testing-library/vue';
+import userEvent from '@testing-library/user-event';
 import StepperVertical from '../StepperVertical.vue';
 
 const initialProps = {
@@ -57,12 +58,12 @@ describe('StepperVertical', () => {
     let component;
     let props;
     let step2;
-    beforeEach(() => {
+    beforeEach(async () => {
       props = initialProps;
       component = renderComponent({ props });
       const { getByText } = component;
       step2 = getByText(props.steps[1].pathName).closest('div');
-      fireEvent.click(step2);
+      await userEvent.click(step2);
     });
 
     it('emits the step', () => {
