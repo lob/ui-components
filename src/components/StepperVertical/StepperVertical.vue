@@ -21,7 +21,11 @@ export default {
   name: 'StepperVertical',
   components: { StepperVerticalItem },
   props: {
-    steps: { type: Array, required: true },
+    steps: { type: Array, required: true,
+      validator: function (value) {
+        const hasPathName = (obj) => obj.hasOwnProperty('pathName');
+        return Array.isArray(value) && value.every(hasPathName);
+      } },
     currentStep: { type: Object, default: null },
     darkMode: { type: Boolean, default: false }
   },
