@@ -38,11 +38,10 @@ describe('StepperVertical', () => {
 
   describe('activeStep passed by prop', () => {
 
-    let props;
-    beforeEach(() => {
-      props = initialProps;
-      props.activeStep = props.steps[2];
-    });
+    const props = {
+      ...initialProps,
+      activeStep: initialProps.steps[2]
+    };
 
     it('the currentStep is active', () => {
       const { getByText } = renderComponent({ props });
