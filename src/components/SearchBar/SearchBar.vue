@@ -9,20 +9,20 @@
       class="min-w-full"
       :label="t('search.textLabel')"
       :sr-only-label="true"
-      input-class="rounded-lg my-2 text-gray-700 font-light pl-4.5 focus-within:bg-white-300"
+      input-class="rounded-lg my-2 text-gray-700 font-light pl-4.5 focus-within:bg-white-300 focus-visbile:ring-2"
     >
       <template #iconLeft>
-        <Search class="w-6 h-6 ml-5 mr-3" />
+        <Search class="w-6 h-6 ml-2.5 mr-2.5" />
       </template>
       <template #iconRight>
         <button
-          class="block"
+          :class="['block', { 'invisible' : !searchTerm}, {'visbile' : searchTerm}]"
           :aria-label="t('search.closeLabel')"
           :disabled="disabled"
           data-testid="clearSearchButton"
           @click="clearSearch"
         >
-          <Close class="w-4 h-4 mr-5 ml-3" />
+          <Close class="w-3.5 h-3.5 mr-5 ml-3" />
         </button>
       </template>
     </text-input>
@@ -42,7 +42,7 @@
           <LobLink
             :to="link"
             :underline="false"
-            class="hover:text-primary-700"
+            class="hover:text-primary-500"
             @click="hide"
           >
             {{ t('search.resultsPrefix') }} {{ totalResults }} {{ t('search.resultsSuffix') }}
@@ -61,7 +61,7 @@
           <TableRow
             v-for="result in searchResults"
             :key="result"
-            class="text-gray-500 hover:text-primary-700 cursor-pointer"
+            class="text-gray-500 hover:bg-white-300 border-4 border-l-primary-500 cursor-pointer"
             @click="hide"
           >
             <slot :result="result" />

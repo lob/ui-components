@@ -50,7 +50,7 @@
     >
       <div
         v-if="iconLeft"
-        :class="['pl-2 pt-3 pb-3 text-gray-500', {'!pl-1 !py-2': small}]"
+        :class="['pl-2 pt-2 pb-2 text-gray-500', {'!pl-1 !py-2': small}]"
       >
         <slot name="iconLeft" />
       </div>
@@ -64,7 +64,7 @@
         :max="max"
         :pattern="pattern"
         :class="[
-          `pl-2 pt-3 pb-3 leading-5 w-full text-gray-500 placeholder-gray-100 outline-none ${inputClass}`,
+          `pl-2 pt-2 pb-2 leading-4 w-full text-gray-500 placeholder-gray-100 outline-none ${inputClass}`,
           {'!pl-4': !iconLeft},
           {'!pl-3 !pr-3 !py-2': small},
           {'border border-r-0 border-gray-100 rounded-tr-none rounded-br-none truncate': withCopyButton},
@@ -80,7 +80,7 @@
       >
       <div
         v-if="iconRight"
-        :class="['pr-2 pt-3 pb-3 text-gray-500', {'!pr-1 !py-2': small}]"
+        :class="['pr-2 pt-2 pb-2 text-gray-500', {'!pr-1 !py-2': small}]"
       >
         <slot name="iconRight" />
       </div>
