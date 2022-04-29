@@ -45,7 +45,8 @@
         {'flex items-center': !selectedOptions},
         {'!border-0': withCopyButton},
         {'hover:shadow': !disabled && !readonly},
-        {'border-error': error}
+        {'border-error': error},
+        {'bg-white-100': disabled}
       ]"
     >
       <div
@@ -68,7 +69,7 @@
           {'!pl-4': !iconLeft},
           {'!pl-3 !pr-3 !py-2': small},
           {'border border-r-0 border-gray-100 rounded-tr-none rounded-br-none truncate': withCopyButton},
-          {'bg-white-300 cursor-not-allowed': disabled || readonly},
+          {'border-gray-100 cursor-not-allowed': disabled || readonly},
           {'border-error': error}
         ]"
         :disabled="disabled"

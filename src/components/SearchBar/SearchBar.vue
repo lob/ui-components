@@ -10,20 +10,20 @@
       :label="t('search.textLabel')"
       :sr-only-label="true"
       :placeholder="placeholder"
-      input-class="rounded-lg my-2 text-gray-700 font-light pl-4.5 focus-within:bg-white-300 focus-visbile:ring-2"
+      :disabled="disabled"
+      input-class="rounded-lg my-2 text-gray-700 font-light pl-4.5 placeholder-gray-500 focus-within:bg-white-300 focus-visbile:ring-4"
     >
       <template #iconLeft>
-        <Search class="w-6 h-6 ml-2.5 mr-2.5" />
+        <Search class="w-6 h-6 ml-2.5 mr-2.5 text-gray-700" />
       </template>
       <template #iconRight>
         <button
           :class="['block', { 'invisible' : !searchTerm}, {'visbile' : searchTerm}]"
           :aria-label="t('search.closeLabel')"
-          :disabled="disabled"
           data-testid="clearSearchButton"
           @click="clearSearch"
         >
-          <Close class="w-3.5 h-3.5 mr-5 ml-3" />
+          <Close class="w-3.5 h-3.5 mr-5 ml-3 text-gray-700" />
         </button>
       </template>
     </text-input>
@@ -43,7 +43,7 @@
           <LobLink
             :to="link"
             :underline="false"
-            class="hover:text-primary-500"
+            class="text-primary-500 underline"
             @click="hide"
           >
             {{ t('search.resultsPrefix') }} {{ totalResults }} {{ t('search.resultsSuffix') }}
@@ -105,6 +105,10 @@ export default {
     placeholder: {
       type: String,
       default: null
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -117,9 +121,6 @@ export default {
     };
   },
   computed: {
-    disabled () {
-      return !this.searchTerm;
-    },
     totalResults () {
       return this.count ? this.count : this.searchResults.length;
     }
