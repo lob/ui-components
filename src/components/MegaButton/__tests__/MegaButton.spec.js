@@ -14,7 +14,7 @@ const renderComponent = (options, configure = null) => render(MegaButton, { ...o
 
 describe('MegaButton', () => {
 
-  it.only('renders correctly', () => {
+  it('renders correctly', () => {
     const { queryByRole, queryByText } = renderComponent({ slots });
 
     const megaButton = queryByRole('button');
