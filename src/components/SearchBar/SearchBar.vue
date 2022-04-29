@@ -18,7 +18,7 @@
       </template>
       <template #iconRight>
         <button
-          :class="['block', { 'invisible' : !searchTerm}, {'visbile' : searchTerm}]"
+          :class="[{ 'invisible' : !searchTerm}, {'block' : searchTerm}]"
           :aria-label="t('search.closeLabel')"
           data-testid="clearSearchButton"
           @click="clearSearch"
