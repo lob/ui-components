@@ -143,5 +143,6 @@ Primary.args = {
     });
   },
   link: '/search',
-  count: 10
+  count: 10,
+  placeholder: 'Search here'
 };

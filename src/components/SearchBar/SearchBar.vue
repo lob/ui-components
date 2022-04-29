@@ -9,6 +9,7 @@
       class="min-w-full"
       :label="t('search.textLabel')"
       :sr-only-label="true"
+      :placeholder="placeholder"
       input-class="rounded-lg my-2 text-gray-700 font-light pl-4.5 focus-within:bg-white-300 focus-visbile:ring-2"
     >
       <template #iconLeft>
@@ -61,7 +62,7 @@
           <TableRow
             v-for="result in searchResults"
             :key="result"
-            class="text-gray-500 hover:bg-white-300 border-4 border-l-primary-500 cursor-pointer"
+            class="text-gray-500 hover:bg-white-300 hover:border-l-4 hover:border-l-primary-500 cursor-pointer active:bg-primary-500 active:text-white-300"
             @click="hide"
           >
             <slot :result="result" />
@@ -100,6 +101,10 @@ export default {
     header: {
       type: Boolean,
       default: true
+    },
+    placeholder: {
+      type: String,
+      default: null
     }
   },
   data () {
