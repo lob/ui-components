@@ -65,7 +65,7 @@
         :max="max"
         :pattern="pattern"
         :class="[
-          `pl-2 pt-2 pb-2 leading-4 w-full text-gray-500 placeholder-gray-500 outline-none ${inputClass}`,
+          `rounded-lg pl-2 pt-2 pb-2 leading-4 w-full text-gray-500 placeholder-gray-500 outline-none ${inputClass}`,
           {'!pl-4': !iconLeft},
           {'!pl-3 !pr-3 !py-2': small},
           {'border border-r-0 border-gray-100 rounded-tr-none rounded-br-none truncate': withCopyButton},

@@ -34,7 +34,7 @@
     >
       <div
         v-if="searchTerm && header"
-        class="text-center py-4 border-white-300 border-b-2 text-gray-500"
+        class="text-center py-4 border-white-300 border-b-2 text-gray-500 font-light"
       >
         <template v-if="searching">
           {{ t('search.loading') }}
@@ -43,7 +43,7 @@
           <LobLink
             :to="link"
             :underline="false"
-            class="text-primary-500 underline"
+            class="text-primary-500 underline font-normal"
             @click="hide"
           >
             {{ t('search.resultsPrefix') }} {{ totalResults }} {{ t('search.resultsSuffix') }}
@@ -62,7 +62,7 @@
           <TableRow
             v-for="result in searchResults"
             :key="result"
-            class="text-gray-500 hover:bg-white-300 hover:border-l-4 hover:border-l-primary-500 cursor-pointer active:bg-primary-500 active:text-white-300"
+            class="text-gray-700  font-light hover:bg-white-300 hover:border-l-4 hover:border-l-primary-500 cursor-pointer active:bg-primary-500 active:text-white-300"
             @click="hide"
           >
             <slot :result="result" />
