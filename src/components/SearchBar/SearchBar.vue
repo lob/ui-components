@@ -14,11 +14,11 @@
       input-class="rounded-lg my-2 text-gray-700 font-light pl-4.5 placeholder-gray-500 focus-within:bg-white-300 focus-visbile:ring-4"
     >
       <template #iconLeft>
-        <Search class="w-6 h-6 ml-2.5 mr-2.5 text-gray-700" />
+        <Search :class="['w-6 h-6 ml-2.5 mr-2.5 text-gray-700', { 'text-gray-100' : disabled }]" />
       </template>
       <template #iconRight>
         <button
-          :class="[{ 'invisible' : !searchTerm}, {'block' : searchTerm}]"
+          :class="[{ 'invisible' : !searchTerm }, {'block' : searchTerm}]"
           :aria-label="t('search.closeLabel')"
           data-testid="clearSearchButton"
           @click="clearSearch"
@@ -29,12 +29,12 @@
     </text-input>
     <div
       v-if="visible"
-      class="bg-white shadow overflow-y-auto min-w-full absolute"
+      class="bg-white rounded-lg shadow overflow-y-auto min-w-full absolute"
       role="results"
     >
       <div
         v-if="searchTerm && header"
-        class="text-center py-4 border-white-300 border-b-2 text-gray-500 font-light"
+        class="text-center py-4 rounded-lg border-white-300 text-gray-500 font-light"
       >
         <template v-if="searching">
           {{ t('search.loading') }}
@@ -43,7 +43,7 @@
           <LobLink
             :to="link"
             :underline="false"
-            class="text-primary-500 underline font-normal"
+            class="text-primary-500 underline font-light"
             @click="hide"
           >
             {{ t('search.resultsPrefix') }} {{ totalResults }} {{ t('search.resultsSuffix') }}

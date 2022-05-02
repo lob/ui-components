@@ -45,7 +45,7 @@ export default {
     closeLabel: 'Close',
     loading: 'Loading, please wait...',
     resultsPrefix: 'View all',
-    resultsSuffix: 'results...',
+    resultsSuffix: 'results',
     noResults: 'No results found'
   }
 };
