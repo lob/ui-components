@@ -1,0 +1,50 @@
+import {
+  Preview,
+  Story,
+  ArgsTable,
+  PRIMARY_STORY,
+} from "@storybook/addon-docs";
+import StepperVertical from "./StepperVertical.vue";
+import StepperVerticalItem from "./StepperVerticalItem.vue";
+
+# StepperVertical
+
+The `StepperVertical` component is a vertical stepper component that takes in the `steps` as a prop (Array of Objects). Each step object must include the `pathName` that will be displayed.
+
+It uses the `StepperVerticalItem` component to display the `step.pathName`.
+
+By default it will show the first step as active - or it can selected a different step by passing it as the `currentStep` prop.
+
+default:
+
+<Preview>
+  <Story id="components-steppervertical--default" />
+</Preview>
+
+dark-mode:
+
+<Preview>
+  <Story id="components-steppervertical--dark-mode" />
+</Preview>
+
+## How to Use
+
+The `StepperVertical` will render its steps according to the `steps` prop you pass in.
+
+It emits the selected step on-click with the `stepChange` property and the selected step Object.
+
+To show the dark mode version, use the prop `darkMode` set to true.
+
+Example of using the component:
+
+```html
+<StepperVertical
+  :steps="[{ path: '/settings', pathName: 'Choose campaign settings' },
+    { path: '/audience', pathName: 'Add target audience' }]"
+  @stepChange="handleStepChange"
+/>
+```
+
+## Props
+
+<ArgsTable story={PRIMARY_STORY} />
