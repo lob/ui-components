@@ -83,7 +83,7 @@ describe('SearchBar', () => {
     expect(input.value).toBe(searchTerm);
 
     await waitFor(() => {
-      expect(getByText('View all 1 results...')).toBeInTheDocument();
+      expect(getByText('View all 1 results')).toBeInTheDocument();
     });
   });
 
@@ -101,7 +101,7 @@ describe('SearchBar', () => {
 
     let searchResults = queryByRole('results');
     await waitFor(() => {
-      expect(getByText('View all 1 results...')).toBeInTheDocument();
+      expect(getByText('View all 1 results')).toBeInTheDocument();
     });
     await fireEvent.click(container);
     searchResults = queryByRole('results');
@@ -123,7 +123,7 @@ describe('SearchBar', () => {
     expect(input.value).toBe(searchTerm);
 
     await waitFor(() => {
-      expect(getByText('View all 1 results...')).toBeInTheDocument();
+      expect(getByText('View all 1 results')).toBeInTheDocument();
     });
     await fireEvent.click(container);
     expect(input.value).toBe(searchTerm);
