@@ -61,30 +61,6 @@ describe('Dropdown', () => {
     expect(select).toHaveClass('border-error');
   });
 
-  describe('without a placeholder', () => {
-
-    it('does not include a placholder in the options', () => {
-      const props = initialProps;
-      const { queryAllByRole } = renderComponent({ props });
-
-      const options = queryAllByRole('option');
-      expect(options).toHaveLength(props.options.length);
-    });
-
-  });
-
-  describe('with a placeholder', () => {
-
-    it('includes a placeholder in the options', () => {
-      const props = { placeholder: 'hello', ...initialProps };
-      const { queryAllByRole } = renderComponent({ props });
-
-      const options = queryAllByRole('option');
-      expect(options).toHaveLength(props.options.length + 1);
-    });
-
-  });
-
   describe('when an option is disabled', () => {
 
     let props;
