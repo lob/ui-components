@@ -1,9 +1,9 @@
 <template>
   <div
-    :class="['whitespace-nowrap cursor-pointer text-lg font-thin',
-             'rounded-r-full customHoverTrigger focus:font-bold',
-             { 'text-primary-500 focus-visible:outline-primary-500': !darkMode },
-             { 'text-white focus-visible:outline-white': darkMode }
+    :class="['whitespace-nowrap cursor-pointer text-lg font-thin rounded-r-full',
+             'customHoverTrigger focus:font-bold focus:outline-none focus-visible:ring-2',
+             { 'text-primary-500 focus-visible:ring-primary-500': !darkMode },
+             { 'text-white focus-visible:ring-white': darkMode }
     ]"
     tabindex="0"
     @keydown.enter="selectStep"
