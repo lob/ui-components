@@ -41,7 +41,7 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { NewButton },
   setup: () => ({ args }),
-  template: '<new-button v-bind="args" v-slot>{{ args.content }}</new-button>'
+  template: '<new-button v-bind="args">{{ args.content }}</new-button>'
 });
 
 export const Default = Template.bind({});
@@ -63,4 +63,18 @@ const WithIconsTemplate = (args, { argTypes }) => ({
 export const WithIcons = WithIconsTemplate.bind({});
 WithIcons.args = {
   content: 'This is a button'
+};
+
+const LinkTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { NewButton, Download, Plus },
+  setup: () => ({ args }),
+  template: `<new-button v-bind="args" link-type="a" to="https://www.lob.com/" target="_blank"> 
+              {{ args.content }} 
+            </new-button>`
+});
+
+export const ButtonStyledLink = LinkTemplate.bind({});
+ButtonStyledLink.args = {
+  content: 'This is a button-like link.'
 };

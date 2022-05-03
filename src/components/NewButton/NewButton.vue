@@ -1,27 +1,33 @@
 <template>
-  <button
+  <component
+    :is="tag"
+    :to="tag === 'router-link' && !disabled ? to : null"
+    :href="tag === 'a' && !disabled ? to : null"
+    :target="tag === 'a' && !disabled ? target : null"
+    :rel="target === '_blank' ? 'noopener noreferrer' : ''"
     :class="[
-      'flex justify-center items-center rounded-lg focus:ring-4 focus:outline-none',
+      'flex justify-center items-center rounded-lg focus:ring-4 focus:outline-none cursor-pointer',
       { 'px-8 py-2.5 font-bold textTwenty': primary || secondary },
-      { 'p-0 text-primary-500 underline disabled:text-gray-500': link },
+      { 'p-0 text-primary-500 underline disabled:text-gray-500': linkStyle },
       { 'p-0 disabled:text-gray-500': none },
       { 'cursor-not-allowed': disabled },
       { 'focus:ring-primary-100': !warning },
       { 'focus:ring-coral-700': warning },
-      { 'primary  bg-primary-500 text-white active:bg-black disabled:bg-gray-100': primary && !warning },
+      { 'primary bg-primary-500 text-white active:bg-black disabled:bg-gray-100': primary && !warning },
       { 'primary warning bg-coral-900 text-white active:bg-coral-700 disabled:bg-coral-200': primary && warning },
       { 'secondary border border-primary-500 bg-white text-primary-500': secondary && !warning,
         'disabled:border-gray-100 disabled:text-gray-100 active:border-black active:text-black': secondary && !warning },
       { 'secondary border border-coral-900 bg-white text-coral-900': secondary && warning,
         'disabled:border-coral-200 disabled:text-coral-200 active:border-coral-700 active:text-coral-700': secondary && warning }
     ]"
+    :tabindex="disabled ? null : '0'"
     :disabled="disabled"
-    @click="handleClick"
+    @click="tag === 'button' ? handleClick : null"
   >
     <span class="flex justify-between items-center">
       <slot />
     </span>
-  </button>
+  </component>
 </template>
 
 <script>
@@ -32,7 +38,7 @@ export default {
       type: String,
       default: 'primary',
       validator: function (value) {
-        return ['primary', 'secondary', 'link', 'none'].includes(value);
+        return ['primary', 'secondary', 'linkStyle', 'none'].includes(value);
       }
     },
     disabled: {
@@ -42,18 +48,36 @@ export default {
     warning: {
       type: Boolean,
       default: false
+    },
+    linkType: {
+      type: String,
+      default: null,
+      validator: function (value) {
+        return ['a', 'router-link'].includes(value);
+      }
+    },
+    to: {
+      type: [String, Object],
+      default: null
+    },
+    target: {
+      type: String,
+      default: '_self'
     }
   },
   emits: ['click'],
   computed: {
+    tag () {
+      return this.linkType ? this.linkType : 'button';
+    },
     primary () {
       return this.variant === 'primary';
     },
     secondary () {
       return this.variant === 'secondary';
     },
-    link () {
-      return this.variant === 'link';
+    linkStyle () {
+      return this.variant === 'linkStyle';
     },
     none () {
       return this.variant === 'none';
