@@ -3,12 +3,14 @@
     :id="id"
     ref="option"
     :class="[
-      'py-1 px-8 truncate',
-      {'bg-turquoise-100': active},
-      {'hover:bg-turquoise-100 cursor-default': !option.disabled},
-      { 'text-gray-100 cursor-not-allowed': option.disabled},
+      'truncate',
+      {'text-sm py-2 px-2.5': small},
+      {'py-2.5 px-4': default_},
+      {'hover:bg-white-300 hover:text-primary-500 hover:font-bold hover:border-l-4 hover:border-l-primary-500 font-light cursor-default': !option.disabled},
+      {'bg-primary-500 font-bold text-white': active},
+      {'text-gray-100 cursor-not-allowed': option.disabled},
       {'!bg-none': option.disabled && active},
-      {'!text-primary-300': placeholder }
+      {'!text-primary-300': placeholder}
     ]"
     :aria-disabled="option.disabled"
     :aria-selected="active"
@@ -49,9 +51,24 @@ export default {
     placeholder: {
       type: Boolean,
       default: false
+    },
+    size: {
+      type: String,
+      default: 'default',
+      validator: function (value) {
+        return ['default', 'small'].includes(value);
+      }
     }
   },
   emits: ['click', 'mousedown'],
+  computed: {
+    small () {
+      return this.size === 'small';
+    },
+    default_ () {
+      return this.size === 'default';
+    }
+  },
   methods: {
     onMousedown ($event) {
       this.$emit('mousedown', $event);

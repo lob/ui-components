@@ -30,23 +30,32 @@
         :aria-required="required"
         :aria-disabled="disabled"
         :class="[
-          'cursor-default bg-white border rounded border-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent hover:shadow',
+          'cursor-default bg-white border rounded-lg border-gray-100 focus:ring-4 focus:ring-primary-100 focus:border-transparent focus:outline-none focus:shadow hover:shadow font-light text-gray-900',
           {'text-sm py-2 px-2.5': small},
           {'py-2.5 px-4': default_},
-          {'!bg-white-300 pointer-events-none': disabled},
-          {'border-error': error}
+          {'!bg-white-100 pointer-events-none !border-gray-100': disabled},
+          {'border-error': error},
+          {'border-gray-500' : open || activeIndex > -1}
         ]"
         tabindex="0"
         @blur="onSelectBlur"
         @click="updateMenuState(!open)"
         @keydown="onSelectKeydown"
       >
-        <span :class="['mr-8', {'text-sm': small}]">
+        <span
+          :class="[
+            'mr-8',
+            {'text-sm': small},
+            {'!text-gray-100': disabled},
+            {'text-gray-900' : open || activeIndex > -1},
+            {'text-gray-500' : activeIndex < 0}
+          ]"
+        >
           {{ value || placeholder }}
         </span>
         <chevron-down
           :class="[
-            'w-4 h-4 absolute right-2',
+            'w-4 h-4 absolute right-2 text-gray-100',
             {'top-3': small},
             {'top-4': default_}
           ]"
@@ -57,7 +66,7 @@
         ref="listbox"
         role="listbox"
         :class="[
-          `bg-white rounded-sm text-sm py-4 overflow-y-auto absolute left-0 top-full hidden w-full z-50 shadow ${listHeight ? `h-${listHeight}` : 'max-h-80'}`,
+          `bg-white rounded-lg text-sm py-4 overflow-y-auto absolute left-0 top-full hidden w-full z-50 shadow ${listHeight ? `h-${listHeight}` : 'max-h-80'}`,
           {'!block': open }
         ]"
       >
@@ -90,6 +99,7 @@
               :index="flattenedOptions.indexOf(item)"
               :active="activeIndex === flattenedOptions.indexOf(item)"
               :placeholder="item.label === placeholder"
+              :size="size"
               @mousedown="onOptionMousedown"
               @click="onOptionClick"
             />
@@ -233,11 +243,10 @@ export default {
       return this.size === 'default';
     },
     optionItems () {
-      return this.placeholder ? [{ label: this.placeholder, disabled: this.required }, ...this.options] : this.options;
+      return this.options;
     },
     flattenedOptions () {
-      const flattened = [...this.options].flatMap((o) => o.options || o);
-      return this.placeholder ? [{ label: this.placeholder, disabled: this.required }, ...flattened] : flattened;
+      return [...this.options].flatMap((o) => o.options || o);
     },
     selectedOptionItem () {
       return this.flattenedOptions[this.selectedIndex] || null;
