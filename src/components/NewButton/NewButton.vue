@@ -2,7 +2,9 @@
   <button
     :class="[
       'flex justify-center items-center rounded-lg focus:ring-4 focus:outline-none',
-      { 'px-8 py-2.5 font-bold textTwenty': primary || secondary },
+      { 'px-8 py-2.5 font-bold': primary || secondary },
+      { 'textTwenty': !small },
+      { 'text-md': small },
       { 'p-0 text-primary-500 underline disabled:text-gray-500': link },
       { 'p-0 disabled:text-gray-500': none },
       { 'cursor-not-allowed': disabled },
@@ -34,6 +36,10 @@ export default {
       validator: function (value) {
         return ['primary', 'secondary', 'link', 'none'].includes(value);
       }
+    },
+    small: {
+      type: Boolean,
+      default: false
     },
     disabled: {
       type: Boolean,
