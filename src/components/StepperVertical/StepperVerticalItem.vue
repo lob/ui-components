@@ -1,10 +1,10 @@
 <template>
   <div
     :class="['whitespace-nowrap cursor-pointer text-lg font-thin',
-             'customHoverTrigger focus-visible:font-bold',
+             'rounded-r-full customHoverTrigger focus:font-bold',
              { 'text-primary-500 focus-visible:outline-primary-500': !darkMode },
-             { 'text-white focus-visible:outline-white': darkMode },
-             { 'font-bold': active }]"
+             { 'text-white focus-visible:outline-white': darkMode }
+    ]"
     tabindex="0"
     @keydown.enter="selectStep"
   >
@@ -16,7 +16,7 @@
                { 'text-white': active && !darkMode },
                { 'text-primary-500': active && darkMode },
                { 'w-20 customHoverW': !active },
-               { 'w-full delay-100': active }]"
+               { 'w-full delay-100 font-bold': active }]"
     >
       <span
         :class="['ml-14 inline-block w-4',
