@@ -22,18 +22,20 @@ You can change the variant of the button by adding the `variant` prop (String) t
 
 The Button is regular size by default (height: 48px) & can be made small (32px) with the `small` prop (boolean).
 
-Please note: though you can only insert text in the Storybook demo, the button component will accept any valid HTML or Vue component.
+The `warning` prop (Boolean) will change the button color to dark red if primary, and red outline if secondary.
+
+Please note: though you can only insert text in the Storybook demo, the button component will accept any valid HTML or Vue component, as it uses a slot.
 
 Example of using this component as a primary button in a template
 
 ```html
-<new-button> This is a button </new-button>
+<new-button> This is a primary button </new-button>
 ```
 
 Example of using this component as a secondary button in a template
 
 ```html
-<new-button variant="secondary"> This is a button </new-button>
+<new-button variant="secondary"> This is a secondary button </new-button>
 ```
 
 ## Props
