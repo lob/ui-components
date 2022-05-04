@@ -9,7 +9,6 @@
       {'font-light cursor-default': !option.disabled},
       {'bg-white-300 text-primary-500 font-bold border-l-4 border-l-primary-500': active && !option.disabled},
       {'text-gray-100 cursor-not-allowed': option.disabled},
-      {'!bg-none': option.disabled && active},
       {'!text-primary-300': placeholder},
       {'bg-primary-500 font-bold !text-white': selected}
     ]"

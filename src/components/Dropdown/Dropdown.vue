@@ -30,11 +30,11 @@
         :aria-required="required"
         :aria-disabled="disabled"
         :class="[
-          'cursor-default bg-white border rounded-lg border-gray-100  focus:outline-none focus:shadow hover:shadow font-light text-gray-900',
+          'cursor-default bg-white border rounded-lg border-gray-100 focus:outline-none focus:shadow hover:shadow font-light text-gray-900',
           {'text-sm py-2 px-2.5': small},
           {'py-2.5 px-4': default_},
-          {'!bg-white-100 pointer-events-none !border-gray-100': disabled},
-          {'border-error': error},
+          {'!border-error': error},
+          {'!bg-white-100 pointer-events-none': disabled},
           {'focus:ring-4 focus:ring-primary-100 focus:border-transparent': !open},
           {'focus:ring-0': open},
           {'border-gray-500' : open || activeIndex > -1}
@@ -48,7 +48,7 @@
           :class="[
             'mr-8',
             {'text-sm': small},
-            {'!text-gray-100': disabled},
+            {'text-gray-100': disabled},
             {'text-gray-900' : open || activeIndex > -1},
             {'text-gray-500' : activeIndex < 0}
           ]"
