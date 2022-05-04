@@ -33,6 +33,11 @@ export default {
       control: {
         type: 'boolean'
       }
+    },
+    small: {
+      control: {
+        type: 'boolean'
+      }
     }
   }
 };
