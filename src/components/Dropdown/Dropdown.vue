@@ -247,10 +247,11 @@ export default {
       return this.size === 'default';
     },
     optionItems () {
-      return this.options;
+      return this.placeholder ? [{ label: this.placeholder, disabled: this.required }, ...this.options] : this.options;
     },
     flattenedOptions () {
-      return [...this.options].flatMap((o) => o.options || o);
+      const flattened = [...this.options].flatMap((o) => o.options || o);
+      return this.placeholder ? [{ label: this.placeholder, disabled: this.required }, ...flattened] : flattened;
     },
     selectedOptionItem () {
       return this.flattenedOptions[this.selectedIndex] || null;
@@ -263,7 +264,7 @@ export default {
     },
     // minIndex that user can select (with mouse or keyboard)
     minIndex () {
-      return this.flattenedOptions.findIndex((item) => !item.disabled);
+      return this.placeholder && !this.required ? -1 : this.flattenedOptions.findIndex((item) => !item.disabled);
     },
     // maxIndex that user can select (with mouse or keyboard)
     maxIndex () {
@@ -271,6 +272,9 @@ export default {
     },
     activeId () {
       return this.open ? `${this.id}-${this.activeIndex}` : '';
+    },
+    optionsAreStrings () {
+      return typeof this.options[0] === 'string';
     }
   },
   watch: {
@@ -424,13 +428,23 @@ export default {
         case MenuActions.Last:
           return this.maxIndex;
         case MenuActions.Previous:
-          let prevIndex = current - 1;
+          let prevIndex;
+          if (current === 1) {
+            prevIndex = current - 2;
+          } else {
+            prevIndex = current - 1;
+          }
           if (this.flattenedOptions[prevIndex] && this.flattenedOptions[prevIndex].disabled) {
             prevIndex--;
           }
           return Math.max(this.minIndex, prevIndex);
         case MenuActions.Next:
-          let nextIndex = current + 1;
+          let nextIndex;
+          if (current === -1) {
+            nextIndex = current + 2;
+          } else {
+            nextIndex = current + 1;
+          }
           if (this.flattenedOptions[nextIndex] && this.flattenedOptions[nextIndex].disabled) {
             nextIndex++;
           }
@@ -501,6 +515,13 @@ export default {
       this.activeIndex = index;
     },
     onOptionClick ($event, index) {
+      if (index === -1) {
+        this.onOptionChange(index);
+        this.selectOption($event, index);
+        this.updateMenuState(false);
+        return;
+      }
+
       if (this.flattenedOptions[index].disabled) {
         return;
       }
@@ -514,10 +535,13 @@ export default {
       focus && this.$refs.input.focus();
     },
     selectOption ($event, index) {
+      this.selectedIndex = index;
       if (index === -1) {
+        this.$emit('update:modelValue', this.optionsAreStrings ? '' : {});
+        this.$emit('input', this.optionsAreStrings ? '' : {});
+        this.$emit('change', $event);
         return;
       }
-      this.selectedIndex = index;
       const selected = this.flattenedOptions[index];
       this.$emit('update:modelValue', selected);
       this.$emit('input', selected);

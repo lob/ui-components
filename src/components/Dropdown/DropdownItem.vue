@@ -9,7 +9,6 @@
       {'font-light cursor-default': !option.disabled},
       {'bg-white-300 text-primary-500 font-bold border-l-4 border-l-primary-500': active && !option.disabled},
       {'text-gray-100 cursor-not-allowed': option.disabled},
-      {'!text-primary-300': placeholder},
       {'bg-primary-500 font-bold !text-white': selected}
     ]"
     :aria-disabled="option.disabled"
@@ -79,7 +78,7 @@ export default {
       this.$emit('mousedown', $event);
     },
     onClick ($event) {
-      if (!this.placeholder && !(this.option.hasOwnProperty('disabled') && this.option.disabled)) {
+      if (!this.option.hasOwnProperty('disabled') || !this.option.disabled) {
         this.$emit('click', $event, this.index);
       }
     },
