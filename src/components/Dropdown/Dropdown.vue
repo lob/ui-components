@@ -30,11 +30,13 @@
         :aria-required="required"
         :aria-disabled="disabled"
         :class="[
-          'cursor-default bg-white border rounded-lg border-gray-100 focus:ring-4 focus:ring-primary-100 focus:border-transparent focus:outline-none focus:shadow hover:shadow font-light text-gray-900',
+          'cursor-default bg-white border rounded-lg border-gray-100  focus:outline-none focus:shadow hover:shadow font-light text-gray-900',
           {'text-sm py-2 px-2.5': small},
           {'py-2.5 px-4': default_},
           {'!bg-white-100 pointer-events-none !border-gray-100': disabled},
           {'border-error': error},
+          {'focus:ring-4 focus:ring-primary-100 focus:border-transparent': !open},
+          {'focus:ring-0': open},
           {'border-gray-500' : open || activeIndex > -1}
         ]"
         tabindex="0"
@@ -98,6 +100,7 @@
               :option="item"
               :index="flattenedOptions.indexOf(item)"
               :active="activeIndex === flattenedOptions.indexOf(item)"
+              :selected="selectedIndex === flattenedOptions.indexOf(item)"
               :placeholder="item.label === placeholder"
               :size="size"
               @mousedown="onOptionMousedown"
@@ -450,8 +453,7 @@ export default {
         case MenuActions.Previous:
           $event.preventDefault();
           const updatedIndex = this.getUpdatedIndex(this.activeIndex, action);
-          this.onOptionChange(updatedIndex);
-          return this.selectOption($event, updatedIndex);
+          return this.onOptionChange(updatedIndex);
         case MenuActions.CloseSelect:
         case MenuActions.Space:
           $event.preventDefault();
@@ -496,6 +498,7 @@ export default {
     },
     onOptionChange (index) {
       this.activeIndex = index;
+      // this.selectedIndex = index;
     },
     onOptionClick ($event, index) {
       if (this.flattenedOptions[index].disabled) {
