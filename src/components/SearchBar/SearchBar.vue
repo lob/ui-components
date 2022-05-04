@@ -1,9 +1,10 @@
 <template>
   <div
-    ref="searchContainer"
+    ref="searchBar"
     class="relative rounded-lg focus-visible:outline-none"
     :class="`focus-visible:ring-${ringState} focus-within:ring-${ringState}`"
     tabindex="0"
+    @focus="addRingOnFocus"
   >
     <text-input
       id="searchBar"
@@ -14,7 +15,9 @@
       :sr-only-label="true"
       :placeholder="placeholder"
       :disabled="disabled"
+      :container-class="`focus-within:ring-${ringState}`"
       input-class="rounded-lg my-2 text-gray-700 font-light pl-4.5 placeholder-gray-500 focus-within:bg-white-300"
+      @click="preventRingOnClick"
     >
       <template #iconLeft>
         <Search :class="['w-6 h-6 ml-2.5 mr-2.5 text-gray-700', { 'text-gray-100' : disabled }]" />
@@ -139,12 +142,6 @@ export default {
   },
   mounted () {
     window.addEventListener('click', this.onClickOutside);
-
-    this.$refs?.searchContainer.addEventListener('focus', () => {
-      this.ringState = '4';
-      this.$refs.textInput.focus();
-    });
-    this.$refs?.searchContainer.addEventListener('click', () => this.ringState = 'none');
   },
   unmounted () {
     window.removeEventListener('click', this.onClickOutside);
@@ -181,6 +178,13 @@ export default {
     },
     hide () {
       this.visible = false;
+    },
+    addRingOnFocus () {
+      this.ringState = '4';
+      this.$refs.textInput.focus();
+    },
+    preventRingOnClick () {
+      this.ringState = '0';
     }
   }
 };
