@@ -498,7 +498,6 @@ export default {
     },
     onOptionChange (index) {
       this.activeIndex = index;
-      // this.selectedIndex = index;
     },
     onOptionClick ($event, index) {
       if (this.flattenedOptions[index].disabled) {
