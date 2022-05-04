@@ -28,7 +28,7 @@ const PrimaryTemplate = (args, { argTypes }) => ({
   components: { SearchBar },
   setup: () => ({ args }),
   template: `
-    <SearchBar v-bind='args'>
+    <SearchBar v-bind='args' style="width: 600px;">
       <template
         #default="{ result }"
         class="min-w-full"
@@ -46,7 +46,7 @@ const PrimaryTemplate = (args, { argTypes }) => ({
           >
         </td>
       </template>
-    </SearchBar>
+    </SearchBar> 
     `
 });
 

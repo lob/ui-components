@@ -1,7 +1,7 @@
 <template>
   <div
     ref="searchBar"
-    class="relative rounded-lg focus-visible:outline-none"
+    class="relative rounded-lg focus-within:shadow focus-visible:outline-none"
     :class="`focus-visible:ring-${ringState} focus-within:ring-${ringState}`"
     tabindex="0"
     @focus="addRingOnFocus"
