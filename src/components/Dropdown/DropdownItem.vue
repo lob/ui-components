@@ -90,7 +90,12 @@ export default {
       return this.$refs.option.offsetTop;
     },
     updateActiveIndex () {
-      this.$parent.activeIndex = this.index;
+      // if the parent is DropdownItemGroup
+      if (this.$parent.group) {
+        this.$parent.updateActiveIndex(this.index);
+      } else {
+        this.$parent.activeIndex = this.index;
+      }
     }
   }
 };

@@ -17,6 +17,7 @@
       :option="option"
       :index="flattenedOptions.indexOf(option)"
       :active="activeIndex === flattenedOptions.indexOf(option)"
+      :selected="selectedIndex === flattenedOptions.indexOf(option)"
       :placeholder="option.label === placeholderText"
       @mousedown="onMousedown"
       @click="onClick"
@@ -44,6 +45,10 @@ export default {
       }
     },
     activeIndex: {
+      type: Number,
+      default: null
+    },
+    selectedIndex: {
       type: Number,
       default: null
     },
@@ -77,6 +82,9 @@ export default {
     },
     getOffsetTop () {
       return this.$refs.activeOption.offsetTop;
+    },
+    updateActiveIndex (index) {
+      this.$parent.activeIndex = index;
     }
   }
 };

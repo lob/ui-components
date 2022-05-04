@@ -85,6 +85,7 @@
               :ref="activeIndex === flattenedOptions.indexOf(item) ? 'activeOption' : null"
               :group="item"
               :active-index="activeIndex"
+              :selected-index="selectedIndex"
               :placeholder-text="placeholder"
               :flattened-options="flattenedOptions"
               @mousedown="onOptionMousedown"
