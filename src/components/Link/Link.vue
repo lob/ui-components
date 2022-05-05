@@ -29,8 +29,10 @@
 </template>
 
 <script>
+import { ChevronRight } from '@/components/Icons';
 export default {
   name: 'LobLink',
+  components: { ChevronRight },
   props: {
     variant: {
       type: String,
@@ -74,6 +76,10 @@ export default {
     target: {
       type: String,
       default: '_self'
+    },
+    withChevron: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
