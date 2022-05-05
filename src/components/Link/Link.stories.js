@@ -35,9 +35,8 @@ export default {
       }
     },
     underline: {
-      options: [true, false],
       control: {
-        type: 'select'
+        type: 'boolean'
       }
     },
     withChevron: {

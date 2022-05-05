@@ -17,8 +17,8 @@
         { 'focus:ring-coral-700': warning },
         { 'px-8 text-[20px] h-[48px]': regular },
         { 'px-6 text-[14px] h-[32px]': small },
-        { 'primary bg-primary-500 text-white active:bg-black:': !disabled && primary && !warning },
-        { 'bg-gray-100 text-white ': disabled && primary && !warning },
+        { 'primary bg-primary-500 text-white active:bg-black': !disabled && primary && !warning },
+        { 'bg-gray-100 text-white': disabled && primary && !warning },
         { 'primary warning bg-coral-900 text-white active:bg-coral-700': !disabled && primary && warning },
         { 'bg-coral-200 text-white': disabled && primary && warning },
         { 'secondary border border-primary-500 bg-white text-primary-500': !disabled && secondary && !warning,
@@ -32,7 +32,7 @@
       <slot />
       <ChevronRight
         v-if="link && withChevron"
-        class="w-3.5 h-3.5 text-primary-500 inline-flex"
+        class="h-4 text-primary-500 inline-flex -mr-1"
       />
     </component>
     <div />
