@@ -69,7 +69,7 @@
           {'!pl-4': !iconLeft},
           {'!pl-3 !pr-3 !py-2': small},
           {'border border-r-0 border-gray-100 rounded-tr-none rounded-br-none truncate': withCopyButton},
-          {'border-gray-100 cursor-not-allowed placeholder-gray-100': disabled || readonly},
+          {'border-gray-100 bg-white-100 cursor-not-allowed placeholder-gray-100': disabled || readonly},
           {'border-error': error}
         ]"
         :disabled="disabled"
