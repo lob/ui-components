@@ -24,15 +24,14 @@ export default {
   },
   argTypes: {
     variant: {
-      options: ['default', 'primary-button', 'secondary-button', 'tertiary-button', 'alert-button'],
+      options: ['link', 'primary-button', 'secondary-button'],
       control: {
         type: 'select'
       }
     },
-    size: {
-      options: ['default', 'small'],
+    small: {
       control: {
-        type: 'select'
+        type: 'boolean'
       }
     },
     underline: {
@@ -51,4 +50,14 @@ const Template = (args, { argTypes }) => ({
   template: '<lob-link v-bind="args" to="/internal">Click me</lob-link>'
 });
 
-export const Primary = Template.bind({});
+export const RegularLink = Template.bind({});
+
+export const StyledAsPrimaryButton = Template.bind({});
+StyledAsPrimaryButton.args = {
+  variant: 'primary-button'
+};
+
+export const StyledAsSecondaryButton = Template.bind({});
+StyledAsSecondaryButton.args = {
+  variant: 'secondary-button'
+};

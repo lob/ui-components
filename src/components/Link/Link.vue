@@ -34,17 +34,18 @@ export default {
   props: {
     variant: {
       type: String,
-      default: 'default',
+      default: 'link',
       validator: function (value) {
-        return ['default', 'primary-button', 'secondary-button', 'tertiary-button', 'alert-button'].includes(value);
+        return ['link', 'primary-button', 'secondary-button'].includes(value);
       }
     },
-    size: {
-      type: String,
-      default: 'default',
-      validator: function (value) {
-        return ['default', 'small'].includes(value);
-      }
+    small: {
+      type: Boolean,
+      default: false
+    },
+    warning: {
+      type: Boolean,
+      default: false
     },
     disabled: {
       type: Boolean,
@@ -76,8 +77,8 @@ export default {
     }
   },
   computed: {
-    default () {
-      return this.variant === 'default';
+    link () {
+      return this.variant === 'link';
     },
     primary () {
       return this.variant === 'primary-button';
@@ -85,14 +86,8 @@ export default {
     secondary () {
       return this.variant === 'secondary-button';
     },
-    tertiary () {
-      return this.variant === 'tertiary-button';
-    },
-    alert () {
-      return this.variant === 'alert-button';
-    },
-    small () {
-      return this.size === 'small';
+    regular () {
+      return !this.small;
     },
     isExternal () {
       const protocolRelativePattern = /^https?:\/\/|^\/\//i;
@@ -113,15 +108,28 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.primary:hover:not(.disabled):not(:focus) {
-  box-shadow: 0 0 10px 2px rgba(24, 118, 219, 0.6);
+.primary:focus:not(:active):not(:disabled),
+.primary:hover:not(:disabled):not(:focus) {
+  background: linear-gradient(105.01deg, #0154ac 17.25%, #1876db 93.21%);
 }
 
-.secondary:hover:not(.disabled):not(:focus) {
-  box-shadow: 0 0 10px rgba(65, 101, 129, 0.2);
+.primary.warning:focus:not(:active):not(:disabled),
+.primary.warning:hover:not(:disabled):not(:focus) {
+  background: linear-gradient(95.27deg, #611d18 4.76%, #943832 81.28%);
 }
 
-.tertiary:hover:not(.disabled):not(:focus) {
-  box-shadow: 0 0 10px 2px rgba(0, 153, 215, 0.2);
+.secondary:hover:not(:disabled):not(:focus),
+.primary:hover:not(:disabled):not(:focus) {
+  box-shadow:
+    0 9px 12px 0 rgba(0, 0, 0, 0.2),
+    0 19px 29px 0 rgba(0, 0, 0, 0.14),
+    0 7px 36px 0 rgba(0, 0, 0, 0.12);
+}
+
+.primary:not(:disabled):focus:active,
+.secondary:not(:disabled):focus:active,
+.primary:not(:disabled):focus:not(:focus-visible),
+.secondary:not(:disabled):focus:not(:focus-visible) {
+  box-shadow: none;
 }
 </style>
