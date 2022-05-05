@@ -43,7 +43,7 @@ const PrimaryTemplate = (args, { argTypes }) => ({
           {{ result.type }}
         </td>
         <td>
-          >
+           <span style="font-size: large;">></span>
         </td>
       </template>
     </SearchBar> 

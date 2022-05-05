@@ -68,7 +68,7 @@
           <TableRow
             v-for="result in searchResults"
             :key="result"
-            class="text-gray-700  font-light hover:bg-white-300 hover:border-l-4 hover:border-l-primary-500 cursor-pointer active:bg-primary-500 active:text-white-300"
+            class="text-gray-700  font-light hover:bg-white-300 border-l-4 border-l-transparent hover:border-l-primary-500 cursor-pointer active:bg-primary-500 active:text-white-300"
             @click="hide"
           >
             <slot :result="result" />
