@@ -184,7 +184,7 @@ export default {
       this.$refs.textInput.focus();
     },
     preventRingOnClick () {
-      this.ringState = '0';
+      this.ringState = 'none';
     }
   }
 };

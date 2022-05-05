@@ -41,12 +41,13 @@
     <div
       data-testId="input-container"
       :class="[
-        `rounded-lg border border-gray-100 focus-within:outline-none focus-within:ring-primary-100 focus-within:border-transparent ${containerClass} focus-within:ring-2`,
+        `rounded-lg border border-gray-100 focus-within:outline-none focus-within:ring-primary-100 focus-within:border-transparent ${containerClass}  `,
         {'flex items-center': !selectedOptions},
         {'!border-0': withCopyButton},
         {'hover:shadow': !disabled && !readonly},
         {'border-error': error},
-        {'bg-white-100': disabled}
+        {'bg-white-100': disabled},
+        {'focus-within:ring-2': !containerClass}
       ]"
     >
       <div
