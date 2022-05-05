@@ -25,6 +25,7 @@ export { default as Door } from './Door';
 export { default as Download } from './Download';
 export { default as Earth } from './Earth';
 export { default as Edit } from './Edit';
+export { default as Error } from './Error';
 export { default as External } from './External';
 export { default as Eye } from './Eye';
 export { default as EyeOff } from './EyeOff';
