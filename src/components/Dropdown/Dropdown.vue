@@ -440,7 +440,7 @@ export default {
           return Math.max(this.minIndex, prevIndex);
         case MenuActions.Next:
           let nextIndex;
-          if (current === -1) {
+          if (current === -1 && this.placeholder) {
             nextIndex = current + 2;
           } else {
             nextIndex = current + 1;

@@ -58,7 +58,7 @@ describe('Dropdown', () => {
     const { getByRole } = renderComponent({ props });
     const select = getByRole('combobox');
 
-    expect(select).toHaveClass('border-error');
+    expect(select).toHaveClass('!border-error');
   });
 
   describe('without a placeholder', () => {
@@ -258,8 +258,7 @@ describe('Dropdown', () => {
         await fireEvent.keyDown(select, { key: 'ArrowUp', code: 'ArrowUp' });
 
         const emittedEvent = emitted();
-        expect(emittedEvent).toHaveProperty('input');
-        expect(emittedEvent.input[2][0]).toEqual(props.options[0]);
+        expect(emittedEvent).not.toHaveProperty('input');
       });
 
     });
@@ -289,14 +288,13 @@ describe('Dropdown', () => {
         expect(options[options.length - 1]).toHaveAttribute('aria-selected', 'true');
       });
 
-      it('changes the selection', async () => {
+      it('does not change the selection', async () => {
         const { emitted } = component;
         // key down to option a
         await fireEvent.keyDown(select, { key: 'ArrowDown', code: 'ArrowDown' });
 
         const emittedEvent = emitted();
-        expect(emittedEvent).toHaveProperty('input');
-        expect(emittedEvent.input[0][0]).toEqual(props.options[0]);
+        expect(emittedEvent).not.toHaveProperty('input');
       });
 
     });
