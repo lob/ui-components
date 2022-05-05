@@ -6,7 +6,10 @@
     :rel="target === '_blank' ? 'noopener noreferrer' : ''"
     :aria-disabled="disabled"
     :class="[
-      {'underline text-primary-900' : underline},
+      {'font-bold': bold},
+      {'underline' : underline},
+      {'text-primary-900': !inheritTextColor },
+      {'text-inherit': inheritTextColor },
       {'primary py-3 px-6 bg-primary-500 text-white active:bg-primary-700': primary},
       {'secondary py-3 px-6 bg-white-200 border border-primary-500 text-primary-500 active:text-primary-700 active:border-primary-700': secondary},
       {'tertiary py-3 px-6 bg-white border border-gray-100 text-gray-500 active:border-gray-300': tertiary},
@@ -58,6 +61,14 @@ export default {
     underline: {
       type: Boolean,
       default: true
+    },
+    bold: {
+      type: Boolean,
+      default: false
+    },
+    inheritTextColor: {
+      type: Boolean,
+      default: false
     },
     target: {
       type: String,
