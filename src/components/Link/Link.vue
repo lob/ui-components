@@ -1,28 +1,38 @@
 <template>
-  <component
-    :is="tag"
-    :[linkProp]="to"
-    :target="target"
-    :rel="target === '_blank' ? 'noopener noreferrer' : ''"
-    :aria-disabled="disabled"
-    :class="[
-      {'underline text-primary-900' : underline},
-      {'primary py-3 px-6 bg-primary-500 text-white active:bg-primary-700': primary},
-      {'secondary py-3 px-6 bg-white-200 border border-primary-500 text-primary-500 active:text-primary-700 active:border-primary-700': secondary},
-      {'tertiary py-3 px-6 bg-white border border-gray-100 text-gray-500 active:border-gray-300': tertiary},
-      {'alert py-3 px-6 bg-white hover:bg-lemon-300 border rounded border-lemon-700 text-lemon-900 hover:text-lemon-900 focus:ring-lemon-700': alert},
-      {'flex justify-center items-center rounded focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent': primary || secondary || tertiary},
-      {'hover:text-white': primary},
-      {'!px-3 !py-2': small},
-      {'disabled pointer-events-none !text-gray-500': disabled},
-      {'bg-white-300': disabled && primary},
-      {'border-gray-100': disabled && secondary},
-      {'border-white-300': disabled && tertiary},
-      {'border-gray-100 hover:bg-white': disabled && alert}
-    ]"
-  >
-    <slot />
-  </component>
+  <div :class="{ 'cursor-not-allowed': disabled }">
+    <component
+      :is="tag"
+      :[linkProp]="to"
+      :target="target"
+      :rel="target === '_blank' ? 'noopener noreferrer' : ''"
+      :aria-disabled="disabled"
+      :class="[
+        { 'pointer-events-none': disabled },
+        { 'px-0 text-base text-primary-500 hover:text-primary-700 active:text-primary-900': link },
+        { '!text-gray-500': disabled && link },
+        { 'underline': underline && link },
+        { 'flex justify-center items-center rounded-lg no-underline tracking-[-0.04em] font-bold': primary || secondary },
+        { 'focus-visible:ring-4 focus:outline-none': primary || secondary },
+        { 'focus:ring-primary-100': !warning },
+        { 'focus:ring-coral-700': warning },
+        { 'px-8 text-[20px] h-[48px]': regular },
+        { 'px-6 text-[14px] h-[32px]': small },
+        { 'primary bg-primary-500 text-white active:bg-black:': !disabled && primary && !warning },
+        { 'bg-gray-100 text-white ': disabled && primary && !warning },
+        { 'primary warning bg-coral-900 text-white active:bg-coral-700': !disabled && primary && warning },
+        { 'bg-coral-200 text-white': disabled && primary && warning },
+        { 'secondary border border-primary-500 bg-white text-primary-500': !disabled && secondary && !warning,
+          'focus:border-primary-500 active:border-black active:text-black': !disabled && secondary && !warning },
+        { 'border border-gray-100 text-gray-100': disabled && secondary && !warning },
+        { 'secondary border border-coral-900 bg-white text-coral-900': !disabled && secondary && warning,
+          'focus:border-coral-900 active:border-coral-700 active:text-coral-700': !disabled && secondary && warning },
+        { 'border border-coral-200 text-coral-200': disabled && secondary && warning }
+      ]"
+    >
+      <slot />
+    </component>
+    <div />
+  </div>
 </template>
 
 <script>
@@ -31,17 +41,18 @@ export default {
   props: {
     variant: {
       type: String,
-      default: 'default',
+      default: 'link',
       validator: function (value) {
-        return ['default', 'primary-button', 'secondary-button', 'tertiary-button', 'alert-button'].includes(value);
+        return ['link', 'primary-button', 'secondary-button'].includes(value);
       }
     },
-    size: {
-      type: String,
-      default: 'default',
-      validator: function (value) {
-        return ['default', 'small'].includes(value);
-      }
+    small: {
+      type: Boolean,
+      default: false
+    },
+    warning: {
+      type: Boolean,
+      default: false
     },
     disabled: {
       type: Boolean,
@@ -65,8 +76,8 @@ export default {
     }
   },
   computed: {
-    default () {
-      return this.variant === 'default';
+    link () {
+      return this.variant === 'link';
     },
     primary () {
       return this.variant === 'primary-button';
@@ -74,14 +85,8 @@ export default {
     secondary () {
       return this.variant === 'secondary-button';
     },
-    tertiary () {
-      return this.variant === 'tertiary-button';
-    },
-    alert () {
-      return this.variant === 'alert-button';
-    },
-    small () {
-      return this.size === 'small';
+    regular () {
+      return !this.small;
     },
     isExternal () {
       const protocolRelativePattern = /^https?:\/\/|^\/\//i;
@@ -102,15 +107,28 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.primary:hover:not(.disabled):not(:focus) {
-  box-shadow: 0 0 10px 2px rgba(24, 118, 219, 0.6);
+.primary:focus:not(:active):not(:disabled),
+.primary:hover:not(:disabled):not(:focus) {
+  background: linear-gradient(105.01deg, #0154ac 17.25%, #1876db 93.21%);
 }
 
-.secondary:hover:not(.disabled):not(:focus) {
-  box-shadow: 0 0 10px rgba(65, 101, 129, 0.2);
+.primary.warning:focus:not(:active):not(:disabled),
+.primary.warning:hover:not(:disabled):not(:focus) {
+  background: linear-gradient(95.27deg, #611d18 4.76%, #943832 81.28%);
 }
 
-.tertiary:hover:not(.disabled):not(:focus) {
-  box-shadow: 0 0 10px 2px rgba(0, 153, 215, 0.2);
+.secondary:hover:not(:disabled):not(:focus),
+.primary:hover:not(:disabled):not(:focus) {
+  box-shadow:
+    0 9px 12px 0 rgba(0, 0, 0, 0.2),
+    0 19px 29px 0 rgba(0, 0, 0, 0.14),
+    0 7px 36px 0 rgba(0, 0, 0, 0.12);
+}
+
+.primary:not(:disabled):focus:active,
+.secondary:not(:disabled):focus:active,
+.primary:not(:disabled):focus:not(:focus-visible),
+.secondary:not(:disabled):focus:not(:focus-visible) {
+  box-shadow: none;
 }
 </style>
