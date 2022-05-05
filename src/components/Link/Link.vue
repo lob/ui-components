@@ -30,14 +30,20 @@
       ]"
     >
       <slot />
+      <ChevronRight
+        v-if="link && withChevron"
+        class="w-3.5 h-3.5 text-primary-500 inline-flex"
+      />
     </component>
     <div />
   </div>
 </template>
 
 <script>
+import { ChevronRight } from '@/components/Icons';
 export default {
   name: 'LobLink',
+  components: { ChevronRight },
   props: {
     variant: {
       type: String,
@@ -73,6 +79,10 @@ export default {
     target: {
       type: String,
       default: '_self'
+    },
+    withChevron: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {

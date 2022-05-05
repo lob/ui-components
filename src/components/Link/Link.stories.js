@@ -39,6 +39,11 @@ export default {
       control: {
         type: 'select'
       }
+    },
+    withChevron: {
+      control: {
+        type: 'boolean'
+      }
     }
   }
 };
