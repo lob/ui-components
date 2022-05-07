@@ -3,31 +3,31 @@ import MegaButton from './MegaButton.vue';
 
 # MegaButton
 
-To do
-
 <Preview>
-  <Story id="components-mega-button--primary" />
+  <Story id="components-mega-button--mega-text" />
 </Preview>
 
 ## How to Use
 
-There are 8 variants of buttons: 'primary', 'secondary', 'tertiary', 'success', 'alert', 'error', 'link', 'none'. By default, the button will display as primary.
+There are (will be) 3 forms of megabuttons:
 
-You can change the variant of the button by adding the `variant` prop to the component.
+1) A large text, or mega text version, which just shows the label, given as either a prop or a `#label` slot. Unsurprisingly, this form uses a much larger text size than the others.
 
-There are 3 sizes of buttons: default, small, and large.
+2) The label with text version, which uses its label as a heading and accepts a text prop or a `#text` slot.
 
-You can change the size of the button by adding the `size` prop to the component.
+3) An image version, which uses an imageSource prop to (you're not going to believe this) display an image.
 
-Please note: though you can only insert text in the Storybook demo, the button component will accept any valid HTML or Vue component.
+The format changes automatically based on which props you provide. Just give it a label, and it'll a mega text. Provide an imageSource and you get the image version. Give it text and it'll format itself appropriately.
 
-Example of using this component as a primary button in a template
+Example of using this component in its mega text format in a template
 
 ```html
 <MegaButton
-title='Sign up'>
-Become eligible for our free kitten drawing
-</MegaButton>
+name="reward-choice"
+id="kitten"
+value="kitten"
+label="Free Kitten"
+/>
 ```
 
 ## Props
