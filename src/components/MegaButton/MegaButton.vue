@@ -1,54 +1,70 @@
 <template>
-  <input
-    :id="id"
-    type="radio"
-    :name="name"
-    :value="value.toString()"
-    :checked="checked"
-    :disabled="disabled"
-    :readonly="readonly"
-    :required="required"
-    @input="onInput"
-    @click="onClick"
-  >
-  <label
-    :for="id"
-    :class="[
-      'megabutton flex flex-col rounded-lg m-5 inline-block py-9 px-8 border-4 border-transparent relative'
-    ]"
-  >
-    <div
-      v-if="disabled && disabledBanner"
-      class="absolute mt-0 text-center bg-turquoise-100 uppercase text-gray-700 font-bold p-1 inset-x-0 top-0"
+  <div>
+    <input
+      :id="id"
+      type="radio"
+      class="hidden peer"
+      :name="name"
+      :value="value.toString()"
+      :checked="checked"
+      :disabled="disabled"
+      :readonly="readonly"
+      :required="required"
+      @input="onInput"
+      @click="onClick"
     >
-      {{ disabledBanner }}
-    </div>
-
-    <div>
-
+    <label
+      :for="id"
+      :class="[
+        'h-full',
+        'flex items-center rounded-lg m-5 inline-block border-4 border-transparent relative shadow-input cursor-pointer',
+        'peer-focus:ring-primary-100 peer-focus:ring-4',
+        'peer-hover:shadow',
+        'peer-checked:border-2 peer-checked:border-primary-500',
+        'peer-disabled:cursor-not-allowed peer-disabled:shadow-none peer-disabled:text-gray-100',
+        'peer-disabled:border-2 peer-checked:border-disabled-gray',
+        { 'strikethru-line': disabled && !disabledBanner }
+      ]"
+      v-bind="$attrs"
+    >
       <div
-        v-if="textWithImage"
-        class="w-28"
+        v-if="disabled && disabledBanner"
+        class="absolute mt-0  text-center bg-turquoise-100 uppercase text-gray-700 text-sm tracking-wide font-bold p-1 inset-x-0 top-0"
       >
-        <img
-          :src="
-            imageSource"
+        {{ disabledBanner }}
+      </div>
+
+      <div>
+
+        <div
+          v-if="textWithImage"
+          class="mx-16 mt-9 mb-8"
         >
-      </div>
+          <img
+            class="w-36 h-28"
+            :src="imageSource"
+          >
+        </div>
 
-      <!-- TODO: Make height and width consistent across a group -->
-      <div :class="['font-semibold', { 'text-lg w-36': withText }, { 'text-center text-xl': largeText }]">
-        <slot>
-          {{ label }}
-        </slot>
+        <!-- TODO: Make height and width consistent across a group -->
+        <div :class="['mx-8', { 'mt-8 mb-9': !withDisabledBanner }, {'mt-12 mb-6': withDisabledBanner }]">
+          <div :class="['font-semibold', { 'text-lg': withText }, { 'text-center text-3xl': megaText }, { 'mt-12 mb-6': withDisabledBanner }]">
+            <slot name="label">
+              {{ label }}
+            </slot>
+          </div>
+          <div
+            v-if="withText"
+            class="text-left"
+          >
+            <slot name="text">
+              <p>{{ text }}</p>
+            </slot>
+          </div>
+        </div>
       </div>
-      <div
-        v-if="withText"
-        class="text-left"
-      >
-        <p>{{ text }}</p>
-      </div>
-    </div></label>
+    </label>
+  </div>
 </template>
 
 <script>
@@ -113,19 +129,28 @@ export default {
       return this.modelValue === this.value;
     },
     textWithoutImage () {
-      return !this.imageSource && this.label && this.text;
+      return !this.imageSource && this.labelContent && this.textContent;
     },
     textWithImage () {
-      return this.imageSource && this.label && this.text;
+      return this.imageSource && this.labelContent && this.textContent;
     },
-    largeText () {
-      return !this.imageSource && this.label && !this.text;
+    megaText () {
+      return !this.imageSource && this.labelContent && !this.textContent;
     },
     withText () {
-      return this.label && this.text;
+      return this.labelContent && this.textContent;
     },
     withDisabledBanner () {
       return this.disabled && this.disabledBanner;
+    },
+    textSlotHasContent () {
+      return Boolean(this.textContent);
+    },
+    labelContent () {
+      return this.$slots.label || this.label;
+    },
+    textContent () {
+      return this.$slots.text || this.text;
     }
   },
   created () {
@@ -144,41 +169,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
-primary-cobalt {
-    color: #1876DB;
-}
-
-input[type='radio'] {
-    @apply hidden;
-
-    &:not(:disabled) ~ label {
-        @apply cursor-pointer;
-    }
-}
-
-/* TODO: Make strike line show only when there's no disabled banner */
-input[type="radio"]:disabled + label {
-    cursor: not-allowed;
-    border: 1px solid rgba(196, 196, 196, 1);
-    box-shadow: none;
-    color: #8c8c8c;
+.strikethru-line {
     background: linear-gradient(to top right, #fff calc(50% - 1px), #C4C4C4, #fff calc(50% + 1px) );
 }
 
-input[type="radio"]:hover + label {
-    box-shadow: 2px 4px 16px 1px rgba(0, 0, 0, 0.06), 0px 44.8255px 29.6538px rgba(0, 0, 0, 0.0425185), 0px 23.2748px 15.1286px rgba(0, 0, 0, 0.035), 0px 9.48231px 7.58585px rgba(0, 0, 0, 0.0274815), 0px 2.15507px 3.66362px rgba(0, 0, 0, 0.0168519)
-}
-
-/* TODO: get behavior right with focused and selected simultaneously */
-input[type="radio"]:focus + label {
-    border: 4px solid #7CC6DD;
-}
-
-input[type="radio"]:checked + label {
-    box-sizing: border-box;
-    border: 2px solid rgba(24, 118, 219, 1);
-
-    box-shadow: 2px 4px 16px 1px rgba(0, 0, 0, 0.06), 0px 44.8255px 29.6538px rgba(0, 0, 0, 0.0425185), 0px 23.2748px 15.1286px rgba(0, 0, 0, 0.035), 0px 9.48231px 7.58585px rgba(0, 0, 0, 0.0274815), 0px 2.15507px 3.66362px rgba(0, 0, 0, 0.0168519)
+input[type="radio"]:disabled + label {
+    border: 1px solid #c4c4c4;
+    color: #8c8c8c;
+    box-shadow: none;
 }
 
 label {
