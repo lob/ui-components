@@ -120,7 +120,11 @@ export default {
 
 <style scoped lang="scss">
 .strikethru-line {
-    background: linear-gradient(to top right, #fff calc(50% - 1px), #C4C4C4, #fff calc(50% + 1px) );
+    background: linear-gradient(to top right, #fff calc(50% - 1px), #c4c4c4, #fff calc(50% + 1px));
+}
+
+label {
+    box-shadow: 0px 4.32px 12.95px rgba(0, 0, 0, 0.078);
 }
 
 input[type="radio"]:disabled + label {
@@ -129,7 +133,4 @@ input[type="radio"]:disabled + label {
     box-shadow: none;
 }
 
-label {
-    box-shadow: 0px 4.32px 12.95px rgba(0, 0, 0, 0.08);
-}
 </style>
