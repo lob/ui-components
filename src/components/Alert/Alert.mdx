@@ -50,7 +50,7 @@ Example of using this component with a link
 <alert>
   <template v-slot:default="{linkColor}">
     {{ content }}
-    <span :class="linkColor">
+    <span :class="linkColor" class="inline-flex">
       <LobLink bold inherit-text-color>{{ link }}</LobLink>.
     </span>
   </template>
