@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="['w-full border-l-4 p-4.5 rounded-r-lg flex justify-start align-center font-light',
+    :class="['w-full border-l-4 p-4.5 rounded-r-lg flex justify-start items-center font-light',
              { 'bg-turquoise-100 border-turquoise-500': info },
              { 'bg-mint-100 border-success': success },
              { 'bg-lemon-100 border-warning': warning },
@@ -9,9 +9,11 @@
   >
     <component
       :is="icon"
-      class="mr-4"
+      class="mr-4 flex-shrink-0"
     />
-    <slot :link-color="linkColor" />
+    <div class="block">
+      <slot :link-color="linkColor" />
+    </div>
   </div>
 </template>
 
