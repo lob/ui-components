@@ -1,6 +1,5 @@
 import '@testing-library/jest-dom';
 import { render, fireEvent } from '@testing-library/vue';
-import userEvent from '@testing-library/user-event';
 import MegaButton from '../MegaButton.vue';
 
 let label;
