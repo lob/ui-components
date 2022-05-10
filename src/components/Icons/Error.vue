@@ -4,15 +4,25 @@
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <path
-      d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z"
+    <circle
+      cx="12"
+      cy="12"
+      r="9"
       stroke="currentColor"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
     <path
-      d="M8.14285 12L10.7143 14.5714L15.8571 9.42856"
+      d="M12 8V12"
       stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M11.9999 16H12.0099"
+      stroke="#DB807A"
+      stroke-width="1.5"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
@@ -21,6 +31,6 @@
 
 <script>
 export default {
-  name: 'Checkmark'
+  name: 'Error'
 };
 </script>

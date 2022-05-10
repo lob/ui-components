@@ -1,5 +1,10 @@
-import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
-import Alert from './Alert.vue';
+import {
+  Preview,
+  Story,
+  ArgsTable,
+  PRIMARY_STORY,
+} from "@storybook/addon-docs";
+import Alert from "./Alert.vue";
 
 # Alert
 
@@ -21,7 +26,10 @@ Example of using this component as a default info alert in a template
 
 ```html
 <alert>
-  <p>You are in <span class="bold">LIVE</span> mode, all verifications will be charged according to your <a href="#">chosen plan</a>.</p>
+  <p>
+    You are in <span class="bold">LIVE</span> mode, all verifications will be
+    charged according to your <a href="#">chosen plan</a>.
+  </p>
 </alert>
 ```
 
@@ -29,9 +37,29 @@ Example of using this component as a warning alert in a template
 
 ```html
 <alert variant="warning">
-  <p>You are in <span class="bold">LIVE</span> mode, all verifications will be charged according to your <a href="#">chosen plan</a>.</p>
+  <p>
+    You are in <span class="bold">LIVE</span> mode, all verifications will be
+    charged according to your <a href="#">chosen plan</a>.
+  </p>
 </alert>
 ```
+
+Example of using this component with a link
+
+```html
+<alert>
+  <template v-slot:default="{linkColor}">
+    {{ content }}
+    <span :class="linkColor" class="inline-flex">
+      <LobLink bold inherit-text-color>{{ link }}</LobLink>.
+    </span>
+  </template>
+</alert>
+```
+
+To ensure correct styling of links passed into the Alert component's slot, make sure to wrap the `<LobLink>` in a `<span>`.
+
+Pass the `linkColor` prop to the `<span>` as a class. Also pass `bold` and `inherit-text-color`to the`<LobLink>`
 
 ## Props
 

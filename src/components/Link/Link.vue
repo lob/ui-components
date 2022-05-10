@@ -76,6 +76,14 @@ export default {
       type: Boolean,
       default: true
     },
+    bold: {
+      type: Boolean,
+      default: false
+    },
+    inheritTextColor: {
+      type: Boolean,
+      default: false
+    },
     target: {
       type: String,
       default: '_self'
