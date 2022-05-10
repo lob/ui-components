@@ -1,15 +1,32 @@
 <template>
   <svg
-    width="3"
-    height="13"
-    viewBox="1 0 3 13"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    class="w-7 h-7 rounded-full bg-coral-700 p-1.5"
   >
+    <circle
+      cx="12"
+      cy="12"
+      r="9"
+      stroke="#DB807A"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
     <path
-      d="M1.9676 10.7078C1.65771 10.7078 1.41497 10.7934 1.23937 10.9646C1.07409 11.1357 0.991455 11.3754 0.991455 11.6835C0.991455 12.3339 1.31684 12.6591 1.9676 12.6591C2.61837 12.6591 2.94375 12.3339 2.94375 11.6835C2.94375 11.033 2.61837 10.7078 1.9676 10.7078ZM1.9676 0.386393C1.45112 0.386393 1.19288 0.700201 1.19288 1.32782V8.00336C1.19288 8.61956 1.45112 8.92766 1.9676 8.92766C2.49441 8.92766 2.75782 8.61956 2.75782 8.00336V1.32782C2.75782 0.700201 2.49441 0.386393 1.9676 0.386393Z"
-      fill="white"
+      d="M12 8V12"
+      stroke="#DB807A"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M11.9999 16H12.0099"
+      stroke="#DB807A"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
     />
   </svg>
 </template>
