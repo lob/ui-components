@@ -46,7 +46,7 @@
 
 <script>
 export default {
-  name: 'RadioButton',
+  name: 'MegaButton',
   props: {
     id: {
       type: String,
