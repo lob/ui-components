@@ -1,5 +1,5 @@
 <template>
-  <div :class="{ 'cursor-not-allowed': disabled }">
+  <div :class="{ 'cursor-not-allowed': disabled, 'cursor-pointer': !disabled }">
     <component
       :is="tag"
       :[linkProp]="to"
@@ -8,9 +8,12 @@
       :aria-disabled="disabled"
       :class="[
         { 'pointer-events-none': disabled },
-        { 'px-0 text-base text-primary-500 hover:text-primary-700 active:text-primary-900': link },
-        { '!text-gray-500': disabled && link },
+        { 'px-0 text-base ': link },
+        { 'font-bold': bold },
         { 'underline': underline && link },
+        { '!text-gray-500': disabled && link },
+        { 'text-inherit': inheritTextColor },
+        { 'text-primary-500 hover:text-primary-700 active:text-primary-900': !inheritTextColor },
         { 'flex justify-center items-center rounded-lg no-underline tracking-[-0.04em] font-bold': primary || secondary },
         { 'focus-visible:ring-4 focus:outline-none': primary || secondary },
         { 'focus:ring-primary-100': !warning && (primary || secondary) },
@@ -28,6 +31,7 @@
           'focus:border-coral-900 active:border-coral-700 active:text-coral-700': !disabled && secondary && warning },
         { 'border border-coral-200 text-coral-200': disabled && secondary && warning }
       ]"
+      v-bind="$attrs"
     >
       <slot />
       <ChevronRight
