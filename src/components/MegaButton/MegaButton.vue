@@ -3,7 +3,7 @@
     <input
       :id="id"
       type="radio"
-      class="hidden peer"
+      class="absolute top-1/2 left-1/2 opacity-0 peer"
       :name="name"
       :value="value.toString()"
       :checked="checked"
