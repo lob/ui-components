@@ -15,7 +15,7 @@
       :for="id"
       :class="[
         'h-full',
-        'flex items-center rounded-lg m-5 inline-block border-4 border-transparent relative shadow-input cursor-pointer',
+        'flex items-center rounded-lg m-5 inline-block border-2 border-transparent ring-4 ring-transparent relative shadow-input cursor-pointer',
         'peer-focus:ring-primary-100 peer-focus:ring-4',
         'peer-hover:shadow',
         'peer-checked:border-2 peer-checked:border-primary-500',
