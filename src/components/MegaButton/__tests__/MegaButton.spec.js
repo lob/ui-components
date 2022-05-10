@@ -1,5 +1,6 @@
 import '@testing-library/jest-dom';
-import { render, fireEvent } from '@testing-library/vue';
+import { render } from '@testing-library/vue';
+import userEvent from '@testing-library/user-event';
 import MegaButton from '../MegaButton.vue';
 
 describe('Megabutton', () => {
@@ -49,7 +50,7 @@ describe('Megabutton', () => {
       });
       const mega = getByLabelText(props.label);
 
-      await fireEvent.click(mega);
+      await userEvent.click(mega);
       const emittedEvent = emitted();
       expect(emittedEvent).toHaveProperty('click');
       expect(emittedEvent).toHaveProperty('input');
