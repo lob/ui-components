@@ -33,18 +33,18 @@ const MegaTextGroupTemplate = (args, { argTypes }) => ({
   components: { MegaButton },
   data: () => ({ megaButtonModel }),
   template: `
-    <div class="flex items-stretch justify-around">
+    <fieldset class="flex items-stretch justify-around">
       <mega-button
         id="ginger"
         name="catType"
         label="Ginger"
-        :value="ginger"
+        value="ginger"
         v-model="megaButtonModel"
       />
       <mega-button
         id="calico"
         name="catType"
-        :value="calico"
+        value="calico"
         v-model="megaButtonModel"
       >
       <template #label>Calico</template>
@@ -53,12 +53,12 @@ const MegaTextGroupTemplate = (args, { argTypes }) => ({
         id="void"
         name="catType"
         label="Voidcat"
-        :value="voidcat"
-        :disabled="true"
+        value="voidcat"
+        disabled="true"
         disabledBanner="Hiding in closet!"
         v-model="megaButtonModel"
       />
-    </div>
+    </fieldset>
   `
 });
 
