@@ -10,6 +10,11 @@
     <component
       :is="icon"
       class="mr-4 h-6 w-6 flex-shrink-0"
+      :class="[{ 'text-gray-500': success },
+               { 'text-turquoise-500': info },
+               { 'text-warning': warning },
+               { 'text-coral-700': error }
+      ]"
     />
     <div class="block">
       <slot :link-color="linkColor" />
