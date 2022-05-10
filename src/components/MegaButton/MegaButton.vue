@@ -8,8 +8,6 @@
       :value="value.toString()"
       :checked="checked"
       :disabled="disabled"
-      :readonly="readonly"
-      :required="required"
       @input="onInput"
       @click="onClick"
     >
@@ -62,10 +60,6 @@ export default {
       type: String,
       default: ''
     },
-    text: {
-      type: String,
-      default: ''
-    },
     value: {
       type: [String, Boolean],
       default: ''
@@ -78,15 +72,7 @@ export default {
       type: String,
       default: null
     },
-    required: {
-      type: Boolean,
-      default: false
-    },
     disabled: {
-      type: Boolean,
-      default: false
-    },
-    readonly: {
       type: Boolean,
       default: false
     }
