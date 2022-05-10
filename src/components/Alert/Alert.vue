@@ -9,7 +9,7 @@
   >
     <component
       :is="icon"
-      class="mr-4 flex-shrink-0"
+      class="mr-4 h-6 w-6 flex-shrink-0"
     />
     <div class="block">
       <slot :link-color="linkColor" />
