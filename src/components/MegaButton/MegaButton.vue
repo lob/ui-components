@@ -35,7 +35,7 @@
 
       <div>
         <div :class="['mx-8', { 'mt-8 mb-9': !hasDisabledBanner }, {'mt-12 mb-6': hasDisabledBanner }]">
-          <div class="font-semibold text-center text-3xl">
+          <div :class="['font-semibold', {'text-center text-3xl': megaText}]">
             <slot name="label">
               {{ label }}
             </slot>
@@ -47,8 +47,6 @@
 </template>
 
 <script>
-import { getCurrentInstance } from 'vue';
-
 export default {
   name: 'RadioButton',
   props: {
@@ -61,6 +59,10 @@ export default {
       default: null
     },
     name: {
+      type: String,
+      default: ''
+    },
+    text: {
       type: String,
       default: ''
     },
@@ -90,11 +92,6 @@ export default {
     }
   },
   emits: ['update:modelValue', 'input', 'click'],
-  data () {
-    return {
-      parent: null
-    };
-  },
   computed: {
     checked () {
       return this.modelValue === this.value;
@@ -102,9 +99,6 @@ export default {
     hasDisabledBanner () {
       return this.disabled && this.disabledBanner;
     }
-  },
-  created () {
-    this.parent = getCurrentInstance().parent;
   },
   methods: {
     onInput () {
