@@ -2,9 +2,6 @@ import '@testing-library/jest-dom';
 import { render, fireEvent } from '@testing-library/vue';
 import MegaButton from '../MegaButton.vue';
 
-let label;
-let props;
-
 describe('Megabutton', () => {
 
   describe('Megatext format', () => {
@@ -19,7 +16,7 @@ describe('Megabutton', () => {
     };
 
     it('disables the input when disabled prop is true', () => {
-      props = {
+      const props = {
         ...megatextProps,
         disabled: true
       };
@@ -46,7 +43,7 @@ describe('Megabutton', () => {
     });
 
     it('fires the input and click events when the input is clicked', async () => {
-      props = megatextProps;
+      const props = megatextProps;
       const { getByLabelText, emitted } = render(MegaButton, {
         props
       });
@@ -63,9 +60,8 @@ describe('Megabutton', () => {
 
       describe('without disabled banner', () => {
 
-        beforeAll(() => {
-
-          props = {
+        it('has faded text and not allowed cursor', () => {
+          const props = {
             ...megatextProps,
             disabled: true
           };
@@ -74,16 +70,22 @@ describe('Megabutton', () => {
             props
           });
 
-          label = getByText(props.label).closest('label');
-
-        });
-
-        it('has faded text and not allowed cursor', () => {
+          const label = getByText(props.label).closest('label');
           expect(label).toHaveClass('peer-disabled:text-gray-100');
           expect(label).toHaveClass('peer-disabled:cursor-not-allowed');
         });
 
         it('displays the strikethru line', () => {
+          const props = {
+            ...megatextProps,
+            disabled: true
+          };
+
+          const { getByText } = render(MegaButton, {
+            props
+          });
+
+          const label = getByText(props.label).closest('label');
           expect(label).toHaveClass('strikethru-line');
         });
 
@@ -91,9 +93,8 @@ describe('Megabutton', () => {
 
       describe('with disabled banner', () => {
 
-        beforeAll(() => {
-
-          props = {
+        it('has faded text and not allowed cursor', () => {
+          const props = {
             ...megatextProps,
             disabled: true,
             disabledBanner: 'Bruce'
@@ -103,16 +104,23 @@ describe('Megabutton', () => {
             props
           });
 
-          label = getByText(props.label).closest('label');
-
-        });
-
-        it('has faded text and not allowed cursor', () => {
+          const label = getByText(props.label).closest('label');
           expect(label).toHaveClass('peer-disabled:text-gray-100');
           expect(label).toHaveClass('peer-disabled:cursor-not-allowed');
         });
 
         it('does not display the strikethru line', () => {
+          const props = {
+            ...megatextProps,
+            disabled: true,
+            disabledBanner: 'Bruce'
+          };
+
+          const { getByText } = render(MegaButton, {
+            props
+          });
+
+          const label = getByText(props.label).closest('label');
           expect(label).not.toHaveClass('strikethru-line');
         });
 
