@@ -33,7 +33,7 @@
 
       <div>
         <div :class="['mx-8', { 'mt-8 mb-9': !hasDisabledBanner }, {'mt-12 mb-6': hasDisabledBanner }]">
-          <div :class="['font-semibold', {'text-center text-3xl': megaText}]">
+          <div class="font-semibold, text-center text-3xl">
             <slot name="label">
               {{ label }}
             </slot>
