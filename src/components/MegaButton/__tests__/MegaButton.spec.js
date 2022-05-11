@@ -82,12 +82,28 @@ describe('Megabutton', () => {
             disabled: true
           };
 
-          const { getByText } = render(MegaButton, {
+          const { getByTestId } = render(MegaButton, {
             props
           });
 
-          const label = getByText(props.label).closest('label');
-          expect(label).toHaveClass('strikethru-line');
+          const strikethruBox = getByTestId('strikethru');
+          expect(strikethruBox).toHaveClass('strikethru-line');
+        });
+
+        it('does not display a banner box', () => {
+          const props = {
+            ...megatextProps,
+            disabled: true
+          };
+
+          const { queryByTestId } = render(MegaButton, {
+            props
+          });
+
+          const disabledBanner = queryByTestId('disabledBanner');
+          expect(disabledBanner).toBeNull;
+          const imageDisabledBanner = queryByTestId('imageDisabledBanner');
+          expect(imageDisabledBanner).toBeNull;
         });
 
       });
@@ -117,12 +133,30 @@ describe('Megabutton', () => {
             disabledBanner: 'Bruce'
           };
 
-          const { getByText } = render(MegaButton, {
+          const { queryByTestId } = render(MegaButton, {
             props
           });
 
-          const label = getByText(props.label).closest('label');
-          expect(label).not.toHaveClass('strikethru-line');
+          const strikethruBox = queryByTestId('strikethru');
+          expect(strikethruBox).toBeNull;
+        });
+
+        it('displays the standard banner box', () => {
+          const props = {
+            ...megatextProps,
+            disabled: true,
+            disabledBanner: 'Bruce'
+          };
+
+          const { queryByTestId } = render(MegaButton, {
+            props
+          });
+
+          const disabledBanner = queryByTestId('disabledBanner');
+          expect(disabledBanner).toHaveTextContent(props.disabledBanner);
+
+          const imageDisabledBanner = queryByTestId('imageDisabledBanner');
+          expect(imageDisabledBanner).toBeNull;
         });
 
       });
