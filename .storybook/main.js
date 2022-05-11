@@ -9,6 +9,7 @@ module.exports = {
     '@storybook/addon-a11y',
     '@storybook/addon-postcss'
   ],
+  staticDirs: ['../src/assets/images'],
   webpackFinal: async (config) => {
     config.module.rules.push({
       test: /\.scss$/,
