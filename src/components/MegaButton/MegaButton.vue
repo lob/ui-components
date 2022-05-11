@@ -31,6 +31,7 @@
         />
         <div
           v-if="imageSource"
+          data-testId="imageContainer"
           class="mx-16 mt-9 mb-8"
         >
           <div
