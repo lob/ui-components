@@ -149,8 +149,8 @@ describe('Megabutton', () => {
         props
       });
 
-      const label = getByText(props.label).closest('label');
-      expect(label).not.toHaveClass('text-lg');
+      const label = getByText(props.label);
+      expect(label).toHaveClass('text-lg');
     });
 
     it('renders the text', () => {
