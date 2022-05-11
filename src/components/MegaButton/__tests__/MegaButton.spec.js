@@ -131,4 +131,39 @@ describe('Megabutton', () => {
 
   });
 
+  describe('Small text', () => {
+
+    const smallTextProps = {
+      id: 'megabutton',
+      modelValue: '',
+      name: 'Fine print',
+      label: 'Megabutton with text',
+      text: 'This is some text',
+      value: 'bigOlButton'
+    };
+
+    it('renders the label in smaller text', () => {
+      const props = smallTextProps;
+
+      const { getByText } = render(MegaButton, {
+        props
+      });
+
+      const label = getByText(props.label).closest('label');
+      expect(label).not.toHaveClass('text-lg');
+    });
+
+    it('renders the text', () => {
+      const props = smallTextProps;
+
+      const { getByText } = render(MegaButton, {
+        props
+      });
+
+      const text = getByText(props.text);
+      expect(text).toBeValid();
+    });
+
+  });
+
 });
