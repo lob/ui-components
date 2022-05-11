@@ -24,11 +24,10 @@ const renderComponent = (options) => render(SubnavigationItem, { ...options, glo
 describe('SubnavigationItem', () => {
 
   it('renders correctly', async () => {
-    const props = initialProps;
-    const { queryByText, queryByRole } = renderComponent({ props });
+    const { queryByText, queryByRole } = renderComponent({ props: initialProps });
     await router.isReady();
 
-    let item = queryByText(props.title);
+    let item = queryByText(initialProps.title);
     expect(item).toBeInTheDocument();
 
     item = queryByRole('link');
@@ -36,13 +35,11 @@ describe('SubnavigationItem', () => {
   });
 
   it('adds the correct classes when the item is active', async () => {
-    const props = initialProps;
-
-    const { queryByTestId } = renderComponent({ props });
+    const { queryByRole } = renderComponent({ props: initialProps });
     router.push('/account');
     await router.isReady();
 
-    const navItem = queryByTestId('subnav-item');
+    const navItem = queryByRole('link', { name: 'Account' });
     expect(navItem).toHaveClass('lob-active-border');
   });
 
