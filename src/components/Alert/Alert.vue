@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="['w-full border-l-4 p-4.5 rounded-r-lg flex justify-start items-center font-light text-sm',
+    :class="['w-full border-l-4 p-4.5 rounded-r-lg flex justify-start items-start font-light text-sm',
              { 'bg-turquoise-100 border-turquoise-500': info },
              { 'bg-mint-100 border-success': success },
              { 'bg-lemon-100 border-warning': warning },
