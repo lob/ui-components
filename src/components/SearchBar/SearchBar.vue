@@ -39,14 +39,14 @@
           {{ t('search.loading') }}
         </template>
         <template v-else-if="searchResults.length">
-          <LobLink
+          <NewLink
             :to="link"
             :underline="false"
             class="hover:text-primary-700"
             @click="hide"
           >
             {{ t('search.resultsPrefix') }} {{ totalResults }} {{ t('search.resultsSuffix') }}
-          </LobLink>
+          </NewLink>
         </template>
         <template v-else>
           {{ t('search.noResults') }}
@@ -77,13 +77,13 @@ import TextInput from '../TextInput/TextInput';
 import LobTable from '../Table/Table';
 import TableBody from '../Table/TableBody';
 import TableRow from '../Table/TableRow';
-import LobLink from '../Link/Link.vue';
+import NewLink from '../NewLink/NewLink.vue';
 import Search from '../Icons/Search';
 import Close from '../Icons/Close';
 
 export default {
   name: 'SearchBar',
-  components: { TextInput, LobTable, TableBody, TableRow, LobLink, Search, Close },
+  components: { TextInput, LobTable, TableBody, TableRow, NewLink, Search, Close },
   props: {
     searchFunction: {
       type: Function,

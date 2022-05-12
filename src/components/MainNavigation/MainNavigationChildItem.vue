@@ -6,23 +6,23 @@
     ]"
     data-testid="nav-child-item"
   >
-    <LobLink
+    <NewLink
       :to="to"
       class="w-full py-1 pl-4 !text-sm whitespace-nowrap overflow-hidden !text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent"
       :underline="false"
       @click.stop="handleNavigation"
     >
       {{ title }}
-    </LobLink>
+    </NewLink>
   </li>
 </template>
 
 <script>
-import LobLink from '../Link/Link';
+import NewLink from '../NewLink/NewLink';
 
 export default {
   name: 'MainNavigationChildItem',
-  components: { LobLink },
+  components: { NewLink },
   props: {
     title: {
       type: String,
