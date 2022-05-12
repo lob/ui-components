@@ -1,6 +1,7 @@
 import MegaButton from './MegaButton.vue';
 import mdx from './MegaButton.mdx';
 import image from '@/assets/images/floofyboi.jpg';
+
 export default {
   title: 'Components/Mega Button',
   component: MegaButton,
@@ -18,6 +19,12 @@ export default {
     text: {
       control: {
         type: 'text'
+      }
+    },
+    imageSource: {
+      control: {
+        type: 'text',
+        required: false
       }
     }
   }
@@ -64,7 +71,7 @@ SmallText.args = {
 
 const megaButtonModel = '';
 
-const MegaTextGroupTemplate = (args, { argTypes }) => ({
+const GroupTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { MegaButton },
   setup: () => ({ args }),
@@ -101,4 +108,4 @@ const MegaTextGroupTemplate = (args, { argTypes }) => ({
   `
 });
 
-export const MegaTextGroup = MegaTextGroupTemplate.bind({});
+export const Group = GroupTemplate.bind({});
