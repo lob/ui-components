@@ -15,12 +15,13 @@
       :for="id"
       :class="[
         'h-full',
-        'flex items-center rounded-lg m-5 inline-block border-2 border-transparent ring-4 ring-transparent relative shadow-input cursor-pointer',
+        'flex flex-column items-center rounded-lg m-5 inline-block border-2 border-transparent ring-4 ring-transparent relative shadow-input cursor-pointer',
         'peer-focus:ring-primary-100 peer-focus:ring-4',
         'peer-hover:shadow',
         'peer-checked:border-2 peer-checked:border-primary-500 peer-checked:shadow',
         'peer-disabled:cursor-not-allowed peer-disabled:shadow-none peer-disabled:text-gray-100',
-        'peer-disabled:border-2 peer-checked:border-disabled-gray'
+        'peer-disabled:border-2 peer-checked:border-disabled-gray',
+        { 'w-72': smallText }
       ]"
     >
       <div>
@@ -56,7 +57,7 @@
         </div>
 
         <div>
-          <div :class="['mx-8', { 'mt-8 mb-9': !hasDisabledBanner }, {'mt-12 mb-6': hasDisabledBanner }]">
+          <div :class="['mx-8', { 'mt-8 mb-9': !hasDisabledBanner }, { 'mt-12 mb-6': hasDisabledBanner && !imageSource }, { 'mt-12 mb-6': hasDisabledBanner }]">
             <div :class="['font-semibold', { 'text-lg text-left': smallText }, { 'text-center text-[2.25rem]': megaText }]">
               <slot name="label">
                 {{ label }}

@@ -77,7 +77,7 @@ const GroupTemplate = (args, { argTypes }) => ({
   setup: () => ({ args }),
   data: () => ({ megaButtonModel }),
   template: `
-    <fieldset class="flex items-stretch justify-around">
+    <fieldset class="flex flex-wrap">
       <mega-button
         id="ginger"
         name="catType"
