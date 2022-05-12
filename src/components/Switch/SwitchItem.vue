@@ -2,7 +2,7 @@
   <div
     :class="[
       'rounded-sm flex bg-white text-primary-500 font-thin',
-      { '!bg-primary-500 !text-white checked font-semibold': checked },
+      { '!bg-primary-500 !text-white checked !font-semibold': checked },
       { '!bg-white-300': disabled }
     ]"
   >
