@@ -26,6 +26,17 @@ MegaText.args = {
   value: 'tortoiseshell'
 };
 
+export const SmallText = Template.bind({});
+SmallText.args = {
+  name: 'cat-type',
+  id: 'ginger',
+  value: 'ginger',
+  label: 'Ginger',
+  disabled: false,
+  disabledBanner: null,
+  text: 'The himbos of the cat world'
+};
+
 const megaButtonModel = '';
 
 const MegaTextGroupTemplate = (args, { argTypes }) => ({
