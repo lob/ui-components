@@ -342,7 +342,7 @@ describe('Megabutton', () => {
       });
 
       const imageContainer = getByTestId('imageContainer');
-      expect(imageContainer).not.toBeInTheDocument;
+      expect(imageContainer).toBeInTheDocument();
     });
 
     describe('with disabled banner', () => {
