@@ -27,7 +27,7 @@
         <div
           v-if="disabled && !disabledBanner"
           data-testId="strikethru"
-          class="strikethru-line absolute h-full w-full bg-coral-900"
+          class="strikethru-line absolute top-0 h-full w-full bg-coral-900"
         />
         <div
           v-if="imageSource"
