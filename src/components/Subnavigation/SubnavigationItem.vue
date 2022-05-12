@@ -4,8 +4,7 @@
   >
     <LobLink
       :to="to"
-      :class="['inline-block relative pb-4 no-underline text-black font-light', { 'lob-active-border font-normal': active }]"
-      data-testid="subnav-item"
+      :class="['relative pb-4 no-underline text-black font-light', { 'lob-active-border font-normal': active }]"
     >
       {{ title }}
     </LobLink>
