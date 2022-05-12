@@ -131,6 +131,16 @@ describe('Dropdown', () => {
 
   describe('when collapsed', () => {
 
+    it('displays the chevron icon pointing down', () => {
+      const { queryByTestId } = renderComponent({ props: initialProps });
+
+      const chevronDown = queryByTestId('chevron-down');
+      expect(chevronDown).toBeInTheDocument();
+
+      const chevronUp = queryByTestId('chevron-up');
+      expect(chevronUp).not.toBeInTheDocument();
+    });
+
     ['ArrowDown', 'ArrowUp', 'Enter', ' ', 'Home', 'End'].forEach(async (key) => {
 
       it(`typing ${key}, it opens the listbox`, async () => {
@@ -209,6 +219,16 @@ describe('Dropdown', () => {
 
       // open select
       await fireEvent.keyDown(select, { key: 'Enter', code: 'Enter' });
+    });
+
+    it('displays the chevron icon pointing up', () => {
+      const { queryByTestId } = component;
+
+      const chevronUp = queryByTestId('chevron-up');
+      expect(chevronUp).toBeInTheDocument();
+
+      const chevronDown = queryByTestId('chevron-down');
+      expect(chevronDown).not.toBeInTheDocument();
     });
 
     ['Enter', ' '].forEach(async (key) => {

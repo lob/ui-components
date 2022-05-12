@@ -56,11 +56,22 @@
           {{ value || placeholder }}
         </span>
         <chevron-down
+          v-if="!open"
           :class="[
             'w-4 h-4 absolute right-2 text-gray-100',
             {'top-3': small},
             {'top-4': default_}
           ]"
+          data-testid="chevron-down"
+        />
+        <chevron-up
+          v-else
+          :class="[
+            'w-4 h-4 absolute right-2 text-gray-100',
+            {'top-3': small},
+            {'top-4': default_}
+          ]"
+          data-testid="chevron-up"
         />
       </div>
       <div
@@ -115,7 +126,7 @@
 </template>
 
 <script>
-import { ChevronDown } from '@/components/Icons';
+import { ChevronDown, ChevronUp } from '@/components/Icons';
 import DropdownItemGroup from './DropdownItemGroup';
 import DropdownItem from './DropdownItem';
 import { findLastIndex, shallowEquals } from '@/utils';
@@ -159,7 +170,7 @@ const MenuActions = {
 
 export default {
   name: 'Dropdown',
-  components: { ChevronDown, DropdownItemGroup, DropdownItem, LobLabel },
+  components: { ChevronDown, ChevronUp, DropdownItemGroup, DropdownItem, LobLabel },
   props: {
     tooltipContent: {
       type: String,
