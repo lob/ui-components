@@ -18,7 +18,7 @@
         'flex items-center rounded-lg m-5 inline-block border-2 border-transparent ring-4 ring-transparent relative shadow-input cursor-pointer',
         'peer-focus:ring-primary-100 peer-focus:ring-4',
         'peer-hover:shadow',
-        'peer-checked:border-2 peer-checked:border-primary-500',
+        'peer-checked:border-2 peer-checked:border-primary-500 peer-checked:shadow',
         'peer-disabled:cursor-not-allowed peer-disabled:shadow-none peer-disabled:text-gray-100',
         'peer-disabled:border-2 peer-checked:border-disabled-gray'
       ]"
