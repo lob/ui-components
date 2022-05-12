@@ -301,7 +301,8 @@ export default {
   },
   updated () {
     if (this.open && this.isScrollable(this.$refs.listbox) && this.$refs.activeOption) {
-      this.maintainScrollVisibility(this.$refs.activeOption, this.$refs.listbox);
+      const activeOption = Array.isArray(this.$refs.activeOption) ? this.$refs.activeOption[0] : this.$refs.activeOption;
+      this.maintainScrollVisibility(activeOption, this.$refs.listbox);
     }
   },
   methods: {
@@ -328,7 +329,6 @@ export default {
     },
     // ensure given child element is within the parent's visible scroll area
     maintainScrollVisibility (activeElement, scrollParent) {
-      // const { offsetHeight, offsetTop } = activeElement;
       const offsetHeight = activeElement.getOffsetHeight();
       const offsetTop = activeElement.getOffsetTop();
       const { offsetHeight: parentOffsetHeight, scrollTop } = scrollParent;
