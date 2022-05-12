@@ -2,7 +2,7 @@ import '@testing-library/jest-dom';
 import { render } from '@testing-library/vue';
 import { createRouter, createMemoryHistory } from 'vue-router';
 import { constants } from '@/config';
-import LobLink from '../Link.vue';
+import NewLink from '../NewLink.vue';
 
 const initialProps = {
   to: '/settings'
@@ -19,7 +19,7 @@ const router = createRouter({
 });
 
 const renderComponent = async (options) => {
-  const result = render(LobLink, {
+  const result = render(NewLink, {
     ...options,
     global: { plugins: [router, constants] }
   });
@@ -120,18 +120,19 @@ describe('Link', () => {
     expect(linkContent).not.toHaveClass('underline');
   });
 
-  it('renders alert button', async () => {
-    const slotContent = 'Hello, this is a link.';
+  it('renders the primary button style with warning color', async () => {
+    const slotContent = 'This is a link that looks like a button';
     const slots = { default: slotContent };
     const props = {
       ...initialProps,
-      variant: 'alert-button'
+      variant: 'primary-button',
+      warning: true
     };
     const { queryByText } = await renderComponent({ props, slots });
 
     const linkContent = queryByText(slotContent);
     expect(linkContent).toBeInTheDocument();
-    expect(linkContent).toHaveClass('alert');
+    expect(linkContent).toHaveClass('primary bg-coral-900');
   });
 
 });

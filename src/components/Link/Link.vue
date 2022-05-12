@@ -29,25 +29,22 @@
 </template>
 
 <script>
-import { ChevronRight } from '@/components/Icons';
 export default {
   name: 'LobLink',
-  components: { ChevronRight },
   props: {
     variant: {
       type: String,
-      default: 'link',
+      default: 'default',
       validator: function (value) {
-        return ['link', 'primary-button', 'secondary-button'].includes(value);
+        return ['default', 'primary-button', 'secondary-button', 'tertiary-button', 'alert-button'].includes(value);
       }
     },
-    small: {
-      type: Boolean,
-      default: false
-    },
-    warning: {
-      type: Boolean,
-      default: false
+    size: {
+      type: String,
+      default: 'default',
+      validator: function (value) {
+        return ['default', 'small'].includes(value);
+      }
     },
     disabled: {
       type: Boolean,
@@ -76,15 +73,11 @@ export default {
     target: {
       type: String,
       default: '_self'
-    },
-    withChevron: {
-      type: Boolean,
-      default: false
     }
   },
   computed: {
-    link () {
-      return this.variant === 'link';
+    default () {
+      return this.variant === 'default';
     },
     primary () {
       return this.variant === 'primary-button';
@@ -92,8 +85,14 @@ export default {
     secondary () {
       return this.variant === 'secondary-button';
     },
-    regular () {
-      return !this.small;
+    tertiary () {
+      return this.variant === 'tertiary-button';
+    },
+    alert () {
+      return this.variant === 'alert-button';
+    },
+    small () {
+      return this.size === 'small';
     },
     isExternal () {
       const protocolRelativePattern = /^https?:\/\/|^\/\//i;
@@ -114,28 +113,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.primary:focus:not(:active):not(:disabled),
-.primary:hover:not(:disabled):not(:focus) {
-  background: linear-gradient(105.01deg, #0154ac 17.25%, #1876db 93.21%);
+.primary:hover:not(.disabled):not(:focus) {
+  box-shadow: 0 0 10px 2px rgba(24, 118, 219, 0.6);
 }
 
-.primary.warning:focus:not(:active):not(:disabled),
-.primary.warning:hover:not(:disabled):not(:focus) {
-  background: linear-gradient(95.27deg, #611d18 4.76%, #943832 81.28%);
+.secondary:hover:not(.disabled):not(:focus) {
+  box-shadow: 0 0 10px rgba(65, 101, 129, 0.2);
 }
 
-.secondary:hover:not(:disabled):not(:focus),
-.primary:hover:not(:disabled):not(:focus) {
-  box-shadow:
-    0 9px 12px 0 rgba(0, 0, 0, 0.2),
-    0 19px 29px 0 rgba(0, 0, 0, 0.14),
-    0 7px 36px 0 rgba(0, 0, 0, 0.12);
-}
-
-.primary:not(:disabled):focus:active,
-.secondary:not(:disabled):focus:active,
-.primary:not(:disabled):focus:not(:focus-visible),
-.secondary:not(:disabled):focus:not(:focus-visible) {
-  box-shadow: none;
+.tertiary:hover:not(.disabled):not(:focus) {
+  box-shadow: 0 0 10px 2px rgba(0, 153, 215, 0.2);
 }
 </style>

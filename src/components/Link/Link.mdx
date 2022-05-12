@@ -1,30 +1,23 @@
-import {
-  Preview,
-  Story,
-  ArgsTable,
-  PRIMARY_STORY,
-} from "@storybook/addon-docs";
-import LobLink from "./Link.vue";
+import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
+import LobLink from './Link.vue';
 
 # Link
 
 Links are styled semantic links. If you pass through a relative path (e.g. `/settings`), the link will become a router-link integrated with Vue router. If you pass through an external URL, the link will become an anchor tag.
 
 <Preview>
-  <Story id="components-link--regular-link" />
+  <Story id="components-link--primary" />
 </Preview>
 
 ## How to Use
 
-There are 3 variants of links: `link` (default), `primary-button` & `secondary-button`.
-You can change the variant of the button by adding the `variant` prop (String) to the component.
-The primary-button & secondary-button variants are styled so that they look like the primary & secondary Buttons.
+There are 5 variants of links: default, primary-button, secondary-button, tertiary-button, and alert-button. You can change the variant of the button by adding the `variant` prop to the component. primary-button, secondary-button and alert-button are styled so that they look like primary, secondary and alert buttons.
 
-There are 2 sizes of buttons: regular (default) and small. For a small button add the `small` prop (Boolean) to the component.
+There are 2 sizes of buttons: default and small. You can change the size of the button by adding the `size` prop to the component.
 
-There is an underline property for the regular link text which is enabled by default. To disable it add the prop `:underline:"false"`.
+There is an underline property for the text which is enabled by default.
 
-The `disabled` property applies disabled styles as well as prevents clicks via CSS.
+There is a disabled property that applies disabled styles as well as prevents clicks via CSS. Please note: It is strongly recommended that when disabling `<Link>` you wrap the component in a `<div>` or `<span>` and apply the class `cursor-not-allowed` to the wrapper. Adding this functionality to this component would be a potentially breaking change and so will be made in the future.
 
 Please note: though you can only insert text in the Storybook demo, the link component will accept any valid HTML or Vue component.
 
@@ -37,7 +30,9 @@ Example of using this component as a default link in a template
 Example of using this component as a secondary-button, small link in a template
 
 ```html
-<lob-link variant="secondary-button" small to="/internal"> Click me </lob-link>
+<lob-link variant="secondary-button" size="small" to="/internal">
+  Click me
+</lob-link>
 ```
 
 Using the component with `target="_blank"` will automatically add `rel="noopener noreferrer"` to the link
