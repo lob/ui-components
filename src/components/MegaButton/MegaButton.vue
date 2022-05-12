@@ -33,9 +33,17 @@
 
       <div>
         <div :class="['mx-8', { 'mt-8 mb-9': !hasDisabledBanner }, {'mt-12 mb-6': hasDisabledBanner }]">
-          <div class="font-semibold, text-center text-3xl">
+          <div :class="['font-semibold', { 'text-lg text-left': smallText }, { 'text-center text-3xl': megaText }]">
             <slot name="label">
               {{ label }}
+            </slot>
+          </div>
+          <div
+            v-if="smallText"
+            class="text-left"
+          >
+            <slot name="text">
+              <p>{{ text }}</p>
             </slot>
           </div>
         </div>
@@ -68,6 +76,10 @@ export default {
       type: String,
       default: ''
     },
+    text: {
+      type: String,
+      default: ''
+    },
     disabledBanner: {
       type: String,
       default: null
@@ -84,6 +96,18 @@ export default {
     },
     hasDisabledBanner () {
       return this.disabled && this.disabledBanner;
+    },
+    megaText () {
+      return this.labelContent && !this.textContent;
+    },
+    smallText () {
+      return this.labelContent && this.textContent;
+    },
+    labelContent () {
+      return this.$slots.label || this.label;
+    },
+    textContent () {
+      return this.$slots.text || this.text;
     }
   },
   methods: {
