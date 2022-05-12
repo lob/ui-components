@@ -27,8 +27,8 @@
         { 'secondary border border-primary-500 bg-white text-primary-500': !disabled && secondary && !warning,
           'focus:border-primary-500 active:border-black active:text-black': !disabled && secondary && !warning },
         { 'border border-gray-100 text-gray-100': disabled && secondary && !warning },
-        { 'secondary border border-coral-900 bg-white text-coral-900': !disabled && secondary && warning,
-          'focus:border-coral-900 active:border-coral-700 active:text-coral-700': !disabled && secondary && warning },
+        { 'secondary border border-coral-900 bg-white !text-coral-900': !disabled && secondary && warning,
+          'focus:border-coral-900 active:border-coral-700 active:!text-coral-700': !disabled && secondary && warning },
         { 'border border-coral-200 text-coral-200': disabled && secondary && warning }
       ]"
       v-bind="$attrs"
