@@ -79,7 +79,8 @@
         ref="listbox"
         role="listbox"
         :class="[
-          `bg-white rounded-lg text-sm py-4 overflow-y-auto absolute left-0 top-full hidden w-full z-50 shadow ${listHeight ? `h-${listHeight}` : 'max-h-80'}`,
+          'bg-white rounded-lg text-sm py-4 overflow-y-auto absolute left-0 top-full hidden w-full z-50 shadow h-80',
+          {'custom-list-height': listHeight},
           {'!block': open }
         ]"
       >
@@ -561,3 +562,9 @@ export default {
   }
 };
 </script>
+
+<style>
+  .custom-list-height {
+    height: v-bind(listHeight);
+  }
+</style>

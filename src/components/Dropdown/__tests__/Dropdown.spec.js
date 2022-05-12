@@ -63,7 +63,7 @@ describe('Dropdown', () => {
 
   describe('without a placeholder', () => {
 
-    it('does not include a placholder in the options', () => {
+    it('does not include a placeholder in the options', () => {
       const props = initialProps;
       const { queryAllByRole } = renderComponent({ props });
 
@@ -81,6 +81,34 @@ describe('Dropdown', () => {
 
       const options = queryAllByRole('option');
       expect(options).toHaveLength(props.options.length + 1);
+    });
+
+  });
+
+  describe('when listHeight is not provided', () => {
+
+    it('sets the height of the listbox to a default', () => {
+      const props = { ...initialProps };
+      delete props.listHeight;
+
+      const { queryByRole } = renderComponent({ props });
+
+      const listbox = queryByRole('listbox');
+      expect(listbox).toHaveClass('h-80');
+      expect(listbox).not.toHaveClass('custom-list-height');
+    });
+
+  });
+
+  describe('when listHeight is provided', () => {
+
+    it('sets a custom height class on the listbox', () => {
+      const props = { ...initialProps, listHeight: '15rem' };
+
+      const { queryByRole } = renderComponent({ props });
+
+      const listbox = queryByRole('listbox');
+      expect(listbox).toHaveClass('custom-list-height');
     });
 
   });
