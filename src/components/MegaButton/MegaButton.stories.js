@@ -8,7 +8,20 @@ export default {
     docs: {
       page: mdx
     }
+  },
+  argTypes: {
+    label: {
+      control: {
+        type: 'text'
+      }
+    },
+    text: {
+      control: {
+        type: 'text'
+      }
+    }
   }
+
 };
 
 const Template = (args, { argTypes }) => ({
@@ -54,6 +67,7 @@ const megaButtonModel = '';
 const MegaTextGroupTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { MegaButton },
+  setup: () => ({ args }),
   data: () => ({ megaButtonModel }),
   template: `
     <fieldset class="flex items-stretch justify-around">
@@ -62,16 +76,17 @@ const MegaTextGroupTemplate = (args, { argTypes }) => ({
         name="catType"
         label="Ginger"
         value="ginger"
+        v-bind="args"
         v-model="megaButtonModel"
       />
       <mega-button
         id="calico"
         name="catType"
+        label="Calico"
         value="calico"
+        v-bind="args"
         v-model="megaButtonModel"
-      >
-      <template #label>Calico</template>
-      </mega-button>
+      />
       <mega-button
         id="void"
         name="catType"
@@ -79,6 +94,7 @@ const MegaTextGroupTemplate = (args, { argTypes }) => ({
         value="voidcat"
         disabled="true"
         disabledBanner="Hiding in closet!"
+        v-bind="args"
         v-model="megaButtonModel"
       />
     </fieldset>
