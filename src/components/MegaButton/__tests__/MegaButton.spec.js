@@ -195,7 +195,7 @@ describe('Megabutton', () => {
       });
 
       const text = getByText(props.text);
-      expect(text).not.toThrow;
+      expect(text).not.toBeInTheDocument;
     });
 
   });
@@ -231,7 +231,7 @@ describe('Megabutton', () => {
       });
 
       const text = getByText(props.text);
-      expect(text).not.toThrow;
+      expect(text).not.toBeInTheDocument;
     });
 
     it('displays the image', () => {
@@ -242,7 +242,7 @@ describe('Megabutton', () => {
       });
 
       const imageContainer = getByTestId('imageContainer');
-      expect(imageContainer).not.toThrow;
+      expect(imageContainer).not.toBeInTheDocument;
     });
 
     describe('with disabled banner', () => {
