@@ -14,7 +14,8 @@ export default {
   parameters: {
     docs: {
       page: mdx
-    }
+    },
+    layout: 'padded'
   },
   argTypes: {
     size: {
@@ -304,7 +305,7 @@ const WithTooltipTemplate = (args, { argTypes }) => ({
           </template>
           <template #content>
             Tough choice, I know!
-          </template>      
+          </template>
         </Tooltip>
       </template>
     </LobLabel>
