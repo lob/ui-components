@@ -1,46 +1,31 @@
 <template>
-  <div :class="{ 'cursor-not-allowed': disabled, 'cursor-pointer': !disabled }">
-    <component
-      :is="tag"
-      :[linkProp]="to"
-      :target="target"
-      :rel="target === '_blank' ? 'noopener noreferrer' : ''"
-      :aria-disabled="disabled"
-      :class="[
-        { 'pointer-events-none': disabled },
-        { 'px-0 text-base ': link },
-        { 'font-bold': bold },
-        { 'underline': underline && link },
-        { '!text-gray-500': disabled && link },
-        { 'text-inherit': inheritTextColor },
-        { 'text-primary-500 hover:text-primary-700 active:text-primary-900': !inheritTextColor },
-        { 'flex justify-center items-center rounded-lg no-underline tracking-[-0.04em] font-bold': primary || secondary },
-        { 'focus-visible:ring-4 focus:outline-none': primary || secondary },
-        { 'focus:ring-primary-100': !warning && (primary || secondary) },
-        { 'focus:ring-coral-700': warning && (primary || secondary) },
-        { 'px-8 text-[20px] h-[48px]': regular && (primary || secondary) },
-        { 'px-6 text-[14px] h-[32px]': small && (primary || secondary) },
-        { 'primary bg-primary-500 !text-white active:bg-black': !disabled && primary && !warning },
-        { 'bg-gray-100 !text-white': disabled && primary && !warning },
-        { 'primary warning bg-coral-900 !text-white active:bg-coral-700': !disabled && primary && warning },
-        { 'bg-coral-200 !text-white': disabled && primary && warning },
-        { 'secondary border border-primary-500 bg-white text-primary-500': !disabled && secondary && !warning,
-          'focus:border-primary-500 active:border-black active:text-black': !disabled && secondary && !warning },
-        { 'border border-gray-100 text-gray-100': disabled && secondary && !warning },
-        { 'secondary border border-coral-900 bg-white text-coral-900': !disabled && secondary && warning,
-          'focus:border-coral-900 active:border-coral-700 active:text-coral-700': !disabled && secondary && warning },
-        { 'border border-coral-200 text-coral-200': disabled && secondary && warning }
-      ]"
-      v-bind="$attrs"
-    >
-      <slot />
-      <ChevronRight
-        v-if="link && withChevron"
-        class="h-4 text-primary-500 inline-flex -mr-1"
-      />
-    </component>
-    <div />
-  </div>
+  <component
+    :is="tag"
+    :[linkProp]="to"
+    :target="target"
+    :rel="target === '_blank' ? 'noopener noreferrer' : ''"
+    :aria-disabled="disabled"
+    :class="[
+      {'font-bold': bold},
+      {'underline' : underline},
+      {'text-primary-900': !inheritTextColor },
+      {'text-inherit': inheritTextColor },
+      {'primary py-3 px-6 bg-primary-500 !text-white active:bg-primary-700': primary},
+      {'secondary py-3 px-6 bg-white-200 border border-primary-500 text-primary-500 active:text-primary-700 active:border-primary-700': secondary},
+      {'tertiary py-3 px-6 bg-white border border-gray-100 text-gray-500 active:border-gray-300': tertiary},
+      {'alert py-3 px-6 bg-white hover:bg-lemon-300 border rounded border-lemon-700 text-lemon-900 hover:text-lemon-900 focus:ring-lemon-700': alert},
+      {'flex justify-center items-center rounded focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent': primary || secondary || tertiary},
+      {'hover:text-white': primary},
+      {'!px-3 !py-2': small},
+      {'disabled pointer-events-none !text-gray-500': disabled},
+      {'bg-white-300': disabled && primary},
+      {'border-gray-100': disabled && secondary},
+      {'border-white-300': disabled && tertiary},
+      {'border-gray-100 hover:bg-white': disabled && alert}
+    ]"
+  >
+    <slot />
+  </component>
 </template>
 
 <script>

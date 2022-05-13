@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="['w-full border-l-4 p-4.5 rounded-r-lg flex justify-start items-start font-light text-sm',
+    :class="['w-full border-l-4 py-3 px-4 rounded-r-lg flex justify-start items-start text-sm',
              { 'bg-turquoise-100 border-turquoise-500': info },
              { 'bg-mint-100 border-success': success },
              { 'bg-lemon-100 border-warning': warning },
@@ -9,14 +9,14 @@
   >
     <component
       :is="icon"
-      class="mr-4 h-6 w-6 flex-shrink-0"
+      class="h-6 w-6 flex-shrink-0"
       :class="[{ 'text-gray-500': success },
                { 'text-turquoise-500': info },
                { 'text-warning': warning },
                { 'text-coral-700': error }
       ]"
     />
-    <div class="block">
+    <div class="block px-4">
       <slot :link-color="linkColor" />
     </div>
   </div>
