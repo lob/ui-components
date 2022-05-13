@@ -331,7 +331,7 @@ describe('Megabutton', () => {
       });
 
       const text = getByText(props.text);
-      expect(text).not.toBeInTheDocument;
+      expect(text).toBeInTheDocument();
     });
 
     it('displays the image', () => {
