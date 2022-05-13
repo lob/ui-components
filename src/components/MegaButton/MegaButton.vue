@@ -20,31 +20,56 @@
         'peer-hover:shadow',
         'peer-checked:border-2 peer-checked:border-primary-500',
         'peer-disabled:cursor-not-allowed peer-disabled:shadow-none peer-disabled:text-gray-100',
-        'peer-disabled:border-2 peer-checked:border-disabled-gray',
-        { 'strikethru-line': disabled && !disabledBanner }
+        'peer-disabled:border-2 peer-checked:border-disabled-gray'
       ]"
     >
-      <div
-        v-if="hasDisabledBanner"
-        class="absolute mt-0  text-center bg-turquoise-100 uppercase text-gray-700 text-sm tracking-wide font-bold p-1 inset-x-0 top-0"
-      >
-        {{ disabledBanner }}
-      </div>
-
       <div>
-        <div :class="['mx-8', { 'mt-8 mb-9': !hasDisabledBanner }, {'mt-12 mb-6': hasDisabledBanner }]">
-          <div :class="['font-semibold', { 'text-lg text-left': smallText }, { 'text-center text-3xl': megaText }]">
-            <slot name="label">
-              {{ label }}
-            </slot>
-          </div>
+        <div
+          v-if="disabled && !disabledBanner"
+          data-testId="strikethru"
+          class="strikethru-line absolute h-full w-full bg-coral-900"
+        />
+        <div
+          v-if="imageSource"
+          data-testId="imageContainer"
+          class="mx-16 mt-9 mb-8"
+        >
           <div
-            v-if="smallText"
-            class="text-left"
+            v-if="hasDisabledBanner"
+            class="bottom-[60%] inset-x-0 absolute text-center bg-turquoise-100 uppercase text-gray-700 text-sm tracking-wide font-bold p-1"
+            data-testId="imageDisabledBanner"
           >
-            <slot name="text">
-              <p>{{ text }}</p>
-            </slot>
+            {{ disabledBanner }}
+          </div>
+          <img
+            class="w-36 h-28"
+            :src="imageSource"
+          >
+        </div>
+
+        <div
+          v-if="hasDisabledBanner && !imageSource"
+          class="mt-0 top-0 inset-x-0 absolute text-center bg-turquoise-100 uppercase text-gray-700 text-sm tracking-wide font-bold p-1"
+          data-testId="disabledBanner"
+        >
+          {{ disabledBanner }}
+        </div>
+
+        <div>
+          <div :class="['mx-8', { 'mt-8 mb-9': !hasDisabledBanner }, {'mt-12 mb-6': hasDisabledBanner }]">
+            <div :class="['font-semibold', { 'text-lg text-left': smallText }, { 'text-center text-3xl': megaText }]">
+              <slot name="label">
+                {{ label }}
+              </slot>
+            </div>
+            <div
+              v-if="smallText"
+              class="text-left"
+            >
+              <slot name="text">
+                <p>{{ text }}</p>
+              </slot>
+            </div>
           </div>
         </div>
       </div>
@@ -87,6 +112,10 @@ export default {
     disabled: {
       type: Boolean,
       default: false
+    },
+    imageSource: {
+      type: String,
+      default: null
     }
   },
   emits: ['update:modelValue', 'input', 'click'],
@@ -124,7 +153,7 @@ export default {
 
 <style scoped lang="scss">
 .strikethru-line {
-  background: linear-gradient(to top right, #fff calc(50% - 1px), #c4c4c4, #fff calc(50% + 1px));
+  background: linear-gradient(to top right, rgba(255, 255, 255, 0) calc(50% - 1px), #c4c4c4, rgba(255, 255, 255, 0) calc(50% + 1px));
 }
 
 label {

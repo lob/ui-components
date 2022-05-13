@@ -1,6 +1,6 @@
 import MegaButton from './MegaButton.vue';
 import mdx from './MegaButton.mdx';
-
+import image from '@/assets/images/floofyboi.jpg';
 export default {
   title: 'Components/Mega Button',
   component: MegaButton,
@@ -24,6 +24,18 @@ MegaText.args = {
   id: 'tortie',
   label: 'Tortie',
   value: 'tortoiseshell'
+};
+
+export const WithImage = Template.bind({});
+WithImage.args = {
+  name: 'cat-type',
+  id: 'floofyboi',
+  value: 'floofyboi',
+  label: 'Floofyboi',
+  disabled: false,
+  disabledBanner: null,
+  text: 'Minimum 80% fur by weight',
+  imageSource: image
 };
 
 export const SmallText = Template.bind({});
