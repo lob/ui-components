@@ -120,19 +120,18 @@ describe('Link', () => {
     expect(linkContent).not.toHaveClass('underline');
   });
 
-  it('renders the primary button style with warning color', async () => {
-    const slotContent = 'This is a link that looks like a button';
+  it('renders alert button', async () => {
+    const slotContent = 'Hello, this is a link.';
     const slots = { default: slotContent };
     const props = {
       ...initialProps,
-      variant: 'primary-button',
-      warning: true
+      variant: 'alert-button'
     };
     const { queryByText } = await renderComponent({ props, slots });
 
     const linkContent = queryByText(slotContent);
     expect(linkContent).toBeInTheDocument();
-    expect(linkContent).toHaveClass('primary bg-coral-900');
+    expect(linkContent).toHaveClass('alert');
   });
 
 });
