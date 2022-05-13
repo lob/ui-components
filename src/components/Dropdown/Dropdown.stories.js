@@ -9,7 +9,7 @@ export default {
   title: 'Components/Dropdown',
   component: Dropdown,
   decorators: [
-    () => ({ template: '<div class="w-48"><story /></div>' })
+    () => ({ template: '<div class="w-48 mx-auto"><story /></div>' })
   ],
   parameters: {
     docs: {
