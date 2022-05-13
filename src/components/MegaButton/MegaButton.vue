@@ -28,7 +28,7 @@
         <div
           v-if="disabled && !disabledBanner"
           data-testId="strikethru"
-          class="strikethru-line absolute top-0 h-full w-full bg-coral-900"
+          class="strikethru-line absolute top-0 h-full w-full"
         />
         <div
           v-if="imageSource"
@@ -50,7 +50,7 @@
 
         <div
           v-if="hasDisabledBanner && !imageSource"
-          class="mt-0 top-0 inset-x-0 absolute text-center bg-turquoise-100 uppercase text-gray-700 text-sm tracking-wide font-bold p-1"
+          class="mt-0 top-0 inset-x-0 absolute text-center bg-turquoise-100 uppercase text-gray-700 text-sm tracking-wide font-bold p-1 rounded-t-lg"
           data-testId="disabledBanner"
         >
           {{ disabledBanner }}
