@@ -576,6 +576,6 @@ export default {
 
 <style>
   .custom-list-height {
-    height: v-bind(listHeight);
+    height: v-bind(listHeight); /* stylelint-disable-line value-keyword-case */
   }
 </style>
