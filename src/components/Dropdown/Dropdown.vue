@@ -1,4 +1,4 @@
-<!-- Implementation based on the accesible single select <div role="combobox" />  https://www.24a11y.com/2019/select-your-poison-part-2/ -->
+<!-- Implementation based on the accessible single select <div role="combobox" />  https://www.24a11y.com/2019/select-your-poison-part-2/ -->
 <!-- Code samples https://github.com/microsoft/sonder-ui/tree/master/src/components/select -->
 <template>
   <div>
@@ -94,7 +94,7 @@
           >
             <dropdown-item-group
               :id="id"
-              :ref="activeIndex === flattenedOptions.indexOf(item) ? 'activeOption' : null"
+              :ref="(el) => setOptionRef(el, item)"
               :group="item"
               :active-index="activeIndex"
               :selected-index="selectedIndex"
@@ -110,7 +110,7 @@
           >
             <dropdown-item
               :id="`${id}-${flattenedOptions.indexOf(item)}`"
-              :ref="activeIndex === flattenedOptions.indexOf(item) ? 'activeOption' : null"
+              :ref="(el) => setOptionRef(el, item)"
               :option="item"
               :index="flattenedOptions.indexOf(item)"
               :active="activeIndex === flattenedOptions.indexOf(item)"
@@ -241,6 +241,8 @@ export default {
     return {
       // active option index
       activeIndex: -1,
+      // ref to the option with the activeIndex
+      activeOptionRef: null,
       // selected option index
       selectedIndex: -1,
       // menu state
@@ -303,12 +305,16 @@ export default {
     this.setSelectedInLifecycle();
   },
   updated () {
-    if (this.open && this.isScrollable(this.$refs.listbox) && this.$refs.activeOption) {
-      const activeOption = Array.isArray(this.$refs.activeOption) ? this.$refs.activeOption[0] : this.$refs.activeOption;
-      this.maintainScrollVisibility(activeOption, this.$refs.listbox);
+    if (this.open && this.isScrollable(this.$refs.listbox) && this.activeOptionRef) {
+      this.maintainScrollVisibility(this.activeOptionRef, this.$refs.listbox);
     }
   },
   methods: {
+    setOptionRef (optionEl, option) {
+      if (optionEl && this.activeIndex === this.flattenedOptions.indexOf(option)) {
+        this.activeOptionRef = optionEl;
+      }
+    },
     isOptGroup (optionItem) {
       return optionItem.hasOwnProperty('options');
     },
