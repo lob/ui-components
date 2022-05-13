@@ -101,6 +101,7 @@
               :placeholder-text="placeholder"
               :flattened-options="flattenedOptions"
               @mousedown="onOptionMousedown"
+              @mouseenter="onOptionMouseover"
               @click="onOptionClick"
             />
           </div>
@@ -117,6 +118,7 @@
               :placeholder="item.label === placeholder"
               :size="size"
               @mousedown="onOptionMousedown"
+              @mouseenter="onOptionMouseover"
               @click="onOptionClick"
             />
           </div>
@@ -522,6 +524,9 @@ export default {
     },
     onOptionMousedown () {
       this.ignoreBlur = true;
+    },
+    onOptionMouseover ($event, index) {
+      this.onOptionChange(index);
     },
     onOptionChange (index) {
       this.activeIndex = index;

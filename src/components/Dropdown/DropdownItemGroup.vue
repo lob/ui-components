@@ -20,6 +20,7 @@
       :selected="selectedIndex === flattenedOptions.indexOf(option)"
       :placeholder="option.label === placeholderText"
       @mousedown="onMousedown"
+      @mouseenter="onMouseEnter"
       @click="onClick"
     />
   </div>
@@ -69,10 +70,13 @@ export default {
       }
     }
   },
-  emits: ['click', 'mousedown'],
+  emits: ['click', 'mousedown', 'mouseenter'],
   methods: {
     onMousedown ($event) {
       this.$emit('mousedown', $event);
+    },
+    onMouseEnter ($event, index) {
+      this.$emit('mouseenter', $event, index);
     },
     onClick ($event, index) {
       this.$emit('click', $event, index);
@@ -82,9 +86,6 @@ export default {
     },
     getOffsetTop () {
       return this.$refs.activeOption.offsetTop;
-    },
-    updateActiveIndex (index) {
-      this.$parent.activeIndex = index;
     }
   }
 };

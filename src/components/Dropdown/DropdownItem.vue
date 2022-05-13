@@ -15,7 +15,7 @@
     :aria-selected="active"
     role="option"
     @mousedown="onMousedown"
-    @mouseenter="updateActiveIndex"
+    @mouseenter="onMouseEnter"
     @click="onClick"
   >
     {{ option.label || option }}
@@ -64,7 +64,7 @@ export default {
       }
     }
   },
-  emits: ['click', 'mousedown'],
+  emits: ['click', 'mousedown', 'mouseenter'],
   computed: {
     small () {
       return this.size === 'small';
@@ -77,6 +77,9 @@ export default {
     onMousedown ($event) {
       this.$emit('mousedown', $event);
     },
+    onMouseEnter ($event) {
+      this.$emit('mouseenter', $event, this.index);
+    },
     onClick ($event) {
       if (!this.option.hasOwnProperty('disabled') || !this.option.disabled) {
         this.$emit('click', $event, this.index);
@@ -87,14 +90,6 @@ export default {
     },
     getOffsetTop () {
       return this.$refs.option.offsetTop;
-    },
-    updateActiveIndex () {
-      // if the parent is DropdownItemGroup
-      if (this.$parent.group) {
-        this.$parent.updateActiveIndex(this.index);
-      } else {
-        this.$parent.activeIndex = this.index;
-      }
     }
   }
 };
