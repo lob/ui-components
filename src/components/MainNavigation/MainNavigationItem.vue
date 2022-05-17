@@ -3,7 +3,7 @@
     <component
       :is="tag"
       :class="[
-        'no-underline py-4 px-6 max-h-12 flex items-center w-full font-light text-sm text-left !text-gray-500 relative overflow-hidden hover:text-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent'
+        'no-underline py-2 px-6 max-h-12 flex items-center w-full font-light whitespace-nowrap !text-sm text-left !text-gray-500 relative overflow-hidden hover:text-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent'
       ]"
       :to="to"
       :underline="false"
@@ -18,7 +18,7 @@
       >
       <span
         :class="[
-          'pl-4',
+          'px-4',
           { expanded: expanded },
           { 'collapsed xl:hidden': !expanded },
           itemClass
@@ -29,7 +29,7 @@
         <img
           v-if="collapsible && hasChildNavItems"
           :class="[
-            'w-6 absolute top-3 right-4',
+            'w-6 absolute top-2 right-3',
             { 'transform rotate-180': subNavOpen }
           ]"
           :src="`${$getConst('lobAssetsUrl')}/dashboard/navbar/caret-down.svg`"
@@ -48,11 +48,11 @@
 </template>
 
 <script>
-import LobLink from '../Link/Link';
+import NewLink from '../NewLink/NewLink';
 
 export default {
   name: 'MainNavigationItem',
-  components: { LobLink },
+  components: { NewLink },
   props: {
     title: {
       type: String,
@@ -102,7 +102,7 @@ export default {
       return Boolean(this.$slots.default);
     },
     tag () {
-      return this.to ? 'LobLink' : 'button';
+      return this.to ? 'NewLink' : 'button';
     },
     clickEvent () {
       return !this.to ? 'click' : null;

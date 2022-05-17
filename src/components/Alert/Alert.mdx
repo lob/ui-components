@@ -51,15 +51,15 @@ Example of using this component with a link
   <template v-slot:default="{linkColor}">
     {{ content }}
     <span :class="linkColor" class="inline-flex">
-      <LobLink bold inherit-text-color>{{ link }}</LobLink>.
+      <NewLink bold inherit-text-color>{{ link }}</NewLink>.
     </span>
   </template>
 </alert>
 ```
 
-To ensure correct styling of links passed into the Alert component's slot, make sure to wrap the `<LobLink>` in a `<span>`.
+To ensure correct styling of links passed into the Alert component's slot, make sure to wrap the `<NewLink>` in a `<span>`.
 
-Pass the `linkColor` prop to the `<span>` as a class. Also pass `bold` and `inherit-text-color`to the`<LobLink>`
+Pass the `linkColor` prop to the `<span>` as a class. Also pass `bold` and `inherit-text-color`to the`<NewLink>`
 
 ## Props
 

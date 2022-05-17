@@ -2,22 +2,21 @@
   <li
     class="list-none mr-12 whitespace-nowrap"
   >
-    <LobLink
+    <NewLink
       :to="to"
-      :class="['inline-block relative pb-4 no-underline text-black font-light', { 'lob-active-border font-normal': active }]"
-      data-testid="subnav-item"
+      :class="['relative pb-4 no-underline text-black font-light', { 'lob-active-border font-normal': active }]"
     >
       {{ title }}
-    </LobLink>
+    </NewLink>
   </li>
 </template>
 
 <script>
-import LobLink from '../Link/Link';
+import NewLink from '../NewLink/NewLink';
 
 export default {
   name: 'SubnavigationItem',
-  components: { LobLink },
+  components: { NewLink },
   props: {
     title: {
       type: String,
