@@ -142,12 +142,6 @@ export default {
     selectedDate () {
       return this.modelValue;
     },
-    minDate () {
-      return this.min || new Date(new Date().setMonth(new Date().getMonth() - 12));
-    },
-    maxDate () {
-      return this.max || new Date(new Date().setMonth(new Date().getMonth() + 12));
-    },
     focusedMonth () {
       return this.focusedDate.getMonth();
     },
@@ -159,6 +153,12 @@ export default {
     },
     nextMonthDisabled () {
       return this.maxDate && this.maxDate.getMonth() === this.focusedMonth && this.maxDate.getFullYear() === this.focusedYear;
+    },
+    minDate () {
+      return this.min || new Date(new Date().setMonth(new Date().getMonth() - 12));
+    },
+    maxDate () {
+      return this.max || new Date(new Date().setMonth(new Date().getMonth() + 12));
     },
     minYear () {
       return this.minDate ? this.minDate.getFullYear() : this.selectedYear - 10;
