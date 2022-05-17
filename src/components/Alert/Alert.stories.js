@@ -1,5 +1,5 @@
 import Alert from './Alert.vue';
-import LobLink from '../Link/Link.vue';
+import NewLink from '../NewLink/NewLink.vue';
 import mdx from './Alert.mdx';
 
 export default {
@@ -34,14 +34,14 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { Alert, LobLink },
+  components: { Alert, NewLink },
   setup: () => ({ args }),
   template: `
     <alert v-bind="args">
       <template v-slot:default="{linkColor}">
         {{ args.content }}
         <span :class="linkColor">
-          <LobLink bold inherit-text-color class="inline-flex">{{ args.link }}</LobLink>.
+          <NewLink bold inherit-text-color class="inline-flex">{{ args.link }}</NewLink>.
         </span>
       </template>
     </alert>
