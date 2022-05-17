@@ -51,7 +51,7 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { NewLink },
   setup: () => ({ args }),
-  template: '<new-link v-bind="args" to="/internal">Click me</-link>'
+  template: '<new-link v-bind="args" to="/internal">Click me</new-link>'
 });
 
 export const RegularLink = Template.bind({});
