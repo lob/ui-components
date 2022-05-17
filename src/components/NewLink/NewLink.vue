@@ -48,6 +48,7 @@ import { ChevronRight } from '@/components/Icons';
 export default {
   name: 'NewLink',
   components: { ChevronRight },
+  inheritAttrs: false,
   props: {
     variant: {
       type: String,
