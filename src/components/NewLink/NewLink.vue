@@ -115,11 +115,7 @@ export default {
       return typeof this.to === 'string' && protocolRelativePattern.test(this.to);
     },
     tag () {
-      if (this.isExternal) {
-        return 'a';
-      } else {
-        return 'router-link';
-      }
+      return this.isExternal ? 'a' : 'router-link';
     },
     linkProp () {
       return this.isExternal ? 'href' : 'to';
