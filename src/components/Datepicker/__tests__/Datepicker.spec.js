@@ -4,7 +4,6 @@ import { translate } from '@/mixins';
 import en from '@/mixins/en';
 import userEvent from '@testing-library/user-event';
 import Datepicker from '../Datepicker.vue';
-import { vi } from 'vitest';
 
 const mixins = [translate];
 
