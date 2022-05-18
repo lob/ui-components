@@ -45,8 +45,9 @@
         'rounded-lg border border-gray-100 focus-within:ring-4 focus-within:ring-primary-100 focus-within:border-transparent focus-within:outline-none',
         {'flex items-center': !selectedOptions},
         {'!border-0': withCopyButton},
-        {'hover:shadow': !disabled && !readonly},
-        {'!border-coral-700': error}
+        {'hover:shadow focus-within:shadow': !disabled && !readonly},
+        {'!border-coral-700 bg-coral-100': error},
+        {'!bg-white-100' : disabled}
       ]"
     >
       <div
@@ -80,6 +81,18 @@
         @focus="onFocus"
       >
       <div
+        :class="['pr-2 pt-3 pb-3 text-gray-500', {'!pr-1 !py-2': small}]"
+      >
+        <Close
+          :class="[
+            'h-[18px] w-[18px] cursor-pointer',
+            { 'bg-white-100' : disabled },
+            { 'bg-coral-100' : error }
+          ]"
+          @click="clearInput"
+        />
+      </div>
+      <div
         v-if="iconRight"
         :class="['pr-2 pt-3 pb-3 text-gray-500', {'!pr-1 !py-2': small}]"
       >
@@ -103,12 +116,14 @@
 <script>
 import LobLabel from '../LobLabel/LobLabel.vue';
 import Check  from '../Icons/Check.vue';
+import Close  from '../Icons/Close.vue';
 
 export default {
   name: 'TextInput',
   components: {
     LobLabel,
-    Check
+    Check,
+    Close
   },
   props: {
     tooltipContent: {
@@ -237,6 +252,9 @@ export default {
     },
     focus () {
       this.$refs.input.focus();
+    },
+    clearInput () {
+      this.$refs.input.value = '';
     }
   }
 };
