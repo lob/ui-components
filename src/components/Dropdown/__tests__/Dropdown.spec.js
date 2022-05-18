@@ -94,7 +94,7 @@ describe('Dropdown', () => {
       const { queryByRole } = renderComponent({ props });
 
       const listbox = queryByRole('listbox');
-      expect(listbox).toHaveClass('h-80');
+      expect(listbox).toHaveClass('max-h-80');
       expect(listbox).not.toHaveClass('custom-list-height');
     });
 
