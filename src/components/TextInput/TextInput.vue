@@ -7,6 +7,7 @@
       :required="required"
       :sr-only-label="srOnlyLabel"
       :tooltip-content="tooltipContent"
+      :disabled="disabled"
     />
     <div
       v-if="withCopyButton"
@@ -68,7 +69,7 @@
           {'!pl-4': !iconLeft},
           {'!pl-3 !pr-3 !py-2': small},
           {'border border-r-0 border-gray-100 rounded-tr-none rounded-br-none truncate': withCopyButton},
-          {'bg-white-300 cursor-not-allowed': disabled || readonly},
+          {'bg-white-100 cursor-not-allowed !text-gray-100 !placeholder-gray-100': disabled || readonly},
           {'!border-coral-700 bg-coral-100 !placeholder-error !text-error': error}
         ]"
         :disabled="disabled"
