@@ -1,5 +1,8 @@
 <template>
-  <div :class="{ 'cursor-not-allowed': disabled, 'cursor-pointer': !disabled }">
+  <div
+    :class="['inline-block',
+             { 'cursor-not-allowed': disabled, 'cursor-pointer': !disabled }]"
+  >
     <component
       :is="tag"
       :[linkProp]="to"
