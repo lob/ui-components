@@ -11,7 +11,7 @@
     role="dialog"
     aria-modal="true"
     :aria-hidden="!open"
-    :aria-:labelledby="id"
+    :aria-labelledby="id"
     @keydown="handleEscKey"
   >
     <div
@@ -72,8 +72,8 @@
       :focused-date="focusedDate"
       :labelled-by-id="id"
       :first-day-of-week="firstDayOfWeek"
-      :min="min"
-      :max="max"
+      :min="minDate"
+      :max="maxDate"
       :is-date-disabled="isDateDisabled"
       @dateSelect="onDateSelect"
       @keydown="onKeydown"
@@ -109,11 +109,11 @@ export default {
     },
     min: {
       type: Date,
-      default: new Date(new Date().setMonth(new Date().getMonth() - 12))
+      default: null
     },
     max: {
       type: Date,
-      default: new Date(new Date().setMonth(new Date().getMonth() + 12))
+      default: null
     },
     firstDayOfWeek: {
       type: Number,
@@ -149,16 +149,22 @@ export default {
       return this.focusedDate.getFullYear();
     },
     prevMonthDisabled () {
-      return this.min && this.min.getMonth() === this.focusedMonth && this.min.getFullYear() === this.focusedYear;
+      return this.minDate && this.minDate.getMonth() === this.focusedMonth && this.minDate.getFullYear() === this.focusedYear;
     },
     nextMonthDisabled () {
-      return this.max && this.max.getMonth() === this.focusedMonth && this.max.getFullYear() === this.focusedYear;
+      return this.maxDate && this.maxDate.getMonth() === this.focusedMonth && this.maxDate.getFullYear() === this.focusedYear;
+    },
+    minDate () {
+      return this.min || new Date(new Date().setMonth(new Date().getMonth() - 12));
+    },
+    maxDate () {
+      return this.max || new Date(new Date().setMonth(new Date().getMonth() + 12));
     },
     minYear () {
-      return this.min ? this.min.getFullYear() : this.selectedYear - 10;
+      return this.minDate ? this.minDate.getFullYear() : this.selectedYear - 10;
     },
     maxYear () {
-      return this.max ? this.max.getFullYear() : this.selectedYear + 10;
+      return this.maxDate ? this.maxDate.getFullYear() : this.selectedYear + 10;
     },
     monthNames () {
       return [
@@ -220,7 +226,7 @@ export default {
       this.setFocusedDate(endOfWeek(this.focusedDate, this.firstDayOfWeek));
     },
     setFocusedDate (date) {
-      this.focusedDate = clamp(date, this.min, this.max);
+      this.focusedDate = clamp(date, this.minDate, this.maxDate);
     },
     setMonth (month) {
       const min = setMonth(startOfMonth(this.focusedDate), month);
@@ -324,7 +330,7 @@ export default {
       }
     },
     onDateSelect (date) {
-      if (!inRange(date, this.min, this.max)) {
+      if (!inRange(date, this.minDate, this.maxDate)) {
         return;
       }
 
