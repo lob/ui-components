@@ -1,127 +1,125 @@
 <!-- Implementation based on the accessible single select <div role="combobox" />  https://www.24a11y.com/2019/select-your-poison-part-2/ -->
 <!-- Code samples https://github.com/microsoft/sonder-ui/tree/master/src/components/select -->
 <template>
-  <div>
-    <lob-label
-      v-if="label"
-      :id="`${id}-label`"
-      :label="label"
-      :label-for="id"
-      :required="required"
-      :sr-only-label="srOnlyLabel"
-      :tooltip-content="tooltipContent"
-    />
+  <lob-label
+    v-if="label"
+    :id="`${id}-label`"
+    :label="label"
+    :label-for="id"
+    :required="required"
+    :sr-only-label="srOnlyLabel"
+    :tooltip-content="tooltipContent"
+  />
+  <div
+    :class="[
+      'relative',
+      {'cursor-not-allowed': disabled}
+    ]"
+  >
     <div
+      :id="`${id}-value`"
+      ref="input"
+      role="combobox"
+      aria-autocomplete="none"
+      aria-haspopup="listbox"
+      :aria-activedescendant="activeId"
+      :aria-expanded="open"
+      :aria-labelledby="`${id}-label`"
+      :aria-controls="`${id}-listbox`"
+      :aria-required="required"
+      :aria-disabled="disabled"
       :class="[
-        'relative',
-        {'cursor-not-allowed': disabled}
+        'cursor-default bg-white border rounded-lg border-gray-100 focus:outline-none focus:shadow hover:shadow font-light text-gray-900 flex items-center',
+        {'text-sm py-2 px-2.5': small},
+        {'h-12 py-2.5 px-4': default_},
+        {'!border-error': error},
+        {'!bg-white-100 pointer-events-none': disabled},
+        {'focus:ring-4 focus:ring-primary-100 focus:border-transparent': !open},
+        {'focus:ring-0': open},
+        {'border-gray-500' : open || activeIndex > -1}
+      ]"
+      tabindex="0"
+      @blur="onSelectBlur"
+      @click="updateMenuState(!open)"
+      @keydown="onSelectKeydown"
+    >
+      <div
+        :class="[
+          'mr-8 truncate',
+          {'text-sm': small},
+          {'text-gray-100': disabled},
+          {'text-gray-900' : open || activeIndex > -1},
+          {'text-gray-500' : activeIndex < 0}
+        ]"
+      >
+        {{ value || placeholder }}
+      </div>
+      <chevron-down
+        v-if="!open"
+        :class="[
+          'w-4 h-4 absolute right-2 text-gray-100',
+          {'top-3': small},
+          {'top-4': default_}
+        ]"
+        data-testid="chevron-down"
+      />
+      <chevron-up
+        v-else
+        :class="[
+          'w-4 h-4 absolute right-2 text-gray-100',
+          {'top-3': small},
+          {'top-4': default_}
+        ]"
+        data-testid="chevron-up"
+      />
+    </div>
+    <div
+      :id="`${id}-listbox`"
+      ref="listbox"
+      role="listbox"
+      :class="[
+        'bg-white rounded-lg text-sm py-4 overflow-y-auto absolute left-0 top-full hidden w-full z-50 shadow h-auto max-h-80',
+        {'custom-list-height': listHeight},
+        {'!block': open }
       ]"
     >
       <div
-        :id="`${id}-value`"
-        ref="input"
-        role="combobox"
-        aria-autocomplete="none"
-        aria-haspopup="listbox"
-        :aria-activedescendant="activeId"
-        :aria-expanded="open"
-        :aria-labelledby="`${id}-label`"
-        :aria-controls="`${id}-listbox`"
-        :aria-required="required"
-        :aria-disabled="disabled"
-        :class="[
-          'cursor-default bg-white border rounded-lg border-gray-100 focus:outline-none focus:shadow hover:shadow font-light text-gray-900 flex items-center',
-          {'text-sm py-2 px-2.5': small},
-          {'h-12 py-2.5 px-4': default_},
-          {'!border-error': error},
-          {'!bg-white-100 pointer-events-none': disabled},
-          {'focus:ring-4 focus:ring-primary-100 focus:border-transparent': !open},
-          {'focus:ring-0': open},
-          {'border-gray-500' : open || activeIndex > -1}
-        ]"
-        tabindex="0"
-        @blur="onSelectBlur"
-        @click="updateMenuState(!open)"
-        @keydown="onSelectKeydown"
-      >
-        <span
-          :class="[
-            'mr-8',
-            {'text-sm': small},
-            {'text-gray-100': disabled},
-            {'text-gray-900' : open || activeIndex > -1},
-            {'text-gray-500' : activeIndex < 0}
-          ]"
-        >
-          {{ value || placeholder }}
-        </span>
-        <chevron-down
-          v-if="!open"
-          :class="[
-            'w-4 h-4 absolute right-2 text-gray-100',
-            {'top-3': small},
-            {'top-4': default_}
-          ]"
-          data-testid="chevron-down"
-        />
-        <chevron-up
-          v-else
-          :class="[
-            'w-4 h-4 absolute right-2 text-gray-100',
-            {'top-3': small},
-            {'top-4': default_}
-          ]"
-          data-testid="chevron-up"
-        />
-      </div>
-      <div
-        :id="`${id}-listbox`"
-        ref="listbox"
-        role="listbox"
-        :class="[
-          'bg-white rounded-lg text-sm py-4 overflow-y-auto absolute left-0 top-full hidden w-full z-50 shadow h-auto max-h-80',
-          {'custom-list-height': listHeight},
-          {'!block': open }
-        ]"
+        v-for="item in optionItems"
+        :key="item.id || item.label || item"
       >
         <div
-          v-for="item in optionItems"
-          :key="item.id || item.label || item"
+          v-if="isOptGroup(item)"
+          role="group"
         >
-          <div
-            v-if="isOptGroup(item)"
-            role="group"
-          >
-            <dropdown-item-group
-              :id="id"
-              :ref="(el) => setOptionRef(el, item)"
-              :group="item"
-              :active-index="activeIndex"
-              :selected-index="selectedIndex"
-              :placeholder-text="placeholder"
-              :flattened-options="flattenedOptions"
-              @mousedown="onOptionMousedown"
-              @mouseenter="onOptionMouseover"
-              @click="onOptionClick"
-            />
-          </div>
-          <div
-            v-else
-          >
-            <dropdown-item
-              :id="`${id}-${flattenedOptions.indexOf(item)}`"
-              :ref="(el) => setOptionRef(el, item)"
-              :option="item"
-              :index="flattenedOptions.indexOf(item)"
-              :active="activeIndex === flattenedOptions.indexOf(item)"
-              :selected="selectedIndex === flattenedOptions.indexOf(item)"
-              :placeholder="item.label === placeholder"
-              :size="size"
-              @mousedown="onOptionMousedown"
-              @mouseenter="onOptionMouseover"
-              @click="onOptionClick"
-            />
-          </div>
+          <dropdown-item-group
+            :id="id"
+            :ref="(el) => setOptionRef(el, item)"
+            :group="item"
+            :active-index="activeIndex"
+            :selected-index="selectedIndex"
+            :placeholder-text="placeholder"
+            :flattened-options="flattenedOptions"
+            @mousedown="onOptionMousedown"
+            @mouseenter="onOptionMouseover"
+            @click="onOptionClick"
+          />
+        </div>
+        <div
+          v-else
+        >
+          <dropdown-item
+            :id="`${id}-${flattenedOptions.indexOf(item)}`"
+            :ref="(el) => setOptionRef(el, item)"
+            :option="item"
+            :index="flattenedOptions.indexOf(item)"
+            :active="activeIndex === flattenedOptions.indexOf(item)"
+            :selected="selectedIndex === flattenedOptions.indexOf(item)"
+            :placeholder="item.label === placeholder"
+            :size="size"
+            @mousedown="onOptionMousedown"
+            @mouseenter="onOptionMouseover"
+            @click="onOptionClick"
+          />
         </div>
       </div>
     </div>
