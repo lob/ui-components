@@ -27,7 +27,8 @@
       :for="id"
       :class="[
         'relative flex ml-1.5',
-        { 'cursor-not-allowed': disabled || readonly }
+        { 'cursor-not-allowed': disabled || readonly },
+        { 'font-bold' : checked}
       ]"
     >
       <slot>
@@ -43,6 +44,13 @@ import { getCurrentInstance } from 'vue';
 export default {
   name: 'RadioButton',
   props: {
+    variant: {
+      type: String,
+      default: 'primary',
+      validator: function (value) {
+        return ['primary', 'box'].includes(value);
+      }
+    },
     id: {
       type: String,
       required: true
@@ -89,6 +97,9 @@ export default {
   computed: {
     checked () {
       return this.modelValue === this.value;
+    },
+    box () {
+      return this.variant === 'box';
     }
   },
   created () {
