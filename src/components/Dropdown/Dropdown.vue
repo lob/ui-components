@@ -30,7 +30,7 @@
         :aria-required="required"
         :aria-disabled="disabled"
         :class="[
-          'cursor-default bg-white border rounded-lg border-gray-100 focus:outline-none focus:shadow hover:shadow font-light text-gray-900',
+          'cursor-default bg-white border rounded-lg border-gray-100 focus:outline-none focus:shadow hover:shadow font-light text-gray-900 flex items-center',
           {'text-sm py-2 px-2.5': small},
           {'h-12 py-2.5 px-4': default_},
           {'!border-error': error},
