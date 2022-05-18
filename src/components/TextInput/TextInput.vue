@@ -41,7 +41,7 @@
     <div
       data-testId="input-container"
       :class="[
-        'rounded-lg border border-gray-100 focus-within:outline-none focus-within:border-primary-500',
+        'rounded-lg border border-gray-100 focus-within:ring-4 focus-within:ring-primary-100 focus-within:border-transparent focus-within:outline-none',
         {'flex items-center': !selectedOptions},
         {'!border-0': withCopyButton},
         {'hover:shadow': !disabled && !readonly},
