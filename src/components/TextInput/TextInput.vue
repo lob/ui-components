@@ -45,7 +45,7 @@
         {'flex items-center': !selectedOptions},
         {'!border-0': withCopyButton},
         {'hover:shadow': !disabled && !readonly},
-        {'border-error': error}
+        {'!border-coral-700': error}
       ]"
     >
       <div
@@ -69,7 +69,7 @@
           {'!pl-3 !pr-3 !py-2': small},
           {'border border-r-0 border-gray-100 rounded-tr-none rounded-br-none truncate': withCopyButton},
           {'bg-white-300 cursor-not-allowed': disabled || readonly},
-          {'border-error': error}
+          {'!border-coral-700 bg-coral-100': error}
         ]"
         :disabled="disabled"
         :required="required"
