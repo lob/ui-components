@@ -38,7 +38,7 @@ const PrimaryTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { TextInput },
   setup: () => ({ args }),
-  template: '<text-input v-bind="args" /> <text-input v-bind="args" />'
+  template: '<text-input v-bind="args" />'
 });
 
 export const Primary = PrimaryTemplate.bind({});

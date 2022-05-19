@@ -44,10 +44,10 @@
       :class="[
         'rounded-lg flex items-center border gap-2 border-gray-100 focus-within:ring-4 focus-within:ring-primary-100 focus-within:border-transparent focus-within:outline-none',
         { '!gap-1' : small },
-        {'!border-0 !gap-0': withCopyButton},
         {'hover:shadow focus-within:shadow': !disabled && !readonly},
         {'!border-coral-700 bg-coral-100': error},
-        {'!bg-white-100' : disabled}
+        {'!bg-white-100' : disabled},
+        {'!gap-0 pr-2 !bg-white-100' : withCopyButton}
       ]"
     >
       <div
@@ -69,7 +69,7 @@
           `rounded-lg h-12 pl-4 pr-4 py-2.5 leading-5 w-full text-gray-900 placeholder-gray-500 placeholder:font-light focus:font-light outline-none ${inputClass}`,
           {'!h-8 !pl-3 !pr-3 !py-2.5 text-xs': small},
           {'!pl-0': iconLeft},
-          {'border border-r-0 border-gray-100 rounded-tr-none rounded-br-none truncate': withCopyButton},
+          {' truncate': withCopyButton},
           {'bg-white-100 cursor-not-allowed !text-gray-100 !placeholder-gray-100': disabled || readonly},
           {'!border-coral-700 bg-coral-100 !placeholder-error !text-error': error}
         ]"
@@ -106,24 +106,21 @@
       <button
         v-if="withCopyButton"
         type="button"
-        :class="['rounded-tr-lg rounded-br-lg text-white bg-primary-500 px-3',
-                 { 'h-12': !small },
-                 { 'h-10': small }
-        ]"
+        :class="['rounded-lg text-white bg-primary-500 px-3 !h-8 text-sm', {'!h-6 text-xs' : small}]"
         @click="copyToClipboard"
       >
         Copy
       </button>
-    </div>
-    <div
-      v-if="hintText"
-      :class="[
-        'text-gray-500 text-xs pt-1',
-        {'text-error' : error},
-        {'text-gray-100' : disabled}
-      ]"
-    >
-      {{ hintText }}
+      <div
+        v-if="hintText"
+        :class="[
+          'text-gray-500 text-xs pt-1',
+          {'text-error' : error},
+          {'text-gray-100' : disabled}
+        ]"
+      >
+        {{ hintText }}
+      </div>
     </div>
   </div>
 </template>
