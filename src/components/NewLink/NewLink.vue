@@ -1,8 +1,5 @@
 <template>
-  <div
-    :class="['inline-block',
-             { 'cursor-not-allowed': disabled, 'cursor-pointer': !disabled }]"
-  >
+  <span :class="[{ 'cursor-not-allowed': disabled, 'cursor-pointer': !disabled }]">
     <component
       :is="tag"
       :[linkProp]="to"
@@ -43,7 +40,7 @@
       />
     </component>
     <div />
-  </div>
+  </span>
 </template>
 
 <script>
