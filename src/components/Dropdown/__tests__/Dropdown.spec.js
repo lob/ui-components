@@ -58,12 +58,12 @@ describe('Dropdown', () => {
     const { getByRole } = renderComponent({ props });
     const select = getByRole('combobox');
 
-    expect(select).toHaveClass('border-error');
+    expect(select).toHaveClass('!border-error');
   });
 
   describe('without a placeholder', () => {
 
-    it('does not include a placholder in the options', () => {
+    it('does not include a placeholder in the options', () => {
       const props = initialProps;
       const { queryAllByRole } = renderComponent({ props });
 
@@ -81,6 +81,34 @@ describe('Dropdown', () => {
 
       const options = queryAllByRole('option');
       expect(options).toHaveLength(props.options.length + 1);
+    });
+
+  });
+
+  describe('when listHeight is not provided', () => {
+
+    it('sets the height of the listbox to a default', () => {
+      const props = { ...initialProps };
+      delete props.listHeight;
+
+      const { queryByRole } = renderComponent({ props });
+
+      const listbox = queryByRole('listbox');
+      expect(listbox).toHaveClass('max-h-80');
+      expect(listbox).not.toHaveClass('custom-list-height');
+    });
+
+  });
+
+  describe('when listHeight is provided', () => {
+
+    it('sets a custom height class on the listbox', () => {
+      const props = { ...initialProps, listHeight: '15rem' };
+
+      const { queryByRole } = renderComponent({ props });
+
+      const listbox = queryByRole('listbox');
+      expect(listbox).toHaveClass('custom-list-height');
     });
 
   });
@@ -130,6 +158,16 @@ describe('Dropdown', () => {
   });
 
   describe('when collapsed', () => {
+
+    it('displays the chevron icon pointing down', () => {
+      const { queryByTestId } = renderComponent({ props: initialProps });
+
+      const chevronDown = queryByTestId('chevron-down');
+      expect(chevronDown).toBeInTheDocument();
+
+      const chevronUp = queryByTestId('chevron-up');
+      expect(chevronUp).not.toBeInTheDocument();
+    });
 
     ['ArrowDown', 'ArrowUp', 'Enter', ' ', 'Home', 'End'].forEach(async (key) => {
 
@@ -211,6 +249,16 @@ describe('Dropdown', () => {
       await fireEvent.keyDown(select, { key: 'Enter', code: 'Enter' });
     });
 
+    it('displays the chevron icon pointing up', () => {
+      const { queryByTestId } = component;
+
+      const chevronUp = queryByTestId('chevron-up');
+      expect(chevronUp).toBeInTheDocument();
+
+      const chevronDown = queryByTestId('chevron-down');
+      expect(chevronDown).not.toBeInTheDocument();
+    });
+
     ['Enter', ' '].forEach(async (key) => {
       it(`typing ${key}, it selects the current option and closes the listbox`, async () => {
         const { emitted } = component;
@@ -258,8 +306,7 @@ describe('Dropdown', () => {
         await fireEvent.keyDown(select, { key: 'ArrowUp', code: 'ArrowUp' });
 
         const emittedEvent = emitted();
-        expect(emittedEvent).toHaveProperty('input');
-        expect(emittedEvent.input[2][0]).toEqual(props.options[0]);
+        expect(emittedEvent).not.toHaveProperty('input');
       });
 
     });
@@ -289,14 +336,13 @@ describe('Dropdown', () => {
         expect(options[options.length - 1]).toHaveAttribute('aria-selected', 'true');
       });
 
-      it('changes the selection', async () => {
+      it('does not change the selection', async () => {
         const { emitted } = component;
         // key down to option a
         await fireEvent.keyDown(select, { key: 'ArrowDown', code: 'ArrowDown' });
 
         const emittedEvent = emitted();
-        expect(emittedEvent).toHaveProperty('input');
-        expect(emittedEvent.input[0][0]).toEqual(props.options[0]);
+        expect(emittedEvent).not.toHaveProperty('input');
       });
 
     });
