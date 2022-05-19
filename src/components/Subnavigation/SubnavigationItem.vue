@@ -1,10 +1,12 @@
 <template>
   <li
     class="list-none mr-12 whitespace-nowrap"
+    :class="['relative pb-4', { 'lob-active-border': active }]"
   >
     <NewLink
       :to="to"
-      :class="['relative pb-4 no-underline text-black font-light', { 'lob-active-border font-normal': active }]"
+      :underline="false"
+      :class="['pb-4 text-black font-light', { 'font-normal': active }]"
     >
       {{ title }}
     </NewLink>
