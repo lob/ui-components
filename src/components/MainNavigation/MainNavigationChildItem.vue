@@ -1,14 +1,14 @@
 <template>
   <li
     :class="[
-      'no-underline py-2 max-h-12 my-px flex items-center font-light text-sm text-left text-gray-500 hover:text-primary-700',
+      'no-underline my-1 max-h-12 flex items-center font-light text-sm text-left text-gray-500 hover:text-primary-700',
       { 'font-medium bg-white-300 rounded-l-full ring-2 ring-primary-100': active }
     ]"
     data-testid="nav-child-item"
   >
     <NewLink
       :to="to"
-      class="block !w-full py-1 pl-4 !text-sm whitespace-nowrap overflow-hidden !text-gray-500 focus:outline-none focus:ring-0 focus-visible:ring-2 focus-visible:ring-primary-100"
+      class="block !w-full rounded-l-full py-2 pl-4 !text-sm whitespace-nowrap overflow-hidden !text-gray-500 focus:outline-none focus:ring-0 focus-visible:ring-2 focus-visible:ring-primary-100"
       :underline="false"
       @click.stop="handleNavigation"
     >
