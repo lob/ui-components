@@ -52,7 +52,7 @@
     >
       <div
         v-if="iconLeft"
-        :class="['pl-2 pt-3 pb-3 text-gray-500', {'!pl-1 !py-2': small}]"
+        :class="['pl-4 text-gray-500', {'!pl-3': small}]"
       >
         <slot name="iconLeft" />
       </div>
@@ -66,9 +66,9 @@
         :max="max"
         :pattern="pattern"
         :class="[
-          `rounded-lg h-12 px-4 py-2.5 leading-5 w-full text-gray-900 placeholder-gray-500 placeholder:font-light focus:font-light outline-none ${inputClass}`,
-          {'!pl-4': !iconLeft},
-          {'!h-8 !px-3 !py-2.5 text-xs': small},
+          `rounded-lg h-12 pl-4 pr-4 py-2.5 leading-5 w-full text-gray-900 placeholder-gray-500 placeholder:font-light focus:font-light outline-none ${inputClass}`,
+          {'!h-8 !pl-3 !pr-3 !py-2.5 text-xs': small},
+          {'!pl-0': iconLeft},
           {'border border-r-0 border-gray-100 rounded-tr-none rounded-br-none truncate': withCopyButton},
           {'bg-white-100 cursor-not-allowed !text-gray-100 !placeholder-gray-100': disabled || readonly},
           {'!border-coral-700 bg-coral-100 !placeholder-error !text-error': error}
