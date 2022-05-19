@@ -42,8 +42,8 @@
     <div
       data-testId="input-container"
       :class="[
-        'rounded-lg border border-gray-100 focus-within:ring-4 focus-within:ring-primary-100 focus-within:border-transparent focus-within:outline-none',
-        {'flex items-center': !selectedOptions},
+        'rounded-lg flex items-center border gap-2 border-gray-100 focus-within:ring-4 focus-within:ring-primary-100 focus-within:border-transparent focus-within:outline-none',
+        { '!gap-1' : small },
         {'!border-0': withCopyButton},
         {'hover:shadow focus-within:shadow': !disabled && !readonly},
         {'!border-coral-700 bg-coral-100': error},
@@ -66,9 +66,9 @@
         :max="max"
         :pattern="pattern"
         :class="[
-          `rounded-lg pl-2 pt-3 pb-3 leading-5 w-full text-gray-900 placeholder-gray-500 placeholder:font-light focus:font-light outline-none ${inputClass}`,
+          `rounded-lg h-12 px-4 py-2.5 leading-5 w-full text-gray-900 placeholder-gray-500 placeholder:font-light focus:font-light outline-none ${inputClass}`,
           {'!pl-4': !iconLeft},
-          {'!pl-3 !pr-3 !py-2': small},
+          {'!h-8 !px-3 !py-2.5 text-xs': small},
           {'border border-r-0 border-gray-100 rounded-tr-none rounded-br-none truncate': withCopyButton},
           {'bg-white-100 cursor-not-allowed !text-gray-100 !placeholder-gray-100': disabled || readonly},
           {'!border-coral-700 bg-coral-100 !placeholder-error !text-error': error}
