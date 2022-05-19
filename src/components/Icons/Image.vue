@@ -1,19 +1,42 @@
 <template>
   <svg
     viewBox="0 0 24 24"
-    class="fill-current"
+    fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      fill-rule="evenodd"
-      clip-rule="evenodd"
-      d="M5 4C4.44772 4 4 4.44772 4 5V18.6983L15.3598 9.23179C15.7605 8.89792 16.3504 8.928 16.715 9.30089L20 12.6605V5C20 4.44772 19.5523 4 19 4H5ZM20 15.4168C19.8852 15.3668 19.778 15.2942 19.685 15.1991L15.9307 11.3595L5.56208 20H19C19.5523 20 20 19.5523 20 19V15.4168ZM2 5C2 3.34315 3.34315 2 5 2H19C20.6569 2 22 3.34315 22 5V19C22 20.6569 20.6569 22 19 22H5C3.34315 22 2 20.6569 2 19V5ZM8.5 8C8.22386 8 8 8.22386 8 8.5C8 8.77614 8.22386 9 8.5 9C8.77614 9 9 8.77614 9 8.5C9 8.22386 8.77614 8 8.5 8ZM6 8.5C6 7.11929 7.11929 6 8.5 6C9.88071 6 11 7.11929 11 8.5C11 9.88071 9.88071 11 8.5 11C7.11929 11 6 9.88071 6 8.5Z"
+      d="M15 8H15.01"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <rect
+      x="4"
+      y="4"
+      width="16"
+      height="16"
+      rx="3"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M4 15L8 11C8.9282 10.1068 10.0718 10.1068 11 11L16 16"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M14 14L15 13C15.9282 12.1068 17.0718 12.1068 18 13L20 15"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
     />
   </svg>
 </template>
 
 <script>
 export default {
-  name: 'Image'
+  name: "Image",
 };
 </script>

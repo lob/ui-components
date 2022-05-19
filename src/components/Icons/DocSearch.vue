@@ -5,31 +5,27 @@
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      d="M3.47369 18.4581C6.11175 16.935 9.36196 16.935 12 18.4581C14.6381 16.935 17.8883 16.935 20.5263 18.4581"
+      d="M12.875 4V7.5C12.875 7.98325 13.2668 8.375 13.75 8.375H17.25"
       stroke="currentColor"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
     <path
-      d="M3.47369 6.14231C6.11175 4.61923 9.36196 4.61923 12 6.14231C14.6381 4.61923 17.8883 4.61923 20.5263 6.14231"
+      d="M11.125 19.75H6.75C5.7835 19.75 5 18.9665 5 18V5.75C5 4.7835 5.7835 4 6.75 4H12.875L17.25 8.375V12.3125"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <circle
+      cx="15.0625"
+      cy="16.6875"
+      r="2.1875"
       stroke="currentColor"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
     <path
-      d="M3.47368 6.14235V18.4581"
-      stroke="currentColor"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    />
-    <path
-      d="M12 6.14235V18.4581"
-      stroke="currentColor"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    />
-    <path
-      d="M20.5263 6.14235V18.4581"
+      d="M16.8125 18.4375L19 20.625"
       stroke="currentColor"
       stroke-linecap="round"
       stroke-linejoin="round"
@@ -39,6 +35,6 @@
 
 <script>
 export default {
-  name: "Book",
-};
+    name: "DocSearch"
+}
 </script>

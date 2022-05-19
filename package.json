@@ -31,6 +31,7 @@
     "storybook": "start-storybook -p 6006"
   },
   "dependencies": {
+    "@lob/ui-components": "^0.0.197",
     "date-fns": "^2.23.0",
     "mitt": "^3.0.0",
     "vue": "^3.0.0",

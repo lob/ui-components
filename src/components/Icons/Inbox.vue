@@ -4,14 +4,18 @@
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <path
-      d="M11.5 5V19"
+    <rect
+      x="4"
+      y="4"
+      width="16"
+      height="16"
+      rx="2"
       stroke="currentColor"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
     <path
-      d="M5 12.5H19"
+      d="M4 13H7L10 16H14L17 13H20"
       stroke="currentColor"
       stroke-linecap="round"
       stroke-linejoin="round"
@@ -21,6 +25,6 @@
 
 <script>
 export default {
-  name: "Plus",
+  name: "Inbox",
 };
 </script>

@@ -4,20 +4,23 @@
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <path
-      d="M11.1666 8.83334H6.99998C6.07951 8.83334 5.33331 9.57953 5.33331 10.5V18C5.33331 18.9205 6.07951 19.6667 6.99998 19.6667H14.5C15.4205 19.6667 16.1666 18.9205 16.1666 18V13.8333"
+    <ellipse
+      cx="12"
+      cy="6.625"
+      rx="7"
+      ry="2.625"
       stroke="currentColor"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
     <path
-      d="M10.3333 14.6667L18.6666 6.33334"
+      d="M5 6.625V11.875C5 13.3247 8.13401 14.5 12 14.5C15.866 14.5 19 13.3247 19 11.875V6.625"
       stroke="currentColor"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
     <path
-      d="M14.5 6.33334H18.6667V10.5"
+      d="M5 11.875V17.125C5 18.5747 8.13401 19.75 12 19.75C15.866 19.75 19 18.5747 19 17.125V11.875"
       stroke="currentColor"
       stroke-linecap="round"
       stroke-linejoin="round"
@@ -27,6 +30,6 @@
 
 <script>
 export default {
-  name: "External",
+  name: "Database"
 };
 </script>
