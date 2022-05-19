@@ -253,8 +253,11 @@ export default {
     focus () {
       this.$refs.input.focus();
     },
-    clearInput () {
+    clearInput ($event) {
       this.$refs.input.value = '';
+      this.$emit('update:modelValue', '');
+      this.$emit('input', '');
+      this.$emit('change', $event);
     }
   }
 };
