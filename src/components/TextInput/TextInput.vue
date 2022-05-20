@@ -81,6 +81,7 @@
         :readonly="readonly"
         @input="onInput"
         @focus="onFocus"
+        @change="onChange"
       >
       <div
         v-if="showClearButton"
@@ -269,9 +270,6 @@ export default {
       this.$emit('update:modelValue', $event.target.value);
       this.$emit('input', $event.target.value);
       this.$emit('change', $event);
-      if ($event.target.value) {
-        this.isEmpty = false;
-      }
     },
     onFocus ($event) {
       if (this.selectOnClick) {
@@ -288,6 +286,13 @@ export default {
       this.$emit('update:modelValue', '');
       this.$emit('input', '');
       this.$emit('change', $event);
+    },
+    onChange ($event) {
+      if ($event.target.value) {
+        this.isEmpty = false;
+      } else {
+        this.isEmpty = true;
+      }
     }
   }
 };
