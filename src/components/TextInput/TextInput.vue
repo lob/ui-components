@@ -47,7 +47,8 @@
         {'hover:shadow focus-within:shadow': !disabled && !readonly},
         {'!border-coral-700 bg-coral-100': error},
         {'!bg-white-100' : disabled},
-        {'!gap-0 pr-2 !bg-white-100' : withCopyButton}
+        {'!gap-0 pr-2 !bg-white-100' : withCopyButton},
+        {'!flex-wrap' : isMultiselect}
       ]"
     >
       <div
