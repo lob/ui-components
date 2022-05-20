@@ -78,4 +78,14 @@ export default {
 .gradientBg {
   background: linear-gradient(105.01deg, #0154AC 17.25%, #1876DB 93.21%);
 }
+
+.animate-indybar {
+  animation: indybar 3s infinite;
+}
+
+@keyframes indybar {
+  0% { width: 0; margin-left: 0; margin-right: 100% }
+  50% { width: 100%; margin-left: 0; margin-right: 0 }
+  100% { width: 0; margin-left: 100%; margin-right: 0 }
+}
 </style>
