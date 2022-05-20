@@ -55,6 +55,7 @@ const IconLeftTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { TextInput, Search },
   setup: () => ({ args }),
+  data: () => ({ textInputVModel }),
   template: `
     <text-input v-bind="args" v-model="textInputVModel">
       <template v-slot:iconLeft>
@@ -75,8 +76,9 @@ const IconRightTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { TextInput, Close },
   setup: () => ({ args }),
+  data: () => ({ textInputVModel }),
   template: `
-    <text-input v-bind="args">
+    <text-input v-bind="args" v-model="textInputVModel">
       <template v-slot:iconRight>
         <close class="w-6 h-6" />
       </template>
@@ -95,6 +97,7 @@ const WithTooltipTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { TextInput, LobLabel, Info, Tooltip },
   setup: () => ({ args }),
+  data: () => ({ textInputVModel }),
   template: `
     <LobLabel
       label="Favorite Lunar Maria"
@@ -112,7 +115,7 @@ const WithTooltipTemplate = (args, { argTypes }) => ({
         </Tooltip>
       </template>
     </LobLabel>
-    <text-input v-bind="args" />
+    <text-input v-bind="args" v-model="textInputVModel" />
   `
 });
 
@@ -126,8 +129,9 @@ const BothIconsTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { TextInput, Search, Close },
   setup: () => ({ args }),
+  data: () => ({ textInputVModel }),
   template: `
-    <text-input v-bind="args">
+    <text-input v-bind="args" v-model="textInputVModel">
       <template v-slot:iconLeft>
         <search class="w-6 h-6" />
       </template>
@@ -149,7 +153,8 @@ const WithCopyButtonTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { TextInput },
   setup: () => ({ args }),
-  template: '<text-input v-bind="args"/>'
+  data: () => ({ textInputVModel }),
+  template: '<text-input v-bind="args" v-model="textInputVModel"/>'
 });
 
 export const WithCopyButton = WithCopyButtonTemplate.bind({});
