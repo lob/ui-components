@@ -34,11 +34,14 @@ export default {
   }
 };
 
+const textInputVModel = '';
+
 const PrimaryTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { TextInput },
   setup: () => ({ args }),
-  template: '<text-input v-bind="args" />'
+  data: () => ({ textInputVModel }),
+  template: '<text-input v-bind="args" v-model="textInputVModel" />'
 });
 
 export const Primary = PrimaryTemplate.bind({});
