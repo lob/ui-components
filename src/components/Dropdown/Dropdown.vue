@@ -1,99 +1,125 @@
-<!-- Implementation based on the accesible single select <div role="combobox" />  https://www.24a11y.com/2019/select-your-poison-part-2/ -->
+<!-- Implementation based on the accessible single select <div role="combobox" />  https://www.24a11y.com/2019/select-your-poison-part-2/ -->
 <!-- Code samples https://github.com/microsoft/sonder-ui/tree/master/src/components/select -->
 <template>
-  <div>
-    <lob-label
-      v-if="label"
-      :id="`${id}-label`"
-      :label="label"
-      :label-for="id"
-      :required="required"
-      :sr-only-label="srOnlyLabel"
-      :tooltip-content="tooltipContent"
-    />
+  <lob-label
+    v-if="label"
+    :id="`${id}-label`"
+    :label="label"
+    :label-for="id"
+    :required="required"
+    :sr-only-label="srOnlyLabel"
+    :tooltip-content="tooltipContent"
+  />
+  <div
+    :class="[
+      'relative',
+      {'cursor-not-allowed': disabled}
+    ]"
+  >
     <div
+      :id="`${id}-value`"
+      ref="input"
+      role="combobox"
+      aria-autocomplete="none"
+      aria-haspopup="listbox"
+      :aria-activedescendant="activeId"
+      :aria-expanded="open"
+      :aria-labelledby="`${id}-label`"
+      :aria-controls="`${id}-listbox`"
+      :aria-required="required"
+      :aria-disabled="disabled"
       :class="[
-        'relative',
-        {'cursor-not-allowed': disabled}
+        'cursor-default bg-white border rounded-lg border-gray-100 focus:outline-none focus:shadow hover:shadow font-light text-gray-900 flex items-center',
+        {'text-sm py-2 px-2.5': small},
+        {'h-12 py-2.5 px-4': default_},
+        {'!border-error': error},
+        {'!bg-white-100 pointer-events-none': disabled},
+        {'focus:ring-4 focus:ring-primary-100 focus:border-transparent': !open},
+        {'focus:ring-0': open},
+        {'border-gray-500' : open || activeIndex > -1}
+      ]"
+      tabindex="0"
+      @blur="onSelectBlur"
+      @click="updateMenuState(!open)"
+      @keydown="onSelectKeydown"
+    >
+      <div
+        :class="[
+          'mr-8 truncate',
+          {'text-sm': small},
+          {'text-gray-100': disabled},
+          {'text-gray-900' : open || activeIndex > -1},
+          {'text-gray-500' : activeIndex < 0}
+        ]"
+      >
+        {{ value || placeholder }}
+      </div>
+      <chevron-down
+        v-if="!open"
+        :class="[
+          'w-4 h-4 absolute right-2 text-gray-100',
+          {'top-3': small},
+          {'top-4': default_}
+        ]"
+        data-testid="chevron-down"
+      />
+      <chevron-up
+        v-else
+        :class="[
+          'w-4 h-4 absolute right-2 text-gray-100',
+          {'top-3': small},
+          {'top-4': default_}
+        ]"
+        data-testid="chevron-up"
+      />
+    </div>
+    <div
+      :id="`${id}-listbox`"
+      ref="listbox"
+      role="listbox"
+      :class="[
+        'bg-white rounded-lg text-sm py-4 overflow-y-auto absolute left-0 top-full hidden w-full z-50 shadow h-auto max-h-80',
+        {'custom-list-height': listHeight},
+        {'!block': open }
       ]"
     >
       <div
-        :id="`${id}-value`"
-        ref="input"
-        role="combobox"
-        aria-autocomplete="none"
-        aria-haspopup="listbox"
-        :aria-activedescendant="activeId"
-        :aria-expanded="open"
-        :aria-labelledby="`${id}-label`"
-        :aria-controls="`${id}-listbox`"
-        :aria-required="required"
-        :aria-disabled="disabled"
-        :class="[
-          'cursor-default bg-white border rounded border-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent hover:shadow',
-          {'text-sm py-2 px-2.5': small},
-          {'py-2.5 px-4': default_},
-          {'!bg-white-300 pointer-events-none': disabled},
-          {'border-error': error}
-        ]"
-        tabindex="0"
-        @blur="onSelectBlur"
-        @click="updateMenuState(!open)"
-        @keydown="onSelectKeydown"
-      >
-        <span :class="['mr-8', {'text-sm': small}]">
-          {{ value || placeholder }}
-        </span>
-        <chevron-down
-          :class="[
-            'w-4 h-4 absolute right-2',
-            {'top-3': small},
-            {'top-4': default_}
-          ]"
-        />
-      </div>
-      <div
-        :id="`${id}-listbox`"
-        ref="listbox"
-        role="listbox"
-        :class="[
-          `bg-white rounded-sm text-sm py-4 overflow-y-auto absolute left-0 top-full hidden w-full z-50 shadow ${listHeight ? `h-${listHeight}` : 'max-h-80'}`,
-          {'!block': open }
-        ]"
+        v-for="item in optionItems"
+        :key="item.id || item.label || item"
       >
         <div
-          v-for="item in optionItems"
-          :key="item.id || item.label || item"
+          v-if="isOptGroup(item)"
+          role="group"
         >
-          <div
-            v-if="isOptGroup(item)"
-            role="group"
-          >
-            <dropdown-item-group
-              :id="id"
-              :ref="activeIndex === flattenedOptions.indexOf(item) ? 'activeOption' : null"
-              :group="item"
-              :active-index="activeIndex"
-              :placeholder-text="placeholder"
-              :flattened-options="flattenedOptions"
-              @mousedown="onOptionMousedown"
-              @click="onOptionClick"
-            />
-          </div>
-          <div
-            v-else
-          >
-            <dropdown-item
-              :id="`${id}-${flattenedOptions.indexOf(item)}`"
-              :ref="activeIndex === flattenedOptions.indexOf(item) ? 'activeOption' : null"
-              :option="item"
-              :index="flattenedOptions.indexOf(item)"
-              :active="activeIndex === flattenedOptions.indexOf(item)"
-              :placeholder="item.label === placeholder"
-              @mousedown="onOptionMousedown"
-              @click="onOptionClick"
-            />
-          </div>
+          <dropdown-item-group
+            :id="id"
+            :ref="(el) => setOptionRef(el, item)"
+            :group="item"
+            :active-index="activeIndex"
+            :selected-index="selectedIndex"
+            :placeholder-text="placeholder"
+            :flattened-options="flattenedOptions"
+            @mousedown="onOptionMousedown"
+            @mouseenter="onOptionMouseover"
+            @click="onOptionClick"
+          />
+        </div>
+        <div
+          v-else
+        >
+          <dropdown-item
+            :id="`${id}-${flattenedOptions.indexOf(item)}`"
+            :ref="(el) => setOptionRef(el, item)"
+            :option="item"
+            :index="flattenedOptions.indexOf(item)"
+            :active="activeIndex === flattenedOptions.indexOf(item)"
+            :selected="selectedIndex === flattenedOptions.indexOf(item)"
+            :placeholder="item.label === placeholder"
+            :size="size"
+            @mousedown="onOptionMousedown"
+            @mouseenter="onOptionMouseover"
+            @click="onOptionClick"
+          />
         </div>
       </div>
     </div>
@@ -101,7 +127,7 @@
 </template>
 
 <script>
-import { ChevronDown } from '@/components/Icons';
+import { ChevronDown, ChevronUp } from '@/components/Icons';
 import DropdownItemGroup from './DropdownItemGroup';
 import DropdownItem from './DropdownItem';
 import { findLastIndex, shallowEquals } from '@/utils';
@@ -145,7 +171,7 @@ const MenuActions = {
 
 export default {
   name: 'Dropdown',
-  components: { ChevronDown, DropdownItemGroup, DropdownItem, LobLabel },
+  components: { ChevronDown, ChevronUp, DropdownItemGroup, DropdownItem, LobLabel },
   props: {
     tooltipContent: {
       type: String,
@@ -213,6 +239,8 @@ export default {
     return {
       // active option index
       activeIndex: -1,
+      // ref to the option with the activeIndex
+      activeOptionRef: null,
       // selected option index
       selectedIndex: -1,
       // menu state
@@ -250,7 +278,7 @@ export default {
     },
     // minIndex that user can select (with mouse or keyboard)
     minIndex () {
-      return this.flattenedOptions.findIndex((item) => !item.disabled);
+      return this.placeholder && !this.required ? -1 : this.flattenedOptions.findIndex((item) => !item.disabled);
     },
     // maxIndex that user can select (with mouse or keyboard)
     maxIndex () {
@@ -258,6 +286,9 @@ export default {
     },
     activeId () {
       return this.open ? `${this.id}-${this.activeIndex}` : '';
+    },
+    optionsAreStrings () {
+      return typeof this.options[0] === 'string';
     }
   },
   watch: {
@@ -272,11 +303,16 @@ export default {
     this.setSelectedInLifecycle();
   },
   updated () {
-    if (this.open && this.isScrollable(this.$refs.listbox) && this.$refs.activeOption) {
-      this.maintainScrollVisibility(this.$refs.activeOption, this.$refs.listbox);
+    if (this.open && this.isScrollable(this.$refs.listbox) && this.activeOptionRef) {
+      this.maintainScrollVisibility(this.activeOptionRef, this.$refs.listbox);
     }
   },
   methods: {
+    setOptionRef (optionEl, option) {
+      if (optionEl && this.activeIndex === this.flattenedOptions.indexOf(option)) {
+        this.activeOptionRef = optionEl;
+      }
+    },
     isOptGroup (optionItem) {
       return optionItem.hasOwnProperty('options');
     },
@@ -300,7 +336,6 @@ export default {
     },
     // ensure given child element is within the parent's visible scroll area
     maintainScrollVisibility (activeElement, scrollParent) {
-      // const { offsetHeight, offsetTop } = activeElement;
       const offsetHeight = activeElement.getOffsetHeight();
       const offsetTop = activeElement.getOffsetTop();
       const { offsetHeight: parentOffsetHeight, scrollTop } = scrollParent;
@@ -411,13 +446,23 @@ export default {
         case MenuActions.Last:
           return this.maxIndex;
         case MenuActions.Previous:
-          let prevIndex = current - 1;
+          let prevIndex;
+          if (current === 1) {
+            prevIndex = current - 2;
+          } else {
+            prevIndex = current - 1;
+          }
           if (this.flattenedOptions[prevIndex] && this.flattenedOptions[prevIndex].disabled) {
             prevIndex--;
           }
           return Math.max(this.minIndex, prevIndex);
         case MenuActions.Next:
-          let nextIndex = current + 1;
+          let nextIndex;
+          if (current === -1 && this.placeholder) {
+            nextIndex = current + 2;
+          } else {
+            nextIndex = current + 1;
+          }
           if (this.flattenedOptions[nextIndex] && this.flattenedOptions[nextIndex].disabled) {
             nextIndex++;
           }
@@ -441,8 +486,7 @@ export default {
         case MenuActions.Previous:
           $event.preventDefault();
           const updatedIndex = this.getUpdatedIndex(this.activeIndex, action);
-          this.onOptionChange(updatedIndex);
-          return this.selectOption($event, updatedIndex);
+          return this.onOptionChange(updatedIndex);
         case MenuActions.CloseSelect:
         case MenuActions.Space:
           $event.preventDefault();
@@ -485,10 +529,20 @@ export default {
     onOptionMousedown () {
       this.ignoreBlur = true;
     },
+    onOptionMouseover ($event, index) {
+      this.onOptionChange(index);
+    },
     onOptionChange (index) {
       this.activeIndex = index;
     },
     onOptionClick ($event, index) {
+      if (index === -1) {
+        this.onOptionChange(index);
+        this.selectOption($event, index);
+        this.updateMenuState(false);
+        return;
+      }
+
       if (this.flattenedOptions[index].disabled) {
         return;
       }
@@ -502,10 +556,13 @@ export default {
       focus && this.$refs.input.focus();
     },
     selectOption ($event, index) {
+      this.selectedIndex = index;
       if (index === -1) {
+        this.$emit('update:modelValue', this.optionsAreStrings ? '' : {});
+        this.$emit('input', this.optionsAreStrings ? '' : {});
+        this.$emit('change', $event);
         return;
       }
-      this.selectedIndex = index;
       const selected = this.flattenedOptions[index];
       this.$emit('update:modelValue', selected);
       this.$emit('input', selected);
@@ -514,3 +571,9 @@ export default {
   }
 };
 </script>
+
+<style>
+  .custom-list-height {
+    max-height: v-bind(listHeight); /* stylelint-disable-line value-keyword-case */
+  }
+</style>

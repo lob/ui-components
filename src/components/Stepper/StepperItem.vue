@@ -9,7 +9,6 @@
   >
     <StepperItemBorder
       v-if="textBottom"
-      :background-color="backgroundColor"
       :align-left="alignLeft"
       :align-center="alignCenter"
       :align-right="alignRight"
@@ -18,8 +17,8 @@
       :text-bottom="textBottom"
       :text-top="textTop"
       :dashed-border="dashedBorder"
-      :border-color="borderColor"
-      :color="color"
+      :border-color="borderColor || color"
+      :color="backgroundColor"
     />
     <div
       :class="[
@@ -37,14 +36,19 @@
       </div>
       <div
         :class="[
-          'z-10 rounded-full w-5 h-5 absolute border border-transparent',
-          { '!border-current': active }
+          'z-10 rounded-full w-5 h-5 absolute border border-transparent text-primary-500 bg-white',
+          {'!border-current': active},
+          {'custom-text-color': color},
+          {'custom-background-color': backgroundColor}
         ]"
-        :style="`color: ${color}; background-color: ${backgroundColor}; top: ${textTop ? '2.427rem' : '-0.627rem'}`"
+        :style="`top: ${textTop ? '2.427rem' : '-0.627rem'}`"
       >
         <div
-          class="rounded-full w-3 h-3 absolute bg-current"
-          style="left: 0.1875rem; top: 0.1875rem; color: ${color};"
+          :class="[
+            'rounded-full w-3 h-3 absolute bg-current text-primary-500',
+            {'custom-text-color': color}
+          ]"
+          style="left: 0.1875rem; top: 0.1875rem;"
         >
           <check
             v-if="finished"
@@ -61,7 +65,6 @@
     </div>
     <StepperItemBorder
       v-if="textTop"
-      :background-color="backgroundColor"
       :align-left="alignLeft"
       :align-center="alignCenter"
       :align-right="alignRight"
@@ -70,8 +73,8 @@
       :text-bottom="textBottom"
       :text-top="textTop"
       :dashed-border="dashedBorder"
-      :border-color="borderColor"
-      :color="color"
+      :border-color="borderColor || color"
+      :color="backgroundColor"
     />
   </div>
 </template>
@@ -79,10 +82,6 @@
 <script>
 import { Check } from '../Icons';
 import StepperItemBorder from './StepperItemBorder.vue';
-import { config } from 'tailwind-plugin-lob';
-
-const { theme } = config;
-const { colors } = theme;
 
 export default {
   name: 'StepperItem',
@@ -105,16 +104,16 @@ export default {
     },
     color: {
       type: String,
-      default: colors.primary['500']
+      default: null
     },
     // will default to color if not provided
     borderColor: {
       type: String,
-      default: ''
+      default: null
     },
     backgroundColor: {
       type: String,
-      default: colors.white.DEFAULT
+      default: null
     },
     active: {
       type: Boolean,
@@ -162,5 +161,13 @@ export default {
   @screen md {
     min-width: 8rem;
   }
+}
+
+.custom-text-color {
+  color: v-bind(color);
+}
+
+.custom-background-color {
+  background-color: v-bind(backgroundColor); /* stylelint-disable-line value-keyword-case */
 }
 </style>

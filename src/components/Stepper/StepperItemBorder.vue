@@ -1,11 +1,14 @@
 <template>
   <div
-    class="w-full"
-    :style="`color: ${backgroundColor}`"
+    :class="[
+      'w-full text-white',
+      {'custom-color': color}
+    ]"
   >
     <div
       :class="[
-        'stepper-item-border flex flex-col relative border-current',
+        'stepper-item-border flex flex-col relative border-primary-500',
+        {'custom-border-color': borderColor},
         {'items-start': alignLeft},
         {'items-center': alignCenter},
         {'items-end': alignRight},
@@ -16,12 +19,10 @@
         {'half-border-bottom': (first || last) && textBottom},
         {'half-border-top': (first || last) && textTop},
         {'border-none': alignRight && first},
-        {'border-dashed ': dashedBorder},
-        { 'border-t ': textBottom },
-        { 'border-b': textTop }
-
+        {'border-dashed': dashedBorder},
+        {'border-t': textBottom},
+        {'border-b': textTop}
       ]"
-      :style="`border-color: ${borderColor || color}`"
     />
   </div>
 </template>
@@ -30,17 +31,13 @@
 export default {
   name: 'StepperItemBorder',
   props: {
-    backgroundColor: {
-      type: String,
-      required: true
-    },
     borderColor: {
       type: String,
-      required: true
+      default: null
     },
     color: {
       type: String,
-      required: true
+      default: null
     },
     alignLeft: {
       type: Boolean,
@@ -117,5 +114,13 @@ export default {
 
 .half-border-top::after {
   @apply top-0;
+}
+
+.custom-color {
+  color: v-bind(color);
+}
+
+.custom-border-color {
+  border-color: v-bind(borderColor); /* stylelint-disable-line value-keyword-case */
 }
 </style>

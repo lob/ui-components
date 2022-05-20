@@ -9,12 +9,13 @@ export default {
   title: 'Components/Dropdown',
   component: Dropdown,
   decorators: [
-    () => ({ template: '<div class="w-48"><story /></div>' })
+    () => ({ template: '<div class="w-48 mx-auto"><story /></div>' })
   ],
   parameters: {
     docs: {
       page: mdx
-    }
+    },
+    layout: 'padded'
   },
   argTypes: {
     size: {
@@ -304,7 +305,7 @@ const WithTooltipTemplate = (args, { argTypes }) => ({
           </template>
           <template #content>
             Tough choice, I know!
-          </template>      
+          </template>
         </Tooltip>
       </template>
     </LobLabel>

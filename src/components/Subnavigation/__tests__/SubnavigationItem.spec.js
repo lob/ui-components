@@ -40,7 +40,7 @@ describe('SubnavigationItem', () => {
     await router.isReady();
 
     const navItem = queryByRole('link', { name: 'Account' });
-    expect(navItem).toHaveClass('lob-active-border');
+    expect(navItem).toHaveClass('font-normal');
   });
 
 });
