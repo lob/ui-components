@@ -1,8 +1,5 @@
 <template>
-  <div
-    :class="['inline-block',
-             { 'cursor-not-allowed': disabled, 'cursor-pointer': !disabled }]"
-  >
+  <span :class="['w-full', { 'cursor-not-allowed': disabled, 'cursor-pointer': !disabled }]">
     <component
       :is="tag"
       :[linkProp]="to"
@@ -42,8 +39,7 @@
         class="h-4 text-primary-500 inline-flex -mr-1"
       />
     </component>
-    <div />
-  </div>
+  </span>
 </template>
 
 <script>
