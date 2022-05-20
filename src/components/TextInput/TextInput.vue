@@ -48,7 +48,8 @@
         {'!border-coral-700 bg-coral-100': error},
         {'!bg-white-100' : disabled},
         {'!gap-0 pr-2 !bg-white-100' : withCopyButton},
-        {'!flex-wrap' : isMultiselect}
+        {'!flex-wrap' : isMultiselect},
+        {'!border-gray-500' : !isEmpty}
       ]"
     >
       <div
@@ -232,7 +233,8 @@ export default {
   emits: ['update:modelValue', 'input', 'change', 'focus', 'copy'],
   data () {
     return {
-      showCopied: false
+      showCopied: false,
+      isEmpty: true
     };
   },
   computed: {
@@ -267,6 +269,9 @@ export default {
       this.$emit('update:modelValue', $event.target.value);
       this.$emit('input', $event.target.value);
       this.$emit('change', $event);
+      if ($event.target.value) {
+        this.isEmpty = false;
+      }
     },
     onFocus ($event) {
       if (this.selectOnClick) {
@@ -278,6 +283,7 @@ export default {
       this.$refs.input.focus();
     },
     clearInput ($event) {
+      this.isEmpty = true;
       this.$refs.input.value = '';
       this.$emit('update:modelValue', '');
       this.$emit('input', '');
