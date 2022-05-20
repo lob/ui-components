@@ -5,30 +5,22 @@
     title="Progress"
     aria-live="polite"
     aria-valuetext="In progress, please wait"
-    class="text-left"
+    class="relative h-4.5 w-[420px]"
   >
-    <div>
-      Progress
-      <span v-if="percentage"> - {{ percentage }}%</span>
-      <span
-        v-else
-        data-testid="dots"
-      >
-        <span
-          v-for="dot in 3"
-          :key="dot"
-          aria-hidden="true"
-          class="dots animate-ping ml-0.5"
-        >.</span>
-      </span>
-    </div>
-    <div class="mt-2 h-1.5 bg-gray-100 flex">
-      <span
+    <div class="absolute inset-0 rounded-full border border-primary-500 text-r" />
+    <div class="absolute inset-0 rounded-full overflow-hidden">
+      <div
         data-testid="innerbar"
-        :style="percentage ? `width: ${percentage}%` : ''"
-        :class="['h-1.5 bg-turquoise-500 transition-all duration-500 ease-out',
-                 {'animate-indybar bg-gradient-to-r from-turquoise-300 to-turquoise-500': !percentage}]"
+        :style="percentage ? `width: ${styleWidth}` : ''"
+        :class="['absolute inset-0 w-full rounded-full gradientBg transition-all duration-500 ease-out',
+                 {'animate-indybar': !percentage}]"
       />
+    </div>
+    <div
+      v-if="percentage"
+      class="absolute top-[0.5px] left-2.5 text-white text-xs font-bold tracking-[0.08em]"
+    >
+      {{ displayedPercentage }}%
     </div>
   </div>
 </template>
@@ -42,6 +34,28 @@ export default {
       default: 0,
       validator (value) {
         return value >= 0 && value <= 100;
+      }
+    }
+  },
+  computed: {
+    displayedPercentage () { //do not show -0 or 100+ (in case of bug/mistake)
+      if (this.percentage >= 100) {
+        return 100;
+      }
+      if (this.percentage <= 0) {
+        return 0;
+      }
+      return this.percentage;
+    },
+    styleWidth () {
+      if (this.percentage >= 0 && this.percentage < 10) {
+        return '10%';
+      } else if (this.percentage >= 10 && this.percentage < 100) {
+        return `${this.percentage}%`;
+      } else if (this.percentage >= 100) {
+        return '100%';
+      } else {
+        return '';
       }
     }
   },
@@ -61,9 +75,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.dots {
-  animation-duration: 2s;
-  &:nth-child(2) { animation-delay: 0.4s; }
-  &:nth-child(3) { animation-delay: 0.8s; }
+.gradientBg {
+  background: linear-gradient(105.01deg, #0154AC 17.25%, #1876DB 93.21%);
 }
 </style>
