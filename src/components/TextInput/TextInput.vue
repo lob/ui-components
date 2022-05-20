@@ -49,7 +49,7 @@
         {'!bg-white-100' : disabled},
         {'!gap-0 pr-2 !bg-white-100' : withCopyButton},
         {'!flex-wrap' : isMultiselect},
-        {'!border-gray-500' : !isEmpty}
+        {'!border-gray-500' : modelValue}
       ]"
     >
       <div
@@ -234,8 +234,7 @@ export default {
   emits: ['update:modelValue', 'input', 'change', 'focus', 'copy'],
   data () {
     return {
-      showCopied: false,
-      isEmpty: true
+      showCopied: false
     };
   },
   computed: {
@@ -281,18 +280,10 @@ export default {
       this.$refs.input.focus();
     },
     clearInput ($event) {
-      this.isEmpty = true;
       this.$refs.input.value = '';
       this.$emit('update:modelValue', '');
       this.$emit('input', '');
       this.$emit('change', $event);
-    },
-    onChange ($event) {
-      if ($event.target.value) {
-        this.isEmpty = false;
-      } else {
-        this.isEmpty = true;
-      }
     }
   }
 };

@@ -56,7 +56,7 @@ const IconLeftTemplate = (args, { argTypes }) => ({
   components: { TextInput, Search },
   setup: () => ({ args }),
   template: `
-    <text-input v-bind="args">
+    <text-input v-bind="args" v-model="textInputVModel">
       <template v-slot:iconLeft>
         <search class="w-6 h-6" />
       </template>
