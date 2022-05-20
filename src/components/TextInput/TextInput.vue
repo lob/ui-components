@@ -88,6 +88,7 @@
         :class="['pr-2 pt-3 pb-3 text-gray-500', {'!pr-1 !py-2': small}]"
       >
         <button
+          class="flex justify-center items-center"
           variant="none"
           @click="clearInput"
         >
