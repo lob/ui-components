@@ -114,14 +114,14 @@
       </button>
     </div>
     <div
-      v-if="hintText"
+      v-if="helperText"
       :class="[
         'text-gray-500 text-xs pt-1',
         {'text-error' : error},
         {'text-gray-100' : disabled}
       ]"
     >
-      {{ hintText }}
+      {{ helperText }}
     </div>
   </div>
 </template>
@@ -220,7 +220,7 @@ export default {
       type: String,
       default: ''
     },
-    hintText: {
+    helperText: {
       type: String,
       default: ''
     },
