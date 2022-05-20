@@ -81,7 +81,7 @@
         @focus="onFocus"
       >
       <div
-        v-if="!iconRight && !withCopyButton"
+        v-if="showClearButton"
         :class="['pr-2 pt-3 pb-3 text-gray-500', {'!pr-1 !py-2': small}]"
       >
         <lob-button
@@ -222,6 +222,10 @@ export default {
     hintText: {
       type: String,
       default: ''
+    },
+    isMultiselect: {
+      type: Boolean,
+      default: false
     }
   },
   emits: ['update:modelValue', 'input', 'change', 'focus', 'copy'],
@@ -242,6 +246,9 @@ export default {
     },
     selectedOptions () {
       return this.$slots.selectedOptions;
+    },
+    showClearButton () {
+      return !this.isMultiselect && !this.rightIcon && !this.withCopyButton;
     }
   },
   methods: {

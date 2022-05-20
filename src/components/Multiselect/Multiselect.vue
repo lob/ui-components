@@ -12,6 +12,7 @@
       :placeholder="modelValue && modelValue.length ? '' : placeholder"
       :size="size"
       :input-class="inputWidthClass"
+      :is-multiselect="true"
       @focus="open = true"
       @input="handleSearchInput"
     >
