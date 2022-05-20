@@ -43,9 +43,9 @@ const PrimaryTemplate = (args, { argTypes }) => ({
 
 export const Primary = PrimaryTemplate.bind({});
 Primary.args = {
-  id: 'one',
-  label: 'One',
-  placeholder: 'One'
+  id: 'name',
+  label: 'Name',
+  placeholder: 'Your name here'
 };
 
 const IconLeftTemplate = (args, { argTypes }) => ({
