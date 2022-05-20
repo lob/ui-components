@@ -7,18 +7,30 @@
     aria-valuetext="In progress, please wait"
     class="relative h-4.5 w-[420px]"
   >
-    <div class="absolute inset-0 rounded-full border border-primary-500" />
+    <div
+      :class="['absolute inset-0 rounded-full border border-primary-500 bg-white',
+               {'z-[1]': percentage}] "
+    />
+
     <div class="absolute inset-0 rounded-full overflow-hidden">
+      <div
+        :class="['absolute inset-0 rounded-full',
+                 {'bg-[#000] z-[2]': percentage}]"
+        :style="percentage ? `width: ${styleWidth}` : ''"
+      />
+
       <div
         data-testid="innerbar"
         :style="percentage ? `width: ${styleWidth}` : ''"
         :class="['absolute inset-0 w-full rounded-full gradientBg transition-all duration-500 ease-out',
+                 {'z-[4] mix-blend-screen': percentage},
                  {'animate-indybar': !percentage}]"
       />
     </div>
+
     <div
       v-if="percentage"
-      class="absolute top-[0.5px] left-2.5 text-white text-xs font-bold tracking-[0.08em]"
+      class="absolute top-[0.5px] left-2.5 text-white text-xs font-bold tracking-[0.08em] mix-blend-difference z-[3]"
     >
       {{ displayedPercentage }}%
     </div>
@@ -48,9 +60,7 @@ export default {
       return this.percentage;
     },
     styleWidth () {
-      if (this.percentage >= 0 && this.percentage < 10) {
-        return '9%';
-      } else if (this.percentage >= 10 && this.percentage < 100) {
+      if (this.percentage >= 0 && this.percentage < 100) {
         return `${this.percentage}%`;
       } else if (this.percentage >= 100) {
         return '100%';
