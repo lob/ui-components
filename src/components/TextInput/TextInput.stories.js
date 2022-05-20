@@ -67,9 +67,9 @@ const IconLeftTemplate = (args, { argTypes }) => ({
 
 export const IconLeft = IconLeftTemplate.bind({});
 IconLeft.args = {
-  id: 'one',
-  label: 'One',
-  placeholder: 'One'
+  id: 'name',
+  label: 'Name',
+  placeholder: 'Your name here'
 };
 
 const IconRightTemplate = (args, { argTypes }) => ({
@@ -88,9 +88,9 @@ const IconRightTemplate = (args, { argTypes }) => ({
 
 export const IconRight = IconRightTemplate.bind({});
 IconRight.args = {
-  id: 'one',
-  label: 'One',
-  placeholder: 'One'
+  id: 'name',
+  label: 'Name',
+  placeholder: 'Your name here'
 };
 
 const WithTooltipTemplate = (args, { argTypes }) => ({
@@ -121,7 +121,7 @@ const WithTooltipTemplate = (args, { argTypes }) => ({
 
 export const WithTooltip = WithTooltipTemplate.bind({});
 WithTooltip.args = {
-  id: 'one',
+  id: 'name',
   placeholder: 'Mare Nectaris'
 };
 
@@ -144,17 +144,16 @@ const BothIconsTemplate = (args, { argTypes }) => ({
 
 export const BothIcons = BothIconsTemplate.bind({});
 BothIcons.args = {
-  id: 'one',
-  label: 'One',
-  placeholder: 'One'
+  id: 'name',
+  label: 'Name',
+  placeholder: 'Your name here'
 };
 
 const WithCopyButtonTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { TextInput },
   setup: () => ({ args }),
-  data: () => ({ textInputVModel }),
-  template: '<text-input v-bind="args" v-model="textInputVModel"/>'
+  template: '<text-input v-bind="args" />'
 });
 
 export const WithCopyButton = WithCopyButtonTemplate.bind({});

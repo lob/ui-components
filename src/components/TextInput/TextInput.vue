@@ -49,7 +49,7 @@
         {'!bg-white-100' : disabled},
         {'!gap-0 pr-2 !bg-white-100' : withCopyButton},
         {'!flex-wrap' : isMultiselect},
-        {'!border-gray-500' : modelValue}
+        {'!border-gray-500' : modelValue && !withCopyButton}
       ]"
     >
       <div
