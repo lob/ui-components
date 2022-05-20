@@ -30,6 +30,6 @@
 
 <script>
 export default {
-  name: "Database"
+  name: 'Database'
 };
 </script>

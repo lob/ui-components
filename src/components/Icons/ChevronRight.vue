@@ -14,7 +14,11 @@
     </g>
     <defs>
       <clipPath id="clip0_1693_17592">
-        <rect width="24" height="24" fill="white" />
+        <rect
+          width="24"
+          height="24"
+          fill="white"
+        />
       </clipPath>
     </defs>
   </svg>
@@ -22,6 +26,6 @@
 
 <script>
 export default {
-  name: "ChevronRight",
+  name: 'ChevronRight'
 };
 </script>

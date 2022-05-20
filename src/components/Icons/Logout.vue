@@ -29,6 +29,6 @@
 
 <script>
 export default {
-  name: "Logout",
+  name: 'Logout'
 };
 </script>

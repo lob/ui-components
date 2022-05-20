@@ -31,6 +31,6 @@
 
 <script>
 export default {
-  name: "Meter",
+  name: 'Meter'
 };
 </script>

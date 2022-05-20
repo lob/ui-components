@@ -37,6 +37,6 @@
 
 <script>
 export default {
-  name: "Image",
+  name: 'Image'
 };
 </script>

@@ -27,6 +27,6 @@
 
 <script>
 export default {
-  name: "External",
+  name: 'External'
 };
 </script>

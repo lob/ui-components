@@ -51,6 +51,6 @@
 
 <script>
 export default {
-  name: "ChartDot",
+  name: 'ChartDot'
 };
 </script>

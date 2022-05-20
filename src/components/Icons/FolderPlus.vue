@@ -15,6 +15,6 @@
 
 <script>
 export default {
-  name: "FolderPlus",
+  name: 'FolderPlus'
 };
 </script>

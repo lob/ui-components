@@ -21,6 +21,6 @@
 
 <script>
 export default {
-  name: "ChartPie",
+  name: 'ChartPie'
 };
 </script>

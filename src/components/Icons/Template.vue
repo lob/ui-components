@@ -47,6 +47,6 @@
 
 <script>
 export default {
-  name: "Template",
+  name: 'Template'
 };
 </script>

@@ -23,6 +23,6 @@
 
 <script>
 export default {
-    name: "Camera"
+  name: 'Camera'
 };
 </script>

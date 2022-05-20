@@ -21,6 +21,6 @@
 
 <script>
 export default {
-  name: "Folders",
+  name: 'Folders'
 };
 </script>

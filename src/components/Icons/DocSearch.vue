@@ -35,6 +35,6 @@
 
 <script>
 export default {
-    name: "DocSearch"
-}
+  name: 'DocSearch'
+};
 </script>

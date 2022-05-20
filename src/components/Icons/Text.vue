@@ -39,6 +39,6 @@
 
 <script>
 export default {
-  name: "Text",
+  name: 'Text'
 };
 </script>

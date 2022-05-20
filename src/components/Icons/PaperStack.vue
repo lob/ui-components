@@ -39,6 +39,6 @@
 
 <script>
 export default {
-  name: "PaperStack",
+  name: 'PaperStack'
 };
 </script>

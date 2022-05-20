@@ -25,6 +25,6 @@
 
 <script>
 export default {
-  name: "Inbox",
+  name: 'Inbox'
 };
 </script>

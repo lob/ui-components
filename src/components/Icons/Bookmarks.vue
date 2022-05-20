@@ -23,6 +23,6 @@
 
 <script>
 export default {
-  name: "Bookmarks",
+  name: 'Bookmarks'
 };
 </script>

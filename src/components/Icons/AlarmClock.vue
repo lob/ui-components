@@ -35,6 +35,6 @@
 
 <script>
 export default {
-  name: "AlarmClock",
+  name: 'AlarmClock'
 };
 </script>
