@@ -1,10 +1,6 @@
 import Stepper from './Stepper.vue';
 import StepperItem from './StepperItem.vue';
 import mdx from './Stepper.mdx';
-import { config } from 'tailwind-plugin-lob';
-
-const { theme } = config;
-const { colors } = theme;
 
 export default {
   title: 'Components/Stepper',
@@ -24,22 +20,22 @@ const Template = (args) => ({
   template: `
   <div class="bg-white-300" style="padding: 2rem 0;">
     <Stepper>
-      <StepperItem position="first" :finished="true" :alignment="args.alignment" :text-vertical-align="args.textVerticalAlign" backgroundColor="${colors.white['300']}">
+      <StepperItem position="first" :finished="true" :alignment="args.alignment" :text-vertical-align="args.textVerticalAlign" background-color="#EBF0F6">
         <div class="text-center">
           Finished
         </div>
       </StepperItem>
-      <StepperItem :active="true" :alignment="args.alignment" :text-vertical-align="args.textVerticalAlign" backgroundColor="${colors.white['300']}">
+      <StepperItem :active="true" :alignment="args.alignment" :text-vertical-align="args.textVerticalAlign" background-color="#EBF0F6">
         <div class="text-center">
           Active
         </div>
       </StepperItem>
-      <StepperItem color="${colors.error}" :alignment="args.alignment" :text-vertical-align="args.textVerticalAlign" backgroundColor="${colors.white['300']}">
+      <StepperItem color="#943832" :alignment="args.alignment" :text-vertical-align="args.textVerticalAlign" background-color="#EBF0F6">
         <div class="text-center">
           Error
         </div>
       </StepperItem>
-      <StepperItem position="last" color="${colors.gray['100']}" :alignment="args.alignment" :text-vertical-align="args.textVerticalAlign" backgroundColor="${colors.white['300']}">
+      <StepperItem position="last" color="#C5D6E6" :alignment="args.alignment" :text-vertical-align="args.textVerticalAlign" background-color="#EBF0F6">
         <div class="text-center">
           Unfinished
         </div>

@@ -1,5 +1,6 @@
 import '@testing-library/jest-dom';
-import { render, fireEvent } from '@testing-library/vue';
+import { render } from '@testing-library/vue';
+import userEvent from '@testing-library/user-event';
 import DropdownItem from '../DropdownItem.vue';
 
 const initialProps = {
@@ -53,9 +54,10 @@ describe('DropdownItem', () => {
 
     const option = queryByRole('option');
 
-    await fireEvent.mouseDown(option);
-    const emittedEvent = emitted();
-    expect(emittedEvent).toHaveProperty('mousedown');
+    await userEvent.pointer({ keys: '[MouseLeft>]', target: option });
+
+    const emittedEvents = emitted();
+    expect(emittedEvents).toHaveProperty('mousedown');
   });
 
   it('emits a click event', async () => {
@@ -64,9 +66,30 @@ describe('DropdownItem', () => {
 
     const option = queryByRole('option');
 
-    await fireEvent.click(option);
-    const emittedEvent = emitted();
-    expect(emittedEvent).toHaveProperty('click');
+    await userEvent.click(option);
+
+    const emittedEvents = emitted();
+    expect(emittedEvents).toHaveProperty('click');
+
+    // eslint-disable-next-line no-unused-vars
+    const [event, index] = emittedEvents.click[0];
+    expect(index).toEqual(0);
+  });
+
+  it('emits a mouseenter event', async () => {
+    const props = initialProps;
+    const { queryByRole, emitted } = renderComponent({ props });
+
+    const option = queryByRole('option');
+
+    await userEvent.pointer({ pointerName: 'mouse', target: option });
+
+    const emittedEvents = emitted();
+    expect(emittedEvents).toHaveProperty('mouseenter');
+
+    // eslint-disable-next-line no-unused-vars
+    const [event, index] = emittedEvents.mouseenter[0];
+    expect(index).toEqual(0);
   });
 
 });
