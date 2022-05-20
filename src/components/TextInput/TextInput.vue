@@ -111,16 +111,16 @@
       >
         Copy
       </button>
-      <div
-        v-if="hintText"
-        :class="[
-          'text-gray-500 text-xs pt-1',
-          {'text-error' : error},
-          {'text-gray-100' : disabled}
-        ]"
-      >
-        {{ hintText }}
-      </div>
+    </div>
+    <div
+      v-if="hintText"
+      :class="[
+        'text-gray-500 text-xs pt-1',
+        {'text-error' : error},
+        {'text-gray-100' : disabled}
+      ]"
+    >
+      {{ hintText }}
     </div>
   </div>
 </template>
