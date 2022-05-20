@@ -7,7 +7,7 @@
     aria-valuetext="In progress, please wait"
     class="relative h-4.5 w-[420px]"
   >
-    <div class="absolute inset-0 rounded-full border border-primary-500 text-r" />
+    <div class="absolute inset-0 rounded-full border border-primary-500" />
     <div class="absolute inset-0 rounded-full overflow-hidden">
       <div
         data-testid="innerbar"
@@ -49,7 +49,7 @@ export default {
     },
     styleWidth () {
       if (this.percentage >= 0 && this.percentage < 10) {
-        return '10%';
+        return '9%';
       } else if (this.percentage >= 10 && this.percentage < 100) {
         return `${this.percentage}%`;
       } else if (this.percentage >= 100) {
@@ -76,7 +76,7 @@ export default {
 
 <style scoped lang="scss">
 .gradientBg {
-  background: linear-gradient(105.01deg, #0154AC 17.25%, #1876DB 93.21%);
+  background: linear-gradient(105.01deg, #0154ac 17.25%, #1876db 93.21%);
 }
 
 .animate-indybar {
@@ -84,8 +84,22 @@ export default {
 }
 
 @keyframes indybar {
-  0% { width: 0; margin-left: 0; margin-right: 100% }
-  50% { width: 100%; margin-left: 0; margin-right: 0 }
-  100% { width: 0; margin-left: 100%; margin-right: 0 }
+  0% {
+    width: 0;
+    margin-left: 0;
+    margin-right: 100%;
+  }
+
+  50% {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  100% {
+    width: 0;
+    margin-left: 100%;
+    margin-right: 0;
+  }
 }
 </style>
