@@ -87,7 +87,7 @@
         v-if="showClearButton"
         :class="['pr-2 pt-3 pb-3 text-gray-500', {'!pr-1 !py-2': small}]"
       >
-        <lob-button
+        <button
           variant="none"
           @click="clearInput"
         >
@@ -98,7 +98,7 @@
               { 'bg-coral-100' : error }
             ]"
           />
-        </lob-button>
+        </button>
       </div>
       <div
         v-if="iconRight"
