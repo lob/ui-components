@@ -8,6 +8,14 @@ export default {
     docs: {
       page: mdx
     }
+  },
+  argTypes: {
+    size: {
+      options: ['default', 'large'],
+      control: {
+        type: 'select'
+      }
+    }
   }
 };
 

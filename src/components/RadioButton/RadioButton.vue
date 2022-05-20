@@ -3,7 +3,8 @@
     :class="[
       'inline-block mr-4 mt-1',
       { '!block mb-1': parent.props.separateLines },
-      { 'cursor-not-allowed': disabled || readonly }
+      { 'cursor-not-allowed': disabled || readonly },
+      {'border border-gray-100' : large}
     ]"
   >
     <input
@@ -44,13 +45,6 @@ import { getCurrentInstance } from 'vue';
 export default {
   name: 'RadioButton',
   props: {
-    variant: {
-      type: String,
-      default: 'primary',
-      validator: function (value) {
-        return ['primary', 'box'].includes(value);
-      }
-    },
     id: {
       type: String,
       required: true
@@ -86,6 +80,13 @@ export default {
     readonly: {
       type: Boolean,
       default: false
+    },
+    size: {
+      type: String,
+      default: 'default',
+      validator: function (value) {
+        return ['default', 'large'].includes(value);
+      }
     }
   },
   emits: ['update:modelValue', 'input', 'click'],
@@ -98,8 +99,8 @@ export default {
     checked () {
       return this.modelValue === this.value;
     },
-    box () {
-      return this.variant === 'box';
+    large () {
+      return this.size === 'large';
     }
   },
   created () {
