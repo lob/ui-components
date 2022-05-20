@@ -13,12 +13,14 @@
       v-for="option in group.options"
       :id="`${id}-${flattenedOptions.indexOf(option)}`"
       :key="option.label || option"
-      :ref="activeIndex === flattenedOptions.indexOf(option) ? 'activeOption' : null"
+      :ref="(el) => setOptionRef(el, item)"
       :option="option"
       :index="flattenedOptions.indexOf(option)"
       :active="activeIndex === flattenedOptions.indexOf(option)"
+      :selected="selectedIndex === flattenedOptions.indexOf(option)"
       :placeholder="option.label === placeholderText"
       @mousedown="onMousedown"
+      @mouseenter="onMouseEnter"
       @click="onClick"
     />
   </div>
@@ -47,6 +49,10 @@ export default {
       type: Number,
       default: null
     },
+    selectedIndex: {
+      type: Number,
+      default: null
+    },
     placeholderText: {
       type: String,
       default: ''
@@ -64,19 +70,32 @@ export default {
       }
     }
   },
-  emits: ['click', 'mousedown'],
+  emits: ['click', 'mousedown', 'mouseenter'],
+  data () {
+    return {
+      activeOptionRef: null
+    };
+  },
   methods: {
+    setOptionRef (optionEl, option) {
+      if (optionEl && this.activeIndex === this.flattenedOptions.indexOf(option)) {
+        this.activeOptionRef = optionEl;
+      }
+    },
     onMousedown ($event) {
       this.$emit('mousedown', $event);
+    },
+    onMouseEnter ($event, index) {
+      this.$emit('mouseenter', $event, index);
     },
     onClick ($event, index) {
       this.$emit('click', $event, index);
     },
     getOffsetHeight () {
-      return this.$refs.activeOption.offsetHeight;
+      return this.activeOptionRef.offsetHeight;
     },
     getOffsetTop () {
-      return this.$refs.activeOption.offsetTop;
+      return this.activeOptionRef.offsetTop;
     }
   }
 };

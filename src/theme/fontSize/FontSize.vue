@@ -16,7 +16,7 @@
 import { config } from 'tailwind-plugin-lob';
 
 const { theme } = config;
-const { fontSize } = theme;
+const { fontSize } = theme.extend;
 
 export default {
   name: 'Theme',

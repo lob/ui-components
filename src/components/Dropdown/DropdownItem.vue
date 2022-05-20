@@ -3,17 +3,19 @@
     :id="id"
     ref="option"
     :class="[
-      'py-1 px-8 truncate',
-      {'bg-turquoise-100': active},
-      {'hover:bg-turquoise-100 cursor-default': !option.disabled},
-      { 'text-gray-100 cursor-not-allowed': option.disabled},
-      {'!bg-none': option.disabled && active},
-      {'!text-primary-300': placeholder }
+      'border-l-4 border-l-transparent truncate',
+      {'text-sm py-2 px-2.5': small},
+      {'py-2.5 px-4': default_},
+      {'font-light cursor-default': !option.disabled},
+      {'bg-white-300 text-primary-500 font-bold !border-l-primary-500': active && !option.disabled && !selected},
+      {'text-gray-100 cursor-not-allowed': option.disabled},
+      {'bg-primary-500 font-bold !text-white': selected}
     ]"
     :aria-disabled="option.disabled"
     :aria-selected="active"
     role="option"
     @mousedown="onMousedown"
+    @mouseenter="onMouseEnter"
     @click="onClick"
   >
     {{ option.label || option }}
@@ -46,18 +48,40 @@ export default {
       type: Boolean,
       default: false
     },
+    selected: {
+      type: Boolean,
+      default: false
+    },
     placeholder: {
       type: Boolean,
       default: false
+    },
+    size: {
+      type: String,
+      default: 'default',
+      validator: function (value) {
+        return ['default', 'small'].includes(value);
+      }
     }
   },
-  emits: ['click', 'mousedown'],
+  emits: ['click', 'mousedown', 'mouseenter'],
+  computed: {
+    small () {
+      return this.size === 'small';
+    },
+    default_ () {
+      return this.size === 'default';
+    }
+  },
   methods: {
     onMousedown ($event) {
       this.$emit('mousedown', $event);
     },
+    onMouseEnter ($event) {
+      this.$emit('mouseenter', $event, this.index);
+    },
     onClick ($event) {
-      if (!this.placeholder && !(this.option.hasOwnProperty('disabled') && this.option.disabled)) {
+      if (!this.option.hasOwnProperty('disabled') || !this.option.disabled) {
         this.$emit('click', $event, this.index);
       }
     },

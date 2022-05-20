@@ -1,5 +1,5 @@
 <template>
-  <div :class="{ 'cursor-not-allowed': disabled, 'cursor-pointer': !disabled }">
+  <span :class="['w-full', { 'cursor-not-allowed': disabled, 'cursor-pointer': !disabled }]">
     <component
       :is="tag"
       :[linkProp]="to"
@@ -39,8 +39,7 @@
         class="h-4 text-primary-500 inline-flex -mr-1"
       />
     </component>
-    <div />
-  </div>
+  </span>
 </template>
 
 <script>
@@ -48,6 +47,7 @@ import { ChevronRight } from '@/components/Icons';
 export default {
   name: 'NewLink',
   components: { ChevronRight },
+  inheritAttrs: false,
   props: {
     variant: {
       type: String,
