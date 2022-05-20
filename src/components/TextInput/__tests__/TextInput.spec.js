@@ -61,7 +61,7 @@ describe('Text input', () => {
     });
     const textInput = getByTestId('input-container');
 
-    expect(textInput).toHaveClass('border-error');
+    expect(textInput).toHaveClass('!border-coral-700');
   });
 
   it('updates the v-model on text input', async () => {
