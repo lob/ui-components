@@ -303,8 +303,8 @@ export default {
 .errorAutofill:-webkit-autofill:hover,
 .errorAutofill:-webkit-autofill:focus,
 .errorAutofill:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px #F8E7E6 inset !important;
-  box-shadow: 0 0 0 30px #F8E7E6 inset !important;
+  -webkit-box-shadow: 0 0 0 30px #f8e7e6 inset !important;
+  box-shadow: 0 0 0 30px #f8e7e6 inset !important;
 }
 
 </style>
