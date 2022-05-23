@@ -48,7 +48,7 @@
         {'!border-coral-700 bg-coral-100': error},
         {'!bg-white-100' : disabled},
         {'pr-2 !bg-white-100' : withCopyButton},
-        {'!flex-wrap' : isMultiselect},
+        {'!flex-wrap !h-fit' : isMultiselect},
         {'!pl-0': iconLeft},
         {'!border-gray-500' : modelValue && !error && !withCopyButton}
       ]"
