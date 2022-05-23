@@ -42,14 +42,15 @@
     <div
       data-testId="input-container"
       :class="[
-        'rounded-lg flex items-center border gap-2 border-gray-100 focus-within:ring-4 focus-within:ring-primary-100 focus-within:border-transparent focus-within:outline-none',
-        { '!gap-1' : small },
+        'h-12 pl-4 pr-4 py-2.5 rounded-lg flex items-center border gap-2 border-gray-100 focus-within:ring-inset focus-within:ring-2 focus-within:ring-primary-500 focus-within:border-0 focus-within:outline-none',
+        { '!pl-3 !pr-3 !h-8 !gap-1' : small },
         {'hover:shadow focus-within:shadow': !disabled && !readonly},
         {'!border-coral-700 bg-coral-100': error},
         {'!bg-white-100' : disabled},
-        {'!gap-0 pr-2 !bg-white-100' : withCopyButton},
+        {'pr-2 !bg-white-100' : withCopyButton},
         {'!flex-wrap' : isMultiselect},
-        {'!border-gray-500' : modelValue && !withCopyButton}
+        {'!pl-0': iconLeft},
+        {'!border-gray-500' : modelValue && !error && !withCopyButton}
       ]"
     >
       <div
@@ -68,12 +69,12 @@
         :max="max"
         :pattern="pattern"
         :class="[
-          `rounded-lg h-12 pl-4 pr-4 py-2.5 leading-5 w-full text-gray-900 placeholder-gray-500 placeholder:font-light focus:font-light outline-none ${inputClass}`,
-          {'!h-8 !pl-3 !pr-3 !py-2.5 text-xs': small},
-          {'!pl-0': iconLeft},
-          {' truncate': withCopyButton},
+          `leading-5 w-full text-gray-900 placeholder-gray-500 placeholder:font-light outline-none ${inputClass}`,
+          {'nonErrorAutofill' : !disabled && !readonly},
+          {'text-xs': small},
+          {'truncate': withCopyButton},
           {'bg-white-100 cursor-not-allowed !text-gray-100 !placeholder-gray-100': disabled || readonly},
-          {'!border-coral-700 bg-coral-100 !placeholder-error !text-error': error}
+          {'bg-coral-100 !placeholder-error !text-error !autofill:bg-coral-100 errorAutofill': error}
         ]"
         :disabled="disabled"
         :required="required"
@@ -85,7 +86,7 @@
       >
       <div
         v-if="showClearButton"
-        :class="['pr-2 pt-3 pb-3 text-gray-500', {'!pr-1 !py-2': small}]"
+        :class="['text-gray-500']"
       >
         <button
           class="flex justify-center items-center"
@@ -103,7 +104,7 @@
       </div>
       <div
         v-if="iconRight"
-        :class="['pr-2 pt-3 pb-3 text-gray-500', {'!pr-1 !py-2': small}]"
+        :class="['text-gray-500']"
       >
         <slot name="iconRight" />
       </div>
@@ -291,11 +292,20 @@ export default {
 </script>
 
 <style scoped>
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
+.nonErrorAutofill:-webkit-autofill,
+.nonErrorAutofill:-webkit-autofill:hover,
+.nonErrorAutofill:-webkit-autofill:focus,
+.nonErrorAutofill:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px white inset !important;
   box-shadow: 0 0 0 30px white inset !important;
 }
+
+.errorAutofill:-webkit-autofill,
+.errorAutofill:-webkit-autofill:hover,
+.errorAutofill:-webkit-autofill:focus,
+.errorAutofill:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #F8E7E6 inset !important;
+  box-shadow: 0 0 0 30px #F8E7E6 inset !important;
+}
+
 </style>
