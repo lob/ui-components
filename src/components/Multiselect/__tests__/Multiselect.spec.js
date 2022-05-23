@@ -70,7 +70,7 @@ describe('Multiselect', () => {
       const { findByTestId } = component;
 
       const inputContainer = await findByTestId('input-container');
-      expect(inputContainer).toHaveClass('focus-within:ring-4 focus-within:ring-primary-100');
+      expect(inputContainer).toHaveClass('focus-within:ring-2 focus-within:ring-primary-500');
     });
 
     it('renders a dropdown of options', async () => {

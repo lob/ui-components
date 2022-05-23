@@ -47,15 +47,14 @@
         {'hover:shadow focus-within:shadow': !disabled && !readonly},
         {'!border-coral-700 bg-coral-100': error},
         {'!bg-white-100' : disabled},
-        {'pr-2 !bg-white-100' : withCopyButton},
+        {'!bg-white-100' : withCopyButton},
         {'!flex-wrap !h-fit' : isMultiselect},
-        {'!pl-0': iconLeft},
         {'!border-gray-500' : modelValue && !error && !withCopyButton}
       ]"
     >
       <div
         v-if="iconLeft"
-        :class="['pl-4 text-gray-500', {'!pl-3': small}]"
+        :class="['text-gray-500']"
       >
         <slot name="iconLeft" />
       </div>
