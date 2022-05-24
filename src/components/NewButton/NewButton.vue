@@ -6,7 +6,7 @@
       { 'px-8 text-[1.25rem] h-[48px]': regular },
       { 'px-6 text-sm h-[32px]': small },
       { 'px-0 h-full text-base tracking-normal': link || none },
-      { 'underline text-primary-500 hover:text-primary-700 active:text-primary-900 disabled:text-gray-500': link },
+      { 'underline text-primary-500 hover:text-primary-900 active:text-primary-900 disabled:text-gray-500': link },
       { 'disabled:text-gray-500': none },
       { 'cursor-not-allowed': disabled },
       { 'focus-visible:ring-primary-100': !warning },
