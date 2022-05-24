@@ -1,24 +1,27 @@
 <template>
   <div
-    ref="progressbar"
     role="progressbar"
     title="Progress"
     aria-live="polite"
     aria-valuetext="In progress, please wait"
     class="relative h-4.5 w-[420px]"
   >
+    <!-- div with just the border, absolute so that the border does not contain the bar,
+    the gradient bar sits exactly on top of the border -->
     <div
       :class="['absolute inset-0 rounded-full border border-primary-500 bg-white',
                {'z-[1]': percentage}] "
     />
-
+    <!-- div with overflow hidden - important for containing the bar -->
     <div class="absolute inset-0 rounded-full overflow-hidden">
+      <!-- div with black bg to trick the next div to turn the text white (has same width as the blue bar) -->
       <div
         :class="['absolute inset-0 rounded-full',
                  {'bg-[#000] z-[2]': percentage}]"
         :style="percentage ? `width: ${styleWidth}` : ''"
       />
-
+      <!-- div with gradient blue fill with z-4 so it sits over the blackbg
+      but has mix-blend-screen so we can see the number under it -->
       <div
         data-testid="innerbar"
         :style="percentage ? `width: ${styleWidth}` : ''"
@@ -27,7 +30,7 @@
                  {'animate-indybar': !percentage}]"
       />
     </div>
-
+    <!-- div with white text (turns black/white based on its background with mix-blend-difference) -->
     <div
       v-if="percentage"
       class="absolute top-[0.5px] left-2.5 text-white text-xs font-bold tracking-[0.08em] mix-blend-difference z-[3]"
