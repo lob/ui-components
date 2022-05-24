@@ -42,10 +42,10 @@
     <div
       data-testId="input-container"
       :class="[
-        'h-12 pl-4 pr-4 py-2.5 rounded-lg flex items-center border gap-2 border-gray-100 focus-within:outline-none',
+        'h-12 pl-4 pr-4 py-2.5 rounded-lg flex items-center gap-2 border border-gray-100 focus-within:outline-none',
         { '!pl-3 !pr-3 !h-8 !gap-1' : small },
-        {'hover:shadow focus-within:shadow focus-within:ring-inset focus-within:ring-2 focus-within:ring-primary-500 focus-within:border-primary-500': !disabled && !readonly},
-        {'!border-coral-700 bg-coral-100 focus-within:ring-2 focus-within:ring-coral-700': error},
+        {'hover:shadow focus-within:shadow focus-within:ring-1 focus-within:ring-primary-500 focus-within:border-primary-500': !disabled && !readonly},
+        {'!border-coral-700 bg-coral-100 focus-within:ring-1 focus-within:ring-coral-700': error},
         {'!bg-white-100' : disabled},
         {'!bg-white-100' : withCopyButton},
         {'!flex-wrap !h-fit' : isMultiselect},
@@ -306,5 +306,4 @@ export default {
   -webkit-box-shadow: 0 0 0 30px #f8e7e6 inset !important;
   box-shadow: 0 0 0 30px #f8e7e6 inset !important;
 }
-
 </style>
