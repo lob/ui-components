@@ -49,7 +49,7 @@
         {'!bg-white-100' : disabled},
         {'!bg-white-100' : withCopyButton},
         {'!flex-wrap !h-fit' : isMultiselect},
-        {'!border-gray-500' : modelValue && !error && !withCopyButton}
+        {'border-gray-500 focus-within:border-primary-500' : modelValue && !error && !withCopyButton}
       ]"
     >
       <div
