@@ -3,7 +3,7 @@ import mdx from './TextInput.mdx';
 
 import LobLabel from '@/components/LobLabel/LobLabel.vue';
 import Tooltip from '@/components/Tooltip/Tooltip.vue';
-import { Close, Search, Info, Upload } from '@/components/Icons';
+import { Search, Info, Upload } from '@/components/Icons';
 
 export default {
   title: 'Components/Text Input',
