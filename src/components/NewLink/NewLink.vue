@@ -1,5 +1,5 @@
 <template>
-  <span :class="['w-full', { 'cursor-not-allowed': disabled, 'cursor-pointer': !disabled }]">
+  <span :class="[{ 'cursor-not-allowed': disabled, 'cursor-pointer': !disabled }]">
     <component
       :is="tag"
       :[linkProp]="to"
