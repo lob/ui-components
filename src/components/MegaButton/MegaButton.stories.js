@@ -1,4 +1,5 @@
 import MegaButton from './MegaButton.vue';
+import RadioGroup from '../RadioGroup/RadioGroup.vue';
 import mdx from './MegaButton.mdx';
 import image from '@/assets/images/floofyboi.jpg';
 
@@ -73,11 +74,11 @@ const megaButtonModel = '';
 
 const GroupTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { MegaButton },
+  components: { MegaButton, RadioGroup },
   setup: () => ({ args }),
   data: () => ({ megaButtonModel }),
   template: `
-    <fieldset class="flex flex-wrap">
+    <RadioGroup legend="Cat Type">
       <mega-button
         id="ginger"
         name="catType"
@@ -104,7 +105,7 @@ const GroupTemplate = (args, { argTypes }) => ({
         v-bind="args"
         v-model="megaButtonModel"
       />
-    </fieldset>
+    </RadioGroup>
   `
 });
 
