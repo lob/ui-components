@@ -3,7 +3,7 @@ import mdx from './TextInput.mdx';
 
 import LobLabel from '@/components/LobLabel/LobLabel.vue';
 import Tooltip from '@/components/Tooltip/Tooltip.vue';
-import { Close, Search, Info } from '@/components/Icons';
+import { Close, Search, Info, Upload } from '@/components/Icons';
 
 export default {
   title: 'Components/Text Input',
@@ -59,7 +59,7 @@ const IconLeftTemplate = (args, { argTypes }) => ({
   template: `
     <text-input v-bind="args" v-model="textInputVModel">
       <template v-slot:iconLeft>
-        <search class="w-6 h-6" />
+        <search class="w-[18px] h-[18px]" />
       </template>
     </text-input>
   `
@@ -74,13 +74,13 @@ IconLeft.args = {
 
 const IconRightTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { TextInput, Close },
+  components: { TextInput, Search },
   setup: () => ({ args }),
   data: () => ({ textInputVModel }),
   template: `
     <text-input v-bind="args" v-model="textInputVModel">
       <template v-slot:iconRight>
-        <close class="w-6 h-6" />
+        <search class="w-[18px] h-[18px]" />
       </template>
     </text-input>
   `
@@ -107,7 +107,7 @@ const WithTooltipTemplate = (args, { argTypes }) => ({
       <template v-slot:tooltip>
         <Tooltip>
           <template #trigger>
-            <Info class="w-5 h-5" />
+            <Info class="w-[18px] h-[18px]" />
           </template>
           <template #content>
             Moon
@@ -127,16 +127,16 @@ WithTooltip.args = {
 
 const BothIconsTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { TextInput, Search, Close },
+  components: { TextInput, Search, Upload },
   setup: () => ({ args }),
   data: () => ({ textInputVModel }),
   template: `
     <text-input v-bind="args" v-model="textInputVModel">
       <template v-slot:iconLeft>
-        <search class="w-6 h-6" />
+        <search class="w-[18px] h-[18px]" />
       </template>
       <template v-slot:iconRight>
-        <close class="w-6 h-6" />
+        <upload class="w-[18px] h-[18px]" />
       </template>
     </text-input>
   `
