@@ -63,7 +63,9 @@ export default {
       return this.percentage;
     },
     styleWidth () {
-      if (this.percentage >= 0 && this.percentage < 100) {
+      if (this.percentage < 0) {
+        return '0%';
+      } else if (this.percentage > 0 && this.percentage < 100) {
         return `${this.percentage}%`;
       } else if (this.percentage >= 100) {
         return '100%';
