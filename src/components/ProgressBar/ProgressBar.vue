@@ -1,5 +1,6 @@
 <template>
   <div
+    ref="progressbar"
     role="progressbar"
     title="Progress"
     aria-live="polite"
