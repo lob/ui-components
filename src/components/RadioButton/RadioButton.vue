@@ -2,7 +2,6 @@
   <div
     :class="[
       'inline-block mr-4 mt-1',
-      { '!block mb-1': parent.props.separateLines },
       { 'cursor-not-allowed': disabled || readonly }
     ]"
   >
