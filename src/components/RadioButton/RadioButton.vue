@@ -144,20 +144,23 @@ input {
     &::after {
       content: "";
 
-      @apply -left-4;
-      @apply top-2;
+      @apply -left-4.5;
+      @apply top-1.5;
       @apply absolute;
-      @apply h-2;
+      @apply h-3;
       @apply inline-block;
       @apply rounded-full;
-      @apply w-2;
+      @apply w-3;
     }
   }
 
   &:checked + label::after {
-    @apply shadow-input-selected;
     @apply bg-primary-500;
-    @apply border-l;
+  }
+
+  &:checked + label::before {
+    @apply border-transparent;
+    @apply shadow-input;
   }
 
   &.radio__input--error + label::before {
