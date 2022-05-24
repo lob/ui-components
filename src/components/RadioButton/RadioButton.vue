@@ -27,7 +27,7 @@
     <label
       :for="id"
       :class="[
-        'relative flex ml-1.5',
+        'relative flex ml-1.5  font-light',
         { 'cursor-not-allowed': disabled || readonly },
         { 'font-bold' : checked}
       ]"
@@ -132,7 +132,7 @@ input {
 
       @apply absolute;
       @apply bg-transparent;
-      @apply border-gray-100;
+      @apply border-gray-700;
       @apply border-solid;
       @apply border;
       @apply h-3.5;
@@ -199,6 +199,7 @@ input {
 
   &:hover:not(:disabled):not([readonly]) + label::before {
     @apply shadow-input;
+    @apply border-primary-500;
   }
 }
 </style>
