@@ -13,7 +13,7 @@
         { 'underline': underline && link },
         { '!text-gray-500': disabled && link },
         { 'text-inherit': inheritTextColor },
-        { 'text-primary-500 hover:text-primary-700 active:text-primary-900': !inheritTextColor },
+        { 'text-primary-500 hover:text-primary-900 active:text-primary-900': !inheritTextColor },
         { 'flex justify-center items-center rounded-lg no-underline tracking-[-0.04em] font-bold': primary || secondary },
         { 'focus-visible:ring-4 focus:outline-none': primary || secondary },
         { 'focus:ring-primary-100': !warning && (primary || secondary) },
