@@ -3,11 +3,7 @@
     :class="[
       'inline-block mr-6 mt-1',
       { '!block mb-1': parent.props.separateLines },
-      { 'cursor-not-allowed': disabled || readonly },
-      {'border border-gray-100 w-[200px] rounded-lg hover:shadow pl-6 pt-2' : large},
-      {'!border-primary-500' : large && checked},
-      {'h-12' : large && !helperText},
-      {'h-[60px] !pt-1.5' : large && helperText}
+      { 'cursor-not-allowed': disabled || readonly }
     ]"
   >
     <input
@@ -16,8 +12,7 @@
       :class="[
         'm-0 p-0 opacity-0 mt-2',
         { 'radio__input--error': error },
-        { 'cursor-not-allowed': disabled || readonly },
-        {'' : large}
+        { 'cursor-not-allowed': disabled || readonly }
       ]"
       :name="name"
       :value="value.toString()"
@@ -32,8 +27,12 @@
       :for="id"
       :class="[
         'relative flex',
-        { 'cursor-not-allowed': disabled || readonly },
-        { 'font-bold text-primary-500' : checked}
+        {'cursor-not-allowed text-gray-100 font-light': disabled || readonly },
+        {'!font-bold text-primary-500' : checked},
+        {'largeButton w-4/5 h-full' : large},
+        {'largeButton w-4/5 h-full !font-light' : large && disabled && checked},
+        {'pt-2' : !helperText && large},
+        {'pt-0.5 helperText' : helperText && large}
       ]"
     >
       <slot>
@@ -41,8 +40,9 @@
       </slot>
       <div
         :class="[
-          'text-sm',
-          {'text-primary-500 !font-normal' : checked}
+          'text-sm text-gray-300 !font-normal',
+          {'!text-primary-500' : checked},
+          {'!text-gray-100' : disabled}
         ]"
       >
         {{ helperText }}
@@ -93,16 +93,13 @@ export default {
       type: Boolean,
       default: false
     },
-    size: {
-      type: String,
-      default: 'default',
-      validator: function (value) {
-        return ['default', 'large'].includes(value);
-      }
-    },
     helperText: {
       type: String,
       default: ''
+    },
+    large: {
+      type: Boolean,
+      default: false
     }
   },
   emits: ['update:modelValue', 'input', 'click'],
@@ -114,9 +111,7 @@ export default {
   computed: {
     checked () {
       return this.modelValue === this.value;
-    },
-    large () {
-      return this.size === 'large';
+      // return true;
     }
   },
   created () {
@@ -168,6 +163,31 @@ input {
       @apply rounded-full;
       @apply w-3;
     }
+
+  }
+
+  + label.largeButton {
+    @apply !absolute;
+
+    &::before {
+      @apply mt-2;
+    }
+
+    &::after {
+      @apply mt-2;
+    }
+  }
+
++ label.helperText {
+    @apply !absolute;
+
+    &::before {
+      @apply mt-0.5;
+    }
+
+    &::after {
+      @apply mt-0.5;
+    }
   }
 
   &:checked + label::after {
@@ -194,6 +214,16 @@ input {
     @apply border-transparent;
   }
 
+  &:focus + label.largeButton::before {
+    @apply outline-none;
+    @apply !border-transparent;
+    @apply ring-0;
+  }
+
+  &:focus:checked + label.largeButton::before {
+    @apply border-transparent;
+  }
+
   &:disabled + label::before {
     @apply border-gray-100;
     @apply cursor-not-allowed;
@@ -205,7 +235,7 @@ input {
     @apply h-2.5;
     @apply w-2.5;
     @apply top-[7px];
-    @apply -left-[17px];
+    @apply -left-[20px];
   }
 
   &[readonly] + label::before {

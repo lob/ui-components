@@ -1,11 +1,12 @@
 import RadioGroup from './RadioGroup.vue';
 import RadioButton from '../RadioButton/RadioButton.vue';
+import RadioButtonLarge from '../RadioButtonLarge/RadioButtonLarge.vue';
 import mdx from './RadioGroup.mdx';
 
 export default {
   title: 'Components/Radio Group',
   component: RadioGroup,
-  subcomponents: { RadioButton },
+  subcomponents: { RadioButton, RadioButtonLarge },
   parameters: {
     docs: {
       page: mdx
@@ -133,36 +134,33 @@ const largeGroupModel = '';
 
 const LargeGroupTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { RadioGroup, RadioButton },
+  components: { RadioGroup, RadioButtonLarge },
   data: () => ({ largeGroupModel }),
   setup: () => ({ args }),
   template: `
     <radio-group v-bind="args">
-    <radio-button
+    <radio-button-large
     id="4x6"
     name="postcard-size"
     label="4x6"
     value="4x6"
     v-model="largeGroupModel"
     helper-text="This is helper text"
-    size="large"
   />
-  <radio-button
+  <radio-button-large
     id="5x7"
     name="postcard-size"
     label="5x7"
     value="5x7"
     v-model="largeGroupModel"
     helper-text="This is helper text"
-    size="large"
   />
-  <radio-button
+  <radio-button-large
     id="big"
     name="postcard-size"
     label="Really Big"
     value="big"
     v-model="largeGroupModel"
-    size="large"
   />
     </radio-group>
   `
