@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.0.0-beta.5
+### Accessibility improvement
+* Change the @hover text color to be primary-900 on NewLink & NewButton styled as a link so that the color difference is more obvious (from the default primary-500 text color)
+
 ## 1.0.0-beta.4
 ### Bug Fixes
 * Styling adjustments to the NewLink and MainNavigationChildItem components to allow the MainNavigation to display focus rings correctly
