@@ -86,3 +86,90 @@ Primary.args = {
   separateLines: false
 };
 
+const withHelperTextModel = '';
+
+const WithHelperTextTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { RadioGroup, RadioButton },
+  data: () => ({ withHelperTextModel }),
+  setup: () => ({ args }),
+  template: `
+    <radio-group v-bind="args" :separate-lines="true">
+    <radio-button
+    id="4x6"
+    name="postcard-size"
+    label="4x6"
+    value="4x6"
+    v-model="withHelperTextModel"
+    helper-text="This is helper text"
+  />
+  <radio-button
+    id="5x7"
+    name="postcard-size"
+    label="5x7"
+    value="5x7"
+    v-model="withHelperTextModel"
+    helper-text="This is helper text"
+  />
+  <radio-button
+    id="big"
+    name="postcard-size"
+    label="Really Big"
+    value="big"
+    v-model="withHelperTextModel"
+    helper-text="This is helper text"
+  />
+    </radio-group>
+  `
+});
+
+export const WithHelperText = WithHelperTextTemplate.bind({});
+Primary.args = {
+  legend: 'Postcard Size',
+  separateLines: false
+};
+
+const largeGroupModel = '';
+
+const LargeGroupTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { RadioGroup, RadioButton },
+  data: () => ({ largeGroupModel }),
+  setup: () => ({ args }),
+  template: `
+    <radio-group v-bind="args">
+    <radio-button
+    id="4x6"
+    name="postcard-size"
+    label="4x6"
+    value="4x6"
+    v-model="largeGroupModel"
+    helper-text="This is helper text"
+    size="large"
+  />
+  <radio-button
+    id="5x7"
+    name="postcard-size"
+    label="5x7"
+    value="5x7"
+    v-model="largeGroupModel"
+    helper-text="This is helper text"
+    size="large"
+  />
+  <radio-button
+    id="big"
+    name="postcard-size"
+    label="Really Big"
+    value="big"
+    v-model="largeGroupModel"
+    size="large"
+  />
+    </radio-group>
+  `
+});
+
+export const LargeGroup = LargeGroupTemplate.bind({});
+Primary.args = {
+  legend: 'Postcard Size',
+  separateLines: false
+};

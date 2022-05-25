@@ -1,10 +1,13 @@
 <template>
   <div
     :class="[
-      'inline-block mr-4 mt-1',
+      'inline-block mr-6 mt-1',
       { '!block mb-1': parent.props.separateLines },
       { 'cursor-not-allowed': disabled || readonly },
-      {'border border-gray-100' : large}
+      {'border border-gray-100 w-[200px] rounded-lg hover:shadow pl-6 pt-2' : large},
+      {'!border-primary-500' : large && checked},
+      {'h-12' : large && !helperText},
+      {'h-[60px] !pt-1.5' : large && helperText}
     ]"
   >
     <input
@@ -13,7 +16,8 @@
       :class="[
         'm-0 p-0 opacity-0 mt-2',
         { 'radio__input--error': error },
-        { 'cursor-not-allowed': disabled || readonly }
+        { 'cursor-not-allowed': disabled || readonly },
+        {'' : large}
       ]"
       :name="name"
       :value="value.toString()"
@@ -35,6 +39,14 @@
       <slot>
         {{ label }}
       </slot>
+      <div
+        :class="[
+          'text-sm',
+          {'text-primary-500 !font-normal' : checked}
+        ]"
+      >
+        {{ helperText }}
+      </div>
     </label>
   </div>
 </template>
@@ -87,6 +99,10 @@ export default {
       validator: function (value) {
         return ['default', 'large'].includes(value);
       }
+    },
+    helperText: {
+      type: String,
+      default: ''
     }
   },
   emits: ['update:modelValue', 'input', 'click'],
@@ -128,7 +144,7 @@ input {
     &::before {
       content: "";
       top: 5px;
-      left: -19px;
+      left: -22px;
 
       @apply absolute;
       @apply bg-transparent;
@@ -144,7 +160,7 @@ input {
     &::after {
       content: "";
 
-      @apply -left-4.5;
+      @apply -left-[21px];
       @apply top-1.5;
       @apply absolute;
       @apply h-3;
