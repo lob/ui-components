@@ -27,9 +27,9 @@
     <label
       :for="id"
       :class="[
-        'relative flex ml-1.5  font-light',
+        'relative flex',
         { 'cursor-not-allowed': disabled || readonly },
-        { 'font-bold' : checked}
+        { 'font-bold text-primary-500' : checked}
       ]"
     >
       <slot>
@@ -158,7 +158,7 @@ input {
     @apply bg-primary-500;
   }
 
-  &:checked + label::before {
+  &:checked:not(:disabled) + label::before {
     @apply border-transparent;
     @apply shadow-input;
   }
@@ -169,22 +169,27 @@ input {
 
   &:focus + label::before {
     @apply outline-none;
-    @apply ring-2;
-    @apply ring-primary-100;
+    @apply border-primary-500;
+    @apply ring-4;
+    @apply ring-tertiary-bluebird;
+  }
+
+  &:focus:checked + label::before {
     @apply border-transparent;
   }
 
   &:disabled + label::before {
-    @apply bg-white-300;
     @apply border-gray-100;
     @apply cursor-not-allowed;
   }
 
   &:checked:disabled + label::after {
-    @apply bg-flint-500;
-    @apply border-flint-700;
-    @apply opacity-50;
+    @apply bg-gray-100;
     @apply cursor-not-allowed;
+    @apply h-2.5;
+    @apply w-2.5;
+    @apply top-[7px];
+    @apply -left-[17px];
   }
 
   &[readonly] + label::before {
@@ -200,7 +205,7 @@ input {
     @apply cursor-not-allowed;
   }
 
-  &:hover:not(:disabled):not([readonly]) + label::before {
+  &:hover:not(:disabled):not([readonly]):not(:checked) + label::before {
     @apply shadow-input;
     @apply border-primary-500;
   }
