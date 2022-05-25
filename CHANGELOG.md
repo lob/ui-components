@@ -5,6 +5,9 @@
 ### Features
 
 - Update FileUpload component to the new button style.
+
+### Breaking changes
+
 - The `size` prop on FileUpload is now a Boolean prop `small`
 
 ## 1.0.0-beta.5
