@@ -1,8 +1,5 @@
 <template>
-  <label
-    :for="id"
-    v-bind="$attrs"
-  >
+  <label :for="id">
     <span
       role="button"
       aria-controls="filename"
@@ -84,14 +81,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.secondary:hover:not(:disabled):not(:focus) {
+.secondary:hover:not(:focus) {
   box-shadow:
     0 9px 12px 0 rgba(0, 0, 0, 0.2),
     0 19px 29px 0 rgba(0, 0, 0, 0.14),
     0 7px 36px 0 rgba(0, 0, 0, 0.12);
 }
 
-.secondary:not(:disabled):focus:active {
+.secondary:focus:active {
   box-shadow: none;
 }
 </style>
