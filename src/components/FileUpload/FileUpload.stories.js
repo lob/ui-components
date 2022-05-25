@@ -10,10 +10,9 @@ export default {
     }
   },
   argTypes: {
-    size: {
-      options: ['default', 'small', 'large'],
+    small: {
       control: {
-        type: 'select'
+        type: 'boolean'
       }
     }
   }

@@ -2,17 +2,17 @@
   <label
     :for="id"
     v-bind="$attrs"
-    class="text-center"
   >
     <span
       role="button"
       aria-controls="filename"
       tabindex="0"
       :class="[
-        'button bg-white-200 border border-primary-500 text-primary-500 active:text-primary-700 active:border-primary-700 disabled:border-gray-100 rounded disabled:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent cursor-pointer inline-block truncate w-full',
-        { 'px-6 py-3.5': defaultSize },
-        { 'px-3 py-2': small },
-        { 'px-6 py-4.5': large }
+        { 'px-8 text-[1.25rem] h-[48px]': regular },
+        { 'px-6 text-sm h-[32px]': small },
+        'flex justify-center items-center rounded-lg border border-primary-500',
+        'font-bold tracking-[-0.04em] bg-white text-primary-500 secondary',
+        'active:border-black active:text-black focus-visible:ring-primary-100 focus-visible:ring-4 focus:outline-none'
       ]"
       @keydown.enter="onKeydown"
       @keydown.space="onKeydown"
@@ -48,12 +48,9 @@ export default {
       type: String,
       required: true
     },
-    size: {
-      type: String,
-      default: 'default',
-      validator: function (value) {
-        return ['default', 'small', 'large'].includes(value);
-      }
+    small: {
+      type: Boolean,
+      default: false
     }
   },
   emits: ['fileUpload'],
@@ -63,14 +60,8 @@ export default {
     };
   },
   computed: {
-    defaultSize () {
-      return this.size === 'default';
-    },
-    small () {
-      return this.size === 'small';
-    },
-    large () {
-      return this.size === 'large';
+    regular () {
+      return !this.small;
     }
   },
   methods: {
@@ -92,8 +83,15 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.button:hover:not(:disabled):not(:focus) {
-  box-shadow: 0 0 10px rgba(65, 101, 129, 0.2);
+<style scoped lang="scss">
+.secondary:hover:not(:disabled):not(:focus) {
+  box-shadow:
+    0 9px 12px 0 rgba(0, 0, 0, 0.2),
+    0 19px 29px 0 rgba(0, 0, 0, 0.14),
+    0 7px 36px 0 rgba(0, 0, 0, 0.12);
+}
+
+.secondary:not(:disabled):focus:active {
+  box-shadow: none;
 }
 </style>
