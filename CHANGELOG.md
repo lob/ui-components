@@ -4,9 +4,9 @@
 
 ### Features
 
-- renames Error Icon to AlertCircle which is what the figma calls it
-- puts the old Warning triangle icon back
-- fixes the conditions in Alert component, to show the icon AlertCircle for the error and warning variants
+- Renamed Error Icon to AlertCircle which is how it is named in the design system docs
+- To reduce duplication, updated the Warning icon to be a triangle instead of the 'i' already being used by the Info icon
+- Updated the conditions in Alert component, to show the icon AlertCircle for the error and warning variants
 
 ## 1.0.0-beta.6
 
