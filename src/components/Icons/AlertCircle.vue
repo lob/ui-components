@@ -31,6 +31,6 @@
 
 <script>
 export default {
-  name: 'Error'
+  name: 'AlertCircle'
 };
 </script>

@@ -19,6 +19,7 @@ export { default as LobLabel } from './LobLabel/LobLabel';
 export { default as MainNavigation } from './MainNavigation/MainNavigation';
 export { default as MainNavigationItem } from './MainNavigation/MainNavigationItem';
 export { default as MainNavigationChildItem } from './MainNavigation/MainNavigationChildItem';
+export { default as MegaButton } from './MegaButton/MegaButton';
 export { default as MegaMenu } from './MegaMenu/MegaMenu';
 export { default as MegaMenuItem } from './MegaMenu/MegaMenuItem';
 export { default as MegaMenuSubtitle } from './MegaMenu/MegaMenuSubtitle';
