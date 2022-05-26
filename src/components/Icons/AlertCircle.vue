@@ -21,7 +21,7 @@
     />
     <path
       d="M11.9999 16H12.0099"
-      stroke="#DB807A"
+      stroke="currentColor"
       stroke-width="1.5"
       stroke-linecap="round"
       stroke-linejoin="round"
@@ -31,6 +31,6 @@
 
 <script>
 export default {
-  name: 'Error'
+  name: 'AlertCircle'
 };
 </script>

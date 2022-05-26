@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 1.0.0-beta.8
+
+### Features
+
+- Restyle of [ProgressBar component](./src/components/ProgressBar/ProgressBar.mdx)
+
+## 1.0.0-beta.7
+
+### Features
+
+- Renamed Error Icon to AlertCircle which is how it is named in the design system docs
+- To reduce duplication, updated the Warning icon to be a triangle instead of the 'i' already being used by the Info icon
+- Updated the conditions in Alert component, to show the icon AlertCircle for the error and warning variants
+
 ## 1.0.0-beta.6
 
 ### Features

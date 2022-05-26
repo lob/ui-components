@@ -8,15 +8,6 @@ describe('ProgressBar', () => {
 
   describe('Indeterminate', () => {
 
-    it('renders Progress and the dots', () => {
-      const { queryByText, queryByTestId } = renderComponent();
-
-      const progress = queryByText(/Progress/i);
-      const dots = queryByTestId('dots');
-      expect(progress).toBeInTheDocument();
-      expect(dots).toBeInTheDocument();
-    });
-
     it('the inner bar has the indybar class', () => {
       const { queryByTestId } = renderComponent();
 
@@ -30,12 +21,10 @@ describe('ProgressBar', () => {
 
     const props = { percentage: 25 };
 
-    it('renders Progress and the percentage', () => {
+    it('renders the percentage', () => {
       const { queryByText } = renderComponent({ props });
 
-      const progress = queryByText(/Progress/i);
-      expect(progress).toBeInTheDocument();
-      const percentage = queryByText(/- 25%/i);
+      const percentage = queryByText(/25%/i);
       expect(percentage).toBeInTheDocument();
     });
 
