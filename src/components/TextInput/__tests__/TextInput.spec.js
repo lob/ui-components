@@ -120,6 +120,20 @@ describe('Text input', () => {
     expect(slot).toBeInTheDocument();
   });
 
+  it('clears the input when the clear button is clicked', async () => {
+    const props = initialProps;
+    const { getByRole, getByLabelText } = render(TextInput, { props });
+
+    const textInput = getByLabelText(props.label);
+    const updatedValue = 'hello!';
+    await fireEvent.update(textInput, updatedValue);
+
+    const clearButton = getByRole('button');
+    await userEvent.click(clearButton);
+
+    expect(textInput.value).toBe('');
+  });
+
   describe('with Copy Button', () => {
 
     let component;
