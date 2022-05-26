@@ -120,6 +120,19 @@ describe('Text input', () => {
     expect(slot).toBeInTheDocument();
   });
 
+  it('renders the helper text correctly', () => {
+    const props = {
+      ...initialProps,
+      helperText: 'Helper text'
+    };
+    const { getByText } = render(TextInput, {
+      props
+    });
+
+    const helperText = getByText('Helper text');
+    expect(helperText).toBeInTheDocument();
+  });
+
   it('clears the input when the clear button is clicked', async () => {
     const props = initialProps;
     const { getByRole, getByLabelText } = render(TextInput, { props });
