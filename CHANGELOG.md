@@ -1,11 +1,5 @@
 # CHANGELOG
 
-## 1.0.0-beta.
-
-### Features
-
-- Restyle of [TextInput component](./src/components/TextInput/TextInput.mdx)
-
 ## 1.0.0-beta.8
 
 ### Features
