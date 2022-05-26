@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.0.0-beta.8
+
+### Features
+
+- Restyle of [ProgressBar component](./src/components/ProgressBar/ProgressBar.mdx)
+
 ## 1.0.0-beta.7
 
 ### Features
