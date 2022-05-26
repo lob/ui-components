@@ -16,7 +16,7 @@
                { 'text-coral-700': error }
       ]"
     />
-    <div class="block px-4">
+    <div class="px-4">
       <slot :link-color="linkColor" />
     </div>
   </div>
@@ -25,12 +25,11 @@
 <script>
 import Info from '../Icons/Info.vue';
 import Checkmark from '../Icons/Checkmark.vue';
-import Warning from '../Icons/Warning.vue';
-import Error from '../Icons/Error.vue';
+import AlertCircle from '../Icons/AlertCircle.vue';
 
 export default {
   name: 'Alert',
-  components: { Info, Checkmark, Warning, Error },
+  components: { Info, Checkmark, AlertCircle },
   props: {
     variant: {
       type: String,
@@ -45,8 +44,8 @@ export default {
       variantDetails: [
         { variant: 'info', icon: 'Info', linkColor: 'text-turquoise-700' },
         { variant: 'success', icon: 'Checkmark', linkColor: 'text-mint-900' },
-        { variant: 'warning', icon: 'Warning', linkColor: 'text-gray-700' },
-        { variant: 'error', icon: 'Error', linkColor: 'text-coral-700' }
+        { variant: 'warning', icon: 'AlertCircle', linkColor: 'text-gray-700' },
+        { variant: 'error', icon: 'AlertCircle', linkColor: 'text-coral-700' }
       ]
     };
   },

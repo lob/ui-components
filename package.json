@@ -1,6 +1,6 @@
 {
   "name": "@lob/ui-components",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.8",
   "engines": {
     "node": ">=14.18.2",
     "npm": ">=8.3.0"
@@ -67,7 +67,7 @@
     "tailwindcss": "^3.0.24",
     "typescript": "~3.9.3",
     "vite": "^2.9.9",
-    "vitest": "^0.12.6",
+    "vitest": "^0.12.9",
     "vue-eslint-parser": "^7.6.0",
     "vue-loader": "^16.2.0",
     "vue-style-loader": "^4.1.3"
