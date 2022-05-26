@@ -61,7 +61,7 @@ describe('Text input', () => {
     });
     const textInput = getByTestId('input-container');
 
-    expect(textInput).toHaveClass('border-error');
+    expect(textInput).toHaveClass('!border-coral-700');
   });
 
   it('updates the v-model on text input', async () => {
@@ -118,6 +118,33 @@ describe('Text input', () => {
 
     const slot = getByText(new RegExp(slotContent));
     expect(slot).toBeInTheDocument();
+  });
+
+  it('renders the helper text correctly', () => {
+    const props = {
+      ...initialProps,
+      helperText: 'Helper text'
+    };
+    const { getByText } = render(TextInput, {
+      props
+    });
+
+    const helperText = getByText('Helper text');
+    expect(helperText).toBeInTheDocument();
+  });
+
+  it('clears the input when the clear button is clicked', async () => {
+    const props = initialProps;
+    const { getByRole, getByLabelText } = render(TextInput, { props });
+
+    const textInput = getByLabelText(props.label);
+    const updatedValue = 'hello!';
+    await fireEvent.update(textInput, updatedValue);
+
+    const clearButton = getByRole('button');
+    await userEvent.click(clearButton);
+
+    expect(textInput.value).toBe('');
   });
 
   describe('with Copy Button', () => {

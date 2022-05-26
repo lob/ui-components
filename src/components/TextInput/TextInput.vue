@@ -7,6 +7,7 @@
       :required="required"
       :sr-only-label="srOnlyLabel"
       :tooltip-content="tooltipContent"
+      :disabled="disabled"
     />
     <div
       v-if="withCopyButton"
@@ -41,16 +42,19 @@
     <div
       data-testId="input-container"
       :class="[
-        'rounded border border-gray-100 focus-within:outline-none focus-within:ring-2 focus-within:ring-primary-100 focus-within:border-transparent',
-        {'flex items-center': !selectedOptions},
-        {'!border-0': withCopyButton},
-        {'hover:shadow': !disabled && !readonly},
-        {'border-error': error}
+        'h-12 pl-4 pr-4 py-2.5 rounded-lg flex items-center gap-2 border border-gray-100 focus-within:outline-none',
+        { '!pl-3 !pr-3 !h-8 !gap-1' : small },
+        {'hover:shadow focus-within:shadow focus-within:ring-1 focus-within:ring-primary-500 focus-within:border-primary-500': !disabled && !readonly},
+        {'!border-coral-700 bg-coral-100 focus-within:ring-1 focus-within:ring-coral-700': error},
+        {'!bg-white-100' : disabled},
+        {'!bg-white-100' : withCopyButton},
+        {'!flex-wrap !h-fit' : isMultiselect},
+        {'border-gray-500 focus-within:border-primary-500' : modelValue && !error && !withCopyButton}
       ]"
     >
       <div
         v-if="iconLeft"
-        :class="['pl-2 pt-3 pb-3 text-gray-500', {'!pl-1 !py-2': small}]"
+        :class="['text-gray-500']"
       >
         <slot name="iconLeft" />
       </div>
@@ -64,12 +68,12 @@
         :max="max"
         :pattern="pattern"
         :class="[
-          `rounded pl-2 pt-3 pb-3 leading-5 w-full text-gray-500 placeholder-gray-100 outline-none ${inputClass}`,
-          {'!pl-4': !iconLeft},
-          {'!pl-3 !pr-3 !py-2': small},
-          {'border border-r-0 border-gray-100 rounded-tr-none rounded-br-none truncate': withCopyButton},
-          {'bg-white-300 cursor-not-allowed': disabled || readonly},
-          {'border-error': error}
+          `leading-5 w-full text-gray-900 placeholder-gray-500 placeholder:font-light outline-none ${inputClass}`,
+          {'nonErrorAutofill' : !disabled && !readonly},
+          {'text-xs': small},
+          {'truncate': withCopyButton},
+          {'bg-white-100 cursor-not-allowed !text-gray-100 !placeholder-gray-100': disabled || readonly},
+          {'bg-coral-100 !placeholder-error !text-error !autofill:bg-coral-100 errorAutofill': error}
         ]"
         :disabled="disabled"
         :required="required"
@@ -77,24 +81,50 @@
         :readonly="readonly"
         @input="onInput"
         @focus="onFocus"
+        @change="onChange"
       >
       <div
+        v-if="showClearButton"
+        :class="['text-gray-500']"
+      >
+        <button
+          class="flex justify-center items-center"
+          variant="none"
+          @click="clearInput"
+        >
+          <Close
+            :class="[
+              'h-[18px] w-[18px] cursor-pointer',
+              { 'bg-white-100' : disabled },
+              { 'bg-coral-100' : error }
+            ]"
+          />
+        </button>
+      </div>
+      <div
         v-if="iconRight"
-        :class="['pr-2 pt-3 pb-3 text-gray-500', {'!pr-1 !py-2': small}]"
+        :class="['text-gray-500']"
       >
         <slot name="iconRight" />
       </div>
       <button
         v-if="withCopyButton"
         type="button"
-        :class="['rounded-tr-md rounded-br-md text-white bg-primary-500 border px-3',
-                 { 'h-12': !small },
-                 { 'h-10': small }
-        ]"
+        :class="['rounded-lg text-white bg-primary-500 px-3 !h-8 text-sm', {'!h-6 text-xs' : small}]"
         @click="copyToClipboard"
       >
         Copy
       </button>
+    </div>
+    <div
+      v-if="helperText"
+      :class="[
+        'text-gray-500 text-xs pt-1',
+        {'text-error' : error},
+        {'text-gray-100' : disabled}
+      ]"
+    >
+      {{ helperText }}
     </div>
   </div>
 </template>
@@ -102,12 +132,14 @@
 <script>
 import LobLabel from '../LobLabel/LobLabel.vue';
 import Check  from '../Icons/Check.vue';
+import Close  from '../Icons/Close.vue';
 
 export default {
   name: 'TextInput',
   components: {
     LobLabel,
-    Check
+    Check,
+    Close
   },
   props: {
     tooltipContent: {
@@ -190,6 +222,14 @@ export default {
     inputClass: {
       type: String,
       default: ''
+    },
+    helperText: {
+      type: String,
+      default: ''
+    },
+    isMultiselect: {
+      type: Boolean,
+      default: false
     }
   },
   emits: ['update:modelValue', 'input', 'change', 'focus', 'copy'],
@@ -210,6 +250,9 @@ export default {
     },
     selectedOptions () {
       return this.$slots.selectedOptions;
+    },
+    showClearButton () {
+      return !this.isMultiselect && !this.iconRight && !this.withCopyButton;
     }
   },
   methods: {
@@ -236,7 +279,31 @@ export default {
     },
     focus () {
       this.$refs.input.focus();
+    },
+    clearInput ($event) {
+      this.$refs.input.value = '';
+      this.$emit('update:modelValue', '');
+      this.$emit('input', '');
+      this.$emit('change', $event);
     }
   }
 };
 </script>
+
+<style scoped>
+.nonErrorAutofill:-webkit-autofill,
+.nonErrorAutofill:-webkit-autofill:hover,
+.nonErrorAutofill:-webkit-autofill:focus,
+.nonErrorAutofill:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  box-shadow: 0 0 0 30px white inset !important;
+}
+
+.errorAutofill:-webkit-autofill,
+.errorAutofill:-webkit-autofill:hover,
+.errorAutofill:-webkit-autofill:focus,
+.errorAutofill:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #f8e7e6 inset !important;
+  box-shadow: 0 0 0 30px #f8e7e6 inset !important;
+}
+</style>
