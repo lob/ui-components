@@ -161,6 +161,7 @@ const LargeGroupTemplate = (args, { argTypes }) => ({
     label="Really Big"
     value="big"
     v-model="largeGroupModel"
+    reveal-text="Reveal text"
   />
     </radio-group>
   `

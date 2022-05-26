@@ -6,10 +6,13 @@
       {'bg-white-100' : disabled},
       { 'cursor-not-allowed': disabled || readonly },
       {'!border-primary-500' : checked},
-      {'!h-[60px]' : helperText}
+      {'!h-[60px]' : helperText},
+      {'hover:h-[60px]' : revealText},
+      {'!h-[60px]' : revealText && checked}
     ]"
-    :value="value.toString()"
     @click="onButtonClick"
+    @mouseenter="showRevealText"
+    @mouseleave="hideRevealText"
   >
     <RadioButton
       :id="id"
@@ -27,6 +30,16 @@
       @click="onClick"
       @input="onInput"
     />
+    <div
+      v-if="revealText"
+      ref="revealText"
+      :class="[
+        'hidden ml-3.5 text-sm text-gray-300 !font-normal',
+        {'!block' : checked}
+      ]"
+    >
+      {{ revealText }}
+    </div>
   </div>
 </template>
 
@@ -77,6 +90,10 @@ export default {
     helperText: {
       type: String,
       default: ''
+    },
+    revealText: {
+      type: String,
+      default: ''
     }
   },
   emits: ['update:modelValue', 'input', 'click'],
@@ -97,21 +114,22 @@ export default {
     onInput () {
       this.$emit('update:modelValue', this.value);
       this.$emit('input', this.value);
-      console.log('on input event');
     },
     onClick ($event) {
       this.$emit('click', $event);
-      console.log('on click event');
     },
-    onButtonClick ($event) {
-      this.$emit('click', $event);
-      this.$emit('update:modelValue', this.value);
-      this.$emit('input', this.value);
+    showRevealText () {
+      const revealText = this.$refs.revealText;
+      if (revealText) {
+        revealText.classList.add('!block');
+      }
+    },
+    hideRevealText () {
+      const revealText = this.$refs.revealText;
+      if (revealText && !this.checked) {
+        revealText.classList.remove('!block');
+      }
     }
   }
 };
 </script>
-
-<style scoped lang="scss">
-
-</style>
