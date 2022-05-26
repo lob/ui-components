@@ -34,7 +34,7 @@
 import { config } from 'tailwind-plugin-lob';
 
 const { theme } = config;
-const { colors } = theme.extend;
+const { colors } = theme;
 
 export default {
   name: 'Theme',
@@ -43,7 +43,7 @@ export default {
       return colors;
     },
     theme () {
-      return theme.extend;
+      return theme;
     }
   }
 };
