@@ -16,8 +16,9 @@ const vModel = '';
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { RadioButtonLarge },
+  data: () => ({ vModel }),
   setup: () => ({ args }),
-  template: '<radio-button-large v-bind="args" />'
+  template: '<radio-button-large v-bind="args" v-model="vModel" />'
 });
 
 export const Primary = Template.bind({});
