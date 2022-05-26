@@ -1,5 +1,10 @@
-import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
-import TextInput from './TextInput.vue';
+import {
+  Preview,
+  Story,
+  ArgsTable,
+  PRIMARY_STORY,
+} from "@storybook/addon-docs";
+import TextInput from "./TextInput.vue";
 
 # Text Input
 
@@ -18,6 +23,8 @@ If you want a `copy` button, you can pass in the `withCopyButton` prop.
 If you want to select all text on clicking the text box, you can pass in the `selectOnClick` prop.
 
 Icons are available for the left, right, or both sides of the input via `iconLeft` and `iconRight` named slots.
+
+By default a clear button will appear on the right, unless a right icon is specified. The button will clear any text in the input when clicked.
 
 The `selectedOptions` named slot is specifically for the Multiselect component.
 
