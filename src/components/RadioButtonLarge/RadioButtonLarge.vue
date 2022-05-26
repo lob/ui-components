@@ -1,7 +1,7 @@
 <template>
   <div
     :class="[
-      'relative h-12 inline-block mr-6 mt-1 border border-gray-100 w-[200px] rounded-lg hover:shadow pl-6 focus-within:shadow focus-within:ring-4 focus-within:ring-tertiary-bluebird',
+      'bg-white relative h-12 inline-block mr-6 mt-1 border border-gray-100 w-[200px] rounded-lg hover:shadow pl-6 focus-within:shadow focus-within:ring-4 focus-within:ring-tertiary-bluebird',
       { '!block mb-1': parent.props.separateLines },
       {'bg-white-100' : disabled},
       { 'cursor-not-allowed': disabled || readonly },
@@ -27,6 +27,7 @@
       :readonly="readonly"
       :helper-text="helperText"
       :large="true"
+      :large-checked="checked"
       @click="onClick"
       @input="onInput"
     />
@@ -35,7 +36,7 @@
       ref="revealText"
       :class="[
         'hidden ml-3.5 text-sm text-gray-300 !font-normal',
-        {'!block' : checked}
+        {'!block !text-primary-500' : checked}
       ]"
     >
       {{ revealText }}

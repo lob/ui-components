@@ -28,7 +28,7 @@
       :class="[
         'relative flex',
         {'cursor-not-allowed text-gray-100 font-light': disabled || readonly },
-        {'!font-bold text-primary-500' : checked},
+        {'!font-bold !text-primary-500' : checked},
         {'largeButton w-4/5 h-full' : large},
         {'largeButton w-4/5 h-full !font-light' : large && disabled && checked},
         {'pt-2' : !helperText && large},
@@ -100,6 +100,10 @@ export default {
     large: {
       type: Boolean,
       default: false
+    },
+    largeChecked: {
+      type: Boolean,
+      default: false
     }
   },
   emits: ['update:modelValue', 'input', 'click'],
@@ -110,8 +114,7 @@ export default {
   },
   computed: {
     checked () {
-      return this.modelValue === this.value;
-      // return true;
+      return this.modelValue === this.value || this.largeChecked;
     }
   },
   created () {
