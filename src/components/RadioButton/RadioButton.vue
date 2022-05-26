@@ -218,9 +218,8 @@ input {
   }
 
   &:focus + label.largeButton::before {
-    @apply outline-none;
-    @apply !border-transparent;
     @apply ring-0;
+    @apply shadow-input;
   }
 
   &:focus:checked + label.largeButton::before {
