@@ -145,7 +145,7 @@ const LargeGroupTemplate = (args, { argTypes }) => ({
     label="4x6"
     value="4x6"
     v-model="largeGroupModel"
-    helper-text="This is helper text"
+    reveal-text="Reveal text"
   />
   <radio-button-large
     id="5x7"
@@ -153,7 +153,7 @@ const LargeGroupTemplate = (args, { argTypes }) => ({
     label="5x7"
     value="5x7"
     v-model="largeGroupModel"
-    helper-text="This is helper text"
+    reveal-text="Reveal text"
   />
   <radio-button-large
     id="big"
