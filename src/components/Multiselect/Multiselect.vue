@@ -12,6 +12,7 @@
       :placeholder="modelValue && modelValue.length ? '' : placeholder"
       :size="size"
       :input-class="inputWidthClass"
+      :is-multiselect="true"
       @focus="open = true"
       @input="handleSearchInput"
     >
@@ -21,7 +22,7 @@
           :key="option.label || option"
           variant="turquoise"
           :size="size"
-          class="mt-1 ml-1"
+          class="my-2 ml-2"
         >
           <div class="flex items-center">
             {{ option.label || option }}

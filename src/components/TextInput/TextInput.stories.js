@@ -3,7 +3,7 @@ import mdx from './TextInput.mdx';
 
 import LobLabel from '@/components/LobLabel/LobLabel.vue';
 import Tooltip from '@/components/Tooltip/Tooltip.vue';
-import { Close, Search, Info } from '@/components/Icons';
+import { Search, Info, Upload } from '@/components/Icons';
 
 export default {
   title: 'Components/Text Input',
@@ -34,28 +34,32 @@ export default {
   }
 };
 
+const textInputVModel = '';
+
 const PrimaryTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { TextInput },
   setup: () => ({ args }),
-  template: '<text-input v-bind="args" />'
+  data: () => ({ textInputVModel }),
+  template: '<text-input v-bind="args" v-model="textInputVModel" />'
 });
 
 export const Primary = PrimaryTemplate.bind({});
 Primary.args = {
-  id: 'one',
-  label: 'One',
-  placeholder: 'One'
+  id: 'name',
+  label: 'Name',
+  placeholder: 'Your name here'
 };
 
 const IconLeftTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { TextInput, Search },
   setup: () => ({ args }),
+  data: () => ({ textInputVModel }),
   template: `
-    <text-input v-bind="args">
+    <text-input v-bind="args" v-model="textInputVModel">
       <template v-slot:iconLeft>
-        <search class="w-6 h-6" />
+        <search class="w-[18px] h-[18px]" />
       </template>
     </text-input>
   `
@@ -63,19 +67,20 @@ const IconLeftTemplate = (args, { argTypes }) => ({
 
 export const IconLeft = IconLeftTemplate.bind({});
 IconLeft.args = {
-  id: 'one',
-  label: 'One',
-  placeholder: 'One'
+  id: 'name',
+  label: 'Name',
+  placeholder: 'Your name here'
 };
 
 const IconRightTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { TextInput, Close },
+  components: { TextInput, Search },
   setup: () => ({ args }),
+  data: () => ({ textInputVModel }),
   template: `
-    <text-input v-bind="args">
+    <text-input v-bind="args" v-model="textInputVModel">
       <template v-slot:iconRight>
-        <close class="w-6 h-6" />
+        <search class="w-[18px] h-[18px]" />
       </template>
     </text-input>
   `
@@ -83,15 +88,16 @@ const IconRightTemplate = (args, { argTypes }) => ({
 
 export const IconRight = IconRightTemplate.bind({});
 IconRight.args = {
-  id: 'one',
-  label: 'One',
-  placeholder: 'One'
+  id: 'name',
+  label: 'Name',
+  placeholder: 'Your name here'
 };
 
 const WithTooltipTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { TextInput, LobLabel, Info, Tooltip },
   setup: () => ({ args }),
+  data: () => ({ textInputVModel }),
   template: `
     <LobLabel
       label="Favorite Lunar Maria"
@@ -101,7 +107,7 @@ const WithTooltipTemplate = (args, { argTypes }) => ({
       <template v-slot:tooltip>
         <Tooltip>
           <template #trigger>
-            <Info class="w-5 h-5" />
+            <Info class="w-[18px] h-[18px]" />
           </template>
           <template #content>
             Moon
@@ -109,27 +115,28 @@ const WithTooltipTemplate = (args, { argTypes }) => ({
         </Tooltip>
       </template>
     </LobLabel>
-    <text-input v-bind="args" />
+    <text-input v-bind="args" v-model="textInputVModel" />
   `
 });
 
 export const WithTooltip = WithTooltipTemplate.bind({});
 WithTooltip.args = {
-  id: 'one',
+  id: 'name',
   placeholder: 'Mare Nectaris'
 };
 
 const BothIconsTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { TextInput, Search, Close },
+  components: { TextInput, Search, Upload },
   setup: () => ({ args }),
+  data: () => ({ textInputVModel }),
   template: `
-    <text-input v-bind="args">
+    <text-input v-bind="args" v-model="textInputVModel">
       <template v-slot:iconLeft>
-        <search class="w-6 h-6" />
+        <search class="w-[18px] h-[18px]" />
       </template>
       <template v-slot:iconRight>
-        <close class="w-6 h-6" />
+        <upload class="w-[18px] h-[18px]" />
       </template>
     </text-input>
   `
@@ -137,16 +144,16 @@ const BothIconsTemplate = (args, { argTypes }) => ({
 
 export const BothIcons = BothIconsTemplate.bind({});
 BothIcons.args = {
-  id: 'one',
-  label: 'One',
-  placeholder: 'One'
+  id: 'name',
+  label: 'Name',
+  placeholder: 'Your name here'
 };
 
 const WithCopyButtonTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { TextInput },
   setup: () => ({ args }),
-  template: '<text-input v-bind="args"/>'
+  template: '<text-input v-bind="args" />'
 });
 
 export const WithCopyButton = WithCopyButtonTemplate.bind({});
