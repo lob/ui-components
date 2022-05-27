@@ -3,9 +3,9 @@
     :id="id"
     ref="option"
     :class="[
-      'border-l-4 border-l-transparent truncate',
-      {'text-sm py-2 px-2.5': small},
-      {'py-2.5 px-4': default_},
+      'border-l-4 border-l-transparent truncate flex items-center',
+      {'text-sm h-7 px-2.5': small},
+      {'h-10 px-4': default_},
       {'font-light cursor-default': !option.disabled},
       {'bg-white-300 text-primary-500 font-bold !border-l-primary-500': active && !option.disabled && !selected},
       {'text-gray-100 cursor-not-allowed': option.disabled},
