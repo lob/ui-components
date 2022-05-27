@@ -41,7 +41,8 @@
         :class="[
           'text-sm text-gray-300 !font-normal',
           {'!text-primary-500' : checked},
-          {'!text-gray-100' : disabled}
+          {'!text-gray-100' : disabled},
+          {'!text-coral-900' : error}
         ]"
       >
         {{ helperText }}
@@ -224,16 +225,16 @@ input {
     @apply shadow-input;
   }
 
-  &:focus.radio__input--error + label.largeButton::before {
-    @apply shadow-none;
-  }
-
   &:focus:checked + label.largeButton::before {
     @apply border-transparent;
   }
 
-  &:focus:checked.radio__input--error + label.largeButton::before {
+  &.radio__input--error:focus:checked + label.largeButton::before {
     @apply border-error;
+  }
+
+  &.radio__input--error:focus + label.largeButton::before {
+    @apply shadow-none;
   }
 
   &:hover:not(:disabled):not(:checked):not(.radio__input--error) + label::before {

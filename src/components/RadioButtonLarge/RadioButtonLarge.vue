@@ -35,7 +35,8 @@
       :class="[
         'hidden ml-3.5 text-sm text-gray-300 !font-normal',
         {'!block !text-primary-500' : checked},
-        {'!text-gray-100 cursor-not-allowed' : disabled}
+        {'!text-gray-100 cursor-not-allowed' : disabled},
+        {'!text-coral-900' : error}
       ]"
     >
       {{ revealText }}

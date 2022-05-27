@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import { render, fireEvent } from '@testing-library/vue';
-import RadioButton from '../RadioButton.vue';
+import RadioButton from '../RadioButtonLarge.vue';
 
 const initialProps = {
   id: 'test',
