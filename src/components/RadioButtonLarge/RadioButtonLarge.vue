@@ -3,14 +3,12 @@
     :class="[
       'bg-white relative h-12 inline-block mr-6 mt-1 border border-gray-100 w-[200px] rounded-lg hover:shadow pl-6 focus-within:shadow focus-within:ring-4 focus-within:ring-tertiary-bluebird',
       { '!block mb-1': parent.props.separateLines },
-      {'bg-white-100' : disabled},
-      { 'cursor-not-allowed': disabled || readonly },
-      {'!border-primary-500' : checked},
-      {'!h-[60px]' : helperText},
+      {'!border-primary-500' : checked && !disabled},
+      {'h-[60px]' : helperText},
       {'hover:h-[60px]' : revealText},
-      {'!h-[60px]' : revealText && checked}
+      {'h-[60px]' : revealText && checked},
+      { 'bg-white-100 cursor-not-allowed': disabled}
     ]"
-    @click="onButtonClick"
     @mouseenter="showRevealText"
     @mouseleave="hideRevealText"
   >
@@ -24,7 +22,6 @@
       :error="error"
       :required="required"
       :disabled="disabled"
-      :readonly="readonly"
       :helper-text="helperText"
       :large="true"
       :large-checked="checked"
@@ -36,7 +33,8 @@
       ref="revealText"
       :class="[
         'hidden ml-3.5 text-sm text-gray-300 !font-normal',
-        {'!block !text-primary-500' : checked}
+        {'!block !text-primary-500' : checked},
+        {'!text-gray-100 cursor-not-allowed' : disabled}
       ]"
     >
       {{ revealText }}
@@ -81,10 +79,6 @@ export default {
       default: false
     },
     disabled: {
-      type: Boolean,
-      default: false
-    },
-    readonly: {
       type: Boolean,
       default: false
     },
