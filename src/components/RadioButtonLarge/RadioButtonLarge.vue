@@ -7,7 +7,8 @@
       {'h-[60px]' : helperText},
       {'hover:h-[60px]' : revealText},
       {'h-[60px]' : revealText && checked},
-      { 'bg-white-100 cursor-not-allowed': disabled}
+      { 'bg-white-100 cursor-not-allowed': disabled},
+      {'!border-coral-700 !bg-coral-100' : error}
     ]"
     @mouseenter="showRevealText"
     @mouseleave="hideRevealText"

@@ -27,10 +27,11 @@
       :class="[
         'relative flex',
         {'text-gray-100 font-light !cursor-not-allowed': disabled},
-        {'font-bold text-primary-500' : checked && !disabled},
+        {'font-bold text-primary-500' : checked && !disabled && !error},
         {'largeButton w-4/5 h-full pt-2' : large},
         {'!font-light' : large && disabled},
-        {'!pt-0.5 helperText' : large && helperText}
+        {'!pt-0.5 helperText' : large && helperText},
+        {'text-coral-900' : error}
       ]"
     >
       <slot>
@@ -187,10 +188,6 @@ input {
     }
   }
 
-  &.radio__input--error + label::before {
-    @apply border-error;
-  }
-
   &:disabled + label::before {
     @apply border-gray-100;
   }
@@ -227,13 +224,42 @@ input {
     @apply shadow-input;
   }
 
+  &:focus.radio__input--error + label.largeButton::before {
+    @apply shadow-none;
+  }
+
   &:focus:checked + label.largeButton::before {
     @apply border-transparent;
   }
 
-  &:hover:not(:disabled):not(:checked) + label::before {
+  &:focus:checked.radio__input--error + label.largeButton::before {
+    @apply border-error;
+  }
+
+  &:hover:not(:disabled):not(:checked):not(.radio__input--error) + label::before {
     @apply shadow-input;
     @apply border-primary-500;
+  }
+
+  &.radio__input--error + label::before {
+    @apply border-error;
+  }
+
+  &.radio__input--error:checked + label::before {
+    @apply border-error;
+    @apply !shadow-none;
+  }
+
+  &.radio__input--error:checked:focus + label::before {
+    @apply border-transparent;
+  }
+
+  &.radio__input--error:checked + label::after {
+    @apply bg-error;
+    @apply h-2.5;
+    @apply w-2.5;
+    @apply top-[7px];
+    @apply -left-[20px];
   }
 }
 </style>
