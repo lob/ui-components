@@ -281,6 +281,7 @@ export default {
       this.$refs.input.focus();
     },
     clearInput ($event) {
+      $event.preventDefault();
       this.$refs.input.value = '';
       this.$emit('update:modelValue', '');
       this.$emit('input', '');
