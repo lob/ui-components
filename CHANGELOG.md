@@ -8,7 +8,7 @@
 
 ### Features
 
-- Clear button is not an optional prop on [TextInput component](./src/components/TextInput/TextInput.mdx).
+- Clear button is now an optional prop on [TextInput component](./src/components/TextInput/TextInput.mdx).
 
 ## 1.0.0-beta.11
 
