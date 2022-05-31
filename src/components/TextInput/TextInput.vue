@@ -42,11 +42,12 @@
     <div
       data-testId="input-container"
       :class="[
-        'h-12 pl-4 pr-4 py-2.5 rounded-lg flex items-center gap-2 border border-gray-100 focus-within:outline-none',
+        'bg-white h-12 pl-4 pr-4 py-2.5 rounded-lg flex items-center gap-2 border border-gray-100 focus-within:outline-none',
         { '!pl-3 !pr-3 !h-8 !gap-1' : small },
         {'hover:shadow focus-within:shadow focus-within:ring-1 focus-within:ring-primary-500 focus-within:border-primary-500': !disabled && !readonly},
-        {'!border-coral-700 bg-coral-100 focus-within:ring-1 focus-within:ring-coral-700': error},
         {'!bg-white-100' : disabled},
+        {'!bg-white-100 focus-within:ring-1 focus-within:ring-primary-500 focus-within:border-primary-500' : readonly},
+        {'!border-coral-700 bg-coral-100 focus-within:ring-1 focus-within:ring-coral-700': error},
         {'!bg-white-100' : withCopyButton},
         {'!flex-wrap !h-fit' : isMultiselect},
         {'border-gray-500 focus-within:border-primary-500' : modelValue && !error && !withCopyButton}
@@ -84,7 +85,7 @@
         @change="onChange"
       >
       <div
-        v-if="showClearButton"
+        v-if="clearButton"
         :class="['text-gray-500']"
       >
         <button
@@ -230,6 +231,10 @@ export default {
     isMultiselect: {
       type: Boolean,
       default: false
+    },
+    clearButton: {
+      type: Boolean,
+      default: false
     }
   },
   emits: ['update:modelValue', 'input', 'change', 'focus', 'copy'],
@@ -250,9 +255,6 @@ export default {
     },
     selectedOptions () {
       return this.$slots.selectedOptions;
-    },
-    showClearButton () {
-      return !this.isMultiselect && !this.iconRight && !this.withCopyButton;
     }
   },
   methods: {
