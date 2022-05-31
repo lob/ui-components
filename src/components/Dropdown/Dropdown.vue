@@ -29,8 +29,8 @@
       :aria-required="required"
       :aria-disabled="disabled"
       :class="[
-        'cursor-default bg-white border rounded-lg border-gray-100 focus:outline-none focus:shadow hover:shadow font-light text-gray-900 flex items-center',
-        {'text-sm py-2 px-2.5': small},
+        'cursor-default bg-white border rounded-lg border-gray-100 focus:outline-none focus:shadow hover:shadow font-light text-gray-900 flex align-center items-center',
+        {'h-8 text-sm py-2 px-2.5': small},
         {'h-12 py-2.5 px-4': default_},
         {'!border-error': error},
         {'!bg-white-100 pointer-events-none': disabled},
@@ -46,9 +46,9 @@
       <div
         :class="[
           'mr-8 truncate',
-          {'text-sm': small},
+          {'text-xs': small},
           {'text-gray-100': disabled},
-          {'text-gray-900' : open || activeIndex > -1},
+          {'text-gray-900 !font-normal' : open || activeIndex > -1},
           {'text-gray-500' : activeIndex < 0}
         ]"
       >
@@ -57,18 +57,14 @@
       <chevron-down
         v-if="!open"
         :class="[
-          'w-4 h-4 absolute right-2 text-gray-100',
-          {'top-3': small},
-          {'top-4': default_}
+          'w-4 h-4 absolute right-2 text-gray-100'
         ]"
         data-testid="chevron-down"
       />
       <chevron-up
         v-else
         :class="[
-          'w-4 h-4 absolute right-2 text-gray-100',
-          {'top-3': small},
-          {'top-4': default_}
+          'w-4 h-4 absolute right-2 text-gray-100'
         ]"
         data-testid="chevron-up"
       />
