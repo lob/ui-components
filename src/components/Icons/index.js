@@ -24,7 +24,6 @@ export { default as Eye } from './Eye';
 export { default as EyeOff } from './EyeOff';
 export { default as Filters } from './Filters';
 export { default as Image } from './Image';
-export { default as Inbox } from './Inbox';
 export { default as Info } from './Info';
 export { default as Link } from './Link';
 export { default as List } from './List';
