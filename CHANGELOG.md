@@ -1,10 +1,20 @@
 # CHANGELOG
 
+## 1.0.0-beta.12
+
+### Bug Fixes
+
+- Fixes styling of readonly state and background color (white - was previously transparent) of [TextInput component](./src/components/TextInput/TextInput.mdx).
+
+### Features
+
+- Clear button is not an optional prop on [TextInput component](./src/components/TextInput/TextInput.mdx).
+
 ## 1.0.0-beta.11
 
 ### Bug Fixes
 
-- Fixed clear button on text input causing form submission.  Also updated typography on small dropdown variant (font weight and font size).
+- Fixed clear button on text input causing form submission. Also updated typography on small dropdown variant (font weight and font size).
 
 ## 1.0.0-beta.10
 
