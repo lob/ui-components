@@ -1,3 +1,4 @@
+export { default as AlertCircle } from './AlertCircle';
 export { default as Analytics } from './Analytics';
 export { default as ArrowDown } from './ArrowDown';
 export { default as ArrowRight } from './ArrowRight';
