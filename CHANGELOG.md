@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 1.0.0-beta.11
+
+### Bug Fixes
+
+- Fixed clear button on text input causing form submission.  Also updated typography on small dropdown variant (font weight and font size).
+
+## 1.0.0-beta.10
+
+### Bug Fixes
+
+- Changed the height of small dropdown components to 32px
+
+### Features
+
+- Restyle of [TextInput component](./src/components/TextInput/TextInput.mdx)
+
 ## 1.0.0-beta.9
 
 ### Features

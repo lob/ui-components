@@ -46,9 +46,9 @@
       <div
         :class="[
           'mr-8 truncate',
-          {'text-sm': small},
+          {'text-xs': small},
           {'text-gray-100': disabled},
-          {'text-gray-900' : open || activeIndex > -1},
+          {'text-gray-900 !font-normal' : open || activeIndex > -1},
           {'text-gray-500' : activeIndex < 0}
         ]"
       >
