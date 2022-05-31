@@ -10,7 +10,7 @@
       width="15"
       height="10"
       rx="2"
-      stroke="#416581"
+      stroke="currentColor"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
@@ -19,13 +19,13 @@
       cy="16"
       rx="1.07143"
       ry="1"
-      stroke="#416581"
+      stroke="currentColor"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
     <path
       d="M7.21387 11V7C7.21387 4.79086 9.13265 3 11.4996 3C13.8665 3 15.7853 4.79086 15.7853 7V11"
-      stroke="#416581"
+      stroke="currentColor"
       stroke-linecap="round"
       stroke-linejoin="round"
     />

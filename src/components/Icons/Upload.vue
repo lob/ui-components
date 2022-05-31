@@ -6,19 +6,19 @@
   >
     <path
       d="M5 14.6943V16.8481C5 18.0377 5.7835 19.002 6.75 19.002H17.25C18.2165 19.002 19 18.0377 19 16.8481V14.6943"
-      stroke="#416581"
+      stroke="currentColor"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
     <path
       d="M7.33301 9.30769L11.9997 5L16.6663 9.30769"
-      stroke="#416581"
+      stroke="currentColor"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
     <path
       d="M12 5V14.6923"
-      stroke="#416581"
+      stroke="currentColor"
       stroke-linecap="round"
       stroke-linejoin="round"
     />

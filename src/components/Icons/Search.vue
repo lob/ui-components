@@ -6,7 +6,7 @@
   >
     <path
       d="M20.0003 20.0003L14.667 14.667"
-      stroke="#416581"
+      stroke="currentColor"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
@@ -14,7 +14,7 @@
       cx="10.2222"
       cy="10.2222"
       r="6.22222"
-      stroke="#416581"
+      stroke="currentColor"
       stroke-linecap="round"
       stroke-linejoin="round"
     />

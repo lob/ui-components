@@ -7,7 +7,7 @@
     <g clip-path="url(#clip0_1693_17598)">
       <path
         d="M5 9L12 15L19 9"
-        stroke="#416581"
+        stroke="currentColor"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
