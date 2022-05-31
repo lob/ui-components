@@ -4,7 +4,7 @@
 
 ### Bug Fixes
 
-- Fixed clear button on text input causing form submittion.  Also updated typography on small dropdown variant (font weight and font size).
+- Fixed clear button on text input causing form submission.  Also updated typography on small dropdown variant (font weight and font size).
 
 ## 1.0.0-beta.10
 
