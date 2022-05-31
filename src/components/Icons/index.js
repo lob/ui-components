@@ -48,6 +48,7 @@ export { default as TriangleDown } from './TriangleDown';
 export { default as TriangleLeft } from './TriangleLeft';
 export { default as TriangleRight } from './TriangleRight';
 export { default as TriangleUp } from './TriangleUp';
+export { default as ToolTip } from './ToolTip';
 export { default as Upload } from './Upload';
 export { default as User } from './User';
 export { default as Warning } from './Warning';
