@@ -4,16 +4,8 @@
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <circle
-      cx="12"
-      cy="7"
-      r="4"
-      stroke="#416581"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    />
     <path
-      d="M6 21V19C6 16.7909 7.79086 15 10 15H14C16.2091 15 18 16.7909 18 19V21"
+      d="M6 12.7143H18L14.1429 8.85714L18 5H6V18.7143"
       stroke="#416581"
       stroke-linecap="round"
       stroke-linejoin="round"
@@ -23,6 +15,6 @@
 
 <script>
 export default {
-  name: 'User'
+  name: 'Flag'
 };
 </script>

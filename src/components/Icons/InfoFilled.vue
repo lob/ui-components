@@ -7,18 +7,18 @@
     <circle
       cx="12"
       cy="12"
-      r="8.5"
-      stroke="#416581"
+      r="9"
+      fill="#5F83A5"
     />
     <path
       d="M12.302 7C11.574 7 11 7.546 11 8.274C11 9.002 11.574 9.548 12.302 9.548C13.03 9.548 13.618 9.002 13.618 8.274C13.618 7.546 13.03 7 12.302 7ZM13.45 17.416V11.276L11.168 12.276V17.416H13.45Z"
-      fill="#416581"
+      fill="white"
     />
   </svg>
 </template>
 
 <script>
 export default {
-  name: 'Info'
+  name: 'InfoFilled'
 };
 </script>
