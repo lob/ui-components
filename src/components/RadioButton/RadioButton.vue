@@ -25,11 +25,10 @@
     <label
       :for="id"
       :class="[
-        'relative flex',
-        {'text-gray-100 font-light !cursor-not-allowed': disabled},
+        'relative flex font-light',
+        {'text-gray-100 !cursor-not-allowed': disabled},
         {'font-bold text-primary-500' : checked && !disabled && !error},
         {'largeButton w-4/5 h-full pt-2' : large},
-        {'!font-light' : large && disabled},
         {'!pt-0.5 helperText' : large && helperText},
         {'text-coral-900' : error}
       ]"
@@ -111,7 +110,6 @@ export default {
   computed: {
     checked () {
       return this.modelValue === this.value || this.largeChecked;
-      // return true;
     }
   },
   created () {
@@ -264,13 +262,3 @@ input {
   }
 }
 </style>
-
-// defaults
-// focus
-// disabled
-// readonly
-// checked
-// custom classes
-
-// before
-// after
