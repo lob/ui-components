@@ -1,8 +1,8 @@
 <template>
   <fieldset
     :class="[
-      'border-none m-0 p-0',
-      {'flex' : !separateLines}
+      'border-none m-0 p-0 flex',
+      {'flex-col' : separateLines}
     ]"
   >
     <legend :class="[{'text-sm font-normal normal-case tracking-normal text-gray-500 mb-1 border-b-0':!srOnlyLegend}, {'sr-only': srOnlyLegend}]">

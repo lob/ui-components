@@ -82,7 +82,7 @@ const BooleanTemplate = (args, { argTypes }) => ({
 });
 
 export const Boolean = BooleanTemplate.bind({});
-Primary.args = {
+Boolean.args = {
   legend: 'Postcard Size',
   separateLines: false
 };
@@ -125,7 +125,7 @@ const WithHelperTextTemplate = (args, { argTypes }) => ({
 });
 
 export const WithHelperText = WithHelperTextTemplate.bind({});
-Primary.args = {
+WithHelperText.args = {
   legend: 'Postcard Size',
   separateLines: false
 };
@@ -168,7 +168,7 @@ const LargeGroupTemplate = (args, { argTypes }) => ({
 });
 
 export const LargeGroup = LargeGroupTemplate.bind({});
-Primary.args = {
+LargeGroup.args = {
   legend: 'Postcard Size',
   separateLines: false
 };
