@@ -2,7 +2,6 @@
   <div
     :class="[
       'bg-white relative h-12 inline-block mr-6 mt-1 border border-gray-100 w-[200px] rounded-lg hover:shadow pl-6 focus-within:shadow focus-within:ring-4 focus-within:ring-tertiary-bluebird',
-      { '!block mb-1': parent.props.separateLines },
       {'!border-primary-500' : checked && !disabled},
       {'h-[60px]' : helperText},
       {'hover:h-[60px]' : revealText},

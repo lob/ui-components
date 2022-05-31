@@ -1,8 +1,7 @@
 <template>
   <div
     :class="[
-      'inline-block mr-6 mt-1',
-      {'!block mb-1': parent.props.separateLines}
+      'inline-block mr-6 mt-1'
     ]"
   >
     <input
