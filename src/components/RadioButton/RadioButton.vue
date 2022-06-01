@@ -163,7 +163,6 @@ input {
   }
 
   + label.largeButton {
-
     &::before {
       @apply mt-2;
     }
@@ -174,7 +173,6 @@ input {
   }
 
   + label.helperText {
-
     &::before {
       @apply mt-0.5;
     }
@@ -186,6 +184,16 @@ input {
 
   &:disabled + label::before {
     @apply border-gray-100;
+  }
+
+  &:focus + label::before {
+    @apply ring-4;
+    @apply ring-tertiary-bluebird;
+    @apply border-primary-500;
+  }
+
+  &.radio__input--error + label::before {
+    @apply border-error;
   }
 
   &:checked:not(:disabled) + label::before {
@@ -205,12 +213,6 @@ input {
     @apply -left-[20px];
   }
 
-  &:focus + label::before {
-    @apply ring-4;
-    @apply ring-tertiary-bluebird;
-    @apply border-primary-500;
-  }
-
   &:focus:checked + label::before {
     @apply border-transparent;
   }
@@ -218,6 +220,10 @@ input {
   &:focus + label.largeButton::before {
     @apply ring-0;
     @apply shadow-input;
+  }
+
+  &.radio__input--error:focus + label.largeButton::before {
+    @apply shadow-none;
   }
 
   &:focus:checked + label.largeButton::before {
@@ -228,25 +234,17 @@ input {
     @apply border-error;
   }
 
-  &.radio__input--error:focus + label.largeButton::before {
-    @apply shadow-none;
-  }
-
-  &:hover:not(:disabled):not(:checked):not(.radio__input--error) + label::before {
-    @apply shadow-input;
-    @apply border-primary-500;
-  }
-
-  &.radio__input--error + label::before {
-    @apply border-error;
-  }
-
   &.radio__input--error:checked + label::before {
     @apply border-error;
   }
 
   &.radio__input--error:checked:focus + label::before {
     @apply border-transparent;
+  }
+
+  &:hover:not(:disabled):not(:checked):not(.radio__input--error) + label::before {
+    @apply shadow-input;
+    @apply border-primary-500;
   }
 
   &.radio__input--error:checked + label::after {
