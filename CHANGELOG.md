@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 1.0.0-beta.13
+
+### Features
+
+Style additions to the [Dropdown component](./src/components/Dropdown/Dropdown.mdx):
+
+- Background color added to the error (red) state
+- Success prop added to add green border for success state
+
 ## 1.0.0-beta.12
 
 ### Bug Fixes

@@ -58,7 +58,19 @@ describe('Dropdown', () => {
     const { getByRole } = renderComponent({ props });
     const select = getByRole('combobox');
 
-    expect(select).toHaveClass('!border-error');
+    expect(select).toHaveClass('!border-error bg-coral-200');
+  });
+
+  it('adds success class to the textarea when error prop is true', () => {
+    const props = {
+      ...initialProps,
+      success: true
+    };
+
+    const { getByRole } = renderComponent({ props });
+    const select = getByRole('combobox');
+
+    expect(select).toHaveClass('!border-success');
   });
 
   describe('without a placeholder', () => {
