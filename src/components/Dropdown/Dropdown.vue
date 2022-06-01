@@ -59,8 +59,8 @@
       <chevron-down
         v-if="!open"
         :class="[
-          'w-5 h-5 absolute right-2.5 text-gray-100',
-          {'!text-error': error}
+          'w-5 h-5 absolute right-2.5',
+          error ? 'text-error' : 'text-gray-100'
         ]"
         data-testid="chevron-down"
       />
