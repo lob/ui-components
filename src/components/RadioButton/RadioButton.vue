@@ -163,7 +163,6 @@ input {
   }
 
   + label.largeButton {
-    @apply !absolute;
 
     &::before {
       @apply mt-2;
@@ -175,7 +174,6 @@ input {
   }
 
   + label.helperText {
-    @apply !absolute;
 
     &::before {
       @apply mt-0.5;
@@ -245,7 +243,6 @@ input {
 
   &.radio__input--error:checked + label::before {
     @apply border-error;
-    @apply !shadow-none;
   }
 
   &.radio__input--error:checked:focus + label::before {
