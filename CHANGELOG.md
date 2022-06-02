@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 1.0.0-beta.14
+
+### Features
+
+Style additions to the [Textarea component](./src/components/Textarea/Textarea.mdx):
+
+- Width takes up the entire width of the container
+- Height set via Tailwind class
+
 ## 1.0.0-beta.13
 
 ### Features
