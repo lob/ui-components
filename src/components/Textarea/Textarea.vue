@@ -17,7 +17,7 @@
       :readonly="readonly"
       :placeholder="placeholder"
       :class="[
-        `bg-white text-gray-500 placeholder-gray-100 p-4 resize-none rounded border border-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent ${inputClass}`,
+        `bg-white text-gray-500 placeholder-gray-100 p-4 resize-none rounded border border-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent w-full h-40 ${inputClass}`,
         { 'border-error': error },
         { '!bg-white-300 cursor-not-allowed': disabled || readonly },
         { 'hover:shadow': !disabled && !readonly }
@@ -94,9 +94,3 @@ export default {
   }
 };
 </script>
-
-<style scoped lang="scss">
-textarea {
-  min-height: 10rem;
-}
-</style>
