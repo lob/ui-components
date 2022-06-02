@@ -6,7 +6,7 @@
 
 Style additions to the [Textarea component](./src/components/Textarea/Textarea.mdx):
 
-- Width takes up the entire width of the container
+- Width takes up the entire width of the container (no longer need to pass in `input-class: "w-full"`)
 - Height set via Tailwind class
 - Changes made to match text input: larger corner rounding, focus & "has something in it" states
 
