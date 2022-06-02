@@ -1,5 +1,6 @@
 import '@testing-library/jest-dom';
-import { render, fireEvent } from '@testing-library/vue';
+import { render } from '@testing-library/vue';
+import userEvent from '@testing-library/user-event';
 import RadioButton from '../RadioButton.vue';
 
 const initialProps = {
@@ -72,7 +73,7 @@ describe('Radio Button', () => {
     });
     const radio = getByLabelText(props.label);
 
-    await fireEvent.click(radio);
+    await userEvent.click(radio);
     const emittedEvent = emitted();
     expect(emittedEvent).toHaveProperty('click');
     expect(emittedEvent).toHaveProperty('input');
