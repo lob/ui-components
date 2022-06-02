@@ -22,11 +22,14 @@ export default {
   }
 };
 
+const textareaVModel = '';
+
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: {  Textarea },
   setup: () => ({ args }),
-  template: '<Textarea v-bind="args"></Textarea>'
+  data: () => ({ textareaVModel }),
+  template: '<Textarea v-bind="args" v-model="textareaVModel"></Textarea>'
 });
 
 export const Primary = Template.bind({});
@@ -40,6 +43,7 @@ const WithTooltipTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { Textarea, Info, LobLabel, Tooltip },
   setup: () => ({ args }),
+  data: () => ({ textareaVModel }),
   template: `
     <LobLabel
       label="Cat nicknames"
@@ -57,7 +61,7 @@ const WithTooltipTemplate = (args, { argTypes }) => ({
         </Tooltip>
       </template>
     </LobLabel>
-    <Textarea v-bind="args" />
+    <Textarea v-bind="args" v-model="textareaVModel" />
   `
 });
 
