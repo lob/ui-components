@@ -43,7 +43,7 @@ WithHelperText.args = {
   id: '4x6',
   label: '4x6',
   value: '4x6',
-  helperText: 'Helper text'
+  helperText: 'Standard postcard size'
 };
 
 const WithRevealTextTemplate = (args, { argTypes }) => ({
@@ -60,5 +60,5 @@ WithRevealText.args = {
   id: '4x6',
   label: '4x6',
   value: '4x6',
-  revealText: 'Reveal text'
+  revealText: 'Standard postcard size'
 };
