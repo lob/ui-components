@@ -8,6 +8,7 @@ Style additions to the [Textarea component](./src/components/Textarea/Textarea.m
 
 - Width takes up the entire width of the container
 - Height set via Tailwind class
+- Changes made to match text input: larger corner rounding, focus & "has something in it" states
 
 ## 1.0.0-beta.13
 
