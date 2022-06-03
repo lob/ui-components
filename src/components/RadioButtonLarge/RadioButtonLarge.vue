@@ -18,11 +18,7 @@
         ref="contentContainer"
         :class="[
           '-ml-1',
-          {'-mt-1.5'
-            :
-            checked
-            &&
-            revealText}
+          {'-mt-1.5' : checked && revealText}
         ]"
       >
         <RadioButton
