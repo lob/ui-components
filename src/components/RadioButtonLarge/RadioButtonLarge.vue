@@ -1,7 +1,7 @@
 <template>
   <div
     :class="[
-      'bg-white relative h-12 inline-block mr-6 mt-1 border border-gray-100 w-[200px] rounded-lg hover:shadow pl-6 focus-within:shadow focus-within:ring-4 focus-within:ring-tertiary-bluebird',
+      'bg-white relative h-12 inline-block mr-4 -ml-2.5 mt-1 border border-gray-100 w-[200px] rounded-lg hover:shadow pl-6 focus-within:shadow focus-within:ring-4 focus-within:ring-tertiary-bluebird',
       {'!border-primary-500' : checked && !disabled},
       {'h-[60px]' : helperText},
       {'hover:h-[60px]' : revealText},
@@ -14,7 +14,10 @@
   >
     <div
       ref="contentContainer"
-      :class="[{'' : revealText}]"
+      :class="[
+        '-ml-1',
+        {'-mt-1.5' : checked && revealText}
+      ]"
     >
       <RadioButton
         :id="id"

@@ -1,7 +1,7 @@
 <template>
   <div
     :class="[
-      'inline-block mr-6 mt-1'
+      'inline-block mr-4 mt-1'
     ]"
   >
     <input
@@ -136,7 +136,7 @@ input {
     &::before {
       content: "";
       top: 5px;
-      left: -22px;
+      left: -19px;
 
       @apply absolute;
       @apply bg-transparent;
@@ -152,7 +152,7 @@ input {
     &::after {
       content: "";
 
-      @apply -left-[21px];
+      @apply -left-[18px];
       @apply top-1.5;
       @apply absolute;
       @apply h-3;
