@@ -17,10 +17,12 @@
       :readonly="readonly"
       :placeholder="placeholder"
       :class="[
-        `bg-white text-gray-500 placeholder-gray-100 p-4 resize-none rounded border border-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent ${inputClass}`,
+        `bg-white text-gray-500 placeholder-gray-100 p-4 resize-none rounded-lg border border-gray-100 focus-within:outline-none w-full h-40 ${inputClass}`,
         { 'border-error': error },
         { '!bg-white-300 cursor-not-allowed': disabled || readonly },
-        { 'hover:shadow': !disabled && !readonly }
+        { 'hover:shadow focus-within:shadow focus-within:ring-1 focus-within:ring-primary-500 focus-within:border-primary-500': !disabled && !readonly },
+        { 'hover:shadow': !disabled && !readonly },
+        {'border-gray-500 focus-within:border-primary-500' : modelValue }
       ]"
       @input="onInput"
     />
@@ -94,9 +96,3 @@ export default {
   }
 };
 </script>
-
-<style scoped lang="scss">
-textarea {
-  min-height: 10rem;
-}
-</style>
