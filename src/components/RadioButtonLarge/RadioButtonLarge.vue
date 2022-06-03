@@ -39,11 +39,12 @@
         v-if="revealText"
         ref="revealText"
         :class="[
-          'hidden ml-3.5 text-sm text-gray-300 !font-normal',
+          'hidden ml-3.5 text-sm text-gray-300 !font-normal cursor-pointer',
           {'!block !text-primary-500' : checked},
           {'!text-gray-100 cursor-not-allowed' : disabled},
           {'!text-coral-900' : error}
         ]"
+        @click="onRevealTextClick"
       >
         {{ revealText }}
       </div>
@@ -121,6 +122,9 @@ export default {
     },
     onClick ($event) {
       this.$emit('click', $event);
+    },
+    onRevealTextClick () {
+      this.$emit('update:modelValue', this.value);
     },
     showRevealText () {
       const revealText = this.$refs.revealText;
