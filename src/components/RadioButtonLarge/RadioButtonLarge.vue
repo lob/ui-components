@@ -1,56 +1,58 @@
 <template>
-  <div
-    :class="[
-      'cursor-pointer bg-white relative h-12 inline-block mr-4 -ml-2.5 mt-1 border border-gray-100 w-[200px] rounded-lg hover:shadow pl-6 focus-within:shadow focus-within:ring-4 focus-within:ring-tertiary-bluebird',
-      {'!border-primary-500' : checked && !disabled},
-      {'h-[60px]' : helperText},
-      {'hover:h-[60px]' : revealText},
-      {'h-[60px]' : revealText && checked},
-      { 'bg-white-100 cursor-not-allowed': disabled},
-      {'!border-coral-700 !bg-coral-100' : error}
-    ]"
-    @mouseenter="showRevealText"
-    @mouseleave="hideRevealText"
-    @click="onLargeButtonClick"
-  >
+  <div :class="[{'h-[60px]' : revealText}]">
     <div
-      ref="contentContainer"
       :class="[
-        '-ml-1',
-        {'-mt-1.5'
-          :
-          checked
-          &&
-          revealText}
+        'cursor-pointer bg-white h-12 top-2 inline-block mr-4 -ml-2.5 mt-1 border border-gray-100 w-[200px] rounded-lg hover:shadow pl-6 focus-within:shadow focus-within:ring-4 focus-within:ring-tertiary-bluebird',
+        {'!border-primary-500' : checked && !disabled},
+        {'h-[60px]' : helperText},
+        {'hover:h-[60px]' : revealText},
+        {'h-[60px]' : revealText && checked},
+        { 'bg-white-100 cursor-not-allowed': disabled},
+        {'!border-coral-700 !bg-coral-100' : error}
       ]"
+      @mouseenter="showRevealText"
+      @mouseleave="hideRevealText"
+      @click="onLargeButtonClick"
     >
-      <RadioButton
-        :id="id"
-        class="w-full"
-        :v-model="modelValue"
-        :value="value"
-        :name="name"
-        :label="label"
-        :error="error"
-        :required="required"
-        :disabled="disabled"
-        :helper-text="helperText"
-        :large="true"
-        :large-checked="checked"
-        @click="onClick"
-        @input="onInput"
-      />
       <div
-        v-if="revealText"
-        ref="revealText"
+        ref="contentContainer"
         :class="[
-          'hidden ml-3.5 text-sm text-gray-300 !font-normal cursor-pointer',
-          {'!block !text-primary-500' : checked},
-          {'!text-gray-100 cursor-not-allowed' : disabled},
-          {'!text-coral-900' : error}
+          '-ml-1',
+          {'-mt-1.5'
+            :
+            checked
+            &&
+            revealText}
         ]"
       >
-        {{ revealText }}
+        <RadioButton
+          :id="id"
+          class="w-full"
+          :v-model="modelValue"
+          :value="value"
+          :name="name"
+          :label="label"
+          :error="error"
+          :required="required"
+          :disabled="disabled"
+          :helper-text="helperText"
+          :large="true"
+          :large-checked="checked"
+          @click="onClick"
+          @input="onInput"
+        />
+        <div
+          v-if="revealText"
+          ref="revealText"
+          :class="[
+            'hidden ml-3.5 text-sm text-gray-300 !font-normal cursor-pointer',
+            {'!block !text-primary-500' : checked},
+            {'!text-gray-100 cursor-not-allowed' : disabled},
+            {'!text-coral-900' : error}
+          ]"
+        >
+          {{ revealText }}
+        </div>
       </div>
     </div>
   </div>
