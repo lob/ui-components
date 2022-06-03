@@ -12,33 +12,38 @@
     @mouseenter="showRevealText"
     @mouseleave="hideRevealText"
   >
-    <RadioButton
-      :id="id"
-      class="w-full"
-      :v-model="modelValue"
-      :value="value"
-      :name="name"
-      :label="label"
-      :error="error"
-      :required="required"
-      :disabled="disabled"
-      :helper-text="helperText"
-      :large="true"
-      :large-checked="checked"
-      @click="onClick"
-      @input="onInput"
-    />
     <div
-      v-if="revealText"
-      ref="revealText"
-      :class="[
-        'hidden ml-3.5 text-sm text-gray-300 !font-normal',
-        {'!block !text-primary-500' : checked},
-        {'!text-gray-100 cursor-not-allowed' : disabled},
-        {'!text-coral-900' : error}
-      ]"
+      ref="contentContainer"
+      :class="[{'' : revealText}]"
     >
-      {{ revealText }}
+      <RadioButton
+        :id="id"
+        class="w-full"
+        :v-model="modelValue"
+        :value="value"
+        :name="name"
+        :label="label"
+        :error="error"
+        :required="required"
+        :disabled="disabled"
+        :helper-text="helperText"
+        :large="true"
+        :large-checked="checked"
+        @click="onClick"
+        @input="onInput"
+      />
+      <div
+        v-if="revealText"
+        ref="revealText"
+        :class="[
+          'hidden ml-3.5 text-sm text-gray-300 !font-normal',
+          {'!block !text-primary-500' : checked},
+          {'!text-gray-100 cursor-not-allowed' : disabled},
+          {'!text-coral-900' : error}
+        ]"
+      >
+        {{ revealText }}
+      </div>
     </div>
   </div>
 </template>
@@ -116,8 +121,10 @@ export default {
     },
     showRevealText () {
       const revealText = this.$refs.revealText;
+      const contentContainer = this.$refs.contentContainer;
       if (revealText) {
         revealText.classList.add('!block');
+        contentContainer.classList.add('hover:-mt-1.5');
       }
     },
     hideRevealText () {
