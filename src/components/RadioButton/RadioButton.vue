@@ -27,7 +27,7 @@
         'relative flex font-light',
         {'text-gray-100 !cursor-not-allowed': disabled},
         {'font-bold text-primary-500' : checked && !disabled && !error},
-        {'largeButton w-4/5 h-full pt-2' : large},
+        {'largeButton w-4/5 pt-2' : large},
         {'!pt-0.5 helperText' : large && helperText},
         {'text-coral-900' : error}
       ]"

@@ -1,7 +1,7 @@
 <template>
   <div
     :class="[
-      'bg-white relative h-12 inline-block mr-4 -ml-2.5 mt-1 border border-gray-100 w-[200px] rounded-lg hover:shadow pl-6 focus-within:shadow focus-within:ring-4 focus-within:ring-tertiary-bluebird',
+      'cursor-pointer bg-white relative h-12 inline-block mr-4 -ml-2.5 mt-1 border border-gray-100 w-[200px] rounded-lg hover:shadow pl-6 focus-within:shadow focus-within:ring-4 focus-within:ring-tertiary-bluebird',
       {'!border-primary-500' : checked && !disabled},
       {'h-[60px]' : helperText},
       {'hover:h-[60px]' : revealText},
@@ -11,12 +11,17 @@
     ]"
     @mouseenter="showRevealText"
     @mouseleave="hideRevealText"
+    @click="onLargeButtonClick"
   >
     <div
       ref="contentContainer"
       :class="[
         '-ml-1',
-        {'-mt-1.5' : checked && revealText}
+        {'-mt-1.5'
+          :
+          checked
+          &&
+          revealText}
       ]"
     >
       <RadioButton
@@ -44,7 +49,6 @@
           {'!text-gray-100 cursor-not-allowed' : disabled},
           {'!text-coral-900' : error}
         ]"
-        @click="onRevealTextClick"
       >
         {{ revealText }}
       </div>
@@ -123,7 +127,7 @@ export default {
     onClick ($event) {
       this.$emit('click', $event);
     },
-    onRevealTextClick () {
+    onLargeButtonClick () {
       this.$emit('update:modelValue', this.value);
     },
     showRevealText () {
@@ -131,13 +135,15 @@ export default {
       const contentContainer = this.$refs.contentContainer;
       if (revealText) {
         revealText.classList.add('!block');
-        contentContainer.classList.add('hover:-mt-1.5');
+        contentContainer.classList.add('!-mt-1.5');
       }
     },
     hideRevealText () {
       const revealText = this.$refs.revealText;
+      const contentContainer = this.$refs.contentContainer;
       if (revealText && !this.checked) {
         revealText.classList.remove('!block');
+        contentContainer.classList.remove('!-mt-1.5');
       }
     }
   }
