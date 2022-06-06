@@ -3,11 +3,11 @@
     :is="tag"
     ref="date"
     :class="[
-      'text-sm text-gray-900 bg-transparent px-2 py-1 cursor-pointer inline-flex items-center justify-center w-6 h-6 relative text-center hover:bg-white-300 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
+      'text-small leading-6 text-gray-900 bg-transparent px-2 py-2 my-2 mx-1 cursor-pointer inline-flex items-center justify-center w-6 h-6 relative text-center hover:bg-white-300 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
       {'!text-gray-100 !bg-transparent': disabled},
       {'cursor-default pointer-events-none': isOutsideRange},
       {'bg-gray-100': today},
-      {'z-10 !bg-primary-500 text-white rounded-full': selected}
+      {'z-10 !bg-primary-500 text-white rounded-full shadow-input border border-white': selected}
     ]"
     :role="disabled ? 'button' : null"
     :tabindex="focused ? 0: -1"

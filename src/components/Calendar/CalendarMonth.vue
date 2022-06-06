@@ -3,21 +3,21 @@
     class="text-sm grid gap-y-3"
     :aria-labelledby="labelledById"
   >
-    <header class="grid grid-cols-7 gap-3">
+    <header class="grid grid-cols-7 gap-2">
       <div
         v-for="dayName in mapWithOffset(dayNames, firstDayOfWeek)"
         :key="dayName"
-        class="text-gray-500"
+        class="text-gray-500 text-center text-xs font-bold leading-3"
         scope="col"
       >
-        <span aria-hidden="true">{{ dayName.substr(0, 2) }}</span>
+        <span aria-hidden="true">{{ dayName.substr(0, 1) }}</span>
         <span class="sr-only">{{ dayName }}</span>
       </div>
     </header>
     <div
       v-for="week in chunk(days, 7)"
       :key="week"
-      class="grid grid-cols-7 gap-3"
+      class="grid grid-cols-7 gap-2"
     >
       <div
         v-for="date in week"

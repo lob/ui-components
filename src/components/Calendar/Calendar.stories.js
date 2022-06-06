@@ -10,13 +10,15 @@ export default {
     }
   }
 };
-
+const vModel = null;
 const Template = (args) => ({
   components: { Calendar },
   setup: () => ({ args }),
+  data: () => ({ vModel }),
   template: `
   <calendar 
   id="some-id"
+  v-model="vModel"
   />
   `
 });

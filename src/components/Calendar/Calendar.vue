@@ -2,47 +2,49 @@
   <div
     ref="container"
     :class="[
-      'shadow px-6 py-4.5'
+      'px-6 py-4.5'
     ]"
     role="dialog"
     :aria-labelledby="id"
     @keydown="handleEscKey"
   >
     <div
-      class="flex justify-between pb-4.5"
+      class="flex justify-between pb-10"
     >
-      <button
-        :class="[
-          'text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
-          {'!text-gray-100': prevMonthDisabled}
-        ]"
-        :disabled="prevMonthDisabled"
-        @click="onPreviousMonthClick"
-      >
-        <arrow-left class="w-4 h-4" />
-        <span class="sr-only">{{ t('datepicker.prevMonthLabel') }}</span>
-      </button>
       <div>
         <span
           :id="id"
-          class="text-sm text-gray-900 font-medium"
+          class="caps-large text-gray-900"
           aria-live="polite"
           aria-atomic="true"
         >
           {{ monthNames[focusedMonth] }} {{ focusedDate.getFullYear() }}
         </span>
       </div>
-      <button
-        :class="[
-          'text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
-          {'!text-gray-100': nextMonthDisabled}
-        ]"
-        :disabled="nextMonthDisabled"
-        @click="onNextMonthClick"
-      >
-        <arrow-right class="w-4 h-4" />
-        <span class="sr-only">{{ t('datepicker.nextMonthLabel') }}</span>
-      </button>
+      <div>
+        <button
+          :class="[
+            'text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
+            {'!text-gray-100': prevMonthDisabled}
+          ]"
+          :disabled="prevMonthDisabled"
+          @click="onPreviousMonthClick"
+        >
+          <chevron-left class="w-5 h-5 mr-2" />
+          <span class="sr-only">{{ t('datepicker.prevMonthLabel') }}</span>
+        </button>
+        <button
+          :class="[
+            'text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
+            {'!text-gray-100': nextMonthDisabled}
+          ]"
+          :disabled="nextMonthDisabled"
+          @click="onNextMonthClick"
+        >
+          <chevron-right class="w-5 h-5" />
+          <span class="sr-only">{{ t('datepicker.nextMonthLabel') }}</span>
+        </button>
+      </div>
     </div>
     <CalendarMonth
       ref="month"
@@ -60,13 +62,13 @@
 </template>
 
 <script>
-import { ArrowLeft, ArrowRight } from '@/components/Icons';
+import { ChevronLeft, ChevronRight } from '@/components/Icons';
 import CalendarMonth from './CalendarMonth.vue';
 import { Keys, startOfWeek, endOfWeek, startOfMonth, endOfMonth, setMonth, setYear, addDays, clamp, inRange } from '@/utils';
 
 export default {
   name: 'Calendar',
-  components: { CalendarMonth, ArrowLeft, ArrowRight },
+  components: { CalendarMonth, ChevronLeft, ChevronRight },
   props: {
     modelValue: {
       type: Date,
@@ -109,7 +111,7 @@ export default {
   },
   computed: {
     selectedDate () {
-      return this.modelValue;
+      return this.modelValue || new Date();
     },
     focusedMonth () {
       return this.focusedDate.getMonth();
