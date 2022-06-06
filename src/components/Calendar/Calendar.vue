@@ -63,11 +63,7 @@
 import { ArrowLeft, ArrowRight } from '@/components/Icons';
 import CalendarMonth from './CalendarMonth.vue';
 import { Keys, startOfWeek, endOfWeek, startOfMonth, endOfMonth, setMonth, setYear, addDays, clamp, inRange } from '@/utils';
-import mitt from 'mitt';
 
-const emitter = mitt();
-
-const DATEPICKER_OPEN_EVENT = 'datepicker-open';
 export default {
   name: 'Calendar',
   components: { CalendarMonth, ArrowLeft, ArrowRight },
@@ -79,10 +75,6 @@ export default {
     id: {
       type: String,
       required: true
-    },
-    open: {
-      type: Boolean,
-      default: false
     },
     min: {
       type: Date,
@@ -109,7 +101,7 @@ export default {
       default: true
     }
   },
-  emits: ['update:modelValue', 'update:open', 'input'],
+  emits: ['update:modelValue', 'input'],
   data () {
     return {
       focusedDate: this.modelValue || new Date()
@@ -160,24 +152,11 @@ export default {
       ];
     }
   },
-  created () {
-    emitter.on(DATEPICKER_OPEN_EVENT, this.handleOtherDatepickerOpened);
-  },
   mounted () {
-    if (this.open) {
-      this.$refs.month.focusDate();
-    }
-    window.addEventListener('click', this.onClickOutside, true);
-  },
-  unmounted () {
-    window.removeEventListener('click', this.onClickOutside);
-    emitter.off(DATEPICKER_OPEN_EVENT, this.handleOtherDatepickerOpened);
+    this.$refs.month.focusDate();
   },
   updated () {
-    if (this.open) {
-      emitter.emit(DATEPICKER_OPEN_EVENT, this.$refs.container);
-      this.$refs.month.focusDate();
-    }
+    this.$refs.month.focusDate();
   },
   methods: {
     range (from, to) {
@@ -312,27 +291,6 @@ export default {
       }
 
       this.setValue(date);
-      this.hide();
-    },
-    onClickOutside ($event) {
-      if (this.$refs.container) {
-        const clickOnTheDatepickerContainer = this.$refs.container === $event.target;
-        const clickOnDatepickerChild = this.$refs.container && this.$refs.container.contains($event.target);
-
-        if (!clickOnTheDatepickerContainer && !clickOnDatepickerChild) {
-          this.hide();
-        }
-      }
-    },
-    handleOtherDatepickerOpened (datepickerEl) {
-      if (this.$refs.container !== datepickerEl) {
-        this.hide();
-      }
-    },
-    hide () {
-      if (this.hideable) {
-        this.$emit('update:open', false);
-      }
     },
     setValue (date) {
       const value = date;
