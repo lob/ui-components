@@ -28,6 +28,7 @@
         {'text-gray-100 !cursor-not-allowed': disabled},
         {'font-bold text-primary-500' : checked && !disabled && !error},
         {'largeButton w-4/5 pt-2' : large},
+        {'largeHover' : largeHover},
         {'!pt-0.5 helperText' : large && helperText},
         {'text-coral-900' : error}
       ]"
@@ -96,6 +97,10 @@ export default {
       default: false
     },
     largeChecked: {
+      type: Boolean,
+      default: false
+    },
+    largeHover: {
       type: Boolean,
       default: false
     }
@@ -243,6 +248,11 @@ input {
   }
 
   &:hover:not(:disabled):not(:checked):not(.radio__input--error) + label::before {
+    @apply shadow-input;
+    @apply border-primary-500;
+  }
+
+  &:not(:disabled):not(:checked):not(.radio__input--error) + label.largeHover::before {
     @apply shadow-input;
     @apply border-primary-500;
   }

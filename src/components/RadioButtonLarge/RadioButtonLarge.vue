@@ -10,8 +10,8 @@
         { 'bg-white-100 cursor-not-allowed': disabled},
         {'!border-coral-700 !bg-coral-100' : error}
       ]"
-      @mouseenter="showRevealText"
-      @mouseleave="hideRevealText"
+      @mouseenter="onContainerHover"
+      @mouseleave="onContainerLeaveHover"
       @click="onLargeButtonClick"
     >
       <div
@@ -34,6 +34,7 @@
           :helper-text="helperText"
           :large="true"
           :large-checked="checked"
+          :large-hover="largeHover"
           @click="onClick"
           @input="onInput"
         />
@@ -106,7 +107,8 @@ export default {
   emits: ['update:modelValue', 'input', 'click'],
   data () {
     return {
-      parent: null
+      parent: null,
+      largeHover: false
     };
   },
   computed: {
@@ -128,21 +130,23 @@ export default {
     onLargeButtonClick () {
       this.$emit('update:modelValue', this.value);
     },
-    showRevealText () {
+    onContainerHover () {
       const revealText = this.$refs.revealText;
       const contentContainer = this.$refs.contentContainer;
       if (revealText) {
         revealText.classList.add('!block');
         contentContainer.classList.add('!-mt-1.5');
       }
+      this.largeHover = true;
     },
-    hideRevealText () {
+    onContainerLeaveHover () {
       const revealText = this.$refs.revealText;
       const contentContainer = this.$refs.contentContainer;
       if (revealText && !this.checked) {
         revealText.classList.remove('!block');
         contentContainer.classList.remove('!-mt-1.5');
       }
+      this.largeHover = false;
     }
   }
 };
