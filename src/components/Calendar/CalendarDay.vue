@@ -3,11 +3,12 @@
     :is="tag"
     ref="date"
     :class="[
-      'text-small leading-6 text-gray-900 bg-transparent px-2 py-2 my-2 mx-1 cursor-pointer inline-flex items-center justify-center w-6 h-6 relative text-center hover:bg-white-300 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
+      'text-small leading-6 text-gray-900 bg-transparent p-4 my-1 cursor-pointer inline-flex items-center justify-center w-6 h-6 relative text-center hover:bg-white-300 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
       {'!text-gray-100 !bg-transparent': disabled},
       {'cursor-default pointer-events-none': isOutsideRange},
       {'bg-gray-100': today},
-      {'z-10 !bg-primary-500 text-white rounded-full shadow-input border border-white': selected}
+      {'z-10 !bg-primary-500 text-white rounded-full shadow-input border border-white': selected},
+      {'border border-gray-100 rounded-full' : selectable}
     ]"
     :role="disabled ? 'button' : null"
     :tabindex="focused ? 0: -1"
@@ -64,6 +65,10 @@ export default {
     },
     isOutsideRange () {
       return !this.inRange;
+    },
+    selectable () {
+      // TODO: Compute 180 day range
+      return true;
     }
   },
   methods: {
