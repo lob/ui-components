@@ -2,7 +2,7 @@
   <div
     ref="container"
     :class="[
-      'px-6 py-4.5'
+      'px-6 py-4.5 h-[450px]'
     ]"
     role="dialog"
     :aria-labelledby="id"
