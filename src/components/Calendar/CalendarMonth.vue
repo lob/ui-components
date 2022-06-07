@@ -32,6 +32,7 @@
           :selected="isSelected(date)"
           :disabled="isDisabled(date)"
           :in-range="isInRange(date, min, max)"
+          :selectable-range="selectableRange"
           @keydown="onKeydown"
           @click="onClick"
           @dateSelect="onDateSelect"

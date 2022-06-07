@@ -55,6 +55,7 @@
       :min="minDate"
       :max="maxDate"
       :is-date-disabled="isDateDisabled"
+      :selectable-range="selectableRange"
       @dateSelect="onDateSelect"
       @keydown="onKeydown"
     />

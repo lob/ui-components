@@ -5,7 +5,8 @@ import CalendarDay from '../CalendarDay.vue';
 import { addDays } from 'date-fns';
 
 const initialProps = {
-  date: new Date()
+  date: new Date(),
+  selectableRange: 180
 };
 
 const renderComponent = (options) => render(CalendarDay, { ...options });
@@ -138,7 +139,7 @@ describe('CalendarDay', () => {
   describe('when the date is not selectable', () => {
 
     it('has the correct classes', () => {
-      const props = { date: addDays(new Date(), 181) };
+      const props = { date: addDays(new Date(), 182) };
       const { queryByRole } = renderComponent({ props });
 
       const button = queryByRole('button');
@@ -147,7 +148,7 @@ describe('CalendarDay', () => {
     });
 
     it('does not emit a keydown event', async () => {
-      const props = { date: addDays(new Date(), 181) };
+      const props = { date: addDays(new Date(), 182) };
       const { queryByRole, emitted } = renderComponent({ props });
 
       const button = queryByRole('button');
@@ -158,7 +159,7 @@ describe('CalendarDay', () => {
     });
 
     it('does not emit a click event', async () => {
-      const props = { date: addDays(new Date(), 181) };
+      const props = { date: addDays(new Date(), 182) };
       const { queryByRole, emitted } = renderComponent({ props });
 
       const button = queryByRole('button');
@@ -169,7 +170,7 @@ describe('CalendarDay', () => {
     });
 
     it('does not emit a dateSelect event', async () => {
-      const props = { date: addDays(new Date(), 181) };
+      const props = { date: addDays(new Date(), 182) };
       const { queryByRole, emitted } = renderComponent({ props });
 
       const button = queryByRole('button');

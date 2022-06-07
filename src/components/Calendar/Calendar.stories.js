@@ -19,11 +19,27 @@ const Template = (args) => ({
   <calendar 
   id="some-id"
   v-model="vModel"
-  :selectable-range="180"
   />
   `
 });
 
 export const Primary = Template.bind({});
 Primary.args = {
+};
+
+const WithSelectableRangeTemplate = (args) => ({
+  components: { Calendar },
+  setup: () => ({ args }),
+  data: () => ({ vModel }),
+  template: `
+  <calendar 
+  id="some-id"
+  v-model="vModel"
+  :selectable-range="180"
+  />
+  `
+});
+
+export const WithSelectableRange = WithSelectableRangeTemplate.bind({});
+WithSelectableRange.args = {
 };

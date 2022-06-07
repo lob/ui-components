@@ -7,9 +7,9 @@
       {'!text-gray-100 !bg-transparent': disabled},
       {'cursor-default pointer-events-none': isOutsideRange},
       {'bg-gray-100': today},
-      {'z-10 !bg-primary-500 text-white shadow-input border border-transparent': selected},
-      {'border border-gray-100 rounded-full hover:border-white hover:shadow-input focus:bg-white-300' : selectable},
-      {'cursor-not-allowed focus:ring-0 hover:bg-transparent' : notSelectable}
+      {'z-10 !bg-primary-500 text-white shadow-input border border-white': selected},
+      {'border border-gray-100 hover:border-white hover:shadow-input focus:bg-white-300' : selectableRange && selectable},
+      {'cursor-not-allowed focus:ring-0 hover:bg-transparent' : selectableRange && notSelectable}
     ]"
     :role="disabled ? 'button' : null"
     :tabindex="focused ? 0: -1"
@@ -74,12 +74,7 @@ export default {
       return !this.inRange;
     },
     selectable () {
-      if (this.selectableRange) {
-        return (new Date(this.date) > new Date() || this.today) && new Date(this.date) < addDays(new Date(), this.selectableRange);
-      } else {
-        return true;
-      }
-
+      return (new Date(this.date) > new Date() || this.today) && new Date(this.date) < addDays(new Date(), this.selectableRange || 0);
     },
     notSelectable () {
       return !this.selectable;
@@ -87,15 +82,17 @@ export default {
   },
   methods: {
     onClick ($event) {
-      if (this.selectable) {
-        this.$emit('click', $event);
-        this.$emit('dateSelect', this.date);
+      if (this.selectableRange && !this.selectable) {
+        return;
       }
+      this.$emit('click', $event);
+      this.$emit('dateSelect', this.date);
     },
     onKeydown ($event) {
-      if (this.selectable) {
-        this.$emit('keydown', $event);
+      if (this.selectableRange && !this.selectable) {
+        return;
       }
+      this.$emit('keydown', $event);
     },
     focus () {
       this.$refs.date.focus();
