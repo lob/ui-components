@@ -19,6 +19,7 @@ const Template = (args) => ({
   <calendar 
   id="some-id"
   v-model="vModel"
+  :selectable-range="180"
   />
   `
 });

@@ -104,7 +104,7 @@ export default {
     },
     selectableRange: {
       type: Number,
-      default: 180
+      default: null
     }
   },
   emits: ['update:modelValue', 'input'],
