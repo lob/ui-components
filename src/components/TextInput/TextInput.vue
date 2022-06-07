@@ -255,6 +255,9 @@ export default {
     },
     selectedOptions () {
       return this.$slots.selectedOptions;
+    },
+    showClearButton () {
+      return !this.isMultiselect && !this.iconRight && !this.withCopyButton;
     }
   },
   methods: {

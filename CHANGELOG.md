@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.0.0-beta.15
+
+### Features
+
+Style refresh to [Radio Button component](./src/components/RadioButton/RadioButton.mdx):
+Added [Radio Button Large component](./src/components/RadioButtonLarge/RadioButtonLarge.mdx):
 ## 1.0.0-beta.14
 
 ### Features
