@@ -7,8 +7,8 @@
       {'!text-gray-100 !bg-transparent': disabled},
       {'cursor-default pointer-events-none': isOutsideRange},
       {'bg-gray-100': today},
-      {'z-10 !bg-primary-500 text-white shadow-input border border-white': selected},
-      {'border border-gray-100 rounded-full hover:border-white hover:shadow-input' : selectable},
+      {'z-10 !bg-primary-500 text-white shadow-input border border-transparent': selected},
+      {'border border-gray-100 rounded-full hover:border-white hover:shadow-input focus:bg-white-300' : selectable},
       {'cursor-not-allowed focus:ring-0 hover:bg-transparent' : notSelectable}
     ]"
     :role="disabled ? 'button' : null"
@@ -89,6 +89,7 @@ export default {
       }
     },
     focus () {
+    //   console.log(this.$refs);
       this.$refs.date.focus();
     }
   }

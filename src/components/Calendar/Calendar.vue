@@ -226,14 +226,6 @@ export default {
       this.addMonths(1);
     },
     onKeydown ($event) {
-      // handle tab separately, since it needs to be treated
-      // differently to other keyboard interactions
-      if ($event.key === Keys.Tab && !$event.shiftKey) {
-        $event.preventDefault();
-        this.$refs.firstFocusableElement.focus();
-        return;
-      }
-
       var handled = true;
 
       switch ($event.key) {
