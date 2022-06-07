@@ -89,7 +89,6 @@ export default {
       }
     },
     focus () {
-    //   console.log(this.$refs);
       this.$refs.date.focus();
     }
   }
