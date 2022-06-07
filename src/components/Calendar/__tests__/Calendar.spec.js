@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { render, waitFor } from '@testing-library/vue';
+import { render } from '@testing-library/vue';
 import { translate } from '@/mixins';
 import en from '@/mixins/en';
 import userEvent from '@testing-library/user-event';
