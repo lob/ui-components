@@ -3,7 +3,7 @@ import { render, fireEvent } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
 import { translate } from '@/mixins';
 import CalendarMonth from '../CalendarMonth.vue';
-import { addYears, subYears, addDays } from 'date-fns';
+import { addYears, subYears } from 'date-fns';
 
 const mixins = [translate];
 

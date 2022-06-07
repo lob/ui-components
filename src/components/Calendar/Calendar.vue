@@ -78,11 +78,11 @@ export default {
       type: String,
       required: true
     },
-    min: {
+    max: {
       type: Date,
       default: null
     },
-    max: {
+    min: {
       type: Date,
       default: null
     },

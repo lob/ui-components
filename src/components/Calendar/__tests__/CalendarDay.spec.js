@@ -1,5 +1,6 @@
 import '@testing-library/jest-dom';
 import { render, fireEvent } from '@testing-library/vue';
+import userEvent from '@testing-library/user-event';
 import CalendarDay from '../CalendarDay.vue';
 import { addDays } from 'date-fns';
 
@@ -115,7 +116,7 @@ describe('CalendarDay', () => {
 
       const button = queryByRole('button');
 
-      await fireEvent.click(button);
+      await userEvent.click(button);
       const emittedEvent = emitted();
       expect(emittedEvent).toHaveProperty('click');
     });
@@ -126,7 +127,7 @@ describe('CalendarDay', () => {
 
       const button = queryByRole('button');
 
-      await fireEvent.click(button);
+      await userEvent.click(button);
       const emittedEvent = emitted();
       expect(emittedEvent).toHaveProperty('dateSelect');
       expect(emittedEvent.dateSelect[0][0]).toEqual(props.date);
@@ -162,7 +163,7 @@ describe('CalendarDay', () => {
 
       const button = queryByRole('button');
 
-      await fireEvent.click(button);
+      await userEvent.click(button);
       const emittedEvent = emitted();
       expect(emittedEvent).not.toHaveProperty('click');
     });
@@ -173,7 +174,7 @@ describe('CalendarDay', () => {
 
       const button = queryByRole('button');
 
-      await fireEvent.click(button);
+      await userEvent.click(button);
       const emittedEvent = emitted();
       expect(emittedEvent).not.toHaveProperty('dateSelect');
     });
