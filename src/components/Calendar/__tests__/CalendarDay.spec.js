@@ -1,6 +1,7 @@
 import '@testing-library/jest-dom';
 import { render, fireEvent } from '@testing-library/vue';
 import CalendarDay from '../CalendarDay.vue';
+import { addDays } from 'date-fns';
 
 const initialProps = {
   date: new Date()
@@ -89,6 +90,14 @@ describe('CalendarDay', () => {
 
   describe('when the date is selectable', () => {
 
+    it('has a gray border', () => {
+      const props = { ...initialProps, today: true };
+      const { queryByRole } = renderComponent({ props });
+
+      const button = queryByRole('button');
+      expect(button).toHaveClass('border-gray-100');
+    });
+
     it('emits a keydown event', async () => {
       const props = { ...initialProps, today: true };
       const { queryByRole, emitted } = renderComponent({ props });
@@ -127,8 +136,17 @@ describe('CalendarDay', () => {
 
   describe('when the date is not selectable', () => {
 
+    it('has the correct classes', () => {
+      const props = { date: addDays(new Date(), 181) };
+      const { queryByRole } = renderComponent({ props });
+
+      const button = queryByRole('button');
+      expect(button).not.toHaveClass('border-gray-100');
+      expect(button).toHaveClass('cursor-not-allowed');
+    });
+
     it('does not emit a keydown event', async () => {
-      const props = initialProps;
+      const props = { date: addDays(new Date(), 181) };
       const { queryByRole, emitted } = renderComponent({ props });
 
       const button = queryByRole('button');
@@ -139,7 +157,7 @@ describe('CalendarDay', () => {
     });
 
     it('does not emit a click event', async () => {
-      const props = initialProps;
+      const props = { date: addDays(new Date(), 181) };
       const { queryByRole, emitted } = renderComponent({ props });
 
       const button = queryByRole('button');
@@ -150,7 +168,7 @@ describe('CalendarDay', () => {
     });
 
     it('does not emit a dateSelect event', async () => {
-      const props = initialProps;
+      const props = { date: addDays(new Date(), 181) };
       const { queryByRole, emitted } = renderComponent({ props });
 
       const button = queryByRole('button');
