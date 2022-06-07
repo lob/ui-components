@@ -101,6 +101,10 @@ export default {
     positionAbsolute: {
       type: Boolean,
       default: true
+    },
+    selectableRange: {
+      type: Number,
+      default: 180
     }
   },
   emits: ['update:modelValue', 'input'],

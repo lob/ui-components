@@ -76,6 +76,10 @@ export default {
     isDateDisabled: {
       type: Function,
       default: null
+    },
+    selectableRange: {
+      type: Number,
+      default: 180
     }
   },
   emits: ['dateSelect', 'click', 'keydown'],

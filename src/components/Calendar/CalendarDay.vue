@@ -53,6 +53,10 @@ export default {
     inRange: {
       type: Boolean,
       default: true
+    },
+    selectableRange: {
+      type: Number,
+      default: 180
     }
   },
   emits: ['click', 'dateSelect', 'keydown'],
@@ -70,7 +74,7 @@ export default {
       return !this.inRange;
     },
     selectable () {
-      return (new Date(this.date) > new Date() || this.today) && new Date(this.date) < addDays(new Date(), 180);
+      return (new Date(this.date) > new Date() || this.today) && new Date(this.date) < addDays(new Date(), this.selectableRange);
     },
     notSelectable () {
       return !this.selectable;
