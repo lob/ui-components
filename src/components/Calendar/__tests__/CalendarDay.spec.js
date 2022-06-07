@@ -139,16 +139,16 @@ describe('CalendarDay', () => {
   describe('when the date is not selectable', () => {
 
     it('has the correct classes', () => {
-      const props = { date: addDays(new Date(), 182) };
+      const props = { date: addDays(new Date(), 181), selectableRange: 180 };
       const { queryByRole } = renderComponent({ props });
 
       const button = queryByRole('button');
       expect(button).not.toHaveClass('border-gray-100');
-      expect(button).toHaveClass('cursor-not-allowed');
+      expect(button).toHaveClass('!cursor-not-allowed');
     });
 
     it('does not emit a keydown event', async () => {
-      const props = { date: addDays(new Date(), 182) };
+      const props = { date: addDays(new Date(), 181), selectableRange: 180 };
       const { queryByRole, emitted } = renderComponent({ props });
 
       const button = queryByRole('button');
@@ -159,7 +159,7 @@ describe('CalendarDay', () => {
     });
 
     it('does not emit a click event', async () => {
-      const props = { date: addDays(new Date(), 182) };
+      const props = { date: addDays(new Date(), 181), selectableRange: 180 };
       const { queryByRole, emitted } = renderComponent({ props });
 
       const button = queryByRole('button');
@@ -170,7 +170,7 @@ describe('CalendarDay', () => {
     });
 
     it('does not emit a dateSelect event', async () => {
-      const props = { date: addDays(new Date(), 182) };
+      const props = { date: addDays(new Date(), 181), selectableRange: 180 };
       const { queryByRole, emitted } = renderComponent({ props });
 
       const button = queryByRole('button');

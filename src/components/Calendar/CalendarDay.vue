@@ -9,7 +9,7 @@
       {'bg-gray-100': today},
       {'z-10 !bg-primary-500 text-white shadow-input border border-white': selected},
       {'border border-gray-100 hover:border-white hover:shadow-input focus:bg-white-300' : selectableRange && selectable},
-      {'cursor-not-allowed focus:ring-0 hover:bg-transparent' : selectableRange && notSelectable}
+      {'!cursor-not-allowed focus:ring-0 hover:bg-transparent' : selectableRange && notSelectable}
     ]"
     :role="disabled ? 'button' : null"
     :tabindex="focused ? 0: -1"
@@ -74,7 +74,7 @@ export default {
       return !this.inRange;
     },
     selectable () {
-      return (new Date(this.date) > new Date() || this.today) && new Date(this.date) < addDays(new Date(), this.selectableRange || 0);
+      return (new Date(this.date) > new Date() || this.today) && new Date(this.date) < addDays(new Date(), this.selectableRange || 1);
     },
     notSelectable () {
       return !this.selectable;
