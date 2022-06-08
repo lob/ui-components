@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 1.0.0-beta.15
+
+### Features
+
+Update the Tailwind plugin to introduce the new `error` color #D75A5A.
+The previous `error` color is still available as `coral-900` (#943832).
+
 ## 1.0.0-beta.14
 
 ### Features
