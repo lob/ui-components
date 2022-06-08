@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
-import RadioButton from '../RadioButton.vue';
+import RadioButtonLarge from '../RadioButtonLarge.vue';
 
 const initialProps = {
   id: 'test',
@@ -17,7 +17,7 @@ describe('Radio Button', () => {
 
   it('does not check the input when the value does not match the modelValue', () => {
     const props = initialProps;
-    const { getByLabelText } = render(RadioButton, {
+    const { getByLabelText } = render(RadioButtonLarge, {
       props
     });
 
@@ -30,7 +30,7 @@ describe('Radio Button', () => {
       ...initialProps,
       modelValue: initialProps.value
     };
-    const { getByLabelText } = render(RadioButton, {
+    const { getByLabelText } = render(RadioButtonLarge, {
       props
     });
 
@@ -44,7 +44,7 @@ describe('Radio Button', () => {
       disabled: true
     };
 
-    const { getByLabelText } = render(RadioButton, {
+    const { getByLabelText } = render(RadioButtonLarge, {
       props
     });
 
@@ -58,7 +58,7 @@ describe('Radio Button', () => {
       error: true
     };
 
-    const { getByLabelText } = render(RadioButton, {
+    const { getByLabelText } = render(RadioButtonLarge, {
       props
     });
 
@@ -68,7 +68,7 @@ describe('Radio Button', () => {
 
   it('fires the input and click events when the input is clicked', async () => {
     const props = initialProps;
-    const { getByLabelText, emitted } = render(RadioButton, {
+    const { getByLabelText, emitted } = render(RadioButtonLarge, {
       props
     });
     const radio = getByLabelText(props.label);
