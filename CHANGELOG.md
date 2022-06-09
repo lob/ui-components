@@ -1,10 +1,22 @@
 # CHANGELOG
 
+## 1.0.0-beta.21
+
+### Bug Fixes
+
+Fixes the warning background color of NewButton and NewLink components.
+
 ## 1.0.0-beta.20
 
 ### Bug Fixes
 
-Corrects the color of Button warning color to be coral-900.
+Fixes error background color of [TextInput component](./src/components/TextInput/TextInput.mdx).
+
+## 1.0.0-beta.19
+
+### Features
+
+Added [Calendar component](./src/components/Calendar/Calendar.mdx):
 
 ## 1.0.0-beta.18
 
