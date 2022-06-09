@@ -47,7 +47,7 @@
         {'hover:shadow focus-within:shadow focus-within:ring-1 focus-within:ring-primary-500 focus-within:border-primary-500': !disabled && !readonly},
         {'!bg-white-100' : disabled},
         {'!bg-white-100 focus-within:ring-1 focus-within:ring-primary-500 focus-within:border-primary-500' : readonly},
-        {'!border-coral-700 bg-coral-100 focus-within:ring-1 focus-within:ring-coral-700': error},
+        {'!border-coral-700 !bg-coral-100 focus-within:ring-1 focus-within:ring-coral-700': error},
         {'!bg-white-100' : withCopyButton},
         {'!flex-wrap !h-fit' : isMultiselect},
         {'border-gray-500 focus-within:border-primary-500' : modelValue && !error && !withCopyButton}

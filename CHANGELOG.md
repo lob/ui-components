@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.0.0-beta.19
+
+### Bug Fixes
+
+- Fixes styling of error state background color of [TextInput component](./src/components/TextInput/TextInput.mdx).
+
 ## 1.0.0-beta.17
 
 ### Features
