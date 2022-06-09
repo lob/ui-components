@@ -42,6 +42,8 @@ export { default as Save } from './Save';
 export { default as Search } from './Search';
 export { default as Send } from './Send';
 export { default as Settings } from './Settings';
+export { default as SkipToLeft } from './SkipToLeft';
+export { default as SkipToRight } from './SkipToRight';
 export { default as TableIcon } from './Table';
 export { default as Tag } from './Tag';
 export { default as Text } from './Text';

@@ -5,6 +5,14 @@
 ### Bug Fixes
 
 - Fixes styling of error state background color of [TextInput component](./src/components/TextInput/TextInput.mdx).
+### Features
+
+Added [Calendar component](./src/components/Calendar/Calendar.mdx):
+## 1.0.0-beta.18
+
+### Bug Fixes
+
+Adds 2 Icons missed in the refresh: SkipToLeft, SkipToRight.
 
 ## 1.0.0-beta.17
 
