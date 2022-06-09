@@ -22,13 +22,13 @@
         { 'px-6 text-sm h-[32px]': small && (primary || secondary) },
         { 'primary bg-primary-500 !text-white active:bg-black': !disabled && primary && !warning },
         { 'bg-gray-100 !text-white': disabled && primary && !warning },
-        { 'primary warning bg-error !text-white active:bg-coral-700': !disabled && primary && warning },
+        { 'primary warning bg-coral-900 !text-white active:bg-coral-700': !disabled && primary && warning },
         { 'bg-coral-200 !text-white': disabled && primary && warning },
         { 'secondary border border-primary-500 bg-white text-primary-500': !disabled && secondary && !warning,
           'focus:border-primary-500 active:border-black active:text-black': !disabled && secondary && !warning },
         { 'border border-gray-100 text-gray-100': disabled && secondary && !warning },
-        { 'secondary border border-error bg-white !text-error': !disabled && secondary && warning,
-          'focus:border-error active:border-coral-700 active:!text-coral-700': !disabled && secondary && warning },
+        { 'secondary border border-coral-900 bg-white !text-coral-900': !disabled && secondary && warning,
+          'focus:border-coral-900 active:border-coral-700 active:!text-coral-700': !disabled && secondary && warning },
         { 'border border-coral-200 text-coral-200': disabled && secondary && warning }
       ]"
       v-bind="$attrs"
