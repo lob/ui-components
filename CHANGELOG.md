@@ -5,6 +5,25 @@
 ### Features
 
 Added [Calendar component](./src/components/Calendar/Calendar.mdx):
+## 1.0.0-beta.18
+
+### Bug Fixes
+
+Adds 2 Icons missed in the refresh: SkipToLeft, SkipToRight.
+
+## 1.0.0-beta.17
+
+### Features
+
+Icons refresh: Add new designs for existing and used Icons, remove unused Icons.
+New Icons added: InfoFilled, Text, & ToolTipIcon.
+
+## 1.0.0-beta.16
+
+### Features
+
+Update the Tailwind plugin to introduce the new `error` color #D75A5A.
+The previous `error` color is still available as `coral-900` (#943832).
 
 ## 1.0.0-beta.15
 
@@ -12,6 +31,7 @@ Added [Calendar component](./src/components/Calendar/Calendar.mdx):
 
 Style refresh to [Radio Button component](./src/components/RadioButton/RadioButton.mdx):
 Added [Radio Button Large component](./src/components/RadioButtonLarge/RadioButtonLarge.mdx):
+
 ## 1.0.0-beta.14
 
 ### Features

@@ -7,7 +7,7 @@
                { 'bg-white-300 text-gray-500': info },
                { 'bg-mint-100 text-mint-900': success },
                { 'bg-lemon-100 text-lemon-900': warning },
-               { 'bg-coral-100 text-coral-900': error },
+               { 'bg-coral-100 text-error': error },
                { 'bg-turquoise-100 text-turquoise-900': turquoise },
                { 'bg-flint-100 text-gray-700': flint },
                { '!py-0.5': small }
