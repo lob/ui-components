@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.0.0-beta.21
+
+### Bug Fixes
+
+Fixes the warning background color of NewButton and NewLink components.
+
 ## 1.0.0-beta.20
 
 ### Bug Fixes
@@ -11,6 +17,13 @@ Fixes error background color of [TextInput component](./src/components/TextInput
 ### Features
 
 Added [Calendar component](./src/components/Calendar/Calendar.mdx):
+
+## 1.0.0-beta.19
+
+### Features
+
+Added [Calendar component](./src/components/Calendar/Calendar.mdx):
+
 ## 1.0.0-beta.18
 
 ### Bug Fixes
