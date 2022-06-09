@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 1.0.0-beta.17
+
+### Features
+
+Icons refresh: Add new designs for existing and used Icons, remove unused Icons.
+New Icons added: InfoFilled, Text, & ToolTipIcon.
+
 ## 1.0.0-beta.16
 
 ### Features
