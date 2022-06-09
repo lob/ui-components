@@ -132,7 +132,7 @@ describe('Link', () => {
 
     const linkContent = queryByText(slotContent);
     expect(linkContent).toBeInTheDocument();
-    expect(linkContent).toHaveClass('primary bg-error');
+    expect(linkContent).toHaveClass('primary bg-coral-900');
   });
 
 });
