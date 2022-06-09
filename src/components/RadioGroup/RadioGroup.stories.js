@@ -1,11 +1,12 @@
 import RadioGroup from './RadioGroup.vue';
 import RadioButton from '../RadioButton/RadioButton.vue';
+import RadioButtonLarge from '../RadioButtonLarge/RadioButtonLarge.vue';
 import mdx from './RadioGroup.mdx';
 
 export default {
   title: 'Components/Radio Group',
   component: RadioGroup,
-  subcomponents: { RadioButton },
+  subcomponents: { RadioButton, RadioButtonLarge },
   parameters: {
     docs: {
       page: mdx
@@ -81,8 +82,93 @@ const BooleanTemplate = (args, { argTypes }) => ({
 });
 
 export const Boolean = BooleanTemplate.bind({});
-Primary.args = {
+Boolean.args = {
   legend: 'Postcard Size',
   separateLines: false
 };
 
+const withHelperTextModel = '';
+
+const WithHelperTextTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { RadioGroup, RadioButton },
+  data: () => ({ withHelperTextModel }),
+  setup: () => ({ args }),
+  template: `
+    <radio-group v-bind="args" :separate-lines="true">
+    <radio-button
+    id="4x6"
+    name="postcard-size"
+    label="4x6"
+    value="4x6"
+    v-model="withHelperTextModel"
+    helper-text="This is helper text"
+  />
+  <radio-button
+    id="5x7"
+    name="postcard-size"
+    label="5x7"
+    value="5x7"
+    v-model="withHelperTextModel"
+    helper-text="This is helper text"
+  />
+  <radio-button
+    id="big"
+    name="postcard-size"
+    label="Really Big"
+    value="big"
+    v-model="withHelperTextModel"
+    helper-text="This is helper text"
+  />
+    </radio-group>
+  `
+});
+
+export const WithHelperText = WithHelperTextTemplate.bind({});
+WithHelperText.args = {
+  legend: 'Postcard Size',
+  separateLines: false
+};
+
+const largeGroupModel = '';
+
+const LargeGroupTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { RadioGroup, RadioButtonLarge },
+  data: () => ({ largeGroupModel }),
+  setup: () => ({ args }),
+  template: `
+    <radio-group v-bind="args">
+    <radio-button-large
+    id="4x6"
+    name="postcard-size"
+    label="4x6"
+    value="4x6"
+    v-model="largeGroupModel"
+    reveal-text="Reveal text"
+  />
+  <radio-button-large
+    id="5x7"
+    name="postcard-size"
+    label="5x7"
+    value="5x7"
+    v-model="largeGroupModel"
+    reveal-text="Reveal text"
+  />
+  <radio-button-large
+    id="big"
+    name="postcard-size"
+    label="Really Big"
+    value="big"
+    v-model="largeGroupModel"
+    reveal-text="Reveal text"
+  />
+    </radio-group>
+  `
+});
+
+export const LargeGroup = LargeGroupTemplate.bind({});
+LargeGroup.args = {
+  legend: 'Postcard Size',
+  separateLines: false
+};

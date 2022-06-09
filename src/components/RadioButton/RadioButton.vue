@@ -1,8 +1,7 @@
 <template>
   <div
     :class="[
-      'inline-block mr-4 mt-1',
-      { 'cursor-not-allowed': disabled || readonly }
+      'inline-block mr-4 mt-1'
     ]"
   >
     <input
@@ -10,14 +9,14 @@
       type="radio"
       :class="[
         'm-0 p-0 opacity-0 mt-2',
-        { 'radio__input--error': error },
-        { 'cursor-not-allowed': disabled || readonly }
+        {'radio__input--error': error},
+        {'!cursor-not-allowed': disabled}
+
       ]"
       :name="name"
       :value="value.toString()"
       :checked="checked"
       :disabled="disabled"
-      :readonly="readonly"
       :required="required"
       @input="onInput"
       @click="onClick"
@@ -25,13 +24,28 @@
     <label
       :for="id"
       :class="[
-        'relative flex ml-1.5',
-        { 'cursor-not-allowed': disabled || readonly }
+        'relative flex font-light',
+        {'text-gray-100 !cursor-not-allowed': disabled},
+        {'font-bold text-primary-500' : checked && !disabled && !error},
+        {'largeButton w-4/5 pt-2' : large},
+        {'largeHover' : largeHover},
+        {'!pt-0.5 helperText' : large && helperText},
+        {'text-coral-900' : error}
       ]"
     >
       <slot>
         {{ label }}
       </slot>
+      <div
+        :class="[
+          'text-sm text-gray-300 !font-normal',
+          {'!text-primary-500' : checked},
+          {'!text-gray-100' : disabled},
+          {'!text-coral-900' : error}
+        ]"
+      >
+        {{ helperText }}
+      </div>
     </label>
   </div>
 </template>
@@ -74,7 +88,19 @@ export default {
       type: Boolean,
       default: false
     },
-    readonly: {
+    helperText: {
+      type: String,
+      default: ''
+    },
+    large: {
+      type: Boolean,
+      default: false
+    },
+    largeChecked: {
+      type: Boolean,
+      default: false
+    },
+    largeHover: {
       type: Boolean,
       default: false
     }
@@ -87,7 +113,7 @@ export default {
   },
   computed: {
     checked () {
-      return this.modelValue === this.value;
+      return this.modelValue === this.value || this.largeChecked;
     }
   },
   created () {
@@ -119,7 +145,7 @@ input {
 
       @apply absolute;
       @apply bg-transparent;
-      @apply border-gray-100;
+      @apply border-gray-700;
       @apply border-solid;
       @apply border;
       @apply h-3.5;
@@ -131,61 +157,112 @@ input {
     &::after {
       content: "";
 
-      @apply -left-4;
-      @apply top-2;
+      @apply -left-[18px];
+      @apply top-1.5;
       @apply absolute;
-      @apply h-2;
+      @apply h-3;
       @apply inline-block;
       @apply rounded-full;
-      @apply w-2;
+      @apply w-3;
     }
   }
 
-  &:checked + label::after {
-    @apply shadow-input-selected;
-    @apply bg-primary-500;
-    @apply border-l;
+  + label.largeButton {
+    &::before {
+      @apply mt-2;
+    }
+
+    &::after {
+      @apply mt-2;
+    }
+  }
+
+  + label.helperText {
+    &::before {
+      @apply mt-0.5;
+    }
+
+    &::after {
+      @apply mt-0.5;
+    }
+  }
+
+  &:disabled + label::before {
+    @apply border-gray-100;
+  }
+
+  &:focus + label::before {
+    @apply ring-4;
+    @apply ring-tertiary-bluebird;
+    @apply border-primary-500;
   }
 
   &.radio__input--error + label::before {
     @apply border-error;
   }
 
-  &:focus + label::before {
-    @apply outline-none;
-    @apply ring-2;
-    @apply ring-primary-100;
+  &:checked:not(:disabled) + label::before {
     @apply border-transparent;
+    @apply shadow-input;
   }
 
-  &:disabled + label::before {
-    @apply bg-white-300;
-    @apply border-gray-100;
-    @apply cursor-not-allowed;
+  &:checked:not(:disabled) + label::after {
+    @apply bg-primary-500;
   }
 
   &:checked:disabled + label::after {
-    @apply bg-flint-500;
-    @apply border-flint-700;
-    @apply opacity-50;
-    @apply cursor-not-allowed;
+    @apply bg-gray-100;
+    @apply h-2.5;
+    @apply w-2.5;
+    @apply top-[7px];
+    @apply -left-[20px];
   }
 
-  &[readonly] + label::before {
-    @apply bg-white-300;
-    @apply border-gray-100;
-    @apply cursor-not-allowed;
+  &:focus:checked + label::before {
+    @apply border-transparent;
   }
 
-  &:checked[readonly] + label::after {
-    @apply bg-flint-500;
-    @apply border-flint-700;
-    @apply opacity-50;
-    @apply cursor-not-allowed;
-  }
-
-  &:hover:not(:disabled):not([readonly]) + label::before {
+  &:focus + label.largeButton::before {
+    @apply ring-0;
     @apply shadow-input;
+  }
+
+  &.radio__input--error:focus + label.largeButton::before {
+    @apply shadow-none;
+  }
+
+  &:focus:checked + label.largeButton::before {
+    @apply border-transparent;
+  }
+
+  &.radio__input--error:focus:checked + label.largeButton::before {
+    @apply border-error;
+  }
+
+  &.radio__input--error:checked + label::before {
+    @apply border-error;
+  }
+
+  &.radio__input--error:checked:focus + label::before {
+    @apply border-transparent;
+  }
+
+  &:hover:not(:disabled):not(:checked):not(.radio__input--error) + label::before {
+    @apply shadow-input;
+    @apply border-primary-500;
+  }
+
+  &:not(:disabled):not(:checked):not(.radio__input--error) + label.largeHover::before {
+    @apply shadow-input;
+    @apply border-primary-500;
+  }
+
+  &.radio__input--error:checked + label::after {
+    @apply bg-error;
+    @apply h-2.5;
+    @apply w-2.5;
+    @apply top-[7px];
+    @apply -left-[20px];
   }
 }
 </style>
