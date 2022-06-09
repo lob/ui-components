@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.0.0-beta.20
+
+### Bug Fixes
+
+Corrects the color of Button warning color to be coral-900.
+
 ## 1.0.0-beta.18
 
 ### Bug Fixes
