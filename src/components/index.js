@@ -5,6 +5,7 @@ export { default as Breadcrumb } from './Breadcrumb/Breadcrumb';
 export { default as LobButton } from './Button/Button';
 export { default as NewButton } from './NewButton/NewButton';
 export { default as Card } from './Card/Card';
+export { default as Calendar } from './Calendar/Calendar';
 export { default as Checkbox } from './Checkbox/Checkbox';
 export { default as DateInput } from './DateInput/DateInput';
 export { default as Datepicker } from './Datepicker/Datepicker';

@@ -17,7 +17,6 @@ Fixes error background color of [TextInput component](./src/components/TextInput
 ### Features
 
 Added [Calendar component](./src/components/Calendar/Calendar.mdx):
-
 ## 1.0.0-beta.18
 
 ### Bug Fixes
