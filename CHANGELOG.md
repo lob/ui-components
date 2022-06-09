@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.0.0-beta.19
+
+### Features
+
+Added [Calendar component](./src/components/Calendar/Calendar.mdx):
 ## 1.0.0-beta.18
 
 ### Bug Fixes
