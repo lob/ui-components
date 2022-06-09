@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.0.0-beta.18
+
+### Bug Fixes
+
+Adds 2 Icons missed in the refresh: SkipToLeft, SkipToRight.
+
 ## 1.0.0-beta.17
 
 ### Features
