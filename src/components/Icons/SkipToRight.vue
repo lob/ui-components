@@ -10,12 +10,7 @@
     stroke-linejoin="round"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <path
-      stroke="none"
-      d="M0 0h24v24H0z"
-      fill="none"
-    />
-    <path d="M4 5v14l12 -7z" />
+    <polyline points="9 6 15 12 9 18" />
     <line
       x1="20"
       y1="5"
