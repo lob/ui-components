@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 1.0.0-beta.16
+## 1.0.0-beta.18
 
 ### Features
 
