@@ -12,10 +12,10 @@
       { 'focus-visible:ring-primary-100': !warning },
       { 'focus-visible:ring-coral-700': warning },
       { 'primary  bg-primary-500 text-white active:bg-black disabled:bg-gray-100': primary && !warning },
-      { 'primary warning bg-error text-white active:bg-coral-700 disabled:bg-coral-200': primary && warning },
+      { 'primary warning bg-coral-900 text-white active:bg-coral-700 disabled:bg-coral-200': primary && warning },
       { 'secondary border border-primary-500 bg-white text-primary-500': secondary && !warning,
         'disabled:border-gray-100 disabled:text-gray-100 active:border-black active:text-black': secondary && !warning },
-      { 'secondary border border-error bg-white text-error': secondary && warning,
+      { 'secondary border border-coral-900 bg-white text-coral-900': secondary && warning,
         'disabled:border-coral-200 disabled:text-coral-200 active:border-coral-700 active:text-coral-700': secondary && warning }
     ]"
     :disabled="disabled"
