@@ -11,7 +11,7 @@
       stroke-linejoin="round"
     />
     <path
-      d="M8.14285 12L10.7143 14.5714L15.8571 9.42856"
+      d="M8.14288 12L10.7143 14.5714L15.8572 9.42857"
       stroke="currentColor"
       stroke-linecap="round"
       stroke-linejoin="round"
