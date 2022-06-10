@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.0.0-beta.22
+
+Removes external right margin of [MegaButton component](./src/components/MegaButton/MegaButton.mdx).
+
 ## 1.0.0-beta.21
 
 ### Bug Fixes
