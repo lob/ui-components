@@ -1,6 +1,14 @@
 # CHANGELOG
 
+
+## 1.0.0-beta.23
+
+### Bug Fixes
+
+Renames the export of the new ToolTip icon to `ToolTipIcon`.
 ## 1.0.0-beta.22
+
+### Bug Fixes
 
 Removes external right margin of [MegaButton component](./src/components/MegaButton/MegaButton.mdx).
 
