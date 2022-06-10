@@ -78,7 +78,7 @@ const GroupTemplate = (args, { argTypes }) => ({
   setup: () => ({ args }),
   data: () => ({ megaButtonModel }),
   template: `
-    <RadioGroup legend="Cat Type">
+    <div class="flex flex-row gap-20">
       <mega-button
         id="ginger"
         name="catType"
@@ -105,7 +105,7 @@ const GroupTemplate = (args, { argTypes }) => ({
         v-bind="args"
         v-model="megaButtonModel"
       />
-    </RadioGroup>
+    </div>
   `
 });
 
