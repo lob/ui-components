@@ -79,7 +79,7 @@ const GroupTemplate = (args, { argTypes }) => ({
   data: () => ({ megaButtonModel }),
   template: `
   <div style="width: 700px">
-    <RadioGroup class="flex flex-row gap-4">
+    <RadioGroup style="column-gap: 1.5rem">
       <mega-button
         id="ginger"
         name="catType"
