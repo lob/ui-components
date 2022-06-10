@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.0.0-beta.22
+
+Removes the mega button's right margin.
+
 ## 1.0.0-beta.21
 
 ### Bug Fixes
