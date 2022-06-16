@@ -1,5 +1,7 @@
 # CHANGELOG
 
+## 1.0.0-beta.24
+Fixes a bug where the dropdown hover action is selecting and setting an option
 
 ## 1.0.0-beta.23
 

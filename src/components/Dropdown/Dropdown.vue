@@ -519,14 +519,13 @@ export default {
         this.onOptionChange(searchIndex);
       }
     },
-    onSelectBlur ($event) {
+    onSelectBlur () {
       if (this.ignoreBlur) {
         this.ignoreBlur = false;
         return;
       }
 
       if (this.open) {
-        this.selectOption($event, this.activeIndex);
         this.updateMenuState(false, false);
       }
     },

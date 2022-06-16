@@ -423,8 +423,8 @@ describe('Dropdown', () => {
       // tabbing fires a FocusEvent (blur == focus away)
       await fireEvent.blur(select);
       const emittedEvent = emitted();
-      expect(emittedEvent).toHaveProperty('input');
-      expect(emittedEvent.input[0][0]).toEqual(props.options[0]);
+      expect(emittedEvent).not.toHaveProperty('input');
+      expect(emittedEvent).not.toHaveProperty('change');
     });
 
     it('clicking the select, it closes the listbox and retains focus', async () => {
