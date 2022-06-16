@@ -1,19 +1,17 @@
 <template>
   <svg
-    width="24"
-    height="24"
     viewBox="0 0 24 24"
-    stroke-width="1"
-    stroke="currentColor"
     fill="none"
+    stroke-width="2"
+    stroke="currentColor"
     stroke-linecap="round"
     stroke-linejoin="round"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
+      fill="none"
       stroke="none"
       d="M0 0h24v24H0z"
-      fill="none"
     />
     <polyline points="3 7 9 4 15 7 21 4 21 17 15 20 9 17 3 20 3 7" />
     <line
