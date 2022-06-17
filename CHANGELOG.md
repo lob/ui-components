@@ -1,6 +1,15 @@
 # CHANGELOG
 
+## 1.0.0-beta.25
+
+### Features
+
+Update all Icons with 2px stroke, for better accessibility.
+
 ## 1.0.0-beta.24
+
+### Bug Fixes
+
 Fixes a bug where the dropdown hover action is selecting and setting an option
 
 ## 1.0.0-beta.23
@@ -8,6 +17,7 @@ Fixes a bug where the dropdown hover action is selecting and setting an option
 ### Bug Fixes
 
 Renames the export of the new ToolTip icon to `ToolTipIcon`.
+
 ## 1.0.0-beta.22
 
 ### Bug Fixes
