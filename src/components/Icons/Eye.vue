@@ -2,22 +2,23 @@
   <svg
     viewBox="0 0 24 24"
     fill="none"
+    stroke-width="2"
+    stroke="currentColor"
+    stroke-linecap="round"
+    stroke-linejoin="round"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <circle
-      cx="12.0002"
-      cy="12.3"
-      r="1.8"
-      stroke="currentColor"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    />
     <path
-      d="M21 12.3C18.5997 16.5003 15.6 18.6 12 18.6C8.4 18.6 5.4003 16.5003 3 12.3C5.4003 8.0997 8.4 6 12 6C15.6 6 18.5997 8.0997 21 12.3"
-      stroke="currentColor"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      stroke="none"
+      d="M0 0h24v24H0z"
+      fill="none"
     />
+    <circle
+      cx="12"
+      cy="12"
+      r="2"
+    />
+    <path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" />
   </svg>
 </template>
 

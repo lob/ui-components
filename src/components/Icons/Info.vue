@@ -8,6 +8,7 @@
       cx="12"
       cy="12"
       r="8.5"
+      stroke-width="2"
       stroke="currentColor"
     />
     <path
