@@ -1,13 +1,23 @@
 <template>
   <svg
     viewBox="0 0 24 24"
-    class="fill-current"
+    fill="none"
+    stroke-width="2"
+    stroke="currentColor"
+    stroke-linecap="round"
+    stroke-linejoin="round"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      fill-rule="evenodd"
-      clip-rule="evenodd"
-      d="M4 12C4 11.4477 4.44772 11 5 11H19C19.5523 11 20 11.4477 20 12C20 12.5523 19.5523 13 19 13H5C4.44772 13 4 12.5523 4 12Z"
+      fill="none"
+      stroke="none"
+      d="M0 0h24v24H0z"
+    />
+    <line
+      x1="5"
+      y1="12"
+      x2="19"
+      y2="12"
     />
   </svg>
 </template>

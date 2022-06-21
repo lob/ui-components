@@ -134,7 +134,10 @@ describe('Text input', () => {
   });
 
   it('clears the input when the clear button is clicked', async () => {
-    const props = initialProps;
+    const props = {
+      ...initialProps,
+      clearButton: true
+    };
     const { getByRole, getByLabelText } = render(TextInput, { props });
 
     const textInput = getByLabelText(props.label);

@@ -1,11 +1,30 @@
 <template>
   <svg
-    viewBox="0 0 16 16"
-    class="fill-current"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke-width="2"
+    stroke="currentColor"
+    stroke-linecap="round"
+    stroke-linejoin="round"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      d="M0 0L4.86838 1.73575V15.8836L0 14.1479V0ZM11.1225 0.116363L16 1.85212V16L11.1225 14.303V0.116363ZM10.2108 0.116363V14.2642L5.76182 15.8836V1.73575L10.2108 0.116363Z"
+      fill="none"
+      stroke="none"
+      d="M0 0h24v24H0z"
+    />
+    <polyline points="3 7 9 4 15 7 21 4 21 17 15 20 9 17 3 20 3 7" />
+    <line
+      x1="9"
+      y1="4"
+      x2="9"
+      y2="17"
+    />
+    <line
+      x1="15"
+      y1="7"
+      x2="15"
+      y2="20"
     />
   </svg>
 </template>

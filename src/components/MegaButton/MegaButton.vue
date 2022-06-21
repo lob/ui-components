@@ -14,8 +14,9 @@
     <label
       :for="id"
       :class="[
-        'h-full',
-        'flex flex-column items-center rounded-lg my-5 mr-10 inline-block border-2 border-transparent ring-4 ring-transparent relative shadow-input cursor-pointer',
+        'text-gray-900',
+        'h-full flex justify-center items-center relative cursor-pointer',
+        'rounded-lg border-2 border-transparent ring-4 ring-transparent shadow-input',
         'peer-focus:ring-primary-100 peer-focus:ring-4',
         'peer-hover:shadow',
         'peer-checked:border-2 peer-checked:border-primary-500 peer-checked:shadow',

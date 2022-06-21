@@ -58,7 +58,19 @@ describe('Dropdown', () => {
     const { getByRole } = renderComponent({ props });
     const select = getByRole('combobox');
 
-    expect(select).toHaveClass('!border-error');
+    expect(select).toHaveClass('!border-error bg-coral-200');
+  });
+
+  it('adds success class to the textarea when error prop is true', () => {
+    const props = {
+      ...initialProps,
+      success: true
+    };
+
+    const { getByRole } = renderComponent({ props });
+    const select = getByRole('combobox');
+
+    expect(select).toHaveClass('!border-success');
   });
 
   describe('without a placeholder', () => {
@@ -411,8 +423,8 @@ describe('Dropdown', () => {
       // tabbing fires a FocusEvent (blur == focus away)
       await fireEvent.blur(select);
       const emittedEvent = emitted();
-      expect(emittedEvent).toHaveProperty('input');
-      expect(emittedEvent.input[0][0]).toEqual(props.options[0]);
+      expect(emittedEvent).not.toHaveProperty('input');
+      expect(emittedEvent).not.toHaveProperty('change');
     });
 
     it('clicking the select, it closes the listbox and retains focus', async () => {

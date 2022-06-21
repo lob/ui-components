@@ -1,5 +1,125 @@
 # CHANGELOG
 
+## 1.0.0-beta.25
+
+### Features
+
+Update all Icons with 2px stroke, for better accessibility.
+
+## 1.0.0-beta.24
+
+### Bug Fixes
+
+Fixes a bug where the dropdown hover action is selecting and setting an option
+
+## 1.0.0-beta.23
+
+### Bug Fixes
+
+Renames the export of the new ToolTip icon to `ToolTipIcon`.
+
+## 1.0.0-beta.22
+
+### Bug Fixes
+
+Removes external right margin of [MegaButton component](./src/components/MegaButton/MegaButton.mdx).
+
+## 1.0.0-beta.21
+
+### Bug Fixes
+
+Fixes the warning background color of NewButton and NewLink components.
+
+## 1.0.0-beta.20
+
+### Bug Fixes
+
+Fixes error background color of [TextInput component](./src/components/TextInput/TextInput.mdx).
+
+## 1.0.0-beta.19
+
+### Features
+
+Added [Calendar component](./src/components/Calendar/Calendar.mdx):
+
+## 1.0.0-beta.19
+
+### Features
+
+Added [Calendar component](./src/components/Calendar/Calendar.mdx):
+
+## 1.0.0-beta.18
+
+### Bug Fixes
+
+Adds 2 Icons missed in the refresh: SkipToLeft, SkipToRight.
+
+## 1.0.0-beta.17
+
+### Features
+
+Icons refresh: Add new designs for existing and used Icons, remove unused Icons.
+New Icons added: InfoFilled, Text, & ToolTipIcon.
+
+## 1.0.0-beta.16
+
+### Features
+
+Update the Tailwind plugin to introduce the new `error` color #D75A5A.
+The previous `error` color is still available as `coral-900` (#943832).
+
+## 1.0.0-beta.15
+
+### Features
+
+Style refresh to [Radio Button component](./src/components/RadioButton/RadioButton.mdx):
+Added [Radio Button Large component](./src/components/RadioButtonLarge/RadioButtonLarge.mdx):
+
+## 1.0.0-beta.14
+
+### Features
+
+Style additions to the [Textarea component](./src/components/Textarea/Textarea.mdx):
+
+- Width takes up the entire width of the container (no longer need to pass in `input-class: "w-full"`)
+- Height set via Tailwind class
+- Changes made to match text input: larger corner rounding, focus & "has something in it" states
+
+## 1.0.0-beta.13
+
+### Features
+
+Style additions to the [Dropdown component](./src/components/Dropdown/Dropdown.mdx):
+
+- Background color added to the error (red) state
+- Success prop added to add green border for success state
+
+## 1.0.0-beta.12
+
+### Bug Fixes
+
+- Fixes styling of readonly state and background color (white - was previously transparent) of [TextInput component](./src/components/TextInput/TextInput.mdx).
+
+### Features
+
+- Clear button is now an optional prop on [TextInput component](./src/components/TextInput/TextInput.mdx).
+
+## 1.0.0-beta.11
+
+### Bug Fixes
+
+- Fixed clear button on text input causing form submission. Also updated typography on small dropdown variant (font weight and font size).
+
+## 1.0.0-beta.10
+
+### Bug Fixes
+
+- Changed the height of small dropdown components to 32px
+
+### Features
+
+- Restyle of [TextInput component](./src/components/TextInput/TextInput.mdx)
+
 ## 1.0.0-beta.9
 
 ### Features
