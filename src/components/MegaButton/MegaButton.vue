@@ -14,6 +14,7 @@
     <label
       :for="id"
       :class="[
+        'text-gray-900',
         'h-full flex justify-center items-center relative cursor-pointer',
         'rounded-lg border-2 border-transparent ring-4 ring-transparent shadow-input',
         'peer-focus:ring-primary-100 peer-focus:ring-4',
