@@ -15,7 +15,7 @@
       :for="id"
       :class="[
         'text-gray-900',
-        'h-full flex justify-center items-center relative cursor-pointer',
+        'h-full flex justify-center relative cursor-pointer',
         'rounded-lg border-2 border-transparent ring-4 ring-transparent shadow-input',
         'peer-focus:ring-primary-100 peer-focus:ring-4',
         'peer-hover:shadow',
@@ -34,7 +34,7 @@
         <div
           v-if="imageSource"
           data-testId="imageContainer"
-          class="mx-16 mt-9 mb-8 h-28"
+          class="mx-16 mt-9 mb-8"
         >
           <div
             v-if="hasDisabledBanner"
