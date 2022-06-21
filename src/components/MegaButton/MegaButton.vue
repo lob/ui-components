@@ -33,7 +33,7 @@
         <div
           v-if="imageSource"
           data-testId="imageContainer"
-          class="mx-16 mt-9 mb-8"
+          class="mx-16 mt-9 mb-8 h-28"
         >
           <div
             v-if="hasDisabledBanner"
