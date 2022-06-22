@@ -112,3 +112,50 @@ const GroupTemplate = (args, { argTypes }) => ({
 });
 
 export const Group = GroupTemplate.bind({});
+
+const GroupWithImageTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { MegaButton, RadioGroup },
+  setup: () => ({ args }),
+  data: () => ({ megaButtonModel }),
+  template: `
+  <div>
+    <RadioGroup legend="Cat Type" style="column-gap: 1.5rem">
+      <mega-button
+        id="ginger"
+        name="catType"
+        label="Ginger"
+        value="ginger"
+        v-bind="args"
+        v-model="megaButtonModel"
+        imageSource=${image}
+        text="Minimum 80% fur by weight"
+      />
+      <mega-button
+        id="calico"
+        name="catType"
+        label="Calico"
+        value="calico"
+        v-bind="args"
+        v-model="megaButtonModel"
+        imageSource=${image}
+        text="Small. Cute and Sneaky. Not to be trusted around plants, glasses of water, toilets or nice linen furniture."
+
+      />
+      <mega-button
+        id="siberian"
+        name="catType"
+        label="Siberian"
+        value="siberian"
+        v-bind="args"
+        v-model="megaButtonModel"
+        imageSource=${image}
+        text="Minimum 80% fur by weight. Very very very very big boy."
+
+      />
+    </RadioGroup>
+  </div>
+  `
+});
+
+export const GroupWithImage = GroupWithImageTemplate.bind({});
