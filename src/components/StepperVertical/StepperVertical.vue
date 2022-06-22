@@ -1,14 +1,12 @@
 <template>
   <div>
     <StepperVerticalItem
-      v-for="step in steps"
+      v-for="step, index in steps"
       :key="step"
-      :ref="step === stepWithlongestPathName ? 'longest' : null"
-      :style="`min-width:${longestWidth}px;`"
       :step="step"
       :dark-mode="darkMode"
-      :index="steps.indexOf(step)+1"
-      :active="activeStepPathName === step.pathName"
+      :index="index"
+      :active="getIsActiveStep(index)"
       @click="handleClick(step)"
     />
   </div>
@@ -24,33 +22,24 @@ export default {
     steps: { type: Array, required: true,
       validator: function (value) {
         const hasPathName = (obj) => obj.hasOwnProperty('pathName');
-        return Array.isArray(value) && value.every(hasPathName);
+        const hasDisplayName = (obj) => obj.hasOwnProperty('displayName');
+        return Array.isArray(value) && value.every(hasDisplayName) && value.every(hasPathName);
       } },
-    currentStep: { type: Object, default: null },
+    activeStepIndex: { type: Number, required: true },
     darkMode: { type: Boolean, default: false }
   },
-  emits: ['stepChange'],
-  data () {
-    return {
-      activeStepPathName: this.currentStep?.pathName || this.steps[0]?.pathName,
-      longestWidth: null
-    };
-  },
+  emits: ['goToStep'],
   computed: {
-    stepWithlongestPathName () {
-      return this.steps.reduce((max, step) => {
-        return step.pathName.length > max.pathName.length ? step : max;
-      }, this.steps[0]);
+    activeStep () {
+      return this.steps[this.activeStepIndex];
     }
-  },
-  mounted () {
-    //get the longest element's width for setting the steps' min width
-    this.longestWidth = this.$refs.longest[0].$el.offsetWidth;
   },
   methods: {
     handleClick (step) {
-      this.activeStepPathName = step.pathName;
-      this.$emit('stepChange', step);
+      this.$emit('goToStep', step);
+    },
+    getIsActiveStep (index) {
+      return index === this.activeStepIndex;
     }
   }
 };
