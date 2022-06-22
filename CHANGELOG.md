@@ -4,13 +4,13 @@
 
 ### Bug Fixes
 
-Removes the items-center on megabuttons, fixing the alignment issue.
+Removes the `items-center` in `MegaButton`, so that when used in a group, the headers in each button are vertically aligned with one another.
 
 ## 1.0.0-beta.26
 
 ### Bug Fixes
 
-Updates the megabutton text color to match the figma.
+Updates the `MegaButton` text color to match the updates to the Design System.
 
 ## 1.0.0-beta.25
 
