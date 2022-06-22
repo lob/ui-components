@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 1.0.0-beta.27
+
+### Bug Fixes
+
+Removes the `items-center` in `MegaButton`, so that when used in a group, the headers in each button are vertically aligned with one another.
+
+## 1.0.0-beta.26
+
+### Bug Fixes
+
+Updates the `MegaButton` text color to match the updates to the Design System.
+
 ## 1.0.0-beta.25
 
 ### Features
