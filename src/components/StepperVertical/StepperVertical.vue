@@ -21,9 +21,8 @@ export default {
   props: {
     steps: { type: Array, required: true,
       validator: function (value) {
-        const hasPathName = (obj) => obj.hasOwnProperty('pathName');
         const hasDisplayName = (obj) => obj.hasOwnProperty('displayName');
-        return Array.isArray(value) && value.every(hasDisplayName) && value.every(hasPathName);
+        return Array.isArray(value) && value.every(hasDisplayName);
       } },
     activeStepIndex: { type: Number, required: true },
     darkMode: { type: Boolean, default: false }

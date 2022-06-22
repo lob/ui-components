@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 1.0.0-beta.28
+
+### Breaking changes
+
+Updates the [StepperVertical component](./src/components/StepperVertical/StepperVertical.mdx)
+The component now:
+
+- uses the `activeStepIndex` prop to determine and highlight the current step.
+- requires the `steps` to be an array of Objects each containing a `displayName` (and uses the displayName for rendering the step name)
+
 ## 1.0.0-beta.27
 
 ### Bug Fixes
