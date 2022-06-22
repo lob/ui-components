@@ -5,6 +5,7 @@
 ### Bug Fixes
 
 Removes the items-center on megabuttons, fixing the alignment issue.
+
 ## 1.0.0-beta.26
 
 ### Bug Fixes
