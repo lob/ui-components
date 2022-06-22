@@ -5,10 +5,10 @@ import StepperVertical from '../StepperVertical.vue';
 
 const initialProps = {
   steps: [
-    { path: '/settings', pathName: 'Choose campaign settings' },
-    { path: '/audience', pathName: 'Add target audience' },
-    { path: '/creative', pathName: 'Compose creative' },
-    { path: '/finalize', pathName: 'Finalize campaign' }
+    { path: '/settings', displayName: 'Configure settings', pathName: 'Create Campaign Step One' },
+    { path: '/audience', displayName: 'Add audience', pathName: 'Create Campaign Step Two' },
+    { path: '/creative', displayName: 'Choose creative', pathName: 'Create Campaign Step Three' },
+    { path: '/confirm', displayName: 'Review campaign', pathName: 'Create Campaign Step Four' }
   ] };
 
 const renderComponent = (options) => render(StepperVertical, { ...options });
@@ -19,10 +19,10 @@ describe('StepperVertical', () => {
     const props = initialProps;
     const { getByText } = renderComponent({ props });
 
-    const step1 = getByText(props.steps[0].pathName);
-    const step2 = getByText(props.steps[1].pathName);
-    const step3 = getByText(props.steps[2].pathName);
-    const step4 = getByText(props.steps[3].pathName);
+    const step1 = getByText(props.steps[0].displayName);
+    const step2 = getByText(props.steps[1].displayName);
+    const step3 = getByText(props.steps[2].displayName);
+    const step4 = getByText(props.steps[3].displayName);
     expect(step1).toBeInTheDocument();
     expect(step2).toBeInTheDocument();
     expect(step3).toBeInTheDocument();
@@ -33,7 +33,7 @@ describe('StepperVertical', () => {
     const props = initialProps;
     const { getByText } = renderComponent({ props });
 
-    const step1 = getByText(props.steps[0].pathName).closest('div');
+    const step1 = getByText(props.steps[0].displayName).closest('div');
     expect(step1).toHaveClass('bg-primary-500');
   });
 
@@ -47,7 +47,7 @@ describe('StepperVertical', () => {
     it('the currentStep is active', () => {
       const { getByText } = renderComponent({ props });
 
-      const step3 = getByText(props.steps[2].pathName).closest('div');
+      const step3 = getByText(props.steps[2].displayName).closest('div');
       expect(step3).toHaveClass('bg-primary-500');
     });
 
@@ -62,7 +62,7 @@ describe('StepperVertical', () => {
       props = initialProps;
       component = renderComponent({ props });
       const { getByText } = component;
-      step2 = getByText(props.steps[1].pathName).closest('div');
+      step2 = getByText(props.steps[1].displayName).closest('div');
       await userEvent.click(step2);
     });
 
@@ -70,8 +70,8 @@ describe('StepperVertical', () => {
       const { emitted } = component;
 
       const emittedEvent = emitted();
-      expect(emittedEvent).toHaveProperty('stepChange');
-      expect(emittedEvent.stepChange[0]).toEqual([props.steps[1]]);
+      expect(emittedEvent).toHaveProperty('goToStep');
+      expect(emittedEvent.goToStep[0]).toEqual([props.steps[1]]);
     });
 
     it('the step clicked-on becomes active', () => {

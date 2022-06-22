@@ -3,7 +3,7 @@ import { render } from '@testing-library/vue';
 import StepperVerticalItem from '../StepperVerticalItem.vue';
 
 const initialProps = {
-  step: { path: '/settings', pathName: 'Choose campaign settings' },
+  step: { path: '/settings', displayName: 'Configure settings', pathName: 'Create Campaign Step One' },
   index: 0,
   active: true
 };
@@ -16,7 +16,7 @@ describe('StepperVerticalItem', () => {
     const props = initialProps;
     const { getByText } = renderComponent({ props });
 
-    const step = getByText(props.step.pathName);
+    const step = getByText(props.step.displayName);
     expect(step).toBeInTheDocument();
   });
 
@@ -26,7 +26,7 @@ describe('StepperVerticalItem', () => {
       const props = initialProps;
       const { getByText } = renderComponent({ props });
 
-      const stepWrap = getByText(props.step.pathName).closest('div');
+      const stepWrap = getByText(props.step.displayName).closest('div');
       expect(stepWrap).toHaveClass('bg-primary-500');
     });
 
@@ -45,7 +45,7 @@ describe('StepperVerticalItem', () => {
     it('active step has white background', () => {
       const { getByText } = component;
 
-      const stepWrap = getByText(props.step.pathName).closest('div');
+      const stepWrap = getByText(props.step.displayName).closest('div');
       expect(stepWrap).toHaveClass('bg-white');
     });
 

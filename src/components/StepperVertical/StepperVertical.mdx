@@ -11,9 +11,9 @@ import StepperVerticalItem from "./StepperVerticalItem.vue";
 
 The `StepperVertical` component is a vertical stepper component that takes in the `steps` as a prop (Array of Objects). Each step object must include the `pathName` that will be displayed.
 
-It uses the `StepperVerticalItem` component to display the `step.pathName`.
+It uses the `StepperVerticalItem` component to display the `step.displayName`, and the `activeStepIndex` prop to highlight the current step.
 
-By default it will show the first step as active - or it can selected a different step by passing it as the `currentStep` prop.
+Clicking on a step emits `goToStep` and the steo Object to the parent.
 
 default:
 
@@ -31,7 +31,7 @@ dark-mode:
 
 The `StepperVertical` will render its steps according to the `steps` prop you pass in.
 
-It emits the selected step on-click with the `stepChange` property and the selected step Object.
+It emits the selected step on-click with the `goToStep` property and the selected step Object.
 
 To show the dark mode version, use the prop `darkMode` set to true.
 
@@ -41,6 +41,7 @@ Example of using the component:
 <StepperVertical
   :steps="[{ path: '/settings', pathName: 'Choose campaign settings' },
     { path: '/audience', pathName: 'Add target audience' }]"
+  :active-step-index="activeStepIndex"
   @stepChange="handleStepChange"
 />
 ```
