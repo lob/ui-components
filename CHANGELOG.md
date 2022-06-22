@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 1.0.0-beta.27
+
+### Bug Fixes
+
+Removes the items-center on megabuttons, fixing the alignment issue.
+## 1.0.0-beta.26
+
+### Bug Fixes
+
+Updates the megabutton text color to match the figma.
+
 ## 1.0.0-beta.25
 
 ### Features
