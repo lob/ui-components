@@ -150,7 +150,7 @@ const GroupWithImageTemplate = (args, { argTypes }) => ({
         v-bind="args"
         v-model="megaButtonModel"
         imageSource=${image}
-        text="Not to be trusted around plants, glasses of water, or nice linen furniture."
+        text="Not to be trusted around plants, glasses of water, toilets, or nice linen furniture."
 
       />
       <mega-button
@@ -161,7 +161,7 @@ const GroupWithImageTemplate = (args, { argTypes }) => ({
         v-bind="args"
         v-model="megaButtonModel"
         imageSource=${image}
-        text="Very very very very big boy."
+        text="Minimum 80% fur by weight. Very very very very big boy."
 
       />
     </RadioGroup>
