@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.0.0-beta.29
+
+### Features
+
+Updates MegaButton styling to make them slightly less mega.
+
 ## 1.0.0-beta.28
 
 ### Breaking changes
