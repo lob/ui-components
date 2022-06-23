@@ -4,7 +4,7 @@
 
 ### Features
 
-Updates MegaButton styling to make them slightly less mega.
+Updates `MegaButton` styling to make them slightly less mega.
 
 ## 1.0.0-beta.28
 
