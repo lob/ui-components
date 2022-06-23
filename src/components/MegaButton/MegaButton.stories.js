@@ -150,7 +150,7 @@ const GroupWithImageTemplate = (args, { argTypes }) => ({
         v-bind="args"
         v-model="megaButtonModel"
         imageSource=${image}
-        text="Not to be trusted around plants, glasses of water, toilets, or nice linen furniture."
+        text="Small. Cute and Sneaky. Not to be trusted around plants, glasses of water, toilets, or nice linen furniture."
 
       />
       <mega-button

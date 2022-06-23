@@ -22,7 +22,7 @@
         'peer-checked:border-2 peer-checked:border-primary-500 peer-checked:shadow',
         'peer-disabled:cursor-not-allowed peer-disabled:shadow-none peer-disabled:text-gray-100',
         'peer-disabled:border-2 peer-checked:border-disabled-gray',
-        { 'max-h-[210px] max-w-[200px]': smallText },
+        { 'max-w-[200px]': smallText },
         { 'min-w-[160px] max-w-[240px]': imageSource && !smallText },
         { 'items-center': !hasDisabledBanner && !smallText }
       ]"
