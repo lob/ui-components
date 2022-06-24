@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event';
 import StepperVertical from '../StepperVertical.vue';
 
 const initialProps = {
+  activeStepIndex: 0,
   steps: [
     { path: '/settings', displayName: 'Configure settings', pathName: 'Create Campaign Step One' },
     { path: '/audience', displayName: 'Add audience', pathName: 'Create Campaign Step Two' },
