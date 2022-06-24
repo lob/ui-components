@@ -16,7 +16,7 @@
       :class="[
         'text-gray-900',
         'h-full flex justify-center relative cursor-pointer',
-        'rounded-lg border-solid border-2 ring-4 ring-transparent border-gray-100',
+        'rounded-lg border-2 border-transparent ring-4 ring-transparent shadow-input',
         'peer-focus-visible:ring-primary-100 peer-focus-visible:ring-4',
         'peer-hover:shadow',
         'peer-checked:border-2 peer-checked:border-primary-500 peer-checked:shadow',
@@ -171,6 +171,10 @@ export default {
 <style scoped lang="scss">
 .strikethru-line {
   background: linear-gradient(to top right, rgba(255, 255, 255, 0) calc(50% - 1px), #c4c4c4, rgba(255, 255, 255, 0) calc(50% + 1px));
+}
+
+label {
+  box-shadow: 0 4.32px 12.95px rgba(0, 0, 0, 0.08);
 }
 
 input[type="radio"]:disabled + label {
