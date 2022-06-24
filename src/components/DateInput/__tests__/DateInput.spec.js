@@ -8,7 +8,7 @@ const mixins = [translate];
 
 const initialProps = {
   id: 'start',
-  modelValue: new Date(2021, 5, 14),
+  modelValue: new Date(2022, 5, 14),
   open: false,
   label: 'Start date'
 };
@@ -96,7 +96,7 @@ describe('DateInput', () => {
       const emittedEvent = emitted();
       expect(emittedEvent).toHaveProperty('update:modelValue');
 
-      expect(emittedEvent['update:modelValue'][0][0]).toEqual(new Date(2021, 5, 23));
+      expect(emittedEvent['update:modelValue'][0][0]).toEqual(new Date(2022, 5, 23));
     });
 
   });

@@ -55,7 +55,6 @@ WithImage.args = {
   label: 'Floofyboi',
   disabled: false,
   disabledBanner: null,
-  text: 'Minimum 80% fur by weight',
   imageSource: image
 };
 
@@ -68,6 +67,18 @@ SmallText.args = {
   disabled: false,
   disabledBanner: null,
   text: 'The himbos of the cat world'
+};
+
+export const WithImageAndSmallText = Template.bind({});
+WithImageAndSmallText.args = {
+  name: 'cat-type',
+  id: 'floofyboi',
+  value: 'floofyboi',
+  label: 'Floofyboi',
+  disabled: false,
+  disabledBanner: null,
+  text: 'Minimum 80% fur by weight',
+  imageSource: image
 };
 
 const megaButtonModel = '';
@@ -139,7 +150,7 @@ const GroupWithImageTemplate = (args, { argTypes }) => ({
         v-bind="args"
         v-model="megaButtonModel"
         imageSource=${image}
-        text="Small. Cute and Sneaky. Not to be trusted around plants, glasses of water, toilets or nice linen furniture."
+        text="Small. Cute and Sneaky. Not to be trusted around plants, glasses of water, toilets, or nice linen furniture."
 
       />
       <mega-button
