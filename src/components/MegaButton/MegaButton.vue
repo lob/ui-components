@@ -17,12 +17,14 @@
         'text-gray-900',
         'h-full flex justify-center relative cursor-pointer',
         'rounded-lg border-2 border-transparent ring-4 ring-transparent shadow-input',
-        'peer-focus:ring-primary-100 peer-focus:ring-4',
+        'peer-focus-visible:ring-primary-100 peer-focus-visible:ring-4',
         'peer-hover:shadow',
         'peer-checked:border-2 peer-checked:border-primary-500 peer-checked:shadow',
         'peer-disabled:cursor-not-allowed peer-disabled:shadow-none peer-disabled:text-gray-100',
         'peer-disabled:border-2 peer-checked:border-disabled-gray',
-        { 'w-72': smallText }
+        { 'max-w-[240px]': smallText },
+        { 'min-w-[160px] max-w-[240px]': imageSource && !smallText },
+        { 'items-center': !hasDisabledBanner && !smallText }
       ]"
     >
       <div>
@@ -34,7 +36,7 @@
         <div
           v-if="imageSource"
           data-testId="imageContainer"
-          class="mx-16 mt-9 mb-8"
+          class="mx-4 my-6"
         >
           <div
             v-if="hasDisabledBanner"
@@ -44,7 +46,7 @@
             {{ disabledBanner }}
           </div>
           <img
-            class="w-36 h-28"
+            class="max-h-14 mx-auto"
             :src="imageSource"
           >
         </div>
@@ -57,21 +59,34 @@
           {{ disabledBanner }}
         </div>
 
-        <div>
-          <div :class="['mx-8', { 'mt-8 mb-9': !hasDisabledBanner }, { 'mt-12 mb-6': hasDisabledBanner && !imageSource }, { 'mt-12 mb-6': hasDisabledBanner }]">
-            <div :class="['font-semibold', { 'text-lg text-left': smallText }, { 'text-center text-[2.25rem]': megaText }]">
-              <slot name="label">
-                {{ label }}
-              </slot>
-            </div>
-            <div
-              v-if="smallText"
-              class="text-left"
-            >
-              <slot name="text">
-                <p>{{ text }}</p>
-              </slot>
-            </div>
+        <div
+          :class="[
+            { 'mx-10': !imageSource && !smallText },
+            { 'mx-6': smallText },
+            { 'my-8': !hasDisabledBanner },
+            { 'mt-12 mb-6': hasDisabledBanner && !imageSource },
+            { 'mt-12 mb-6': hasDisabledBanner }
+          ]"
+        >
+          <div
+            :class="[
+              'text-lg font-medium',
+              { 'text-center': !smallText },
+              { 'text-left': smallText },
+              { 'text-[2rem]': megaText }
+            ]"
+          >
+            <slot name="label">
+              {{ label }}
+            </slot>
+          </div>
+          <div
+            v-if="smallText"
+            class="text-left mt-1 text-[14px]"
+          >
+            <slot name="text">
+              <p>{{ text }}</p>
+            </slot>
           </div>
         </div>
       </div>
@@ -129,7 +144,7 @@ export default {
       return this.disabled && this.disabledBanner;
     },
     megaText () {
-      return this.labelContent && !this.textContent;
+      return this.labelContent && !this.textContent && !this.imageSource;
     },
     smallText () {
       return this.labelContent && this.textContent;
