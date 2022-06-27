@@ -88,11 +88,11 @@ export default {
 }
 
 .primary.warning:not(:disabled) {
-  background: linear-gradient(114.08deg, #db1818 7.95%,  #ec4949 90.87%);
+  background: linear-gradient(114.08deg, #db1818 7.95%, #ec4949 90.87%);
 }
 
 .primary.warning:focus:not(:disabled),
 .primary.warning:hover:not(:disabled):not(:focus) {
-  background: linear-gradient(114.08deg,  #ec4949 7.95%, #db1818 90.87%);
+  background: linear-gradient(114.08deg, #ec4949 7.95%, #db1818 90.87%);
 }
 </style>
