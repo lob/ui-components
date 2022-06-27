@@ -14,7 +14,7 @@
       { 'primary text-white transform disabled:bg-gray-100': primary && !warning },
       { 'primary warning text-white  disabled:bg-coral-200': primary && warning },
       { 'secondary border bg-white border-gray-300 text-gray-500 hover:bg-gray-100/[.15] active:bg-bg-gray-100/[.25]': secondary && !warning,
-        'disabled:border-gray-100 disabled:text-gray-100 active:border-black active:text-black': secondary && !warning },
+        'disabled:border-gray-100 disabled:text-gray-100': secondary && !warning },
       { 'secondary border bg-white border-[#DE3124] text-[#DE3124] hover:bg-[#de3124]/[.04]': secondary && warning,
         'disabled:border-coral-200 disabled:text-coral-200 active:bg-[#de3124]/[.08]': secondary && warning }
     ]"
