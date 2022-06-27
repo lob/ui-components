@@ -26,7 +26,7 @@
         { 'bg-coral-200 !text-white': disabled && primary && warning },
         { 'secondary border border-gray-300 text-gray-500 hover:bg-gray-100/[.15] active:bg-gray-100/[.25]': !disabled && secondary && !warning },
         { 'border border-gray-100 text-gray-100': disabled && secondary && !warning },
-        { 'secondary border bg-white border-[#DE3124] text-[#DE3124] hover:bg-[#de3124]/[.04] active:bg-[#de3124]/[.08]': !disabled && secondary && warning },
+        { 'secondary bg-white border border-chili text-chili hover:bg-chili/[.04] active:bg-chili/[.08]': !disabled && secondary && warning },
         { 'border border-coral-200 text-coral-200': disabled && secondary && warning }
       ]"
       v-bind="$attrs"

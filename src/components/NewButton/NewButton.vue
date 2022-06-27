@@ -2,21 +2,22 @@
   <button
     :class="[
       'flex justify-center items-center rounded-lg focus-visible:ring-4 focus:outline-none',
-      { 'font-medium active:scale-[.96]': primary || secondary },
+      { 'font-medium': primary || secondary },
       { 'px-6 text-base h-[48px]': regular },
       { 'px-4 text-sm h-[32px]': small },
       { 'px-0 h-full text-base': link || none },
       { 'underline text-primary-500 hover:text-primary-900 active:text-primary-900 disabled:text-gray-500': link },
       { 'disabled:text-gray-500': none },
       { 'cursor-not-allowed': disabled },
+      { 'active:scale-[.96]': !disabled && !link },
       { 'focus-visible:ring-primary-100': !warning },
       { 'focus-visible:ring-coral-700': warning },
       { 'primary text-white transform disabled:bg-gray-100': primary && !warning },
-      { 'primary warning text-white  disabled:bg-coral-200': primary && warning },
-      { 'secondary border bg-white border-gray-300 text-gray-500 hover:bg-gray-100/[.15] active:bg-bg-gray-100/[.25]': secondary && !warning,
-        'disabled:border-gray-100 disabled:text-gray-100': secondary && !warning },
-      { 'secondary border bg-white border-[#DE3124] text-[#DE3124] hover:bg-[#de3124]/[.04]': secondary && warning,
-        'disabled:border-coral-200 disabled:text-coral-200 active:bg-[#de3124]/[.08]': secondary && warning }
+      { 'primary warning text-white disabled:bg-coral-200': primary && warning },
+      { 'secondary bg-white border border-gray-300 text-gray-500': secondary && !warning,
+        'hover:bg-gray-100/[.15] active:bg-bg-gray-100/[.25] disabled:border-gray-100 disabled:text-gray-100': secondary && !warning },
+      { 'secondary bg-white border border-chili text-chili': secondary && warning,
+        'disabled:border-coral-200 disabled:text-coral-200 hover:bg-chili/[.04] active:bg-chili/[.08]': secondary && warning }
     ]"
     :disabled="disabled"
     @click="handleClick"
