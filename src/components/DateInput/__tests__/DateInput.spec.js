@@ -94,7 +94,6 @@ describe('DateInput', () => {
 
       await userEvent.click(dateToSelect);
       const emittedEvent = emitted();
-
       expect(emittedEvent).toHaveProperty('update:modelValue');
 
       expect(emittedEvent['update:modelValue'][0][0]).toEqual(new Date(2022, 5, 23));
