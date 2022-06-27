@@ -13,7 +13,7 @@
       { 'focus-visible:ring-coral-700': warning },
       { 'primary text-white transform disabled:bg-gray-100': primary && !warning },
       { 'primary warning text-white  disabled:bg-coral-200': primary && warning },
-      { 'secondary border bg-white border-[#5F83A5] text-[#416581] hover:bg-[#c5d6e626] active:bg-[#c5d6e640]': secondary && !warning,
+      { 'secondary border bg-white border-gray-300 text-gray-500 hover:bg-[#c5d6e626] active:bg-[#c5d6e640]': secondary && !warning,
         'disabled:border-gray-100 disabled:text-gray-100 active:border-black active:text-black': secondary && !warning },
       { 'secondary border bg-white border-[#DE3124] text-[#DE3124] hover:bg-[#de31240a]': secondary && warning,
         'disabled:border-coral-200 disabled:text-coral-200 active:bg-[#de312414]': secondary && warning }
@@ -88,11 +88,11 @@ export default {
 }
 
 .primary.warning:not(:disabled) {
-  background: linear-gradient(114.08deg, #DB1818 7.95%, #EC4949 90.87%);
+  background: linear-gradient(114.08deg, #db1818 7.95%,  #ec4949 90.87%);
 }
 
 .primary.warning:focus:not(:disabled),
 .primary.warning:hover:not(:disabled):not(:focus) {
-  background: linear-gradient(114.08deg, #EC4949 7.95%, #DB1818 90.87%);
+  background: linear-gradient(114.08deg,  #ec4949 7.95%, #db1818 90.87%);
 }
 </style>

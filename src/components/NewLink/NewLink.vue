@@ -24,7 +24,7 @@
         { 'bg-gray-100 !text-white': disabled && primary && !warning },
         { 'primary warning bg-coral-900 !text-white': !disabled && primary && warning },
         { 'bg-coral-200 !text-white': disabled && primary && warning },
-        { 'secondary border border-[#5F83A5] text-[#416581] hover:bg-[#c5d6e626] active:bg-[#c5d6e640]': !disabled && secondary && !warning },
+        { 'secondary border border-gray-300 text-gray-500 hover:bg-[#c5d6e626] active:bg-[#c5d6e640]': !disabled && secondary && !warning },
         { 'border border-gray-100 text-gray-100': disabled && secondary && !warning },
         { 'secondary border bg-white border-[#DE3124] text-[#DE3124] hover:bg-[#de31240a] active:bg-[#de312414]': !disabled && secondary && warning },
         { 'border border-coral-200 text-coral-200': disabled && secondary && warning }
@@ -133,11 +133,11 @@ export default {
 }
 
 .primary.warning:not(:disabled):not(:active) {
-  background: linear-gradient(114.08deg, #DB1818 7.95%, #EC4949 90.87%);
+  background: linear-gradient(114.08deg, #db1818 7.95%,  #ec4949 90.87%);
 }
 
 .primary.warning:focus:not(:active):not(:disabled),
 .primary.warning:hover:not(:disabled):not(:focus) {
-  background: linear-gradient(114.08deg, #EC4949 7.95%, #DB1818 90.87%);
+  background: linear-gradient(114.08deg,  #ec4949 7.95%, #db1818 90.87%);
 }
 </style>
