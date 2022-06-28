@@ -46,7 +46,7 @@
             {{ disabledBanner }}
           </div>
           <img
-            class="max-h-14 mx-auto"
+            class="max-h-20 mx-auto"
             :src="imageSource"
           >
         </div>
