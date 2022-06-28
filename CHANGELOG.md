@@ -4,6 +4,12 @@
 
 Makes the max height of the `MegaButton` image larger.
 
+## 1.0.0-beta.32
+
+### Bug Fixes
+
+Maintain the text color on hover for the secondary-button variant on `NewLink`
+
 ## 1.0.0-beta.31
 
 ### Features
