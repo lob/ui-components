@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.0.0-beta.30
+
+### Features
+
+Updates `NewButton` & `NewLink` styling.
+
 ## 1.0.0-beta.29
 
 ### Features
