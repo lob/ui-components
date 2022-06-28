@@ -185,7 +185,7 @@ input {
 
   &:checked:not(:disabled) + label::before {
     @apply border-2;
-    @apply border-primary-500
+    @apply border-primary-500;
   }
 
   &:checked:not(:disabled) + label::after {
@@ -206,7 +206,6 @@ input {
 
   &:not(:disabled):not(:checked) + label.largeHover::before {
     @apply border-gray-900;
-
   }
 }
 </style>
