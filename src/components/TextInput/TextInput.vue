@@ -68,7 +68,7 @@
         :max="max"
         :pattern="pattern"
         :class="[
-          `leading-5 w-full text-gray-900 placeholder-gray-500 placeholder:font-light outline-none ${inputClass}`,
+          `leading-5 w-full text-gray-900 placeholder-gray-100 placeholder:font-light outline-none ${inputClass}`,
           {'nonErrorAutofill' : !disabled && !readonly},
           {'text-xs': small},
           {'truncate': withCopyButton},
