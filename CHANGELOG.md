@@ -1,10 +1,14 @@
 # CHANGELOG
 
+## 1.0.0-beta.32
+
+Makes the max height of the `MegaButton` image larger.
+
 ## 1.0.0-beta.31
 
 ### Features
 
-Makes the max height of the `MegaButton` image larger.
+Updates `FileUpload` button text color and the 'Copy' button styling in `TextInput`.
 
 ## 1.0.0-beta.30
 
