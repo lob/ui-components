@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.0.0-beta.31
+
+### Features
+
+Makes the max height of the `MegaButton` image larger.
+
 ## 1.0.0-beta.30
 
 ### Features
