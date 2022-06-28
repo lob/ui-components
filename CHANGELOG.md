@@ -4,6 +4,13 @@
 
 ### Features
 
+Updates `RadioButton` and `RadioButtonLarge` hover and selected states.
+Update to `Dropdown` to make chevron icon darker.
+
+## 1.0.0-beta.31
+
+### Features
+
 Updates `FileUpload` button text color and the 'Copy' button styling in `TextInput`.
 
 ## 1.0.0-beta.30
