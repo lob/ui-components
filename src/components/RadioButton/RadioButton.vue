@@ -1,7 +1,7 @@
 <template>
   <div
     :class="[
-      'inline-block mr-4 mt-1'
+      'inline-block mr-8 mt-1'
     ]"
   >
     <input
