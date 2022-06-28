@@ -1,7 +1,7 @@
 <template>
   <button
     :class="[
-      'flex justify-center items-center rounded-lg focus-visible:ring-4 focus:outline-none',
+      'flex justify-center items-center rounded-lg focus-visible:ring-4 focus-visible:ring-primary-100 focus:outline-none',
       { 'font-medium': primary || secondary },
       { 'px-6 text-base h-[48px]': regular },
       { 'px-4 text-sm h-[32px]': small },
@@ -10,8 +10,6 @@
       { 'disabled:text-gray-500': none },
       { 'cursor-not-allowed': disabled },
       { 'active:scale-[.96]': !disabled && !link },
-      { 'focus-visible:ring-primary-100': !warning },
-      { 'focus-visible:ring-coral-700': warning },
       { 'primary text-white transform disabled:bg-gray-100': primary && !warning },
       { 'primary warning text-white disabled:bg-coral-200': primary && warning },
       { 'secondary bg-white border border-gray-300 text-gray-500': secondary && !warning,

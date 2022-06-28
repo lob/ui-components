@@ -8,25 +8,23 @@
       :aria-disabled="disabled"
       :class="[
         { 'pointer-events-none': disabled },
-        { 'px-0 text-base': link },
         { 'font-bold': bold },
+        { 'text-inherit': inheritTextColor },
+        { 'px-0 text-base focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:rounded-lg': link },
         { 'underline': underline && link },
         { '!text-gray-500': disabled && link },
-        { 'text-inherit': inheritTextColor },
         { 'text-primary-500 hover:text-primary-900 active:text-primary-900': !inheritTextColor && link },
         { 'flex justify-center items-center rounded-lg no-underline font-medium': primary || secondary },
-        { 'focus-visible:ring-4 focus:outline-none active:scale-[.96]': primary || secondary },
-        { 'focus:ring-primary-100': !warning && (primary || secondary) },
-        { 'focus:ring-coral-700': warning && (primary || secondary) },
+        { 'focus-visible:ring-4 focus-visible:ring-primary-100 focus:ring-transparent focus:outline-none active:scale-[.96]': primary || secondary },
         { 'px-6 text-base h-[48px]': regular && (primary || secondary) },
         { 'px-4 text-sm h-[32px]': small && (primary || secondary) },
         { 'primary bg-primary-500 !text-white ': !disabled && primary && !warning },
         { 'bg-gray-100 !text-white': disabled && primary && !warning },
-        { 'primary warning bg-coral-900 !text-white': !disabled && primary && warning },
+        { 'primary warning !text-white': !disabled && primary && warning },
         { 'bg-coral-200 !text-white': disabled && primary && warning },
-        { 'secondary border border-gray-300 text-gray-500 hover:bg-gray-100/[.15] active:bg-gray-100/[.25]': !disabled && secondary && !warning },
+        { 'secondary border !border-gray-300 text-gray-500 hover:bg-gray-100/[.15] active:bg-gray-100/[.25]': !disabled && secondary && !warning },
         { 'border border-gray-100 text-gray-100': disabled && secondary && !warning },
-        { 'secondary bg-white border border-chili text-chili hover:bg-chili/[.04] active:bg-chili/[.08]': !disabled && secondary && warning },
+        { 'secondary bg-white border !border-chili text-chili hover:bg-chili/[.04] active:bg-chili/[.08]': !disabled && secondary && warning },
         { 'border border-coral-200 text-coral-200': disabled && secondary && warning }
       ]"
       v-bind="$attrs"
@@ -34,7 +32,7 @@
       <slot />
       <ChevronRight
         v-if="link && withChevron"
-        class="h-4 text-primary-500 inline-flex -mr-1"
+        class="h-4 inline-flex -mr-1"
       />
     </component>
   </span>
@@ -136,7 +134,7 @@ export default {
   background: linear-gradient(114.08deg, #db1818 7.95%, #ec4949 90.87%);
 }
 
-.primary.warning:focus:not(:active):not(:disabled),
+.primary.warning:focus:not(:disabled),
 .primary.warning:hover:not(:disabled):not(:focus) {
   background: linear-gradient(114.08deg, #ec4949 7.95%, #db1818 90.87%);
 }
