@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## 1.0.0-beta.33
+
+Makes the max height of the `MegaButton` image larger.
+
+## 1.0.0-beta.32
+
+### Bug Fixes
+
+Maintain the text color on hover for the secondary-button variant on `NewLink`
+
+## 1.0.0-beta.31
+
+### Features
+
+Updates `FileUpload` button text color and the 'Copy' button styling in `TextInput`.
+
+## 1.0.0-beta.30
+
+### Features
+
+Updates `NewButton` & `NewLink` styling.
+
 ## 1.0.0-beta.29
 
 ### Features

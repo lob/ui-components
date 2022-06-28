@@ -5,11 +5,12 @@
       aria-controls="filename"
       tabindex="0"
       :class="[
-        { 'px-8 text-[1.25rem] h-[48px]': regular },
-        { 'px-6 text-sm h-[32px]': small },
-        'flex justify-center items-center rounded-lg border border-primary-500',
-        'font-bold tracking-[-0.04em] bg-white text-primary-500 secondary',
-        'active:border-black active:text-black focus-visible:ring-primary-100 focus-visible:ring-4 focus:outline-none'
+        { 'px-6 text-base h-[48px]': regular },
+        { 'px-4 text-sm h-[32px]': small },
+        'flex justify-center items-center rounded-lg',
+        'font-medium bg-white text-gray-500 border',
+        'hover:bg-gray-100/[.15] active:bg-bg-gray-100/[.25] active:scale-[.96]',
+        'focus-visible:ring-primary-100 focus-visible:ring-4 focus:outline-none'
       ]"
       @keydown.enter="onKeydown"
       @keydown.space="onKeydown"
@@ -79,16 +80,3 @@ export default {
   }
 };
 </script>
-
-<style scoped lang="scss">
-.secondary:hover:not(:focus) {
-  box-shadow:
-    0 9px 12px 0 rgba(0, 0, 0, 0.2),
-    0 19px 29px 0 rgba(0, 0, 0, 0.14),
-    0 7px 36px 0 rgba(0, 0, 0, 0.12);
-}
-
-.secondary:focus:active {
-  box-shadow: none;
-}
-</style>
