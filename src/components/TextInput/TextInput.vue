@@ -7,7 +7,6 @@
       :required="required"
       :sr-only-label="srOnlyLabel"
       :tooltip-content="tooltipContent"
-      :disabled="disabled"
     />
     <div
       v-if="withCopyButton"

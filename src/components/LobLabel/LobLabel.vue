@@ -3,7 +3,6 @@
     <label
       :for="labelFor"
       :class="[
-        {'text-gray-100' : disabled },
         {'flex items-center justify-between mb-2 text-sm text-gray-500': !srOnlyLabel},
         { 'sr-only': srOnlyLabel }
       ]"
@@ -51,8 +50,7 @@ export default defineComponent({
     labelFor: { type: String, required: true },
     required: { type: Boolean, default: false },
     srOnlyLabel: { type: Boolean, default: false },
-    tooltipContent: { type: String, default: null },
-    disabled: { type: Boolean, default: false }
+    tooltipContent: { type: String, default: null }
   },
   computed: {
     tooltip () {
