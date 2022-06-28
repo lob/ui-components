@@ -9,9 +9,7 @@
       type="radio"
       :class="[
         'm-0 p-0 opacity-0 mt-2',
-        {'radio__input--error': error},
         {'!cursor-not-allowed': disabled}
-
       ]"
       :name="name"
       :value="value.toString()"
@@ -26,11 +24,10 @@
       :class="[
         'relative flex font-light',
         {'text-gray-100 !cursor-not-allowed': disabled},
-        {'font-bold text-primary-500' : checked && !disabled && !error},
-        {'largeButton w-4/5 pt-2' : large},
+        {'text-primary-500' : checked && !disabled},
+        {'largeButton w-4/5 pt-2 ml-1' : large},
         {'largeHover' : largeHover},
-        {'!pt-0.5 helperText' : large && helperText},
-        {'text-coral-900' : error}
+        {'!pt-0.5 helperText' : large && helperText}
       ]"
     >
       <slot>
@@ -40,8 +37,7 @@
         :class="[
           'text-sm text-gray-300 !font-normal',
           {'!text-primary-500' : checked},
-          {'!text-gray-100' : disabled},
-          {'!text-coral-900' : error}
+          {'!text-gray-100' : disabled}
         ]"
       >
         {{ helperText }}
@@ -75,10 +71,6 @@ export default {
     label: {
       type: String,
       default: ''
-    },
-    error: {
-      type: Boolean,
-      default: false
     },
     required: {
       type: Boolean,
@@ -140,30 +132,30 @@ input {
 
     &::before {
       content: "";
-      top: 5px;
-      left: -19px;
+      top: 4px;
+      left: -24px;
 
       @apply absolute;
       @apply bg-transparent;
-      @apply border-gray-700;
+      @apply border-gray-300;
       @apply border-solid;
       @apply border;
-      @apply h-3.5;
+      @apply h-4;
       @apply inline-block;
       @apply rounded-full;
-      @apply w-3.5;
+      @apply w-4;
     }
 
     &::after {
       content: "";
 
-      @apply -left-[18px];
-      @apply top-1.5;
+      @apply -left-[20px];
+      @apply top-[8px];
       @apply absolute;
-      @apply h-3;
+      @apply h-2;
       @apply inline-block;
       @apply rounded-full;
-      @apply w-3;
+      @apply w-2;
     }
   }
 
@@ -191,19 +183,9 @@ input {
     @apply border-gray-100;
   }
 
-  &:focus + label::before {
-    @apply ring-4;
-    @apply ring-tertiary-bluebird;
-    @apply border-primary-500;
-  }
-
-  &.radio__input--error + label::before {
-    @apply border-error;
-  }
-
   &:checked:not(:disabled) + label::before {
-    @apply border-transparent;
-    @apply shadow-input;
+    @apply border-2;
+    @apply border-primary-500
   }
 
   &:checked:not(:disabled) + label::after {
@@ -218,51 +200,13 @@ input {
     @apply -left-[20px];
   }
 
-  &:focus:checked + label::before {
-    @apply border-transparent;
+  &:hover:not(:disabled):not(:checked) + label::before {
+    @apply border-gray-900;
   }
 
-  &:focus + label.largeButton::before {
-    @apply ring-0;
-    @apply shadow-input;
-  }
+  &:not(:disabled):not(:checked) + label.largeHover::before {
+    @apply border-gray-900;
 
-  &.radio__input--error:focus + label.largeButton::before {
-    @apply shadow-none;
-  }
-
-  &:focus:checked + label.largeButton::before {
-    @apply border-transparent;
-  }
-
-  &.radio__input--error:focus:checked + label.largeButton::before {
-    @apply border-error;
-  }
-
-  &.radio__input--error:checked + label::before {
-    @apply border-error;
-  }
-
-  &.radio__input--error:checked:focus + label::before {
-    @apply border-transparent;
-  }
-
-  &:hover:not(:disabled):not(:checked):not(.radio__input--error) + label::before {
-    @apply shadow-input;
-    @apply border-primary-500;
-  }
-
-  &:not(:disabled):not(:checked):not(.radio__input--error) + label.largeHover::before {
-    @apply shadow-input;
-    @apply border-primary-500;
-  }
-
-  &.radio__input--error:checked + label::after {
-    @apply bg-error;
-    @apply h-2.5;
-    @apply w-2.5;
-    @apply top-[7px];
-    @apply -left-[20px];
   }
 }
 </style>
