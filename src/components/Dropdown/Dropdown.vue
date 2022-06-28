@@ -60,7 +60,7 @@
         v-if="!open"
         :class="[
           'w-5 h-5 absolute right-2.5',
-          error ? 'text-error' : 'text-gray-100'
+          error ? 'text-error' : 'text-gray-900'
         ]"
         data-testid="chevron-down"
       />
@@ -68,7 +68,7 @@
         v-else
         :class="[
           'w-5 h-5 absolute right-2.5',
-          error ? 'text-error' : 'text-gray-100'
+          error ? 'text-error' : 'text-gray-900'
         ]"
         data-testid="chevron-up"
       />
