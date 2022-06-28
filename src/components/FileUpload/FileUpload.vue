@@ -8,7 +8,7 @@
         { 'px-6 text-base h-[48px]': regular },
         { 'px-4 text-sm h-[32px]': small },
         'flex justify-center items-center rounded-lg',
-        'font-medium bg-white text-primary-500 border border-primary-500',
+        'font-medium bg-white text-gray-500 border',
         'hover:bg-gray-100/[.15] active:bg-bg-gray-100/[.25] active:scale-[.96]',
         'focus-visible:ring-primary-100 focus-visible:ring-4 focus:outline-none'
       ]"
