@@ -29,14 +29,12 @@
       :aria-required="required"
       :aria-disabled="disabled"
       :class="[
-        'cursor-default bg-white border rounded-lg border-gray-100 focus:outline-none focus:shadow hover:shadow font-light text-gray-900 flex align-center items-center',
+        'cursor-default bg-white border rounded-lg border-gray-100 font-light text-gray-900 flex align-center items-center',
         {'h-8 text-sm py-2 px-2.5': small},
         {'h-12 py-2.5 px-4': default_},
         {'!border-error bg-coral-200': error},
         {'!border-success': success && !error},
         {'!bg-white-100 pointer-events-none': disabled},
-        {'focus:ring-4 focus:ring-primary-100 focus:border-transparent': !open},
-        {'focus:ring-0': open},
         {'border-gray-500' : open || activeIndex > -1}
       ]"
       tabindex="0"
