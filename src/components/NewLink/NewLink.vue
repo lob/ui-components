@@ -18,7 +18,7 @@
         { 'focus-visible:ring-4 focus-visible:ring-primary-100 focus:ring-transparent focus:outline-none active:scale-[.96]': primary || secondary },
         { 'px-6 text-base h-[48px]': regular && (primary || secondary) },
         { 'px-4 text-sm h-[32px]': small && (primary || secondary) },
-        { 'primary bg-primary-500 !text-white ': !disabled && primary && !warning },
+        { 'primary !text-white ': !disabled && primary && !warning },
         { 'bg-gray-100 !text-white': disabled && primary && !warning },
         { 'primary warning !text-white': !disabled && primary && warning },
         { 'bg-coral-200 !text-white': disabled && primary && warning },
@@ -121,16 +121,16 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.primary:not(:disabled):not(:active) {
+.primary:not(:disabled) {
   background: linear-gradient(114.08deg, #1876db 7.95%, #5748ff 90.87%);
 }
 
-.primary:focus:not(:active):not(:disabled),
+.primary:focus:not(:disabled),
 .primary:hover:not(:disabled):not(:focus) {
   background: linear-gradient(114.08deg, #5748ff 7.95%, #1876db 90.87%);
 }
 
-.primary.warning:not(:disabled):not(:active) {
+.primary.warning:not(:disabled) {
   background: linear-gradient(114.08deg, #db1818 7.95%, #ec4949 90.87%);
 }
 
