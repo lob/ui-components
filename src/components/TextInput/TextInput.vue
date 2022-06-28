@@ -111,7 +111,7 @@
       <button
         v-if="withCopyButton"
         type="button"
-        :class="['rounded-lg text-white bg-primary-500 px-3 !h-8 text-sm', {'!h-6 text-xs' : small}]"
+        :class="['primary active:scale-[.96] text-white rounded-lg px-3 !h-8 text-sm', {'!h-6 text-xs' : small}]"
         @click="copyToClipboard"
       >
         Copy
@@ -311,5 +311,14 @@ export default {
 .errorAutofill:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px #f8e7e6 inset !important;
   box-shadow: 0 0 0 30px #f8e7e6 inset !important;
+}
+
+.primary:not(:disabled) {
+  background: linear-gradient(114.08deg, #1876db 7.95%, #5748ff 90.87%);
+}
+
+.primary:focus:not(:disabled),
+.primary:hover:not(:disabled):not(:focus) {
+  background: linear-gradient(114.08deg, #5748ff 7.95%, #1876db 90.87%);
 }
 </style>
