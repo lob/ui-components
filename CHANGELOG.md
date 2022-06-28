@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 1.0.0-beta.34
+
+### Features
+
+Updates `RadioButton` and `RadioButtonLarge` hover and selected states.
+Update to `Dropdown` to make chevron icon darker, remove focus ring, and hover box-shadow.
+
 ## 1.0.0-beta.33
 
 Makes the max height of the `MegaButton` image larger.

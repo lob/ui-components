@@ -1,14 +1,19 @@
 <template>
-  <div :class="[{'h-[60px]' : revealText}]">
+  <div
+    :class="[
+      {'h-[60px]' : revealText},
+      {'!cursor-not-allowed' : disabled}
+    ]"
+  >
     <div
       :class="[
-        'cursor-pointer bg-white h-12 top-2 inline-block mr-4 -ml-2.5 mt-1 border border-gray-100 w-[200px] rounded-lg hover:shadow pl-6 focus-within:shadow focus-within:ring-4 focus-within:ring-tertiary-bluebird',
-        {'!border-primary-500' : checked && !disabled},
+        'cursor-pointer bg-white h-12 top-2 inline-block mr-4 mt-1 border border-gray-100 w-[200px] rounded-lg pl-6',
+        {'hover:border-gray-300': !disabled},
+        {'!border-primary-500 ring-inset ring-1 ring-primary-500' : checked && !disabled},
         {'h-[60px]' : helperText},
         {'hover:h-[60px]' : revealText},
         {'h-[60px]' : revealText && checked},
-        { 'bg-white-100 cursor-not-allowed': disabled},
-        {'!border-coral-700 !bg-coral-100' : error}
+        {'bg-white-100 !cursor-not-allowed': disabled}
       ]"
       @mouseenter="onContainerHover"
       @mouseleave="onContainerLeaveHover"
@@ -28,7 +33,6 @@
           :value="value"
           :name="name"
           :label="label"
-          :error="error"
           :required="required"
           :disabled="disabled"
           :helper-text="helperText"
@@ -42,10 +46,9 @@
           v-if="revealText"
           ref="revealText"
           :class="[
-            'hidden ml-3.5 text-sm text-gray-300 !font-normal cursor-pointer',
+            'hidden ml-4 text-sm text-gray-300 !font-normal cursor-pointer',
             {'!block !text-primary-500' : checked},
-            {'!text-gray-100 cursor-not-allowed' : disabled},
-            {'!text-coral-900' : error}
+            {'!text-gray-100 cursor-not-allowed' : disabled}
           ]"
         >
           {{ revealText }}
@@ -82,10 +85,6 @@ export default {
     label: {
       type: String,
       default: ''
-    },
-    error: {
-      type: Boolean,
-      default: false
     },
     required: {
       type: Boolean,
@@ -128,7 +127,9 @@ export default {
       this.$emit('click', $event);
     },
     onLargeButtonClick () {
-      this.$emit('update:modelValue', this.value);
+      if (!this.disabled) {
+        this.$emit('update:modelValue', this.value);
+      }
     },
     onContainerHover () {
       const revealText = this.$refs.revealText;
