@@ -46,8 +46,9 @@
             {{ disabledBanner }}
           </div>
           <img
-            class="max-h-14 mx-auto"
+            class="max-h-20 mx-auto"
             :src="imageSource"
+            :alt="imageAltText"
           >
         </div>
 
@@ -133,6 +134,10 @@ export default {
     imageSource: {
       type: String,
       default: null
+    },
+    imageAltText: {
+      type: String,
+      default: ''
     }
   },
   emits: ['update:modelValue', 'input', 'click'],
