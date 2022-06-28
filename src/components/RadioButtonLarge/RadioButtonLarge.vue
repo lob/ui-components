@@ -46,7 +46,7 @@
           v-if="revealText"
           ref="revealText"
           :class="[
-            'hidden ml-3.5 text-sm text-gray-300 !font-normal cursor-pointer',
+            'hidden ml-4 text-sm text-gray-300 !font-normal cursor-pointer',
             {'!block !text-primary-500' : checked},
             {'!text-gray-100 cursor-not-allowed' : disabled}
           ]"
