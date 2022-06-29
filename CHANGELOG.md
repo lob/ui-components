@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.0.0-beta.35
+
+### Bug fixes
+
+Maintain the gradient background on primary-button variant of `NewLink` when active
+
 ## 1.0.0-beta.34
 
 ### Features
