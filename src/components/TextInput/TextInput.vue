@@ -7,7 +7,6 @@
       :required="required"
       :sr-only-label="srOnlyLabel"
       :tooltip-content="tooltipContent"
-      :disabled="disabled"
     />
     <div
       v-if="withCopyButton"
@@ -44,13 +43,13 @@
       :class="[
         'bg-white h-12 pl-4 pr-4 py-2.5 rounded-lg flex items-center gap-2 border border-gray-100 focus-within:outline-none',
         { '!pl-3 !pr-3 !h-8 !gap-1' : small },
-        {'hover:shadow focus-within:shadow focus-within:ring-1 focus-within:ring-primary-500 focus-within:border-primary-500': !disabled && !readonly},
+        {'hover:border-gray-300 focus-within:ring-1 focus-within:ring-primary-500 focus-within:border-primary-500': !disabled && !readonly},
         {'!bg-white-100' : disabled},
         {'!bg-white-100 focus-within:ring-1 focus-within:ring-primary-500 focus-within:border-primary-500' : readonly},
         {'!border-coral-700 !bg-coral-100 focus-within:ring-1 focus-within:ring-coral-700': error},
         {'!bg-white-100' : withCopyButton},
         {'!flex-wrap !h-fit' : isMultiselect},
-        {'border-gray-500 focus-within:border-primary-500' : modelValue && !error && !withCopyButton}
+        {'focus-within:border-primary-500' : modelValue && !error && !withCopyButton}
       ]"
     >
       <div
@@ -69,12 +68,12 @@
         :max="max"
         :pattern="pattern"
         :class="[
-          `leading-5 w-full text-gray-900 placeholder-gray-500 placeholder:font-light outline-none ${inputClass}`,
+          `leading-5 w-full text-gray-900 placeholder-gray-100 placeholder:font-light outline-none ${inputClass}`,
           {'nonErrorAutofill' : !disabled && !readonly},
           {'text-xs': small},
           {'truncate': withCopyButton},
           {'bg-white-100 cursor-not-allowed !text-gray-100 !placeholder-gray-100': disabled || readonly},
-          {'bg-coral-100 !placeholder-error !text-error !autofill:bg-coral-100 errorAutofill': error}
+          {'bg-coral-100 !placeholder-error !autofill:bg-coral-100 errorAutofill': error}
         ]"
         :disabled="disabled"
         :required="required"
