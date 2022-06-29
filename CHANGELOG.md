@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.0.0-beta.36
+
+### Features
+
+Updates the styling of the `TextInput` & `TextArea` components
+
 ## 1.0.0-beta.35
 
 ### Bug fixes
