@@ -1,5 +1,28 @@
 # CHANGELOG
 
+## 1.0.0-beta.35
+
+### Bug fixes
+
+Maintain the gradient background on primary-button variant of `NewLink` when active
+
+## 1.0.0-beta.34
+
+### Features
+
+Updates `RadioButton` and `RadioButtonLarge` hover and selected states.
+Update to `Dropdown` to make chevron icon darker, remove focus ring, and hover box-shadow.
+
+## 1.0.0-beta.33
+
+Makes the max height of the `MegaButton` image larger.
+
+## 1.0.0-beta.32
+
+### Bug Fixes
+
+Maintain the text color on hover for the secondary-button variant on `NewLink`
+
 ## 1.0.0-beta.31
 
 ### Features

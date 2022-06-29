@@ -138,7 +138,7 @@ const LargeGroupTemplate = (args, { argTypes }) => ({
   data: () => ({ largeGroupModel }),
   setup: () => ({ args }),
   template: `
-    <radio-group v-bind="args">
+    <radio-group large v-bind="args">
     <radio-button-large
     id="4x6"
     name="postcard-size"
