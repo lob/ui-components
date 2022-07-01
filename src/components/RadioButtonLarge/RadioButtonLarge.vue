@@ -7,7 +7,7 @@
   >
     <div
       :class="[
-        'cursor-pointer bg-white h-12 top-2 inline-block mr-4 mt-1 border border-gray-100 w-[200px] rounded-lg pl-6',
+        'cursor-pointer bg-white h-12 top-2 inline-block mr-4 mt-1 border border-gray-100 w-[200px] rounded-lg pl-2',
         {'hover:border-gray-300': !disabled},
         {'!border-primary-500 ring-inset ring-1 ring-primary-500' : checked && !disabled},
         {'h-[60px]' : helperText},
@@ -22,7 +22,6 @@
       <div
         ref="contentContainer"
         :class="[
-          '-ml-1',
           {'-mt-1.5' : checked && revealText}
         ]"
       >
@@ -46,7 +45,7 @@
           v-if="revealText"
           ref="revealText"
           :class="[
-            'hidden ml-4 text-sm text-gray-300 !font-normal cursor-pointer',
+            'hidden ml-8 text-sm text-gray-300 !font-normal cursor-pointer',
             {'!block !text-primary-500' : checked},
             {'!text-gray-100 cursor-not-allowed' : disabled}
           ]"
