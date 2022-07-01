@@ -5,7 +5,7 @@
       {'flex-col' : separateLines}
     ]"
   >
-    <legend :class="[{'text-sm font-normal normal-case tracking-normal text-gray-500 mb-1 border-b-0':!srOnlyLegend}, {'sr-only': srOnlyLegend}, {'-ml-3' : !large}]">
+    <legend :class="[{'text-sm font-normal normal-case tracking-normal text-gray-500 mb-1 border-b-0':!srOnlyLegend}, {'sr-only': srOnlyLegend}]">
       {{ legend }}
       <span
         v-if="required"
@@ -35,10 +35,6 @@ export default {
       default: false
     },
     required: {
-      type: Boolean,
-      default: false
-    },
-    large: {
       type: Boolean,
       default: false
     }

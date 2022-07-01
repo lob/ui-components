@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.0.0-beta.37
+
+### Bug fixes
+
+Corrected margins on `RadioButton`
+
 ## 1.0.0-beta.36
 
 ### Features

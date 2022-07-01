@@ -1,7 +1,7 @@
 <template>
   <div
     :class="[
-      'inline-block mr-8 mt-1'
+      'inline-block mr-6 mt-1'
     ]"
   >
     <input
@@ -30,12 +30,14 @@
         {'!pt-0.5 helperText' : large && helperText}
       ]"
     >
-      <slot>
-        {{ label }}
-      </slot>
+      <div class="ml-4">
+        <slot>
+          {{ label }}
+        </slot>
+      </div>
       <div
         :class="[
-          'text-sm text-gray-300 !font-normal',
+          'text-sm ml-4 text-gray-300 !font-normal',
           {'!text-primary-500' : checked},
           {'!text-gray-100' : disabled}
         ]"
@@ -132,8 +134,8 @@ input {
 
     &::before {
       content: "";
-      top: 4px;
-      left: -24px;
+      top: 3px;
+      left: -8px;
 
       @apply absolute;
       @apply bg-transparent;
@@ -141,16 +143,15 @@ input {
       @apply border-solid;
       @apply border;
       @apply h-4;
-      @apply inline-block;
       @apply rounded-full;
       @apply w-4;
     }
 
     &::after {
       content: "";
+      left: -4px;
 
-      @apply -left-[20px];
-      @apply top-[8px];
+      @apply top-[7px];
       @apply absolute;
       @apply h-2;
       @apply inline-block;
@@ -197,7 +198,6 @@ input {
     @apply h-2.5;
     @apply w-2.5;
     @apply top-[7px];
-    @apply -left-[20px];
   }
 
   &:hover:not(:disabled):not(:checked) + label::before {
