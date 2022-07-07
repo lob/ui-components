@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.0.0-beta.38
+
+### Features
+
+Changed the color of `Accordion` component for better contrast/accessibility
+
 ## 1.0.0-beta.37
 
 ### Bug fixes
