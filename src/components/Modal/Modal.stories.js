@@ -38,13 +38,13 @@ const PrimaryTemplate = (args, { argTypes }) => ({
 
       Would you like to export an additional CSV of associated tracking events?
       <RadioGroup>
-        <radio-button name="exportCSV" value="yes" label="Yes" v-model="radioModel"/>
-        <radio-button name="exportCSV" value="no" label="No" v-model="radioModel" />
+        <radio-button name="exportCSV" id="yes" value="yes" label="Yes" v-model="radioModel"/>
+        <radio-button name="exportCSV" id="no" value="no" label="No" v-model="radioModel" />
       </RadioGroup>
 
       <template v-slot:footer>
         <div class="flex self-end">
-          <NewButton variant="secondary">Go back</NewButton>
+          <NewButton variant="secondary" @click="isModalVisible = false">Go back</NewButton>
           <NewButton variant="primary" class="ml-2">Submit</NewButton>
         </div>
       </template>

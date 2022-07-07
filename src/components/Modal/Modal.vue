@@ -8,34 +8,33 @@
       <div
         class="bg-white flex flex-col overflow-y-auto shadow rounded-lg p-5 max-h-5/6"
         role="dialog"
-        aria-labelledby="modalTitle"
-        aria-describedby="modalDescription"
+        title="modal"
+        aria-labelledby="modal"
         :style="{'width': width}"
         @mousedown.stop
       >
         <header
           v-if="hasHeader"
           id="modalTitle"
-          class="flex relative justify-between border-b border-gray-100 pb-4"
+          class="flex justify-between border-b border-gray-100 pb-4"
         >
           <slot name="header" />
-          <close
+          <button
+            :class="['rounded-full w-7 h-7 p-1 cursor-pointer hover:bg-white-200',
+                     'focus:outline-none focus:ring-2 focus:ring-primary-100']"
             aria-label="Close modal"
-            class="top-0 right-0 w-3 h-3 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent"
-            tabindex="0"
-            role="button"
             @click="closeModal"
             @keyup.enter="closeModal"
-          />
+          >
+            <Close class="w-5 h-5" />
+          </button>
         </header>
 
         <section
           id="modalDescription"
-          class="relative py-5"
+          class="py-5"
         >
-          <slot>
-            Default body
-          </slot>
+          <slot />
         </section>
 
         <footer
