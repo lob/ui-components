@@ -11,10 +11,9 @@ export default {
   }
 };
 
-const Template = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
+const Template = () => ({
   components: { Colors },
-  template: '<colors></colors>'
+  template: '<Colors/>'
 });
 
 export const Primary = Template.bind({});

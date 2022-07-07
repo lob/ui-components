@@ -11,10 +11,9 @@ export default {
   }
 };
 
-const Template = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
+const Template = () => ({
   components: { FontSize },
-  template: '<font-size></font-size>'
+  template: '<FontSize/>'
 });
 
 export const Primary = Template.bind({});

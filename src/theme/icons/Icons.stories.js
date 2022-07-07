@@ -11,10 +11,9 @@ export default {
   }
 };
 
-const Template = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
+const Template = () => ({
   components: { Icons },
-  template: '<icons></icons>'
+  template: '<Icons/>'
 });
 
 export const Primary = Template.bind({});
