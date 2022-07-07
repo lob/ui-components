@@ -8,8 +8,8 @@
       <div
         class="bg-white flex flex-col overflow-y-auto shadow rounded-lg p-5 max-h-5/6"
         role="dialog"
-        aria-labelledby="modalTitle"
-        aria-describedby="modalDescription"
+        title="modal"
+        aria-labelledby="modal"
         :style="{'width': width}"
         @mousedown.stop
       >
