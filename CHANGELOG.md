@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.0.0-beta.39
+
+### Features
+
+Made the close (X) icon of the `Modal` larger, added background color on hover
+
 ## 1.0.0-beta.38
 
 ### Features
