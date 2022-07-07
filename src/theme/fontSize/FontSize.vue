@@ -3,7 +3,7 @@
     <div
       v-for="size in sizes"
       :key="size"
-      class="pb-8"
+      class="mb-6"
     >
       <p :class="`text-${size}`">
         text-{{ size }}
