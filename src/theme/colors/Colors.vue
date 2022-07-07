@@ -3,14 +3,13 @@
     <div
       v-for="color in Object.keys(themeColors)"
       :key="color"
-      class="pb-8"
+      class="mb-5"
     >
-      <h1
-        :class="`text-${color}`"
-      >
-        {{ color }}
-      </h1>
-
+      <div v-if="typeof themeColors[color] !== 'object'">
+        <h2 :class="`text-${color}`">
+          {{ color }}
+        </h2>
+      </div>
       <template
         v-if="typeof themeColors[color] === 'object'"
       >
@@ -18,12 +17,12 @@
           v-for="nestedColor in Object.keys(themeColors[color])"
           :key="nestedColor"
         >
-          <h1
+          <h2
             v-if="typeof themeColors[color][nestedColor] === 'string' && nestedColor !== 'DEFAULT'"
             :class="`text-${color}-${nestedColor}`"
           >
             {{ color }}-{{ nestedColor }} ({{ theme.colors[color][nestedColor].toUpperCase() }})
-          </h1>
+          </h2>
         </div>
       </template>
     </div>
@@ -40,6 +39,8 @@ export default {
   name: 'Theme',
   computed: {
     themeColors () {
+      delete colors.transparent;
+      delete colors.current;
       return colors;
     },
     theme () {
