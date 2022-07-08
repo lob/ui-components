@@ -2,6 +2,12 @@
 
 ## 1.0.0-beta.39
 
+### Bug fixes
+
+Changes the `MainNavigationChildItem` component's logic for its active state to the following: when its `to` prop starts with the current route, instead of when it includes it. This way, a component with `to = /logs` won't be active when the current route is something like `/settings/logs`.
+
+## 1.0.0-beta.39
+
 ### Features
 
 Made the close (X) icon of the `Modal` larger, added background color on hover
