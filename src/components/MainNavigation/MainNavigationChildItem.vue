@@ -36,7 +36,7 @@ export default {
   emits: ['nav'],
   computed: {
     active () {
-      return this.$route.path.includes(this.to);
+      return this.$route.path.startsWith(this.to);
     }
   },
   methods: {
