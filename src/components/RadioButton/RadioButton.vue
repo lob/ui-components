@@ -39,7 +39,7 @@
       <div
         :class="[
           'text-sm ml-4 text-gray-300 !font-normal',
-          {'!text-coral-900' : error},
+          {'!text-error' : error},
           {'!text-primary-500' : checked},
           {'!text-gray-100' : disabled}
         ]"

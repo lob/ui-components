@@ -14,7 +14,7 @@
         {'hover:h-[60px]': revealText},
         {'h-[60px]' : revealText && checked},
         {'bg-white-100 !cursor-not-allowed': disabled},
-        {'!border-coral-700': error}
+        {'!border-error': error}
       ]"
       @mouseenter="onContainerHover"
       @mouseleave="onContainerLeaveHover"

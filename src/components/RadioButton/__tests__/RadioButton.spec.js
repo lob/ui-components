@@ -9,7 +9,7 @@ const initialProps = {
   name: 'test name',
   label: 'Test',
   value: 'test',
-  errir: false,
+  error: false,
   disabled: false
 };
 
