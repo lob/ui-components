@@ -1,4 +1,5 @@
 import NewButton from '../NewButton/NewButton.vue';
+import Dropdown from '../Dropdown/Dropdown.vue';
 import RadioButton from '../RadioButton/RadioButton.vue';
 import RadioGroup from '../RadioGroup/RadioGroup.vue';
 import Modal from './Modal.vue';
@@ -53,6 +54,61 @@ const PrimaryTemplate = (args, { argTypes }) => ({
     `
 });
 
+const dropVModel = '';
+const WithDropdownTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { Modal, NewButton, Dropdown },
+  setup: () => ({ args }),
+  data: () => ({ isModalVisible, dropVModel }),
+  methods: {
+    closeModal () {
+      this.isModalVisible = false;
+    }
+  },
+  template: `
+    <NewButton @click="isModalVisible = true">
+      Open Modal
+    </NewButton>
+
+    <Modal
+      v-bind="args"
+      width="500px"
+      :visible="isModalVisible"
+      closeButtonAriaLabel="Close modal with dropdown"
+      @close="closeModal"
+    >
+      <template v-slot:header>
+        <h4>A Modal with a Dropdown</h4>
+      </template>
+
+      <template #default="{ events: { detectOpenDropdown } } ">
+        <div style="height: 150px;">
+          <div class="mb-5">Select a thing to continue:</div>
+          <Dropdown 
+            id="dropdown1" 
+            label="thing"
+            srOnlyLabel 
+            :options="['one', 'two']" 
+            v-model="dropVModel" />
+        </div>
+      </template>
+
+      <template v-slot:footer>
+        <div class="flex self-end">
+          <NewButton 
+          class="ml-2" 
+          :disabled="!dropVModel"
+          @click="isModalVisible=false">OK</NewButton>
+        </div>
+      </template>
+    </Modal>
+    `
+});
+
 export const Primary = PrimaryTemplate.bind({});
 Primary.args = {
+};
+
+export const WithDropdown = WithDropdownTemplate.bind({});
+WithDropdown.args = {
 };
