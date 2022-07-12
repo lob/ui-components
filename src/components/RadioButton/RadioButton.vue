@@ -9,6 +9,7 @@
       type="radio"
       :class="[
         'm-0 p-0 opacity-0 mt-2',
+        {'radio__input--error': error},
         {'!cursor-not-allowed': disabled}
       ]"
       :name="name"
@@ -38,6 +39,7 @@
       <div
         :class="[
           'text-sm ml-4 text-gray-300 !font-normal',
+          {'!text-coral-900' : error},
           {'!text-primary-500' : checked},
           {'!text-gray-100' : disabled}
         ]"
@@ -95,6 +97,10 @@ export default {
       default: false
     },
     largeHover: {
+      type: Boolean,
+      default: false
+    },
+    error: {
       type: Boolean,
       default: false
     }
@@ -204,8 +210,39 @@ input {
     @apply border-gray-900;
   }
 
-  &:not(:disabled):not(:checked) + label.largeHover::before {
-    @apply border-gray-900;
+  &.radio__input--error + label::before {
+    @apply border-error;
+  }
+
+  &.radio__input--error:focus + label.largeButton::before {
+    @apply shadow-none;
+  }
+
+  &.radio__input--error:focus:checked + label.largeButton::before {
+    @apply border-error;
+  }
+
+  &.radio__input--error:checked + label::before {
+    @apply border-error;
+    @apply border;
+  }
+
+  &.radio__input--error:checked:focus + label::before {
+    @apply border-error;
+  }
+
+  &:hover:not(:disabled):not(:checked):not(.radio__input--error) + label::before {
+    @apply shadow-input;
+    @apply border-primary-500;
+  }
+
+  &:not(:disabled):not(:checked):not(.radio__input--error) + label.largeHover::before {
+    @apply shadow-input;
+    @apply border-primary-500;
+  }
+
+  &.radio__input--error:checked + label::after {
+    @apply bg-transparent;
   }
 }
 </style>
