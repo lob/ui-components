@@ -1,9 +1,5 @@
 <template>
-  <div
-    :class="[
-      'inline-block mr-6 mt-1'
-    ]"
-  >
+  <div class="inline-block mr-6 mt-1">
     <input
       :id="id"
       type="radio"
