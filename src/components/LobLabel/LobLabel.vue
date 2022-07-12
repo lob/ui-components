@@ -11,7 +11,7 @@
         {{ label }}
         <span
           v-if="required"
-          class="text-sm text-turquoise-900"
+          class="text-sm text-error"
         >
           *
         </span>
