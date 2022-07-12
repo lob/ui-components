@@ -22,7 +22,7 @@
           <button
             :class="['rounded-full w-7 h-7 p-1 cursor-pointer hover:bg-white-200',
                      'focus:outline-none focus:ring-2 focus:ring-primary-100']"
-            aria-label="Close modal"
+            :aria-label="closeButtonAriaLabel"
             @click="closeModal"
             @keyup.enter="closeModal"
           >
@@ -61,6 +61,10 @@ export default {
     width: {
       type: String,
       default: ''
+    },
+    closeButtonAriaLabel: {
+      type: String,
+      default: 'Close modal'
     }
   },
   emits: ['close'],

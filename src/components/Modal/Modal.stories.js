@@ -30,6 +30,7 @@ const PrimaryTemplate = (args, { argTypes }) => ({
     <Modal
       v-bind="args"
       :visible="isModalVisible"
+      closeButtonAriaLabel="Close Tracking Events Modal"
       @close="isModalVisible = false"
     >
       <template v-slot:header>
