@@ -223,8 +223,8 @@ input {
   }
 
   &.radio__input--error:checked + label::before {
-    @apply border-error;
     @apply border;
+    @apply border-error;
   }
 
   &.radio__input--error:checked:focus + label::before {
