@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.0.0-beta.42
+
+### Features
+
+Adds `text-error` (red) color to the asterisk for all reaquired input fields
+
 ## 1.0.0-beta.41
 
 ### Features
