@@ -190,6 +190,10 @@ input {
     @apply border-gray-100;
   }
 
+  &.radio__input--error + label::before {
+    @apply border-error;
+  }
+
   &:checked:not(:disabled) + label::before {
     @apply border-2;
     @apply border-primary-500;
@@ -206,12 +210,13 @@ input {
     @apply top-[7px];
   }
 
-  &:hover:not(:disabled):not(:checked) + label::before {
-    @apply border-gray-900;
+  &.radio__input--error:checked + label::before {
+    @apply border;
+    @apply border-error;
   }
 
-  &.radio__input--error + label::before {
-    @apply border-error;
+  &:hover:not(:disabled):not(:checked) + label::before {
+    @apply border-gray-900;
   }
 
   &.radio__input--error:focus + label.largeButton::before {
@@ -219,11 +224,6 @@ input {
   }
 
   &.radio__input--error:focus:checked + label.largeButton::before {
-    @apply border-error;
-  }
-
-  &.radio__input--error:checked + label::before {
-    @apply border;
     @apply border-error;
   }
 
