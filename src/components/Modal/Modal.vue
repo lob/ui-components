@@ -3,14 +3,17 @@
     <div
       v-show="visible"
       :class="['fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 z-30']"
+      :aria-hidden="!visible"
       @mousedown="closeModal"
     >
       <div
-        class="bg-white flex flex-col overflow-y-auto shadow rounded-lg p-5 max-h-5/6"
         role="dialog"
-        title="modal"
-        aria-labelledby="modal"
+        aria-modal="true"
+        :title="getHeaderContent()"
+        aria-labelledby="modalTitle"
+        aria-describedby="modalDescription"
         :style="{'width': width}"
+        class="bg-white flex flex-col overflow-y-auto shadow rounded-lg p-5 max-h-5/6"
         @mousedown.stop
       >
         <header
@@ -79,6 +82,9 @@ export default {
   methods: {
     closeModal () {
       this.$emit('close');
+    },
+    getHeaderContent () {
+      return this.$slots.header()[0].children || 'modal dialog';
     }
   }
 };
