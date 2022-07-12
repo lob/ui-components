@@ -5,6 +5,7 @@
       :class="['fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 z-30']"
       :aria-hidden="!visible"
       @mousedown="closeModal"
+      @keydown.esc="closeModal"
     >
       <div
         role="dialog"
