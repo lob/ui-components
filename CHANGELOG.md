@@ -1,6 +1,12 @@
 # CHANGELOG
 
-## 1.0.0-beta.39
+## 1.0.0-beta.41
+
+### Features
+
+Restores error state for `RadioButton` and `RadioButtonLarge`
+
+## 1.0.0-beta.40
 
 ### Bug fixes
 

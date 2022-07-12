@@ -9,6 +9,7 @@ const initialProps = {
   name: 'test name',
   label: 'Test',
   value: 'test',
+  error: false,
   disabled: false
 };
 
@@ -35,6 +36,20 @@ describe('Radio Button', () => {
 
     const radio = getByLabelText(props.label);
     expect(radio).toBeChecked();
+  });
+
+  it('adds an error class to the input when error prop is true', () => {
+    const props = {
+      ...initialProps,
+      error: true
+    };
+
+    const { getByLabelText } = render(RadioButtonLarge, {
+      props
+    });
+
+    const radio = getByLabelText(props.label);
+    expect(radio).toHaveClass('radio__input--error');
   });
 
   it('disables the input when disabled prop is true', () => {

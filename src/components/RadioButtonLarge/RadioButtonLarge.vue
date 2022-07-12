@@ -9,11 +9,12 @@
       :class="[
         'cursor-pointer bg-white h-12 top-2 inline-block mr-4 mt-1 border border-gray-100 w-[200px] rounded-lg pl-2',
         {'hover:border-gray-300': !disabled},
-        {'!border-primary-500 ring-inset ring-1 ring-primary-500' : checked && !disabled},
-        {'h-[60px]' : helperText},
-        {'hover:h-[60px]' : revealText},
+        {'!border-primary-500 ring-inset ring-1 ring-primary-500': checked && !disabled && !error},
+        {'h-[60px]': helperText},
+        {'hover:h-[60px]': revealText},
         {'h-[60px]' : revealText && checked},
-        {'bg-white-100 !cursor-not-allowed': disabled}
+        {'bg-white-100 !cursor-not-allowed': disabled},
+        {'!border-error': error}
       ]"
       @mouseenter="onContainerHover"
       @mouseleave="onContainerLeaveHover"
@@ -38,6 +39,7 @@
           :large="true"
           :large-checked="checked"
           :large-hover="largeHover"
+          :error="error"
           @click="onClick"
           @input="onInput"
         />
@@ -80,6 +82,10 @@ export default {
     value: {
       type: [String, Boolean],
       default: ''
+    },
+    error: {
+      type: Boolean,
+      default: false
     },
     label: {
       type: String,
