@@ -41,7 +41,7 @@ const Template = (args, { argTypes }) => ({
       <template v-slot:default="{linkColor}">
         {{ args.content }}
         <span :class="linkColor">
-          <LobLink bold inherit-text-color class="inline-flex">{{ args.link }}<LobLink>.
+          <LobLink bold inherit-text-color class="inline-flex">{{ args.link }}</LobLink>.
         </span>
       </template>
     </alert>
