@@ -10,30 +10,20 @@
       <div
         role="dialog"
         aria-modal="true"
-        :title="getHeaderContent()"
-        aria-labelledby="modalTitle"
+        :title="header"
+        aria-labelledby="header"
         aria-describedby="modalDescription"
         :style="{'width': width}"
-        class="bg-white flex flex-col overflow-y-auto shadow rounded-lg p-5 max-h-5/6"
+        class="relative bg-white flex flex-col overflow-y-auto shadow rounded-lg p-5 max-h-5/6"
         @mousedown.stop
       >
         <header
-          v-if="hasHeader"
-          id="modalTitle"
-          class="flex justify-between border-b border-gray-100 pb-4"
+          v-if="header"
+          id="header"
+          class="pageheading border-b border-gray-100 pb-4"
         >
-          <slot name="header" />
-          <button
-            :class="['rounded-full w-7 h-7 p-1 cursor-pointer hover:bg-white-200',
-                     'focus:outline-none focus:ring-2 focus:ring-primary-100']"
-            :aria-label="closeButtonAriaLabel"
-            @click="closeModal"
-            @keyup.enter="closeModal"
-          >
-            <Close class="w-5 h-5" />
-          </button>
+          {{ header }}
         </header>
-
         <section
           id="modalDescription"
           class="py-5"
@@ -46,6 +36,15 @@
         >
           <slot name="footer" />
         </footer>
+        <button
+          :class="['absolute top-6 right-4 rounded-full w-7 h-7 p-1 cursor-pointer hover:bg-white-200',
+                   'focus:outline-none focus:ring-2 focus:ring-primary-100']"
+          :aria-label="closeButtonAriaLabel"
+          @click="closeModal"
+          @keyup.enter="closeModal"
+        >
+          <Close class="w-5 h-5" />
+        </button>
       </div>
     </div>
   </transition>
@@ -65,6 +64,10 @@ export default {
       type: String,
       default: ''
     },
+    header: {
+      type: String,
+      required: true
+    },
     closeButtonAriaLabel: {
       type: String,
       required: true
@@ -72,9 +75,6 @@ export default {
   },
   emits: ['close'],
   computed: {
-    hasHeader () {
-      return Boolean(this.$slots.header);
-    },
     hasFooter () {
       return Boolean(this.$slots.footer);
     }
@@ -82,9 +82,6 @@ export default {
   methods: {
     closeModal () {
       this.$emit('close');
-    },
-    getHeaderContent () {
-      return this.$slots.header()[0].children || 'modal dialog';
     }
   }
 };

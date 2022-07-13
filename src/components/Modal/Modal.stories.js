@@ -27,17 +27,13 @@ const PrimaryTemplate = (args, { argTypes }) => ({
     <NewButton @click="isModalVisible = true">
       Open Modal
     </NewButton>
-
     <Modal
       v-bind="args"
       :visible="isModalVisible"
+      header="Select Tracking Events"
       closeButtonAriaLabel="Close Tracking Events Modal"
       @close="isModalVisible = false"
     >
-      <template v-slot:header>
-        <h4>Select Tracking Events</h4>
-      </template>
-
       Would you like to export an additional CSV of associated tracking events?
       <RadioGroup>
         <radio-button name="exportCSV" id="yes" value="yes" label="Yes" v-model="radioModel"/>
@@ -64,27 +60,24 @@ const WithDropdownTemplate = (args, { argTypes }) => ({
     <NewButton @click="isModalVisible = true">
       Open Modal
     </NewButton>
-
     <Modal
       v-bind="args"
       width="500px"
       :visible="isModalVisible"
+      header="A Modal with a Dropdown"
       closeButtonAriaLabel="Close modal with dropdown"
       @close="isModalVisible = false"
     >
-      <template v-slot:header>
-        <h4>A Modal with a Dropdown</h4>
-      </template>
-
-        <div style="height: 150px;">
-          <div class="mb-5">Select a thing to continue:</div>
-          <Dropdown 
-            id="dropdown1" 
-            label="thing"
-            srOnlyLabel 
-            :options="['one', 'two']" 
-            v-model="dropVModel"/>
-        </div>
+      <div style="height: 150px;">
+        <div class="mb-5">Select a thing to continue:</div>
+        <Dropdown 
+          id="dropdown1" 
+          label="thing"
+          srOnlyLabel 
+          placeholder="Select a value"
+          :options="['one', 'two']" 
+          v-model="dropVModel"/>
+      </div>
 
       <template v-slot:footer>
         <div class="flex self-end">
