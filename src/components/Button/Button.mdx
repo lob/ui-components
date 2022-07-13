@@ -1,40 +1,41 @@
-import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
-import LobButton from './Button.vue';
+import {
+  Preview,
+  Story,
+  ArgsTable,
+  PRIMARY_STORY,
+} from "@storybook/addon-docs";
+import LobButton from "./Button.vue";
 
 # Button
 
 Buttons are styled semantic buttons that will handle all of the appropriate button states.
 
 <Preview>
-  <Story id="components-button--primary" />
+  <Story id="components-button--default" />
 </Preview>
 
 ## How to Use
 
-There are 8 variants of buttons: 'primary', 'secondary', 'tertiary', 'success', 'alert', 'error', 'link', 'none'. By default, the button will display as primary.
+There are 2 variants of buttons: 'primary' & 'secondary'; as well as 'link' and 'none' styles.
 
-You can change the variant of the button by adding the `variant` prop to the component.
+You can change the variant of the button by adding the `variant` prop (String) to the component.
 
-There are 3 sizes of buttons: default, small, and large.
+The Button can be regular size (default, height: 48px) & or small (32px) with the `small` prop (Boolean).
 
-You can change the size of the button by adding the `size` prop to the component.
+The `warning` prop (Boolean) will change the button color to dark red if primary, and red outline if secondary.
 
-Please note: though you can only insert text in the Storybook demo, the button component will accept any valid HTML or Vue component.
+Please note: though you can only insert text in the Storybook demo, the button component will accept any valid HTML or Vue component, as it uses a slot.
 
 Example of using this component as a primary button in a template
 
 ```html
-<lob-button>
-  Sign up
-</lob-button>
+<lob-button> This is a primary button </lob-button>
 ```
 
-Example of using this component as a secondary, small button in a template
+Example of using this component as a secondary button in a template
 
 ```html
-<lob-button variant="secondary" size="small">
-  Sign up
-</lob-button>
+<lob-button variant="secondary"> This is a secondary button </lob-button>
 ```
 
 ## Props

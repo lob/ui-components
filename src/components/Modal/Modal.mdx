@@ -25,7 +25,7 @@ Visibility is controlled from the parent component using the `visible` prop. Not
 If no header or no footer slot is provided, nothing will be rendered in their place.
 
 ```html
-<NewButton @click="isModalVisible = true"> Open Modal </NewButton>
+<LobButton @click="isModalVisible = true"> Open Modal </LobButton>
 
 <Modal :visible="isModalVisible" @close="isModalVisible = false">
   <template v-slot:header>
@@ -45,8 +45,8 @@ If no header or no footer slot is provided, nothing will be rendered in their pl
 
   <template v-slot:footer>
     <div class="flex self-end">
-      <NewButton variant="secondary">Go back</NewButton>
-      <NewButton variant="primary" class="ml-2">Submit</NewButton>
+      <LobButton variant="secondary">Go back</LobButton>
+      <LobButton variant="primary" class="ml-2">Submit</LobButton>
     </div>
   </template>
 </Modal>
