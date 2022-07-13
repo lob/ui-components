@@ -89,7 +89,7 @@ const WithDropdownTemplate = (args, { argTypes }) => ({
             label="thing"
             srOnlyLabel 
             :options="['one', 'two']" 
-            v-model="dropVModel" />
+            v-model="dropVModel"/>
         </div>
       </template>
 
