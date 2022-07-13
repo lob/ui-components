@@ -1,9 +1,23 @@
 # CHANGELOG
+
+## 1.0.0-beta.43
+
+### Features
+
+Updated ARIA labels for the Modal.
+Add `closeButtonAriaLabel` prop as the aria-label for the Close (X) button.
+Add ESC key listener for closing the Modal.
+
+### Breaking Changes
+
+The `closeButtonAriaLabel` prop in the `Modal` is required.
+
 ## 1.0.0-beta.43
 
 ### Features
 
 Updated tailwind-plugin-lob version to 0.0.42
+
 ## 1.0.0-beta.42
 
 ### Features

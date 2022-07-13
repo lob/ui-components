@@ -67,7 +67,7 @@ export default {
     },
     closeButtonAriaLabel: {
       type: String,
-      default: 'Close modal'
+      required: true
     }
   },
   emits: ['close'],
