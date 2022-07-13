@@ -385,6 +385,7 @@ export default {
 
       // handle keys when open
       if (menuOpen) {
+        $event.stopImmediatePropagation();
         if (key === Keys.Down && (!altKey || key === Keys.Right)) {
           return MenuActions.Next;
         } else if (key === Keys.Up && altKey) {
@@ -400,7 +401,6 @@ export default {
         } else if (key === Keys.PageDown) {
           return MenuActions.PageDown;
         } else if (key === Keys.Escape) {
-          $event.stopImmediatePropagation();
           return MenuActions.Close;
         } else if (key === Keys.Enter) {
           return MenuActions.CloseSelect;
