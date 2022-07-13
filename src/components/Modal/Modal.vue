@@ -38,7 +38,7 @@
           id="modalDescription"
           class="py-5"
         >
-          <slot :events="{ detectOpenDropdown }" />
+          <slot />
         </section>
         <footer
           v-if="hasFooter"
@@ -85,10 +85,6 @@ export default {
     },
     getHeaderContent () {
       return this.$slots.header()[0].children || 'modal dialog';
-    },
-    detectOpenDropdown (val) {
-      //eslint-disable-next-line no-console
-      console.log('open dropdown val', val);
     }
   }
 };

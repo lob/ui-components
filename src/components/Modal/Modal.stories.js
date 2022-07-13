@@ -60,11 +60,6 @@ const WithDropdownTemplate = (args, { argTypes }) => ({
   components: { Modal, NewButton, Dropdown },
   setup: () => ({ args }),
   data: () => ({ isModalVisible, dropVModel }),
-  methods: {
-    closeModal () {
-      this.isModalVisible = false;
-    }
-  },
   template: `
     <NewButton @click="isModalVisible = true">
       Open Modal
@@ -75,13 +70,12 @@ const WithDropdownTemplate = (args, { argTypes }) => ({
       width="500px"
       :visible="isModalVisible"
       closeButtonAriaLabel="Close modal with dropdown"
-      @close="closeModal"
+      @close="isModalVisible = false"
     >
       <template v-slot:header>
         <h4>A Modal with a Dropdown</h4>
       </template>
 
-      <template #default="{ events: { detectOpenDropdown } } ">
         <div style="height: 150px;">
           <div class="mb-5">Select a thing to continue:</div>
           <Dropdown 
@@ -91,7 +85,6 @@ const WithDropdownTemplate = (args, { argTypes }) => ({
             :options="['one', 'two']" 
             v-model="dropVModel"/>
         </div>
-      </template>
 
       <template v-slot:footer>
         <div class="flex self-end">
