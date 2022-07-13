@@ -10,7 +10,6 @@
       <div
         role="dialog"
         aria-modal="true"
-        :title="header"
         aria-labelledby="header"
         aria-describedby="modalDescription"
         :style="{'width': width}"
