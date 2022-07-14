@@ -1,16 +1,16 @@
 import '@testing-library/jest-dom';
 import { render, fireEvent } from '@testing-library/vue';
-import Button from '../Button.vue';
+import LobButton from '../Button.vue';
 
 let slots;
 let slotContent;
 
 beforeEach(() => {
-  slotContent = 'Button';
+  slotContent = 'LobButton';
   slots = { default: [slotContent] };
 });
 
-const renderComponent = (options, configure = null) => render(Button, { ...options }, configure);
+const renderComponent = (options, configure = null) => render(LobButton, { ...options }, configure);
 
 describe('Button', () => {
 

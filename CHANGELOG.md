@@ -1,9 +1,24 @@
 # CHANGELOG
+
+## 1.0.0-beta.44
+
+### Breaking changes
+
+Removes `Typography` component. Instead of Typography wrapper components, we now use Tailwind [Component Classes](./src/theme/componentClasses/componentClasses.mdx)
+
+Renames components:
+
+- `NewButton` -> `Button`, exported as `LobButton`
+- `NewLink` -> `Link`, exported as `LobLink`
+
+Removes old Button & Link components
+
 ## 1.0.0-beta.43
 
 ### Features
 
 Updated tailwind-plugin-lob version to 0.0.42
+
 ## 1.0.0-beta.42
 
 ### Features

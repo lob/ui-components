@@ -1,4 +1,4 @@
-import NewButton from '../NewButton/NewButton.vue';
+import LobButton from '../Button/Button.vue';
 import RadioButton from '../RadioButton/RadioButton.vue';
 import RadioGroup from '../RadioGroup/RadioGroup.vue';
 import Modal from './Modal.vue';
@@ -19,13 +19,13 @@ const radioModel = 'yes';
 
 const PrimaryTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { Modal, NewButton, RadioButton, RadioGroup },
+  components: { Modal, LobButton, RadioButton, RadioGroup },
   setup: () => ({ args }),
   data: () => ({ isModalVisible, radioModel }),
   template: `
-    <NewButton @click="isModalVisible = true">
+    <LobButton @click="isModalVisible = true">
       Open Modal
-    </NewButton>
+    </LobButton>
 
     <Modal
       v-bind="args"
@@ -44,8 +44,8 @@ const PrimaryTemplate = (args, { argTypes }) => ({
 
       <template v-slot:footer>
         <div class="flex self-end">
-          <NewButton variant="secondary" @click="isModalVisible = false">Go back</NewButton>
-          <NewButton variant="primary" class="ml-2">Submit</NewButton>
+          <LobButton variant="secondary" @click="isModalVisible = false">Go back</LobButton>
+          <LobButton variant="primary" class="ml-2">Submit</LobButton>
         </div>
       </template>
     </Modal>

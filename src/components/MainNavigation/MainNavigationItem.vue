@@ -48,11 +48,11 @@
 </template>
 
 <script>
-import NewLink from '../NewLink/NewLink';
+import LobLink from '../Link/Link';
 
 export default {
   name: 'MainNavigationItem',
-  components: { NewLink },
+  components: { LobLink },
   props: {
     title: {
       type: String,
@@ -102,7 +102,7 @@ export default {
       return Boolean(this.$slots.default);
     },
     tag () {
-      return this.to ? 'NewLink' : 'button';
+      return this.to ? 'LobLink' : 'button';
     },
     clickEvent () {
       return !this.to ? 'click' : null;
