@@ -4,25 +4,43 @@ import Modal from '../Modal.vue';
 
 const renderComponent = (options) => render(Modal, { ...options });
 
+const initialProps = { header: 'modal header', closeButtonAriaLabel: 'close this modal' };
+
 describe('Modal', () => {
 
   it('is hidden by default', () => {
-    const slots = { header: 'modal header' };
-    const { queryByRole } = renderComponent({ slots });
+    const props = initialProps;
+    const { queryByRole } = renderComponent({ props });
 
     const modal = queryByRole('dialog');
     expect(modal).not.toBeInTheDocument();
   });
 
-  it('is visible when its visible prop is true', () => {
-    const props = {
-      visible: true
-    };
-    const slots = { header: 'modal header' };
-    const { queryByRole } = renderComponent({ slots, props });
+  describe('when visible (visible prop is true)', () => {
 
-    const modal = queryByRole('dialog');
-    expect(modal).toBeInTheDocument();
+    let component; let props;
+    beforeEach(() => {
+      props = {
+        ...initialProps,
+        visible: true
+      };
+      component = renderComponent({ props });
+    });
+
+    it('the modal is visible', () => {
+      const { queryByRole } = component;
+
+      const modal = queryByRole('dialog');
+      expect(modal).toBeVisible();
+    });
+
+    it('displays the header', () => {
+      const { getByText } = component;
+
+      const modalHeader = getByText(props.header);
+      expect(modalHeader).toBeVisible();
+    });
+
   });
 
 });
