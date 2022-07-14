@@ -13,6 +13,8 @@ Renames components:
 
 Removes old Button & Link components
 
+## 1.0.0-beta.43
+
 ### Features
 
 Updated tailwind-plugin-lob version to 0.0.42
