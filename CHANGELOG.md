@@ -1,7 +1,6 @@
 # CHANGELOG
 
-<<<<<<< HEAD
-## 1.0.0-beta.43
+## 1.0.0-beta.45
 
 ### Features
 
@@ -13,7 +12,7 @@ Add ESC key listener for closing the Modal.
 ### Breaking Changes
 
 The `closeButtonAriaLabel` and `header` props in the `Modal` are required.
-=======
+
 ## 1.0.0-beta.44
 
 ### Breaking changes
@@ -26,7 +25,6 @@ Renames components:
 - `NewLink` -> `Link`, exported as `LobLink`
 
 Removes old Button & Link components
->>>>>>> main
 
 ## 1.0.0-beta.43
 
