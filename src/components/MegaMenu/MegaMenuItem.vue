@@ -5,7 +5,7 @@
       {'pb-4': !small}
     ]"
   >
-    <NewLink
+    <LobLink
       :to="to"
       :target="target"
       class="focus:outline-none focus:opacity-100 focus:ring-2 focus:ring-primary-100 focus:border-transparent flex pt-1 flex-nowrap items-center hover:text-primary-500 w-64 no-underline"
@@ -33,16 +33,16 @@
           {{ subtitle }}
         </div>
       </div>
-    </NewLink>
+    </LobLink>
   </div>
 </template>
 
 <script>
-import NewLink from '@/components/NewLink/NewLink.vue';
+import LobLink from '../Link/Link.vue';
 
 export default {
   name: 'MegaMenuItem',
-  components: { NewLink },
+  components: { LobLink },
   props: {
     to: {
       type: String,

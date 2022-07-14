@@ -1,5 +1,5 @@
 import FilterContent from './FilterContent.vue';
-import { NewButton, Checkbox, RadioGroup, RadioButton } from '@/components';
+import { LobButton, Checkbox, RadioGroup, RadioButton } from '@/components';
 import mdx from './FilterContent.mdx';
 
 export default {
@@ -17,12 +17,12 @@ const selectedFilters = [];
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: {  FilterContent, NewButton, Checkbox },
+  components: {  FilterContent, LobButton, Checkbox },
   data: () => ({ open, selectedFilters }),
   setup: () => ({ args }),
   template: `
     <div class="relative">
-      <NewButton ref="filterContentCtrl" @click.stop="open = !open" size="small">Filter by</NewButton>
+      <LobButton ref="filterContentCtrl" @click.stop="open = !open" size="small">Filter by</LobButton>
       <filter-content v-model:open="open" :bound-element="$refs.filterContentCtrl">
         <checkbox
           label="Postcards"
@@ -53,8 +53,8 @@ const Template = (args, { argTypes }) => ({
           class="mb-2"
         />
         <div class="mt-4 flex">
-          <NewButton variant="secondary" size="small" @click="selectedFilters = []">Reset</NewButton>
-          <NewButton size="small" class="ml-2" @click="open = false">Apply</NewButton>
+          <LobButton variant="secondary" size="small" @click="selectedFilters = []">Reset</LobButton>
+          <LobButton size="small" class="ml-2" @click="open = false">Apply</LobButton>
         </div>
       </filter-content>
     </div>
@@ -67,12 +67,12 @@ const selectedFilter = '';
 
 const WithHeaderTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: {  FilterContent, NewButton, RadioGroup, RadioButton },
+  components: {  FilterContent, LobButton, RadioGroup, RadioButton },
   data: () => ({ open, selectedFilter }),
   setup: () => ({ args }),
   template: `
     <div class="relative">
-      <NewButton ref="filterContentCtrl" @click.stop="open = !open" size="small">Filter by</NewButton>
+      <LobButton ref="filterContentCtrl" @click.stop="open = !open" size="small">Filter by</LobButton>
       <filter-content v-model:open="open" :bound-element="$refs.filterContentCtrl">
         <template v-slot:header>
           <div class="text-center w-full">
@@ -96,8 +96,8 @@ const WithHeaderTemplate = (args, { argTypes }) => ({
           />
         </radio-group>
         <div class="mt-4 flex">
-          <NewButton variant="secondary" size="small" @click="selectedFilter = ''">Reset</NewButton>
-          <NewButton size="small" class="ml-2" @click="open = false">Apply</NewButton>
+          <LobButton variant="secondary" size="small" @click="selectedFilter = ''">Reset</LobButton>
+          <LobButton size="small" class="ml-2" @click="open = false">Apply</LobButton>
         </div>
       </filter-content>
     </div>

@@ -1,39 +1,21 @@
 <template>
   <button
     :class="[
-      'flex justify-center items-center disabled:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
-      { 'rounded': !link || !none },
+      'flex justify-center items-center rounded-lg focus-visible:ring-4 focus-visible:ring-primary-100 focus:outline-none',
+      { 'font-medium': primary || secondary },
+      { 'px-6 text-base h-[48px]': regular },
+      { 'px-4 text-sm h-[32px]': small },
+      { 'px-0 h-full text-base': link || none },
+      { 'underline text-primary-500 hover:text-primary-900 active:text-primary-900 disabled:text-gray-500': link },
+      { 'disabled:text-gray-500': none },
       { 'cursor-not-allowed': disabled },
-      { 'border-none': disabled && primary },
-      {
-        'primary bg-primary-500 border border-primary-500 text-white active:bg-primary-700 disabled:bg-white-300': primary
-      },
-      {
-        'secondary bg-white-200 border border-primary-500 text-primary-500 active:text-primary-700 active:border-primary-700 disabled:border-gray-100 disabled:bg-white':
-          secondary
-      },
-      {
-        'alert bg-white hover:bg-lemon-300 border border-lemon-700 text-lemon-900 focus:ring-lemon-700 disabled:border-gray-100': alert
-      },
-      {
-        'tertiary bg-white border border-gray-100 text-gray-500 active:border-gray-300 disabled:border-white-300':
-          tertiary
-      },
-      {
-        'success bg-success border border-success-500 !text-white active:bg-success-700': success
-      },
-      {
-        'error bg-error border border-error-500 !text-white active:bg-error-700': error
-      },
-      { 'underline text-primary-300 hover:text-primary-500': link },
-      { 'block': none },
-      {
-        'bg-opacity-50': (success || error) && disabled
-      },
-      { 'px-6 py-3.5': defaultSize },
-      { 'px-3 py-2': small },
-      { 'px-6 py-4.5': large },
-      { '!p-0': link || none }
+      { 'active:scale-[.96]': !disabled && !link },
+      { 'primary text-white transform disabled:bg-gray-100': primary && !warning },
+      { 'primary warning text-white disabled:bg-coral-200': primary && warning },
+      { 'secondary bg-white border border-gray-300 text-gray-500': secondary && !warning,
+        'hover:bg-gray-100/[.15] active:bg-bg-gray-100/[.25] disabled:border-gray-100 disabled:text-gray-100': secondary && !warning },
+      { 'secondary bg-white border border-chili text-chili': secondary && warning,
+        'disabled:border-coral-200 disabled:text-coral-200 hover:bg-chili/[.04] active:bg-chili/[.08]': secondary && warning }
     ]"
     :disabled="disabled"
     @click="handleClick"
@@ -52,17 +34,18 @@ export default {
       type: String,
       default: 'primary',
       validator: function (value) {
-        return ['primary', 'secondary', 'tertiary', 'success', 'alert', 'error', 'link', 'none'].includes(value);
+        return ['primary', 'secondary', 'link', 'none'].includes(value);
       }
     },
-    size: {
-      type: String,
-      default: 'default',
-      validator: function (value) {
-        return ['default', 'small', 'large'].includes(value);
-      }
+    small: {
+      type: Boolean,
+      default: false
     },
     disabled: {
+      type: Boolean,
+      default: false
+    },
+    warning: {
       type: Boolean,
       default: false
     }
@@ -75,32 +58,14 @@ export default {
     secondary () {
       return this.variant === 'secondary';
     },
-    tertiary () {
-      return this.variant === 'tertiary';
-    },
-    success () {
-      return this.variant === 'success';
-    },
-    alert () {
-      return this.variant === 'alert';
-    },
-    error () {
-      return this.variant === 'error';
-    },
     link () {
       return this.variant === 'link';
     },
     none () {
       return this.variant === 'none';
     },
-    defaultSize () {
-      return this.size === 'default';
-    },
-    small () {
-      return this.size === 'small';
-    },
-    large () {
-      return this.size === 'large';
+    regular () {
+      return !this.small;
     }
   },
   methods: {
@@ -112,27 +77,21 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.primary:not(:disabled) {
+  background: linear-gradient(114.08deg, #1876db 7.95%, #5748ff 90.87%);
+}
+
+.primary:focus:not(:disabled),
 .primary:hover:not(:disabled):not(:focus) {
-  box-shadow: 0 0 10px 2px rgba(24, 118, 219, 0.6);
+  background: linear-gradient(114.08deg, #5748ff 7.95%, #1876db 90.87%);
 }
 
-.secondary:hover:not(:disabled):not(:focus) {
-  box-shadow: 0 0 10px rgba(65, 101, 129, 0.2);
+.primary.warning:not(:disabled) {
+  background: linear-gradient(114.08deg, #db1818 7.95%, #ec4949 90.87%);
 }
 
-.tertiary:hover:not(:disabled):not(:focus) {
-  box-shadow: 0 0 10px 2px rgba(0, 153, 215, 0.2);
-}
-
-.alert:hover:not(:disabled):not(:focus) {
-  box-shadow: 0 0 10px 2px rgba(245, 158, 11, 0.3);
-}
-
-.success:hover:not(:disabled):not(:focus) {
-  box-shadow: 0 0 10px 2px rgba(75, 188, 133, 0.3);
-}
-
-.error:hover:not(:disabled):not(:focus) {
-  box-shadow: 0 0 10px 2px rgba(247, 110, 64, 0.3);
+.primary.warning:focus:not(:disabled),
+.primary.warning:hover:not(:disabled):not(:focus) {
+  background: linear-gradient(114.08deg, #ec4949 7.95%, #db1818 90.87%);
 }
 </style>

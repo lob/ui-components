@@ -3,22 +3,22 @@
     class="list-none mr-12 whitespace-nowrap"
     :class="['relative pb-4', { 'lob-active-border': active }]"
   >
-    <NewLink
+    <LobLink
       :to="to"
       :underline="false"
       :class="['pb-4 text-black font-light', { 'font-normal': active }]"
     >
       {{ title }}
-    </NewLink>
+    </LobLink>
   </li>
 </template>
 
 <script>
-import NewLink from '../NewLink/NewLink';
+import LobLink from '../Link/Link';
 
 export default {
   name: 'SubnavigationItem',
-  components: { NewLink },
+  components: { LobLink },
   props: {
     title: {
       type: String,
