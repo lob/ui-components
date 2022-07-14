@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.0.0-beta.45
+
+### Features
+
+Added responsiveness to text and margins of `MegaButton`
+
 ## 1.0.0-beta.44
 
 ### Breaking changes
