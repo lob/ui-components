@@ -74,7 +74,7 @@
               'text-lg font-medium',
               { 'text-center': !smallText },
               { 'text-left': smallText },
-              { 'text-[20px] 2xl:text-[2rem] whitespace-nowrap': megaText }
+              { 'text-[1.25rem] 2xl:text-[2rem] whitespace-nowrap': megaText }
             ]"
           >
             <slot name="label">
