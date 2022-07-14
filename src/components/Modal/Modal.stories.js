@@ -1,5 +1,5 @@
-import NewButton from '../NewButton/NewButton.vue';
 import Dropdown from '../Dropdown/Dropdown.vue';
+import LobButton from '../Button/Button.vue';
 import RadioButton from '../RadioButton/RadioButton.vue';
 import RadioGroup from '../RadioGroup/RadioGroup.vue';
 import Modal from './Modal.vue';
@@ -20,13 +20,14 @@ const radioModel = 'yes';
 
 const PrimaryTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { Modal, NewButton, RadioButton, RadioGroup },
+  components: { Modal, LobButton, RadioButton, RadioGroup },
   setup: () => ({ args }),
   data: () => ({ isModalVisible, radioModel }),
   template: `
-    <NewButton @click="isModalVisible = true">
+    <LobButton @click="isModalVisible = true">
       Open Modal
-    </NewButton>
+    </LobButton>
+
     <Modal
       v-bind="args"
       :visible="isModalVisible"
@@ -42,8 +43,8 @@ const PrimaryTemplate = (args, { argTypes }) => ({
 
       <template v-slot:footer>
         <div class="flex self-end">
-          <NewButton variant="secondary" @click="isModalVisible = false">Go back</NewButton>
-          <NewButton variant="primary" class="ml-2">Submit</NewButton>
+          <LobButton variant="secondary" @click="isModalVisible = false">Go back</LobButton>
+          <LobButton variant="primary" class="ml-2">Submit</LobButton>
         </div>
       </template>
     </Modal>
@@ -53,13 +54,13 @@ const PrimaryTemplate = (args, { argTypes }) => ({
 const dropVModel = '';
 const WithDropdownTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { Modal, NewButton, Dropdown },
+  components: { Modal, LobButton, Dropdown },
   setup: () => ({ args }),
   data: () => ({ isModalVisible, dropVModel }),
   template: `
-    <NewButton @click="isModalVisible = true">
+    <LewButton @click="isModalVisible = true">
       Open Modal
-    </NewButton>
+    </LobButton>
     <Modal
       v-bind="args"
       width="500px"
@@ -81,10 +82,10 @@ const WithDropdownTemplate = (args, { argTypes }) => ({
 
       <template v-slot:footer>
         <div class="flex self-end">
-          <NewButton 
+          <LobButton 
           class="ml-2" 
           :disabled="!dropVModel"
-          @click="isModalVisible=false">OK</NewButton>
+          @click="isModalVisible=false">OK</LobButton>
         </div>
       </template>
     </Modal>

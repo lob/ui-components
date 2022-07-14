@@ -1,5 +1,6 @@
 # CHANGELOG
 
+<<<<<<< HEAD
 ## 1.0.0-beta.43
 
 ### Features
@@ -12,6 +13,20 @@ Add ESC key listener for closing the Modal.
 ### Breaking Changes
 
 The `closeButtonAriaLabel` and `header` props in the `Modal` are required.
+=======
+## 1.0.0-beta.44
+
+### Breaking changes
+
+Removes `Typography` component. Instead of Typography wrapper components, we now use Tailwind [Component Classes](./src/theme/componentClasses/componentClasses.mdx)
+
+Renames components:
+
+- `NewButton` -> `Button`, exported as `LobButton`
+- `NewLink` -> `Link`, exported as `LobLink`
+
+Removes old Button & Link components
+>>>>>>> main
 
 ## 1.0.0-beta.43
 

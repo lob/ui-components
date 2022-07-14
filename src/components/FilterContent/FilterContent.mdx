@@ -1,5 +1,10 @@
-import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
-import FilterContent from './FilterContent.vue';
+import {
+  Preview,
+  Story,
+  ArgsTable,
+  PRIMARY_STORY,
+} from "@storybook/addon-docs";
+import FilterContent from "./FilterContent.vue";
 
 # FilterContent
 
@@ -10,6 +15,7 @@ FilterContent is a stylized component for displaying some content (usually filte
 </Preview>
 
 ## How to Use
+
 To use the filter content component, you must provide a `v-model:open` of type Boolean (controls whether the filter content is visible).
 
 If you want to make it so that clicking the button (or whatever element changes the `v-model:open` value) toggles the filter content (rather than just opening), be sure to add a ref to the element and then pass that ref to FilterContent using the `bound-element` prop.
@@ -23,9 +29,12 @@ Finally, to hook up the functionality to close the calendar when clicking outsid
 This component will emit `update:open` events with a boolean for whether the filter content is visible or not.
 
 Example of using this component in a template without a header
+
 ```html
 <div class="relative">
-  <Button ref="filterContentCtrl" @click.stop="open = !open" size="small">Filter by</Button>
+  <button ref="filterContentCtrl" @click.stop="open = !open" size="small">
+    Filter by
+  </button>
   <filter-content v-model:open="open" :bound-element="$refs.filterContentCtrl">
     <checkbox
       label="Postcards"
@@ -56,8 +65,10 @@ Example of using this component in a template without a header
       class="mb-2"
     />
     <div class="mt-4 flex">
-      <Button variant="secondary" size="small" @click="selectedFilters = []">Reset</Button>
-      <Button size="small" class="ml-2" @click="open = false">Apply</Button>
+      <button variant="secondary" size="small" @click="selectedFilters = []">
+        Reset
+      </button>
+      <button size="small" class="ml-2" @click="open = false">Apply</button>
     </div>
   </filter-content>
 </div>
