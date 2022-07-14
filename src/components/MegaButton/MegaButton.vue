@@ -62,6 +62,7 @@
 
         <div
           :class="[
+            'xl:mx-10 mx-6',
             { 'mx-10': !imageSource && !smallText },
             { 'mx-6': smallText },
             { 'my-8': !hasDisabledBanner },
@@ -74,7 +75,7 @@
               'text-lg font-medium',
               { 'text-center': !smallText },
               { 'text-left': smallText },
-              { 'text-[2rem]': megaText }
+              { 'text-[20px] 2xl:text-[2rem] whitespace-nowrap': megaText }
             ]"
           >
             <slot name="label">
