@@ -62,8 +62,7 @@
 
         <div
           :class="[
-            'xl:mx-10 mx-6',
-            { 'mx-10': !imageSource && !smallText },
+            { 'mx-6 xl:mx-10': !imageSource && !smallText },
             { 'mx-6': smallText },
             { 'my-8': !hasDisabledBanner },
             { 'mt-12 mb-6': hasDisabledBanner && !imageSource },
