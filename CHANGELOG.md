@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 1.0.0-beta.46
+
+### Features
+
+Updated ARIA labels for the Modal.
+Add `header` String prop, remove header slot.
+Add `closeButtonAriaLabel` prop as the aria-label for the Close (X) button.
+Add ESC key listener for closing the Modal.
+
+### Breaking Changes
+
+The `closeButtonAriaLabel` and `header` props in the `Modal` are required.
+
 ## 1.0.0-beta.45
 
 ### Features

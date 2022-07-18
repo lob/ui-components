@@ -385,6 +385,7 @@ export default {
 
       // handle keys when open
       if (menuOpen) {
+        $event.stopImmediatePropagation();
         if (key === Keys.Down && (!altKey || key === Keys.Right)) {
           return MenuActions.Next;
         } else if (key === Keys.Up && altKey) {
