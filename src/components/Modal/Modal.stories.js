@@ -58,7 +58,7 @@ const WithDropdownTemplate = (args, { argTypes }) => ({
   setup: () => ({ args }),
   data: () => ({ isModalVisible, dropVModel }),
   template: `
-    <LewButton @click="isModalVisible = true">
+    <LobButton @click="isModalVisible = true">
       Open Modal
     </LobButton>
     <Modal
