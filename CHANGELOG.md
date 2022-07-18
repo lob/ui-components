@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 1.0.0-beta.45
+## 1.0.0-beta.46
 
 ### Features
 
@@ -12,6 +12,12 @@ Add ESC key listener for closing the Modal.
 ### Breaking Changes
 
 The `closeButtonAriaLabel` and `header` props in the `Modal` are required.
+
+## 1.0.0-beta.45
+
+### Features
+
+Added responsiveness to text and margins of `MegaButton`
 
 ## 1.0.0-beta.44
 
