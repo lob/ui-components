@@ -22,16 +22,21 @@ Here is an example of a button opening a modal.
 
 Visibility is controlled from the parent component using the `visible` prop. Note: this is not a `v-model`. You will need to update this when the `close` event is emitted.
 
-If no header or no footer slot is provided, nothing will be rendered in their place.
+The `header` prop (required) will provide the modal heading; no heading will render if an empty string is passed to the prop.
+
+The `closeButtonAriaLabel` is also required, and will provide the close (X) button with an aria-label.
+
+To add a footer, use the `#footer` slot. If no footer slot is provided, nothing will be rendered in it's place.
 
 ```html
 <LobButton @click="isModalVisible = true"> Open Modal </LobButton>
 
-<Modal :visible="isModalVisible" @close="isModalVisible = false">
-  <template v-slot:header>
-    <h4>Select Tracking Events</h4>
-  </template>
-
+<Modal
+  :visible="isModalVisible"
+  header="Select Tracking Events"
+  closeButtonAriaLabel="Close Modal"
+  @close="isModalVisible = false"
+>
   Would you like to export an additional CSV of associated tracking events?
   <RadioGroup>
     <radio-button
