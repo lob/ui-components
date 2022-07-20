@@ -27,12 +27,23 @@ export default {
         type: 'boolean'
       }
     },
+    dragAndDropHere: {
+      control: {
+        type: 'text'
+      }
+    },
+    uploadFileButtonText: {
+      control: {
+        type: 'text'
+      }
+    },
     status: {
       options: [null, 'error', 'success'],
       control: {
         type: 'select'
       }
     }
+
   }
 };
 
@@ -49,6 +60,7 @@ const Template = (args, { argTypes }) => ({
     },
     removeAudienceFile () {
       this.file = null;
+      this.fileUploadStatus = null;
     }
   },
   template: `
@@ -61,7 +73,8 @@ const Template = (args, { argTypes }) => ({
             :show-sample-link="args.showSampleLink"
             :status="fileUploadStatus"
             :file-ob="file"
-            :text-content={}
+            :upload-file-button-text="args.uploadFileButtonText"
+            :drag-and-drop-here="args.dragAndDropHere"
             @select="uploadAudienceFile"
             @remove="removeAudienceFile"
         />
@@ -75,5 +88,7 @@ Primary.args = {
   maxSizeInBytes: '2147483648',
   showTypeAndMaxSize: true,
   showSampleLink: false,
-  status: null
+  status: null,
+  dragAndDropHere: 'Drag and drop files here',
+  uploadFileButtonText: 'Upload a demo file'
 };

@@ -40,7 +40,7 @@
           {{ subText }}
         </div>
         <div v-if="successStep">
-          <span v-if="successStep && selectedFile">Your file,</span>
+          <span v-if="successStep && selectedFile">{{ yourFile }},</span>
           <span class="font-medium break-all ml-1">"{{ selectedFile.name }}"</span>
           <div>
             {{ successMessage || '  was successfully uploaded.' }}
@@ -51,7 +51,7 @@
         v-if="defaultStep"
         class="mt-2 text-gray-700 text-default-light"
       >
-        or
+        {{ or }}
       </div>
 
       <input
@@ -72,7 +72,7 @@
                  'focus-visible:ring-4 focus-visible:ring-primary-100 focus:outline-none']"
         @click.stop
       >
-        Upload file <Upload class="w-5 h-5 ml-2 -mr-2" />
+        {{ uploadFileButtonText }} <Upload class="w-5 h-5 ml-2 -mr-2" />
       </label>
 
       <button
@@ -82,7 +82,7 @@
         class="mt-6 underline text-gray-500 !text-sm"
         @click.stop="removeFile"
       >
-        Remove file
+        {{ removeFileButtonText }}
       </button>
 
       <ProgressBar
@@ -98,28 +98,27 @@
       >
         <span v-if="acceptType && acceptType !== '/*'">
           <span v-if="fileTypesArray.length === 1">
-            The only accepted file format is <strong>{{ fileTypesString }}</strong>.
+            {{ acceptedFormatIs }} <strong>{{ fileTypesString }}</strong>.
           </span>
           <span v-if="fileTypesArray.length > 1">
-            The accepted file format types are <strong>{{ fileTypesString }}</strong>.
+            {{ acceptedFormatsAre }} <strong>{{ fileTypesString }}</strong>.
           </span>
         </span>
         <span v-if="maxSizeInBytes">
-          Max file size is  <strong>{{ formatBytes(maxSizeInBytes) }}</strong>.
+          {{ maxFileSizeIs }} <strong>{{ formatBytes(maxSizeInBytes) }}</strong>.
         </span>
       </div>
       <LobLink
         v-if="showSampleLink"
         target="_blank"
       >
-        Download a sample file?
+        {{ downloadSampleFile }}
       </LobLink>
     </div>
   </div>
 </template>
 
 <script>
-//TODO all text in template to be passed as props so it can be translated
 import { formatBytes } from './fortmatBytes';
 import { LobLink, ProgressBar, Upload } from '@/components';
 
@@ -127,22 +126,34 @@ export default {
   name: 'Dropzone',
   components: { LobLink, ProgressBar, Upload },
   props: {
-    textContent: { type: Object, default: () => {
-      return {
-        defaultErrorText: 'Something went wrong. Please try again.'
-      };
-    } },
+    yourFile: { type: String, default: 'Your file' },
+    or: { type: String, default: 'or' },
+    uploadFileButtonText: { type: String, default: 'Upload file' },
+    removeFileButtonText: { type: String, default: 'Remove file' },
+    acceptedFormatIs: { type: String, default: 'The only accepted file format is' },
+    acceptedFormatsAre: { type: String, default: 'The accepted file format types are' },
+    maxFileSizeIs: { type: String, default: 'Max file size is' },
+    downloadSampleFile: { type: String, default: 'Download a sample file?' },
+    defaultErrorText: { type: String, default: 'Something went wrong. Please try again.' },
+    couldNotUpload: { type: String, default: 'Could not Upload' },
+    looksGreat: { type: String, default: 'Looks great!' },
+    uploading: { type: String, default: 'Uploading' },
+    canOnlySelectOneFile: { type: String, default: 'You can only select 1 file.' },
+    fileIsTooLarge: { type: String, default: 'File is too large.' },
+    fileTypeNotValid: { type: String, default: 'File is not a valid file type.' },
+    dragAndDropHere: { type: String, default: 'Drag and drop files here' },
+    mightTakeAMinute: { type: String, default: 'This might take a minute.' },
     acceptType: { type: String, default: '/*' },
     uploadId: { type: String, required: true },
     maxSizeInBytes: { type: [Number, null], default: null },
     showTypeAndMaxSize: { type: Boolean, default: true },
     showSampleLink: { type: Boolean, default: false },
     progress: { type: [Number, null], default: null },
-    errorMessage: { type: String, default: (props) => props.textContent.defaultErrorText },
+    errorMessage: { type: String, default: (props) => props.defaultErrorText },
     successMessage: { type: String, default: '' },
-    status: { type: String, default: '',
+    status: { type: [String, null], default: null,
       validator: function (value) {
-        return ['error', 'success'].includes(value);
+        return [null, 'error', 'success'].includes(value);
       }
     },
     fileOb: {
@@ -197,13 +208,13 @@ export default {
     },
     displayText () {
       if (this.errorStep) {
-        return 'Could not Upload'; //TODO pass as prop so it can be translated
+        return this.couldNotUpload;
       }
       if (this.successStep) {
-        return 'Looks great!'; //TODO pass as prop so it can be translated
+        return this.looksGreat;
       }
       if (this.uploadingStep) {
-        return `Uploading ${this.selectedFileName}...`; //TODO pass as prop so it can be translated
+        return `${this.uploading} ${this.selectedFileName}...`;
       } else {
         return '';
       }
@@ -211,20 +222,20 @@ export default {
     subText () {
       if (this.errorStep) {
         if (this.multipleFilesError) {
-          return 'You can only select 1 file.'; //TODO pass as prop so it can be translated
+          return this.canOnlySelectOneFile;
         }
         if (this.fileSizeError) {
-          return 'File is too large.'; //TODO pass as prop so it can be translated
+          return this.fileIsTooLarge;
         }
         if (this.fileTypeError) {
-          return 'File is not a valid file type.'; //TODO pass as prop so it can be translated
+          return this.fileTypeNotValid;
         } else {
           return this.errorMessage;
         }
       } else if (this.defaultStep) {
-        return 'Drag and drop files here'; //TODO pass as prop so it can be translated
+        return this.dragAndDropHere;
       } else if (this.uploadingStep) {
-        return 'This might take a minute.'; //TODO pass as prop so it can be translated
+        return this.mightTakeAMinute;
       } else {
         return '';
       }
