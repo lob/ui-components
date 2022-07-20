@@ -40,10 +40,10 @@
           {{ subText }}
         </div>
         <div v-if="successStep">
-          <span v-if="successStep && selectedFile">{{ yourFile }},</span>
+          <span v-if="successStep && selectedFile">{{ textContent.yourFile }},</span>
           <span class="font-medium break-all ml-1">"{{ selectedFile.name }}"</span>
           <div>
-            {{ successMessage || '  was successfully uploaded.' }}
+            {{ textContent.successMessage || '  was successfully uploaded.' }}
           </div>
         </div>
       </div>
@@ -51,7 +51,7 @@
         v-if="defaultStep"
         class="mt-2 text-gray-700 text-default-light"
       >
-        {{ or }}
+        {{ textContent.or }}
       </div>
 
       <input
@@ -72,7 +72,7 @@
                  'focus-visible:ring-4 focus-visible:ring-primary-100 focus:outline-none']"
         @click.stop
       >
-        {{ uploadFileButtonText }} <Upload class="w-5 h-5 ml-2 -mr-2" />
+        {{ textContent.uploadFileButtonText }} <Upload class="w-5 h-5 ml-2 -mr-2" />
       </label>
 
       <button
@@ -82,7 +82,7 @@
         class="mt-6 underline text-gray-500 !text-sm"
         @click.stop="removeFile"
       >
-        {{ removeFileButtonText }}
+        {{ textContent.removeFileButtonText }}
       </button>
 
       <ProgressBar
@@ -98,68 +98,57 @@
       >
         <span v-if="acceptType && acceptType !== '/*'">
           <span v-if="fileTypesArray.length === 1">
-            {{ acceptedFormatIs }} <strong>{{ fileTypesString }}</strong>.
+            {{ textContent.acceptedFormatIs }} <strong>{{ fileTypesString }}</strong>.
           </span>
           <span v-if="fileTypesArray.length > 1">
-            {{ acceptedFormatsAre }} <strong>{{ fileTypesString }}</strong>.
+            {{ textContent.acceptedFormatsAre }} <strong>{{ fileTypesString }}</strong>.
           </span>
         </span>
         <span v-if="maxSizeInBytes">
-          {{ maxFileSizeIs }} <strong>{{ formatBytes(maxSizeInBytes) }}</strong>.
+          {{ textContent.maxFileSizeIs }} <strong>{{ formatBytes(maxSizeInBytes) }}</strong>.
         </span>
       </div>
       <LobLink
         v-if="showSampleLink"
         target="_blank"
       >
-        {{ downloadSampleFile }}
+        {{ textContent.downloadSampleFile }}
       </LobLink>
     </div>
   </div>
 </template>
 
 <script>
-import { formatBytes } from './fortmatBytes';
+import { formatBytes } from '../../utils/fortmatBytes';
 import { LobLink, ProgressBar, Upload } from '@/components';
 
 export default {
   name: 'Dropzone',
   components: { LobLink, ProgressBar, Upload },
   props: {
-    yourFile: { type: String, default: 'Your file' },
-    or: { type: String, default: 'or' },
-    uploadFileButtonText: { type: String, default: 'Upload file' },
-    removeFileButtonText: { type: String, default: 'Remove file' },
-    acceptedFormatIs: { type: String, default: 'The only accepted file format is' },
-    acceptedFormatsAre: { type: String, default: 'The accepted file format types are' },
-    maxFileSizeIs: { type: String, default: 'Max file size is' },
-    downloadSampleFile: { type: String, default: 'Download a sample file?' },
-    defaultErrorText: { type: String, default: 'Something went wrong. Please try again.' },
-    couldNotUpload: { type: String, default: 'Could not Upload' },
-    looksGreat: { type: String, default: 'Looks great!' },
-    uploading: { type: String, default: 'Uploading' },
-    canOnlySelectOneFile: { type: String, default: 'You can only select 1 file.' },
-    fileIsTooLarge: { type: String, default: 'File is too large.' },
-    fileTypeNotValid: { type: String, default: 'File is not a valid file type.' },
-    dragAndDropHere: { type: String, default: 'Drag and drop files here' },
-    mightTakeAMinute: { type: String, default: 'This might take a minute.' },
-    acceptType: { type: String, default: '/*' },
+    textContent: { type: Object, required: true,
+      validator: function (value) {
+        const requiredKeys = ['dragAndDropHere', 'yourFile', 'or', 'uploadFileButtonText',
+          'acceptedFormatIs', 'acceptedFormatsAre', 'maxFileSizeIs', 'downloadSampleFile',
+          'uploading', 'mightTakeAMinute', 'looksGreat', 'removeFileButtonText',
+          'couldNotUpload', 'canOnlySelectOneFile', 'fileIsTooLarge', 'fileTypeNotValid',
+          'defaultErrorText', 'errorMessage', 'successMessage'];
+        for (const key of requiredKeys) {
+          return (Object.keys(value).includes(key));
+        }
+      }
+    },
     uploadId: { type: String, required: true },
+    acceptType: { type: String, default: '/*' },
     maxSizeInBytes: { type: [Number, null], default: null },
     showTypeAndMaxSize: { type: Boolean, default: true },
     showSampleLink: { type: Boolean, default: false },
     progress: { type: [Number, null], default: null },
-    errorMessage: { type: String, default: (props) => props.defaultErrorText },
-    successMessage: { type: String, default: '' },
+    fileOb: {  type: Object, default: null },
     status: { type: [String, null], default: null,
       validator: function (value) {
         return [null, 'error', 'success'].includes(value);
       }
-    },
-    fileOb: {
-      type: Object,
-      required: false,
-      default: null
     }
   },
   emits: ['select', 'remove'],
@@ -203,18 +192,18 @@ export default {
     fileTypesString () {
       return this.fileTypesArray.map((t) => t.replace(/[^a-zA-Z]/g, '')).join(', ').toUpperCase();
     },
-    droppingDisabled () {
+    isDroppingDisabled () {
       return this.fileHasBeenSelected || this.uploadingStep;
     },
     displayText () {
       if (this.errorStep) {
-        return this.couldNotUpload;
+        return this.textContent.couldNotUpload;
       }
       if (this.successStep) {
-        return this.looksGreat;
+        return this.textContent.looksGreat;
       }
       if (this.uploadingStep) {
-        return `${this.uploading} ${this.selectedFileName}...`;
+        return `${this.textContent.uploading} ${this.selectedFileName}...`;
       } else {
         return '';
       }
@@ -222,20 +211,20 @@ export default {
     subText () {
       if (this.errorStep) {
         if (this.multipleFilesError) {
-          return this.canOnlySelectOneFile;
+          return this.textContent.canOnlySelectOneFile;
         }
         if (this.fileSizeError) {
-          return this.fileIsTooLarge;
+          return this.textContent.fileIsTooLarge;
         }
         if (this.fileTypeError) {
-          return this.fileTypeNotValid;
+          return this.textContent.fileTypeNotValid;
         } else {
-          return this.errorMessage;
+          return this.textContent.errorMessage;
         }
       } else if (this.defaultStep) {
-        return this.dragAndDropHere;
+        return this.textContent.dragAndDropHere;
       } else if (this.uploadingStep) {
-        return this.mightTakeAMinute;
+        return this.textContent.mightTakeAMinute;
       } else {
         return '';
       }
@@ -265,7 +254,7 @@ export default {
     },
     onDropFile ($event) {
       this.clearErrors();
-      if (this.droppingDisabled) {
+      if (this.isDroppingDisabled) {
         return;
       }
       if (this.isSingleFile($event.dataTransfer.files)) {
@@ -319,7 +308,7 @@ export default {
       this.clearErrors();
     },
     onDragOver () {
-      if (!this.droppingDisabled) {
+      if (!this.isDroppingDisabled) {
         this.dragOverlay = true;
       }
     },

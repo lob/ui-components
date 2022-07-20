@@ -27,31 +27,42 @@ export default {
         type: 'boolean'
       }
     },
-    dragAndDropHere: {
-      control: {
-        type: 'text'
-      }
-    },
-    uploadFileButtonText: {
-      control: {
-        type: 'text'
-      }
-    },
     status: {
       options: [null, 'error', 'success'],
       control: {
         type: 'select'
       }
     }
-
   }
+};
+
+const textContentObject = {
+  yourFile: 'Your file',
+  or: 'or',
+  uploadFileButtonText: 'Upload file',
+  removeFileButtonText: 'Remove file',
+  acceptedFormatIs: 'The only accepted file format is',
+  acceptedFormatsAre: 'The accepted file format types are',
+  maxFileSizeIs: 'Max file size is',
+  downloadSampleFile: 'Download a sample file?',
+  couldNotUpload: 'Could not Upload',
+  looksGreat: 'Looks great!',
+  uploading: 'Uploading',
+  canOnlySelectOneFile: 'You can only select 1 file.',
+  fileIsTooLarge: 'File is too large.',
+  fileTypeNotValid: 'File is not a valid file type.',
+  dragAndDropHere: 'Drag and drop files here',
+  mightTakeAMinute: 'This might take a minute.',
+  defaultErrorText: 'Something went wrong. Please try again.',
+  errorMessage: '',
+  successMessage: ''
 };
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { Dropzone },
   setup: () => ({ args }),
-  data: () => ({ fileUploadStatus: args.status, file: null }),
+  data: () => ({ fileUploadStatus: args.status, file: null, textContentObject }),
   methods: {
     uploadAudienceFile () {
       setTimeout(() => {
@@ -73,8 +84,7 @@ const Template = (args, { argTypes }) => ({
             :show-sample-link="args.showSampleLink"
             :status="fileUploadStatus"
             :file-ob="file"
-            :upload-file-button-text="args.uploadFileButtonText"
-            :drag-and-drop-here="args.dragAndDropHere"
+            :text-content="textContentObject"
             @select="uploadAudienceFile"
             @remove="removeAudienceFile"
         />
@@ -88,7 +98,5 @@ Primary.args = {
   maxSizeInBytes: '2147483648',
   showTypeAndMaxSize: true,
   showSampleLink: false,
-  status: null,
-  dragAndDropHere: 'Drag and drop files here',
-  uploadFileButtonText: 'Upload a demo file'
+  status: null
 };
