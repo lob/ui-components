@@ -119,7 +119,7 @@
 </template>
 
 <script>
-import { formatBytes } from '../../utils/fortmatBytes';
+import { formatBytes } from '@/utils/formatBytes';
 import { LobLink, ProgressBar, Upload } from '@/components';
 
 export default {
