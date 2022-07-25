@@ -4,7 +4,7 @@
 
 ### Features
 
-Add `isDrawerOpen` and `hoverOverIndex` emits to the `Dropdown` component
+Add `open:list`, `close:list`, `hover:option` emits to the `Dropdown` component
 
 ## 1.0.0-beta.46
 
