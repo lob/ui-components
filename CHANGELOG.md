@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.0.0-beta.47
+
+### Features
+
+Add `isDrawerOpen` and `hoverOverIndex` emits to the `Dropdown` component
+
 ## 1.0.0-beta.46
 
 ### Features
