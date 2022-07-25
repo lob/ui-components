@@ -236,7 +236,7 @@ export default {
       default: null
     }
   },
-  emits: ['update:modelValue', 'input', 'change'],
+  emits: ['update:modelValue', 'input', 'change', 'isDrawerOpen', 'hoverOverIndex'],
   data () {
     return {
       // active option index
@@ -294,6 +294,9 @@ export default {
     }
   },
   watch: {
+    open (val) {
+      this.$emit('isDrawerOpen', val);
+    },
     options () {
       this.setSelectedInLifecycle();
     },
@@ -533,6 +536,7 @@ export default {
     },
     onOptionMouseover ($event, index) {
       this.onOptionChange(index);
+      this.$emit('hoverOverIndex', index);
     },
     onOptionChange (index) {
       this.activeIndex = index;
