@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.0.0-beta.47
+
+### Features
+
+Add `open:list`, `close:list`, `hover:option` emits to the `Dropdown` component
+
 ## 1.0.0-beta.46
 
 ### Features
