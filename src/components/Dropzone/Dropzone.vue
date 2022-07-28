@@ -41,9 +41,12 @@
         </div>
         <div v-if="successStep">
           <span v-if="successStep && selectedFile">{{ textContent.yourFile }},</span>
-          <span class="font-medium break-all ml-1">"{{ selectedFile.name }}"</span>
+          <span
+            v-if="selectedFile"
+            class="font-medium break-all ml-1"
+          >"{{ selectedFile.name }}"</span>
           <div>
-            {{ textContent.successMessage || '  was successfully uploaded.' }}
+            {{ textContent.successMessage }}
           </div>
         </div>
       </div>
@@ -219,7 +222,7 @@ export default {
         if (this.fileTypeError) {
           return this.textContent.fileTypeNotValid;
         } else {
-          return this.textContent.errorMessage;
+          return this.textContent.errorMessage || this.textContent.defaultErrorText;
         }
       } else if (this.defaultStep) {
         return this.textContent.dragAndDropHere;

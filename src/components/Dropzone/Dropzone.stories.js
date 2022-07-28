@@ -55,7 +55,7 @@ const textContentObject = {
   mightTakeAMinute: 'This might take a minute.',
   defaultErrorText: 'Something went wrong. Please try again.',
   errorMessage: '',
-  successMessage: ''
+  successMessage: ' was successfully uploaded.'
 };
 
 const Template = (args, { argTypes }) => ({
