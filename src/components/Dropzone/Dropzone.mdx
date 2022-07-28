@@ -1,0 +1,66 @@
+import {
+  Preview,
+  Story,
+  ArgsTable,
+  PRIMARY_STORY,
+} from "@storybook/addon-docs";
+import Dropzone from "./Dropzone.vue";
+
+# Dropzone
+
+The Dropzone is a form field with an input type=file, styled to look like a drop area.
+
+In addition to a mouse click that opens the select-file dialog, the drop zone can accept files being drag&dropped onto it.
+
+It supports single file selection (or drop), and has built-in checks for the file type and size (based on props).
+
+<Preview>
+  <Story id="components-dropzone--primary" />
+</Preview>
+
+## How to Use
+
+All text shown in the Dropzone must be added as the `textContent` prop (Object).
+
+The required keys for the `textContent` are: `dragAndDropHere`, `yourFile`, `or`, `uploadFileButtonText`,
+`acceptedFormatIs`, `acceptedFormatsAre`, `maxFileSizeIs`, `downloadSampleFile`,
+`uploading`, `mightTakeAMinute`, `looksGreat`, `removeFileButtonText`,
+`couldNotUpload`, `canOnlySelectOneFile`, `fileIsTooLarge`, `fileTypeNotValid`,
+`defaultErrorText`, `errorMessage`, `successMessage`
+
+The prop `uploadId` is also required (so that two or more Dropzones can be added to the same page).
+
+```html
+<Dropzone
+  upload-id="dropzone"
+  accept-type=".csv"
+  max-size-in-bytes="2147483648"
+  :show-type-and-max-size="true"
+  :show-sample-link="false"
+  :status="null"
+  :file-ob="fileObject"
+  :text-content="textContentObject"
+  @select="uploadFile"
+  @remove="removeFile"
+/>
+```
+
+Other supported props (optional):
+
+`acceptType`: takes an array of Strings that are passed into the `accept` file types of the input. (example: '.csv' or '.jgpeg,.jpg,.png')
+
+`maxSizeInBytes`: the maximum accepted file size in bytes (as a Number) (example: 2147483648, will be shown as 2GB)
+
+`showTypeAndMaxSize`: (Boolean) shows the type/size information text below the Dropzone
+
+`sampleLink`: (String) if added, the sample file link shows text below the Dropzone
+
+`progress`: if a Number is provided, the `ProgressBar` will show the progress percentage
+
+`fileOb`: the file Object, to support showing the status of a previously uploaded file
+
+`status`: the status of a previously upoloaded file as a String (only accepts null, 'error', or 'success')
+
+## Props
+
+<ArgsTable story={PRIMARY_STORY} />

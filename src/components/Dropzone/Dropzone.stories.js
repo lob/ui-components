@@ -1,8 +1,14 @@
 import Dropzone from './Dropzone.vue';
+import mdx from './Dropzone.mdx';
 
 export default {
   title: 'Components/Dropzone',
   component: Dropzone,
+  parameters: {
+    docs: {
+      page: mdx
+    }
+  },
   argTypes: {
     acceptType: {
       options: ['.csv', '.pdf', '.jpg,.png', '*/image'],
@@ -22,9 +28,9 @@ export default {
         type: 'boolean'
       }
     },
-    showSampleLink: {
+    sampleLink: {
       control: {
-        type: 'boolean'
+        type: 'text'
       }
     },
     status: {
@@ -81,7 +87,7 @@ const Template = (args, { argTypes }) => ({
             :accept-type="args.acceptType"
             :max-size-in-bytes="Number(args.maxSizeInBytes)"
             :show-type-and-max-size="args.showTypeAndMaxSize"
-            :show-sample-link="args.showSampleLink"
+            :sample-link="args.sampleLink"
             :status="fileUploadStatus"
             :file-ob="file"
             :text-content="textContentObject"
@@ -97,6 +103,6 @@ Primary.args = {
   acceptType: '.csv',
   maxSizeInBytes: '2147483648',
   showTypeAndMaxSize: true,
-  showSampleLink: false,
-  status: null
+  status: null,
+  sampleLink: 'https://www.lob.com/'
 };
