@@ -112,8 +112,8 @@
         </span>
       </div>
       <LobLink
-        v-if="sampleLink"
-        :to="sampleLink"
+        v-if="sampleLinkUrl"
+        :to="sampleLinkUrl"
         target="_blank"
         class="!text-sm"
       >
@@ -147,7 +147,7 @@ export default {
     acceptType: { type: String, default: '/*' },
     maxSizeInBytes: { type: [Number, null], default: null },
     showTypeAndMaxSize: { type: Boolean, default: true },
-    sampleLink: { type: String, default: null },
+    sampleLinkUrl: { type: String, default: null },
     progress: { type: [Number, null], default: null },
     fileOb: {  type: Object, default: null },
     status: { type: [String, null], default: null,

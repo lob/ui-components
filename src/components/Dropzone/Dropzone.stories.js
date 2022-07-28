@@ -28,7 +28,7 @@ export default {
         type: 'boolean'
       }
     },
-    sampleLink: {
+    sampleLinkUrl: {
       control: {
         type: 'text'
       }
@@ -87,7 +87,7 @@ const Template = (args, { argTypes }) => ({
             :accept-type="args.acceptType"
             :max-size-in-bytes="Number(args.maxSizeInBytes)"
             :show-type-and-max-size="args.showTypeAndMaxSize"
-            :sample-link="args.sampleLink"
+            :sample-link-url="args.sampleLinkUrl"
             :status="fileUploadStatus"
             :file-ob="file"
             :text-content="textContentObject"
@@ -104,5 +104,5 @@ Primary.args = {
   maxSizeInBytes: '2147483648',
   showTypeAndMaxSize: true,
   status: null,
-  sampleLink: 'https://www.lob.com/'
+  sampleLinkUrl: 'https://www.lob.com/'
 };
