@@ -115,6 +115,7 @@
         v-if="sampleLink"
         :to="sampleLink"
         target="_blank"
+        class="!text-sm"
       >
         {{ textContent.downloadSampleFile }}
       </LobLink>
