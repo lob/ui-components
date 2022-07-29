@@ -186,7 +186,7 @@ export default {
       return this.selectedFile.type ? this.selectedFile.type.split('/')[1].toUpperCase() : 'File';
     },
     selectedFileName () {
-      return this.selectedFile.name ? this.selectedFile.name : 'File';
+      return this.selectedFile.name;
     },
     fileTypesArray () {
       const array = this.acceptType?.split(',') || [];
