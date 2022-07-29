@@ -89,7 +89,7 @@ const Template = (args, { argTypes }) => ({
             :show-type-and-max-size="args.showTypeAndMaxSize"
             :sample-link-url="args.sampleLinkUrl"
             :status="fileUploadStatus"
-            :file-ob="file"
+            :file="file"
             :text-content="textContentObject"
             @select="uploadAudienceFile"
             @remove="removeAudienceFile"

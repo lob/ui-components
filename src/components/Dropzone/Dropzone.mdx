@@ -38,7 +38,7 @@ The prop `uploadId` is also required (so that two or more Dropzones can be added
   :show-type-and-max-size="true"
   :show-sample-link="false"
   :status="null"
-  :file-ob="fileObject"
+  :file="fileObject"
   :text-content="textContentObject"
   @select="uploadFile"
   @remove="removeFile"
@@ -57,7 +57,7 @@ Other supported props (optional):
 
 `progress`: if a Number is provided, the `ProgressBar` will show the progress percentage
 
-`fileOb`: the file Object, to support showing the status of a previously uploaded file
+`file`: the file Object, to support showing the status of a previously uploaded file
 
 `status`: the status of a previously upoloaded file as a String (only accepts null, 'error', or 'success')
 

@@ -147,7 +147,7 @@ export default {
     showTypeAndMaxSize: { type: Boolean, default: true },
     sampleLinkUrl: { type: String, default: null },
     progress: { type: [Number, null], default: null },
-    fileOb: {  type: Object, default: null },
+    file: {  type: Object, default: null },
     status: { type: [String, null], default: null,
       validator: function (value) {
         return [null, 'error', 'success'].includes(value);
@@ -158,7 +158,7 @@ export default {
   data: function () {
     return {
       formatBytes,
-      selectedFile: this.fileOb,
+      selectedFile: this.file,
       currentStep: this.status ?? 'default',
       dragOverlay: false,
       multipleFilesError: false,
