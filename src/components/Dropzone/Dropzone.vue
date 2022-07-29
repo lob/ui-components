@@ -58,7 +58,7 @@
       </div>
 
       <input
-        :id="uploadId"
+        :id="inputId"
         ref="fileElement"
         type="file"
         :accept="acceptType"
@@ -67,7 +67,7 @@
       >
       <label
         v-if="defaultStep || errorStep"
-        :for="uploadId"
+        :for="inputId"
         role="button"
         tabindex="0"
         :class="['mt-4 flex items-center rounded-lg px-4 h-[32px]',
@@ -141,7 +141,7 @@ export default {
         return requiredKeys.every((key) => value.hasOwnProperty(key));
       }
     },
-    uploadId: { type: String, required: true },
+    inputId: { type: String, required: true },
     acceptType: { type: String, default: '/*' },
     maxSizeInBytes: { type: [Number, null], default: null },
     showTypeAndMaxSize: { type: Boolean, default: true },

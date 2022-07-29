@@ -27,7 +27,7 @@ const textContentObject = {
 };
 
 const initialProps = {
-  uploadId: 'dropzone-story',
+  inputId: 'dropzone-story',
   textContent: textContentObject,
   acceptType: '.csv',
   maxSizeInBytes: 1048576
@@ -114,7 +114,7 @@ describe('Dropzone', () => {
 
       const props = { ...initialProps,
         status: 'success',
-        fileOb: { name: 'audience.csv', type: 'csv' } };
+        file: { name: 'audience.csv', type: 'csv' } };
 
       const { getByText } = renderComponent({ props });
       const success = getByText(/was successfully uploaded/i);
