@@ -161,7 +161,7 @@ export default {
     return {
       formatBytes,
       selectedFile: this.fileOb,
-      currentStep: this.status !== null ? this.status :  'default',
+      currentStep: this.status ?? 'default',
       dragOverlay: false,
       multipleFilesError: false,
       fileSizeError: false,
