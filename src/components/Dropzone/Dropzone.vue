@@ -207,9 +207,8 @@ export default {
       }
       if (this.uploadingStep) {
         return `${this.textContent.uploading} ${this.selectedFileName}...`;
-      } else {
-        return '';
       }
+      return '';
     },
     subText () {
       if (this.errorStep) {
@@ -221,16 +220,15 @@ export default {
         }
         if (this.fileTypeError) {
           return this.textContent.fileTypeNotValid;
-        } else {
-          return this.textContent.errorMessage || this.textContent.defaultErrorText;
         }
+        return this.textContent.errorMessage || this.textContent.defaultErrorText;
+
       } else if (this.defaultStep) {
         return this.textContent.dragAndDropHere;
       } else if (this.uploadingStep) {
         return this.textContent.mightTakeAMinute;
-      } else {
-        return '';
       }
+      return '';
     },
     currentStepIcon () {
       return `https://s3.us-west-2.amazonaws.com/public.lob.com/dashboard/campaigns/file-${this.currentStep}.png`;
