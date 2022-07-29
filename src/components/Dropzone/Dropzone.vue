@@ -138,9 +138,7 @@ export default {
           'uploading', 'mightTakeAMinute', 'looksGreat', 'removeFileButtonText',
           'couldNotUpload', 'canOnlySelectOneFile', 'fileIsTooLarge', 'fileTypeNotValid',
           'defaultErrorText', 'errorMessage', 'successMessage'];
-        for (const key of requiredKeys) {
-          return (Object.keys(value).includes(key));
-        }
+        return requiredKeys.every((key) => value.hasOwnProperty(key));
       }
     },
     uploadId: { type: String, required: true },
