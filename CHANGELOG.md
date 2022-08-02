@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.0.0-beta.48
+
+### Features
+
+- New `Dropzone` component
+
 ## 1.0.0-beta.47
 
 ### Features
