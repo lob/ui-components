@@ -14,10 +14,10 @@
         { 'underline': underline && link },
         { '!text-gray-500': disabled && link },
         { 'text-primary-500 hover:text-primary-900 active:text-primary-900': !inheritTextColor && link },
-        { 'flex justify-center items-center rounded-lg no-underline font-medium': primary || secondary },
-        { 'focus-visible:ring-4 focus-visible:ring-primary-100 focus:ring-transparent focus:outline-none active:scale-[.96]': primary || secondary },
-        { 'px-6 text-base h-[48px]': regular && (primary || secondary) },
-        { 'px-4 text-sm h-[32px]': small && (primary || secondary) },
+        { 'flex justify-center items-center rounded-lg no-underline font-medium': primary || secondary || subtle },
+        { 'focus-visible:ring-4 focus-visible:ring-primary-100 focus:ring-transparent focus:outline-none active:scale-[.96]': primary || secondary || subtle },
+        { 'px-6 text-base h-[48px]': regular && (primary || secondary || subtle) },
+        { 'px-4 text-sm h-[32px]': small && (primary || secondary || subtle) },
         { 'primary !text-white ': !disabled && primary && !warning },
         { 'bg-gray-100 !text-white': disabled && primary && !warning },
         { 'primary warning !text-white': !disabled && primary && warning },
@@ -25,7 +25,11 @@
         { 'secondary border !border-gray-300 text-gray-500 hover:text-gray-500 hover:bg-gray-100/[.15] active:bg-gray-100/[.25]': !disabled && secondary && !warning },
         { 'border border-gray-100 text-gray-100': disabled && secondary && !warning },
         { 'secondary bg-white border !border-chili text-chili hover:bg-chili/[.04] active:bg-chili/[.08]': !disabled && secondary && warning },
-        { 'border border-coral-200 text-coral-200': disabled && secondary && warning }
+        { 'border border-coral-200 text-coral-200': disabled && secondary && warning },
+        { 'text-primary-500 hover:bg-primary-500/[.04] active:bg-primary-500/[.08] active:text-primary-700': !disabled && subtle && !warning },
+        { 'text-gray-100 border hover:bg-transparent': disabled && subtle && !warning },
+        { 'text-chili hover:bg-chili/[.04] active:bg-chili/[.08]' : !disabled && subtle && warning },
+        { 'text-coral-300 border hover:bg-transparent' : disabled && subtle && warning }
       ]"
       v-bind="$attrs"
     >
@@ -49,7 +53,7 @@ export default {
       type: String,
       default: 'link',
       validator: function (value) {
-        return ['link', 'primary-button', 'secondary-button'].includes(value);
+        return ['link', 'primary-button', 'secondary-button', 'subtle-button'].includes(value);
       }
     },
     small: {
@@ -102,6 +106,9 @@ export default {
     },
     secondary () {
       return this.variant === 'secondary-button';
+    },
+    subtle () {
+      return this.variant === 'subtle-button';
     },
     regular () {
       return !this.small;
