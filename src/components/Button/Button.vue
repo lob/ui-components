@@ -5,9 +5,8 @@
       { 'font-medium': primary || secondary },
       { 'px-6 text-base h-[48px]': regular },
       { 'px-4 text-sm h-[32px]': small },
-      { 'px-0 h-full text-base': link || none },
+      { 'px-0 h-full text-base': link },
       { 'underline text-primary-500 hover:text-primary-900 active:text-primary-900 disabled:text-gray-500': link },
-      { 'disabled:text-gray-500': none },
       { 'cursor-not-allowed': disabled },
       { 'active:scale-[.96]': !disabled && !link },
       { 'primary text-white transform disabled:bg-gray-100': primary && !warning },
@@ -34,7 +33,7 @@ export default {
       type: String,
       default: 'primary',
       validator: function (value) {
-        return ['primary', 'secondary', 'link', 'none'].includes(value);
+        return ['primary', 'secondary', 'link'].includes(value);
       }
     },
     small: {
@@ -60,9 +59,6 @@ export default {
     },
     link () {
       return this.variant === 'link';
-    },
-    none () {
-      return this.variant === 'none';
     },
     regular () {
       return !this.small;
