@@ -56,7 +56,7 @@ const textContentObject = {
   uploading: 'Uploading',
   canOnlySelectOneFile: 'You can only select 1 file.',
   fileFor: 'Audience',
-  fileIsTooLarge: ' exceeds file size limit of ',
+  fileIsTooLarge: 'exceeds file size limit of',
   fileTypeNotValid: 'File is not a valid file type.',
   dragAndDropHere: 'Drag and drop files here',
   mightTakeAMinute: 'This might take a minute.',
