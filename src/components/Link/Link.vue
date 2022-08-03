@@ -18,13 +18,13 @@
         { 'focus-visible:ring-4 focus-visible:ring-primary-100 focus:ring-transparent focus:outline-none active:scale-[.96]': primary || secondary || subtle },
         { 'px-6 text-base h-[48px]': regular && (primary || secondary || subtle) },
         { 'px-4 text-sm h-[32px]': small && (primary || secondary || subtle) },
-        { 'primary !text-white ': !disabled && primary && !warning },
+        { 'bg-gradient-114 from-[#1876db] to-[#5748ff] hover:from-[#5748ff] hover:to-[#1876db] !text-white': !disabled && primary && !warning },
         { 'bg-gray-100 !text-white': disabled && primary && !warning },
-        { 'primary warning !text-white': !disabled && primary && warning },
+        { 'bg-gradient-114 from-[#db1818] to-[#ec4949] hover:from-[#ec4949] hover:to-[#db1818] !text-white': !disabled && primary && warning },
         { 'bg-coral-200 !text-white': disabled && primary && warning },
-        { 'secondary border !border-gray-300 text-gray-500 hover:text-gray-500 hover:bg-gray-100/[.15] active:bg-gray-100/[.25]': !disabled && secondary && !warning },
+        { 'border !border-gray-300 text-gray-500 hover:text-gray-500 hover:bg-gray-100/[.15] active:bg-gray-100/[.25]': !disabled && secondary && !warning },
         { 'text-gray-100 border': disabled && secondary && !warning },
-        { 'secondary bg-white border !border-chili text-chili hover:bg-chili/[.04] active:bg-chili/[.08]': !disabled && secondary && warning },
+        { 'bg-white border !border-chili text-chili hover:bg-chili/[.04] active:bg-chili/[.08]': !disabled && secondary && warning },
         { 'text-coral-200 border': disabled && secondary && warning },
         { 'text-primary-500 hover:bg-primary-500/[.04] active:bg-primary-500/[.08] active:text-primary-700': !disabled && subtle && !warning },
         { 'text-gray-100 border hover:bg-transparent': disabled && subtle && !warning },
@@ -126,23 +126,3 @@ export default {
   }
 };
 </script>
-
-<style scoped lang="scss">
-.primary:not(:disabled) {
-  background: linear-gradient(114.08deg, #1876db 7.95%, #5748ff 90.87%);
-}
-
-.primary:focus:not(:disabled),
-.primary:hover:not(:disabled):not(:focus) {
-  background: linear-gradient(114.08deg, #5748ff 7.95%, #1876db 90.87%);
-}
-
-.primary.warning:not(:disabled) {
-  background: linear-gradient(114.08deg, #db1818 7.95%, #ec4949 90.87%);
-}
-
-.primary.warning:focus:not(:disabled),
-.primary.warning:hover:not(:disabled):not(:focus) {
-  background: linear-gradient(114.08deg, #ec4949 7.95%, #db1818 90.87%);
-}
-</style>
