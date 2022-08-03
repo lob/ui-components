@@ -14,7 +14,10 @@
       { 'secondary bg-white border border-gray-300 text-gray-500': secondary && !warning,
         'hover:bg-gray-100/[.15] active:bg-bg-gray-100/[.25] disabled:border-gray-100 disabled:text-gray-100': secondary && !warning },
       { 'secondary bg-white border border-chili text-chili': secondary && warning,
-        'disabled:border-coral-200 disabled:text-coral-200 hover:bg-chili/[.04] active:bg-chili/[.08]': secondary && warning }
+        'disabled:border-coral-200 disabled:text-coral-200 hover:bg-chili/[.04] active:bg-chili/[.08]': secondary && warning },
+      { 'text-primary-500 hover:bg-primary-500/[.04] active:bg-primary-500/[.08] active:text-primary-700 disabled:text-gray-100 disabled:border disabled:hover:bg-transparent': subtle && !warning },
+      { 'text-chili hover:bg-chili/[.04] active:bg-chili/[.08] disabled:text-coral-300 disabled:border disabled:hover:bg-transparent': subtle && warning }
+
     ]"
     :disabled="disabled"
     @click="handleClick"
@@ -33,7 +36,7 @@ export default {
       type: String,
       default: 'primary',
       validator: function (value) {
-        return ['primary', 'secondary', 'link'].includes(value);
+        return ['primary', 'secondary', 'link', 'subtle'].includes(value);
       }
     },
     small: {
@@ -59,6 +62,9 @@ export default {
     },
     link () {
       return this.variant === 'link';
+    },
+    subtle () {
+      return this.variant === 'subtle';
     },
     regular () {
       return !this.small;
