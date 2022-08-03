@@ -11,10 +11,9 @@
       { 'active:scale-[.96]': !disabled && !link },
       { 'primary text-white transform disabled:bg-gray-100': primary && !warning },
       { 'primary warning text-white disabled:bg-coral-200': primary && warning },
-      { 'secondary bg-white text-gray-500 border': secondary && !warning,
+      { 'secondary bg-white text-gray-500 border disabled:hover:bg-transparent': secondary && !warning,
         'hover:bg-gray-100/[.15] active:bg-bg-gray-100/[.25] disabled:text-gray-100 disabled:border': secondary && !warning },
-      { 'secondary bg-white text-chili border': secondary && warning,
-        'disabled:text-coral-200 disabled:border hover:bg-chili/[.04] active:bg-chili/[.08]': secondary && warning },
+      { 'secondary bg-white text-chili border disabled:hover:bg-transparent disabled:text-coral-200 disabled:border hover:bg-chili/[.04] active:bg-chili/[.08]': secondary && warning },
       { 'text-primary-500 hover:bg-primary-500/[.04] active:bg-primary-500/[.08] active:text-primary-700 disabled:text-gray-100 disabled:border disabled:hover:bg-transparent': subtle && !warning },
       { 'text-chili hover:bg-chili/[.04] active:bg-chili/[.08] disabled:text-coral-300 disabled:border disabled:hover:bg-transparent': subtle && warning }
     ]"
