@@ -55,7 +55,8 @@ const textContentObject = {
   looksGreat: 'Looks great!',
   uploading: 'Uploading',
   canOnlySelectOneFile: 'You can only select 1 file.',
-  fileIsTooLarge: 'File is too large.',
+  fileFor: 'Audience',
+  fileIsTooLarge: 'exceeds file size limit of',
   fileTypeNotValid: 'File is not a valid file type.',
   dragAndDropHere: 'Drag and drop files here',
   mightTakeAMinute: 'This might take a minute.',
@@ -68,7 +69,7 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { Dropzone },
   setup: () => ({ args }),
-  data: () => ({ fileUploadStatus: args.status, file: null, textContentObject }),
+  data: () => ({ fileUploadStatus: args.status, selectedFile: null, textContentObject }),
   methods: {
     uploadAudienceFile () {
       setTimeout(() => {
@@ -76,20 +77,20 @@ const Template = (args, { argTypes }) => ({
       }, 2000);
     },
     removeAudienceFile () {
-      this.file = null;
+      this.selectedFile = null;
       this.fileUploadStatus = null;
     }
   },
   template: `
     <div style="width: 700px">
         <Dropzone
-            upload-id="dropzone"
+            input-id="dropzone"
             :accept-type="args.acceptType"
             :max-size-in-bytes="Number(args.maxSizeInBytes)"
             :show-type-and-max-size="args.showTypeAndMaxSize"
             :sample-link-url="args.sampleLinkUrl"
             :status="fileUploadStatus"
-            :file="file"
+            :file="selectedFile"
             :text-content="textContentObject"
             @select="uploadAudienceFile"
             @remove="removeAudienceFile"

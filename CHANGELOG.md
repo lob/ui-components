@@ -1,10 +1,16 @@
 # CHANGELOG
 
-## 1.0.0-beta.49
+## 1.0.0-beta.50
 
 ### Features
 
 - Add new 'subtle' variant style to LobButton & LobLink
+
+## 1.0.0-beta.49
+
+### Features
+
+- add `fileFor` prop to the `Dropzone` component to update the 'fileSizeError' text
 
 ## 1.0.0-beta.48
 

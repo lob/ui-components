@@ -135,7 +135,7 @@ export default {
       validator: function (value) {
         const requiredKeys = ['dragAndDropHere', 'yourFile', 'or', 'uploadFileButtonText',
           'acceptedFormatIs', 'acceptedFormatsAre', 'maxFileSizeIs', 'downloadSampleFile',
-          'uploading', 'mightTakeAMinute', 'looksGreat', 'removeFileButtonText',
+          'uploading', 'mightTakeAMinute', 'looksGreat', 'removeFileButtonText', 'fileFor',
           'couldNotUpload', 'canOnlySelectOneFile', 'fileIsTooLarge', 'fileTypeNotValid',
           'defaultErrorText', 'errorMessage', 'successMessage'];
         return requiredKeys.every((key) => value.hasOwnProperty(key));
@@ -216,7 +216,7 @@ export default {
           return this.textContent.canOnlySelectOneFile;
         }
         if (this.fileSizeError) {
-          return this.textContent.fileIsTooLarge;
+          return `${this.textContent.fileFor} ${this.textContent.fileIsTooLarge} ${formatBytes(this.maxSizeInBytes)}`;
         }
         if (this.fileTypeError) {
           return this.textContent.fileTypeNotValid;

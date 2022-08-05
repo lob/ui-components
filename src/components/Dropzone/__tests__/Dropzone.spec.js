@@ -17,7 +17,8 @@ const textContentObject = {
   looksGreat: 'Looks great!',
   uploading: 'Uploading',
   canOnlySelectOneFile: 'You can only select 1 file.',
-  fileIsTooLarge: 'File is too large.',
+  fileFor: 'Audience',
+  fileIsTooLarge: 'exceeds file size limit of',
   fileTypeNotValid: 'File is not a valid file type.',
   dragAndDropHere: 'Drag and drop files here',
   mightTakeAMinute: 'This might take a minute.',
@@ -246,7 +247,7 @@ describe('Dropzone', () => {
         }
       });
 
-      const tooLarge = await findByText('File is too large.');
+      const tooLarge = await findByText('Audience exceeds file size limit of 1MB');
       expect(tooLarge).toBeInTheDocument();
     });
 
