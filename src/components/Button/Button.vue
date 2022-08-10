@@ -5,7 +5,7 @@
       { 'font-medium': primary || secondary || subtle },
       { 'px-6 text-base h-[48px]': regular },
       { 'px-4 text-sm h-[32px]': small },
-      { 'px-0 h-full text-base': link },
+      { 'px-0 h-auto text-base': link },
       { 'underline text-primary-500 hover:text-primary-900 active:text-primary-900 disabled:text-gray-500': link },
       { 'cursor-not-allowed': disabled },
       { 'active:scale-[.96]': !disabled && !link },
