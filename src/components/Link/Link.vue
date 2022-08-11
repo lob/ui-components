@@ -14,18 +14,22 @@
         { 'underline': underline && link },
         { '!text-gray-500': disabled && link },
         { 'text-primary-500 hover:text-primary-900 active:text-primary-900': !inheritTextColor && link },
-        { 'flex justify-center items-center rounded-lg no-underline font-medium': primary || secondary },
-        { 'focus-visible:ring-4 focus-visible:ring-primary-100 focus:ring-transparent focus:outline-none active:scale-[.96]': primary || secondary },
-        { 'px-6 text-base h-[48px]': regular && (primary || secondary) },
-        { 'px-4 text-sm h-[32px]': small && (primary || secondary) },
-        { 'primary !text-white ': !disabled && primary && !warning },
+        { 'flex justify-center items-center rounded-lg no-underline font-medium': primary || secondary || subtle },
+        { 'focus-visible:ring-4 focus-visible:ring-primary-100 focus:ring-transparent focus:outline-none active:scale-[.96]': primary || secondary || subtle },
+        { 'px-6 text-base h-[48px]': regular && (primary || secondary || subtle) },
+        { 'px-4 text-sm h-[32px]': small && (primary || secondary || subtle) },
+        { 'bg-gradient-114 from-[#1876db] to-[#5748ff] hover:from-[#5748ff] hover:to-[#1876db] !text-white': !disabled && primary && !warning },
         { 'bg-gray-100 !text-white': disabled && primary && !warning },
-        { 'primary warning !text-white': !disabled && primary && warning },
+        { 'bg-gradient-114 from-[#db1818] to-[#ec4949] hover:from-[#ec4949] hover:to-[#db1818] !text-white': !disabled && primary && warning },
         { 'bg-coral-200 !text-white': disabled && primary && warning },
-        { 'secondary border !border-gray-300 text-gray-500 hover:text-gray-500 hover:bg-gray-100/[.15] active:bg-gray-100/[.25]': !disabled && secondary && !warning },
-        { 'border border-gray-100 text-gray-100': disabled && secondary && !warning },
-        { 'secondary bg-white border !border-chili text-chili hover:bg-chili/[.04] active:bg-chili/[.08]': !disabled && secondary && warning },
-        { 'border border-coral-200 text-coral-200': disabled && secondary && warning }
+        { 'border-2 !border-gray-300 text-gray-500 hover:text-gray-500 hover:bg-gray-100/[.15] active:bg-gray-100/[.25]': !disabled && secondary && !warning },
+        { 'text-gray-100 border-2': disabled && secondary && !warning },
+        { 'bg-white border-2 !border-chili text-chili hover:bg-chili/[.04] active:bg-chili/[.08]': !disabled && secondary && warning },
+        { 'text-coral-200 border-2': disabled && secondary && warning },
+        { 'text-primary-500 hover:bg-primary-500/[.04] active:bg-primary-500/[.08] active:text-primary-700': !disabled && subtle && !warning },
+        { 'text-gray-100 border-2 hover:bg-transparent': disabled && subtle && !warning },
+        { 'text-chili hover:bg-chili/[.04] active:bg-chili/[.08]' : !disabled && subtle && warning },
+        { 'text-coral-300 border-2 hover:bg-transparent' : disabled && subtle && warning }
       ]"
       v-bind="$attrs"
     >
@@ -49,7 +53,7 @@ export default {
       type: String,
       default: 'link',
       validator: function (value) {
-        return ['link', 'primary-button', 'secondary-button'].includes(value);
+        return ['link', 'primary-button', 'secondary-button', 'subtle-button'].includes(value);
       }
     },
     small: {
@@ -103,6 +107,9 @@ export default {
     secondary () {
       return this.variant === 'secondary-button';
     },
+    subtle () {
+      return this.variant === 'subtle-button';
+    },
     regular () {
       return !this.small;
     },
@@ -119,23 +126,3 @@ export default {
   }
 };
 </script>
-
-<style scoped lang="scss">
-.primary:not(:disabled) {
-  background: linear-gradient(114.08deg, #1876db 7.95%, #5748ff 90.87%);
-}
-
-.primary:focus:not(:disabled),
-.primary:hover:not(:disabled):not(:focus) {
-  background: linear-gradient(114.08deg, #5748ff 7.95%, #1876db 90.87%);
-}
-
-.primary.warning:not(:disabled) {
-  background: linear-gradient(114.08deg, #db1818 7.95%, #ec4949 90.87%);
-}
-
-.primary.warning:focus:not(:disabled),
-.primary.warning:hover:not(:disabled):not(:focus) {
-  background: linear-gradient(114.08deg, #ec4949 7.95%, #db1818 90.87%);
-}
-</style>

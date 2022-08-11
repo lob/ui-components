@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.0.0-beta.50
+
+### Features
+
+- Add new 'subtle' variant style to LobButton & LobLink
+
 ## 1.0.0-beta.49
 
 ### Features
