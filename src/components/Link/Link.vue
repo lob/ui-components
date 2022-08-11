@@ -22,14 +22,14 @@
         { 'bg-gray-100 !text-white': disabled && primary && !warning },
         { 'bg-gradient-114 from-[#db1818] to-[#ec4949] hover:from-[#ec4949] hover:to-[#db1818] !text-white': !disabled && primary && warning },
         { 'bg-coral-200 !text-white': disabled && primary && warning },
-        { 'border !border-gray-300 text-gray-500 hover:text-gray-500 hover:bg-gray-100/[.15] active:bg-gray-100/[.25]': !disabled && secondary && !warning },
-        { 'text-gray-100 border': disabled && secondary && !warning },
-        { 'bg-white border !border-chili text-chili hover:bg-chili/[.04] active:bg-chili/[.08]': !disabled && secondary && warning },
-        { 'text-coral-200 border': disabled && secondary && warning },
+        { 'border-2 !border-gray-300 text-gray-500 hover:text-gray-500 hover:bg-gray-100/[.15] active:bg-gray-100/[.25]': !disabled && secondary && !warning },
+        { 'text-gray-100 border-2': disabled && secondary && !warning },
+        { 'bg-white border-2 !border-chili text-chili hover:bg-chili/[.04] active:bg-chili/[.08]': !disabled && secondary && warning },
+        { 'text-coral-200 border-2': disabled && secondary && warning },
         { 'text-primary-500 hover:bg-primary-500/[.04] active:bg-primary-500/[.08] active:text-primary-700': !disabled && subtle && !warning },
-        { 'text-gray-100 border hover:bg-transparent': disabled && subtle && !warning },
+        { 'text-gray-100 border-2 hover:bg-transparent': disabled && subtle && !warning },
         { 'text-chili hover:bg-chili/[.04] active:bg-chili/[.08]' : !disabled && subtle && warning },
-        { 'text-coral-300 border hover:bg-transparent' : disabled && subtle && warning }
+        { 'text-coral-300 border-2 hover:bg-transparent' : disabled && subtle && warning }
       ]"
       v-bind="$attrs"
     >

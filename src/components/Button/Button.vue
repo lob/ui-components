@@ -13,11 +13,11 @@
       { 'text-white disabled:bg-gray-100': primary && !warning && disabled },
       { 'bg-gradient-114 from-[#db1818] to-[#ec4949] hover:from-[#ec4949] hover:to-[#db1818] text-white': primary && warning && !disabled },
       { 'text-white disabled:!bg-coral-200': primary && warning && disabled },
-      { 'bg-white text-gray-500 border disabled:hover:bg-transparent': secondary && !warning,
-        'hover:bg-gray-100/[.15] active:bg-bg-gray-100/[.25] disabled:text-gray-100 disabled:border': secondary && !warning },
-      { 'bg-white text-chili border disabled:hover:bg-transparent disabled:text-coral-200 disabled:border hover:bg-chili/[.04] active:bg-chili/[.08]': secondary && warning },
-      { 'text-primary-500 hover:bg-primary-500/[.04] active:bg-primary-500/[.08] active:text-primary-700 disabled:text-gray-100 disabled:border disabled:hover:bg-transparent': subtle && !warning },
-      { 'text-chili hover:bg-chili/[.04] active:bg-chili/[.08] disabled:text-coral-300 disabled:border disabled:hover:bg-transparent': subtle && warning }
+      { 'bg-white text-gray-500 border-2 disabled:hover:bg-transparent': secondary && !warning,
+        'hover:bg-gray-100/[.15] active:bg-bg-gray-100/[.25] disabled:text-gray-100 disabled:border-2': secondary && !warning },
+      { 'bg-white text-chili border-2 disabled:hover:bg-transparent disabled:text-coral-200 disabled:border-2 hover:bg-chili/[.04] active:bg-chili/[.08]': secondary && warning },
+      { 'text-primary-500 hover:bg-primary-500/[.04] active:bg-primary-500/[.08] active:text-primary-700 disabled:text-gray-100 disabled:border-2 disabled:hover:bg-transparent': subtle && !warning },
+      { 'text-chili hover:bg-chili/[.04] active:bg-chili/[.08] disabled:text-coral-300 disabled:border-2 disabled:hover:bg-transparent': subtle && warning }
     ]"
     :disabled="disabled"
     @click="handleClick"
