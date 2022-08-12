@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.0.0-beta.51
+
+### Bug fixes
+
+Fix the size of the `Radiobutton` dot for the case of the radio button being checked and disabled
+
 ## 1.0.0-beta.50
 
 ### Features
