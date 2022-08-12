@@ -201,8 +201,8 @@ input {
 
   &:checked:disabled + label::after {
     @apply bg-gray-100;
-    @apply h-2.5;
-    @apply w-2.5;
+    @apply h-2;
+    @apply w-2;
     @apply top-[7px];
   }
 
