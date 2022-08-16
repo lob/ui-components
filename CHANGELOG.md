@@ -1,10 +1,15 @@
 # CHANGELOG
 
-## 1.0.0-beta.51
+## 1.0.0-beta.52
 
 ### Features
 
 - Update the background color of the `ToolTip` from `primary-700` to `gray-900` to match the new design system.
+## 1.0.0-beta.51
+
+### Bug fixes
+
+Fix the size of the `Radiobutton` dot for the case of the radio button being checked and disabled
 
 ## 1.0.0-beta.50
 
