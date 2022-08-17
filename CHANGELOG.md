@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.0.0-beta.52
+
+### Features
+
+- Update the background color of the `ToolTip` from `primary-700` to `gray-900` to match the new design system.
 ## 1.0.0-beta.51
 
 ### Bug fixes

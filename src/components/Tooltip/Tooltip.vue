@@ -8,7 +8,7 @@
         v-if="$slots.content"
         ref="tooltipContainer"
         :class="[
-          'z-10 px-4 py-4 text-sm rounded-md m-auto bg-primary-700 text-white relative',
+          'z-10 px-4 py-4 text-sm rounded-md m-auto bg-gray-900 text-white relative',
           { 'opacity-0': !hover }
         ]"
       >
@@ -17,16 +17,16 @@
           :class="[
             'absolute bg-transparent w-0 h-0 m-auto',
             {
-              'border-l-8 border-r-8 border-b-8 border-l-transparent border-r-transparent border-b-primary-700 -top-2': hasUpArrow
+              'border-l-8 border-r-8 border-b-8 border-l-transparent border-r-transparent border-b-gray-900 -top-2': hasUpArrow
             },
             {
-              'border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-primary-700 -bottom-2': hasDownArrow
+              'border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-gray-900 -bottom-2': hasDownArrow
             },
             {
-              'border-t-8 border-b-8 border-r-8 border-t-transparent border-b-transparent border-r-primary-700 -left-2': hasLeftArrow
+              'border-t-8 border-b-8 border-r-8 border-t-transparent border-b-transparent border-r-gray-900 -left-2': hasLeftArrow
             },
             {
-              'border-t-8 border-b-8 border-l-8 border-t-transparent border-b-transparent border-l-primary-700 -right-2': hasRightArrow
+              'border-t-8 border-b-8 border-l-8 border-t-transparent border-b-transparent border-l-gray-900 -right-2': hasRightArrow
             },
             { 'top-0 bottom-0': arrowIsVerticallyCenter },
             { 'left-0 right-0': arrowIsHorizontallyCenter },
