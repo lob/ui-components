@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.0.0-beta.47
+
+### Features
+
+Added twoTone prop to `MegaButton`
+
 ## 1.0.0-beta.46
 
 ### Features
