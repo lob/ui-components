@@ -24,7 +24,8 @@
         'peer-disabled:border-2 peer-checked:border-disabled-gray',
         { 'max-w-[240px]': smallText },
         { 'min-w-[160px] max-w-[240px]': imageSource && !smallText },
-        { 'items-center': !hasDisabledBanner && !smallText }
+        { 'items-center': !hasDisabledBanner && !smallText },
+        { 'border-0' : twoTone }
       ]"
     >
       <div>
@@ -36,10 +37,9 @@
         <div
           v-if="imageSource"
           data-testId="imageContainer"
-          class=""
           :class="[
-            'px-4 py-6',
-            {'!pb-0 bg-white-100 m-0 rounded-t-lg' : twoTone}
+            'mx-4 my-6',
+            {'!m-0 px-4 pt-6 bg-white-100 rounded-t-lg' : twoTone}
           ]"
         >
           <div
