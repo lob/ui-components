@@ -36,7 +36,11 @@
         <div
           v-if="imageSource"
           data-testId="imageContainer"
-          class="mx-4 my-6"
+          class=""
+          :class="[
+            'px-4 py-6',
+            {'!pb-0 bg-white-100 m-0 rounded-t-lg' : twoTone}
+          ]"
         >
           <div
             v-if="hasDisabledBanner"
@@ -138,6 +142,10 @@ export default {
     imageAltText: {
       type: String,
       default: ''
+    },
+    twoTone: {
+      type: Boolean,
+      default: false
     }
   },
   emits: ['update:modelValue', 'input', 'click'],
