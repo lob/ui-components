@@ -1,10 +1,45 @@
 # CHANGELOG
 
-## 1.0.0-beta.47
+## 1.0.0-beta.53
 
 ### Features
 
 Added twoTone prop to `MegaButton`
+
+## 1.0.0-beta.52
+
+### Features
+
+- Update the background color of the `ToolTip` from `primary-700` to `gray-900` to match the new design system.
+## 1.0.0-beta.51
+
+### Bug fixes
+
+Fix the size of the `Radiobutton` dot for the case of the radio button being checked and disabled
+
+## 1.0.0-beta.50
+
+### Features
+
+- Add new 'subtle' variant style to LobButton & LobLink
+
+## 1.0.0-beta.49
+
+### Features
+
+- add `fileFor` prop to the `Dropzone` component to update the 'fileSizeError' text
+
+## 1.0.0-beta.48
+
+### Features
+
+- New `Dropzone` component
+
+## 1.0.0-beta.47
+
+### Features
+
+Add `open:list`, `close:list`, `hover:option` emits to the `Dropdown` component
 
 ## 1.0.0-beta.46
 

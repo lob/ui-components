@@ -2,20 +2,22 @@
   <button
     :class="[
       'flex justify-center items-center rounded-lg focus-visible:ring-4 focus-visible:ring-primary-100 focus:outline-none',
-      { 'font-medium': primary || secondary },
+      { 'font-medium': primary || secondary || subtle },
       { 'px-6 text-base h-[48px]': regular },
       { 'px-4 text-sm h-[32px]': small },
-      { 'px-0 h-full text-base': link || none },
+      { 'px-0 h-auto text-base': link },
       { 'underline text-primary-500 hover:text-primary-900 active:text-primary-900 disabled:text-gray-500': link },
-      { 'disabled:text-gray-500': none },
       { 'cursor-not-allowed': disabled },
       { 'active:scale-[.96]': !disabled && !link },
-      { 'primary text-white transform disabled:bg-gray-100': primary && !warning },
-      { 'primary warning text-white disabled:bg-coral-200': primary && warning },
-      { 'secondary bg-white border border-gray-300 text-gray-500': secondary && !warning,
-        'hover:bg-gray-100/[.15] active:bg-bg-gray-100/[.25] disabled:border-gray-100 disabled:text-gray-100': secondary && !warning },
-      { 'secondary bg-white border border-chili text-chili': secondary && warning,
-        'disabled:border-coral-200 disabled:text-coral-200 hover:bg-chili/[.04] active:bg-chili/[.08]': secondary && warning }
+      { 'bg-gradient-114 from-[#1876db] to-[#5748ff] hover:from-[#5748ff] hover:to-[#1876db] text-white': primary && !warning && !disabled },
+      { 'text-white disabled:bg-gray-100': primary && !warning && disabled },
+      { 'bg-gradient-114 from-[#db1818] to-[#ec4949] hover:from-[#ec4949] hover:to-[#db1818] text-white': primary && warning && !disabled },
+      { 'text-white disabled:!bg-coral-200': primary && warning && disabled },
+      { 'bg-white text-gray-500 border-2 disabled:hover:bg-transparent': secondary && !warning,
+        'hover:bg-gray-100/[.15] active:bg-bg-gray-100/[.25] disabled:text-gray-100 disabled:border-2': secondary && !warning },
+      { 'bg-white text-chili border-2 disabled:hover:bg-transparent disabled:text-coral-200 disabled:border-2 hover:bg-chili/[.04] active:bg-chili/[.08]': secondary && warning },
+      { 'text-primary-500 hover:bg-primary-500/[.04] active:bg-primary-500/[.08] active:text-primary-700 disabled:text-gray-100 disabled:border-2 disabled:hover:bg-transparent': subtle && !warning },
+      { 'text-chili hover:bg-chili/[.04] active:bg-chili/[.08] disabled:text-coral-300 disabled:border-2 disabled:hover:bg-transparent': subtle && warning }
     ]"
     :disabled="disabled"
     @click="handleClick"
@@ -34,7 +36,7 @@ export default {
       type: String,
       default: 'primary',
       validator: function (value) {
-        return ['primary', 'secondary', 'link', 'none'].includes(value);
+        return ['primary', 'secondary', 'link', 'subtle'].includes(value);
       }
     },
     small: {
@@ -61,8 +63,8 @@ export default {
     link () {
       return this.variant === 'link';
     },
-    none () {
-      return this.variant === 'none';
+    subtle () {
+      return this.variant === 'subtle';
     },
     regular () {
       return !this.small;
@@ -75,23 +77,3 @@ export default {
   }
 };
 </script>
-
-<style scoped lang="scss">
-.primary:not(:disabled) {
-  background: linear-gradient(114.08deg, #1876db 7.95%, #5748ff 90.87%);
-}
-
-.primary:focus:not(:disabled),
-.primary:hover:not(:disabled):not(:focus) {
-  background: linear-gradient(114.08deg, #5748ff 7.95%, #1876db 90.87%);
-}
-
-.primary.warning:not(:disabled) {
-  background: linear-gradient(114.08deg, #db1818 7.95%, #ec4949 90.87%);
-}
-
-.primary.warning:focus:not(:disabled),
-.primary.warning:hover:not(:disabled):not(:focus) {
-  background: linear-gradient(114.08deg, #ec4949 7.95%, #db1818 90.87%);
-}
-</style>

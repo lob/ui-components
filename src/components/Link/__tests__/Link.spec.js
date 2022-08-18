@@ -132,7 +132,7 @@ describe('Link', () => {
 
     const linkContent = queryByText(slotContent);
     expect(linkContent).toBeInTheDocument();
-    expect(linkContent).toHaveClass('primary warning');
+    expect(linkContent).toHaveClass('bg-gradient-114 from-[#db1818] to-[#ec4949]');
   });
 
 });
