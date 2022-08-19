@@ -78,7 +78,8 @@ WithImageAndSmallText.args = {
   disabled: false,
   disabledBanner: null,
   text: 'Minimum 80% fur by weight',
-  imageSource: image
+  imageSource: image,
+  twoTone: true
 };
 
 const megaButtonModel = '';
