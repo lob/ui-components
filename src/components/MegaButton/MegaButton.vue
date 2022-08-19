@@ -41,7 +41,7 @@
           data-testId="imageContainer"
           :class="[
             'mx-4 my-6',
-            {'!m-0 px-4 py-6 bg-white-100 rounded-t-lg' : twoTone},
+            {'!m-0 px-4 py-6 bg-white-100 rounded-t-lg h-32' : twoTone},
             {'!pb-0' : twoTone && lowerImage}
           ]"
         >
@@ -53,7 +53,10 @@
             {{ disabledBanner }}
           </div>
           <img
-            class="max-h-20 mx-auto"
+            :class="[
+              'max-h-20 mx-auto',
+              {'!max-h-full' : lowerImage}
+            ]"
             :src="imageSource"
             :alt="imageAltText"
           >
