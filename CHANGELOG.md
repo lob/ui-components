@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.0.0-beta.54
+
+### Features
+
+Added lowerImage prop to `MegaButton`
+
 ## 1.0.0-beta.53
 
 ### Features

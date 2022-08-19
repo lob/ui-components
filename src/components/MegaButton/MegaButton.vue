@@ -28,7 +28,9 @@
         { 'border-0' : twoTone }
       ]"
     >
-      <div>
+      <div
+        class="w-full"
+      >
         <div
           v-if="disabled && !disabledBanner"
           data-testId="strikethru"
@@ -39,7 +41,8 @@
           data-testId="imageContainer"
           :class="[
             'mx-4 my-6',
-            {'!m-0 px-4 pt-6 bg-white-100 rounded-t-lg' : twoTone}
+            {'!m-0 px-4 py-6 bg-white-100 rounded-t-lg' : twoTone},
+            {'!pb-0' : twoTone && lowerImage}
           ]"
         >
           <div
@@ -144,6 +147,10 @@ export default {
       default: ''
     },
     twoTone: {
+      type: Boolean,
+      default: false
+    },
+    lowerImage: {
       type: Boolean,
       default: false
     }
