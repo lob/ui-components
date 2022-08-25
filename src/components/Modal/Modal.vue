@@ -13,7 +13,10 @@
         aria-labelledby="header"
         aria-describedby="modalDescription"
         :style="{'width': width}"
-        class="relative bg-white flex flex-col overflow-y-auto shadow rounded-lg p-5 max-h-5/6"
+        :class="[
+          'relative bg-white flex flex-col overflow-y-auto shadow rounded-lg p-5 max-h-5/6',
+          {'!p-0' : noPadding}
+        ]"
         @mousedown.stop
       >
         <header
@@ -65,11 +68,15 @@ export default {
     },
     header: {
       type: String,
-      required: true
+      default: null
     },
     closeButtonAriaLabel: {
       type: String,
       required: true
+    },
+    noPadding: {
+      type: Boolean,
+      default: false
     }
   },
   emits: ['close'],
