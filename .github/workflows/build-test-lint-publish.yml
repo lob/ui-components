@@ -104,12 +104,41 @@ jobs:
           npm ci --legacy-peer-deps
           npm run build
 
-      - name: Publish the package
+      - name: Publish the package to npm
         id: publish
         uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ env.NPM_TOKEN }}
+          # only publish if the version in package.json has changed
+          check-version: true
 
-      - if: steps.publish.outputs.type != 'none'
-        run: |
-          echo "Version changed: ${{ steps.publish.outputs.old-version }} => ${{ steps.publish.outputs.version }}"
+      - name: Add git tag ${{ steps.publish.outputs.version }}
+        if: steps.publish.outputs.type != 'none'
+        uses: actions/github-script@v5
+        env:
+          NEW_VERSION: ${{ steps.publish.outputs.version }}
+          OLD_VERSION: ${{ steps.publish.outputs.old-version }}
+        with:
+          script: |
+            console.log(`Version changed: ${OLD_VERSION} => ${NEW_VERSION}`);
+
+            // create the tag
+            const tagRes = await github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: `refs/tags/${NEW_VERSION}`,
+              sha: context.sha
+            });
+            console.log(`Tag creation result: ${tagRes.status}`);
+
+            // create the release
+            console.log(`Creating release ${NEW_VERSION}`);
+            const relRes = await github.rest.repos.createRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag_name: NEW_VERSION,
+              name: NEW_VERSION,
+              body: `Please refer to [CHANGELOG.md](https://github.com/lob/ui-components/blob/main/CHANGELOG.md) for details.`
+              generate_release_notes: true
+            });
+            console.log(`Release creation result: ${relRes.status}`);
