@@ -14,8 +14,7 @@
         aria-describedby="modalDescription"
         :style="{'width': width}"
         :class="[
-          'relative bg-white flex flex-col overflow-y-auto shadow rounded-lg p-5 max-h-5/6',
-          {'!p-0' : noPadding}
+          'relative bg-white flex flex-col overflow-y-auto shadow rounded-lg max-h-5/6', noPadding ? 'p-0' : 'p-5'
         ]"
         @mousedown.stop
       >
