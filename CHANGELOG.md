@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 1.0.0-beta.55
+
+### Features
+
+Added noPadding prop to `Modal`
+Made header prop optional in `Modal`
+
 ## 1.0.0-beta.54
 
 ### Features
