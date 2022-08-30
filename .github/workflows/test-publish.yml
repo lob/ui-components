@@ -1,7 +1,9 @@
-name: Node Build / Test / Lint / Publish
+name: Test and Publish
 
-# Run this when someone pushes a branch
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   # Get the versions of node and npm as defined in the package.json engines
@@ -37,7 +39,6 @@ jobs:
     - run: |
         echo "npm version found: ${{ steps.npm_version.outputs.prop }}"
 
-  # Run lint and tests
   run-tests:
     runs-on: ubuntu-latest
 
@@ -60,20 +61,16 @@ jobs:
 
       # Setup npm with the version defined in package.json engines.
       - name: Use npm ${{ env.NPM_VERSION }}
-        run: |
-          npm install -g npm@${{ env.NPM_VERSION }}
+        run: npm install -g npm@${{ env.NPM_VERSION }}
 
-      - name: Running the install, lint, and test commands with npm ${{ env.NPM_VERSION }}
-        run: |
-          npm ci --legacy-peer-deps
-          npm run lint
-          npm run test:ci
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Run unit tests
+        run: npm run test:ci
 
   # Publish package to npm
   publish:
-    # Only run when pushing to the main branch
-    if: ${{ github.ref == 'refs/heads/main' }}
-
     runs-on: ubuntu-latest
 
     needs: [get-versions, run-tests]
@@ -99,10 +96,11 @@ jobs:
         run: |
           npm install -g npm@${{ env.NPM_VERSION }}
 
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
       - name: Build the package
-        run: |
-          npm ci --legacy-peer-deps
-          npm run build
+        run: npm run build
 
       - name: Publish the package to npm
         id: publish
@@ -142,3 +140,5 @@ jobs:
               generate_release_notes: true
             });
             console.log(`Release creation result: ${relRes.status}`);
+
+
