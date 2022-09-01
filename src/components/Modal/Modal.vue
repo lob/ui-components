@@ -27,7 +27,7 @@
         </header>
         <section
           id="modalDescription"
-          class="py-5"
+          :class="[noPadding ? 'py-0' : 'py-5']"
         >
           <slot />
         </section>

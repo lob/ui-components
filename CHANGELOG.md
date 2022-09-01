@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.0.0-beta.56
+
+### Features
+
+Additional changes to noPadding prop for `Modal`
+
 ## 1.0.0-beta.55
 
 ### Features
