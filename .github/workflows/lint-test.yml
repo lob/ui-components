@@ -1,7 +1,9 @@
 name: Lint and Test
 
-# Run this when someone pushes a branch
-on: [push]
+on:
+  push:
+    branches-ignore:
+      - main
 
 jobs:
   # Get the versions of node and npm as defined in the package.json engines
@@ -15,7 +17,7 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Read node version from package.json
       id: node_version
@@ -50,11 +52,11 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       # Setup node with the version defined in package.json engines.
       - name: Use Node ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
 
