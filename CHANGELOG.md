@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.0.0-beta.57
+
+### Bug fixes
+
+Adds a `relative` class wrapper to the MegaButton to avoid unwanted behavior because of absolute positioning
+
 ## 1.0.0-beta.56
 
 ### Features
@@ -30,6 +36,7 @@ Added twoTone prop to `MegaButton`
 ### Features
 
 - Update the background color of the `ToolTip` from `primary-700` to `gray-900` to match the new design system.
+
 ## 1.0.0-beta.51
 
 ### Bug fixes
