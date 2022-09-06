@@ -114,10 +114,12 @@ jobs:
         if: steps.publish.outputs.type != 'none'
         uses: actions/github-script@v5
         env:
-          NEW_VERSION: ${{ steps.publish.outputs.version }}
-          OLD_VERSION: ${{ steps.publish.outputs.old-version }}
+          NEW_VERSION: '${{ steps.publish.outputs.version }}'
+          OLD_VERSION: '${{ steps.publish.outputs.old-version }}'
         with:
           script: |
+            const { OLD_VERSION, NEW_VERSION } = process.env;
+
             console.log(`Version changed: ${OLD_VERSION} => ${NEW_VERSION}`);
 
             // create the tag
