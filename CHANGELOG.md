@@ -8,7 +8,8 @@ Adds a `topFullImage` prop to `MegaButton`
 
 ### Breaking changes
 
-removes `twoToned` and `lowerImage` props
+Removes `twoToned` and `lowerImage` props
+
 ## 1.0.0-beta.57
 
 ### Bug fixes
