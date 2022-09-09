@@ -78,8 +78,20 @@ WithImageAndSmallText.args = {
   disabled: false,
   disabledBanner: null,
   text: 'Minimum 80% fur by weight',
-  imageSource: image,
-  twoTone: true
+  imageSource: image
+};
+
+export const WithTopFullImage = Template.bind({});
+WithTopFullImage.args = {
+  name: 'cat-type',
+  id: 'floofyboi',
+  value: 'floofyboi',
+  label: 'Floofyboi',
+  disabled: false,
+  disabledBanner: null,
+  text: 'Minimum 80% fur by weight',
+  imageSource: 'https://s3.us-west-2.amazonaws.com/public.lob.com/dashboard/campaigns/card-with-enterprise-badge.png',
+  topFullImage: true
 };
 
 const megaButtonModel = '';
@@ -163,7 +175,6 @@ const GroupWithImageTemplate = (args, { argTypes }) => ({
         v-model="megaButtonModel"
         imageSource=${image}
         text="Minimum 80% fur by weight. Very very very very big boy."
-
       />
     </RadioGroup>
   </div>

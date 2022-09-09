@@ -25,7 +25,7 @@
         { 'max-w-[240px]': smallText },
         { 'min-w-[160px] max-w-[240px]': imageSource && !smallText },
         { 'items-center': !hasDisabledBanner && !smallText },
-        { 'border-0' : twoTone }
+        {'!border-0' : topFullImage}
       ]"
     >
       <div
@@ -41,8 +41,7 @@
           data-testId="imageContainer"
           :class="[
             'mx-4 my-6',
-            {'!m-0 px-4 py-6 bg-white-100 rounded-t-lg h-32' : twoTone},
-            {'!pb-0' : twoTone && lowerImage}
+            {'!m-0' : topFullImage}
           ]"
         >
           <div
@@ -55,7 +54,7 @@
           <img
             :class="[
               'max-h-20 mx-auto',
-              {'!max-h-full' : lowerImage}
+              {'!max-h-full' : topFullImage}
             ]"
             :src="imageSource"
             :alt="imageAltText"
@@ -149,11 +148,7 @@ export default {
       type: String,
       default: ''
     },
-    twoTone: {
-      type: Boolean,
-      default: false
-    },
-    lowerImage: {
+    topFullImage: {
       type: Boolean,
       default: false
     }

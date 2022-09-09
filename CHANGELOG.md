@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 1.0.0-beta.58
+
+### Features
+
+Adds a `topFullImage` prop to `MegaButton`
+
+### Breaking changes
+
+Removes `twoToned` and `lowerImage` props
+
 ## 1.0.0-beta.57
 
 ### Bug fixes
