@@ -25,7 +25,7 @@
         { 'max-w-[240px]': smallText },
         { 'min-w-[160px] max-w-[240px]': imageSource && !smallText },
         { 'items-center': !hasDisabledBanner && !smallText },
-        {'!border-0' : topFullImage}
+        {'border-0' : topFullImage && !checked}
       ]"
     >
       <div
