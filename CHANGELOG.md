@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.0.0-beta.59
+
+### Bug fixes
+
+Fixes `MegaButton` not showing as selected when using prop `topFullImage`
+
 ## 1.0.0-beta.58
 
 ### Features
