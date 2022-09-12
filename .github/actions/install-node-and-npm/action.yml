@@ -1,0 +1,42 @@
+name: Install Node and NPM
+description: 'Determine required node and npm versions and install'
+
+outputs:
+  node_version:
+    description: 'The node version installed'
+    value: ${{ steps.node_version.outputs.prop }}
+  npm_version:
+    description: 'The npm version installed'
+    value: ${{ steps.npm_version.outputs.prop }}
+
+runs:
+  using: composite
+  steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Read node version from package.json engines
+      id: node_version
+      uses: notiz-dev/github-action-json-property@v0.1.0
+      with:
+        path: "package.json"
+        prop_path: "engines.node"
+
+    - name: Read npm version from package.json engines
+      id: npm_version
+      uses: notiz-dev/github-action-json-property@v0.1.0
+      with:
+        path: "package.json"
+        prop_path: "engines.npm"
+
+    - name: Install Node ${{ steps.node_version.outputs.prop }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ steps.node_version.outputs.prop }}
+
+    - name: Install npm ${{ steps.npm_version.outputs.prop }}
+      shell: bash
+      run: |
+        npm install -g npm@${{ steps.npm_version.outputs.prop }}
+
+        echo "Installed node ${{ steps.node_version.outputs.prop }} and npm ${{ steps.npm_version.outputs.prop }}"

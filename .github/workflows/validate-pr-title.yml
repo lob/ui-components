@@ -1,0 +1,30 @@
+name: "PR Title Checker"
+
+on:
+  pull_request:
+    types:
+      - opened
+
+env:
+  JIRA_BASE_URL: "https://lobsters.atlassian.net/"
+  JIRA_PROJECT: "DANG"
+
+jobs:
+  check-pr-title:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        repository: lob/github-actions
+        ref: main
+        token: "${{ secrets.PRIVATE_GITHUB_ACTION_TOKEN }}"
+        path: ./.github/lob
+
+    - name: "Validate PR Title"
+      continue-on-error: true
+      uses: "./.github/lob/actions/validate-pr-title"
+      with:
+        jira_project: 'DANG'
+        jira_api_token: ${{ secrets.JIRA_API_TOKEN }}
+        github_token_secret: ${{ secrets.PRIVATE_GITHUB_ACTION_TOKEN }}
