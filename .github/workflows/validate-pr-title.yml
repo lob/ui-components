@@ -4,18 +4,27 @@ on:
   pull_request:
     types:
       - opened
-      - edited
-      - synchronize
-      - labeled
-      - unlabeled
+
+env:
+  JIRA_BASE_URL: "https://lobsters.atlassian.net/"
+  JIRA_PROJECT: "DANG"
 
 jobs:
-  check:
-    runs-on: ubuntu-latest
+  check-pr-title:
+    runs-on: [self-hosted, Linux, arm64, lob-runner]
 
     steps:
-      - uses: thehanimo/pr-title-checker@v1.3.4
-        with:
-          GITHUB_TOKEN: ${{ secrets.PRIVATE_GITHUB_ACTION_TOKEN }}
-          pass_on_octokit_error: false
-          configuration_path: ".github/pr-title-checker-config.json"
+    - uses: actions/checkout@v2
+      with:
+        repository: lob/github-actions
+        ref: main
+        token: "${{ secrets.PRIVATE_GITHUB_ACTION_TOKEN }}"
+        path: ./.github/lob
+
+    - name: "Validate PR Title"
+      continue-on-error: true
+      uses: "./.github/lob/actions/validate-pr-title"
+      with:
+        jira_project: 'DANG'
+        jira_api_token: ${{ secrets.JIRA_API_TOKEN }}
+        github_token_secret: ${{ secrets.PRIVATE_GITHUB_ACTION_TOKEN }}
