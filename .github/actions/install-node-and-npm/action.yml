@@ -39,4 +39,4 @@ runs:
       run: |
         npm install -g npm@${{ steps.npm_version.outputs.prop }}
 
-        echo "Installed node {{ steps.node_version.outputs.prop }} and npm {{ steps.npm_version.outputs.prop }}"
+        echo "Installed node ${{ steps.node_version.outputs.prop }} and npm ${{ steps.npm_version.outputs.prop }}"
