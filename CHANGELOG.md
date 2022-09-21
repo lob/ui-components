@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.0.0-beta.60
+
+### Features
+
+Adds a `noInput` prop to `MegaButton`
+
 ## 1.0.0-beta.59
 
 ### Bug fixes

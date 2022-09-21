@@ -1,6 +1,7 @@
 <template>
   <div class="relative">
     <input
+      v-if="!noInput"
       :id="id"
       type="radio"
       class="absolute top-1/2 left-1/2 opacity-0 peer"
@@ -149,6 +150,10 @@ export default {
       default: ''
     },
     topFullImage: {
+      type: Boolean,
+      default: false
+    },
+    noInput: {
       type: Boolean,
       default: false
     }
