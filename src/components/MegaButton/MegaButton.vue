@@ -1,7 +1,7 @@
 <template>
   <div class="relative">
     <input
-      v-if="!noInput"
+      v-if="!unavailable"
       :id="id"
       type="radio"
       class="absolute top-1/2 left-1/2 opacity-0 peer"
@@ -153,7 +153,7 @@ export default {
       type: Boolean,
       default: false
     },
-    noInput: {
+    unavailable: {
       type: Boolean,
       default: false
     }

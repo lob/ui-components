@@ -4,7 +4,7 @@
 
 ### Features
 
-Adds a `noInput` prop to `MegaButton`
+Adds a `unavailable` prop to `MegaButton`
 
 ## 1.0.0-beta.59
 
