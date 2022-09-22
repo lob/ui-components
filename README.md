@@ -101,12 +101,7 @@ createApp(App)
 ```
 
 ## Development
-This repo was initialized using npm v7 which changed the `package-lock.json` file format significantly. Before installing node modules, make sure you have npm v7 installed.
-
-```bash
-npm install -g npm@7.13.0
-npm install
-```
+Before installing node modules, make sure you have the node and npm versions installed matching what's listed in the `engines` in `package.json`.
 
 ### Conventions
 #### `src` alias
@@ -171,7 +166,7 @@ While we're not strictly enforcing any particular WCAG standard (though we shoul
 
 ## Unit testing
 ```bash
-npm run test:unit
+npm run test
 ```
 
 ## Lints and fixes files
@@ -188,7 +183,12 @@ We consider a component PR complete when it has the following:
 - Clear Storybook documentation
 - Base level of accessibility
 - Tests added/updated for any code added/updated
-- Existing tests & lint passes (integrated with CircleCI, but you can also run both locally)
+- Existing tests & lint passes (integrated with GitHub Actions, but you can also run both locally)
+
+## Deploying Updates
+When a PR is opened Amplify will automatically build and deploy a PR preview.  You will see the URL for the preview in a comment from the Amplify bot in the PR.
+
+When the PR is merged to `main` Amplify will auto build and deploy to [https://ui-components.lob.com/](https://ui-components.lob.com/).
 
 ## Publish to NPM
 
