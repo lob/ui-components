@@ -8,6 +8,7 @@
       :value="value.toString()"
       :checked="checked"
       :disabled="disabled"
+      :aria-disabled="ariaDisabled"
       @input="onInput"
       @click="onClick"
     >
@@ -149,6 +150,10 @@ export default {
       default: ''
     },
     topFullImage: {
+      type: Boolean,
+      default: false
+    },
+    ariaDisabled: {
       type: Boolean,
       default: false
     }
