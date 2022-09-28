@@ -10,6 +10,7 @@
                { 'bg-coral-100 text-error': error },
                { 'bg-turquoise-100 text-turquoise-900': turquoise },
                { 'bg-flint-100 text-gray-700': flint },
+               { 'bg-gradient-114 from-[#1876db] to-[#5748ff] hover:from-[#5748ff] hover:to-[#1876db] text-white': gradient },
                { '!py-0.5': small }
       ]"
     >
@@ -26,7 +27,7 @@ export default {
       type: String,
       default: 'info',
       validator: function (value) {
-        return ['info', 'success', 'warning', 'error', 'turquoise', 'flint'].includes(value);
+        return ['info', 'success', 'warning', 'error', 'turquoise', 'flint', 'gradient'].includes(value);
       }
     },
     shape: {
@@ -62,6 +63,9 @@ export default {
     },
     flint () {
       return this.variant === 'flint';
+    },
+    gradient () {
+      return this.variant === 'gradient';
     },
     rounded () {
       return this.shape === 'rounded';
