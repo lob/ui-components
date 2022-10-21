@@ -4,6 +4,12 @@
 
 ### Features
 
+Adds `full-width` prop to `RadioButtonLarge`
+
+## 1.0.0-beta.61
+
+### Features
+
 Adds `gradient` variant to `Badge`
 
 ## 1.0.0-beta.60
