@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 1.0.0-beta.61
+## 1.0.0-beta.62
 
 ### Features
 
