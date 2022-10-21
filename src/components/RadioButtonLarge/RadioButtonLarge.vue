@@ -7,7 +7,8 @@
   >
     <div
       :class="[
-        'cursor-pointer bg-white h-12 top-2 inline-block mr-4 mt-1 border border-gray-100 w-[200px] rounded-lg pl-2',
+        'cursor-pointer bg-white h-12 top-2 inline-block mr-4 mt-1 border border-gray-100 rounded-lg pl-2',
+        fullWidth ? 'w-full' : 'w-[200px]',
         {'hover:border-gray-300': !disabled},
         {'!border-primary-500 ring-inset ring-1 ring-primary-500': checked && !disabled && !error},
         {'h-[60px]': helperText},
@@ -106,6 +107,10 @@ export default {
     revealText: {
       type: String,
       default: ''
+    },
+    fullWidth: {
+      type: Boolean,
+      default: false
     }
   },
   emits: ['update:modelValue', 'input', 'click'],
