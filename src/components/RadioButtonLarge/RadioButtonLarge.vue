@@ -1,18 +1,16 @@
 <template>
   <div
     :class="[
-      {'h-[60px]' : revealText},
-      {'!cursor-not-allowed' : disabled}
+      {'min-h-[60px]': revealText},
+      {'!cursor-not-allowed': disabled}
     ]"
   >
     <div
       :class="[
-        'cursor-pointer bg-white h-12 top-2 inline-block mr-4 mt-1 border border-gray-100 w-[200px] rounded-lg pl-2',
+        'min-h-[3rem] cursor-pointer bg-white top-1 inline-block mr-4 border border-gray-100 rounded-lg pl-2',
+        fullWidth ? 'w-full' : 'w-[200px]',
         {'hover:border-gray-300': !disabled},
         {'!border-primary-500 ring-inset ring-1 ring-primary-500': checked && !disabled && !error},
-        {'h-[60px]': helperText},
-        {'hover:h-[60px]': revealText},
-        {'h-[60px]' : revealText && checked},
         {'bg-white-100 !cursor-not-allowed': disabled},
         {'!border-error': error}
       ]"
@@ -22,9 +20,7 @@
     >
       <div
         ref="contentContainer"
-        :class="[
-          {'-mt-1.5' : checked && revealText}
-        ]"
+        class="pb-1"
       >
         <RadioButton
           :id="id"
@@ -106,6 +102,10 @@ export default {
     revealText: {
       type: String,
       default: ''
+    },
+    fullWidth: {
+      type: Boolean,
+      default: false
     }
   },
   emits: ['update:modelValue', 'input', 'click'],
@@ -145,7 +145,7 @@ export default {
       }
       this.largeHover = true;
     },
-    onContainerLeaveHover () {
+    async onContainerLeaveHover () {
       const revealText = this.$refs.revealText;
       const contentContainer = this.$refs.contentContainer;
       if (revealText && !this.checked) {
