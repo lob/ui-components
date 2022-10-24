@@ -11,8 +11,8 @@
         fullWidth ? 'w-full' : 'w-[200px]',
         {'hover:border-gray-300': !disabled},
         {'!border-primary-500 ring-inset ring-1 ring-primary-500': checked && !disabled && !error},
-        {'hover:h-[60px]': revealText},
-        {'h-[60px]' : revealText && checked},
+        {'hover:min-h-[60px]': revealText},
+        {'min-h-[60px]' : revealText && checked},
         {'bg-white-100 !cursor-not-allowed': disabled},
         {'!border-error': error}
       ]"
