@@ -35,19 +35,19 @@
     >
       <button
         :class="[
-          'text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
+          'text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
           {'!text-gray-100': prevMonthDisabled}
         ]"
         :disabled="prevMonthDisabled"
         @click="onPreviousMonthClick"
       >
-        <arrow-left class="w-4 h-4" />
+        <chevron-left class="w-5 h-5" />
         <span class="sr-only">{{ t('datepicker.prevMonthLabel') }}</span>
       </button>
       <div>
         <span
           :id="id"
-          class="text-sm text-gray-900 font-medium"
+          class="text-gray-900 font-medium"
           aria-live="polite"
           aria-atomic="true"
         >
@@ -56,13 +56,13 @@
       </div>
       <button
         :class="[
-          'text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
+          'text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
           {'!text-gray-100': nextMonthDisabled}
         ]"
         :disabled="nextMonthDisabled"
         @click="onNextMonthClick"
       >
-        <arrow-right class="w-4 h-4" />
+        <chevron-right class="w-5 h-5" />
         <span class="sr-only">{{ t('datepicker.nextMonthLabel') }}</span>
       </button>
     </div>
@@ -83,7 +83,7 @@
 </template>
 
 <script>
-import { ArrowLeft, ArrowRight, Close } from '@/components/Icons';
+import { ChevronLeft, ChevronRight, Close } from '@/components/Icons';
 import DatepickerMonth from './DatepickerMonth.vue';
 import { Keys, startOfWeek, endOfWeek, startOfMonth, endOfMonth, setMonth, setYear, addDays, clamp, inRange } from '@/utils';
 import mitt from 'mitt';
@@ -94,7 +94,7 @@ const DATEPICKER_OPEN_EVENT = 'datepicker-open';
 
 export default {
   name: 'Datepicker',
-  components: { DatepickerMonth, ArrowLeft, ArrowRight, Close },
+  components: { DatepickerMonth, ChevronLeft, ChevronRight, Close },
   props: {
     modelValue: {
       type: Date,

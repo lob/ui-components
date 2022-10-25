@@ -8,7 +8,11 @@
       :size="size"
       @click.stop="isOpen = !isOpen"
       @keydown.space.stop="isOpen = !isOpen"
-    />
+    >
+      <template #iconRight>
+        <Calendar class="w-5 h-5 text-gray-900" />
+      </template>
+    </TextInput>
     <Datepicker
       :id="datepickerId"
       v-model="date"
@@ -25,10 +29,11 @@
 import { format } from 'date-fns';
 import TextInput from '../TextInput/TextInput';
 import Datepicker from '../Datepicker/Datepicker';
+import Calendar from '../Icons/Calendar.vue';
 
 export default {
   name: 'DateInput',
-  components: { TextInput, Datepicker },
+  components: { TextInput, Datepicker, Calendar },
   props: {
     id: {
       type: String,
