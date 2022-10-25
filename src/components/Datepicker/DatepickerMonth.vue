@@ -76,6 +76,10 @@ export default {
     isDateDisabled: {
       type: Function,
       default: null
+    },
+    disableWeekends: {
+      type: Boolean,
+      default: false
     }
   },
   emits: ['dateSelect', 'click', 'keydown'],
@@ -125,11 +129,14 @@ export default {
     isSelected (date) {
       return isEqual(date, this.selectedDate);
     },
+    isWeekend (date) {
+      return (date.getDay() === 6 || date.getDay() === 0) ?  true : false;
+    },
     isDisabled (date) {
       const isInSameMonth = isEqualMonth(date, this.focusedDate);
       const isInRange = inRange(date, this.min, this.max);
       const isDateDisabled = this.isDateDisabled ? this.isDateDisabled(date) : false;
-      return !isInSameMonth || !isInRange || isDateDisabled;
+      return !isInSameMonth || !isInRange || isDateDisabled || (this.disableWeekends && this.isWeekend(date));
     },
     isInRange (date) {
       return inRange(date, this.min, this.max);

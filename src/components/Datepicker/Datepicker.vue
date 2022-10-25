@@ -75,6 +75,7 @@
       :min="minDate"
       :max="maxDate"
       :is-date-disabled="isDateDisabled"
+      :disable-weekends="disableWeekends"
       @dateSelect="onDateSelect"
       @keydown="onKeydown"
     />
@@ -130,6 +131,10 @@ export default {
     positionAbsolute: {
       type: Boolean,
       default: true
+    },
+    disableWeekends: {
+      type: Boolean,
+      default: false
     }
   },
   emits: ['update:modelValue', 'update:open', 'input'],

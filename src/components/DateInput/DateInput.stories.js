@@ -54,3 +54,11 @@ Primary.args = {
   label: 'Start date',
   srOnlyLabel: true
 };
+
+export const DisabledWeekends = Template.bind({});
+DisabledWeekends.args = {
+  id: 'startDate',
+  label: 'Start date',
+  srOnlyLabel: true,
+  disableWeekends: true
+};

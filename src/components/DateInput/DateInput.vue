@@ -16,6 +16,7 @@
       :min="min"
       :max="max"
       :class="['absolute w-72', {'right-0' : rightJustified}]"
+      :disable-weekends="disableWeekends"
     />
   </div>
 </template>
@@ -67,6 +68,10 @@ export default {
       validator: function (value) {
         return ['default', 'small'].includes(value);
       }
+    },
+    disableWeekends: {
+      type: Boolean,
+      default: false
     }
   },
   emits: ['update:modelValue', 'update:open'],
