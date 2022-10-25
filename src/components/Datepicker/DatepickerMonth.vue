@@ -130,7 +130,7 @@ export default {
       return isEqual(date, this.selectedDate);
     },
     isWeekend (date) {
-      return (date.getDay() === 6 || date.getDay() === 0) ?  true : false;
+      return Boolean(date.getDay() === 6 || date.getDay() === 0);
     },
     isDisabled (date) {
       const isInSameMonth = isEqualMonth(date, this.focusedDate);

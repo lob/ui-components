@@ -57,4 +57,19 @@ describe('DatepickerMonth', () => {
     expect(emittedEvent.dateSelect[0][0]).toEqual(new Date(2021, 4, 30));
   });
 
+  describe('when te disableWeekends prop is true', () => {
+
+    it('the weekend dates buttons are disabled', () => {
+      const props = initialProps;
+      props.disableWeekends = true;
+      const { getAllByText } = renderComponent({ props });
+
+      const saturdayButton = getAllByText('30')[0];
+      expect(saturdayButton.parentElement).toHaveAttribute('aria-disabled', 'true');
+      const sundayButton = getAllByText('31')[0];
+      expect(sundayButton.parentElement).toHaveAttribute('aria-disabled', 'true');
+    });
+
+  });
+
 });
