@@ -29,6 +29,16 @@ export default {
       control: {
         type: 'date'
       }
+    },
+    error: {
+      control: {
+        type: 'boolean'
+      }
+    },
+    errorMessage: {
+      control: {
+        type: 'text'
+      }
     }
   }
 };

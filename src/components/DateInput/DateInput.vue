@@ -6,6 +6,7 @@
       :label="label"
       :sr-only-label="srOnlyLabel"
       :size="size"
+      :error="error"
       @click.stop="isOpen = !isOpen"
       @keydown.space.stop="isOpen = !isOpen"
     >
@@ -22,6 +23,12 @@
       :class="['absolute w-72', {'right-0' : rightJustified}]"
       :disable-weekends="disableWeekends"
     />
+    <div
+      v-if="error && errorMessage"
+      class="mt-2 ml-1 text-error text-xs flex items-center"
+    >
+      <AlertCircle class="w-4 h-4 mr-1" /> {{ errorMessage }}
+    </div>
   </div>
 </template>
 
@@ -30,10 +37,11 @@ import { format } from 'date-fns';
 import TextInput from '../TextInput/TextInput';
 import Datepicker from '../Datepicker/Datepicker';
 import Calendar from '../Icons/Calendar.vue';
+import AlertCircle from '../Icons/AlertCircle.vue';
 
 export default {
   name: 'DateInput',
-  components: { TextInput, Datepicker, Calendar },
+  components: { TextInput, Datepicker, Calendar, AlertCircle },
   props: {
     id: {
       type: String,
@@ -77,6 +85,14 @@ export default {
     disableWeekends: {
       type: Boolean,
       default: false
+    },
+    error: {
+      type: Boolean,
+      default: false
+    },
+    errorMessage: {
+      type: [String, null],
+      default: null
     }
   },
   emits: ['update:modelValue', 'update:open'],
