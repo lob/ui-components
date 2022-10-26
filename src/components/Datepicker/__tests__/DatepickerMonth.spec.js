@@ -57,7 +57,7 @@ describe('DatepickerMonth', () => {
     expect(emittedEvent.dateSelect[0][0]).toEqual(new Date(2021, 4, 30));
   });
 
-  describe('when te disableWeekends prop is true', () => {
+  describe('when the disableWeekends prop is true', () => {
 
     it('the weekend dates buttons are disabled', () => {
       const props = initialProps;

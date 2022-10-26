@@ -7,6 +7,7 @@
       :sr-only-label="srOnlyLabel"
       :size="size"
       :error="error"
+      :aria-describedby="error ? 'error-message' : ''"
       @click.stop="isOpen = !isOpen"
       @keydown.space.stop="isOpen = !isOpen"
     >
@@ -25,6 +26,8 @@
     />
     <div
       v-if="error && errorMessage"
+      id="error-message"
+      aria-live="assertive"
       class="mt-2 ml-1 text-error text-xs flex items-center"
     >
       <AlertCircle class="w-4 h-4 mr-1" /> {{ errorMessage }}
