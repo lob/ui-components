@@ -2,13 +2,15 @@
   <div
     :class="[
       {'min-h-[60px]': revealText},
-      {'!cursor-not-allowed': disabled}
+      {'!cursor-not-allowed': disabled},
+      {'h-full': fullHeight}
     ]"
   >
     <div
       :class="[
         'min-h-[3rem] cursor-pointer bg-white top-1 inline-block mr-4 border border-gray-100 rounded-lg pl-2',
         fullWidth ? 'w-full' : 'w-[200px]',
+        {'h-full': fullHeight},
         {'hover:border-gray-300': !disabled},
         {'!border-primary-500 ring-inset ring-1 ring-primary-500': checked && !disabled && !error},
         {'bg-white-100 !cursor-not-allowed': disabled},
@@ -104,6 +106,10 @@ export default {
       default: ''
     },
     fullWidth: {
+      type: Boolean,
+      default: false
+    },
+    fullHeight: {
       type: Boolean,
       default: false
     }

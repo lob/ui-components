@@ -172,3 +172,47 @@ LargeGroup.args = {
   legend: 'Postcard Size',
   separateLines: false
 };
+
+const largeGroupWithFullHeightModel = '';
+
+const LargeGroupWithFullHeightTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { RadioGroup, RadioButtonLarge },
+  data: () => ({ largeGroupWithFullHeightModel }),
+  setup: () => ({ args }),
+  template: `
+    <radio-group large v-bind="args">
+      <div style="width: 50%; margin-right: 10px">
+        <radio-button-large
+          id="4x6"
+          name="postcard-size"
+          label="4x6"
+          value="4x6"
+          v-model="largeGroupWithFullHeightModel"
+          helper-text="This is a short description"
+          full-width
+          full-height
+        />
+      </div>
+      <div style="width: 50%">
+        <radio-button-large
+          id="5x7"
+          name="postcard-size"
+          label="5x7"
+          value="5x7"
+          v-model="largeGroupWithFullHeightModel"
+          helper-text="This is a very long description so we can see what happens when the text takes up two (or more) lines. All of the text should show inside the radio button, and not overflow outside of it."
+          full-width
+          full-height
+        />
+      </div>
+    </radio-group>
+  `
+});
+
+export const LargeGroupWithFullHeight = LargeGroupWithFullHeightTemplate.bind({});
+LargeGroupWithFullHeight.args = {
+  legend: 'Postcard Size',
+  separateLines: false
+};
+
