@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import { getViewOfMonth, isEqual, inRange, isEqualMonth } from '@/utils';
+import { getViewOfMonth, isEqual, inRange, isEqualMonth, isWeekend } from '@/utils';
 import DatepickerDay from './DatepickerDay.vue';
 
 export default {
@@ -129,14 +129,11 @@ export default {
     isSelected (date) {
       return isEqual(date, this.selectedDate);
     },
-    isWeekend (date) {
-      return Boolean(date.getDay() === 6 || date.getDay() === 0);
-    },
     isDisabled (date) {
       const isInSameMonth = isEqualMonth(date, this.focusedDate);
       const isInRange = inRange(date, this.min, this.max);
       const isDateDisabled = this.isDateDisabled ? this.isDateDisabled(date) : false;
-      return !isInSameMonth || !isInRange || isDateDisabled || (this.disableWeekends && this.isWeekend(date));
+      return !isInSameMonth || !isInRange || isDateDisabled || (this.disableWeekends && isWeekend(date));
     },
     isInRange (date) {
       return inRange(date, this.min, this.max);
