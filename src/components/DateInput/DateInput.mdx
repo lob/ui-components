@@ -1,5 +1,10 @@
-import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
-import DateInput from './DateInput.vue';
+import {
+  Preview,
+  Story,
+  ArgsTable,
+  PRIMARY_STORY,
+} from "@storybook/addon-docs";
+import DateInput from "./DateInput.vue";
 
 # DateInput
 
@@ -10,6 +15,7 @@ DateInput is a wrapper component to bind a Datepicker to a TextInput. It's been 
 </Preview>
 
 ## How to Use
+
 To use the date input component, you must provide a `v-model` of type Date, a `v-model:open` of type Boolean (controls whether the calendar is visible), an `id`, and a label.
 
 The date input will also accept `min` and `max` properties (also Date objects) to control how far forward or back the calendar will render. By default, it will go 1 year in the past and 1 year in the future.
@@ -18,6 +24,11 @@ You can also provide an `srOnlyLabel` prop which will hide the label from sighte
 
 If you need the Datepicker to be right-justified when the calendar is open, set `rightJustified` to true.
 
+You can use the props `disableWeekends` (boolean) to disable weekend days, and `disableHolidays` (boolean) to disable all US Federal holidays on the calendar.
+_(New Years Day, Martin Luther King Jr Day, Juneteenth, Presidents Day, Memorial Day, Independence Day, Labor Day, Columbus Day, Veterans Day, Thanksgiving, Christmas)_
+
+The `error` (boolean) prop will set the error state on the input, and if also passing an `errorMessage` (string), the error message will display underneath the input.
+
 This component will emit an `update:modelValue` event with the selected date as a vanilla JS Date object.
 
 It will also emit `update:open` events with a boolean for whether the calendar is visible or not.
@@ -25,17 +36,20 @@ It will also emit `update:open` events with a boolean for whether the calendar i
 Note: if this input does not format your date correctly or you need more functionality, you should make a custom component in your application's repo.
 
 Example of using this component in a template with simple string options
+
 ```js
 const startDate = new Date();
 const startDateOpen = false;
 ```
+
 ```html
-<date-input 
-  v-model="startDate" 
+<date-input
+  v-model="startDate"
   v-model:open="startDateOpen"
   id="startDate"
   label="Start date"
-  :sr-only-label="true" />
+  :sr-only-label="true"
+/>
 ```
 
 ### Internationalization
@@ -43,9 +57,10 @@ const startDateOpen = false;
 By default, the date format will be `yyyy-MM-dd`.
 
 If you'd like to localize this format, you can install `vue-i18n` into your application and provide the following translation in your required languages.
+
 ```js
 {
-  dateFormat: 'yyyy-MM-dd'
+  dateFormat: "yyyy-MM-dd";
 }
 ```
 
