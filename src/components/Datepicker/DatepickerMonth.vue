@@ -44,6 +44,8 @@
 <script>
 import { getViewOfMonth, isEqual, inRange, isEqualMonth, isWeekend } from '@/utils';
 import DatepickerDay from './DatepickerDay.vue';
+// import 'date-fns-holiday-us' functions
+import { getHolidays, isHoliday } from 'date-fns-holiday-us';
 
 export default {
   name: 'DatepickerMonth',
@@ -103,6 +105,14 @@ export default {
         this.t('datepicker.dayNameSix')
       ];
     }
+  },
+  mounted () {
+    // This is what I am trying to use that throws TypeError: Object(...) is not a function
+    // the same code works perfectly on dashboard
+    const h = getHolidays(2022);
+    console.log(h);
+    console.log(h.christmas.date);
+    console.log(isHoliday(h.christmas.date));
   },
   methods: {
     chunk (array, chunkSize) {
