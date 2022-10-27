@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.0.0-beta.63
+
+### Features
+
+Adds `full-height` prop to `RadioButtonLarge`
+
 ## 1.0.0-beta.62
 
 ### Features
