@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 1.0.0-beta.64
+
+### Features
+
+Adds `error` and `errorMessage` props to `DateInput`
+Adds `disableWeekends` and `disableHolidays` props to `DateInput` and `DatePicker`
+
 ## 1.0.0-beta.63
 
 ### Features
