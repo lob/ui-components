@@ -23,6 +23,7 @@
       :max="max"
       :class="['absolute w-72', {'right-0' : rightJustified}]"
       :disable-weekends="disableWeekends"
+      :disable-holidays="disableHolidays"
     />
     <div
       v-if="error && errorMessage"
@@ -86,6 +87,10 @@ export default {
       }
     },
     disableWeekends: {
+      type: Boolean,
+      default: false
+    },
+    disableHolidays: {
       type: Boolean,
       default: false
     },

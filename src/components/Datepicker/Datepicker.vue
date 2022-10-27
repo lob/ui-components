@@ -76,6 +76,7 @@
       :max="maxDate"
       :is-date-disabled="isDateDisabled"
       :disable-weekends="disableWeekends"
+      :disable-holidays="disableHolidays"
       @dateSelect="onDateSelect"
       @keydown="onKeydown"
     />
@@ -133,6 +134,10 @@ export default {
       default: true
     },
     disableWeekends: {
+      type: Boolean,
+      default: false
+    },
+    disableHolidays: {
       type: Boolean,
       default: false
     }
