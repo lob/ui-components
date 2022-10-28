@@ -110,7 +110,7 @@ describe('DateInput', () => {
       const textInput = getByTestId('input-container');
       expect(textInput).toHaveClass('!border-coral-700');
       const errorMessage = getByText('Date no longer valid');
-      expect(errorMessage).toBeInTheDocument();
+      expect(errorMessage).toBeVisible();
     });
 
   });

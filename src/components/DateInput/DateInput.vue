@@ -26,9 +26,9 @@
       :disable-holidays="disableHolidays"
     />
     <div
-      v-if="error && errorMessage"
+      v-show="error && errorMessage"
       id="error-message"
-      aria-live="assertive"
+      aria-live="polite"
       class="mt-2 ml-1 text-error text-xs flex items-center"
     >
       <AlertCircle class="w-4 h-4 mr-1" /> {{ errorMessage }}
