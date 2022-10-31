@@ -14,6 +14,8 @@ To use the datepicker component, you must provide a `v-model` of type Date, a `v
 
 The datepicker will also accept `min` and `max` properties (also Date objects) to control how far forward or back the calendar will render. By default, it will go 1 year in the past and 1 year in the future.
 
+You can use the props `disableWeekends` (boolean) to disable weekend days, and `disableHolidays` (boolean) to disable all US Federal holidays on the calendar.
+
 You can also provide an `isDateDisabled` prop which is function that takes a single Date object parameter and returns a boolean for whether that date is disabled. You can use this to disable weekends, holidays, etc. if needed.
 
 If you would prefer that the calendar start on Mondays instead of Sundays,  you can provide a `firstDayOfWeek` prop set to 1 (the index of Monday) or any other index you'd like. By default, calendar weeks start on Sunday.

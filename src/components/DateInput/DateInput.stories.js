@@ -29,11 +29,21 @@ export default {
       control: {
         type: 'date'
       }
+    },
+    error: {
+      control: {
+        type: 'boolean'
+      }
+    },
+    errorMessage: {
+      control: {
+        type: 'text'
+      }
     }
   }
 };
 
-const startDate = null;
+const startDate = new Date();
 const startDateOpen = false;
 
 const Template = (args, { argTypes }) => ({
@@ -53,4 +63,13 @@ Primary.args = {
   id: 'startDate',
   label: 'Start date',
   srOnlyLabel: true
+};
+
+export const DisabledWeekendsAndHolidays = Template.bind({});
+DisabledWeekendsAndHolidays.args = {
+  id: 'startDate',
+  label: 'Start date',
+  srOnlyLabel: true,
+  disableWeekends: true,
+  disableHolidays: true
 };

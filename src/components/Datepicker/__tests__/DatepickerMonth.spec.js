@@ -8,7 +8,7 @@ const mixins = [translate];
 const initialProps = {
   focusedDate: new Date(2021, 5, 14),
   min: new Date(2020, 5, 14),
-  max: new Date(2022, 5, 14)
+  max: new Date(2024, 5, 14)
 };
 
 const renderComponent = (options) => render(DatepickerMonth, { ...options, global: { mixins } });
@@ -55,6 +55,35 @@ describe('DatepickerMonth', () => {
     const emittedEvent = emitted();
     expect(emittedEvent).toHaveProperty('dateSelect');
     expect(emittedEvent.dateSelect[0][0]).toEqual(new Date(2021, 4, 30));
+  });
+
+  describe('when the disableWeekends prop is true', () => {
+
+    it('the weekend dates buttons are disabled', () => {
+      const props = initialProps;
+      props.disableWeekends = true;
+      const { getAllByText } = renderComponent({ props });
+
+      const saturdayButton = getAllByText('30')[0];
+      expect(saturdayButton.parentElement).toHaveAttribute('aria-disabled', 'true');
+      const sundayButton = getAllByText('31')[0];
+      expect(sundayButton.parentElement).toHaveAttribute('aria-disabled', 'true');
+    });
+
+  });
+
+  describe('when the disableHolidays prop is true', () => {
+
+    it('the Federal Holidays dates buttons are disabled', () => {
+      const props = initialProps;
+      props.disableHolidays = true;
+      props.focusedDate = new Date(2022, 11, 1); //go to November
+      const { getByText  } = renderComponent({ props });
+
+      const thanksGivingButton = getByText(25);
+      expect(thanksGivingButton.parentElement).toHaveAttribute('aria-disabled', 'true');
+    });
+
   });
 
 });

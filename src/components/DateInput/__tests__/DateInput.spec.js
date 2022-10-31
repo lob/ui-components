@@ -101,4 +101,18 @@ describe('DateInput', () => {
 
   });
 
+  describe('when it has an error and errorMessage', () => {
+
+    it('shows the error state/red border and the error message', () => {
+      const props = { ...initialProps, error: true, errorMessage: 'Date no longer valid' };
+      const { getByText, getByTestId } = renderComponent({ props });
+
+      const textInput = getByTestId('input-container');
+      expect(textInput).toHaveClass('!border-coral-700');
+      const errorMessage = getByText('Date no longer valid');
+      expect(errorMessage).toBeVisible();
+    });
+
+  });
+
 });

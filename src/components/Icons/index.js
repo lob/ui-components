@@ -5,6 +5,7 @@ export { default as ArrowRight } from './ArrowRight';
 export { default as ArrowLeft } from './ArrowLeft';
 export { default as ArrowUp } from './ArrowUp';
 export { default as Book } from './Book';
+export { default as Calendar } from './Calendar';
 export { default as Check } from './Check';
 export { default as Checkmark } from './Checkmark';
 export { default as ChevronDown } from './ChevronDown';

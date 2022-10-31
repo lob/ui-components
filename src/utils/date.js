@@ -145,3 +145,11 @@ export function inRange (date, min, max) {
   return clamp(date, min, max) === date;
 }
 
+/**
+ * Check if date is Saturday or Sunday
+ * @param {Date} date
+ * @returns {boolean}
+ */
+export function isWeekend (date) {
+  return Boolean(date.getDay() === 6 || date.getDay() === 0);
+}

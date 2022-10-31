@@ -6,9 +6,19 @@
       :label="label"
       :sr-only-label="srOnlyLabel"
       :size="size"
+      :error="error"
+      :aria-describedby="error ? 'error-message' : ''"
       @click.stop="isOpen = !isOpen"
       @keydown.space.stop="isOpen = !isOpen"
-    />
+    >
+      <template #iconRight>
+        <Calendar
+          :class="['text-gray-900',
+                   { 'w-3.5 h-3.5': size === 'small',
+                     'w-5 h-5': size === 'default' } ]"
+        />
+      </template>
+    </TextInput>
     <Datepicker
       :id="datepickerId"
       v-model="date"
@@ -16,7 +26,17 @@
       :min="min"
       :max="max"
       :class="['absolute w-72', {'right-0' : rightJustified}]"
+      :disable-weekends="disableWeekends"
+      :disable-holidays="disableHolidays"
     />
+    <div
+      v-show="error && errorMessage"
+      id="error-message"
+      aria-live="polite"
+      class="mt-2 ml-1 text-error text-xs flex items-center"
+    >
+      <AlertCircle class="w-4 h-4 mr-1" /> {{ error && errorMessage }}
+    </div>
   </div>
 </template>
 
@@ -24,10 +44,12 @@
 import { format } from 'date-fns';
 import TextInput from '../TextInput/TextInput';
 import Datepicker from '../Datepicker/Datepicker';
+import Calendar from '../Icons/Calendar.vue';
+import AlertCircle from '../Icons/AlertCircle.vue';
 
 export default {
   name: 'DateInput',
-  components: { TextInput, Datepicker },
+  components: { TextInput, Datepicker, Calendar, AlertCircle },
   props: {
     id: {
       type: String,
@@ -67,6 +89,22 @@ export default {
       validator: function (value) {
         return ['default', 'small'].includes(value);
       }
+    },
+    disableWeekends: {
+      type: Boolean,
+      default: false
+    },
+    disableHolidays: {
+      type: Boolean,
+      default: false
+    },
+    error: {
+      type: Boolean,
+      default: false
+    },
+    errorMessage: {
+      type: [String, null],
+      default: null
     }
   },
   emits: ['update:modelValue', 'update:open'],

@@ -42,8 +42,9 @@
 </template>
 
 <script>
-import { getViewOfMonth, isEqual, inRange, isEqualMonth } from '@/utils';
+import { getViewOfMonth, isEqual, inRange, isEqualMonth, isWeekend } from '@/utils';
 import DatepickerDay from './DatepickerDay.vue';
+import { isBankHoliday } from 'date-fns-holiday-us';
 
 export default {
   name: 'DatepickerMonth',
@@ -76,6 +77,14 @@ export default {
     isDateDisabled: {
       type: Function,
       default: null
+    },
+    disableWeekends: {
+      type: Boolean,
+      default: false
+    },
+    disableHolidays: {
+      type: Boolean,
+      default: false
     }
   },
   emits: ['dateSelect', 'click', 'keydown'],
@@ -129,7 +138,8 @@ export default {
       const isInSameMonth = isEqualMonth(date, this.focusedDate);
       const isInRange = inRange(date, this.min, this.max);
       const isDateDisabled = this.isDateDisabled ? this.isDateDisabled(date) : false;
-      return !isInSameMonth || !isInRange || isDateDisabled;
+      return !isInSameMonth || !isInRange || isDateDisabled ||
+       (this.disableWeekends && isWeekend(date)) || (this.disableHolidays && isBankHoliday(date));
     },
     isInRange (date) {
       return inRange(date, this.min, this.max);
