@@ -12,7 +12,11 @@
       @keydown.space.stop="isOpen = !isOpen"
     >
       <template #iconRight>
-        <Calendar class="w-5 h-5 text-gray-900" />
+        <Calendar
+          :class="['text-gray-900',
+                   { 'w-3.5 h-3.5': size === 'small',
+                     'w-5 h-5': size === 'default' } ]"
+        />
       </template>
     </TextInput>
     <Datepicker
