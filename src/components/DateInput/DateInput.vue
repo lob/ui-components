@@ -31,7 +31,7 @@
       aria-live="polite"
       class="mt-2 ml-1 text-error text-xs flex items-center"
     >
-      <AlertCircle class="w-4 h-4 mr-1" /> {{ errorMessage }}
+      <AlertCircle class="w-4 h-4 mr-1" /> {{ error && errorMessage }}
     </div>
   </div>
 </template>
