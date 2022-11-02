@@ -76,20 +76,6 @@ describe('Megabutton', () => {
           expect(label).toHaveClass('peer-disabled:cursor-not-allowed');
         });
 
-        it('displays the strikethru line', () => {
-          const props = {
-            ...megatextProps,
-            disabled: true
-          };
-
-          const { getByTestId } = render(MegaButton, {
-            props
-          });
-
-          const strikethruBox = getByTestId('strikethru');
-          expect(strikethruBox).toHaveClass('strikethru-line');
-        });
-
         it('does not display a banner box', () => {
           const props = {
             ...megatextProps,

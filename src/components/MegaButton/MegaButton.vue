@@ -33,11 +33,6 @@
         class="w-full"
       >
         <div
-          v-if="disabled && !disabledBanner"
-          data-testId="strikethru"
-          class="strikethru-line absolute top-0 h-full w-full"
-        />
-        <div
           v-if="imageSource"
           data-testId="imageContainer"
           :class="[
@@ -55,7 +50,8 @@
           <img
             :class="[
               'max-h-20 mx-auto',
-              {'!max-h-full' : topFullImage}
+              {'!max-h-full' : topFullImage},
+              {'opacity-60' : disabled}
             ]"
             :src="imageSource"
             :alt="imageAltText"
@@ -192,9 +188,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.strikethru-line {
-  background: linear-gradient(to top right, rgba(255, 255, 255, 0) calc(50% - 1px), #c4c4c4, rgba(255, 255, 255, 0) calc(50% + 1px));
-}
 
 label {
   box-shadow: 0 4.32px 12.95px rgba(0, 0, 0, 0.08);

@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 1.0.0-beta.65
+
+### Features
+
+Remove strikethru line from disabled `MegaButton`
+Add image opacity to disabled `MegaButton`
+
 ## 1.0.0-beta.64
 
 ### Features
