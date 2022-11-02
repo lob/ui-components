@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## v2.0.0-beta.0
+
+### Breaking changes
+
+Adds new font 'Messina', used as font-family class `font-messina`
+Removes old font 'Larsseit'
+
 ## 1.0.0-beta.65
 
 ### Features
