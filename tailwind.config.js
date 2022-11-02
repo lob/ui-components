@@ -6,6 +6,11 @@ module.exports = {
     { pattern: /text-(black|warning|error|success|lavender|chili|papaya)/ },
     { pattern: /text-(primary|secondary|lemon|turquoise|flint|mint|coral|gray|white)-(100|200|300|500|700|900)/ }
   ],
+  theme: {
+    fontFamily: {
+      messina: ['Messina', 'sans-serif']
+    }
+  },
   plugins: [
     require('tailwind-plugin-lob'),
     plugin(function ({ matchUtilities, theme }) {
