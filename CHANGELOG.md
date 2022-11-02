@@ -11,8 +11,8 @@ Removes old font 'Larsseit'
 
 ### Features
 
-Remove strikethru line from disabled `MegaButton`
-Add image opacity to disabled `MegaButton`
+Remove strikethrough line from disabled `MegaButton`
+Add reduced image opacity to disabled `MegaButton`
 
 ## 1.0.0-beta.64
 
