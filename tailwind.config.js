@@ -61,79 +61,69 @@ module.exports = {
           fontWeight: '600',
           lineHeight: 1.33
         },
-        '.type-xl-100': {
-          fontSize: '1.25rem', //20px
-          fontWeight: '300',
-          lineHeight: 1.4
-        },
-        '.type-xl-200': {
-          fontSize: '1.25rem', //20px
-          fontWeight: '400',
-          lineHeight: 1.4
-        },
         '.type-xl-300': {
           fontSize: '1.25rem', //20px
-          fontWeight: '500',
+          fontWeight: '300',
           lineHeight: 1.4
         },
         '.type-xl-400': {
           fontSize: '1.25rem', //20px
-          fontWeight: '600',
+          fontWeight: '400',
           lineHeight: 1.4
         },
         '.type-xl-500': {
           fontSize: '1.25rem', //20px
-          fontWeight: '700',
+          fontWeight: '500',
           lineHeight: 1.4
         },
         '.type-xl-600': {
           fontSize: '1.25rem', //20px
+          fontWeight: '600',
+          lineHeight: 1.4
+        },
+        '.type-xl-700': {
+          fontSize: '1.25rem', //20px
+          fontWeight: '700',
+          lineHeight: 1.4
+        },
+        '.type-xl-800': {
+          fontSize: '1.25rem', //20px
           fontWeight: '800',
           lineHeight: 1.4
         },
-        '.type-large-100': {
-          fontSize: '1.125rem', //18px
-          fontWeight: '300',
-          lineHeight: 1.56
-        },
-        '.type-large-200': {
-          fontSize: '1.125rem', //18px
-          fontWeight: '400',
-          lineHeight: 1.56
-        },
         '.type-large-300': {
           fontSize: '1.125rem', //18px
-          fontWeight: '500',
+          fontWeight: '300',
           lineHeight: 1.56
         },
         '.type-large-400': {
           fontSize: '1.125rem', //18px
-          fontWeight: '600',
+          fontWeight: '400',
           lineHeight: 1.56
         },
         '.type-large-500': {
           fontSize: '1.125rem', //18px
-          fontWeight: '700',
+          fontWeight: '500',
           lineHeight: 1.56
         },
         '.type-large-600': {
           fontSize: '1.125rem', //18px
+          fontWeight: '600',
+          lineHeight: 1.56
+        },
+        '.type-large-700': {
+          fontSize: '1.125rem', //18px
+          fontWeight: '700',
+          lineHeight: 1.56
+        },
+        '.type-large-800': {
+          fontSize: '1.125rem', //18px
           fontWeight: '800',
           lineHeight: 1.56
         },
-        '.type-base-100': {
-          fontSize: '1rem', //16px
-          fontWeight: '300',
-          lineHeight: 1.5
-        },
-        '.type-base-200': {
-          fontSize: '1rem', //16px
-          fontWeight: '400',
-          lineHeight: 1.5
-        },
         '.type-base-300': {
           fontSize: '1rem', //16px
-          fontWeight: '500',
+          fontWeight: '300',
           lineHeight: 1.5
         },
         '.type-base-400': {
@@ -143,70 +133,80 @@ module.exports = {
         },
         '.type-base-500': {
           fontSize: '1rem', //16px
-          fontWeight: '700',
+          fontWeight: '500',
           lineHeight: 1.5
         },
         '.type-base-600': {
           fontSize: '1rem', //16px
+          fontWeight: '400',
+          lineHeight: 1.5
+        },
+        '.type-base-700': {
+          fontSize: '1rem', //16px
+          fontWeight: '700',
+          lineHeight: 1.5
+        },
+        '.type-base-800': {
+          fontSize: '1rem', //16px
           fontWeight: '800',
           lineHeight: 1.5
         },
-        '.type-small-100': {
-          fontSize: '0.875rem', //14px
-          fontWeight: '300',
-          lineHeight: 1.43
-        },
-        '.type-small-200': {
-          fontSize: '0.875rem', //14px
-          fontWeight: '400',
-          lineHeight: 1.43
-        },
         '.type-small-300': {
           fontSize: '0.875rem', //14px
-          fontWeight: '500',
+          fontWeight: '300',
           lineHeight: 1.43
         },
         '.type-small-400': {
           fontSize: '0.875rem', //14px
-          fontWeight: '600',
+          fontWeight: '400',
           lineHeight: 1.43
         },
         '.type-small-500': {
           fontSize: '0.875rem', //14px
-          fontWeight: '700',
+          fontWeight: '500',
           lineHeight: 1.43
         },
         '.type-small-600': {
           fontSize: '0.875rem', //14px
+          fontWeight: '600',
+          lineHeight: 1.43
+        },
+        '.type-small-700': {
+          fontSize: '0.875rem', //14px
+          fontWeight: '700',
+          lineHeight: 1.43
+        },
+        '.type-small-800': {
+          fontSize: '0.875rem', //14px
           fontWeight: '800',
           lineHeight: 1.43
         },
-        '.type-xs-100': {
+        '.type-xs-300': {
           fontSize: '0.75rem', //12px
           fontWeight: '300',
           lineHeight: 1.33
         },
-        '.type-xs-200': {
-          fontSize: '0.75rem', //12px
-          fontWeight: '500',
-          lineHeight: 1.33
-        },
-        '.type-xs-300': {
-          fontSize: '0.75rem', //12px
-          fontWeight: '500',
-          lineHeight: 1.33
-        },
         '.type-xs-400': {
           fontSize: '0.75rem', //12px
-          fontWeight: '600',
+          fontWeight: '400',
           lineHeight: 1.33
         },
         '.type-xs-500': {
           fontSize: '0.75rem', //12px
-          fontWeight: '700',
+          fontWeight: '500',
           lineHeight: 1.33
         },
         '.type-xs-600': {
+          fontSize: '0.75rem', //12px
+          fontWeight: '600',
+          lineHeight: 1.33
+        },
+        '.type-xs-700': {
+          fontSize: '0.75rem', //12px
+          fontWeight: '700',
+          lineHeight: 1.33
+        },
+        '.type-xs-800': {
           fontSize: '0.75rem', //12px
           fontWeight: '800',
           lineHeight: 1.33
