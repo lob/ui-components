@@ -138,7 +138,7 @@ module.exports = {
         },
         '.type-base-600': {
           fontSize: '1rem', //16px
-          fontWeight: '400',
+          fontWeight: '600',
           lineHeight: 1.5
         },
         '.type-base-700': {
