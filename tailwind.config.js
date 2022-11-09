@@ -4,7 +4,7 @@ module.exports = {
   safelist: [
     { pattern: /text-(xl|2xl|3xl|4xl|5xl)/ },
     { pattern: /text-(black|warning|error|success|lavender|chili|papaya)/ },
-    { pattern: /text-(primary|secondary|lemon|turquoise|flint|mint|coral|gray|white)-(100|200|300|500|700|900)/ }
+    { pattern: /text-(primary|secondary|lemon|turquoise|flint|mint|coral|gray|white|coolGray|purple|blue|red|orange|yellow|green)-(50|100|200|300|400|500|600|700|800|900)/ }
   ],
   theme: {
     fontFamily: {
