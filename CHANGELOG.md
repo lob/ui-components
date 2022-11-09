@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v2.0.0-beta.1
+
+### Features
+
+Adds the new Typography classes
+
 ## v2.0.0-beta.0
 
 ### Breaking changes
