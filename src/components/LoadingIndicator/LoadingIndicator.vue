@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="loading ? `loading-gif ${loadingClass}` : ''"
+    :class="loading ? `animate-spin loading-gif ${loadingClass}` : ''"
     aria-live="polite"
     :aria-busy="loading"
     data-testId="loading-indicator"
@@ -30,8 +30,8 @@ export default {
 
 <style lang="scss" scoped>
 .loading-gif {
-  background: #fff url(https://s3-us-west-2.amazonaws.com/public.lob.com/sites/loading-gif.svg) no-repeat center;
-  background-size: 12px 12px;
+  background: #fff url(https://s3-us-west-2.amazonaws.com/public.lob.com/sites/spinner-medium.svg) no-repeat center;
+  background-size: 24px 24px;
   width: 100%;
   height: 50px;
   margin: 0 auto;
