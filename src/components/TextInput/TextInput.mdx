@@ -32,6 +32,8 @@ You can pass in a `@change` handler to trigger a custom function on change event
 
 You can pass in a `@copy` handler to trigger a custom function on copy button click.
 
+You can pass in a `@invalid` handler to trigger a custom function when the input is invalid. The `event` object's target will be emitted along with the `invalid` event.
+
 ```html
 <text-input>
   <template v-slot:iconLeft>

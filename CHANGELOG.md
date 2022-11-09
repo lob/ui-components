@@ -4,7 +4,7 @@
 
 ### Features
 
-Adds the new Typography classes
+Adds new `invalid` event listener to the TextInput component
 
 ## v2.0.0-beta.0
 
