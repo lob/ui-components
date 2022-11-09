@@ -82,6 +82,7 @@
         @input="onInput"
         @focus="onFocus"
         @change="onChange"
+        @invalid="onInvalid"
       >
       <div
         v-if="clearButton"
@@ -236,7 +237,7 @@ export default {
       default: false
     }
   },
-  emits: ['update:modelValue', 'input', 'change', 'focus', 'copy'],
+  emits: ['update:modelValue', 'input', 'change', 'focus', 'copy', 'invalid'],
   data () {
     return {
       showCopied: false
@@ -280,6 +281,9 @@ export default {
         this.$refs.input.select();
       }
       this.$emit('focus', $event);
+    },
+    onInvalid ($event) {
+      this.$emit('invalid', $event.target);
     },
     focus () {
       this.$refs.input.focus();
