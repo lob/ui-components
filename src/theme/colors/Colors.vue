@@ -3,7 +3,7 @@
     <div
       v-for="color in Object.keys(themeColors)"
       :key="color"
-      class="mb-5 type-"
+      class="mb-5"
     >
       <div v-if="typeof themeColors[color] !== 'object'">
         <h2 :class="`text-${color}`">
