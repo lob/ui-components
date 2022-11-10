@@ -34,7 +34,7 @@
       </div>
       <div
         :class="[
-          'text-sm ml-4 text-gray-300 !font-normal',
+          'text-sm ml-4 text-gray-500 !font-normal',
           {'!text-error' : error},
           {'!text-primary-500' : checked},
           {'!text-gray-100' : disabled}
