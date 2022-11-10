@@ -23,10 +23,10 @@ const typeClasses = ['type-display-1', 'type-display-2',
 
 export default {
   name: 'Theme',
-  computed: {
-    typeClasses () {
-      return typeClasses;
-    }
+  data () {
+    return {
+      typeClasses
+    };
   }
 };
 </script>
