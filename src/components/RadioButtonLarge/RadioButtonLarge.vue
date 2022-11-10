@@ -8,7 +8,7 @@
   >
     <div
       :class="[
-        'min-h-[3rem] cursor-pointer bg-white top-1 inline-block mr-4 border border-gray-100 rounded-lg pl-2',
+        'min-h-[3rem] cursor-pointer bg-white top-1 inline-block mr-4 border border-gray-300 rounded-lg pl-2',
         fullWidth ? 'w-full' : 'w-[200px]',
         {'h-full': fullHeight},
         {'hover:border-gray-300': !disabled},

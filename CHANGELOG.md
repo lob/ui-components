@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v2.0.0-beta.4
+
+### Bug Fixes
+
+Adds darker gray border color to components: TextInput, TextArea, Dropdown, RadioButtonLarge & secondary Button
+
 ## v2.0.0-beta.3
 
 ### Features
