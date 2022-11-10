@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v2.0.0-beta.3
+
+### Features
+
+Adds the new Colors Palette
+
 ## v2.0.0-beta.2
 
 ### Features
