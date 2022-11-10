@@ -1,6 +1,14 @@
 # CHANGELOG
 
+## v2.0.0-beta.2
+
+### Features
+
+Adds the new Typography classes
+
 ## v2.0.0-beta.1
+
+### Features
 
 Adds new `invalid` event listener to the TextInput component
 
