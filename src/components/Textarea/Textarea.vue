@@ -17,7 +17,7 @@
       :readonly="readonly"
       :placeholder="placeholder"
       :class="[
-        `bg-white text-gray-500 placeholder-gray-100 placeholder:font-light p-4 resize-none rounded-lg border border-gray-100 focus-within:outline-none w-full h-40 ${inputClass}`,
+        `bg-white text-gray-500 placeholder-gray-300 placeholder:font-light p-4 resize-none rounded-lg border border-gray-300 focus-within:outline-none w-full h-40 ${inputClass}`,
         { 'border-error': error },
         { '!bg-white-300 cursor-not-allowed': disabled || readonly },
         { 'hover:border-gray-500 focus-within:ring-1 focus-within:ring-primary-500 focus-within:border-primary-500': !disabled && !readonly },
