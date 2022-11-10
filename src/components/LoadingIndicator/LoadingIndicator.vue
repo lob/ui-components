@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="loading ? `animate-spin loading-gif ${loadingClass}` : ''"
+    :class="{ `animate-spin loading-gif ${loadingClass}`: loading }"
     aria-live="polite"
     :aria-busy="loading"
     data-testId="loading-indicator"
