@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v2.0.0-beta.5
+
+### Features
+
+Updates the styles of disabled Button and button-style Link
+
 ## v2.0.0-beta.4
 
 ### Bug Fixes
