@@ -225,8 +225,12 @@ input {
   }
 
   &:hover:not(:disabled):not(:checked):not(.radio__input--error) + label::before {
-    @apply shadow-input;
-    @apply border-primary-500;
+    @apply border-gray-500;
+    @apply bg-gray-50;
+  }
+
+  &:hover:not(:disabled):not(:checked):not(.radio__input--error) + label::after {
+    @apply bg-gray-50;
   }
 
   &:not(:disabled):not(:checked):not(.radio__input--error) + label.largeHover::before {
