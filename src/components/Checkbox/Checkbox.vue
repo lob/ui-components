@@ -115,10 +115,10 @@ export default {
 }
 
 .checkbox .checkmark::after {
-  border-width: 0 3px 3px 0;
-  top: 1.5px;
+  border-width: 0 2.5px 2.5px 0;
+  top: 2px;
   width: 5px;
-  height: 9px;
+  height: 8px;
   left: 4.5px;
 
   @apply border-solid;
