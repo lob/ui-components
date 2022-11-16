@@ -158,7 +158,7 @@ input {
       @apply inline-block;
       @apply rounded-full;
       @apply w-1.5;
-      @apply bg-white
+      @apply bg-white;
     }
   }
 
@@ -193,7 +193,17 @@ input {
   &:checked:not(:disabled) + label::before {
     @apply border;
     @apply bg-black;
-    @apply border-black
+    @apply border-black;
+  }
+
+  &.radio__input--error:checked + label::before {
+    @apply border;
+    @apply border-error;
+  }
+
+  &:active:not(:disabled):not(.radio__input--error) + label::before {
+    @apply outline-dotted;
+    @apply outline-offset-1;
   }
 
   &:checked:disabled + label::after {
@@ -201,11 +211,6 @@ input {
     @apply h-2;
     @apply w-2;
     @apply top-[7px];
-  }
-
-  &.radio__input--error:checked + label::before {
-    @apply border;
-    @apply border-error;
   }
 
   &:hover:not(:disabled):not(:checked) + label::before {
@@ -224,6 +229,10 @@ input {
     @apply border-error;
   }
 
+  &.radio__input--error:checked + label::after {
+    @apply bg-transparent;
+  }
+
   &:hover:not(:disabled):not(:checked):not(.radio__input--error) + label::before {
     @apply border-gray-500;
     @apply bg-gray-50;
@@ -236,10 +245,6 @@ input {
   &:not(:disabled):not(:checked):not(.radio__input--error) + label.largeHover::before {
     @apply shadow-input;
     @apply border-primary-500;
-  }
-
-  &.radio__input--error:checked + label::after {
-    @apply bg-transparent;
   }
 }
 </style>
