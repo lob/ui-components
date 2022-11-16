@@ -187,13 +187,7 @@ input {
   }
 
   &.radio__input--error + label::before {
-    @apply border-error;
-  }
-
-  &:checked:not(:disabled) + label::before {
-    @apply border;
-    @apply bg-black;
-    @apply border-black;
+    @apply border-red-500;
   }
 
   &.radio__input--error:checked + label::before {
@@ -201,9 +195,12 @@ input {
     @apply border-error;
   }
 
-  &:active:not(:disabled):not(.radio__input--error) + label::before {
-    @apply outline-dotted;
-    @apply outline-offset-1;
+  &.radio__input--error:not(:checked) + label::before {
+    @apply bg-red-50;
+  }
+
+  &.radio__input--error:not(:checked) + label::after {
+    @apply bg-red-50;
   }
 
   &:checked:disabled + label::after {
@@ -213,8 +210,22 @@ input {
     @apply top-[7px];
   }
 
-  &:hover:not(:disabled):not(:checked) + label::before {
-    @apply border-gray-900;
+  &.radio__input--error:checked:not(:disabled) + label::before {
+    @apply bg-red-500;
+  }
+
+  &.radio__input--error:checked:not(:disabled) + label::after {
+    @apply bg-white;
+  }
+
+  &:checked:not(:disabled):not(.radio__input--error) + label::before {
+    @apply bg-black;
+    @apply border-black;
+  }
+
+  &:active:not(:disabled):not(.radio__input--error) + label::before {
+    @apply outline-dotted;
+    @apply outline-offset-1;
   }
 
   &.radio__input--error:focus + label.largeButton::before {
@@ -223,14 +234,6 @@ input {
 
   &.radio__input--error:focus:checked + label.largeButton::before {
     @apply border-error;
-  }
-
-  &.radio__input--error:checked:focus + label::before {
-    @apply border-error;
-  }
-
-  &.radio__input--error:checked + label::after {
-    @apply bg-transparent;
   }
 
   &:hover:not(:disabled):not(:checked):not(.radio__input--error) + label::before {
