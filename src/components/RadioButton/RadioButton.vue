@@ -21,7 +21,6 @@
       :class="[
         'relative flex font-light',
         {'text-gray-100 !cursor-not-allowed': disabled},
-        {'text-primary-500' : checked && !disabled},
         {'largeButton w-4/5 pt-2 ml-1' : large},
         {'largeHover' : largeHover},
         {'!pt-0.5 helperText' : large && helperText}
@@ -140,25 +139,26 @@ input {
       left: -8px;
 
       @apply absolute;
-      @apply bg-transparent;
-      @apply border-gray-300;
+      @apply bg-white;
+      @apply border-gray-400;
       @apply border-solid;
       @apply border;
       @apply h-4;
-      @apply rounded-full;
+      @apply rounded-lg;
       @apply w-4;
     }
 
     &::after {
       content: "";
-      left: -4px;
+      left: -3px;
 
-      @apply top-[7px];
+      @apply top-[8px];
       @apply absolute;
-      @apply h-2;
+      @apply h-1.5;
       @apply inline-block;
       @apply rounded-full;
-      @apply w-2;
+      @apply w-1.5;
+      @apply bg-white
     }
   }
 
@@ -191,12 +191,9 @@ input {
   }
 
   &:checked:not(:disabled) + label::before {
-    @apply border-2;
-    @apply border-primary-500;
-  }
-
-  &:checked:not(:disabled) + label::after {
-    @apply bg-primary-500;
+    @apply border;
+    @apply bg-black;
+    @apply border-black
   }
 
   &:checked:disabled + label::after {
