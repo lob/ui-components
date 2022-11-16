@@ -22,7 +22,6 @@
         'checkmark w-4 h-4 mr-1 rounded-sm border-solid border border-gray-200 -left-5 absolute top-1',
         { 'bg-white-300': disabled },
         { '!bg-gray-200': disabled && checked },
-        { 'border-error': error },
         { 'border-black bg-black': checked && !disabled }
       ]"
       data-testId="checkmark"
@@ -61,10 +60,6 @@ export default {
       default: false
     },
     required: {
-      type: Boolean,
-      default: false
-    },
-    error: {
       type: Boolean,
       default: false
     },
