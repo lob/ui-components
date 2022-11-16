@@ -16,7 +16,7 @@ Alerts are a flexible component used to display highlighted content prominently.
 
 ## How to Use
 
-There are 4 variants of alerts: info, success, warning, and error. By default, the alert will display as info.
+There are 4 variants of alerts: `info`, `success`, `warning`, and `error`. By default, the alert will display as the info variant.
 
 You can change the variant of the alert by adding the `variant` prop to the component.
 
@@ -43,23 +43,6 @@ Example of using this component as a warning alert in a template
   </p>
 </alert>
 ```
-
-Example of using this component with a link
-
-```html
-<alert>
-  <template v-slot:default="{linkColor}">
-    {{ content }}
-    <span :class="linkColor" class="inline-flex">
-      <LobLink bold inherit-text-color>{{ link }}</LobLink>.
-    </span>
-  </template>
-</alert>
-```
-
-To ensure correct styling of links passed into the Alert component's slot, make sure to wrap the `<LobLink>` in a `<span>`.
-
-Pass the `linkColor` prop to the `<span>` as a class. Also pass `bold` and `inherit-text-color`to the`<LobLink>`
 
 ## Props
 
