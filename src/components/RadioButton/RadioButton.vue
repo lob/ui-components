@@ -19,11 +19,12 @@
     <label
       :for="id"
       :class="[
-        'relative flex type-base-500 -top-[25px] left-[23px]',
+        'relative flex type-base-500 -top-[25px] left-[23px] cursor-pointer',
         {'text-gray-400 !cursor-not-allowed': disabled},
         {'left-[39px] largeButton' : large},
         {'largeHover' : largeHover},
-        {'helperText' : large && helperText}
+        {'helperText' : large && helperText},
+        {'largeActive' : largeActive}
       ]"
     >
       <div>
@@ -90,6 +91,10 @@ export default {
       default: false
     },
     largeHover: {
+      type: Boolean,
+      default: false
+    },
+    largeActive: {
       type: Boolean,
       default: false
     },
@@ -223,8 +228,17 @@ input {
   }
 
   &:not(:disabled):not(:checked):not(.radio__input--error) + label.largeHover::before {
-    @apply shadow-input;
-    @apply border-primary-500;
+    @apply border-gray-500;
+    @apply bg-gray-50;
+  }
+
+  &:not(:disabled):not(:checked):not(.radio__input--error) + label.largeActive::before {
+    @apply outline-dotted;
+    @apply outline-offset-1;
+  }
+
+  &:not(:disabled):not(:checked):not(.radio__input--error) + label.largeHover::after {
+    @apply bg-gray-50;
   }
 }
 </style>

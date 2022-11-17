@@ -5,13 +5,15 @@
       fullWidth ? 'w-full' : 'w-[234px]',
       {'!h-[64px]' : helperText && !fullHeight},
       {'!h-full' : fullHeight},
-      {'hover:border-gray-300': !disabled},
-      {'!border-primary-500 ring-inset ring-1 ring-primary-500': checked && !disabled && !error},
+      {'hover:border-gray-400': !disabled},
+      {'!border-black': checked && !disabled && !error},
       {'bg-white-100 !cursor-not-allowed': disabled},
       {'!border-error': error}
     ]"
     @mouseenter="onContainerHover"
     @mouseleave="onContainerLeaveHover"
+    @mousedown="onClickDown"
+    @mouseup="onClickRelease"
     @click="onLargeButtonClick"
   >
     <RadioButton
@@ -27,6 +29,7 @@
       :large="true"
       :large-checked="checked"
       :large-hover="largeHover"
+      :large-active="largeActive"
       :error="error"
       @click="onClick"
       @input="onInput"
@@ -91,7 +94,8 @@ export default {
   data () {
     return {
       parent: null,
-      largeHover: false
+      largeHover: false,
+      largeActive: false
     };
   },
   computed: {
@@ -120,6 +124,12 @@ export default {
     },
     async onContainerLeaveHover () {
       this.largeHover = false;
+    },
+    onClickDown () {
+      this.largeActive = true;
+    },
+    onClickRelease () {
+      this.largeActive = false;
     }
   }
 };
