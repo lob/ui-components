@@ -7,7 +7,7 @@
       {'!h-full' : fullHeight},
       {'hover:border-gray-400': !disabled},
       {'!border-black': checked && !disabled && !error},
-      {'bg-white-100 !cursor-not-allowed': disabled},
+      {'!cursor-not-allowed': disabled},
       {'!border-error': error}
     ]"
     @mouseenter="onContainerHover"

@@ -131,7 +131,7 @@ WithHelperText.args = {
   separateLines: false
 };
 
-const largeGroupModel = '';
+const largeGroupModel = '4x6';
 
 const LargeGroupTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
@@ -146,6 +146,7 @@ const LargeGroupTemplate = (args, { argTypes }) => ({
     label="4x6"
     value="4x6"
     v-model="largeGroupModel"
+    disabled
   />
   <radio-button-large
     id="5x7"
