@@ -8,7 +8,7 @@
       {'hover:border-gray-400': !disabled},
       {'!border-black': checked && !disabled && !error},
       {'!cursor-not-allowed': disabled},
-      {'!border-error': error}
+      {'!border-red-500': error}
     ]"
     @mouseenter="onContainerHover"
     @mouseleave="onContainerLeaveHover"
