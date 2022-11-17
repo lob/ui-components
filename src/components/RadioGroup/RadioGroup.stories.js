@@ -29,6 +29,7 @@ const Template = (args, { argTypes }) => ({
         label="4x6"
         value="4x6"
         v-model="radioModel"
+        disabled
       />
       <radio-button
         id="5x7"
@@ -95,7 +96,7 @@ const WithHelperTextTemplate = (args, { argTypes }) => ({
   data: () => ({ withHelperTextModel }),
   setup: () => ({ args }),
   template: `
-    <radio-group v-bind="args" :separate-lines="true">
+    <radio-group v-bind="args">
     <radio-button
     id="4x6"
     name="postcard-size"
@@ -145,7 +146,6 @@ const LargeGroupTemplate = (args, { argTypes }) => ({
     label="4x6"
     value="4x6"
     v-model="largeGroupModel"
-    reveal-text="Reveal text"
   />
   <radio-button-large
     id="5x7"
@@ -153,7 +153,6 @@ const LargeGroupTemplate = (args, { argTypes }) => ({
     label="5x7"
     value="5x7"
     v-model="largeGroupModel"
-    reveal-text="Reveal text"
   />
   <radio-button-large
     id="big"
@@ -161,7 +160,6 @@ const LargeGroupTemplate = (args, { argTypes }) => ({
     label="Really Big"
     value="big"
     v-model="largeGroupModel"
-    reveal-text="Reveal text"
   />
     </radio-group>
   `

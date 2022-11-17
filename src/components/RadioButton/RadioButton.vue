@@ -1,10 +1,10 @@
 <template>
-  <div class="inline-block mr-6 mt-1">
+  <div class="inline-block mr-[36px]">
     <input
       :id="id"
       type="radio"
       :class="[
-        'm-0 p-0 opacity-0 mt-2',
+        'm-0 p-0 opacity-0',
         {'radio__input--error': error},
         {'!cursor-not-allowed': disabled}
       ]"
@@ -19,14 +19,14 @@
     <label
       :for="id"
       :class="[
-        'relative flex type-base-500',
+        'relative flex type-base-500 -top-[25px] left-[23px]',
         {'text-gray-400 !cursor-not-allowed': disabled},
-        {'largeButton w-4/5 pt-2 ml-1' : large},
+        {'left-[39px] largeButton' : large},
         {'largeHover' : largeHover},
-        {'!pt-0.5 helperText' : large && helperText}
+        {'helperText' : large && helperText}
       ]"
     >
-      <div class="ml-4">
+      <div>
         <slot>
           {{ label }}
         </slot>
@@ -127,14 +127,10 @@ export default {
 <style scoped lang="scss">
 input {
   + label {
-    @apply relative;
-    @apply inline-block;
-    @apply cursor-pointer;
-
     &::before {
       content: "";
       top: 3px;
-      left: -8px;
+      left: -22px;
 
       @apply absolute;
       @apply bg-white;
@@ -148,7 +144,7 @@ input {
 
     &::after {
       content: "";
-      left: -3px;
+      left: -17px;
 
       @apply top-[8px];
       @apply absolute;
@@ -157,26 +153,6 @@ input {
       @apply rounded-full;
       @apply w-1.5;
       @apply bg-white;
-    }
-  }
-
-  + label.largeButton {
-    &::before {
-      @apply mt-2;
-    }
-
-    &::after {
-      @apply mt-2;
-    }
-  }
-
-  + label.helperText {
-    &::before {
-      @apply mt-0.5;
-    }
-
-    &::after {
-      @apply mt-0.5;
     }
   }
 

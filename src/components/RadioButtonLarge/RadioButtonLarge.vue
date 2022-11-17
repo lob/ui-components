@@ -1,59 +1,36 @@
 <template>
   <div
     :class="[
-      {'min-h-[60px]': revealText},
-      {'!cursor-not-allowed': disabled},
-      {'h-full': fullHeight}
+      'cursor-pointer border border-gray-300 rounded-sm py-[12px] h-[48px] mr-1 mb-1',
+      fullWidth ? 'w-full' : 'w-[234px]',
+      {'!h-[64px]' : helperText && !fullHeight},
+      {'!h-full' : fullHeight},
+      {'hover:border-gray-300': !disabled},
+      {'!border-primary-500 ring-inset ring-1 ring-primary-500': checked && !disabled && !error},
+      {'bg-white-100 !cursor-not-allowed': disabled},
+      {'!border-error': error}
     ]"
+    @mouseenter="onContainerHover"
+    @mouseleave="onContainerLeaveHover"
+    @click="onLargeButtonClick"
   >
-    <div
-      :class="[
-        'min-h-[3rem] cursor-pointer bg-white top-1 inline-block mr-4 border border-gray-300 rounded-lg pl-2',
-        fullWidth ? 'w-full' : 'w-[200px]',
-        {'h-full': fullHeight},
-        {'hover:border-gray-300': !disabled},
-        {'!border-primary-500 ring-inset ring-1 ring-primary-500': checked && !disabled && !error},
-        {'bg-white-100 !cursor-not-allowed': disabled},
-        {'!border-error': error}
-      ]"
-      @mouseenter="onContainerHover"
-      @mouseleave="onContainerLeaveHover"
-      @click="onLargeButtonClick"
-    >
-      <div
-        ref="contentContainer"
-        class="pb-1"
-      >
-        <RadioButton
-          :id="id"
-          class="w-full"
-          :v-model="modelValue"
-          :value="value"
-          :name="name"
-          :label="label"
-          :required="required"
-          :disabled="disabled"
-          :helper-text="helperText"
-          :large="true"
-          :large-checked="checked"
-          :large-hover="largeHover"
-          :error="error"
-          @click="onClick"
-          @input="onInput"
-        />
-        <div
-          v-if="revealText"
-          ref="revealText"
-          :class="[
-            'hidden ml-8 text-sm text-gray-300 !font-normal cursor-pointer',
-            {'!block !text-primary-500' : checked},
-            {'!text-gray-100 cursor-not-allowed' : disabled}
-          ]"
-        >
-          {{ revealText }}
-        </div>
-      </div>
-    </div>
+    <RadioButton
+      :id="id"
+      class=""
+      :v-model="modelValue"
+      :value="value"
+      :name="name"
+      :label="label"
+      :required="required"
+      :disabled="disabled"
+      :helper-text="helperText"
+      :large="true"
+      :large-checked="checked"
+      :large-hover="largeHover"
+      :error="error"
+      @click="onClick"
+      @input="onInput"
+    />
   </div>
 </template>
 
@@ -101,10 +78,6 @@ export default {
       type: String,
       default: ''
     },
-    revealText: {
-      type: String,
-      default: ''
-    },
     fullWidth: {
       type: Boolean,
       default: false
@@ -143,21 +116,9 @@ export default {
       }
     },
     onContainerHover () {
-      const revealText = this.$refs.revealText;
-      const contentContainer = this.$refs.contentContainer;
-      if (revealText) {
-        revealText.classList.add('!block');
-        contentContainer.classList.add('!-mt-1.5');
-      }
       this.largeHover = true;
     },
     async onContainerLeaveHover () {
-      const revealText = this.$refs.revealText;
-      const contentContainer = this.$refs.contentContainer;
-      if (revealText && !this.checked) {
-        revealText.classList.remove('!block');
-        contentContainer.classList.remove('!-mt-1.5');
-      }
       this.largeHover = false;
     }
   }

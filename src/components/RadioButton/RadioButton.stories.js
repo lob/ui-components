@@ -18,7 +18,7 @@ const Template = (args, { argTypes }) => ({
   components: { RadioButton },
   data: () => ({ vModel }),
   setup: () => ({ args }),
-  template: '<radio-button v-bind="args" v-model="vModel"/>'
+  template: '<div>Align here</div><radio-button v-bind="args" v-model="vModel"/>'
 });
 
 export const Primary = Template.bind({});
