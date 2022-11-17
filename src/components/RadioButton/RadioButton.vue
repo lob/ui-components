@@ -20,7 +20,7 @@
       :for="id"
       :class="[
         'relative flex type-base-500',
-        {'text-gray-100 !cursor-not-allowed': disabled},
+        {'text-gray-400 !cursor-not-allowed': disabled},
         {'largeButton w-4/5 pt-2 ml-1' : large},
         {'largeHover' : largeHover},
         {'!pt-0.5 helperText' : large && helperText}
@@ -33,7 +33,7 @@
         <div
           :class="[
             'type-xs-400 text-gray-500',
-            {'!text-gray-100' : disabled}
+            {'!text-gray-300' : disabled}
           ]"
         >
           {{ helperText }}
@@ -180,8 +180,18 @@ input {
     }
   }
 
-  &:disabled + label::before {
-    @apply border-gray-100;
+  &:disabled:not(:checked) + label::before {
+    @apply border-gray-300;
+    @apply bg-gray-50;
+  }
+
+  &:disabled:not(:checked) + label::after {
+    @apply bg-gray-50;
+  }
+
+  &:disabled:checked + label::before {
+    @apply border-gray-300;
+    @apply bg-gray-300;
   }
 
   &.radio__input--error + label::before {
@@ -199,13 +209,6 @@ input {
 
   &.radio__input--error:not(:checked) + label::after {
     @apply bg-red-50;
-  }
-
-  &:checked:disabled + label::after {
-    @apply bg-gray-100;
-    @apply h-2;
-    @apply w-2;
-    @apply top-[7px];
   }
 
   &.radio__input--error:checked:not(:disabled) + label::before {
