@@ -19,7 +19,7 @@
     <label
       :for="id"
       :class="[
-        'relative flex font-light',
+        'relative flex type-base-500',
         {'text-gray-100 !cursor-not-allowed': disabled},
         {'largeButton w-4/5 pt-2 ml-1' : large},
         {'largeHover' : largeHover},
@@ -30,16 +30,14 @@
         <slot>
           {{ label }}
         </slot>
-      </div>
-      <div
-        :class="[
-          'text-sm ml-4 text-gray-500 !font-normal',
-          {'!text-error' : error},
-          {'!text-primary-500' : checked},
-          {'!text-gray-100' : disabled}
-        ]"
-      >
-        {{ helperText }}
+        <div
+          :class="[
+            'type-xs-400 text-gray-500',
+            {'!text-gray-100' : disabled}
+          ]"
+        >
+          {{ helperText }}
+        </div>
       </div>
     </label>
   </div>
