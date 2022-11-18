@@ -1,10 +1,15 @@
 <template>
-  <div class="inline-block mr-[36px]">
+  <div
+    :class="[
+      'inline-block mr-14',
+      {'-mb-[12px]' : !large}
+    ]"
+  >
     <input
       :id="id"
       type="radio"
       :class="[
-        'm-0 p-0 opacity-0',
+        'mb-0 p-0 opacity-0',
         {'radio__input--error': error},
         {'!cursor-not-allowed': disabled}
       ]"
@@ -19,9 +24,9 @@
     <label
       :for="id"
       :class="[
-        'relative flex type-base-500 -top-[25px] left-[23px] cursor-pointer',
+        'relative flex type-base-500 -top-[25px] left-[31px] cursor-pointer',
         {'text-gray-400 !cursor-not-allowed': disabled},
-        {'left-[39px] largeButton' : large},
+        {'left-[47px] largeButton' : large},
         {'largeHover' : largeHover},
         {'helperText' : large && helperText},
         {'largeActive' : largeActive}
@@ -34,7 +39,9 @@
         <div
           :class="[
             'type-xs-400 text-gray-500',
-            {'!text-gray-300' : disabled}
+            {'!text-gray-300' : disabled},
+            {'pr-[16px]' : large},
+            {'-mb-[16px]' : large && fullHeight}
           ]"
         >
           {{ helperText }}
@@ -95,6 +102,10 @@ export default {
       default: false
     },
     largeActive: {
+      type: Boolean,
+      default: false
+    },
+    fullHeight: {
       type: Boolean,
       default: false
     },

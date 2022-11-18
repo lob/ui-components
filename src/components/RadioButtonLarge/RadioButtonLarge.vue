@@ -18,7 +18,7 @@
   >
     <RadioButton
       :id="id"
-      class=""
+      :class="[{'top-px relative' : !helperText}]"
       :v-model="modelValue"
       :value="value"
       :name="name"
@@ -30,6 +30,7 @@
       :large-checked="checked"
       :large-hover="largeHover"
       :large-active="largeActive"
+      :full-height="fullHeight"
       :error="error"
       @click="onClick"
       @input="onInput"
