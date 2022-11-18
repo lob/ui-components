@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## v2.0.0-beta.6
+
+### Features
+
+Updates the Color Palette with the new Gray color.
+Updates the Main Navigation text color to gray-800.
+
 ## v2.0.0-beta.5
 
 ### Features
