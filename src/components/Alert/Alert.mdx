@@ -20,7 +20,15 @@ There are 4 variants of alerts: `info`, `success`, `warning`, and `error`. By de
 
 You can change the variant of the alert by adding the `variant` prop to the component.
 
-Please note: though you can only insert text in the Storybook demo, the card component will accept any valid HTML or Vue component.
+All main content goes into the default slot. To add a heading for the Alert, use the slot `#heading`.
+
+To hide the Alert Icon, set the `showIcon` prop to false.
+
+To include a Close (x) button, add the `showCloseButton` prop as true. The button will emit `close` on click.
+
+If adding a `learnMoreLink`(String) to be displayed, the link display text can also be set as the `linkDisplayText` (defaults to 'Learn more').
+
+Please note: though you can only insert text in the Storybook demo, the component will accept any valid HTML or Vue component.
 
 Example of using this component as a default info alert in a template
 
@@ -33,10 +41,11 @@ Example of using this component as a default info alert in a template
 </alert>
 ```
 
-Example of using this component as a warning alert in a template
+Example of using this component as a warning with a heading
 
 ```html
 <alert variant="warning">
+  <template v-slot:heading> Alert heading! </template>
   <p>
     You are in <span class="bold">LIVE</span> mode, all verifications will be
     charged according to your <a href="#">chosen plan</a>.
@@ -46,4 +55,4 @@ Example of using this component as a warning alert in a template
 
 ## Props
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgsTable story="{PRIMARY_STORY}" />
