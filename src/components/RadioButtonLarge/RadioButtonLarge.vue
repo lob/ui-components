@@ -1,9 +1,9 @@
 <template>
   <div
     :class="[
-      'cursor-pointer border border-gray-300 rounded-sm py-[12px] h-[48px] mr-1 mb-1',
+      'cursor-pointer border border-gray-300 rounded-sm py-3 h-12 mr-4 mb-1',
       fullWidth ? 'w-full' : 'w-[234px]',
-      {'!h-[64px]' : helperText && !fullHeight},
+      {'!h-16' : helperText && !fullHeight},
       {'!h-full' : fullHeight},
       {'hover:border-gray-400': !disabled},
       {'!border-black': checked && !disabled && !error},
@@ -18,7 +18,7 @@
   >
     <RadioButton
       :id="id"
-      :class="[{'top-px relative' : !helperText}]"
+      :class="{'top-px relative' : !helperText}"
       :v-model="modelValue"
       :value="value"
       :name="name"
