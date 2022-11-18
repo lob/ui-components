@@ -26,18 +26,11 @@
           <slot name="heading" />
         </div>
       </div>
-      <LobLink
-        v-if="learnMoreLink"
-        :to="learnMoreLink"
-        :underline="false"
-        class="ml-4 !type-xs-400 text-gray-500"
-      >
-        {{ linkDisplayText }}
-        <ArrowRight class="inline w-3 h-3" />
-      </LobLink>
-      <button v-if="showCloseButton">
-        <Close class="w-4 h-4 ml-4" />
-      </button>
+      <LinkAndClose
+        :learn-more-link="learnMoreLink"
+        :link-display-text="linkDisplayText"
+        :show-close-button="showCloseButton"
+      />
     </div>
     <div
       v-if="hasContent"
@@ -54,13 +47,26 @@
                    { 'text-red-700': error }
           ]"
         />
-        <!-- text/any content goes in the default slot -->
         <div class="type-xs-400 mt-1">
-          <slot />
+          <slot /> <!-- text/any content goes in the default slot -->
         </div>
       </div>
-      <div v-if="!hasHeading">
-        <LobLink
+      <LinkAndClose
+        v-if="!hasHeading"
+        :learn-more-link="learnMoreLink"
+        :link-display-text="linkDisplayText"
+        :show-close-button="showCloseButton"
+      />
+    </div>
+  </div>
+</template>
+
+<script>
+import { Info, Checkmark, AlertCircle, Close, ArrowRight } from '@/components/Icons';
+import LobLink from '../Link/Link';
+
+const LinkAndClose = {
+  template: `<LobLink
           v-if="learnMoreLink"
           :to="learnMoreLink"
           :underline="false"
@@ -71,19 +77,18 @@
         </LobLink>
         <button v-if="showCloseButton">
           <Close class="w-4 h-4 ml-4" />
-        </button>
-      </div>
-    </div>
-  </div>
-</template>
-
-<script>
-import { Info, Checkmark, AlertCircle, Close, ArrowRight } from '@/components/Icons';
-import LobLink from '../Link/Link';
+        </button>`,
+  components: { LobLink, Close, ArrowRight },
+  props: {
+    learnMoreLink: String,
+    linkDisplayText: String,
+    showCloseButton: Boolean
+  }
+};
 
 export default {
   name: 'Alert',
-  components: { Info, Checkmark, AlertCircle, Close, ArrowRight, LobLink },
+  components: { Info, Checkmark, AlertCircle, LinkAndClose },
   props: {
     variant: {
       type: String,
