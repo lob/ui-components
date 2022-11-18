@@ -1,26 +1,15 @@
 <template>
-  <div
-    :class="['w-full py-3 px-4',
-             { 'bg-blue-50 text-blue-700': info },
-             { 'bg-green-50 text-green-700': success },
-             { 'bg-orange-50 text-orange-600': warning },
-             { 'bg-red-50 text-red-700': error }
-    ]"
-  >
+  <div :class="`w-full py-3 px-4 ${variantDetails.color} ${variantDetails.bgColor}`">
     <div
       v-if="hasHeading"
       class="flex justify-between"
     >
       <div class="flex">
         <component
-          :is="icon"
+          :is="variantDetails.icon"
           v-if="showIcon"
           class="h-6 w-6 flex-shrink-0 mr-2"
-          :class="[{ 'text-green-700': success },
-                   { 'text-blue-700': info },
-                   { 'text-orange-600': warning },
-                   { 'text-red-700': error }
-          ]"
+          :class="variantDetails.color"
         />
         <div class="type-base-700">
           <slot name="heading" />
@@ -38,14 +27,10 @@
     >
       <div class="flex items-center">
         <component
-          :is="icon"
+          :is="variantDetails.icon"
           v-if="showIcon && !hasHeading"
           class="h-6 w-6 flex-shrink-0 mr-2"
-          :class="[{ 'text-green-700': success },
-                   { 'text-blue-700': info },
-                   { 'text-orange-600': warning },
-                   { 'text-red-700': error }
-          ]"
+          :class="variantDetails.color"
         />
         <div class="type-xs-400 mt-1">
           <slot /> <!-- text/any content goes in the default slot -->
@@ -117,11 +102,11 @@ export default {
   emits: ['close'],
   data () {
     return {
-      variantDetails: [
-        { variant: 'info', icon: 'Info' },
-        { variant: 'success', icon: 'Checkmark' },
-        { variant: 'warning', icon: 'AlertCircle' },
-        { variant: 'error', icon: 'AlertCircle' }
+      variants: [
+        { variant: 'info', icon: 'Info', color: 'text-blue-700', bgColor: 'bg-blue-50' },
+        { variant: 'success', icon: 'Checkmark', color: 'text-green-700', bgColor: 'bg-green-50' },
+        { variant: 'warning', icon: 'AlertCircle', color: 'text-orange-600', bgColor: 'bg-orange-50' },
+        { variant: 'error', icon: 'AlertCircle', color: 'text-orange-600', bgColor: 'bg-red-50' }
       ]
     };
   },
@@ -138,9 +123,9 @@ export default {
     error () {
       return this.variant === 'error';
     },
-    icon () {
-      const selectedVariant = this.variantDetails.find((currentVariant) => currentVariant.variant === this.variant);
-      return selectedVariant.icon;
+    variantDetails () {
+      const selectedVariant = this.variants.find((currentVariant) => currentVariant.variant === this.variant);
+      return { icon: selectedVariant.icon, color: selectedVariant.color, bgColor: selectedVariant.bgColor };
     },
     hasHeading () {
       return Boolean(this.$slots.heading);
