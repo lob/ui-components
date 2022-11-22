@@ -1,5 +1,8 @@
 <template>
-  <div :class="`w-full py-3 px-4 ${variantDetails.color} ${variantDetails.bgColor}`">
+  <div
+    :class="`w-full py-3 px-4 ${variantDetails.color} ${variantDetails.bgColor}`"
+    data-testid="alert"
+  >
     <div
       v-if="hasHeading"
       class="flex justify-between"
@@ -10,6 +13,7 @@
           v-if="showIcon"
           class="h-6 w-6 flex-shrink-0 mr-2"
           :class="variantDetails.color"
+          data-testid="alertIcon"
         />
         <div class="type-base-700">
           <slot name="heading" />
@@ -19,6 +23,7 @@
         :learn-more-link="learnMoreLink"
         :link-display-text="linkDisplayText"
         :show-close-button="showCloseButton"
+        @close="closeAlert"
       />
     </div>
     <div
@@ -31,6 +36,7 @@
           v-if="showIcon && !hasHeading"
           class="h-6 w-6 flex-shrink-0 mr-2"
           :class="variantDetails.color"
+          data-testid="alertIcon"
         />
         <div class="type-xs-400 mt-1">
           <slot /> <!-- text/any content goes in the default slot -->
@@ -41,6 +47,7 @@
         :learn-more-link="learnMoreLink"
         :link-display-text="linkDisplayText"
         :show-close-button="showCloseButton"
+        @close="closeAlert"
       />
     </div>
   </div>
@@ -51,23 +58,30 @@ import { Info, Checkmark, AlertCircle, Close, ArrowRight } from '@/components/Ic
 import LobLink from '../Link/Link';
 
 const LinkAndClose = {
-  template: `<LobLink
+  template: `<div><LobLink
           v-if="learnMoreLink"
           :to="learnMoreLink"
           :underline="false"
+          target="_blank"
+          role="link"
           class="ml-4 !type-xs-400 text-gray-500"
         >
           {{ linkDisplayText }}
           <ArrowRight class="inline w-3 h-3" />
         </LobLink>
         <button v-if="showCloseButton">
-          <Close class="w-4 h-4 ml-4" />
-        </button>`,
+          <Close class="w-4 h-4 ml-4" data-testid="closeButton" @click="closeAlert"/>
+        </button></div>`,
   components: { LobLink, Close, ArrowRight },
   props: {
     learnMoreLink: String,
     linkDisplayText: String,
     showCloseButton: Boolean
+  },
+  methods: {
+    closeAlert () {
+      this.$emit('close');
+    }
   }
 };
 
