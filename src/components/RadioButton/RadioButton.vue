@@ -7,8 +7,7 @@
   >
     <div
       :class="[
-        'inline-block mr-12',
-        {'-mb-3' : !large}
+        'inline-block mr-12'
       ]"
     >
       <input
@@ -24,6 +23,7 @@
         :checked="checked"
         :disabled="disabled"
         :required="required"
+        :readonly="readonly"
         @input="onInput"
         @click="onClick"
       >
@@ -31,11 +31,7 @@
         :for="id"
         :class="[
           'relative flex type-base-500 -top-[25px] left-[31px] cursor-pointer',
-          {'text-gray-400 !cursor-not-allowed': disabled},
-          {'left-12 largeButton' : large},
-          {'largeHover' : largeHover},
-          {'helperText' : large && helperText},
-          {'largeActive' : largeActive}
+          {'text-gray-400 !cursor-not-allowed': disabled}
         ]"
       >
         <div>
@@ -45,9 +41,7 @@
           <div
             :class="[
               'type-xs-400 text-gray-500',
-              {'!text-gray-300' : disabled},
-              {'pr-4' : large},
-              {'-mb-4' : large && fullHeight}
+              {'!text-gray-300' : disabled}
             ]"
           >
             {{ helperText }}
@@ -96,27 +90,11 @@ export default {
       type: String,
       default: ''
     },
-    large: {
-      type: Boolean,
-      default: false
-    },
-    largeChecked: {
-      type: Boolean,
-      default: false
-    },
-    largeHover: {
-      type: Boolean,
-      default: false
-    },
-    largeActive: {
-      type: Boolean,
-      default: false
-    },
-    fullHeight: {
-      type: Boolean,
-      default: false
-    },
     error: {
+      type: Boolean,
+      default: false
+    },
+    readonly: {
       type: Boolean,
       default: false
     }
@@ -129,7 +107,7 @@ export default {
   },
   computed: {
     checked () {
-      return this.modelValue === this.value || this.largeChecked;
+      return this.modelValue === this.value;
     }
   },
   created () {
@@ -229,15 +207,6 @@ input {
   }
 
   &:hover:not(:disabled):not(:checked):not(.radio__input--error) + label::after {
-    @apply bg-gray-50;
-  }
-
-  &:not(:disabled):not(:checked):not(.radio__input--error) + label.largeHover::before {
-    @apply border-gray-500;
-    @apply bg-gray-50;
-  }
-
-  &:not(:disabled):not(:checked):not(.radio__input--error) + label.largeHover::after {
     @apply bg-gray-50;
   }
 }

@@ -29,7 +29,6 @@ const Template = (args, { argTypes }) => ({
         label="4x6"
         value="4x6"
         v-model="radioModel"
-        disabled
       />
       <radio-button
         id="5x7"

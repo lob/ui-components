@@ -1,50 +1,65 @@
 <template>
   <div
     :class="[
-      'cursor-pointer border border-gray-300 rounded-sm py-3 h-12 mr-4 mb-1',
+      'buttonContainer cursor-pointer border border-gray-300 rounded-sm py-3 h-12 mr-4 mb-1 focus-within:outline-1 focus-within:outline-dotted focus-within:outline-offset-1 focus:outline-black',
       fullWidth ? 'w-full' : 'w-[234px]',
-      {'!h-16' : helperText && !fullHeight},
+      {'!h-[72px]' : !fullHeight && helperText},
       {'!h-full' : fullHeight},
-      {'hover:border-gray-400': !disabled},
-      {'!border-black': checked && !disabled && !error},
-      {'!cursor-not-allowed': disabled},
-      {'!border-red-500': error}
+      {'hover:border-gray-400': !disabled && !error},
+      {'!border-black checked': checked && !disabled && !error},
+      {'disabled !cursor-not-allowed border-gray-100': disabled},
+      {'!border-red-500 radio__input--error': error && !disabled}
     ]"
-    @mouseenter="onContainerHover"
-    @mouseleave="onContainerLeaveHover"
-    @mousedown="onClickDown"
-    @mouseup="onClickRelease"
-    @click="onLargeButtonClick"
+    @click="onInput"
   >
-    <RadioButton
+    <input
       :id="id"
-      :class="{'top-px relative' : !helperText}"
-      :v-model="modelValue"
-      :value="value"
+      ref="radioInput"
+      type="radio"
+      :class="[
+        'mb-0 p-0 opacity-0',
+        {'radio__input--error': error},
+        {'!cursor-not-allowed': disabled}
+      ]"
       :name="name"
-      :label="label"
-      :required="required"
+      :value="value.toString()"
+      :checked="checked"
       :disabled="disabled"
-      :helper-text="helperText"
-      :large="true"
-      :large-checked="checked"
-      :large-hover="largeHover"
-      :large-active="largeActive"
-      :full-height="fullHeight"
-      :error="error"
-      @click="onClick"
+      :required="required"
       @input="onInput"
-    />
+      @click="onClick"
+    >
+    <label
+      :for="id"
+      :class="[
+        'relative flex type-base-500 -top-[24px] left-[46px] cursor-pointer h-full pr-16',
+        {'text-gray-400 !cursor-not-allowed': disabled},
+        {'!-top-[22px]' : helperText}
+      ]"
+    >
+      <div>
+        <slot>
+          {{ label }}
+        </slot>
+        <div
+          :class="[
+            'type-xs-400 text-gray-500',
+            {'!text-gray-300' : disabled},
+            {'-mb-4' : helperText}
+          ]"
+        >
+          {{ helperText }}
+        </div>
+      </div>
+    </label>
   </div>
 </template>
 
 <script>
 import { getCurrentInstance } from 'vue';
-import RadioButton from '../RadioButton/RadioButton.vue';
 
 export default {
   name: 'RadioButtonLarge',
-  components: { RadioButton },
   props: {
     id: {
       type: String,
@@ -62,10 +77,6 @@ export default {
       type: [String, Boolean],
       default: ''
     },
-    error: {
-      type: Boolean,
-      default: false
-    },
     label: {
       type: String,
       default: ''
@@ -82,11 +93,15 @@ export default {
       type: String,
       default: ''
     },
-    fullWidth: {
+    error: {
       type: Boolean,
       default: false
     },
     fullHeight: {
+      type: Boolean,
+      default: false
+    },
+    fullWidth: {
       type: Boolean,
       default: false
     }
@@ -94,9 +109,7 @@ export default {
   emits: ['update:modelValue', 'input', 'click'],
   data () {
     return {
-      parent: null,
-      largeHover: false,
-      largeActive: false
+      parent: null
     };
   },
   computed: {
@@ -109,29 +122,98 @@ export default {
   },
   methods: {
     onInput () {
-      this.$emit('update:modelValue', this.value);
-      this.$emit('input', this.value);
+      if (!this.disabled) {
+        this.$emit('update:modelValue', this.value);
+        this.$emit('input', this.value);
+        this.$refs.radioInput.focus();
+      }
     },
     onClick ($event) {
       this.$emit('click', $event);
-    },
-    onLargeButtonClick () {
-      if (!this.disabled) {
-        this.$emit('update:modelValue', this.value);
-      }
-    },
-    onContainerHover () {
-      this.largeHover = true;
-    },
-    async onContainerLeaveHover () {
-      this.largeHover = false;
-    },
-    onClickDown () {
-      this.largeActive = true;
-    },
-    onClickRelease () {
-      this.largeActive = false;
     }
   }
 };
 </script>
+
+<style scoped lang="scss">
+input {
+  + label {
+    &::before {
+      content: "";
+      top: 3px;
+      left: -22px;
+
+      @apply absolute;
+      @apply bg-white;
+      @apply border-gray-400;
+      @apply border-solid;
+      @apply border;
+      @apply h-4;
+      @apply rounded-lg;
+      @apply w-4;
+    }
+
+    &::after {
+      content: "";
+      left: -17px;
+
+      @apply top-2;
+      @apply absolute;
+      @apply h-1.5;
+      @apply inline-block;
+      @apply rounded-full;
+      @apply w-1.5;
+      @apply bg-white;
+    }
+  }
+
+  &.radio__input--error + label::before {
+    @apply border;
+    @apply border-red-500;
+  }
+
+  &:disabled:not(:checked) + label::before {
+    @apply border-gray-300;
+    @apply bg-gray-50;
+  }
+
+  &:disabled:not(:checked) + label::after {
+    @apply bg-gray-50;
+  }
+
+  &:disabled:checked + label::before {
+    @apply border-gray-300;
+    @apply bg-gray-300;
+  }
+
+  &.radio__input--error:not(:checked):not(:disabled) + label::before {
+    @apply bg-red-50;
+  }
+
+  &.radio__input--error:not(:checked):not(:disabled) + label::after {
+    @apply bg-red-50;
+  }
+
+  &.radio__input--error:checked:not(:disabled) + label::before {
+    @apply bg-red-500;
+  }
+
+  &.radio__input--error:checked:not(:disabled) + label::after {
+    @apply bg-white;
+  }
+
+  &:checked:not(:disabled):not(.radio__input--error) + label::before {
+    @apply bg-black;
+    @apply border-black;
+  }
+}
+
+.buttonContainer:hover:not(.radio__input--error):not(.disabled):not(.checked) label::before {
+  @apply border-gray-500;
+  @apply bg-gray-50;
+}
+
+.buttonContainer:hover:not(.radio__input--error):not(.disabled):not(.checked) label::after {
+  @apply bg-gray-50;
+}
+</style>
