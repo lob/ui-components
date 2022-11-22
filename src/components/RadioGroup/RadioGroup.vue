@@ -4,7 +4,7 @@
       'border-none flex'
     ]"
   >
-    <legend :class="[{'type-small-700 text-black mb-1.5':!srOnlyLegend}, {'sr-only': srOnlyLegend}]">
+    <legend :class="srOnlyLegend ? 'sr-only' : 'type-small-700 text-black mb-1.5'">
       {{ legend }}
       <span
         v-if="required"

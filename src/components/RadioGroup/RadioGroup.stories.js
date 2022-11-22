@@ -145,7 +145,6 @@ const LargeGroupTemplate = (args, { argTypes }) => ({
     label="4x6"
     value="4x6"
     v-model="largeGroupModel"
-    disabled
   />
   <radio-button-large
     id="5x7"

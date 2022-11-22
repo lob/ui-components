@@ -6,9 +6,7 @@
     ]"
   >
     <div
-      :class="[
-        'inline-block mr-12'
-      ]"
+      class="inline-block mr-12"
     >
       <input
         :id="id"
