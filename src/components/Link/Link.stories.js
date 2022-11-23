@@ -24,17 +24,23 @@ export default {
   },
   argTypes: {
     variant: {
-      options: ['link', 'primary-button', 'secondary-button', 'subtle-button'],
+      options: ['link', 'primary-button', 'secondary-button'],
       control: {
         type: 'select'
       }
     },
-    small: {
+    size: {
+      options: ['small', 'base', 'large', 'xl'],
+      control: {
+        type: 'select'
+      }
+    },
+    underline: {
       control: {
         type: 'boolean'
       }
     },
-    underline: {
+    bold: {
       control: {
         type: 'boolean'
       }
@@ -64,9 +70,4 @@ StyledAsPrimaryButton.args = {
 export const StyledAsSecondaryButton = Template.bind({});
 StyledAsSecondaryButton.args = {
   variant: 'secondary-button'
-};
-
-export const StyledAsSubtleButton = Template.bind({});
-StyledAsSubtleButton.args = {
-  variant: 'subtle-button'
 };

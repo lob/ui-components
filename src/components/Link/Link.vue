@@ -6,32 +6,14 @@
       :target="target"
       :rel="target === '_blank' ? 'noopener noreferrer' : ''"
       :aria-disabled="disabled"
-      :class="[
-        { 'pointer-events-none': disabled },
-        { 'font-bold': bold },
-        { 'text-inherit': inheritTextColor },
-        { 'px-0 text-base focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:rounded-lg': link },
-        { 'underline': underline && link },
-        { '!text-gray-500': disabled && link },
-        { 'text-primary-500 hover:text-primary-900 active:text-primary-900': !inheritTextColor && link },
-        { 'flex justify-center items-center rounded-lg no-underline font-medium': primary || secondary || subtle },
-        { 'focus-visible:ring-4 focus-visible:ring-primary-100 focus:ring-transparent focus:outline-none active:scale-[.96]': primary || secondary || subtle },
-        { 'px-6 text-base h-[48px]': regular && (primary || secondary || subtle) },
-        { 'px-4 text-sm h-[32px]': small && (primary || secondary || subtle) },
-        { 'bg-gradient-114 from-[#1876db] to-[#5748ff] hover:from-[#5748ff] hover:to-[#1876db] !text-white': !disabled && primary && !warning },
-        { 'text-gray-400 bg-gray-100': disabled && primary && !warning },
-        { 'bg-gradient-114 from-[#db1818] to-[#ec4949] hover:from-[#ec4949] hover:to-[#db1818] !text-white': !disabled && primary && warning },
-        { 'text-coral-700 bg-coral-200': disabled && primary && warning },
-        { 'border-2 !border-gray-500 text-gray-500 hover:text-gray-500 hover:bg-gray-100/[.15] active:bg-gray-100/[.25]': !disabled && secondary && !warning },
-        { 'text-gray-300 border-gray-300 border-2': disabled && secondary && !warning },
-        { 'bg-white border-2 !border-chili text-chili hover:bg-chili/[.04] active:bg-chili/[.08]': !disabled && secondary && warning },
-        { 'text-coral-700 border-coral-700 border-2': disabled && secondary && warning },
-        { 'text-primary-500 hover:bg-primary-500/[.04] active:bg-primary-500/[.08] active:text-primary-700': !disabled && subtle && !warning },
-        { 'text-gray-300 border-gray-300 border-2 hover:bg-transparent': disabled && subtle && !warning },
-        { 'text-chili hover:bg-chili/[.04] active:bg-chili/[.08]' : !disabled && subtle && warning },
-        { 'text-coral-700 border-coral-700 border-2 hover:bg-transparent' : disabled && subtle && warning }
-      ]"
       v-bind="$attrs"
+      :class=" [ { 'pointer-events-none': disabled },
+                 { 'text-blue-600': link },
+                 { 'underline': link && underline },
+                 link ? `type-${size}-600`: '',
+                 link && bold ? `type-${size}-800 no-underline`: '',
+                 { '!text-gray-400': link && disabled }
+      ]"
     >
       <slot />
       <ChevronRight
@@ -53,14 +35,21 @@ export default {
       type: String,
       default: 'link',
       validator: function (value) {
-        return ['link', 'primary-button', 'secondary-button', 'subtle-button'].includes(value);
+        return ['link', 'primary-button', 'secondary-button'].includes(value);
       }
     },
-    small: {
-      type: Boolean,
-      default: false
+    size: {
+      type: String,
+      default: 'base',
+      validator: function (value) {
+        return ['small', 'base', 'large', 'xl'].includes(value);
+      }
     },
-    warning: {
+    underline: {
+      type: Boolean,
+      default: true
+    },
+    bold: {
       type: Boolean,
       default: false
     },
@@ -71,22 +60,6 @@ export default {
     to: {
       type: [String, Object],
       default: ''
-    },
-    label: {
-      type: String,
-      default: ''
-    },
-    underline: {
-      type: Boolean,
-      default: true
-    },
-    bold: {
-      type: Boolean,
-      default: false
-    },
-    inheritTextColor: {
-      type: Boolean,
-      default: false
     },
     target: {
       type: String,
@@ -100,18 +73,6 @@ export default {
   computed: {
     link () {
       return this.variant === 'link';
-    },
-    primary () {
-      return this.variant === 'primary-button';
-    },
-    secondary () {
-      return this.variant === 'secondary-button';
-    },
-    subtle () {
-      return this.variant === 'subtle-button';
-    },
-    regular () {
-      return !this.small;
     },
     isExternal () {
       const protocolRelativePattern = /^https?:\/\/|^\/\//i;
