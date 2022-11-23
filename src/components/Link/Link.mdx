@@ -11,18 +11,18 @@ import LobLink from "./Link.vue";
 Links are styled semantic links. If you pass through a relative path (e.g. `/settings`), the link will become a router-link integrated with Vue router. If you pass through an external URL, the link will become an anchor tag.
 
 <Preview>
-  <Story id="components-link--regular-link" />
+  <Story id="components-link--default-link" />
 </Preview>
 
 ## How to Use
 
-The default variant is `link`. There are also 3 variants of button style: `primary-button`, `secondary-button` & `subtle-button`.
+The default variant is `link`. There are also 6 variants of button style: `'primary-button'`, `'secondary-button'`, `'quiet-button'`, `'ghost-button'`, `'danger-button'`, `'quiet-secondary-button'`.
 You can change the variant of the button by adding the `variant` prop (String) to the component.
-The primary-button & secondary-button variants are styled so that they look like the primary & secondary Buttons.
+The `'-button'` variants are styled so that they look like the variants of the Button component.
 
-There are 2 sizes of buttons: regular (default) and small. For a small button add the `small` prop (Boolean) to the component.
+The Link can be `'small'`, `'medium'` (default), `'large'`, or `'xl'`, defined by the `size` prop (String).
 
-There is an underline property for the regular link text which is enabled by default. To disable it add the prop `:underline:"false"`.
+There is an `underline` property for the link text which is enabled by default. To disable it add the prop `:underline:"false"`.
 
 The `disabled` property applies disabled styles as well as prevents clicks via CSS.
 
