@@ -1,23 +1,14 @@
 <template>
   <button
     :class="[
-      'flex justify-center items-center rounded-lg focus-visible:ring-4 focus-visible:ring-primary-100 focus:outline-none',
-      { 'font-medium': primary || secondary || subtle },
-      { 'px-6 text-base h-[48px]': regular },
-      { 'px-4 text-sm h-[32px]': small },
-      { 'px-0 h-auto text-base': link },
-      { 'underline text-primary-500 hover:text-primary-900 active:text-primary-900 disabled:text-gray-500': link },
+      'flex justify-center items-center rounded-full',
+      { 'type-xs-700 py-2 px-4' : primary && small },
+      { 'type-small-700 py-2 px-4' : primary && medium },
+      { 'type-small-700 py-3 px-5' : primary && large },
+      { 'type-base-700 py-[14px] px-6' : primary && xlarge },
       { 'cursor-not-allowed': disabled },
-      { 'active:scale-[.96]': !disabled && !link },
-      { 'bg-gradient-114 from-[#1876db] to-[#5748ff] hover:from-[#5748ff] hover:to-[#1876db] text-white': primary && !warning && !disabled },
-      { 'text-gray-400 disabled:bg-gray-100': primary && !warning && disabled },
-      { 'bg-gradient-114 from-[#db1818] to-[#ec4949] hover:from-[#ec4949] hover:to-[#db1818] text-white': primary && warning && !disabled },
-      { 'text-coral-700 disabled:!bg-coral-200': primary && warning && disabled },
-      { 'bg-white text-gray-500 border-gray-500 border-2 disabled:text-gray-300 disabled:border-gray-300 disabled:hover:bg-transparent': secondary && !warning,
-        'hover:bg-gray-100/[.15] active:bg-bg-gray-100/[.25] disabled:text-gray-100 disabled:border-2': secondary && !warning },
-      { 'bg-white text-chili border-chili border-2 disabled:hover:bg-transparent disabled:text-coral-700 disabled:border-coral-700 disabled:border-2 hover:bg-chili/[.04] active:bg-chili/[.08]': secondary && warning },
-      { 'text-primary-500 hover:bg-primary-500/[.04] active:bg-primary-500/[.08] active:text-primary-700 disabled:text-gray-300 disabled:border-2 disabled:hover:bg-transparent': subtle && !warning },
-      { 'text-chili hover:bg-chili/[.04] active:bg-chili/[.08] disabled:text-coral-700 disabled:border-coral-700 disabled:border-2 disabled:hover:bg-transparent': subtle && warning }
+      { 'bg-black text-white hover:bg-gray-700 active:bg-gray-800 focus:bg-gray-800 focus:outline-dashed focus:outline-black focus:outline-offset-1 disabled:bg-gray-200 disabled:text-gray-400' : primary && !danger },
+      { 'bg-red-500 text-white hover:bg-red-600 active:bg-red-700 focus:bg-red-600 focus:outline-dashed focus:outline-black focus:outline-offset-1 disabled:bg-red-200 disabled:text-red-400' : primary && danger }
     ]"
     :disabled="disabled"
     @click="handleClick"
@@ -36,18 +27,21 @@ export default {
       type: String,
       default: 'primary',
       validator: function (value) {
-        return ['primary', 'secondary', 'link', 'subtle'].includes(value);
+        return ['primary', 'secondary', 'link'].includes(value);
       }
     },
-    small: {
-      type: Boolean,
-      default: false
+    size: {
+      type: String,
+      default: 'large',
+      validator: function (value) {
+        return ['small', 'medium', 'large', 'xl'].includes(value);
+      }
     },
     disabled: {
       type: Boolean,
       default: false
     },
-    warning: {
+    danger: {
       type: Boolean,
       default: false
     }
@@ -63,11 +57,17 @@ export default {
     link () {
       return this.variant === 'link';
     },
-    subtle () {
-      return this.variant === 'subtle';
+    small () {
+      return this.size === 'small';
     },
-    regular () {
-      return !this.small;
+    medium () {
+      return this.size === 'medium';
+    },
+    large () {
+      return this.size === 'large';
+    },
+    xlarge () {
+      return this.size === 'xl';
     }
   },
   methods: {

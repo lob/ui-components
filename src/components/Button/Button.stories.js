@@ -24,17 +24,18 @@ export default {
       }
     },
     variant: {
-      options: ['primary', 'secondary', 'link', 'subtle'],
+      options: ['primary', 'secondary', 'link'],
       control: {
         type: 'select'
       }
     },
-    warning: {
+    size: {
+      options: ['small', 'medium', 'large', 'xl'],
       control: {
-        type: 'boolean'
+        type: 'select'
       }
     },
-    small: {
+    danger: {
       control: {
         type: 'boolean'
       }
