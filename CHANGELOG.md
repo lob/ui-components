@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v2.0.0-beta.7
+
+### Features
+
+Do not show clear buttons in `SearchBar` unless there is a search term
+
 ## v2.0.0-beta.6
 
 ### Features
