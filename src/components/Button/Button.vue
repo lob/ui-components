@@ -2,13 +2,15 @@
   <button
     :class="[
       'flex justify-center items-center rounded-full',
-      { 'type-xs-700 py-2 px-4' : primary && small },
-      { 'type-small-700 py-2 px-4' : primary && medium },
-      { 'type-small-700 py-3 px-5' : primary && large },
-      { 'type-base-700 py-[14px] px-6' : primary && xlarge },
+      { 'type-xs-700 py-2 px-4': small },
+      { 'type-small-700 py-2 px-4': medium },
+      { 'type-small-700 py-3 px-5': large },
+      { 'type-base-700 py-[14px] px-6': xlarge },
       { 'cursor-not-allowed': disabled },
       { 'bg-black text-white hover:bg-gray-700 active:bg-gray-800 focus:bg-gray-800 focus:outline-dashed focus:outline-black focus:outline-offset-1 disabled:bg-gray-200 disabled:text-gray-400' : primary && !danger },
-      { 'bg-red-500 text-white hover:bg-red-600 active:bg-red-700 focus:bg-red-600 focus:outline-dashed focus:outline-black focus:outline-offset-1 disabled:bg-red-200 disabled:text-red-400' : primary && danger }
+      { 'bg-red-500 text-white hover:bg-red-600 active:bg-red-700 focus:bg-red-600 focus:outline-dashed focus:outline-black focus:outline-offset-1 disabled:bg-red-200 disabled:text-red-400' : primary && danger },
+      { 'bg-white text-gray-800 border border-gray-800 hover:bg-gray-50 active:bg-gray-100 focus:bg-gray-100 focus:outline-dashed focus:outline-black focus:outline-offset-1 disabled:border-gray-200 disabled:text-gray-400' : secondary && !danger },
+      { 'bg-white text-red-500 border border-red-500 hover:bg-red-50 hover:border-red-600 hover:text-red-600 active:bg-red-100 active:border-red-700 active:text-red-700 focus:bg-red-50 focus:border-red-600 focus:text-red-600 focus:outline-dashed focus:outline-black focus:outline-offset-1 disabled:border-red-300 disabled:text-red-300 disabled:hover:bg-white' : secondary && !danger }
     ]"
     :disabled="disabled"
     @click="handleClick"
