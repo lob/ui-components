@@ -68,6 +68,17 @@ describe('SearchBar', () => {
     expect(input.value).toBe('');
   });
 
+  it('does not show the clear button if there is no search term present', async () => {
+    const props = {
+      ...initialProps
+    };
+
+    const { queryByTestId } = renderComponent({ props });
+
+    const button = queryByTestId('clearSearchButton');
+    expect(button).toHaveClass('opacity-0');
+  });
+
   it('executes the search function when the user types', async () => {
     const searchTerm = 'baseball';
     const props = {
