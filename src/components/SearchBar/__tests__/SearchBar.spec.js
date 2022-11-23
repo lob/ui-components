@@ -40,17 +40,6 @@ const renderComponent = (options) => render(SearchBar, { ...options, global: { m
 
 describe('SearchBar', () => {
 
-  it('has the x button disabled when no text was entered', () => {
-    const props = {
-      ...initialProps
-    };
-
-    const { queryByTestId } = renderComponent({ props });
-
-    const button = queryByTestId('clearSearchButton');
-    expect(button).toBeDisabled();
-  });
-
   it('clears entered searchTerm when x button is clicked', async () => {
     const searchTerm = 'something';
     const props = {
