@@ -16,7 +16,10 @@
       </template>
       <template #iconRight>
         <button
-          class="block"
+          :class="[
+            'block opacity-0 pointer',
+            {'opacity-100 cursor-pointer' : searchTerm}
+          ]"
           :aria-label="t('search.closeLabel')"
           :disabled="disabled"
           data-testid="clearSearchButton"
@@ -150,8 +153,10 @@ export default {
       });
     },
     clearSearch () {
-      this.searchTerm = '';
-      this.searchResults = [];
+      if (this.searchTerm) {
+        this.searchTerm = '';
+        this.searchResults = [];
+      }
     },
     onClickOutside ($event) {
       if (this.$refs.searchBar) {
