@@ -3,10 +3,10 @@
     :class="[
       'focus:outline-dashed focus:outline-black focus:outline-offset-1',
       link ? `!${linkSizeClass}` : 'flex justify-center items-center rounded-full',
-      { 'type-xs-700 py-2 px-4': small },
-      { 'type-small-700 py-2 px-4': medium },
-      { 'type-small-700 py-3 px-5': large },
-      { 'type-base-700 py-[14px] px-6': xlarge },
+      { 'type-xs-700 py-2 px-4': small && !link },
+      { 'type-small-700 py-2 px-4': medium && !link },
+      { 'type-small-700 py-3 px-5': large && !link },
+      { 'type-base-700 py-[14px] px-6': xlarge && !link },
       { 'cursor-not-allowed': disabled },
       { 'bg-black text-white hover:bg-gray-700 active:bg-gray-800 focus:bg-gray-800' : primary },
       { 'bg-white text-gray-800 border border-gray-800 hover:bg-gray-50 active:bg-gray-100 focus:bg-gray-100 disabled:border-gray-200 disabled:text-gray-400 disabled:hover:bg-white' : secondary },
@@ -15,7 +15,7 @@
       { 'disabled:bg-gray-100 disabled:text-gray-300 disabled:border-none': primary || quiet || ghost },
       { 'bg-red-500 text-white hover:bg-red-600 active:bg-red-700 focus:bg-red-600 disabled:bg-red-200 disabled:text-red-400' : danger },
       { 'bg-white text-red-500 border border-red-500 hover:bg-red-50 hover:border-red-600 hover:text-red-600 active:bg-red-100 active:border-red-700 active:text-red-700 focus:bg-red-50 focus:border-red-600 focus:text-red-600 disabled:border-red-300 disabled:text-red-300 disabled:hover:bg-white' : dangerSecondary },
-      { '!text-blue-600 underline hover:!text-blue-500 disabled:!text-gray-400 !px-0 !py-0': link }
+      { '!text-blue-600 underline hover:!text-blue-500 disabled:!text-gray-400': link }
     ]"
     :disabled="disabled"
     @click="handleClick"
