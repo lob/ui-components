@@ -1,16 +1,19 @@
 <template>
   <button
     :class="[
-      link ? `!${linkSizeClass}` : 'flex justify-center items-center rounded-full',
+      link ? `!${linkSizeClass}` : 'flex justify-center items-center rounded-full focus:outline-dashed focus:outline-black focus:outline-offset-1',
       { 'type-xs-700 py-2 px-4': small },
       { 'type-small-700 py-2 px-4': medium },
       { 'type-small-700 py-3 px-5': large },
       { 'type-base-700 py-[14px] px-6': xlarge },
       { 'cursor-not-allowed pointer-events-none': disabled },
-      { 'bg-black text-white hover:bg-gray-700 active:bg-gray-800 focus:bg-gray-800 focus:outline-dashed focus:outline-black focus:outline-offset-1 disabled:bg-gray-200 disabled:text-gray-400' : primary },
-      { 'bg-white text-gray-800 border border-gray-800 hover:bg-gray-50 active:bg-gray-100 focus:bg-gray-100 focus:outline-dashed focus:outline-black focus:outline-offset-1 disabled:border-gray-200 disabled:text-gray-400' : secondary },
-      { 'bg-red-500 text-white hover:bg-red-600 active:bg-red-700 focus:bg-red-600 focus:outline-dashed focus:outline-black focus:outline-offset-1 disabled:bg-red-200 disabled:text-red-400' : danger },
-      { 'bg-white text-red-500 border border-red-500 hover:bg-red-50 hover:border-red-600 hover:text-red-600 active:bg-red-100 active:border-red-700 active:text-red-700 focus:bg-red-50 focus:border-red-600 focus:text-red-600 focus:outline-dashed focus:outline-black focus:outline-offset-1 disabled:border-red-300 disabled:text-red-300' : dangerSecondary },
+      { 'bg-black text-white hover:bg-gray-700 active:bg-gray-800 focus:bg-gray-800' : primary },
+      { 'bg-white text-gray-800 border border-gray-800 hover:bg-gray-50 active:bg-gray-100 focus:bg-gray-100 disabled:border-gray-200 disabled:text-gray-400' : secondary },
+      { 'bg-gray-50 text-gray-500 border border-gray-200 hover:bg-gray-100 hover:text-gray-600 hover:border-gray-200 active:bg-gray-100 active:text-gray-600 active:border-gray-300' : quiet },
+      { 'bg-transparent text-gray-500 hover:bg-gray-50 hover:text-gray-600 active:bg-gray-200 active:text-gray-600 focus:bg-gray-100 focus:text-gray-600' : ghost },
+      { 'disabled:bg-gray-100 disabled:text-gray-400 disabled:border-none': primary || quiet || ghost },
+      { 'bg-red-500 text-white hover:bg-red-600 active:bg-red-700 focus:bg-red-600 disabled:bg-red-200 disabled:text-red-400' : danger },
+      { 'bg-white text-red-500 border border-red-500 hover:bg-red-50 hover:border-red-600 hover:text-red-600 active:bg-red-100 active:border-red-700 active:text-red-700 focus:bg-red-50 focus:border-red-600 focus:text-red-600 disabled:border-red-300 disabled:text-red-300' : dangerSecondary },
       { '!text-blue-600 underline disabled:!text-gray-400 px-0 py-0': link }
     ]"
     :disabled="disabled"
@@ -47,11 +50,29 @@ export default {
   },
   emits: ['click'],
   computed: {
+    small () {
+      return this.size === 'small';
+    },
+    medium () {
+      return this.size === 'medium';
+    },
+    large () {
+      return this.size === 'large';
+    },
+    xlarge () {
+      return this.size === 'xl';
+    },
     primary () {
       return this.variant === 'primary';
     },
     secondary () {
       return this.variant === 'secondary';
+    },
+    quiet () {
+      return this.variant === 'quiet';
+    },
+    ghost () {
+      return this.variant === 'ghost';
     },
     danger () {
       return this.variant === 'danger';
@@ -64,18 +85,6 @@ export default {
     },
     linkSizeClass () {
       return this.medium ? 'type-base-600' : `type-${this.size}-600`;
-    },
-    small () {
-      return this.size === 'small';
-    },
-    medium () {
-      return this.size === 'medium';
-    },
-    large () {
-      return this.size === 'large';
-    },
-    xlarge () {
-      return this.size === 'xl';
     }
   },
   methods: {

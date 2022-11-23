@@ -68,9 +68,21 @@ DangerSecondary.args = {
   variant: 'danger-secondary'
 };
 
+export const Quiet = Template.bind({});
+Quiet.args = {
+  content: 'Quiet button',
+  variant: 'quiet'
+};
+
+export const Ghost = Template.bind({});
+Ghost.args = {
+  content: 'Ghost button',
+  variant: 'ghost'
+};
+
 export const StyledAsLink = Template.bind({});
 StyledAsLink.args = {
-  content: 'Link-looking button',
+  content: 'Styled as link',
   variant: 'link'
 };
 
