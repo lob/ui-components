@@ -17,8 +17,8 @@
       <template #iconRight>
         <button
           :class="[
-            'block opacity-0 pointer',
-            {'opacity-100 cursor-pointer' : searchTerm}
+            'block',
+            searchTerm ? 'opacity-100 cursor-pointer' : 'opacity-0'
           ]"
           :aria-label="t('search.closeLabel')"
           :disabled="disabled"

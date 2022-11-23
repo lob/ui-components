@@ -4,7 +4,7 @@
 
 ### Features
 
-Do not show clear buttons in `SearchBar` unless there is a search term
+Do not show clear button in `SearchBar` unless there is a search term
 
 ## v2.0.0-beta.6
 
