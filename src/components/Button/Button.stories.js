@@ -52,7 +52,19 @@ const Template = (args, { argTypes }) => ({
 
 export const Default = Template.bind({});
 Default.args = {
-  content: 'This is a button'
+  content: 'Primary button'
+};
+
+export const Secondary = Template.bind({});
+Secondary.args = {
+  content: 'Secondary button',
+  variant: 'secondary'
+};
+
+export const LinkVariant = Template.bind({});
+LinkVariant.args = {
+  content: 'Link-looking button',
+  variant: 'link'
 };
 
 const WithIconsTemplate = (args, { argTypes }) => ({
