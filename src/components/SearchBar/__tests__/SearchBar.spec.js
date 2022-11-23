@@ -66,6 +66,7 @@ describe('SearchBar', () => {
 
     const button = queryByTestId('clearSearchButton');
     expect(button).toHaveClass('opacity-0');
+    expect(button).toBeDisabled();
   });
 
   it('executes the search function when the user types', async () => {
