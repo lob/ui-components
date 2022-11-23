@@ -20,15 +20,13 @@
         <Badge
           v-for="option in modelValue"
           :key="option.label || option"
-          variant="turquoise"
           :size="size"
-          class="my-2 ml-2"
         >
           <div class="flex items-center">
             {{ option.label || option }}
             <LobButton
               variant="none"
-              class="mt-0.5 ml-1"
+              class="!pr-0 !pl-1"
               @click="() => handleOptionDeselect(option)"
             >
               <Close class="w-4 h-4" />
