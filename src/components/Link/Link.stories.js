@@ -23,8 +23,20 @@ export default {
     }
   },
   argTypes: {
+    content: {
+      control: {
+        type: 'text'
+      },
+      description: 'Link display name',
+      table: {
+        defaultValue: 'This is a link',
+        type: {
+          summary: 'html or component'
+        }
+      }
+    },
     variant: {
-      options: ['link', 'primary-button', 'secondary-button'],
+      options: ['link', 'primary-button', 'secondary-button', 'quiet-button', 'ghost-button', 'danger-button', 'danger-secondary-button'],
       control: {
         type: 'select'
       }
@@ -57,17 +69,21 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LobLink },
   setup: () => ({ args }),
-  template: '<lob-link v-bind="args" to="/internal">Click me</lob-link>'
+  template: '<lob-link v-bind="args" to="/internal">{{ args.content }}</lob-link>'
 });
 
-export const RegularLink = Template.bind({});
-
+export const DefaultLink = Template.bind({});
+DefaultLink.args = {
+  content: 'I am a link'
+};
 export const StyledAsPrimaryButton = Template.bind({});
 StyledAsPrimaryButton.args = {
-  variant: 'primary-button'
+  variant: 'primary-button',
+  content: 'I look like a button'
 };
 
 export const StyledAsSecondaryButton = Template.bind({});
 StyledAsSecondaryButton.args = {
-  variant: 'secondary-button'
+  variant: 'secondary-button',
+  content: 'I look like a button'
 };
