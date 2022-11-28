@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v2.0.0-beta.8
+
+### Features
+
+Remove background color from `SearchBar` when focused
 ## v2.0.0-beta.7
 
 ### Features

@@ -9,7 +9,6 @@
       class="min-w-full"
       :label="t('search.textLabel')"
       :sr-only-label="true"
-      input-class="focus-within:bg-white-300"
     >
       <template #iconLeft>
         <Search class="w-6 h-6" />
