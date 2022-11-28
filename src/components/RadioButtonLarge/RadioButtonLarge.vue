@@ -1,7 +1,7 @@
 <template>
   <div
     :class="[
-      'buttonContainer cursor-pointer border border-gray-300 rounded-sm py-3 h-12 mr-4 mb-1 focus-within:outline-1 focus-within:outline-dotted focus-within:outline-offset-1 focus:outline-black',
+      'buttonContainer cursor-pointer border border-gray-300 rounded-sm py-3 h-12 mr-4 mb-1 focus-within:outline-dashed focus-within:outline-offset-1 focus:outline-black',
       fullWidth ? 'w-full' : 'w-[234px]',
       {'!h-[72px]' : !fullHeight && helperText},
       {'!h-full' : fullHeight},

@@ -1,7 +1,7 @@
 <template>
   <div
     :class="[
-      'w-fit focus-within:outline-dotted focus-within:outline-1 py-1 mr-5 h-[28px]',
+      'w-fit focus-within:outline-dashed focus-within:outline-1 py-1 mr-5 h-[28px]',
       {'!h-[46px]' : helperText}
     ]"
   >
