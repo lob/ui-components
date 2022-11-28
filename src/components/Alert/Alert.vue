@@ -19,7 +19,12 @@
           <slot name="heading" />
         </div>
       </div>
-      <LinkAndClose
+      <CloseButton
+        v-if="showCloseButton"
+        @close="closeAlert"
+      />
+      <LearnMoreLink
+        v-if="learnMoreLink && !hasContent"
         :learn-more-link="learnMoreLink"
         :link-display-text="linkDisplayText"
         :show-close-button="showCloseButton"
@@ -42,12 +47,16 @@
           <slot /> <!-- text/any content goes in the default slot -->
         </div>
       </div>
-      <LinkAndClose
-        v-if="!hasHeading"
+      <CloseButton
+        v-if="showCloseButton && !hasHeading"
+        @close="closeAlert"
+      />
+    </div>
+    <div class="w-full flex justify-end">
+      <LearnMoreLink
+        v-if="learnMoreLink && hasContent"
         :learn-more-link="learnMoreLink"
         :link-display-text="linkDisplayText"
-        :show-close-button="showCloseButton"
-        @close="closeAlert"
       />
     </div>
   </div>
@@ -57,9 +66,8 @@
 import { Info, Checkmark, AlertCircle, Close, ArrowRight } from '@/components/Icons';
 import LobLink from '../Link/Link';
 
-const LinkAndClose = {
-  template: `<div><LobLink
-          v-if="learnMoreLink"
+const LearnMoreLink = {
+  template: `<LobLink
           :to="learnMoreLink"
           :underline="false"
           target="_blank"
@@ -67,17 +75,25 @@ const LinkAndClose = {
           class="ml-4 !type-xs-400 text-gray-500"
         >
           {{ linkDisplayText }}
-          <ArrowRight class="inline w-3 h-3" />
-        </LobLink>
-        <button v-if="showCloseButton">
-          <Close class="w-4 h-4 ml-4" data-testid="closeButton" @click="closeAlert"/>
-        </button></div>`,
-  components: { LobLink, Close, ArrowRight },
+          <ArrowRight class="inline w-4 h-4 flex-shrink-0 mb-0.5" />
+        </LobLink>`,
+  components: { LobLink, ArrowRight },
   props: {
     learnMoreLink: String,
-    linkDisplayText: String,
-    showCloseButton: Boolean
-  },
+    linkDisplayText: String
+  }
+};
+
+const CloseButton = {
+  template: `
+  <button>
+    <Close
+      class="w-4 h-4 ml-4"
+      data-testid="closeButton"
+      @click="closeAlert"
+    />
+  </button>`,
+  components: { Close },
   methods: {
     closeAlert () {
       this.$emit('close');
@@ -87,7 +103,7 @@ const LinkAndClose = {
 
 export default {
   name: 'Alert',
-  components: { Info, Checkmark, AlertCircle, LinkAndClose },
+  components: { Info, Checkmark, AlertCircle, CloseButton, LearnMoreLink },
   props: {
     variant: {
       type: String,

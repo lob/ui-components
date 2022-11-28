@@ -39,7 +39,8 @@ const Template = (args, { argTypes }) => ({
   template: `
     <alert v-bind="args">
       <template v-slot:default>
-        {{ args.content }}
+        {{ args.content }} 
+        <br> This is an extra line of random text.
         </template>
     </alert>
   `
@@ -88,4 +89,11 @@ export const WithCloseButton = TemplateWithHeading.bind({});
 WithCloseButton.args = {
   content,
   showCloseButton: true
+};
+
+export const WithCloseAndLink = TemplateWithHeading.bind({});
+WithCloseAndLink.args = {
+  content,
+  showCloseButton: true,
+  learnMoreLink: 'https://www.lob.com/'
 };
