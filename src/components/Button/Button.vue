@@ -1,7 +1,7 @@
 <template>
   <button
     :class="[
-      'focus:outline-dashed focus:outline-black focus:outline-offset-1 whitespace-nowrap',
+      'focus:outline-dashed focus:outline-black focus:outline-offset-1 whitespace-nowrap h-min',
       link ? `${linkTypeClasses}` : 'flex justify-center items-center rounded-full',
       { 'type-xs-700 py-2 px-4': small && !link },
       { 'type-small-700 py-2 px-4': medium && !link },
