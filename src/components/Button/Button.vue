@@ -2,7 +2,7 @@
   <button
     :class="[
       'focus:outline-dashed focus:outline-black focus:outline-offset-1',
-      link ? `!${linkSizeClass}` : 'flex justify-center items-center rounded-full',
+      link ? `${linkTypeClasses}` : 'flex justify-center items-center rounded-full',
       { 'type-xs-700 py-2 px-4': small && !link },
       { 'type-small-700 py-2 px-4': medium && !link },
       { 'type-small-700 py-3 px-5': large && !link },
@@ -47,6 +47,10 @@ export default {
     disabled: {
       type: Boolean,
       default: false
+    },
+    bold: {
+      type: Boolean,
+      default: false
     }
   },
   emits: ['click'],
@@ -84,8 +88,9 @@ export default {
     link () {
       return this.variant === 'link';
     },
-    linkSizeClass () {
-      return this.medium ? 'type-base-600' : `type-${this.size}-600`;
+    linkTypeClasses () {
+      const size = this.medium ? 'base' : this.size;
+      return this.bold ? `type-${size}-800 no-underline` : `type-${size}-600`;
     }
   },
   methods: {
