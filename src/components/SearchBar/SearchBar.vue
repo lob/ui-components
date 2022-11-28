@@ -9,14 +9,16 @@
       class="min-w-full"
       :label="t('search.textLabel')"
       :sr-only-label="true"
-      input-class="focus-within:bg-white-300"
     >
       <template #iconLeft>
         <Search class="w-6 h-6" />
       </template>
       <template #iconRight>
         <button
-          class="block"
+          :class="[
+            'block',
+            searchTerm ? 'opacity-100 cursor-pointer' : 'opacity-0'
+          ]"
           :aria-label="t('search.closeLabel')"
           :disabled="disabled"
           data-testid="clearSearchButton"
@@ -150,8 +152,10 @@ export default {
       });
     },
     clearSearch () {
-      this.searchTerm = '';
-      this.searchResults = [];
+      if (this.searchTerm) {
+        this.searchTerm = '';
+        this.searchResults = [];
+      }
     },
     onClickOutside ($event) {
       if (this.$refs.searchBar) {
