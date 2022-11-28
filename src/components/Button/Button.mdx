@@ -18,9 +18,14 @@ Buttons are styled semantic buttons that will handle all of the appropriate butt
 
 There are 7 variants of buttons: `'primary'` (default), `'secondary'`, `'quiet'`, `'ghost'`, `'danger'`, `'secondary-danger'` and `'link'` style.
 
+The Button can be `'small'`, `'medium'`, `'large'` (default), or `'xl'`, defined by the `size` prop (String).
+
 You can change the variant of the button by adding the `variant` prop (String) to the component.
 
-The Button can be `'small'`, `'medium'`, `'large'` (default), or `'xl'`, defined by the `size` prop (String).
+The `'link'` variant will render a button styled as the `Link` component.
+The `bold` prop (boolean), adds a bolder font & removes the underline from the link.
+
+The disabled property applies disabled styles.
 
 Please note: though you can only insert text in the Storybook demo, the button component will accept any valid HTML or Vue component, as it uses a slot.
 
