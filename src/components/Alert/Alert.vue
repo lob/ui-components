@@ -7,11 +7,11 @@
       v-if="hasHeading"
       class="flex justify-between"
     >
-      <div class="flex">
+      <div class="flex items-center">
         <component
           :is="variantDetails.icon"
           v-if="showIcon"
-          class="h-6 w-6 flex-shrink-0 mr-2"
+          class="h-5 w-5 flex-shrink-0 mr-2"
           :class="variantDetails.color"
           data-testid="alertIcon"
         />
@@ -34,11 +34,11 @@
         <component
           :is="variantDetails.icon"
           v-if="showIcon && !hasHeading"
-          class="h-6 w-6 flex-shrink-0 mr-2"
+          class="h-5 w-5 flex-shrink-0 mr-2"
           :class="variantDetails.color"
           data-testid="alertIcon"
         />
-        <div class="type-xs-400 mt-1">
+        <div :class="['type-xs-400', {'mt-1': hasHeading && hasContent}]">
           <slot /> <!-- text/any content goes in the default slot -->
         </div>
       </div>
