@@ -10,8 +10,8 @@
       :class=" [
         { 'pointer-events-none': disabled },
         { 'underline': isLink && underline },
-        isLink ? `type-${size}-600`: '',
-        isLink && bold ? `type-${size}-800 no-underline`: '',
+        { [`type-${size}-600`]: isLink },
+        { [`type-${size}-800 no-underline`]: isLink && bold },
         isLink ? 'text-blue-600 hover:text-blue-500' : 'flex justify-center items-center rounded-full',
         'focus:outline-dashed focus:outline-black focus:outline-offset-1 focus:ring-0 whitespace-nowrap h-min',
         { 'type-xs-700 py-2 px-4': isButton && size==='small' },
