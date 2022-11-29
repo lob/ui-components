@@ -1,5 +1,28 @@
 # CHANGELOG
 
+## v2.0.0-beta.9
+
+No changes
+
+## v2.0.0-beta.8
+
+### Features
+
+Remove background color from `SearchBar` when focused
+
+## v2.0.0-beta.7
+
+### Features
+
+Do not show clear button in `SearchBar` unless there is a search term
+
+## v2.0.0-beta.6
+
+### Features
+
+Updates the Color Palette with the new Gray color.
+Updates the Main Navigation text color to gray-800.
+
 ## v2.0.0-beta.5
 
 ### Features
