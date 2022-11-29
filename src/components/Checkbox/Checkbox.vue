@@ -107,6 +107,11 @@ export default {
   @apply border-gray-300;
 }
 
+.checkbox:hover input:checked:not(:disabled) ~ .checkmark {
+  @apply bg-gray-700;
+  @apply border-gray-700;
+}
+
 .checkmark::after {
   content: "";
 
