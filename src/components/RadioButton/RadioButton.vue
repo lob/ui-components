@@ -1,52 +1,49 @@
 <template>
   <div
     :class="[
-      'w-fit focus-within:outline-dashed focus-within:outline-1 py-1 mr-5 h-[28px]',
+      'w-fit focus-within:outline-dashed focus-within:outline-1 py-1 mr-5 h-7',
       {'!h-[46px]' : helperText}
     ]"
   >
-    <div
-      class="inline-block mr-12"
+    <input
+      :id="id"
+      type="radio"
+      :class="[
+        'mb-0 p-0 opacity-0',
+        {'radio__input--error': error},
+        {'!cursor-not-allowed': disabled}
+      ]"
+      :name="name"
+      :value="value.toString()"
+      :checked="checked"
+      :disabled="disabled"
+      :required="required"
+      :readonly="readonly"
+      @input="onInput"
+      @click="onClick"
     >
-      <input
-        :id="id"
-        type="radio"
-        :class="[
-          'mb-0 p-0 opacity-0',
-          {'radio__input--error': error},
-          {'!cursor-not-allowed': disabled}
-        ]"
-        :name="name"
-        :value="value.toString()"
-        :checked="checked"
-        :disabled="disabled"
-        :required="required"
-        :readonly="readonly"
-        @input="onInput"
-        @click="onClick"
-      >
-      <label
-        :for="id"
-        :class="[
-          'relative flex type-base-500 -top-[25px] left-[31px] cursor-pointer',
-          {'text-gray-400 !cursor-not-allowed': disabled}
-        ]"
-      >
-        <div>
-          <slot>
-            {{ label }}
-          </slot>
-          <div
-            :class="[
-              'type-xs-400 text-gray-500',
-              {'!text-gray-300' : disabled}
-            ]"
-          >
-            {{ helperText }}
-          </div>
+    <label
+      :for="id"
+      :class="[
+        'relative flex type-base-500 -top-[25px] left-[31px] cursor-pointer pr-10',
+        {'text-gray-400 !cursor-not-allowed': disabled}
+      ]"
+    >
+      <div>
+        <slot>
+          {{ label }}
+        </slot>
+        <div
+          v-if="helperText"
+          :class="[
+            'type-xs-400 text-gray-500',
+            {'!text-gray-300' : disabled}
+          ]"
+        >
+          {{ helperText }}
         </div>
-      </label>
-    </div>
+      </div>
+    </label>
   </div>
 </template>
 
