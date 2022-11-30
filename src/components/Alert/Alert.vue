@@ -24,12 +24,12 @@
 
 <script>
 import Info from '../Icons/Info.vue';
-import Checkmark from '../Icons/Checkmark.vue';
+import CircleCheck from '../Icons/CircleCheck.vue';
 import CircleExclamation from '../Icons/CircleExclamation.vue';
 
 export default {
   name: 'Alert',
-  components: { Info, Checkmark, CircleExclamation },
+  components: { Info, CircleCheck, CircleExclamation },
   props: {
     variant: {
       type: String,
@@ -43,7 +43,7 @@ export default {
     return {
       variantDetails: [
         { variant: 'info', icon: 'Info', linkColor: 'text-turquoise-700' },
-        { variant: 'success', icon: 'Checkmark', linkColor: 'text-mint-900' },
+        { variant: 'success', icon: 'CircleCheck', linkColor: 'text-mint-900' },
         { variant: 'warning', icon: 'CircleExclamation', linkColor: 'text-gray-700' },
         { variant: 'error', icon: 'CircleExclamation', linkColor: 'text-coral-700' }
       ]
