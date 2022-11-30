@@ -1,10 +1,10 @@
 <template>
   <div
     :class="[
-      'buttonContainer cursor-pointer border border-gray-300 rounded-sm py-3 h-12 mr-4 mb-1 focus-within:outline-dashed focus-within:outline-offset-1 focus:outline-black',
+      'buttonContainer cursor-pointer border border-gray-300 rounded-sm pt-3 pb-3 mr-4 mb-1 focus-within:outline-dashed focus-within:outline-offset-1 focus:outline-black',
       fullWidth ? 'w-full' : 'w-[234px]',
-      {'!h-[72px]' : !fullHeight && helperText},
-      {'!h-full' : fullHeight},
+      {'h-full' : fullHeight},
+      {'!pb-8' : helperText},
       {'hover:border-gray-400': !disabled && !error},
       {'!border-black checked': checked && !disabled && !error},
       {'disabled !cursor-not-allowed border-gray-100': disabled},
@@ -17,7 +17,7 @@
       ref="radioInput"
       type="radio"
       :class="[
-        'mb-0 p-0 opacity-0',
+        'absolute opacity-0',
         {'radio__input--error': error},
         {'!cursor-not-allowed': disabled}
       ]"
@@ -32,9 +32,9 @@
     <label
       :for="id"
       :class="[
-        'relative flex type-base-500 -top-[24px] left-[46px] cursor-pointer h-full pr-16',
+        'relative flex type-base-500 top-[1px] left-[46px] cursor-pointer h-full pr-16',
         {'text-gray-400 !cursor-not-allowed': disabled},
-        {'!-top-[22px]' : helperText}
+        {'' : helperText}
       ]"
     >
       <div>
