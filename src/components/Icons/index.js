@@ -9,3 +9,4 @@ export { default as LocationDot } from './LocationDot';
 export { default as EnvelopesBulk } from './EnvelopesBulk';
 export { default as Webhooks } from './Webhooks';
 export { default as CodeIcon } from './CodeIcon';
+export { default as Sliders } from './Sliders';
