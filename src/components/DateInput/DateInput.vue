@@ -35,7 +35,7 @@
       aria-live="polite"
       class="mt-2 ml-1 text-error text-xs flex items-center"
     >
-      <AlertCircle class="w-4 h-4 mr-1" /> {{ error && errorMessage }}
+      <CircleExclamation class="w-4 h-4 mr-1" /> {{ error && errorMessage }}
     </div>
   </div>
 </template>
@@ -45,11 +45,11 @@ import { format } from 'date-fns';
 import TextInput from '../TextInput/TextInput';
 import Datepicker from '../Datepicker/Datepicker';
 import Calendar from '../Icons/Calendar.vue';
-import AlertCircle from '../Icons/AlertCircle.vue';
+import CircleExclamation from '../Icons/CircleExclamation.vue';
 
 export default {
   name: 'DateInput',
-  components: { TextInput, Datepicker, Calendar, AlertCircle },
+  components: { TextInput, Datepicker, Calendar, CircleExclamation },
   props: {
     id: {
       type: String,
