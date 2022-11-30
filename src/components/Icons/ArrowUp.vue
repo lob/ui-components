@@ -1,42 +1,45 @@
 <template>
   <svg
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    stroke-width="2"
-    stroke="currentColor"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+    :width="currentSize"
+    :height="currentSize"
+    :viewBox="`0 0 ${currentSize} ${currentSize}`"
+    fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      stroke="none"
-      d="M0 0h24v24H0z"
-      fill="none"
-    />
-    <line
-      x1="12"
-      y1="5"
-      x2="12"
-      y2="19"
-    />
-    <line
-      x1="18"
-      y1="11"
-      x2="12"
-      y2="5"
-    />
-    <line
-      x1="6"
-      y1="11"
-      x2="12"
-      y2="5"
+      :d="path"
+      fill="currentColor"
     />
   </svg>
 </template>
 
 <script>
+const sizeInfo = {
+  xxl: { size: 24, path: 'M19.12 8.281c-.177.262-.462.37-.753.37-.29 0-.574-.11-.794-.329l-4.447-4.447v19.002a1.123 1.123 0 0 1-2.246 0V3.875L6.433 8.281a1.123 1.123 0 1 1-1.588-1.588L11.209.33a1.123 1.123 0 0 1 1.588 0l6.365 6.364c.436.48.436 1.19-.041 1.588z' },
+  xl: { size: 20, path: 'M15.934 6.901c-.148.219-.386.308-.628.308a.93.93 0 0 1-.662-.274L10.94 3.23v15.835a.936.936 0 0 1-1.872 0V3.23L5.36 6.901a.936.936 0 1 1-1.324-1.323L9.341.274a.936.936 0 0 1 1.324 0l5.303 5.304c.364.399.364.992-.034 1.323z' },
+  l: { size: 18, path: 'M14.34 6.211c-.133.197-.347.277-.564.277a.836.836 0 0 1-.596-.246L9.845 2.906v14.252a.843.843 0 0 1-1.685 0V2.906L4.825 6.211A.842.842 0 1 1 3.634 5.02L8.407.247a.842.842 0 0 1 1.191 0l4.773 4.773c.328.36.328.893-.03 1.191z' },
+  m: { size: 16, path: 'M12.747 5.521a.585.585 0 0 1-.502.246.743.743 0 0 1-.53-.219L8.752 2.583v12.668a.749.749 0 0 1-1.498 0V2.583L4.29 5.521a.749.749 0 1 1-1.06-1.059L7.474.22a.749.749 0 0 1 1.059 0l4.242 4.243c.291.32.291.794-.027 1.059z' },
+  s: { size: 14, path: 'M11.154 4.83a.512.512 0 0 1-.44.216.65.65 0 0 1-.463-.191L7.657 2.26v11.084a.655.655 0 0 1-1.31 0V2.26L3.753 4.83a.655.655 0 1 1-.927-.927L6.54.192a.655.655 0 0 1 .926 0l3.713 3.712c.254.28.254.695-.024.927z' }
+};
+
 export default {
-  name: 'ArrowUp'
+  name: 'ArrowUp',
+  props: {
+    size: {
+      type: String,
+      default: 'm',
+      validator: function (value) {
+        return ['xxl', 'xl', 'l', 'm', 's'].includes(value);
+      }
+    }
+  },
+  computed: {
+    currentSize () {
+      return sizeInfo[this.size].size;
+    },
+    path () {
+      return sizeInfo[this.size].path;
+    }
+  }
 };
 </script>

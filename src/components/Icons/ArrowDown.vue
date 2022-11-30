@@ -1,42 +1,45 @@
 <template>
   <svg
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    stroke-width="2"
-    stroke="currentColor"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+    :width="currentSize"
+    :height="currentSize"
+    :viewBox="`0 0 ${currentSize} ${currentSize}`"
+    fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      stroke="none"
-      d="M0 0h24v24H0z"
-      fill="none"
-    />
-    <line
-      x1="12"
-      y1="5"
-      x2="12"
-      y2="19"
-    />
-    <line
-      x1="18"
-      y1="13"
-      x2="12"
-      y2="19"
-    />
-    <line
-      x1="6"
-      y1="13"
-      x2="12"
-      y2="19"
+      :d="path"
+      fill="currentColor"
     />
   </svg>
 </template>
 
 <script>
+const sizeInfo = {
+  xxl: { size: 24, path: '' },
+  xl: { size: 20, path: '' },
+  l: { size: 18, path: '' },
+  m: { size: 16, path: '' },
+  s: { size: 14, path: '' }
+};
+
 export default {
-  name: 'ArrowDown'
+  name: 'ArrowDown',
+  props: {
+    size: {
+      type: String,
+      default: 'm',
+      validator: function (value) {
+        return ['xxl', 'xl', 'l', 'm', 's'].includes(value);
+      }
+    }
+  },
+  computed: {
+    currentSize () {
+      return sizeInfo[this.size].size;
+    },
+    path () {
+      return sizeInfo[this.size].path;
+    }
+  }
 };
 </script>
