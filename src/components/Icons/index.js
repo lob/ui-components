@@ -13,6 +13,7 @@ export { default as Copy } from './Copy';
 export { default as EnvelopesBulk } from './EnvelopesBulk';
 export { default as File } from './File';
 export { default as FileCode } from './FileCode';
+export { default as Filter } from './Filter';
 export { default as Gear } from './Gear';
 export { default as Globe } from './Globe';
 export { default as HouseChimney } from './HouseChimney';
