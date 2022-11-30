@@ -27,3 +27,4 @@ export { default as LocationDot } from './LocationDot';
 export { default as MagnifyingGlass } from './MagnifyingGlass';
 export { default as Sliders } from './Sliders';
 export { default as Webhooks } from './Webhooks';
+export { default as XmarkLarge } from './XmarkLarge';
