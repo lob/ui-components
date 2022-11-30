@@ -1,3 +1,4 @@
+export { default as Globe } from './Globe';
 export { default as File } from './File';
 // export { default as AlertCircle } from './AlertCircle';
 // export { default as Analytics } from './Analytics';
