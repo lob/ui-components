@@ -18,6 +18,7 @@ export { default as Filter } from './Filter';
 export { default as Gear } from './Gear';
 export { default as Globe } from './Globe';
 export { default as HouseChimney } from './HouseChimney';
+export { default as Info } from './Info';
 export { default as LocationDot } from './LocationDot';
 export { default as Sliders } from './Sliders';
 export { default as Webhooks } from './Webhooks';
