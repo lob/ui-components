@@ -1,8 +1,8 @@
 export { default as AddressBook } from './AddressBook';
-export { default as ArrowDown } from './ArrowDown';
-export { default as ArrowLeft } from './ArrowLeft';
-export { default as ArrowRight } from './ArrowRight';
-export { default as ArrowUp } from './ArrowUp';
+export { default as ArrowLongDown } from './ArrowLongDown';
+export { default as ArrowLongLeft } from './ArrowLongLeft';
+export { default as ArrowLongRight } from './ArrowLongRight';
+export { default as ArrowLongUp } from './ArrowLongUp';
 export { default as ChartMixed } from './ChartMixed';
 export { default as ChevronDown } from './ChevronDown';
 export { default as ChevronLeft } from './ChevronLeft';

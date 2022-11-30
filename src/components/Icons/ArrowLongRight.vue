@@ -23,7 +23,7 @@ const sizeInfo = {
 };
 
 export default {
-  name: 'ArrowRight',
+  name: 'ArrowLongRight',
   props: {
     size: {
       type: String,
