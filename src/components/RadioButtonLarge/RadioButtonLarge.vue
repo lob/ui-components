@@ -33,8 +33,7 @@
       :for="id"
       :class="[
         'relative flex type-base-500 top-[1px] left-[46px] cursor-pointer h-full pr-16',
-        {'text-gray-400 !cursor-not-allowed': disabled},
-        {'' : helperText}
+        {'text-gray-400 !cursor-not-allowed': disabled}
       ]"
     >
       <div>
