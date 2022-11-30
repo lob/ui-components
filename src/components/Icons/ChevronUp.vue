@@ -1,19 +1,45 @@
 <template>
   <svg
-    viewBox="0 0 24 24"
+    :width="currentSize"
+    :height="currentSize"
+    :viewBox="`0 0 ${currentSize} ${currentSize}`"
     fill="none"
-    stroke-width="2"
-    stroke="currentColor"
-    stroke-linecap="round"
-    stroke-linejoin="round"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <path d="M19 15L12 9L5 15" />
+    <path
+      :d="path"
+      fill="currentColor"
+    />
   </svg>
 </template>
 
 <script>
+const sizeInfo = {
+  xxl: { size: 24, path: 'm.412 16.186 10.64-10.193c.305-.301.64-.474.973-.474.334 0 .666.124.924.373l10.639 10.193c.534.51.551 1.355.04 1.888a1.33 1.33 0 0 1-1.888.04l-9.715-9.259-9.765 9.353a1.33 1.33 0 0 1-1.888-.04 1.324 1.324 0 0 1 .04-1.88z' },
+  xl: { size: 20, path: 'm.344 13.489 8.865-8.495c.255-.25.534-.394.812-.394s.555.103.77.31l8.865 8.494c.445.425.46 1.13.034 1.573a1.108 1.108 0 0 1-1.574.034l-8.095-7.716-8.137 7.794c-.441.428-1.15.413-1.574-.033a1.103 1.103 0 0 1 .034-1.567z' },
+  l: { size: 18, path: 'm.31 12.14 7.979-7.646c.229-.225.48-.354.73-.354s.5.092.693.279l7.979 7.645a.999.999 0 0 1 .03 1.415.997.997 0 0 1-1.416.03L9.019 6.565 1.695 13.58a.997.997 0 0 1-1.416-.03.993.993 0 0 1 .03-1.41z' },
+  m: { size: 16, path: 'm.275 10.79 7.093-6.795c.203-.2.426-.315.649-.315.222 0 .444.082.615.248l7.093 6.796c.356.34.368.903.027 1.258a.886.886 0 0 1-1.259.026L8.017 5.836l-6.51 6.235a.886.886 0 0 1-1.259-.026.883.883 0 0 1 .027-1.254z' },
+  s: { size: 14, path: 'm.24 9.442 6.207-5.946c.178-.176.373-.276.568-.276.194 0 .388.072.538.217l6.206 5.946c.312.297.322.79.024 1.101a.776.776 0 0 1-1.101.023l-5.667-5.4-5.697 5.455a.775.775 0 0 1-1.1-.023.772.772 0 0 1 .023-1.097z' }
+};
+
 export default {
-  name: 'ChevronUp'
+  name: 'ChevronUp',
+  props: {
+    size: {
+      type: String,
+      default: 'm',
+      validator: function (value) {
+        return ['xxl', 'xl', 'l', 'm', 's'].includes(value);
+      }
+    }
+  },
+  computed: {
+    currentSize () {
+      return sizeInfo[this.size].size;
+    },
+    path () {
+      return sizeInfo[this.size].path;
+    }
+  }
 };
 </script>

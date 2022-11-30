@@ -10,3 +10,8 @@ export { default as EnvelopesBulk } from './EnvelopesBulk';
 export { default as Webhooks } from './Webhooks';
 export { default as CodeIcon } from './CodeIcon';
 export { default as Sliders } from './Sliders';
+export { default as Gear } from './Gear';
+export { default as ChevronUp } from './ChevronUp';
+export { default as ChevronDown } from './ChevronDown';
+export { default as ChevronLeft } from './ChevronLeft';
+export { default as ChevronRight } from './ChevronRight';

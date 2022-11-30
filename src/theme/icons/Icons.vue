@@ -1,6 +1,6 @@
 <template>
   <div class="text-black">
-    <div class="grid grid-cols-7 gap-2 text-black">
+    <div class="grid grid-cols-8 gap-2 text-black">
       <div
         v-for="icon in icons"
         :key="icon"
