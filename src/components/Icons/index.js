@@ -6,3 +6,4 @@ export { default as ChartMixed } from './ChartMixed';
 export { default as AddressBook } from './AddressBook';
 export { default as FileCode } from './FileCode';
 export { default as LocationDot } from './LocationDot';
+export { default as EnvelopesBulk } from './EnvelopesBulk';
