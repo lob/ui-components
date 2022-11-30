@@ -17,7 +17,7 @@ export default {
       }
     },
     storyOnlyColorClass: {
-      options: ['black', 'gray-500', 'red-500', 'green-500', 'purple-500', 'yellow-500', 'orange-500'],
+      options: ['black', 'gray-500', 'blue-500', 'purple-500', 'red-500', 'orange-500', 'yellow-500', 'green-500'],
       control: {
         type: 'select'
       }
