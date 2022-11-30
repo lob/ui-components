@@ -6,7 +6,7 @@
         :key="icon"
         class="p-2"
       >
-        <div class="text-xs mb-2">
+        <div class="text-xs mb-1.5">
           {{ icon.name }}
         </div>
         <component
