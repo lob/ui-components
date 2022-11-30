@@ -12,6 +12,7 @@ export { default as CircleInfo } from './CircleInfo';
 export { default as CodeIcon } from './CodeIcon';
 export { default as Copy } from './Copy';
 export { default as EnvelopesBulk } from './EnvelopesBulk';
+export { default as Exclamation } from './Exclamation';
 export { default as File } from './File';
 export { default as FileCode } from './FileCode';
 export { default as Filter } from './Filter';
