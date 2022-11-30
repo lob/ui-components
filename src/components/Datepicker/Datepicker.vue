@@ -27,7 +27,7 @@
       @keydown="handleFirstFocusableKeydown"
       @click="hide"
     >
-      <close class="w-4 h-4 p-0.5" />
+      <XmarkLarge class="w-4 h-4 p-0.5" />
       <span class="sr-only">{{ t('datepicker.closeLabel') }}</span>
     </button>
     <div
@@ -84,7 +84,7 @@
 </template>
 
 <script>
-import { ChevronLeft, ChevronRight, Close } from '@/components/Icons';
+import { ChevronLeft, ChevronRight, XmarkLarge } from '@/components/Icons';
 import DatepickerMonth from './DatepickerMonth.vue';
 import { Keys, startOfWeek, endOfWeek, startOfMonth, endOfMonth, setMonth, setYear, addDays, clamp, inRange } from '@/utils';
 import mitt from 'mitt';
@@ -95,7 +95,7 @@ const DATEPICKER_OPEN_EVENT = 'datepicker-open';
 
 export default {
   name: 'Datepicker',
-  components: { DatepickerMonth, ChevronLeft, ChevronRight, Close },
+  components: { DatepickerMonth, ChevronLeft, ChevronRight, XmarkLarge },
   props: {
     modelValue: {
       type: Date,

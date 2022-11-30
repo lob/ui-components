@@ -93,7 +93,7 @@
           variant="none"
           @click="clearInput"
         >
-          <Close
+          <XmarkLarge
             :class="[
               'h-[18px] w-[18px] cursor-pointer',
               { 'bg-white-100' : disabled },
@@ -132,16 +132,12 @@
 
 <script>
 import LobLabel from '../Label/Label.vue';
-import Check  from '../Icons/Check.vue';
-import Close  from '../Icons/Close.vue';
+import Check from '../Icons/Check.vue';
+import XmarkLarge from '../Icons/XmarkLarge.vue';
 
 export default {
   name: 'TextInput',
-  components: {
-    LobLabel,
-    Check,
-    Close
-  },
+  components: { LobLabel, Check, XmarkLarge },
   props: {
     tooltipContent: {
       type: String,

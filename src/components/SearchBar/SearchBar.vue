@@ -24,7 +24,7 @@
           data-testid="clearSearchButton"
           @click="clearSearch"
         >
-          <Close class="w-6 h-6" />
+          <XmarkLarge class="w-6 h-6" />
         </button>
       </template>
     </text-input>
@@ -81,11 +81,11 @@ import TableBody from '../Table/TableBody';
 import TableRow from '../Table/TableRow';
 import LobLink from '../Link/Link.vue';
 import MagnifyingGlass from '../Icons/MagnifyingGlass';
-import Close from '../Icons/Close';
+import XmarkLarge from '../Icons/XmarkLarge';
 
 export default {
   name: 'SearchBar',
-  components: { TextInput, LobTable, TableBody, TableRow, LobLink, MagnifyingGlass, Close },
+  components: { TextInput, LobTable, TableBody, TableRow, LobLink, MagnifyingGlass, XmarkLarge },
   props: {
     searchFunction: {
       type: Function,
