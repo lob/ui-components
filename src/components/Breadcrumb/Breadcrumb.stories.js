@@ -62,5 +62,5 @@ const Template = (args, { argTypes }) => ({
 export const Primary = Template.bind({});
 Primary.args = {
   startName: 'Dashboard',
-  iconSrc: `/${iconOverview}`
+  iconSrc: iconOverview
 };
