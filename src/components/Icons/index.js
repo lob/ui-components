@@ -28,6 +28,7 @@ export { default as Export } from './Export';
 export { default as File } from './File';
 export { default as FileCode } from './FileCode';
 export { default as Filter } from './Filter';
+export { default as Flag } from './Flag';
 export { default as Gear } from './Gear';
 export { default as Globe } from './Globe';
 export { default as HouseChimney } from './HouseChimney';
