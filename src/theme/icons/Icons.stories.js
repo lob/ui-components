@@ -29,7 +29,7 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { Icons },
   setup: () => ({ args }),
-  template: '<Icons :size="args.size" :storyOnlyColorClass="args.storyOnlyColorClass"/>'
+  template: '<div style="width:80vw;"><Icons :size="args.size" :storyOnlyColorClass="args.storyOnlyColorClass"/></div>'
 });
 
 export const Primary = Template.bind({});
