@@ -20,6 +20,8 @@ export { default as CloudArrowUp } from './CloudArrowUp';
 export { default as CodeIcon } from './CodeIcon';
 export { default as Copy } from './Copy';
 export { default as Download } from './Download';
+export { default as Ellipsis } from './Ellipsis';
+export { default as EllipsisVertical } from './EllipsisVertical';
 export { default as EnvelopesBulk } from './EnvelopesBulk';
 export { default as Exclamation } from './Exclamation';
 export { default as Export } from './Export';
