@@ -7,6 +7,7 @@ export { default as ArrowLongUp } from './ArrowLongUp';
 export { default as Bars } from './Bars';
 export { default as BarsStaggered } from './BarsStaggered';
 export { default as Calendar } from './Calendar';
+export { default as CalendarDays } from './CalendarDays';
 export { default as ChartMixed } from './ChartMixed';
 export { default as Check } from './Check';
 export { default as CircleCheck } from './CircleCheck';
