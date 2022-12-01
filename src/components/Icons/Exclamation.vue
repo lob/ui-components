@@ -14,7 +14,7 @@
 </template>
 
 <script>
-const sizeInfo = {
+const iconInfo = {
   xxl: { size: 24, path: 'M12 18c.71 0 1.286-.576 1.286-1.286V1.285a1.285 1.285 0 1 0-2.572 0v15.429c0 .712.575 1.286 1.286 1.286zm0 2.57A1.715 1.715 0 1 0 12 24a1.715 1.715 0 0 0 0-3.43z' },
   xl: { size: 20, path: 'M10 15c.592 0 1.072-.48 1.072-1.072V1.071a1.07 1.07 0 1 0-2.143 0v12.857A1.07 1.07 0 0 0 10 15zm0 2.142A1.429 1.429 0 1 0 10 20a1.429 1.429 0 0 0 0-2.858z' },
   l: { size: 18, path: 'M9 13.5a.964.964 0 0 0 .964-.965V.964a.964.964 0 1 0-1.928 0v11.571c0 .535.43.965.964.965zm0 1.928A1.286 1.286 0 1 0 9 18a1.286 1.286 0 0 0 0-2.572z' },
@@ -35,10 +35,10 @@ export default {
   },
   computed: {
     currentSize () {
-      return sizeInfo[this.size].size;
+      return iconInfo[this.size].size;
     },
     path () {
-      return sizeInfo[this.size].path;
+      return iconInfo[this.size].path;
     }
   }
 };

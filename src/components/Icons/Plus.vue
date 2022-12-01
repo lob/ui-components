@@ -23,7 +23,7 @@ const iconInfo = {
 };
 
 export default {
-  name: 'NewIcon',
+  name: 'Plus',
   props: {
     size: {
       type: String,
