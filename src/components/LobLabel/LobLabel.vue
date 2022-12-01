@@ -3,25 +3,17 @@
     <label
       :for="labelFor"
       :class="[
-        {'flex items-center justify-between mb-2 text-sm text-gray-500': !srOnlyLabel},
-        { 'sr-only': srOnlyLabel }
+        readOnly ? 'text-gray-300' : 'text-gray-800',
+        srOnlyLabel ? 'sr-only' : 'flex items-center mb-1 type-small-500'
       ]"
     >
-      <span>
-        {{ label }}
-        <span
-          v-if="required"
-          class="text-sm text-error"
-        >
-          *
-        </span>
-      </span>
       <Tooltip
         v-if="tooltipContent"
-        position="left"
+        position="right"
+        class="mr-2"
       >
         <template #trigger>
-          <Info class="w-5 h-5" />
+          <Info class="w-4 h-4 text-gray-500" />
         </template>
         <template #content>
           <p class="w-48">
@@ -29,6 +21,16 @@
           </p>
         </template>
       </Tooltip>
+      <span>
+        {{ label }}
+        <span
+          v-if="required"
+          class="ml-1 text-small-700 text-red-500"
+        >
+          *
+        </span>
+      </span>
+
     </label>
     <slot />
   </span>
@@ -50,7 +52,8 @@ export default defineComponent({
     labelFor: { type: String, required: true },
     required: { type: Boolean, default: false },
     srOnlyLabel: { type: Boolean, default: false },
-    tooltipContent: { type: String, default: null }
+    tooltipContent: { type: String, default: null },
+    readOnly: { type: Boolean, default: false }
   },
   computed: {
     tooltip () {
