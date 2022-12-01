@@ -4,6 +4,8 @@ export { default as ArrowLongDown } from './ArrowLongDown';
 export { default as ArrowLongLeft } from './ArrowLongLeft';
 export { default as ArrowLongRight } from './ArrowLongRight';
 export { default as ArrowLongUp } from './ArrowLongUp';
+export { default as Bars } from './Bars';
+export { default as BarsStaggered } from './BarsStaggered';
 export { default as Calendar } from './Calendar';
 export { default as ChartMixed } from './ChartMixed';
 export { default as Check } from './Check';
