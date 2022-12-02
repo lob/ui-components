@@ -61,7 +61,7 @@ describe('Text input', () => {
     });
     const textInput = getByTestId('input-container');
 
-    expect(textInput).toHaveClass('!border-coral-700');
+    expect(textInput).toHaveClass('!border-red-600');
   });
 
   it('updates the v-model on text input', async () => {
@@ -136,7 +136,8 @@ describe('Text input', () => {
   it('clears the input when the clear button is clicked', async () => {
     const props = {
       ...initialProps,
-      clearButton: true
+      withClearButton: true,
+      modelValue: 'test value'
     };
     const { getByRole, getByLabelText } = render(TextInput, { props });
 
@@ -144,8 +145,8 @@ describe('Text input', () => {
     const updatedValue = 'hello!';
     await fireEvent.update(textInput, updatedValue);
 
-    const clearButton = getByRole('button');
-    await userEvent.click(clearButton);
+    const withClearButton = getByRole('button');
+    await userEvent.click(withClearButton);
 
     expect(textInput.value).toBe('');
   });

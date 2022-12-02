@@ -18,13 +18,13 @@ A text input component for entering a line of text in a form.
 
 You can pass in the `v-model` prop to bind the text input to the parent component's data model.
 
-If you want a `copy` button, you can pass in the `withCopyButton` prop.
-
-If you want to select all text on clicking the text box, you can pass in the `selectOnClick` prop.
-
 Icons are available for the left, right, or both sides of the input via `iconLeft` and `iconRight` named slots.
 
-A clear button appears on the right side of the input when clearButton is set to true. Clicking the button will clear the text in the input.
+A clear (X) button appears on the right side of the input when `withClearButton` is set to true. Clicking the button will clear the text in the input.
+
+The `withCopyButton` prop will make the field read-only and render a 'Copy' button. Clicking the button will copy the text in the input.
+
+To select all text on clicking the text box, pass in the `selectOnClick` prop.
 
 The `selectedOptions` named slot is specifically for the Multiselect component.
 
