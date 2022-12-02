@@ -1,7 +1,7 @@
 import TextInput from './TextInput.vue';
 import mdx from './TextInput.mdx';
 
-import LobLabel from '@/components/LobLabel/LobLabel.vue';
+import LobLabel from '@/components/Label/Label.vue';
 import Tooltip from '@/components/Tooltip/Tooltip.vue';
 import { Search, Info, Upload } from '@/components/Icons';
 

@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/vue';
-import LobLabel from '../LobLabel.vue';
+import LobLabel from '../Label.vue';
 
 const initialProps = {
   id: 'test',

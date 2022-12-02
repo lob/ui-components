@@ -1,7 +1,7 @@
 import Dropdown from './Dropdown.vue';
 import mdx from './Dropdown.mdx';
 
-import LobLabel from '@/components/LobLabel/LobLabel.vue';
+import LobLabel from '@/components/Label/Label.vue';
 import Tooltip from '@/components/Tooltip/Tooltip.vue';
 import { Eye } from '@/components/Icons';
 

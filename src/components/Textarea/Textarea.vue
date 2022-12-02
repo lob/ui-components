@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import LobLabel from '../LobLabel/LobLabel.vue';
+import LobLabel from '../Label/Label.vue';
 export default {
   name: 'Textarea',
   components: {
