@@ -21,6 +21,52 @@ export default {
   }
 };
 
+const PrimaryTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { LobLabel },
+  setup: () => ({ args }),
+  template: '<lob-label v-bind="args"/>'
+});
+
+export const Primary = PrimaryTemplate.bind({});
+Primary.args = {
+  label: 'Name',
+  labelFor: 'Name'
+};
+
+const WithInputTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { LobLabel },
+  setup: () => ({ args }),
+  template: `
+    <lob-label v-bind="args"/>
+    <input class="border rounded p-2 text-gray-500" />
+  `
+});
+
+export const WithInput = WithInputTemplate.bind({});
+WithInput.args = {
+  label: 'Name',
+  labelFor: 'Name'
+};
+
+const RequiredFieldTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { LobLabel },
+  setup: () => ({ args }),
+  template: `
+    <lob-label v-bind="args"/>
+    <input class="border rounded p-2 text-gray-500" />
+  `
+});
+
+export const RequiredField = RequiredFieldTemplate.bind({});
+RequiredField.args = {
+  label: 'Name',
+  labelFor: 'Name',
+  required: true
+};
+
 const WithTooltipTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LobLabel, Info, Tooltip },
@@ -46,23 +92,6 @@ export const WithTooltip = WithTooltipTemplate.bind({});
 WithTooltip.args = {
   label: 'Name',
   labelFor: 'Name',
-  required: true,
   tooltipContent: 'Tooltip Content'
 };
 
-const WithInputTemplate = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
-  components: { LobLabel },
-  setup: () => ({ args }),
-  template: `
-    <lob-label v-bind="args"/>
-    <input class="border rounded p-2 text-gray-500" />
-  `
-});
-
-export const WithInput = WithInputTemplate.bind({});
-WithInput.args = {
-  label: 'Name',
-  labelFor: 'Name',
-  required: true
-};
