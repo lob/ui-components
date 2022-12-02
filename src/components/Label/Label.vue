@@ -12,12 +12,13 @@
         v-if="tooltipContent && tooltipPosition==='leading'"
         position="bottom"
         class="mr-1"
+        data-testid="tooltip-leading"
       >
         <template #trigger>
           <Info class="w-4 h-4 text-gray-500" />
         </template>
         <template #content>
-          <p class="w-48">
+          <p class="w-44">
             {{ tooltipContent }}
           </p>
         </template>
@@ -35,12 +36,13 @@
         v-if="tooltipContent && tooltipPosition==='trailing'"
         position="bottom"
         class="ml-1"
+        data-testid="tooltip-trailing"
       >
         <template #trigger>
           <Info class="w-4 h-4 text-gray-500" />
         </template>
         <template #content>
-          <p class="w-48">
+          <p class="w-44">
             {{ tooltipContent }}
           </p>
         </template>
