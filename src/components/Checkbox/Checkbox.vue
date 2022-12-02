@@ -26,11 +26,12 @@
       ]"
       data-testId="checkmark"
     />
-    <!-- eslint-disable-next-line vue/no-v-html -->
+    <!-- eslint-disable vue/no-v-html -->
     <span
       :class="['ml-1 type-small-500', disabled ? 'text-gray-400' : 'text-gray-800']"
       v-html="label"
     />
+    <!-- eslint-enable vue/no-v-html -->
     <span
       v-if="required"
       class="text-sm text-red-500"
