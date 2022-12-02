@@ -1,5 +1,5 @@
-import LobLabel from './LobLabel.vue';
-import mdx from './LobLabel.mdx';
+import LobLabel from './Label.vue';
+import mdx from './Label.mdx';
 
 import { Info } from '@/components/Icons';
 import Tooltip from '@/components/Tooltip/Tooltip.vue';
