@@ -4,13 +4,13 @@
       :for="labelFor"
       :class="[
         readOnly ? 'text-gray-300' : 'text-gray-800',
-        srOnlyLabel ? 'sr-only' : 'flex items-center mb-1 type-small-500'
+        srOnlyLabel ? 'sr-only' : 'flex items-center mb-1 type-small-700'
       ]"
     >
       <Tooltip
         v-if="tooltipContent"
         position="right"
-        class="mr-2"
+        class="mr-1"
       >
         <template #trigger>
           <Info class="w-4 h-4 text-gray-500" />
