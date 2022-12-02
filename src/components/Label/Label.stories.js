@@ -17,6 +17,17 @@ export default {
       control: {
         type: 'text'
       }
+    },
+    tooltipContent: {
+      control: {
+        type: 'text'
+      }
+    },
+    tooltipPosition: {
+      control: {
+        options: ['leading', 'trailing'],
+        type: 'select'
+      }
     }
   }
 };
@@ -74,12 +85,12 @@ const WithTooltipTemplate = (args, { argTypes }) => ({
   template: `
     <lob-label v-bind="args">
       <template v-slot:tooltip>
-        <Tooltip position="left">
+        <Tooltip position="bottom">
           <template #trigger>
             <Info class="w-5 h-5" />
           </template>
           <template #content>
-            Cat
+            {{ args.tooltipContent }}
           </template>
         </Tooltip>
       </template>
@@ -88,10 +99,18 @@ const WithTooltipTemplate = (args, { argTypes }) => ({
   `
 });
 
-export const WithTooltip = WithTooltipTemplate.bind({});
-WithTooltip.args = {
+export const WithTooltipLeading = WithTooltipTemplate.bind({});
+WithTooltipLeading.args = {
   label: 'Name',
   labelFor: 'Name',
   tooltipContent: 'Tooltip Content'
+};
+
+export const WithTooltipTrailing = WithTooltipTemplate.bind({});
+WithTooltipTrailing.args = {
+  label: 'Name',
+  labelFor: 'Name',
+  tooltipContent: 'Tooltip Content',
+  tooltipPosition: 'trailing'
 };
 

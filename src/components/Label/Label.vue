@@ -4,12 +4,13 @@
       :for="labelFor"
       :class="[
         readOnly ? 'text-gray-300' : 'text-gray-800',
-        srOnlyLabel ? 'sr-only' : 'flex items-center mb-1 type-small-700'
+        srOnlyLabel ? 'sr-only' : 'flex items-center mb-1 type-small-700',
+        { 'justify-between ': tooltipPosition==='trailing' }
       ]"
     >
       <Tooltip
-        v-if="tooltipContent"
-        position="right"
+        v-if="tooltipContent && tooltipPosition==='leading'"
+        position="bottom"
         class="mr-1"
       >
         <template #trigger>
@@ -30,7 +31,20 @@
           *
         </span>
       </span>
-
+      <Tooltip
+        v-if="tooltipContent && tooltipPosition==='trailing'"
+        position="bottom"
+        class="ml-1"
+      >
+        <template #trigger>
+          <Info class="w-4 h-4 text-gray-500" />
+        </template>
+        <template #content>
+          <p class="w-48">
+            {{ tooltipContent }}
+          </p>
+        </template>
+      </Tooltip>
     </label>
     <slot />
   </span>
@@ -53,6 +67,10 @@ export default defineComponent({
     required: { type: Boolean, default: false },
     srOnlyLabel: { type: Boolean, default: false },
     tooltipContent: { type: String, default: null },
+    tooltipPosition: { type: String, default: 'leading',
+      validator: function (value) {
+        return ['leading', 'trailing'].includes(value);
+      } },
     readOnly: { type: Boolean, default: false }
   },
   computed: {
