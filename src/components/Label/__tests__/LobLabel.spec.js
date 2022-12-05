@@ -49,7 +49,7 @@ describe('LobLabel', () => {
       const tooltip = getByTestId('tooltip-trailing');
       expect(tooltip).toBeInTheDocument();
       const label = getByText(props.label);
-      expect(label.parentElement).toHaveClass('justify-between');
+      expect(label.parentElement).toHaveClass('justify-between flex-row-reverse');
     });
 
   });

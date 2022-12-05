@@ -5,14 +5,14 @@
       :class="[
         readOnly ? 'text-gray-300' : 'text-gray-800',
         srOnlyLabel ? 'sr-only' : 'flex items-center mb-1 type-small-700',
-        { 'justify-between ': tooltipPosition==='trailing' }
+        { 'justify-between flex-row-reverse': tooltipPosition==='trailing' }
       ]"
     >
       <Tooltip
-        v-if="tooltipContent && tooltipPosition==='leading'"
+        v-if="tooltipContent"
         position="bottom"
-        class="mr-1"
-        data-testid="tooltip-leading"
+        :class="{ 'mr-1': tooltipPosition==='leading' }"
+        :data-testid="tooltipPosition==='trailing'?'tooltip-trailing':'tooltip-leading'"
       >
         <template #trigger>
           <Info class="w-4 h-4 text-gray-500" />
@@ -32,21 +32,6 @@
           *
         </span>
       </span>
-      <Tooltip
-        v-if="tooltipContent && tooltipPosition==='trailing'"
-        position="bottom"
-        class="ml-1"
-        data-testid="tooltip-trailing"
-      >
-        <template #trigger>
-          <Info class="w-4 h-4 text-gray-500" />
-        </template>
-        <template #content>
-          <p class="w-44">
-            {{ tooltipContent }}
-          </p>
-        </template>
-      </Tooltip>
     </label>
     <slot />
   </span>
