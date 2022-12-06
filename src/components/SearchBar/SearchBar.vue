@@ -11,7 +11,7 @@
       :sr-only-label="true"
     >
       <template #iconLeft>
-        <MagnifyingGlass class="w-6 h-6" />
+        <MagnifyingGlass size="l" />
       </template>
       <template #iconRight>
         <button

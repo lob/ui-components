@@ -28,10 +28,10 @@
             {{ option.label || option }}
             <LobButton
               variant="none"
-              class="mt-0.5 ml-1"
+              class="mt-0.5 ml-1 h-min"
               @click="() => handleOptionDeselect(option)"
             >
-              <XmarkLarge class="w-4 h-4" />
+              <XmarkLarge size="s" />
               <span class="sr-only">{{ t('multiselect.deselectLabel') }}</span>
             </LobButton>
           </div>

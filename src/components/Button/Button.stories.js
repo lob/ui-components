@@ -59,9 +59,9 @@ const WithIconsTemplate = (args, { argTypes }) => ({
   components: { LobButton, Download, Plus },
   setup: () => ({ args }),
   template: `<lob-button v-bind="args"> 
-              <Download class="w-6 h-6" style="margin-right:10px;"/>
+              <Download style="margin-right:10px;"/>
               {{ args.content }} 
-              <Plus class="w-6 h-6" style="margin-left:10px;"/>
+              <Plus style="margin-left:10px;"/>
             </lob-button>`
 });
 

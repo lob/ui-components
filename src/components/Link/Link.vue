@@ -36,7 +36,8 @@
       <slot />
       <ChevronRight
         v-if="link && withChevron"
-        class="h-4 inline-flex -mr-1"
+        size="s"
+        class="inline-flex ml-1"
       />
     </component>
   </span>

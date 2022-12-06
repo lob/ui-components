@@ -29,7 +29,7 @@
           class="z-10 w-20 p-2 text-xs rounded-md bg-gray-700 text-white"
         >
           <div class="flex">
-            <Check class="h-4 w-4" />
+            <Check size="s" />
             <div class="ml-1.5">
               Copied
             </div>

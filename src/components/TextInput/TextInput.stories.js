@@ -59,7 +59,7 @@ const IconLeftTemplate = (args, { argTypes }) => ({
   template: `
     <text-input v-bind="args" v-model="textInputVModel">
       <template v-slot:iconLeft>
-        <MagnifyingGlass class="w-[18px] h-[18px]" />
+        <MagnifyingGlass />
       </template>
     </text-input>
   `
@@ -80,7 +80,7 @@ const IconRightTemplate = (args, { argTypes }) => ({
   template: `
     <text-input v-bind="args" v-model="textInputVModel">
       <template v-slot:iconRight>
-        <MagnifyingGlass class="w-[18px] h-[18px]" />
+        <MagnifyingGlass />
       </template>
     </text-input>
   `
@@ -107,7 +107,7 @@ const WithTooltipTemplate = (args, { argTypes }) => ({
       <template v-slot:tooltip>
         <Tooltip>
           <template #trigger>
-            <Info class="w-[18px] h-[18px]" />
+            <Info />
           </template>
           <template #content>
             Moon
@@ -133,10 +133,10 @@ const BothIconsTemplate = (args, { argTypes }) => ({
   template: `
     <text-input v-bind="args" v-model="textInputVModel">
       <template v-slot:iconLeft>
-        <MagnifyingGlass class="w-[18px] h-[18px]" />
+        <MagnifyingGlass />
       </template>
       <template v-slot:iconRight>
-        <upload class="w-[18px] h-[18px]" />
+        <Upload />
       </template>
     </text-input>
   `

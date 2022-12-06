@@ -13,9 +13,8 @@
     >
       <template #iconRight>
         <Calendar
-          :class="['text-gray-900',
-                   { 'w-3.5 h-3.5': size === 'small',
-                     'w-5 h-5': size === 'default' } ]"
+          :size="size==='small'? 's' : 'l'"
+          class="text-gray-900"
         />
       </template>
     </TextInput>
@@ -35,7 +34,7 @@
       aria-live="polite"
       class="mt-2 ml-1 text-error text-xs flex items-center"
     >
-      <CircleExclamation class="w-4 h-4 mr-1" /> {{ error && errorMessage }}
+      <CircleExclamation class="mr-1" /> {{ error && errorMessage }}
     </div>
   </div>
 </template>

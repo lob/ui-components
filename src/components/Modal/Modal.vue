@@ -44,7 +44,7 @@
           @click="closeModal"
           @keyup.enter="closeModal"
         >
-          <XmarkLarge class="w-5 h-5" />
+          <XmarkLarge />
         </button>
       </div>
     </div>

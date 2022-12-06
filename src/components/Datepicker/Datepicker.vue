@@ -41,7 +41,7 @@
         :disabled="prevMonthDisabled"
         @click="onPreviousMonthClick"
       >
-        <chevron-left class="w-5 h-5" />
+        <chevron-left size="s" />
         <span class="sr-only">{{ t('datepicker.prevMonthLabel') }}</span>
       </button>
       <div>
@@ -62,7 +62,7 @@
         :disabled="nextMonthDisabled"
         @click="onNextMonthClick"
       >
-        <chevron-right class="w-5 h-5" />
+        <chevron-right size="s" />
         <span class="sr-only">{{ t('datepicker.nextMonthLabel') }}</span>
       </button>
     </div>
