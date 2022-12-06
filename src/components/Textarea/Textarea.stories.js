@@ -2,7 +2,7 @@ import Textarea from './Textarea.vue';
 import mdx from './Textarea.mdx';
 
 import { Info } from '@/components/Icons';
-import LobLabel from '@/components/LobLabel/LobLabel.vue';
+import LobLabel from '@/components/Label/Label.vue';
 import Tooltip from '@/components/Tooltip/Tooltip.vue';
 
 export default {
