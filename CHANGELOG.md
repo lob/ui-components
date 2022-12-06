@@ -1,6 +1,61 @@
 # CHANGELOG
 
+## v2.0.0-beta.10
+
+### Features
+
+Updates the styles of the `Label` component
+
+## v2.0.0-beta.9
+
+No changes
+
+## v2.0.0-beta.8
+
+### Features
+
+Remove background color from `SearchBar` when focused
+
+## v2.0.0-beta.7
+
+### Features
+
+Do not show clear button in `SearchBar` unless there is a search term
+
+## v2.0.0-beta.6
+
+### Features
+
+Updates the Color Palette with the new Gray color.
+Updates the Main Navigation text color to gray-800.
+
+## v2.0.0-beta.5
+
+### Features
+
+Updates the styles of disabled Button and button-style Link
+
+## v2.0.0-beta.4
+
+### Bug Fixes
+
+Adds darker gray border color to components: TextInput, TextArea, Dropdown, RadioButtonLarge & secondary Button
+
+## v2.0.0-beta.3
+
+### Features
+
+Adds the new Colors Palette
+
+## v2.0.0-beta.2
+
+### Features
+
+Adds the new Typography classes
+
 ## v2.0.0-beta.1
+
+### Features
 
 Adds new `invalid` event listener to the TextInput component
 

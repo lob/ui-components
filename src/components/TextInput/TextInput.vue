@@ -41,7 +41,7 @@
     <div
       data-testId="input-container"
       :class="[
-        'bg-white h-12 pl-4 pr-4 py-2.5 rounded-lg flex items-center gap-2 border border-gray-100 focus-within:outline-none',
+        'bg-white h-12 pl-4 pr-4 py-2.5 rounded-lg flex items-center gap-2 border border-gray-300 focus-within:outline-none',
         { '!pl-3 !pr-3 !h-8 !gap-1' : small },
         {'hover:border-gray-300 focus-within:ring-1 focus-within:ring-primary-500 focus-within:border-primary-500': !disabled && !readonly},
         {'!bg-white-100' : disabled},
@@ -68,11 +68,11 @@
         :max="max"
         :pattern="pattern"
         :class="[
-          `leading-5 w-full text-gray-900 placeholder-gray-100 placeholder:font-light outline-none ${inputClass}`,
+          `leading-5 w-full text-gray-900 placeholder-gray-300 placeholder:font-light outline-none ${inputClass}`,
           {'nonErrorAutofill' : !disabled && !readonly},
           {'text-xs': small},
           {'truncate': withCopyButton},
-          {'bg-white-100 cursor-not-allowed !text-gray-100 !placeholder-gray-100': disabled || readonly},
+          {'bg-white-100 cursor-not-allowed !text-gray-100 !placeholder-gray-300': disabled || readonly},
           {'bg-coral-100 !placeholder-error !autofill:bg-coral-100 errorAutofill': error}
         ]"
         :disabled="disabled"
@@ -131,7 +131,7 @@
 </template>
 
 <script>
-import LobLabel from '../LobLabel/LobLabel.vue';
+import LobLabel from '../Label/Label.vue';
 import Check  from '../Icons/Check.vue';
 import Close  from '../Icons/Close.vue';
 

@@ -29,7 +29,7 @@
       :aria-required="required"
       :aria-disabled="disabled"
       :class="[
-        'cursor-default bg-white border rounded-lg border-gray-100 font-light text-gray-900 flex align-center items-center',
+        'cursor-default bg-white border rounded-lg border-gray-300 font-light text-gray-900 flex align-center items-center',
         {'h-8 text-sm py-2 px-2.5': small},
         {'h-12 py-2.5 px-4': default_},
         {'!border-error bg-coral-200': error},
@@ -129,7 +129,7 @@ import { ChevronDown, ChevronUp } from '@/components/Icons';
 import DropdownItemGroup from './DropdownItemGroup';
 import DropdownItem from './DropdownItem';
 import { findLastIndex, shallowEquals } from '@/utils';
-import LobLabel from '../LobLabel/LobLabel.vue';
+import LobLabel from '../Label/Label.vue';
 
 if (!Array.prototype.findLastIndex) {
   Array.prototype.findLastIndex = findLastIndex; //eslint-disable-line
