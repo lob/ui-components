@@ -3,7 +3,7 @@
     ref="searchBar"
     class="relative"
   >
-    <text-input
+    <TextInput
       id="searchBar"
       v-model="searchTerm"
       class="min-w-full"
@@ -27,7 +27,7 @@
           <Close class="w-6 h-6" />
         </button>
       </template>
-    </text-input>
+    </TextInput>
     <div
       v-if="visible"
       class="bg-white shadow overflow-y-auto min-w-full absolute"
