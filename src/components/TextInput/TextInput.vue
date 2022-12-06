@@ -131,7 +131,7 @@
 </template>
 
 <script>
-import LobLabel from '../LobLabel/LobLabel.vue';
+import LobLabel from '../Label/Label.vue';
 import Check  from '../Icons/Check.vue';
 import Close  from '../Icons/Close.vue';
 

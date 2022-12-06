@@ -1,5 +1,10 @@
-import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
-import LobLabel from './LobLabel.vue';
+import {
+  Preview,
+  Story,
+  ArgsTable,
+  PRIMARY_STORY,
+} from "@storybook/addon-docs";
+import LobLabel from "./Label.vue";
 
 # Lob Label
 
@@ -17,13 +22,16 @@ If the field is required, you can pass in the `required` prop to show the asteri
 
 You can hide the label by setting the `srOnlyLabel` to true (it will still be read by a screen reader).
 
+A tooltip can be added with the `tooltipContent` prop (String).
+By default it will show on the left of the label ('leading'). If `tooltipPosition="trailing"` is passed, the tooltip will render on the right end of the label.
+
 ```html
-  <lob-label  
-    :label="label"
-    :labelFor="labelFor"
-    :required="required"
-    :srOnlyLabel="srOnlyLabel"
-  />
+<lob-label
+  :label="label"
+  :labelFor="labelFor"
+  :required="required"
+  :srOnlyLabel="srOnlyLabel"
+/>
 ```
 
 ## Props
