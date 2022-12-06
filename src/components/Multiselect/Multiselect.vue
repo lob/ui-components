@@ -22,18 +22,17 @@
           :key="option.label || option"
           variant="turquoise"
           :size="size"
-          class="my-2 ml-2"
+          class="my-1 ml-2"
         >
           <div class="flex items-center">
             {{ option.label || option }}
-            <LobButton
-              variant="none"
-              class="mt-0.5 ml-1"
+            <button
+              class="ml-1"
               @click="() => handleOptionDeselect(option)"
             >
               <Close class="w-4 h-4" />
               <span class="sr-only">{{ t('multiselect.deselectLabel') }}</span>
-            </LobButton>
+            </button>
           </div>
         </Badge>
       </template>
@@ -72,13 +71,12 @@
 <script>
 import TextInput from '../TextInput/TextInput';
 import Badge from '../Badge/Badge';
-import LobButton from '../Button/Button';
 import Close from '../Icons/Close';
 import { filterArrayByArray } from '../../utils/array';
 
 export default {
   name: 'Multiselect',
-  components: { TextInput, Badge, LobButton, Close },
+  components: { TextInput, Badge, Close },
   props: {
     modelValue: { // selected
       type: Array,
