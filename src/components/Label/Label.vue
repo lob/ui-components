@@ -18,7 +18,7 @@
           <Info class="w-4 h-4 text-gray-500" />
         </template>
         <template #content>
-          <p class="w-44">
+          <p class="w-max max-w-[200px]">
             {{ tooltipContent }}
           </p>
         </template>
