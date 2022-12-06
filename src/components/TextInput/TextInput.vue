@@ -86,7 +86,7 @@
         @invalid="onInvalid"
       >
       <button
-        v-if="withClearButton && modelValue"
+        v-if="showClearButton && modelValue"
         :class="[modelValue && !disabled ? 'text-gray-800' : 'text-gray-500',
                  { 'text-green-700' : success },
                  { 'text-red-600' : error },
@@ -257,8 +257,8 @@ export default {
     selectedOptions () {
       return this.$slots.selectedOptions;
     },
-    showwithClearButton () {
-      return !this.isMultiselect && !this.iconRight && !this.withCopyButton;
+    showClearButton () {
+      return this.withClearButton && !this.isMultiselect && !this.iconRight && !this.withCopyButton;
     }
   },
   methods: {
