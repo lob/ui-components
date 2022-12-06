@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v2.0.0-beta.10
+
+### Features
+
+Updates the styles of the `Label` component
+
 ## v2.0.0-beta.9
 
 No changes

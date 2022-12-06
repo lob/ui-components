@@ -14,7 +14,7 @@ export { default as FilterContent } from './FilterContent/FilterContent';
 export * from './Icons';
 export { default as LoadingIndicator } from './LoadingIndicator/LoadingIndicator';
 export { default as LobLink } from './Link/Link';
-export { default as LobLabel } from './LobLabel/LobLabel';
+export { default as LobLabel } from './Label/Label';
 export { default as MainNavigation } from './MainNavigation/MainNavigation';
 export { default as MainNavigationItem } from './MainNavigation/MainNavigationItem';
 export { default as MainNavigationChildItem } from './MainNavigation/MainNavigationChildItem';
