@@ -5,7 +5,7 @@
       :class="[
         readOnly ? 'text-gray-300' : 'text-gray-800',
         srOnlyLabel ? 'sr-only' : 'flex items-center mb-1 type-small-700',
-        { 'justify-between flex-row-reverse': tooltipPosition === 'trailing' }
+        { 'justify-between flex-row-reverse': tooltipContent && (tooltipPosition === 'trailing') }
       ]"
     >
       <Tooltip
