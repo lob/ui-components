@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v2.0.0-beta.11
+
+### Features
+
+Updates the styles of the `LoadingIndicator` spinner
+
 ## v2.0.0-beta.10
 
 ### Features
