@@ -39,7 +39,7 @@ describe('LobLabel', () => {
       const tooltip = getByTestId('tooltip-leading');
       expect(tooltip).toBeInTheDocument();
       const label = getByText(props.label);
-      expect(label.parentElement).not.toHaveClass('justify-between');
+      expect(label.parentElement.parentElement).not.toHaveClass('justify-between');
     });
 
     it('the tooltip shows on the right if tooltipPosition:trailing is added', () => {
@@ -49,7 +49,7 @@ describe('LobLabel', () => {
       const tooltip = getByTestId('tooltip-trailing');
       expect(tooltip).toBeInTheDocument();
       const label = getByText(props.label);
-      expect(label.parentElement).toHaveClass('justify-between flex-row-reverse');
+      expect(label.parentElement.parentElement).toHaveClass('justify-between flex-row-reverse');
     });
 
   });
