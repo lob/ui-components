@@ -29,7 +29,7 @@
           class="z-10 w-20 p-2 text-xs rounded-md bg-gray-700 text-white"
         >
           <div class="flex">
-            <Check class="h-4 w-4" />
+            <Check size="s" />
             <div class="ml-1.5">
               Copied
             </div>
@@ -93,7 +93,7 @@
           variant="none"
           @click="clearInput"
         >
-          <Close
+          <XmarkLarge
             :class="[
               'h-[18px] w-[18px] cursor-pointer',
               { 'bg-white-100' : disabled },
@@ -131,17 +131,13 @@
 </template>
 
 <script>
-import LobLabel from '../LobLabel/LobLabel.vue';
-import Check  from '../Icons/Check.vue';
-import Close  from '../Icons/Close.vue';
+import LobLabel from '../Label/Label.vue';
+import Check from '../Icons/Check.vue';
+import XmarkLarge from '../Icons/XmarkLarge.vue';
 
 export default {
   name: 'TextInput',
-  components: {
-    LobLabel,
-    Check,
-    Close
-  },
+  components: { LobLabel, Check, XmarkLarge },
   props: {
     tooltipContent: {
       type: String,

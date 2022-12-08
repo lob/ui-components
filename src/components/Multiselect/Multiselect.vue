@@ -24,14 +24,16 @@
         >
           <div class="flex items-center">
             {{ option.label || option }}
-            <LobButton
-              variant="none"
-              class="!pr-0 !pl-1"
+            <button
+              class="ml-2 -mr-1 h-min"
               @click="() => handleOptionDeselect(option)"
             >
-              <Close class="w-4 h-4" />
+              <XmarkLarge
+                size="s"
+                class="h-3"
+              />
               <span class="sr-only">{{ t('multiselect.deselectLabel') }}</span>
-            </LobButton>
+            </button>
           </div>
         </Badge>
       </template>
@@ -70,15 +72,14 @@
 <script>
 import TextInput from '../TextInput/TextInput';
 import Badge from '../Badge/Badge';
-import LobButton from '../Button/Button';
-import Close from '../Icons/Close';
+import { XmarkLarge } from '@/components/Icons';
 import { filterArrayByArray } from '../../utils/array';
 
 export default {
   name: 'Multiselect',
-  components: { TextInput, Badge, LobButton, Close },
+  components: { TextInput, Badge, XmarkLarge },
   props: {
-    modelValue: { // selected
+    modelValue: {
       type: Array,
       required: true
     },

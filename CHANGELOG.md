@@ -1,5 +1,39 @@
 # CHANGELOG
 
+## v2.0.0-beta.12
+
+### Features
+
+Icons design refresh
+
+## v2.0.0-beta.11
+
+### Features
+
+Updates the styles of the `LoadingIndicator` spinner
+
+## v2.0.0-beta.10
+
+### Features
+
+Updates the styles of the `Label` component
+
+## v2.0.0-beta.9
+
+No changes
+
+## v2.0.0-beta.8
+
+### Features
+
+Remove background color from `SearchBar` when focused
+
+## v2.0.0-beta.7
+
+### Features
+
+Do not show clear button in `SearchBar` unless there is a search term
+
 ## v2.0.0-beta.6
 
 ### Features

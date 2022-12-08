@@ -1,6 +1,6 @@
 import SwitchGroup from './SwitchGroup.vue';
 import SwitchItem from './SwitchItem.vue';
-import { Earth, TableIcon } from '@/components/Icons';
+import { Globe, TableLayout } from '@/components/Icons';
 import mdx from './SwitchGroup.mdx';
 
 export default {
@@ -58,7 +58,7 @@ const withIconsModel = 'map';
 
 const WithIconsTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { SwitchGroup, SwitchItem, Earth, TableIcon },
+  components: { SwitchGroup, SwitchItem, Globe, TableLayout },
   data: () => ({ withIconsModel }),
   setup: () => ({ args }),
   template: `
@@ -70,7 +70,7 @@ const WithIconsTemplate = (args, { argTypes }) => ({
         value="map" 
         sr-only-label
       >
-        <earth class="w-6 h-6" />
+        <Globe />
       </switch-item>
       <switch-item 
         v-model="withIconsModel" 
@@ -79,7 +79,7 @@ const WithIconsTemplate = (args, { argTypes }) => ({
         value="list" 
         sr-only-label
       >
-        <table-icon class="w-6 h-6" />
+        <TableLayout />
       </switch-item>
     </switch-group>
   `

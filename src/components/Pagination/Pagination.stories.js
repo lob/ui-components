@@ -17,7 +17,7 @@ const Template = (args, { argTypes }) => ({
   components: { Pagination },
   setup: () => ({ args }),
   template:
-    '<div class="block w-1/2 mx-auto mt-auto"><pagination v-bind="args" /></div>'
+    '<div style="width: 500px"><pagination v-bind="args" /></div>'
 });
 
 export const FirstPageActive = Template.bind({});

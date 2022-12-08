@@ -2,7 +2,7 @@ import Textarea from './Textarea.vue';
 import mdx from './Textarea.mdx';
 
 import { Info } from '@/components/Icons';
-import LobLabel from '@/components/LobLabel/LobLabel.vue';
+import LobLabel from '@/components/Label/Label.vue';
 import Tooltip from '@/components/Tooltip/Tooltip.vue';
 
 export default {
@@ -53,7 +53,7 @@ const WithTooltipTemplate = (args, { argTypes }) => ({
       <template v-slot:tooltip>
         <Tooltip>
           <template #trigger>
-            <Info class="w-5 h-5" />
+            <Info />
           </template>
           <template #content>
             Cat

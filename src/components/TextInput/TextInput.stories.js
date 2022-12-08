@@ -1,9 +1,9 @@
 import TextInput from './TextInput.vue';
 import mdx from './TextInput.mdx';
 
-import LobLabel from '@/components/LobLabel/LobLabel.vue';
+import LobLabel from '@/components/Label/Label.vue';
 import Tooltip from '@/components/Tooltip/Tooltip.vue';
-import { Search, Info, Upload } from '@/components/Icons';
+import { MagnifyingGlass, Info, Upload } from '@/components/Icons';
 
 export default {
   title: 'Components/Text Input',
@@ -53,13 +53,13 @@ Primary.args = {
 
 const IconLeftTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { TextInput, Search },
+  components: { TextInput, MagnifyingGlass },
   setup: () => ({ args }),
   data: () => ({ textInputVModel }),
   template: `
     <text-input v-bind="args" v-model="textInputVModel">
       <template v-slot:iconLeft>
-        <search class="w-[18px] h-[18px]" />
+        <MagnifyingGlass />
       </template>
     </text-input>
   `
@@ -74,13 +74,13 @@ IconLeft.args = {
 
 const IconRightTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { TextInput, Search },
+  components: { TextInput, MagnifyingGlass },
   setup: () => ({ args }),
   data: () => ({ textInputVModel }),
   template: `
     <text-input v-bind="args" v-model="textInputVModel">
       <template v-slot:iconRight>
-        <search class="w-[18px] h-[18px]" />
+        <MagnifyingGlass />
       </template>
     </text-input>
   `
@@ -107,7 +107,7 @@ const WithTooltipTemplate = (args, { argTypes }) => ({
       <template v-slot:tooltip>
         <Tooltip>
           <template #trigger>
-            <Info class="w-[18px] h-[18px]" />
+            <Info />
           </template>
           <template #content>
             Moon
@@ -127,16 +127,16 @@ WithTooltip.args = {
 
 const BothIconsTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { TextInput, Search, Upload },
+  components: { TextInput, MagnifyingGlass, Upload },
   setup: () => ({ args }),
   data: () => ({ textInputVModel }),
   template: `
     <text-input v-bind="args" v-model="textInputVModel">
       <template v-slot:iconLeft>
-        <search class="w-[18px] h-[18px]" />
+        <MagnifyingGlass />
       </template>
       <template v-slot:iconRight>
-        <upload class="w-[18px] h-[18px]" />
+        <Upload />
       </template>
     </text-input>
   `
