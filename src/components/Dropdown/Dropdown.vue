@@ -56,16 +56,18 @@
       </div>
       <chevron-down
         v-if="!open"
+        size="s"
         :class="[
-          'w-5 h-5 absolute right-2.5',
+          'absolute right-2.5',
           error ? 'text-error' : 'text-gray-900'
         ]"
         data-testid="chevron-down"
       />
       <chevron-up
         v-else
+        size="s"
         :class="[
-          'w-5 h-5 absolute right-2.5',
+          'absolute right-2.5',
           error ? 'text-error' : 'text-gray-900'
         ]"
         data-testid="chevron-up"

@@ -11,7 +11,7 @@
       :sr-only-label="true"
     >
       <template #iconLeft>
-        <Search class="w-6 h-6" />
+        <MagnifyingGlass size="l" />
       </template>
       <template #iconRight>
         <button
@@ -24,7 +24,7 @@
           data-testid="clearSearchButton"
           @click="clearSearch"
         >
-          <Close class="w-6 h-6" />
+          <XmarkLarge class="w-6 h-6" />
         </button>
       </template>
     </text-input>
@@ -80,12 +80,12 @@ import LobTable from '../Table/Table';
 import TableBody from '../Table/TableBody';
 import TableRow from '../Table/TableRow';
 import LobLink from '../Link/Link.vue';
-import Search from '../Icons/Search';
-import Close from '../Icons/Close';
+import MagnifyingGlass from '../Icons/MagnifyingGlass';
+import XmarkLarge from '../Icons/XmarkLarge';
 
 export default {
   name: 'SearchBar',
-  components: { TextInput, LobTable, TableBody, TableRow, LobLink, Search, Close },
+  components: { TextInput, LobTable, TableBody, TableRow, LobLink, MagnifyingGlass, XmarkLarge },
   props: {
     searchFunction: {
       type: Function,

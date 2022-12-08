@@ -1,16 +1,21 @@
-import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
-import Icons from './Icons.vue';
+import {
+  Preview,
+  Story,
+  ArgsTable,
+  PRIMARY_STORY,
+} from "@storybook/addon-docs";
+import Icons from "./Icons.vue";
 
 # Icons
 
-All of the icons from our design system exist as components you can use in this library. All of the icons will inherit the current color of their parent element or you can change the color by adding a class to the icon component, e.g. `class="text-primary-500"`
+All of the icons from our design system exist as components you can use in this library. All of the icons will inherit the current color of their parent element or you can change the color by adding a class to the icon component, e.g. `class="text-gray-500"`
 
+The Icon size is managed by the `size` prop (String) as `'xxl', 'xl', 'l', 'm', 's'`.
+These correspond to 24px, 20px, 18px, 16px, and 14px width/height and viewbox values.
+If a size is not declared, the default size is medium.
 
-To add icons, export the frame surrounding the icon in Figma as an SVG. This will ensure you get a square viewbox for consistency. Then create a component in the Icons folder in this library. Remove the width, height, and fill/stroke attributes. Replce the fill with `class="fill-current"` so that the SVG picks up the current color from its parent element.
+Here's an example of using an icon
 
-Here's an example of using an icon in your application
 ```html
-<Upload class="w-6 h-6 text-primary-500" />
+<File size="l" class="text-purple-500" />
 ```
-
-
