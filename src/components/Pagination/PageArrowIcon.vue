@@ -1,21 +1,9 @@
 <template>
   <span :class="[{'text-gray-900 hover:text-primary-300': !disabled}, { 'text-gray-100 hover:text-gray-100' : disabled }]">
-    <skip-to-left
-      v-if="first"
-      class="w-6 h-6"
-    />
-    <chevron-left
-      v-if="previous"
-      class="w-6 h-6"
-    />
-    <chevron-right
-      v-if="next"
-      class="w-6 h-6"
-    />
-    <skip-to-right
-      v-if="last"
-      class="w-6 h-6"
-    />
+    <skip-to-left v-if="first" />
+    <chevron-left v-if="previous" />
+    <chevron-right v-if="next" />
+    <skip-to-right v-if="last" />
   </span>
 </template>
 

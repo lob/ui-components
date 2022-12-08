@@ -15,7 +15,7 @@
         :data-testid="tooltipPosition === 'trailing' ? 'tooltip-trailing' : 'tooltip-leading'"
       >
         <template #trigger>
-          <Info class="w-4 h-4 text-gray-500" />
+          <CircleInfo />
         </template>
         <template #content>
           <p class="w-max max-w-[200px]">
@@ -40,13 +40,13 @@
 <script>
 import { defineComponent } from 'vue';
 import Tooltip from '../Tooltip/Tooltip.vue';
-import Info from '../Icons/Info.vue';
+import CircleInfo from '../Icons/CircleInfo.vue';
 
 export default defineComponent({
   name: 'LobLabel',
   components: {
     Tooltip,
-    Info
+    CircleInfo
   },
   props: {
     label: { type: String, required: true },

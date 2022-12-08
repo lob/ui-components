@@ -53,7 +53,7 @@ const WithTooltipTemplate = (args, { argTypes }) => ({
       <template v-slot:tooltip>
         <Tooltip>
           <template #trigger>
-            <Info class="w-5 h-5" />
+            <Info />
           </template>
           <template #content>
             Cat
