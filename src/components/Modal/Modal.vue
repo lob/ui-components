@@ -44,7 +44,7 @@
           @click="closeModal"
           @keyup.enter="closeModal"
         >
-          <Close class="w-5 h-5" />
+          <XmarkLarge />
         </button>
       </div>
     </div>
@@ -52,10 +52,10 @@
 </template>
 
 <script>
-import Close from '../Icons/Close';
+import XmarkLarge from '../Icons/XmarkLarge';
 export default {
   name: 'Modal',
-  components: { Close },
+  components: { XmarkLarge },
   props: {
     visible: {
       type: Boolean,

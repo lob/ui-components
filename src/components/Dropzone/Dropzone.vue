@@ -75,7 +75,7 @@
                  'focus-visible:ring-4 focus-visible:ring-primary-100 focus:outline-none']"
         @click.stop
       >
-        {{ textContent.uploadFileButtonText }} <Upload class="w-5 h-5 ml-2 -mr-2" />
+        {{ textContent.uploadFileButtonText }} <Upload class="ml-2 -mr-1" />
       </label>
 
       <button

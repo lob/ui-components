@@ -29,7 +29,7 @@
           class="z-10 w-20 p-2 text-xs rounded-md bg-gray-700 text-white"
         >
           <div class="flex">
-            <Check class="h-4 w-4" />
+            <Check size="s" />
             <div class="ml-1.5">
               {{ copiedTooltipContent }}
             </div>
@@ -94,7 +94,13 @@
         ]"
         @click="clearInput"
       >
-        <Close class="w-5 h-5" />
+        <XmarkLarge
+          :class="[ 'h-3.5',
+                    'cursor-pointer',
+                    { 'bg-white-100' : disabled },
+                    { 'bg-coral-100' : error }
+          ]"
+        />
       </button>
       <div
         v-if="iconRight"
@@ -108,7 +114,6 @@
       </div>
       <button
         v-if="withCopyButton"
-        type="button"
         class="rounded-full px-3 h-7 type-xs-700 bg-black text-white hover:bg-gray-700 focus:outline-dashed focus:outline-black focus:outline-offset-1 active:bg-gray-800 focus:bg-gray-800"
         @click="copyToClipboard"
       >
@@ -131,16 +136,12 @@
 
 <script>
 import LobLabel from '../Label/Label.vue';
-import Check  from '../Icons/Check.vue';
-import Close  from '../Icons/Close.vue';
+import Check from '../Icons/Check.vue';
+import XmarkLarge from '../Icons/XmarkLarge.vue';
 
 export default {
   name: 'TextInput',
-  components: {
-    LobLabel,
-    Check,
-    Close
-  },
+  components: { LobLabel, Check, XmarkLarge },
   props: {
     tooltipContent: {
       type: String,

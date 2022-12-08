@@ -3,7 +3,7 @@ import mdx from './TextInput.mdx';
 
 import LobLabel from '@/components/Label/Label.vue';
 import Tooltip from '@/components/Tooltip/Tooltip.vue';
-import { Search, Info, Upload } from '@/components/Icons';
+import { MagnifyingGlass, Info, Upload } from '@/components/Icons';
 
 export default {
   title: 'Components/Text Input',
@@ -65,7 +65,7 @@ const WithTooltipTemplate = (args, { argTypes }) => ({
       <template v-slot:tooltip>
         <Tooltip>
           <template #trigger>
-            <Info class="w-5 h-5" />
+            <Info />
           </template>
           <template #content>
             Moon
@@ -87,13 +87,13 @@ WithTooltip.args = {
 
 const IconLeftTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { TextInput, Search },
+  components: { TextInput, MagnifyingGlass },
   setup: () => ({ args }),
   data: () => ({ textInputVModel }),
   template: `
     <text-input v-bind="args" v-model="textInputVModel">
       <template v-slot:iconLeft>
-        <Search class="w-5 h-5" />
+        <MagnifyingGlass />
       </template>
     </text-input>
   `
@@ -114,7 +114,7 @@ const IconRightTemplate = (args, { argTypes }) => ({
   template: `
     <text-input v-bind="args" v-model="textInputVModel">
       <template v-slot:iconRight>
-        <Upload class="w-5 h-5" />
+        <Upload />
       </template>
     </text-input>
   `
@@ -129,16 +129,16 @@ IconRight.args = {
 
 const BothIconsTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { TextInput, Search, Upload },
+  components: { TextInput, MagnifyingGlass, Upload },
   setup: () => ({ args }),
   data: () => ({ textInputVModel }),
   template: `
     <text-input v-bind="args" v-model="textInputVModel">
       <template v-slot:iconLeft>
-        <Search class="w-5 h-5" />
+        <MagnifyingGlass />
       </template>
       <template v-slot:iconRight>
-        <Upload class="w-5 h-5" />
+        <Upload />
       </template>
     </text-input>
   `

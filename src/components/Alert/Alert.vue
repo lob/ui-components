@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="['w-full border-l-4 py-3 px-4 rounded-r-lg flex justify-start items-start text-sm',
+    :class="['w-full border-l-4 py-3 px-4 rounded-r-lg flex justify-start items-center text-sm',
              { 'bg-turquoise-100 border-turquoise-500': info },
              { 'bg-mint-100 border-success': success },
              { 'bg-lemon-100 border-warning': warning },
@@ -9,7 +9,7 @@
   >
     <component
       :is="icon"
-      class="h-6 w-6 flex-shrink-0"
+      size="l"
       :class="[{ 'text-gray-500': success },
                { 'text-turquoise-500': info },
                { 'text-warning': warning },
@@ -23,13 +23,13 @@
 </template>
 
 <script>
-import Info from '../Icons/Info.vue';
-import Checkmark from '../Icons/Checkmark.vue';
-import AlertCircle from '../Icons/AlertCircle.vue';
+import CircleInfo from '../Icons/CircleInfo.vue';
+import CircleCheck from '../Icons/CircleCheck.vue';
+import CircleExclamation from '../Icons/CircleExclamation.vue';
 
 export default {
   name: 'Alert',
-  components: { Info, Checkmark, AlertCircle },
+  components: { CircleInfo, CircleCheck, CircleExclamation },
   props: {
     variant: {
       type: String,
@@ -42,10 +42,10 @@ export default {
   data () {
     return {
       variantDetails: [
-        { variant: 'info', icon: 'Info', linkColor: 'text-turquoise-700' },
-        { variant: 'success', icon: 'Checkmark', linkColor: 'text-mint-900' },
-        { variant: 'warning', icon: 'AlertCircle', linkColor: 'text-gray-700' },
-        { variant: 'error', icon: 'AlertCircle', linkColor: 'text-coral-700' }
+        { variant: 'info', icon: 'CircleInfo', linkColor: 'text-turquoise-700' },
+        { variant: 'success', icon: 'CircleCheck', linkColor: 'text-mint-900' },
+        { variant: 'warning', icon: 'CircleExclamation', linkColor: 'text-gray-700' },
+        { variant: 'error', icon: 'CircleExclamation', linkColor: 'text-coral-700' }
       ]
     };
   },
