@@ -28,10 +28,10 @@
             {{ option.label || option }}
             <LobButton
               variant="none"
-              class="mt-0.5 ml-1"
+              class="mt-0.5 ml-1 h-min"
               @click="() => handleOptionDeselect(option)"
             >
-              <Close class="w-4 h-4" />
+              <XmarkLarge size="s" />
               <span class="sr-only">{{ t('multiselect.deselectLabel') }}</span>
             </LobButton>
           </div>
@@ -73,12 +73,12 @@
 import TextInput from '../TextInput/TextInput';
 import Badge from '../Badge/Badge';
 import LobButton from '../Button/Button';
-import Close from '../Icons/Close';
+import XmarkLarge from '../Icons/XmarkLarge';
 import { filterArrayByArray } from '../../utils/array';
 
 export default {
   name: 'Multiselect',
-  components: { TextInput, Badge, LobButton, Close },
+  components: { TextInput, Badge, LobButton, XmarkLarge },
   props: {
     modelValue: { // selected
       type: Array,

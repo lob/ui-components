@@ -56,16 +56,18 @@
       </div>
       <chevron-down
         v-if="!open"
+        size="s"
         :class="[
-          'w-5 h-5 absolute right-2.5',
+          'absolute right-2.5',
           error ? 'text-error' : 'text-gray-900'
         ]"
         data-testid="chevron-down"
       />
       <chevron-up
         v-else
+        size="s"
         :class="[
-          'w-5 h-5 absolute right-2.5',
+          'absolute right-2.5',
           error ? 'text-error' : 'text-gray-900'
         ]"
         data-testid="chevron-up"
@@ -129,7 +131,7 @@ import { ChevronDown, ChevronUp } from '@/components/Icons';
 import DropdownItemGroup from './DropdownItemGroup';
 import DropdownItem from './DropdownItem';
 import { findLastIndex, shallowEquals } from '@/utils';
-import LobLabel from '../LobLabel/LobLabel.vue';
+import LobLabel from '../Label/Label.vue';
 
 if (!Array.prototype.findLastIndex) {
   Array.prototype.findLastIndex = findLastIndex; //eslint-disable-line

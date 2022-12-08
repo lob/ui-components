@@ -1,19 +1,45 @@
 <template>
   <svg
-    viewBox="0 0 24 24"
+    :width="currentSize"
+    :height="currentSize"
+    :viewBox="`0 0 ${currentSize} ${currentSize}`"
     fill="none"
-    stroke-width="2"
-    stroke="currentColor"
-    stroke-linecap="round"
-    stroke-linejoin="round"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <path d="M15 19L9 12L15 5" />
+    <path
+      :d="path"
+      fill="currentColor"
+    />
   </svg>
 </template>
 
 <script>
+const iconInfo = {
+  xxl: { size: 24, path: 'M16.16 23.588 5.967 12.948c-.3-.355-.424-.69-.424-.973 0-.284.124-.667.373-.924L16.109.412a1.332 1.332 0 0 1 1.887-.04 1.33 1.33 0 0 1 .04 1.888L8.73 11.975l9.353 9.764a1.33 1.33 0 0 1-.04 1.888 1.326 1.326 0 0 1-1.883-.04z' },
+  xl: { size: 20, path: 'm13.467 19.656-8.495-8.865c-.25-.297-.352-.575-.352-.812 0-.237.103-.555.31-.77L13.424.344A1.11 1.11 0 0 1 14.997.31c.447.424.461 1.13.033 1.573L7.275 9.98l7.794 8.137c.428.44.413 1.15-.033 1.573a1.105 1.105 0 0 1-1.57-.033z' },
+  l: { size: 18, path: 'M12.12 17.69 4.475 9.713c-.225-.268-.317-.518-.317-.731 0-.213.092-.5.279-.693L12.082.31a.999.999 0 0 1 1.415-.03.997.997 0 0 1 .03 1.416l-6.98 7.286 7.015 7.324a.997.997 0 0 1-.03 1.415.995.995 0 0 1-1.412-.03z' },
+  m: { size: 16, path: 'M10.773 15.725 3.978 8.633c-.2-.238-.282-.46-.282-.65s.082-.444.248-.616L10.739.275a.888.888 0 0 1 1.258-.027.886.886 0 0 1 .027 1.259L5.82 7.983l6.235 6.51c.342.352.33.92-.027 1.258a.884.884 0 0 1-1.255-.026z' },
+  s: { size: 14, path: 'M9.427 13.76 3.48 7.553c-.174-.208-.246-.403-.246-.569 0-.165.072-.388.217-.539L9.397.241a.777.777 0 0 1 1.1-.024.776.776 0 0 1 .024 1.101L5.092 6.985l5.456 5.696c.3.309.29.805-.023 1.102a.774.774 0 0 1-1.098-.024z' }
+};
+
 export default {
-  name: 'ChevronLeft'
+  name: 'ChevronLeft',
+  props: {
+    size: {
+      type: String,
+      default: 'm',
+      validator: function (value) {
+        return ['xxl', 'xl', 'l', 'm', 's'].includes(value);
+      }
+    }
+  },
+  computed: {
+    currentSize () {
+      return iconInfo[this.size].size;
+    },
+    path () {
+      return iconInfo[this.size].path;
+    }
+  }
 };
 </script>

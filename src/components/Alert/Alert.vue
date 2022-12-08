@@ -63,8 +63,11 @@
 </template>
 
 <script>
-import { Info, Checkmark, AlertCircle, Close, ArrowRight } from '@/components/Icons';
+import { Info, Checkmark, AlertCircle, XmarkLarge, ArrowLongRight } from '@/components/Icons';
 import LobLink from '../Link/Link';
+import CircleInfo from '../Icons/CircleInfo.vue';
+import CircleCheck from '../Icons/CircleCheck.vue';
+import CircleExclamation from '../Icons/CircleExclamation.vue';
 
 const LearnMoreLink = {
   template: `<LobLink
@@ -75,9 +78,9 @@ const LearnMoreLink = {
           class="ml-4 !type-xs-400 text-gray-500"
         >
           {{ linkDisplayText }}
-          <ArrowRight class="inline w-4 h-4 flex-shrink-0 mb-0.5" />
+          <ArrowLongRight class="inline ml-0.5 mb-0.5" />
         </LobLink>`,
-  components: { LobLink, ArrowRight },
+  components: { LobLink, ArrowLongRight },
   props: {
     learnMoreLink: String,
     linkDisplayText: String
@@ -87,13 +90,13 @@ const LearnMoreLink = {
 const CloseButton = {
   template: `
   <button>
-    <Close
-      class="w-4 h-4 ml-4"
+    <XmarkLarge
+      size="s"
       data-testid="closeButton"
       @click="closeAlert"
     />
   </button>`,
-  components: { Close },
+  components: { XmarkLarge },
   methods: {
     closeAlert () {
       this.$emit('close');
@@ -103,7 +106,7 @@ const CloseButton = {
 
 export default {
   name: 'Alert',
-  components: { Info, Checkmark, AlertCircle, CloseButton, LearnMoreLink },
+  components: { Info, Checkmark, AlertCircle, CloseButton, LearnMoreLink, CircleInfo, CircleCheck, CircleExclamation },
   props: {
     variant: {
       type: String,
@@ -133,12 +136,11 @@ export default {
   data () {
     return {
       variants: [
-        { variant: 'info', icon: 'Info', color: 'text-blue-700', bgColor: 'bg-blue-50' },
-        { variant: 'success', icon: 'Checkmark', color: 'text-green-700', bgColor: 'bg-green-50' },
-        { variant: 'warning', icon: 'AlertCircle', color: 'text-orange-600', bgColor: 'bg-orange-50' },
-        { variant: 'error', icon: 'AlertCircle', color: 'text-orange-600', bgColor: 'bg-red-50' }
-      ]
-    };
+        { variant: 'info', icon: 'CircleInfo', color: 'text-blue-700', bgColor: 'bg-blue-50' },
+        { variant: 'success', icon: 'CircleCheck', color: 'text-green-700', bgColor: 'bg-green-50' },
+        { variant: 'warning', icon: 'CircleExclamation', color: 'text-orange-600', bgColor: 'bg-orange-50' },
+        { variant: 'error', icon: 'CircleExclamation', color: 'text-orange-600', bgColor: 'bg-red-50' }
+      ] };
   },
   computed: {
     info () {

@@ -14,7 +14,10 @@
       exact-active-class="!text-primary-500"
     >
       {{ crumb.name }}
-      <chevron-right class="w-4 h-4 mx-2" />
+      <chevron-right
+        size="s"
+        class="mx-2"
+      />
     </router-link>
   </nav>
 </template>
