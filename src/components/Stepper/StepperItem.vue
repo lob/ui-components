@@ -52,7 +52,7 @@
         >
           <check
             v-if="finished"
-            class="w-2 absolute top-0.5 left-0.5 z-20 text-white"
+            class="w-2 absolute -top-0.5 left-0.5 z-20 text-white"
           />
         </div>
       </div>

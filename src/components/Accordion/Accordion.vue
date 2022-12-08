@@ -8,17 +8,13 @@
     role="button"
     @click="expanded = !expanded"
   >
-    <h2 class="text-primary-500 py-3 font-light text-lg">
+    <h2 class="text-primary-500 py-3 font-light text-lg flex">
       {{ title }}
-    </h2>
-    <div
-      class="flex-end py-3.5"
-    >
       <ChevronRight
-        class="w-6 h-6 text-primary-500"
+        class="my-1.5 mx-2"
         :class="['transition-transform duration-200 ease-linear -mr-1', {'xl:transform xl:rotate-90': expanded}]"
       />
-    </div>
+    </h2>
   </button>
   <div
     v-if="expanded"
