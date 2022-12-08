@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v2.0.0-beta.12
+
+### Features
+
+Icons design refresh
+
 ## v2.0.0-beta.11
 
 ### Features
