@@ -1,10 +1,6 @@
 import Textarea from './Textarea.vue';
 import mdx from './Textarea.mdx';
 
-import { Info } from '@/components/Icons';
-import LobLabel from '@/components/Label/Label.vue';
-import Tooltip from '@/components/Tooltip/Tooltip.vue';
-
 export default {
   title: 'Components/Textarea',
   component: Textarea,
@@ -29,44 +25,22 @@ const Template = (args, { argTypes }) => ({
   components: {  Textarea },
   setup: () => ({ args }),
   data: () => ({ textareaVModel }),
-  template: '<Textarea v-bind="args" v-model="textareaVModel"></Textarea>'
+  template: `<div style="width: 400px;">
+              <Textarea v-bind="args" v-model="textareaVModel"/>
+            </div>`
 });
 
 export const Primary = Template.bind({});
 Primary.args = {
-  id: 'textarea',
-  label: 'Interesting text area',
-  placeholder: 'Enter a fun fact'
+  id: 'description',
+  label: 'Description',
+  placeholder: 'Add a description'
 };
 
-const WithTooltipTemplate = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
-  components: { Textarea, Info, LobLabel, Tooltip },
-  setup: () => ({ args }),
-  data: () => ({ textareaVModel }),
-  template: `
-    <LobLabel
-      label="Cat nicknames"
-      labelFor="textarea"
-      tooltipContent="This is another tooltip"
-    >
-      <template v-slot:tooltip>
-        <Tooltip>
-          <template #trigger>
-            <Info />
-          </template>
-          <template #content>
-            Cat
-          </template>      
-        </Tooltip>
-      </template>
-    </LobLabel>
-    <Textarea v-bind="args" v-model="textareaVModel" />
-  `
-});
-
-export const WithTooltip = WithTooltipTemplate.bind({});
+export const WithTooltip = Primary.bind({});
 WithTooltip.args = {
-  id: 'textarea',
-  placeholder: 'Please list at least 8 of your cat\'s most interesting nicknames'
+  id: 'description',
+  label: 'Description',
+  placeholder: 'Add a description',
+  tooltipContent: 'Add a description for your campaign'
 };

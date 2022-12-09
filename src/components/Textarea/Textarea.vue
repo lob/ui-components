@@ -7,6 +7,7 @@
       :required="required"
       :sr-only-label="srOnlyLabel"
       :tooltip-content="tooltipContent"
+      :tooltip-position="tooltipPosition"
     />
     <textarea
       :id="id"
@@ -17,11 +18,13 @@
       :readonly="readonly"
       :placeholder="placeholder"
       :class="[
-        `bg-white text-gray-500 placeholder-gray-300 placeholder:font-light p-4 resize-none rounded-lg border border-gray-300 focus-within:outline-none w-full h-40 ${inputClass}`,
-        { 'border-error': error },
-        { '!bg-white-300 cursor-not-allowed': disabled || readonly },
-        { 'hover:border-gray-500 focus-within:ring-1 focus-within:ring-primary-500 focus-within:border-primary-500': !disabled && !readonly },
-        { 'border-gray-500 focus-within:border-primary-500' : modelValue }
+        `p-4 w-full rounded-sm text-gray-800 type-small-400 border border-gray-200 ${inputClass}`,
+        `caret-gray-300 placeholder-gray-200 placeholder:type-small-400`,
+        { 'hover:border-gray-300 focus:border-blue-500 focus:hover:border-blue-500 focus:outline-dashed focus:outline-black focus:outline-offset-1': !disabled && !readonly },
+        { 'text-green-700 placeholder-green-700 border-green-700 bg-green-50' : success },
+        { 'text-red-600 placeholder-red-600 border-red-600 bg-red-50' : error },
+        { '!text-gray-300 !placeholder-gray-300 !bg-gray-50 !border-gray-200 cursor-not-allowed': disabled || readonly },
+        { 'resize-none' : !resizable }
       ]"
       @input="onInput"
     />
@@ -40,6 +43,11 @@ export default {
       type: String,
       default: null
     },
+    tooltipPosition: {
+      type: String, default: 'trailing',
+      validator: function (value) {
+        return ['leading', 'trailing'].includes(value);
+      } },
     id: {
       type: String,
       required: true
@@ -72,6 +80,10 @@ export default {
       type: Boolean,
       default: false
     },
+    success: {
+      type: Boolean,
+      default: false
+    },
     disabled: {
       type: Boolean,
       default: false
@@ -83,6 +95,10 @@ export default {
     inputClass: {
       type: String,
       default: ''
+    },
+    resizable: {
+      type: Boolean,
+      default: false
     }
   },
   emits: ['update:modelValue', 'input', 'change'],
