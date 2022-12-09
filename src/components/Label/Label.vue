@@ -9,7 +9,7 @@
     <Tooltip
       v-if="tooltipContent"
       position="bottom"
-      :class="{ 'mr-1': tooltipPosition === 'leading' }"
+      :class="['text-gray-500', { 'mr-1': tooltipPosition === 'leading' }]"
       :data-testid="tooltipPosition === 'trailing' ? 'tooltip-trailing' : 'tooltip-leading'"
     >
       <template #trigger>
