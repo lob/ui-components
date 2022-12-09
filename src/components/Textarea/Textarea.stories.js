@@ -14,6 +14,11 @@ export default {
       control: {
         type: null
       }
+    },
+    maxLength: {
+      control: {
+        type: 'number'
+      }
     }
   }
 };
@@ -43,4 +48,21 @@ WithTooltip.args = {
   label: 'Description',
   placeholder: 'Add a description',
   tooltipContent: 'Add a description for your campaign'
+};
+
+export const WithHelperText = Primary.bind({});
+WithHelperText.args = {
+  id: 'description',
+  label: 'Description',
+  placeholder: 'Add a description',
+  helperText: 'Add a description for your campaign'
+};
+
+export const WithMaxLength = Primary.bind({});
+WithMaxLength.args = {
+  id: 'description',
+  label: 'Description',
+  placeholder: 'Add a description',
+  showCounter: true,
+  maxLength: 60
 };
