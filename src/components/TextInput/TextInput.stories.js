@@ -1,9 +1,6 @@
 import TextInput from './TextInput.vue';
 import mdx from './TextInput.mdx';
-
-import LobLabel from '@/components/Label/Label.vue';
-import Tooltip from '@/components/Tooltip/Tooltip.vue';
-import { MagnifyingGlass, Info, Upload } from '@/components/Icons';
+import { MagnifyingGlass, Upload } from '@/components/Icons';
 
 export default {
   title: 'Components/Text Input',
@@ -93,36 +90,12 @@ IconRight.args = {
   placeholder: 'Your name here'
 };
 
-const WithTooltipTemplate = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
-  components: { TextInput, LobLabel, Info, Tooltip },
-  setup: () => ({ args }),
-  data: () => ({ textInputVModel }),
-  template: `
-    <LobLabel
-      label="Favorite Lunar Maria"
-      labelFor="one"
-      tooltipContent="This is a tooltip"
-    >
-      <template v-slot:tooltip>
-        <Tooltip>
-          <template #trigger>
-            <Info />
-          </template>
-          <template #content>
-            Moon
-          </template>      
-        </Tooltip>
-      </template>
-    </LobLabel>
-    <text-input v-bind="args" v-model="textInputVModel" />
-  `
-});
-
-export const WithTooltip = WithTooltipTemplate.bind({});
+export const WithTooltip = PrimaryTemplate.bind({});
 WithTooltip.args = {
   id: 'name',
-  placeholder: 'Mare Nectaris'
+  label: 'Name',
+  tooltipContent: 'Type name here',
+  tooltipPosition: 'trailing'
 };
 
 const BothIconsTemplate = (args, { argTypes }) => ({
