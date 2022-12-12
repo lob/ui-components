@@ -163,7 +163,7 @@ describe('Text input', () => {
       tooltipPosition: 'leading'
     };
 
-    it('the input can be selected by getByLabelText when the tooltip is trailing', async () => {
+    it('the label is correctly associated with the input when the tooltip is trailing', async () => {
       const { getByLabelText, getByTestId } = render(TextInput, { props: propsTooltip });
       const companyInput = getByLabelText(propsTooltip.label);
       expect(companyInput).toBeInTheDocument();
@@ -173,7 +173,7 @@ describe('Text input', () => {
       expect(tooltipTrailing).toBeInTheDocument();
     });
 
-    it('the input can be selected by getByLabelText when the tooltip is leading', () => {
+    it('the label is correctly associated with the input when the tooltip is leading', () => {
       const { getByLabelText, getByTestId } = render(TextInput, { props: propsTooltipLeading });
       const companyInput = getByLabelText(propsTooltip.label);
       expect(companyInput).toBeInTheDocument();

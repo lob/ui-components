@@ -5,6 +5,7 @@
       srOnlyLabel ? 'sr-only' : 'flex items-center mb-1 type-small-700',
       { 'justify-between flex-row-reverse': tooltipContent && (tooltipPosition === 'trailing') }
     ]"
+    data-testid="labelWrapper"
   >
     <Tooltip
       v-if="tooltipContent"

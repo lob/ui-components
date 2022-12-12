@@ -34,22 +34,22 @@ describe('LobLabel', () => {
 
     it('the tooltip shows on the left by default', () => {
       const props = { ...initialProps, tooltipContent: 'magic tooltip' };
-      const { getByText, getByTestId } = render(LobLabel, { props });
+      const { getByTestId } = render(LobLabel, { props });
 
       const tooltip = getByTestId('tooltip-leading');
       expect(tooltip).toBeInTheDocument();
-      const label = getByText(props.label);
-      expect(label.parentElement.parentElement).not.toHaveClass('justify-between');
+      const labelWrapper = getByTestId('labelWrapper');
+      expect(labelWrapper).not.toHaveClass('justify-between');
     });
 
     it('the tooltip shows on the right if tooltipPosition:trailing is added', () => {
       const props = { ...initialProps, tooltipContent: 'magic tooltip', tooltipPosition: 'trailing' };
-      const { getByText, getByTestId } = render(LobLabel, { props });
+      const { getByTestId } = render(LobLabel, { props });
 
       const tooltip = getByTestId('tooltip-trailing');
       expect(tooltip).toBeInTheDocument();
-      const label = getByText(props.label);
-      expect(label.parentElement.parentElement).toHaveClass('justify-between flex-row-reverse');
+      const labelWrapper = getByTestId('labelWrapper');
+      expect(labelWrapper).toHaveClass('justify-between flex-row-reverse');
     });
 
   });
