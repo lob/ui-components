@@ -26,7 +26,7 @@
             {{ option.label || option }}
             <button
               class="ml-2 -mr-1 h-min"
-              aria-label="t('multiselect.deselectLabel')"
+              :aria-label="`t('multiselect.deselectLabel')-${option}`"
               @click="() => handleOptionDeselect(option)"
             >
               <XmarkLarge
