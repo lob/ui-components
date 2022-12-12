@@ -49,7 +49,7 @@
         {{ helperText }}
       </div>
       <div
-        v-if="showCounter && maxLength && isAreaOnFocus"
+        v-show="showCounter && maxLength && isAreaOnFocus"
         id="charCounter"
         role="status"
         aria-live="polite"
