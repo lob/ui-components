@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v2.0.0-beta.14
+
+### Bug fixes
+
+Refactor the `Label` component to place the Tooltip outside the label
+
 ## v2.0.0-beta.13
 
 ### Features
