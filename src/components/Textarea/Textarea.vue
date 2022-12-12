@@ -28,6 +28,7 @@
         { '!text-gray-300 !placeholder-gray-300 !bg-gray-50 !border-gray-200 cursor-not-allowed': disabled || readonly },
         { 'resize-none' : !resizable }
       ]"
+      aria-describedby="charCounter"
       @input="onInput"
       @focus="isAreaOnFocus = true"
       @blur="isAreaOnFocus = false"
@@ -49,10 +50,13 @@
       </div>
       <div
         v-if="showCounter && maxLength && isAreaOnFocus"
+        id="charCounter"
+        role="status"
+        aria-live="polite"
         :class="['type-xs-400',
                  showMaxLengthAlert ? 'text-red-700' : 'text-gray-500']"
       >
-        {{ modelValue.length }}/{{ maxLength }}
+        {{ counterContent }}
       </div>
     </div>
   </div>
@@ -150,6 +154,9 @@ export default {
     showMaxLengthAlert () {
       return this.maxLength &&
       this.modelValue.length >= this.maxLength - 5;
+    },
+    counterContent () {
+      return `${this.modelValue.length }/${this.maxLength}`;
     }
   },
   methods: {
