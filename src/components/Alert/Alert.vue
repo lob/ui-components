@@ -21,6 +21,7 @@
       </div>
       <CloseButton
         v-if="showCloseButton"
+        :close-button-aria-label="closeButtonAriaLabel"
         @close="closeAlert"
       />
       <LearnMoreLink
@@ -49,6 +50,7 @@
       </div>
       <CloseButton
         v-if="showCloseButton && !hasHeading"
+        :close-button-aria-label="closeButtonAriaLabel"
         @close="closeAlert"
       />
     </div>
@@ -89,13 +91,16 @@ const LearnMoreLink = {
 
 const CloseButton = {
   template: `
-  <button>
-    <XmarkLarge
-      size="s"
-      data-testid="closeButton"
-      @click="closeAlert"
-    />
+  <button
+    :aria-label="closeButtonAriaLabel"
+    data-testid="closeButton"
+    @click="closeAlert"
+  >
+    <XmarkLarge size="s" />
   </button>`,
+  props: {
+    closeButtonAriaLabel: { type: String, default: 'Close alert' }
+  },
   components: { XmarkLarge },
   methods: {
     closeAlert () {
@@ -122,6 +127,10 @@ export default {
     showCloseButton: {
       type: Boolean,
       default: false
+    },
+    closeButtonAriaLabel: {
+      type: String,
+      default: 'Close alert'
     },
     learnMoreLink: {
       type: String,
