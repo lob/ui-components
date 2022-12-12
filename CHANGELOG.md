@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v2.0.0-beta.13
+
+### Features
+
+Add `iconClass` prop to `MegaMenuItem` & `MainNavigationItem` to adjust the icons size
+
 ## v2.0.0-beta.12
 
 ### Features

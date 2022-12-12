@@ -15,8 +15,9 @@
         alt=""
         :class="[
           'self-center transition-transform duration-200 ease-linear transform hover:scale-110',
-          {'w-10 h-10': small},
-          {'w-12 h-12': !small},
+          {'w-10 h-10': small && !iconClasses},
+          {'w-12 h-12': !small && !iconClasses},
+          {[`${iconClasses}`]: iconClasses},
           // Preserves the spacing this element creates.
           {'invisible': !imageSource}]"
       >
@@ -55,6 +56,10 @@ export default {
     imageSource: {
       type: String,
       required: false,
+      default: null
+    },
+    iconClasses: {
+      type: String,
       default: null
     },
     subtitle: {

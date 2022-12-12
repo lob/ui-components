@@ -14,7 +14,7 @@
       <img
         :src="iconSrc"
         :alt="iconAltText"
-        class="w-6 align-bottom"
+        :class="iconClasses ? `${iconClasses}` : 'w-6 align-bottom'"
       >
       <span
         :class="[
@@ -61,6 +61,10 @@ export default {
     iconSrc: {
       type: String,
       required: true
+    },
+    iconClasses: {
+      type: String,
+      default: null
     },
     iconAltText: {
       type: String,
