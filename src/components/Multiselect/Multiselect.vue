@@ -26,13 +26,13 @@
             {{ option.label || option }}
             <button
               class="ml-2 -mr-1 h-min"
+              aria-label="t('multiselect.deselectLabel')"
               @click="() => handleOptionDeselect(option)"
             >
               <XmarkLarge
                 size="s"
                 class="h-3"
               />
-              <span class="sr-only">{{ t('multiselect.deselectLabel') }}</span>
             </button>
           </div>
         </Badge>
