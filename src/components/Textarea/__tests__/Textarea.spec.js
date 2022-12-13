@@ -127,15 +127,16 @@ describe('Textarea', () => {
     });
 
     it('counts the characters', async () => {
-      const { getByLabelText, findByRole } = component;
+      const { getByLabelText, findByRole, rerender } = component;
       const textarea = getByLabelText(propsWithCounter.label);
       userEvent.click(textarea);
       await userEvent.type(textarea, 'thing');
+
+      rerender({ modelValue: 'thing' });
       expect(textarea).toHaveValue('thing');
 
       const counter = await findByRole('status');
-      //TODO why is this not updating?
-      // expect(counter).toHaveTextContent(/5\/40/);
+      expect(counter).toHaveTextContent(/5\/40/);
       expect(counter).toBeInTheDocument().toHaveClass('text-gray-500');
     });
 
