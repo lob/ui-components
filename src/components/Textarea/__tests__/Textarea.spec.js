@@ -2,6 +2,7 @@ import '@testing-library/jest-dom';
 import { render, fireEvent } from '@testing-library/vue';
 import Textarea from '../Textarea.vue';
 import userEvent from '@testing-library/user-event';
+import { mount } from '@vue/test-utils';
 
 const initialProps = {
   id: 'test',
@@ -127,16 +128,23 @@ describe('Textarea', () => {
     });
 
     it('counts the characters', async () => {
-      const { getByLabelText, findByRole } = component;
-      const textarea = getByLabelText(propsWithCounter.label);
-      userEvent.click(textarea);
-      await userEvent.type(textarea, 'thing');
-      expect(textarea).toHaveValue('thing');
+      //adding wrapper component that comunicates the modelValue change
+      const wrapper = mount({
+        data () {
+          return { modelValue: '' };
+        },
+        template: '<Textarea id="textarea" label="textarea" v-model="modelValue" showCounter :maxLength="20" />',
+        components: { Textarea }
+      });
+      await wrapper.setData({ modelValue: 'thing' });
 
-      const counter = await findByRole('status');
-      //TODO why is this not updating?
-      // expect(counter).toHaveTextContent(/5\/40/);
-      expect(counter).toBeInTheDocument().toHaveClass('text-gray-500');
+      const inputElement = wrapper.find('textarea').element;
+      expect(inputElement.value).toBe('thing');
+      const counter = wrapper.find('#charCounter').element;
+      expect(counter).toHaveTextContent(/5\/20/);
+      //error color when value length is more than (maxLength - 5)
+      await wrapper.setData({ modelValue: 'is 16 characters' });
+      expect(counter).toHaveTextContent(/16\/20/).toHaveClass('text-red-700');
     });
 
   });
