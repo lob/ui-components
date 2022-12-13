@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="`w-full py-3 px-4 ${variantDetails.color} ${variantDetails.bgColor}`"
+    :class="`w-full py-4 px-6 ${variantDetails.color} ${variantDetails.bgColor}`"
     data-testid="alert"
   >
     <div
