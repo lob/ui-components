@@ -2,7 +2,6 @@ import '@testing-library/jest-dom';
 import { render, fireEvent } from '@testing-library/vue';
 import Textarea from '../Textarea.vue';
 import userEvent from '@testing-library/user-event';
-import { mount } from '@vue/test-utils';
 
 const initialProps = {
   id: 'test',
@@ -104,7 +103,7 @@ describe('Textarea', () => {
     const propsWithCounter = {
       ...initialProps,
       showCounter: true,
-      maxLength: 40
+      maxLength: 20
     };
     let component;
     beforeEach(() => {
@@ -124,27 +123,35 @@ describe('Textarea', () => {
       userEvent.click(textarea);
 
       const counter = await findByRole('status');
-      expect(counter).toBeInTheDocument().toHaveTextContent(/0\/40/i).toHaveClass('text-gray-500');
+      expect(counter).toBeInTheDocument().toHaveTextContent(/0\/20/i).toHaveClass('text-gray-500');
     });
 
     it('counts the characters', async () => {
-      //adding wrapper component that comunicates the modelValue change
-      const wrapper = mount({
-        data () {
-          return { modelValue: '' };
-        },
-        template: '<Textarea id="textarea" label="textarea" v-model="modelValue" showCounter :maxLength="20" />',
-        components: { Textarea }
-      });
-      await wrapper.setData({ modelValue: 'thing' });
+      const { getByLabelText, findByRole, rerender } = component;
+      const textarea = getByLabelText(propsWithCounter.label);
+      userEvent.click(textarea);
+      await userEvent.type(textarea, 'thing');
 
-      const inputElement = wrapper.find('textarea').element;
-      expect(inputElement.value).toBe('thing');
-      const counter = wrapper.find('#charCounter').element;
+      rerender({ modelValue: 'thing' });
+      expect(textarea).toHaveValue('thing');
+
+      const counter = await findByRole('status');
       expect(counter).toHaveTextContent(/5\/20/);
-      //error color when value length is more than (maxLength - 5)
-      await wrapper.setData({ modelValue: 'is 16 characters' });
-      expect(counter).toHaveTextContent(/16\/20/).toHaveClass('text-red-700');
+      expect(counter).toBeInTheDocument().toHaveClass('text-gray-500');
+    });
+
+    it('is the error color when value length is more than (maxLength - 5)', async () => {
+      const { getByLabelText, findByRole, rerender } = component;
+      const textarea = getByLabelText(propsWithCounter.label);
+      userEvent.click(textarea);
+      await userEvent.type(textarea, 'is 16 characters');
+
+      rerender({ modelValue: 'is 16 characters' });
+      expect(textarea).toHaveValue('is 16 characters');
+
+      const counter = await findByRole('status');
+      expect(counter).toHaveTextContent(/16\/20/);
+      expect(counter).toBeInTheDocument().toHaveClass('text-red-700');
     });
 
   });
