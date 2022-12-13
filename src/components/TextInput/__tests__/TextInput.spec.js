@@ -150,6 +150,39 @@ describe('Text input', () => {
     expect(textInput.value).toBe('');
   });
 
+  describe('with tooltip', () => {
+
+    const propsTooltip = {
+      ...initialProps,
+      label: 'company',
+      tooltipContent: 'enter your company'
+    };
+
+    const propsTooltipLeading = {
+      ...propsTooltip,
+      tooltipPosition: 'leading'
+    };
+
+    it('the label is correctly associated with the input when the tooltip is trailing', async () => {
+      const { getByLabelText, getByTestId } = render(TextInput, { props: propsTooltip });
+      const companyInput = getByLabelText(propsTooltip.label);
+      expect(companyInput).toBeInTheDocument();
+      await userEvent.type(companyInput, 'lob');
+      expect(companyInput).toHaveValue('lob');
+      const tooltipTrailing = getByTestId('tooltip-trailing');
+      expect(tooltipTrailing).toBeInTheDocument();
+    });
+
+    it('the label is correctly associated with the input when the tooltip is leading', () => {
+      const { getByLabelText, getByTestId } = render(TextInput, { props: propsTooltipLeading });
+      const companyInput = getByLabelText(propsTooltip.label);
+      expect(companyInput).toBeInTheDocument();
+      const tooltipLeading = getByTestId('tooltip-leading');
+      expect(tooltipLeading).toBeInTheDocument();
+    });
+
+  });
+
   describe('with Copy Button', () => {
 
     let component;
