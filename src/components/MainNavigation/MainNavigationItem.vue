@@ -3,70 +3,60 @@
     <component
       :is="tag"
       :class="[
-        'no-underline py-3 !px-6 max-h-12 flex items-center w-full font-light whitespace-nowrap !text-sm text-left !text-gray-800 relative overflow-hidden hover:text-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent'
+        'py-3 !px-4 max-h-12 flex items-center w-full type-base-500 !text-gray-500 no-underline whitespace-nowrap',
+        'hover:bg-gray-50 focus:outline-none focus:ring-none focus-visible:rounded-none focus:ring-0 focus-visible:bg-gray-50 focus-visible:ring-0',
+        { '!text-gray-800 !type-base-600': active || hasActiveChild }
       ]"
       :to="to"
       :underline="false"
-      active-class="text-normal bg-white-300 font-medium"
       @click.stop="handleNavigation"
       @[clickEvent]="toggleSubNav"
     >
-      <img
-        :src="iconSrc"
-        :alt="iconAltText"
-        :class="iconClasses ? `${iconClasses}` : 'w-6 align-bottom'"
-      >
+      <div class="w-5 h-5">
+        <slot name="icon" />
+      </div>
       <span
         :class="[
-          'px-4',
-          { expanded: expanded },
+          'w-full flex items-center justify-between',
+          { 'expanded ml-4': expanded },
           { 'collapsed xl:hidden': !expanded },
           itemClass
         ]"
         data-testid="collapsibleElement"
       >
         {{ title }}
-        <img
+        <ChevronDown
           v-if="collapsible && hasChildNavItems"
           :class="[
-            'w-6 absolute top-2 right-3',
+            'ml-6 inline-block transition-transform duration-300 ease-in',
             { 'transform rotate-180': subNavOpen }
           ]"
-          :src="`${$getConst('lobAssetsUrl')}/dashboard/navbar/caret-down.svg`"
-          :alt="subNavOpen ? 'Collapse' : 'Expand'"
-        >
+          role="img"
+          :title="subNavOpen ? 'Collapse' : 'Expand'"
+        />
       </span>
     </component>
 
     <ul
-      v-if="subNavOpen"
-      :class="['pl-12', { 'xl:hidden': !expanded }]"
+      v-show="subNavOpen"
+      :class="['ml-12 bg-gradient-to-b from-[#9f94ff] to-[#fa6a8c]', { 'xl:hidden': !expanded }]"
     >
-      <slot />
+      <div class="ml-0.5 bg-white">
+        <slot />
+      </div>
     </ul>
   </li>
 </template>
 
 <script>
+import ChevronDown from '../Icons/ChevronDown';
 import LobLink from '../Link/Link';
 
 export default {
   name: 'MainNavigationItem',
-  components: { LobLink },
+  components: { ChevronDown, LobLink },
   props: {
     title: {
-      type: String,
-      required: true
-    },
-    iconSrc: {
-      type: String,
-      required: true
-    },
-    iconClasses: {
-      type: String,
-      default: null
-    },
-    iconAltText: {
       type: String,
       required: true
     },
@@ -98,10 +88,14 @@ export default {
   emits: ['nav', 'navItemWithChildClick'],
   data () {
     return {
-      subNavOpen: this.expanded && !this.subNavCollapsed
+      subNavOpen: this.expanded && !this.subNavCollapsed,
+      hasActiveChild: false
     };
   },
   computed: {
+    active () {
+      return this.$route.path.startsWith(this.to);
+    },
     hasChildNavItems () {
       return Boolean(this.$slots.default);
     },
@@ -134,13 +128,11 @@ export default {
 @screen xl {
   .expanded {
     max-width: 100%;
-    transition: max-width 0.3s ease-in;
   }
 
   .collapsed {
     max-width: 0;
     overflow: hidden;
-    transition: max-width 0.3s ease-out;
   }
 }
 </style>

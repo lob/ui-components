@@ -5,6 +5,7 @@ import MainNavigationItem from './MainNavigationItem.vue';
 import MainNavigationChildItem from './MainNavigationChildItem.vue';
 import mdx from './MainNavigation.mdx';
 import iconOverview from '@/assets/images/iconOverview.svg';
+import { HouseChimney } from '../Icons';
 
 export default {
   title: 'Components/Main Navigation',
@@ -25,9 +26,9 @@ export default {
         }
       },
       {
-        path: '/address-verification',
+        path: '/address-book',
         component: {
-          template: routeTemplate('address-verification')
+          template: routeTemplate('address-book')
         }
       },
       {
@@ -83,25 +84,50 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { MainNavigation, MainNavigationChildItem, MainNavigationItem },
+  components: { MainNavigation, MainNavigationChildItem, MainNavigationItem, HouseChimney },
   decorators: [() => ({ template: '<div class="block"><story /></div>' })],
   setup: () => ({ args }),
   template: `
+  <div style="padding: 10px; background-color: #ccc">
     <main-navigation v-bind="args">
       <template v-slot="{ expanded }">
-        <main-navigation-item title="Overview" iconSrc="${args.iconSrc}" iconAltText="Overview icon" to="/overview" :expanded="expanded" />
-        <main-navigation-item title="Mail Analytics" iconSrc="${args.iconSrc}" iconAltText="Overview icon" to="/mail-analytics" :expanded="expanded" />
-        <main-navigation-item title="Address Books" iconSrc="${args.iconSrc}" iconAltText="Overview icon" to="/address-verification" :expanded="expanded" />
-        <main-navigation-item title="Address Verification" iconSrc="${args.iconSrc}" iconAltText="Overview icon" :expanded="expanded">
+        <main-navigation-item title="Overview" to="/overview" :expanded="expanded">
+          <template #icon>
+            <HouseChimney size="xl" role="img" title="Overview Icon" />
+          </template>
+        </main-navigation-item>
+
+        <main-navigation-item title="Mail Analytics" to="/mail-analytics" :expanded="expanded">
+          <template #icon>
+            <HouseChimney size="xl" role="img" title="Mail Analytics Icon" />
+          </template>
+        </main-navigation-item>
+
+        <main-navigation-item title="Address Book" to="/address-book" :expanded="expanded">
+          <template #icon>
+            <HouseChimney size="xl" role="img" title="Address Book Icon" />
+          </template>
+        </main-navigation-item>
+
+        <main-navigation-item title="Address Verification" :expanded="expanded">
+          <template #icon>
+            <HouseChimney size="xl" role="img" title="Address Verification Icon" />
+          </template>
           <main-navigation-child-item title="US Verifications" to="/us-verifications" />
           <main-navigation-child-item title="Int'l Verifications" to="/intl-verifications" />
         </main-navigation-item>
-        <main-navigation-item title="Print & Mail" iconSrc="${args.iconSrc}" iconAltText="Overview icon" :expanded="expanded">
-          <main-navigation-child-item title="Postcards" to="/postcards" />
+        
+
+        <main-navigation-item title="Print & Mail" :expanded="expanded">
+          <template #icon>
+            <HouseChimney size="xl" role="img" title="Print & Mail Icon" />
+          </template>
+           <main-navigation-child-item title="Postcards" to="/postcards" />
           <main-navigation-child-item title="Letters" to="/letters" />
         </main-navigation-item>
       </template>
     </main-navigation>
+    </div>
   `
 });
 
