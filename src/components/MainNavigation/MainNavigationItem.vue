@@ -87,7 +87,7 @@ export default {
       default: ''
     }
   },
-  emits: ['nav', 'navItemWithChildClick'],
+  emits: ['nav'],
   data () {
     return {
       subNavOpen: this.expanded && !this.subNavCollapsed,
@@ -109,14 +109,22 @@ export default {
       return !this.to ? 'click' : null;
     }
   },
+  watch: {
+    expanded (val) {
+      if (!val) {
+        this.subNavOpen = false;
+      }
+    }
+  },
   methods: {
     toggleSubNav () {
       if (this.collapsible) {
         this.subNavOpen = !this.subNavOpen;
       }
-
-      this.$emit('navItemWithChildClick', this.id);
-
+      if (!this.expanded) {
+        this.$parent.expanded = true;
+        this.subNavOpen = true;
+      }
     },
     handleNavigation () {
       if (this.to) {
