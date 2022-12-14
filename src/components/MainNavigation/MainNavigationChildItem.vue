@@ -1,15 +1,9 @@
 <template>
-  <li
-    :class="[
-      'w-full my-1 max-h-12 hover:bg-gray-50 relative'
-    ]"
-    data-testid="nav-child-item"
-  >
+  <li class="w-full my-1 max-h-12 hover:bg-gray-50 relative">
     <div
       v-if="active"
       class="absolute top-2 -left-[3px] w-1 h-5 bg-gray-800 rounded-full"
     />
-
     <LobLink
       :to="to"
       :class="[
