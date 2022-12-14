@@ -38,6 +38,7 @@
           ]"
           role="img"
           :title="subNavOpen ? 'Collapse' : 'Expand'"
+          data-testid="collapse-expand-icon"
         />
       </span>
     </component>
