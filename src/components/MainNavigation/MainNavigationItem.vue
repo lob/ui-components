@@ -9,10 +9,12 @@
       ]"
       :to="to"
       :underline="false"
+      @mouseenter="itemHover = true"
+      @mouseleave="itemHover = false"
       @click.stop="handleNavigation"
       @[clickEvent]="toggleSubNav"
     >
-      <div class="w-5 h-5">
+      <div :class="['w-5 h-5 transition-transform duration-300 ease-in-out', { 'scale-[1.2]': itemHover && !hasChildNavItems }]">
         <slot name="icon" />
       </div>
       <span
@@ -89,6 +91,7 @@ export default {
   data () {
     return {
       subNavOpen: this.expanded && !this.subNavCollapsed,
+      itemHover: false,
       hasActiveChild: false
     };
   },
