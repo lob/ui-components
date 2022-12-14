@@ -88,7 +88,7 @@ const Template = (args, { argTypes }) => ({
   decorators: [() => ({ template: '<div class="block"><story /></div>' })],
   setup: () => ({ args }),
   template: `
-  <div style="padding: 10px; background-color: #ccc">
+  <div style="padding: 5em; background-color: #EBF0F6">
     <main-navigation v-bind="args">
       <template v-slot="{ expanded }">
         <main-navigation-item title="Overview" to="/overview" :expanded="expanded">

@@ -7,7 +7,7 @@
   >
     <div
       v-if="active"
-      class="absolute top-2.5 -left-[3px] w-1 h-5 bg-gray-800 rounded-full"
+      class="absolute top-2 -left-[3px] w-1 h-5 bg-gray-800 rounded-full"
     />
 
     <LobLink
