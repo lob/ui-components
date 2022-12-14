@@ -122,7 +122,7 @@ const Template = (args, { argTypes }) => ({
           <template #icon>
             <HouseChimney size="xl" role="img" title="Print & Mail Icon" />
           </template>
-           <main-navigation-child-item title="Postcards" to="/postcards" />
+          <main-navigation-child-item title="Postcards" to="/postcards" />
           <main-navigation-child-item title="Letters" to="/letters" />
         </main-navigation-item>
       </template>
@@ -138,30 +138,40 @@ FullNavigation.args = {
 
 const ItemTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { MainNavigationItem },
+  components: { MainNavigationItem, HouseChimney },
   setup: () => ({ args }),
-  template: '<main-navigation-item v-bind="args" />'
+  template: ` 
+  <main-navigation-item title="Overview" to="/overview" :expanded="expanded">
+    <template #icon>
+      <HouseChimney size="xl" role="img" title="Overview Icon" />
+    </template>
+  </main-navigation-item>`
 });
 
 export const Item = ItemTemplate.bind({});
 Item.args = {
   title: 'Overview',
-  iconSrc: iconOverview,
-  iconAltText: 'Overview icon',
   to: '/overview',
-  expanded: true,
-  itemClass: 'font-bold'
+  expanded: true
 };
 
-const ChildItemTemplate = (args, { argTypes }) => ({
+const ItemWithSubItemsTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { MainNavigationChildItem },
+  components: { MainNavigationItem, MainNavigationChildItem, HouseChimney },
   setup: () => ({ args }),
-  template: '<main-navigation-child-item v-bind="args" />'
+  template: ` 
+  <main-navigation-item title="Print & Mail" :expanded="expanded">
+    <template #icon>
+     <HouseChimney size="xl" role="img" title="Print & Mail Icon" />
+    </template>
+    <main-navigation-child-item title="Postcards" to="/postcards" />
+    <main-navigation-child-item title="Letters" to="/letters" />
+  </main-navigation-item>`
 });
 
-export const ChildItem = ChildItemTemplate.bind({});
-ChildItem.args = {
-  title: 'Postcards',
-  to: '/postcards'
+export const ItemWithSubItems = ItemWithSubItemsTemplate.bind({});
+ItemWithSubItems.args = {
+  title: 'Overview',
+  to: '/overview',
+  expanded: true
 };
