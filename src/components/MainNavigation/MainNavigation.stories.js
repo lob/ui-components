@@ -93,25 +93,25 @@ const Template = (args, { argTypes }) => ({
       <template v-slot="{ expanded }">
         <main-navigation-item title="Overview" to="/overview" :expanded="expanded">
           <template #icon>
-            <HouseChimney size="xl" role="img" title="Overview Icon" />
+            <HouseChimney size="xl" role="img" title="Overview" />
           </template>
         </main-navigation-item>
 
         <main-navigation-item title="Mail Analytics" to="/mail-analytics" :expanded="expanded">
           <template #icon>
-            <HouseChimney size="xl" role="img" title="Mail Analytics Icon" />
+            <HouseChimney size="xl" role="img" title="Mail Analytics" />
           </template>
         </main-navigation-item>
 
         <main-navigation-item title="Address Book" to="/address-book" :expanded="expanded">
           <template #icon>
-            <HouseChimney size="xl" role="img" title="Address Book Icon" />
+            <HouseChimney size="xl" role="img" title="Address Book" />
           </template>
         </main-navigation-item>
 
         <main-navigation-item title="Address Verification" :expanded="expanded">
           <template #icon>
-            <HouseChimney size="xl" role="img" title="Address Verification Icon" />
+            <HouseChimney size="xl" role="img" title="Address Verification" />
           </template>
           <main-navigation-child-item title="US Verifications" to="/us-verifications" />
           <main-navigation-child-item title="Int'l Verifications" to="/intl-verifications" />
@@ -120,7 +120,7 @@ const Template = (args, { argTypes }) => ({
 
         <main-navigation-item title="Print & Mail" :expanded="expanded">
           <template #icon>
-            <HouseChimney size="xl" role="img" title="Print & Mail Icon" />
+            <HouseChimney size="xl" role="img" title="Print & Mail" />
           </template>
           <main-navigation-child-item title="Postcards" to="/postcards" />
           <main-navigation-child-item title="Letters" to="/letters" />
@@ -143,7 +143,7 @@ const ItemTemplate = (args, { argTypes }) => ({
   template: ` 
   <main-navigation-item title="Overview" to="/overview" :expanded="expanded">
     <template #icon>
-      <HouseChimney size="xl" role="img" title="Overview Icon" />
+      <HouseChimney size="xl" role="img" title="Overview" />
     </template>
   </main-navigation-item>`
 });
@@ -162,7 +162,7 @@ const ItemWithSubItemsTemplate = (args, { argTypes }) => ({
   template: ` 
   <main-navigation-item title="Print & Mail" :expanded="expanded">
     <template #icon>
-     <HouseChimney size="xl" role="img" title="Print & Mail Icon" />
+     <HouseChimney size="xl" role="img" title="Print & Mail" />
     </template>
     <main-navigation-child-item title="Postcards" to="/postcards" />
     <main-navigation-child-item title="Letters" to="/letters" />
