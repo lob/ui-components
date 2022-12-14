@@ -15,7 +15,10 @@
       @[clickEvent]="toggleSubNav"
     >
       <div :class="['w-5 h-5 transition-transform duration-300 ease-in-out', { 'scale-[1.2]': itemHover && !hasChildNavItems }]">
-        <slot name="icon" />
+        <slot
+          name="icon"
+          :title="title"
+        />
       </div>
       <span
         :class="[
