@@ -30,7 +30,7 @@
         <ChevronDown
           v-if="collapsible && hasChildNavItems"
           :class="[
-            'ml-6 inline-block transition-transform duration-300 ease-in',
+            'ml-6 inline-block text-gray-500 transition-transform duration-300 ease-in',
             { 'transform -rotate-180': subNavOpen }
           ]"
           role="img"
