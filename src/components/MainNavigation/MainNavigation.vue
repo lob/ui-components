@@ -4,7 +4,7 @@
       v-if="collapsible"
       :class="['hidden xl:block w-7 h-7 rounded-full absolute -right-3 mt-3 z-10',
                'text-gray-500 bg-white border-2 border-white-300 transition-transform duration-300 ease-in',
-               { 'transform rotate-180': !expanded }]"
+               { 'transform -rotate-180': !expanded }]"
       :aria-expanded="expanded"
       @click="animateDrawer"
     >

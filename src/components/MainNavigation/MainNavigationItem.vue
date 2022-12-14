@@ -20,8 +20,8 @@
       <span
         :class="[
           'w-full flex items-center justify-between',
-          { 'expanded ml-4': expanded },
-          { 'collapsed xl:hidden': !expanded },
+          { 'xl:max-w-full ml-4': expanded },
+          { 'xl:max-w-0 xl:overflow-hidden xl:hidden': !expanded },
           itemClass
         ]"
         data-testid="collapsibleElement"
@@ -31,7 +31,7 @@
           v-if="collapsible && hasChildNavItems"
           :class="[
             'ml-6 inline-block transition-transform duration-300 ease-in',
-            { 'transform rotate-180': subNavOpen }
+            { 'transform -rotate-180': subNavOpen }
           ]"
           role="img"
           :title="subNavOpen ? 'Collapse' : 'Expand'"
@@ -126,16 +126,3 @@ export default {
   }
 };
 </script>
-
-<style scoped lang="scss">
-@screen xl {
-  .expanded {
-    max-width: 100%;
-  }
-
-  .collapsed {
-    max-width: 0;
-    overflow: hidden;
-  }
-}
-</style>
