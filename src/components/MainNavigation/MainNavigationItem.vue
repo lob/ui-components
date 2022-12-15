@@ -5,10 +5,11 @@
       :class="[
         'py-3 !px-4 max-h-12 flex items-center w-full type-base-500 !text-gray-500 no-underline whitespace-nowrap',
         'hover:bg-gray-50 focus:outline-none focus:ring-none focus-visible:rounded-none focus:ring-0 focus-visible:bg-gray-50 focus-visible:ring-0',
-        { '!text-gray-800 !type-base-600': active || hasActiveChild }
+        { '!text-gray-800 !type-base-600': hasActiveChild }
       ]"
       :to="to"
       :underline="false"
+      active-class="!text-gray-800 !type-base-600"
       @mouseenter="itemHover = true"
       @mouseleave="itemHover = false"
       @click.stop="handleNavigation"
@@ -100,9 +101,6 @@ export default {
     };
   },
   computed: {
-    active () {
-      return this.$route.path.startsWith(this.to);
-    },
     hasChildNavItems () {
       return Boolean(this.$slots.default);
     },
