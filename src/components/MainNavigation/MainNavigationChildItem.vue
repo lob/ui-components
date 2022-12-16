@@ -1,15 +1,15 @@
 <template>
   <li class="w-full my-1 max-h-12 hover:bg-gray-50 relative">
     <div
-      v-if="active"
+      v-if="isActive"
       class="absolute top-2 -left-[3px] w-1 h-5 bg-gray-800 rounded-full"
     />
     <LobLink
       :to="to"
       :class="[
         'block !w-full py-2 pl-4 !type-small-500 whitespace-nowrap  !text-gray-500',
-        'focus-visible:rounded-none focus:ring-0 focus-visible:bg-gray-50 focus-visible:ring-0',
-        { '!text-gray-800 !type-small-600': active }
+        'focus:ring-0 focus-visible:bg-gray-50 focus-visible:!ring-0 focus-visible:!rounded-none focus-visible:!ring-offset-0',
+        { '!text-gray-800 !type-small-600': isActive }
       ]"
       :underline="false"
       @click.stop="handleNavigation"
@@ -37,12 +37,12 @@ export default {
   },
   emits: ['nav'],
   computed: {
-    active () {
+    isActive () {
       return this.$route.path.startsWith(this.to);
     }
   },
   watch: {
-    active (val) {
+    isActive (val) {
       this.$parent.hasActiveChild = val;
     }
   },

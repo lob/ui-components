@@ -3,15 +3,13 @@
     <component
       :is="tag"
       :class="[
-        'py-3 !px-4 max-h-12 flex items-center w-full type-base-500 !text-gray-500 no-underline whitespace-nowrap',
-        'hover:bg-gray-50 focus:outline-none focus:ring-none focus-visible:rounded-none focus:ring-0 focus-visible:bg-gray-50 focus-visible:ring-0',
+        'py-3 !px-4 h-12 flex items-center w-full type-base-500 !text-gray-500 no-underline whitespace-nowrap',
+        'hover:bg-gray-50 focus:outline-none focus:ring-none focus-visible:!rounded-none focus:ring-0 focus-visible:bg-gray-50 focus-visible:!ring-0',
         { '!text-gray-800 !type-base-600': hasActiveChild }
       ]"
       :to="to"
       :underline="false"
       active-class="!text-gray-800 !type-base-600"
-      @mouseenter="itemHover = true"
-      @mouseleave="itemHover = false"
       @click.stop="handleNavigation"
       @[clickEvent]="toggleSubNav"
     >
@@ -51,7 +49,7 @@
         <ChevronDown
           v-if="collapsible && hasChildNavItems"
           :class="[
-            'ml-6 inline-block text-gray-500 transition-transform duration-300 ease-in',
+            'ml-6 inline-block text-gray-500 transition-transform duration-100 ease-in',
             { 'transform -rotate-180': subNavOpen }
           ]"
           role="img"
@@ -61,6 +59,7 @@
       </span>
     </component>
 
+    <!-- this is a v-show so that "isActive" change is picked up  -->
     <ul
       v-show="subNavOpen"
       :class="['ml-12 bg-gradient-to-b from-[#9f94ff] to-[#fa6a8c]', { 'xl:hidden': !expanded }]"
@@ -110,11 +109,10 @@ export default {
       default: ''
     }
   },
-  emits: ['nav'],
+  emits: ['nav', 'toggleCollapse'],
   data () {
     return {
       subNavOpen: this.expanded && !this.subNavCollapsed,
-      itemHover: false,
       hasActiveChild: false
     };
   },
@@ -129,13 +127,6 @@ export default {
       return !this.to ? 'click' : null;
     }
   },
-  watch: {
-    expanded (val) {
-      if (!val) {
-        this.subNavOpen = false;
-      }
-    }
-  },
   methods: {
     toggleSubNav () {
       if (this.collapsible) {
@@ -144,6 +135,7 @@ export default {
       if (!this.expanded) {
         this.$parent.expanded = true;
         this.subNavOpen = true;
+        this.$emit('toggleCollapse');
       }
     },
     handleNavigation () {
