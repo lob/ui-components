@@ -42,7 +42,14 @@ export default {
   },
   watch: {
     isActive (val) {
-      this.$parent.hasActiveChild = val;
+      if (val) {
+        //nextTick if true, so that true overwrittes the false coming from the other child item
+        this.$nextTick(() => {
+          this.$parent.hasActiveChild = true;
+        });
+      } else {
+        this.$parent.hasActiveChild = false;
+      }
     }
   },
   methods: {
