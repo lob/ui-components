@@ -17,7 +17,6 @@
       data-testId="main-navigation-list"
       :class="[
         'relative transition-width duration-100 ease-in',
-        listClass,
         { expanded: collapsible && expanded },
         { collapsed: collapsible && !expanded }
       ]"
@@ -40,10 +39,6 @@ export default {
     collapsible: {
       type: Boolean,
       default: true
-    },
-    listClass: {
-      type: String,
-      default: ''
     }
   },
   emits: ['toggleCollapse'],
