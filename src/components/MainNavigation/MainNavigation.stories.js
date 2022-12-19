@@ -155,7 +155,7 @@ Item.args = {
   expanded: true
 };
 
-const ItemWithSubItemsTemplate = (args, { argTypes }) => ({
+const ItemWithChildItemsTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { MainNavigationItem, MainNavigationChildItem, HouseChimney },
   setup: () => ({ args }),
@@ -169,8 +169,8 @@ const ItemWithSubItemsTemplate = (args, { argTypes }) => ({
   </main-navigation-item>`
 });
 
-export const ItemWithSubItems = ItemWithSubItemsTemplate.bind({});
-ItemWithSubItems.args = {
+export const ItemWithChildItems = ItemWithChildItemsTemplate.bind({});
+ItemWithChildItems.args = {
   title: 'Overview',
   to: '/overview',
   expanded: true
