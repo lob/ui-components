@@ -35,7 +35,7 @@ export default {
     },
     title: {
       type: String,
-      default: 'House Chimney Icon'
+      default: 'Chevron Down Icon'
     }
   },
   computed: {
