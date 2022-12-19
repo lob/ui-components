@@ -33,7 +33,7 @@ const renderComponent = async (options) => {
 
 const slots = {
   icon: `<template #icon="{ title }">
-          <HouseChimney data-testid="overview-icon" size="xl" role="img" :title="title" />
+          <HouseChimney data-testid="overview-icon" size="xl" />
         </template>`
 };
 

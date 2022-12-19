@@ -7,6 +7,7 @@
         'hover:bg-gray-50 focus:outline-none focus:ring-none focus-visible:!rounded-none focus:ring-0 focus-visible:bg-gray-50 focus-visible:!ring-0',
         [ hasActiveChild ? 'type-base-600 text-gray-800 hover:text-gray-800 active:text-gray-800' : 'type-base-500 text-gray-500 hover:text-gray-500 active:!text-gray-500' ]
       ]"
+      :aria-label="title"
       :to="to"
       :underline="false"
       active-class="!text-gray-800 !type-base-600"
