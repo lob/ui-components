@@ -3,9 +3,9 @@
     <component
       :is="tag"
       :class="[
-        'py-3 !px-4 h-12 flex items-center w-full type-base-500 !text-gray-500 no-underline whitespace-nowrap',
+        'py-3 !px-4 h-12 flex items-center w-full no-underline whitespace-nowrap',
         'hover:bg-gray-50 focus:outline-none focus:ring-none focus-visible:!rounded-none focus:ring-0 focus-visible:bg-gray-50 focus-visible:!ring-0',
-        { '!text-gray-800 !type-base-600': hasActiveChild }
+        [ hasActiveChild ? 'type-base-600 text-gray-800 hover:text-gray-800 active:text-gray-800' : 'type-base-500 text-gray-500 hover:text-gray-500 active:!text-gray-500' ]
       ]"
       :to="to"
       :underline="false"
