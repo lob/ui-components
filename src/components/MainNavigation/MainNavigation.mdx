@@ -22,29 +22,30 @@ The main navigation renders a semantic `nav` element with a `ul`. It is made to 
 
 The main navigation has a single prop, `collapsible` to control whether it has a click event on desktop that animates the navigation on click to slide in to a smaller width. This can give the user more screen real estate. `collapsible` defaults to true. If you do not want this animation, set this to false.
 
-When `collapsible` is true, the main navigation component passes information about it's expanded/collapsed state through slot props. This requires you passes the expanded prop to the child components in the template (see example below).
+When `collapsible` is true, the main navigation component passes information about it's expanded/collapsed state through slot props. This requires you to pass the expanded prop to the child components in the template (see example below).
 
-The `listClass` prop is used to add a class to the `ul` element. 
+Icons can be added in the `#icon` slot as components. To make the icon accessible, add `role="img"` and `:title="title"` for the item title to be passed to the icon.
+
+The main navigation child items use the `#default` slot of the component.
 
 Example of using this component in a template
 
 ```html
 <main-navigation v-bind="args">
   <template v-slot="{ expanded }">
-    <main-navigation-item
-      title="Overview"
-      iconSrc="overviewIconSrcFile"
-      iconAltText="Overview icon"
-      to="/overview"
-      :expanded="expanded"
-    />
+    <main-navigation-item title="Overview" to="/overview" :expanded="expanded">
+      <template #icon="{ title }">
+        <HouseChimney size="xl" role="img" :title="title" />
+      </template>
+    </main-navigation-item>
     <main-navigation-item
       title="Address Verification"
-      iconSrc="addressVerificationIconSrcFile"
-      iconAltText="Address verification icon"
       :subNavCollapsed="false"
       :expanded="expanded"
     >
+      <template #icon="{ title }">
+        <LocationDot size="xl" role="img" :title="title" />
+      </template>
       <main-navigation-child-item
         title="US Verifications"
         to="/us-verifications"
@@ -85,7 +86,7 @@ Example of using this component in a template as a link.
   iconAltText="Overview icon"
   to="/overview"
   :expanded="expanded"
-  :itemClass = "fontBold"
+  :itemClass="fontBold"
 />
 ```
 
