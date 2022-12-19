@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## v2.0.0-beta.15
+
+### Features
+
+Update the styles of the `MainNavigation` component
+
+### Breaking changes
+
+- The icon is passed to a `MainNavigationItem` through the `#icon` slot, using the Icon components (or any svg)
+- The icon Tooltip is part of the `MainNavigationItem` component
+
 ## v2.0.0-beta.14
 
 ### Bug fixes
