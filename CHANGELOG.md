@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v2.0.0-beta.16
+
+### Features
+
+Remove Icon titles, add aria-label for accessibility where `MainNavigationIcon` uses Icons
+
 ## v2.0.0-beta.15
 
 ### Features
