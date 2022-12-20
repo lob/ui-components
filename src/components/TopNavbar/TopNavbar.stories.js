@@ -1,13 +1,13 @@
 import routeDecorator from '../../../.storybook/routeDecorator';
 import TopNavbar from './TopNavbar.vue';
 import mdx from './TopNavbar.mdx';
-import MegaMenu from '@/components/MegaMenu/MegaMenu.vue';
-import MegaMenuItem from '@/components/MegaMenu/MegaMenuItem.vue';
+import TopNavDropdown from '@/components/TopNavDropdown/TopNavDropdown.vue';
+import TopNavDropdownItem from '@/components/TopNavDropdown/TopNavDropdownItem.vue';
 
 export default {
   title: 'Components/Top Navbar',
   component: TopNavbar,
-  subcomponents: { MegaMenu, MegaMenuItem },
+  subcomponents: { TopNavDropdown, TopNavDropdownItem },
   parameters: {
     docs: {
       page: mdx
@@ -20,7 +20,7 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { TopNavbar, MegaMenu, MegaMenuItem },
+  components: { TopNavbar, TopNavDropdown, TopNavDropdownItem },
   setup: () => ({ args }),
   template: `
     <topNavbar v-bind="args">
@@ -30,20 +30,20 @@ const Template = (args, { argTypes }) => ({
         alt=""
       >
       <div class="md:pl-6">
-        <MegaMenu id="1" title="Some menu" navKey="" :mobileNavs="{}">
-          <MegaMenuItem to="/settings/main/account" small>
+        <TopNavDropdown id="1" title="Some menu" navKey="" :mobileNavs="{}">
+          <TopNavDropdownItem to="/settings/main/account" small>
             Some menu item
-          </MegaMenuItem>
-          <MegaMenuItem to="/settings/main/account" :imageSource="$getConst('lobAssetsUrl') + '/dashboard/navbar/settings.svg'" small>
+          </TopNavDropdownItem>
+          <TopNavDropdownItem to="/settings/main/account" :imageSource="$getConst('lobAssetsUrl') + '/dashboard/navbar/settings.svg'" small>
             Another menu item
-          </MegaMenuItem>
-        </MegaMenu>
+          </TopNavDropdownItem>
+        </TopNavDropdown>
 
-        <MegaMenu id="2" title="Another menu" navKey="" :mobileNavs="{}">
-          <MegaMenuItem to="/settings/main/account" :imageSource="$getConst('lobAssetsUrl')+'/dashboard/navbar/settings.svg'" small>
+        <TopNavDropdown id="2" title="Another menu" navKey="" :mobileNavs="{}">
+          <TopNavDropdownItem to="/settings/main/account" :imageSource="$getConst('lobAssetsUrl')+'/dashboard/navbar/settings.svg'" small>
             Yet another menu item
-          </MegaMenuItem>
-        </MegaMenu>
+          </TopNavDropdownItem>
+        </TopNavDropdown>
       </div>
     </topNavbar>
   `
