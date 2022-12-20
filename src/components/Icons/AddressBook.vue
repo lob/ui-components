@@ -6,7 +6,6 @@
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <title>{{ title }}</title>
     <path
       :d="path"
       fill="currentColor"
@@ -32,10 +31,6 @@ export default {
       validator: function (value) {
         return ['xxl', 'xl', 'l', 'm', 's'].includes(value);
       }
-    },
-    title: {
-      type: String,
-      default: 'Address Book Icon'
     }
   },
   computed: {

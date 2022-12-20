@@ -93,25 +93,25 @@ const Template = (args, { argTypes }) => ({
       <template v-slot="{ expanded }">
         <main-navigation-item title="Overview" to="/overview" :expanded="expanded">
           <template #icon="{ title }">
-            <HouseChimney size="xl" role="img" :title="title" />
+            <HouseChimney size="xl" />
           </template>
         </main-navigation-item>
 
         <main-navigation-item title="Mail Analytics" to="/mail-analytics" :expanded="expanded">
           <template #icon="{ title }">
-            <ChartMixed size="xl" role="img" :title="title" />
+            <ChartMixed size="xl" />
           </template>
         </main-navigation-item>
 
         <main-navigation-item title="Address Book" to="/address-book" :expanded="expanded">
           <template #icon="{ title }">
-            <AddressBook size="xl" role="img" :title="title" />
+            <AddressBook size="xl" />
           </template>
         </main-navigation-item>
 
         <main-navigation-item title="Address Verification" :expanded="expanded">
           <template #icon="{ title }">
-            <LocationDot size="xl" role="img" :title="title" />
+            <LocationDot size="xl" />
           </template>
           <main-navigation-child-item title="US Verifications" to="/us-verifications" />
           <main-navigation-child-item title="Int'l Verifications" to="/intl-verifications" />
@@ -120,7 +120,7 @@ const Template = (args, { argTypes }) => ({
 
         <main-navigation-item title="Print & Mail" :expanded="expanded">
           <template #icon="{ title }">
-            <EnvelopesBulk size="xl" role="img" :title="title" />
+            <EnvelopesBulk size="xl" />
           </template>
           <main-navigation-child-item title="Postcards" to="/postcards" />
           <main-navigation-child-item title="Letters" to="/letters" />
@@ -143,7 +143,7 @@ const ItemTemplate = (args, { argTypes }) => ({
   template: ` 
   <main-navigation-item title="Overview" to="/overview" :expanded="expanded">
     <template #icon="{ title }">
-      <HouseChimney size="xl" role="img" :title="title" />
+      <HouseChimney size="xl" />
     </template>
   </main-navigation-item>`
 });
@@ -162,7 +162,7 @@ const ItemWithChildItemsTemplate = (args, { argTypes }) => ({
   template: ` 
   <main-navigation-item title="Print & Mail" :expanded="expanded">
     <template #icon="{ title }">
-      <HouseChimney size="xl" role="img" :title="title" />
+      <HouseChimney size="xl" />
     </template>
     <main-navigation-child-item title="Postcards" to="/postcards" />
     <main-navigation-child-item title="Letters" to="/letters" />

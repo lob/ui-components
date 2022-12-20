@@ -24,7 +24,7 @@ The main navigation has a single prop, `collapsible` to control whether it has a
 
 When `collapsible` is true, the main navigation component passes information about it's expanded/collapsed state through slot props. This requires you to pass the expanded prop to the child components in the template (see example below).
 
-Icons can be added in the `#icon` slot as components. To make the icon accessible, add `role="img"` and `:title="title"` for the item title to be passed to the icon.
+Icons can be added in the `#icon` slot as components.
 
 The main navigation child items use the `#default` slot of the component.
 
@@ -35,7 +35,7 @@ Example of using this component in a template
   <template v-slot="{ expanded }">
     <main-navigation-item title="Overview" to="/overview" :expanded="expanded">
       <template #icon="{ title }">
-        <HouseChimney size="xl" role="img" :title="title" />
+        <HouseChimney size="xl" />
       </template>
     </main-navigation-item>
     <main-navigation-item
@@ -44,7 +44,7 @@ Example of using this component in a template
       :expanded="expanded"
     >
       <template #icon="{ title }">
-        <LocationDot size="xl" role="img" :title="title" />
+        <LocationDot size="xl" />
       </template>
       <main-navigation-child-item
         title="US Verifications"
