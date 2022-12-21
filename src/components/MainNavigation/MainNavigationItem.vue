@@ -123,7 +123,10 @@ export default {
       return Boolean(this.$slots.default);
     },
     isActive () {
-      return this.$route.path === this.to;
+      if (this.to === '/') {
+        return this.$route.path === '/';
+      }
+      return this.$route.path.startsWith(this.to);
     },
     tag () {
       return this.to ? 'LobLink' : 'button';
