@@ -1,12 +1,13 @@
 <template>
   <div :class="{ 'relative': withCopyButton }">
-    <lob-label
+    <LobLabel
       v-if="label"
       :label="label"
       :label-for="id"
       :required="required"
       :sr-only-label="srOnlyLabel"
       :tooltip-content="tooltipContent"
+      :tooltip-position="tooltipPosition"
     />
     <div
       v-if="withCopyButton"
@@ -143,6 +144,10 @@ export default {
       type: String,
       default: null
     },
+    tooltipPosition: { type: String, default: 'trailing',
+      validator: function (value) {
+        return ['leading', 'trailing'].includes(value);
+      } },
     modelValue: {
       type: [String, Number],
       default: null

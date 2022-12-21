@@ -15,7 +15,7 @@
         <slot name="content" />
         <div
           :class="[
-            'absolute bg-transparent w-0 h-0 m-auto',
+            'absolute bg-transparent w-0 h-0 m-auto z-10',
             {
               'border-l-8 border-r-8 border-b-8 border-l-transparent border-r-transparent border-b-gray-900 -top-2': hasUpArrow
             },

@@ -43,12 +43,12 @@ describe('Main Navigation Child Item', () => {
   it('adds the correct classes when the item is active', async () => {
     const props = initialProps;
 
-    const { queryByTestId } = renderComponent({ props });
+    const { queryByRole } = renderComponent({ props });
     router.push('/overview/about');
     await router.isReady();
 
-    const navItem = queryByTestId('nav-child-item');
-    expect(navItem).toHaveClass('font-medium bg-white-300 rounded-l-full');
+    const navItem = queryByRole('link', { name: 'Overview' });
+    expect(navItem).toHaveClass('text-gray-800 type-small-600');
   });
 
   it('adds the correct classes when the item is exact active', async () => {
@@ -56,10 +56,10 @@ describe('Main Navigation Child Item', () => {
     router.push('/overview');
     await router.isReady();
 
-    const { queryByTestId } = renderComponent({ props });
+    const { queryByRole } = renderComponent({ props });
 
-    const navItem = queryByTestId('nav-child-item');
-    expect(navItem).toHaveClass('font-medium bg-white-300 rounded-l-full');
+    const navItem = queryByRole('link', { name: 'Overview' });
+    expect(navItem).toHaveClass('text-gray-800 type-small-600');
   });
 
   describe('when clicked', () => {
