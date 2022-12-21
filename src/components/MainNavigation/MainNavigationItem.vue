@@ -5,12 +5,13 @@
       :class="[
         'py-3 !px-4 h-12 flex items-center w-full no-underline whitespace-nowrap',
         'hover:bg-gray-50 focus:!outline-none focus:ring-none focus-visible:!rounded-none focus:ring-0 focus-visible:bg-gray-50 focus-visible:!ring-0',
-        [ hasActiveChild ? '!type-base-600 !text-gray-800 hover:text-gray-800 active:text-gray-800' : '!type-base-500 !text-gray-500 hover:text-gray-500 active:!text-gray-500' ]
+        { '!type-base-500 !text-gray-500 hover:text-gray-500 active:!text-gray-500' : !hasActiveChild && !isActive },
+        { '!type-base-600 !text-gray-800 hover:text-gray-800 active:text-gray-800' : hasActiveChild },
+        { '!type-base-600 !text-gray-800': isActive }
       ]"
       :aria-label="title"
       :to="to"
       :underline="false"
-      active-class="!text-gray-800 !type-base-600"
       @click.stop="handleNavigation"
       @[clickEvent]="toggleSubNav"
     >
@@ -120,6 +121,9 @@ export default {
   computed: {
     hasChildNavItems () {
       return Boolean(this.$slots.default);
+    },
+    isActive () {
+      return this.$route.path === this.to;
     },
     tag () {
       return this.to ? 'LobLink' : 'button';
