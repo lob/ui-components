@@ -48,7 +48,7 @@ describe('Main Navigation Child Item', () => {
     await router.isReady();
 
     const navItem = queryByRole('link', { name: 'Overview' });
-    expect(navItem).toHaveClass('text-gray-800 type-small-600');
+    expect(navItem).toHaveClass('!text-gray-800 !type-small-600');
   });
 
   it('adds the correct classes when the item is exact active', async () => {
@@ -59,7 +59,7 @@ describe('Main Navigation Child Item', () => {
     const { queryByRole } = renderComponent({ props });
 
     const navItem = queryByRole('link', { name: 'Overview' });
-    expect(navItem).toHaveClass('text-gray-800 type-small-600');
+    expect(navItem).toHaveClass('!text-gray-800 !type-small-600');
   });
 
   describe('when clicked', () => {
