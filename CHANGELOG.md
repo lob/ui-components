@@ -1,5 +1,45 @@
 # CHANGELOG
 
+## v2.0.0-beta.17
+
+### Features
+
+Updates the styles of `Button` and `Link` components
+
+### Breaking changes
+
+- `Button` and `Link` now have 4 sizes defined by the `size` prop (the `small` prop is removed)
+- `Button` variant 'subtle' is removed and replaced by 'quiet' and 'ghost' variants
+
+## v2.0.0-beta.16
+
+### Features
+
+Remove Icon titles, add aria-label for accessibility where `MainNavigationIcon` uses Icons
+
+## v2.0.0-beta.15
+
+### Features
+
+Update the styles of the `MainNavigation` component
+
+### Breaking changes
+
+- The icon is passed to a `MainNavigationItem` through the `#icon` slot, using the Icon components (or any svg)
+- The icon Tooltip is part of the `MainNavigationItem` component
+
+## v2.0.0-beta.14
+
+### Bug fixes
+
+Refactor the `Label` component to place the Tooltip outside the label
+
+## v2.0.0-beta.13
+
+### Features
+
+Add `iconClass` prop to `MegaMenuItem` & `MainNavigationItem` to adjust the icons size
+
 ## v2.0.0-beta.12
 
 ### Features

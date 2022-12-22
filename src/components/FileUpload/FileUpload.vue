@@ -5,12 +5,10 @@
       aria-controls="filename"
       tabindex="0"
       :class="[
-        { 'px-6 text-base h-[48px]': regular },
-        { 'px-4 text-sm h-[32px]': small },
-        'flex justify-center items-center rounded-lg',
-        'font-medium bg-white text-gray-500 border',
-        'hover:bg-gray-100/[.15] active:bg-bg-gray-100/[.25] active:scale-[.96]',
-        'focus-visible:ring-primary-100 focus-visible:ring-4 focus:outline-none'
+        { 'type-small-700 py-3 px-5 max-h-11': regular },
+        { 'type-xs-700 py-2 px-4 max-h-8': small },
+        'flex justify-center items-center rounded-full bg-white text-gray-800 border border-gray-800 whitespace-nowrap h-min',
+        'hover:bg-gray-50 active:bg-gray-100 focus:bg-gray-100 focus:outline-dashed focus:outline-black focus:outline-offset-1'
       ]"
       @keydown.enter="onKeydown"
       @keydown.space="onKeydown"

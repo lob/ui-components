@@ -1,12 +1,13 @@
 <template>
   <div :class="{ 'relative': withCopyButton }">
-    <lob-label
+    <LobLabel
       v-if="label"
       :label="label"
       :label-for="id"
       :required="required"
       :sr-only-label="srOnlyLabel"
       :tooltip-content="tooltipContent"
+      :tooltip-position="tooltipPosition"
     />
     <div
       v-if="withCopyButton"
@@ -111,7 +112,7 @@
       <button
         v-if="withCopyButton"
         type="button"
-        :class="['primary active:scale-[.96] text-white rounded-lg px-3 !h-8 text-sm', {'!h-6 text-xs' : small}]"
+        class="rounded-full px-3 h-7 type-xs-700 bg-black text-white hover:bg-gray-700 focus:outline-dashed focus:outline-black focus:outline-offset-1 active:bg-gray-800 focus:bg-gray-800"
         @click="copyToClipboard"
       >
         Copy
@@ -143,6 +144,10 @@ export default {
       type: String,
       default: null
     },
+    tooltipPosition: { type: String, default: 'trailing',
+      validator: function (value) {
+        return ['leading', 'trailing'].includes(value);
+      } },
     modelValue: {
       type: [String, Number],
       default: null

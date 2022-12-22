@@ -6,38 +6,36 @@
       :target="target"
       :rel="target === '_blank' ? 'noopener noreferrer' : ''"
       :aria-disabled="disabled"
-      :class="[
-        { 'pointer-events-none': disabled },
-        { 'font-bold': bold },
-        { 'text-inherit': inheritTextColor },
-        { 'px-0 text-base focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:rounded-lg': link },
-        { 'underline': underline && link },
-        { '!text-gray-500': disabled && link },
-        { 'text-primary-500 hover:text-primary-900 active:text-primary-900': !inheritTextColor && link },
-        { 'flex justify-center items-center rounded-lg no-underline font-medium': primary || secondary || subtle },
-        { 'focus-visible:ring-4 focus-visible:ring-primary-100 focus:ring-transparent focus:outline-none active:scale-[.96]': primary || secondary || subtle },
-        { 'px-6 text-base h-[48px]': regular && (primary || secondary || subtle) },
-        { 'px-4 text-sm h-[32px]': small && (primary || secondary || subtle) },
-        { 'bg-gradient-114 from-[#1876db] to-[#5748ff] hover:from-[#5748ff] hover:to-[#1876db] !text-white': !disabled && primary && !warning },
-        { 'text-gray-400 bg-gray-100': disabled && primary && !warning },
-        { 'bg-gradient-114 from-[#db1818] to-[#ec4949] hover:from-[#ec4949] hover:to-[#db1818] !text-white': !disabled && primary && warning },
-        { 'text-coral-700 bg-coral-200': disabled && primary && warning },
-        { 'border-2 !border-gray-500 text-gray-500 hover:text-gray-500 hover:bg-gray-100/[.15] active:bg-gray-100/[.25]': !disabled && secondary && !warning },
-        { 'text-gray-300 border-gray-300 border-2': disabled && secondary && !warning },
-        { 'bg-white border-2 !border-chili text-chili hover:bg-chili/[.04] active:bg-chili/[.08]': !disabled && secondary && warning },
-        { 'text-coral-700 border-coral-700 border-2': disabled && secondary && warning },
-        { 'text-primary-500 hover:bg-primary-500/[.04] active:bg-primary-500/[.08] active:text-primary-700': !disabled && subtle && !warning },
-        { 'text-gray-300 border-gray-300 border-2 hover:bg-transparent': disabled && subtle && !warning },
-        { 'text-chili hover:bg-chili/[.04] active:bg-chili/[.08]' : !disabled && subtle && warning },
-        { 'text-coral-700 border-coral-700 border-2 hover:bg-transparent' : disabled && subtle && warning }
-      ]"
       v-bind="$attrs"
+      :class=" [
+        { 'pointer-events-none': disabled },
+        { 'underline': isLink && underline },
+        { [`type-${size}-600`]: isLink },
+        { [`type-${size}-800 no-underline`]: isLink && bold },
+        isLink ? 'text-blue-600 hover:text-blue-500' : 'flex justify-center items-center rounded-full',
+        'focus:outline-dashed focus:outline-black focus:outline-offset-1 focus:ring-0 whitespace-nowrap h-min',
+        { 'type-xs-700 py-2 px-4': isButton && size==='small' },
+        { 'type-small-700 py-2 px-4': isButton && size==='base' },
+        { 'type-small-700 py-3 px-5': isButton && size==='large' },
+        { 'type-base-700 py-[14px] px-6': isButton && size==='xl' },
+        { '!text-gray-400': isLink && disabled },
+        { 'bg-black text-white hover:bg-gray-700 hover:text-white active:bg-gray-800 focus:bg-gray-800' : primaryButton },
+        { 'bg-white text-gray-800 border border-gray-800 hover:bg-gray-50 hover:text-gray-800 focus:border-gray-800 active:bg-gray-100 focus:bg-gray-100' : secondaryButton },
+        { '!border-gray-200 !text-gray-400': secondaryButton && disabled },
+        { 'bg-gray-50 text-gray-500 border border-gray-300 hover:bg-gray-100 hover:text-gray-600 hover:border-gray-400 active:bg-gray-100 active:text-gray-600 active:border-gray-500 focus:bg-gray-100 focus:text-gray-600' : quietButton },
+        { 'bg-transparent text-gray-500 hover:bg-gray-100 hover:text-gray-600 active:bg-gray-200 active:text-gray-600 focus:bg-gray-100 focus:text-gray-600' : ghostButton },
+        { '!bg-gray-100 !text-gray-300 !border-none': (primaryButton || quietButton || ghostButton) && disabled },
+        { 'bg-red-500 text-white hover:bg-red-600 active:bg-red-700 focus:bg-red-600' : dangerButton },
+        { '!bg-red-200 !text-red-400': dangerButton && disabled },
+        { 'bg-white text-red-500 border border-red-500 hover:bg-red-50 hover:border-red-600 hover:text-red-600 active:bg-red-100 active:border-red-700 active:text-red-700 focus:bg-red-50 focus:border-red-600 focus:text-red-600' : dangerSecondaryButton },
+        { '!border-red-300 !text-red-300': dangerSecondaryButton && disabled }
+      ]"
     >
       <slot />
       <ChevronRight
-        v-if="link && withChevron"
+        v-if="isLink && withChevron"
         size="s"
-        class="inline-flex ml-1"
+        class="h-3 inline-flex ml-1"
       />
     </component>
   </span>
@@ -54,14 +52,21 @@ export default {
       type: String,
       default: 'link',
       validator: function (value) {
-        return ['link', 'primary-button', 'secondary-button', 'subtle-button'].includes(value);
+        return ['link', 'primary-button', 'secondary-button', 'quiet-button', 'ghost-button', 'danger-button', 'danger-secondary-button'].includes(value);
       }
     },
-    small: {
-      type: Boolean,
-      default: false
+    size: {
+      type: String,
+      default: 'base',
+      validator: function (value) {
+        return ['small', 'base', 'large', 'xl'].includes(value);
+      }
     },
-    warning: {
+    underline: {
+      type: Boolean,
+      default: true
+    },
+    bold: {
       type: Boolean,
       default: false
     },
@@ -73,22 +78,6 @@ export default {
       type: [String, Object],
       default: ''
     },
-    label: {
-      type: String,
-      default: ''
-    },
-    underline: {
-      type: Boolean,
-      default: true
-    },
-    bold: {
-      type: Boolean,
-      default: false
-    },
-    inheritTextColor: {
-      type: Boolean,
-      default: false
-    },
     target: {
       type: String,
       default: '_self'
@@ -99,20 +88,11 @@ export default {
     }
   },
   computed: {
-    link () {
+    isLink () {
       return this.variant === 'link';
     },
-    primary () {
-      return this.variant === 'primary-button';
-    },
-    secondary () {
-      return this.variant === 'secondary-button';
-    },
-    subtle () {
-      return this.variant === 'subtle-button';
-    },
-    regular () {
-      return !this.small;
+    isButton () {
+      return this.variant !== 'link';
     },
     isExternal () {
       const protocolRelativePattern = /^https?:\/\/|^\/\//i;
@@ -123,6 +103,24 @@ export default {
     },
     linkProp () {
       return this.isExternal ? 'href' : 'to';
+    },
+    primaryButton () {
+      return this.variant === 'primary-button';
+    },
+    secondaryButton () {
+      return this.variant === 'secondary-button';
+    },
+    quietButton () {
+      return this.variant === 'quiet-button';
+    },
+    ghostButton () {
+      return this.variant === 'ghost-button';
+    },
+    dangerButton () {
+      return this.variant === 'danger-button';
+    },
+    dangerSecondaryButton () {
+      return this.variant === 'danger-secondary-button';
     }
   }
 };
