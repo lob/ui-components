@@ -6,6 +6,11 @@
 
 Updates the styles of `Button` and `Link` components
 
+### Breaking changes
+
+- `Button` and `Link` now have 4 sizes defined by the `size` prop (the `small` prop is removed)
+- `Button` variant 'subtle' is removed and replaced by 'quiet' and 'ghost' variants
+
 ## v2.0.0-beta.16
 
 ### Features
