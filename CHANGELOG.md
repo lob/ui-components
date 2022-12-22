@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v2.0.0-beta.17
+
+### Features
+
+Updates the styles of `Button` and `Link` components
+
 ## v2.0.0-beta.16
 
 ### Features
