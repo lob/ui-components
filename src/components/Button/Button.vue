@@ -1,23 +1,21 @@
 <template>
   <button
     :class="[
-      'flex justify-center items-center rounded-lg focus-visible:ring-4 focus-visible:ring-primary-100 focus:outline-none',
-      { 'font-medium': primary || secondary || subtle },
-      { 'px-6 text-base h-[48px]': regular },
-      { 'px-4 text-sm h-[32px]': small },
-      { 'px-0 h-auto text-base': link },
-      { 'underline text-primary-500 hover:text-primary-900 active:text-primary-900 disabled:text-gray-500': link },
+      'focus:outline-dashed focus:outline-black focus:outline-offset-1 whitespace-nowrap h-min',
+      link ? `${linkTypeClasses}` : 'flex justify-center items-center rounded-full',
+      { 'type-xs-700 py-2 px-4 max-h-8': small && !link },
+      { 'type-small-700 py-2 px-4 max-h-9': medium && !link },
+      { 'type-small-700 py-3 px-5 max-h-11': large && !link },
+      { 'type-base-700 py-[14px] px-6 max-h-[52px]': xlarge && !link },
       { 'cursor-not-allowed': disabled },
-      { 'active:scale-[.96]': !disabled && !link },
-      { 'bg-gradient-114 from-[#1876db] to-[#5748ff] hover:from-[#5748ff] hover:to-[#1876db] text-white': primary && !warning && !disabled },
-      { 'text-gray-400 disabled:bg-gray-100': primary && !warning && disabled },
-      { 'bg-gradient-114 from-[#db1818] to-[#ec4949] hover:from-[#ec4949] hover:to-[#db1818] text-white': primary && warning && !disabled },
-      { 'text-coral-700 disabled:!bg-coral-200': primary && warning && disabled },
-      { 'bg-white text-gray-500 border-gray-500 border-2 disabled:text-gray-300 disabled:border-gray-300 disabled:hover:bg-transparent': secondary && !warning,
-        'hover:bg-gray-100/[.15] active:bg-bg-gray-100/[.25] disabled:text-gray-100 disabled:border-2': secondary && !warning },
-      { 'bg-white text-chili border-chili border-2 disabled:hover:bg-transparent disabled:text-coral-700 disabled:border-coral-700 disabled:border-2 hover:bg-chili/[.04] active:bg-chili/[.08]': secondary && warning },
-      { 'text-primary-500 hover:bg-primary-500/[.04] active:bg-primary-500/[.08] active:text-primary-700 disabled:text-gray-300 disabled:border-2 disabled:hover:bg-transparent': subtle && !warning },
-      { 'text-chili hover:bg-chili/[.04] active:bg-chili/[.08] disabled:text-coral-700 disabled:border-coral-700 disabled:border-2 disabled:hover:bg-transparent': subtle && warning }
+      { 'bg-black text-white hover:bg-gray-700 active:bg-gray-800 focus:bg-gray-800' : primary },
+      { 'bg-white text-gray-800 border border-gray-800 hover:bg-gray-50 active:bg-gray-100 focus:bg-gray-100 disabled:border-gray-200 disabled:text-gray-400 disabled:hover:bg-white' : secondary },
+      { 'bg-gray-50 text-gray-500 border border-gray-300 hover:bg-gray-100 hover:text-gray-600 hover:border-gray-400 active:bg-gray-100 active:text-gray-600 active:border-gray-500 focus:bg-gray-100 focus:text-gray-600' : quiet },
+      { 'bg-transparent text-gray-500 hover:bg-gray-100 hover:text-gray-600 active:bg-gray-200 active:text-gray-600 focus:bg-gray-100 focus:text-gray-600' : ghost },
+      { 'disabled:bg-gray-100 disabled:text-gray-300 disabled:border-none': primary || quiet || ghost },
+      { 'bg-red-500 text-white hover:bg-red-600 active:bg-red-700 focus:bg-red-600 disabled:bg-red-200 disabled:text-red-400' : danger },
+      { 'bg-white text-red-500 border border-red-500 hover:bg-red-50 hover:border-red-600 hover:text-red-600 active:bg-red-100 active:border-red-700 active:text-red-700 focus:bg-red-50 focus:border-red-600 focus:text-red-600 disabled:border-red-300 disabled:text-red-300 disabled:hover:bg-white' : dangerSecondary },
+      { '!text-blue-600 underline hover:!text-blue-500 disabled:!text-gray-400': link }
     ]"
     :disabled="disabled"
     @click="handleClick"
@@ -36,38 +34,63 @@ export default {
       type: String,
       default: 'primary',
       validator: function (value) {
-        return ['primary', 'secondary', 'link', 'subtle'].includes(value);
+        return ['primary', 'secondary', 'danger', 'danger-secondary', 'quiet', 'ghost', 'link'].includes(value);
       }
     },
-    small: {
-      type: Boolean,
-      default: false
+    size: {
+      type: String,
+      default: 'large',
+      validator: function (value) {
+        return ['small', 'medium', 'large', 'xl'].includes(value);
+      }
     },
     disabled: {
       type: Boolean,
       default: false
     },
-    warning: {
+    bold: {
       type: Boolean,
       default: false
     }
   },
   emits: ['click'],
   computed: {
+    small () {
+      return this.size === 'small';
+    },
+    medium () {
+      return this.size === 'medium';
+    },
+    large () {
+      return this.size === 'large';
+    },
+    xlarge () {
+      return this.size === 'xl';
+    },
     primary () {
       return this.variant === 'primary';
     },
     secondary () {
       return this.variant === 'secondary';
     },
+    quiet () {
+      return this.variant === 'quiet';
+    },
+    ghost () {
+      return this.variant === 'ghost';
+    },
+    danger () {
+      return this.variant === 'danger';
+    },
+    dangerSecondary () {
+      return this.variant === 'danger-secondary';
+    },
     link () {
       return this.variant === 'link';
     },
-    subtle () {
-      return this.variant === 'subtle';
-    },
-    regular () {
-      return !this.small;
+    linkTypeClasses () {
+      const size = this.medium ? 'base' : this.size;
+      return this.bold ? `type-${size}-800 no-underline` : `type-${size}-600`;
     }
   },
   methods: {
