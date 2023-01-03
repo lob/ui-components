@@ -12,7 +12,7 @@
   >
     <div
       :id="dropdownToggleId"
-      :class="['relative inline-block cursor-pointer w-full xl:w-auto px-8 py-7',
+      :class="['inline-block cursor-pointer w-full xl:w-auto h-[76px] py-7 px-8',
                'transition-colors duration-200 ease-linear hover:bg-gray-50 hover:focus-within:border-none focus-within:border focus-within:border-black focus-within:border-dotted']"
       :aria-controls="dropdownListId"
       aria-haspopup="menu"

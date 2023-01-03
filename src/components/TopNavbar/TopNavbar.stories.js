@@ -3,12 +3,13 @@ import TopNavbar from './TopNavbar.vue';
 import mdx from './TopNavbar.mdx';
 import TopNavDropdown from '@/components/TopNavDropdown/TopNavDropdown.vue';
 import TopNavDropdownItem from '@/components/TopNavDropdown/TopNavDropdownItem.vue';
-import { Signal, Map } from '../Icons';
+import TopNavButton from '@/components/TopNavDropdown/TopNavButton.vue';
+import { Signal, Map, PersonToPortal } from '../Icons';
 
 export default {
   title: 'Components/Top Navbar',
   component: TopNavbar,
-  subcomponents: { TopNavDropdown, TopNavDropdownItem },
+  subcomponents: { TopNavDropdown, TopNavDropdownItem, TopNavButton },
   parameters: {
     docs: {
       page: mdx
@@ -21,7 +22,7 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { TopNavbar, TopNavDropdown, TopNavDropdownItem, Signal, Map },
+  components: { TopNavbar, TopNavDropdown, TopNavDropdownItem, TopNavButton, Signal, Map, PersonToPortal },
   setup: () => ({ args }),
   template: `
     <TopNavbar v-bind="args">
@@ -49,6 +50,11 @@ const Template = (args, { argTypes }) => ({
             API Status
           </TopNavDropdownItem>
         </TopNavDropdown>
+
+        <TopNavButton>
+            <template #icon> <PersonToPortal /> </template>
+            Sign Out
+        </TopNavButton>
       </div>
     </TopNavbar>
   `
