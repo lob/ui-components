@@ -34,7 +34,11 @@
     <nav
       :id="dropdownListId"
       :aria-labelledby="dropdownToggleId"
-      :class="['hidden height-0 min-w-full xl:bg-white xl:absolute', {'!block xl:hidden': showMobileNav}, {'xl:top-17 xl:!block': showNav}, {'xl:!hidden': !showNav}, {'xl:right-0': right}]"
+      :class="['hidden height-0 min-w-full xl:bg-white xl:absolute',
+               {'!block xl:hidden': showMobileNav},
+               {'xl:top-[78px] xl:!block': showNav},
+               {'xl:!hidden': !showNav},
+               {'xl:right-0': right}]"
     >
       <div
         ref="dropdownMenu"
