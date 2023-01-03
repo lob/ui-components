@@ -33,7 +33,7 @@ const Template = (args, { argTypes }) => ({
         alt=""
       >
       <div class="md:pl-6">
-        <TopNavDropdown right id="1" title="Some menu" navKey="" :mobileNavs="{}">
+        <TopNavDropdown right id="1" title="Resources" navKey="" :mobileNavs="{}">
           <TopNavDropdownItem id="api" to="/settings/main/account">
             <template #icon> <Signal/> </template>
             API Status
@@ -41,13 +41,6 @@ const Template = (args, { argTypes }) => ({
           <TopNavDropdownItem id="help" to="/settings/main/account">
             <template #icon> <Map/> </template>
             Help Center
-          </TopNavDropdownItem>
-        </TopNavDropdown>
-
-        <TopNavDropdown right id="2" title="Another menu" navKey="" :mobileNavs="{}">
-          <TopNavDropdownItem id="api" to="/settings/main/account">
-            <template #icon> <Signal/> </template>
-            API Status
           </TopNavDropdownItem>
         </TopNavDropdown>
 

@@ -1,8 +1,7 @@
 <template>
   <div
-    class="block xl:inline-block relative z-50 mx-0 border-b-2 border-gray-100 xl:border-0 focus:outline-black focus:outline-dotted"
+    class="block xl:inline-block relative z-50 mx-0 border-b-2 border-gray-100 xl:border-0"
     data-testId="menu-container"
-    tabindex="0"
     @mouseenter="showNav = true"
     @mouseleave="showNav = false"
     @keyup.enter="onClick"
@@ -13,14 +12,14 @@
     <div
       :id="dropdownToggleId"
       :class="['inline-block cursor-pointer w-full xl:w-auto h-[76px] py-7 px-8',
-               'transition-colors duration-200 ease-linear hover:bg-gray-50 hover:focus-within:border-none focus-within:border focus-within:border-black focus-within:border-dotted']"
+               'transition-colors duration-200 ease-linear hover:bg-gray-50 focus:outline-black focus:outline-dotted']"
+      tabindex="0"
       :aria-controls="dropdownListId"
       aria-haspopup="menu"
     >
       <div
         ref="titleItem"
-        tabindex="0"
-        class="type-small-700 text-gray-500 whitespace-nowrap focus:outline-none flex items-center"
+        class="flex items-center type-small-700 text-gray-500 whitespace-nowrap"
       >
         {{ title }}
         <ChevronDown
