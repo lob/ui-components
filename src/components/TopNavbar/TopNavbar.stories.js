@@ -3,6 +3,7 @@ import TopNavbar from './TopNavbar.vue';
 import mdx from './TopNavbar.mdx';
 import TopNavDropdown from '@/components/TopNavDropdown/TopNavDropdown.vue';
 import TopNavDropdownItem from '@/components/TopNavDropdown/TopNavDropdownItem.vue';
+import { Signal, Map } from '../Icons';
 
 export default {
   title: 'Components/Top Navbar',
@@ -20,32 +21,36 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { TopNavbar, TopNavDropdown, TopNavDropdownItem },
+  components: { TopNavbar, TopNavDropdown, TopNavDropdownItem, Signal, Map },
   setup: () => ({ args }),
   template: `
-    <topNavbar v-bind="args">
+    <TopNavbar v-bind="args">
+    <div style="width: 76vw; display: flex; justify-content: space-between;">
       <img
         :src="$getConst('lobAssetsUrl') + '/dashboard/navbar/lob-logo.svg'"
         width="95"
         alt=""
       >
       <div class="md:pl-6">
-        <TopNavDropdown id="1" title="Some menu" navKey="" :mobileNavs="{}">
-          <TopNavDropdownItem to="/settings/main/account" small>
-            Some menu item
+        <TopNavDropdown right id="1" title="Some menu" navKey="" :mobileNavs="{}">
+          <TopNavDropdownItem id="api" to="/settings/main/account">
+            <template #icon> <Signal/> </template>
+            API Status
           </TopNavDropdownItem>
-          <TopNavDropdownItem to="/settings/main/account" :imageSource="$getConst('lobAssetsUrl') + '/dashboard/navbar/settings.svg'" small>
-            Another menu item
+          <TopNavDropdownItem id="help" to="/settings/main/account">
+            <template #icon> <Map/> </template>
+            Help Center
           </TopNavDropdownItem>
         </TopNavDropdown>
 
-        <TopNavDropdown id="2" title="Another menu" navKey="" :mobileNavs="{}">
-          <TopNavDropdownItem to="/settings/main/account" :imageSource="$getConst('lobAssetsUrl')+'/dashboard/navbar/settings.svg'" small>
-            Yet another menu item
+        <TopNavDropdown right id="2" title="Another menu" navKey="" :mobileNavs="{}">
+          <TopNavDropdownItem id="api" to="/settings/main/account">
+            <template #icon> <Signal/> </template>
+            API Status
           </TopNavDropdownItem>
         </TopNavDropdown>
       </div>
-    </topNavbar>
+    </TopNavbar>
   `
 });
 

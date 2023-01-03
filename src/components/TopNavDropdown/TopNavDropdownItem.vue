@@ -1,31 +1,21 @@
 
 <template>
-  <div
-    :class="[
-      {'pb-2': small},
-      {'pb-4': !small}
-    ]"
+  <LobLink
+    :to="to"
+    :target="target"
+    :disabled="disabled"
+    :class="['flex flex-nowrap items-center no-underline py-2 px-4 type-small-500 hover:bg-gray-50',
+             'focus-visible:rounded-sm focus-visible:bg-gray-50 focus:outline-black focus:outline-dotted focus:!ring-none',
+             { '!text-gray-500 disabled:!text-gray-300 hover:!text-gray-800 focus-visible:!text-gray-800': !disabled },
+             { '!text-gray-300': disabled }]"
   >
-    <LobLink
-      :to="to"
-      :target="target"
-      class="flex flex-nowrap items-center no-underline hover:text-gray-800 focus:!outline-none focus:!ring-none focus:rounded-none"
-    >
+    <div :class="{ 'mr-4': hasIcon }">
       <slot name="icon" />
-
-      <div class="">
-        <span class="pt-1 whitespace-nowrap type-small-600 text-gray-500 ">
-          <slot />
-        </span>
-        <div
-          v-if="subtitle"
-          class="opacity-80 pr-0 text-gray-700 text-sm hidden xl:block"
-        >
-          {{ subtitle }}
-        </div>
-      </div>
-    </LobLink>
-  </div>
+    </div>
+    <div class="whitespace-nowrap">
+      <slot />
+    </div>
+  </LobLink>
 </template>
 
 <script>
@@ -43,22 +33,14 @@ export default {
       type: String,
       default: '_self'
     },
-    imageSource: {
-      type: String,
-      required: false,
-      default: null
-    },
-    iconClasses: {
-      type: String,
-      default: null
-    },
-    subtitle: {
-      type: String,
-      default: ''
-    },
-    small: {
+    disabled: {
       type: Boolean,
-      default: false
+      required: false
+    }
+  },
+  computed: {
+    hasIcon () {
+      return Boolean(this.$slots.icon);
     }
   }
 };

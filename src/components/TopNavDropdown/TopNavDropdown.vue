@@ -1,7 +1,8 @@
 <template>
   <div
-    class="block xl:inline-block relative z-50 mx-0 px-0 border-b-2 border-gray-100 xl:border-0 focus:border-b-2"
+    class="block xl:inline-block relative z-50 mx-0 border-b-2 border-gray-100 xl:border-0 focus:outline-black focus:outline-dotted"
     data-testId="menu-container"
+    tabindex="0"
     @mouseenter="showNav = true"
     @mouseleave="showNav = false"
     @keyup.enter="onClick"
@@ -11,7 +12,7 @@
   >
     <div
       :id="dropdownToggleId"
-      :class="['relative inline-block cursor-pointer w-full xl:w-auto py-6 px-10',
+      :class="['relative inline-block cursor-pointer w-full xl:w-auto px-8 py-7',
                'transition-colors duration-200 ease-linear hover:bg-gray-50 hover:focus-within:border-none focus-within:border focus-within:border-black focus-within:border-dotted']"
       :aria-controls="dropdownListId"
       aria-haspopup="menu"
@@ -37,9 +38,9 @@
     >
       <div
         ref="dropdownMenu"
-        :class="['height-0 pt-6 pb-4 px-4 h-auto w-full mt-1 border-gray-100 opacity-100',
+        :class="['height-0 p-4 h-auto w-full mt-1 opacity-100',
                  {'!w-full xl:!mt-0': showMobileNav},
-                 {'boxShadowGray xl:border-none  xl:bg-white': showNav}]"
+                 {'md:shadow-large xl:border-none  xl:bg-white': showNav}]"
       >
         <slot />
       </div>
@@ -48,7 +49,7 @@
 </template>
 
 <script>
-import ChevronDown from '../Icons/ChevronDown.vue';
+import { ChevronDown } from '../Icons';
 export default {
   name: 'TopNavDropdown',
   components: { ChevronDown },
@@ -125,11 +126,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-@screen md {
-  .boxShadowGray {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.08);
-  }
-}
-</style>
