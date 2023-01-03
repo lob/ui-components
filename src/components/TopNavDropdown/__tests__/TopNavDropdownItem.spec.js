@@ -4,11 +4,6 @@ import { createRouter, createMemoryHistory } from 'vue-router';
 import { constants } from '@/config';
 import TopNavDropdownItem from '../TopNavDropdownItem.vue';
 
-const initialProps = {
-  to: '/settings',
-  imageSource: 'image.svg'
-};
-
 const routes = [
   { path: '', component: { template: '<div></div>' } },
   { path: '/', component: { template: '<div>/</div>' } },
@@ -30,15 +25,13 @@ const renderComponent = async (options) => {
 
 describe('TopNavDropdownItem', () => {
 
-  it('renders the subtitle when a subtitle is passed in', async () => {
-    const props = {
-      ...initialProps,
-      subtitle: 'subtitle'
-    };
-    const { queryByText } = await renderComponent({ props });
+  it('renders correctly', async () => {
+    const props = { to: '/settings' };
+    const slots = { default: 'settings' };
+    const { queryByText } = await renderComponent({ props, slots });
 
-    const subtitle = queryByText(props.subtitle);
-    expect(subtitle).toBeInTheDocument();
+    const itemTitle = queryByText('settings');
+    expect(itemTitle).toBeInTheDocument();
   });
 
 });
