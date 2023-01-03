@@ -1,4 +1,4 @@
-import routeDecorator from '../../../.storybook/routeDecorator';
+import routeDecorator, { routeTemplate } from '../../../.storybook/routeDecorator';
 import TopNavbar from './TopNavbar.vue';
 import mdx from './TopNavbar.mdx';
 import TopNavDropdown from '@/components/TopNavDropdown/TopNavDropdown.vue';
@@ -16,7 +16,14 @@ export default {
     }
   },
   decorators: [
-    routeDecorator()
+    routeDecorator('/', [
+      {
+        path: '/settings/main/account',
+        component: {
+          template: routeTemplate('account')
+        }
+      }
+    ])
   ]
 };
 
@@ -32,7 +39,7 @@ const Template = (args, { argTypes }) => ({
         width="95"
         alt=""
       >
-      <div class="md:pl-6">
+      <div class="flex items-center">
         <TopNavDropdown right id="1" title="Resources" navKey="" :mobileNavs="{}">
           <TopNavDropdownItem id="api" to="/settings/main/account">
             <template #icon> <Signal/> </template>
@@ -44,10 +51,11 @@ const Template = (args, { argTypes }) => ({
           </TopNavDropdownItem>
         </TopNavDropdown>
 
-        <TopNavButton>
+        <TopNavButton style="margin-left:1px;">
             <template #icon> <PersonToPortal /> </template>
             Sign Out
         </TopNavButton>
+      </div>
       </div>
     </TopNavbar>
   `
