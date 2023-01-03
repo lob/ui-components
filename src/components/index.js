@@ -45,6 +45,7 @@ export { default as Tooltip } from './Tooltip/Tooltip';
 export { default as TopNavbar } from './TopNavbar/TopNavbar';
 export { default as TopNavDropdown } from './TopNavDropdown/TopNavDropdown';
 export { default as TopNavDropdownItem } from './TopNavDropdown/TopNavDropdownItem';
+export { default as TopNavButton } from './TopNavDropdown/TopNavButton';
 export { default as Stepper } from './Stepper/Stepper';
 export { default as StepperItem } from './Stepper/StepperItem';
 export { default as StepperVertical } from './StepperVertical/StepperVertical';

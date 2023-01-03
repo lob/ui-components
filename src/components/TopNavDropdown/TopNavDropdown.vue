@@ -43,7 +43,7 @@
         ref="dropdownMenu"
         :class="['height-0 p-4 h-auto w-full mt-1 opacity-100',
                  {'!w-full xl:!mt-0': showMobileNav},
-                 {'md:shadow-large xl:border-none  xl:bg-white': showNav}]"
+                 {'md:shadow-large xl:border-none xl:bg-white': showNav}]"
       >
         <slot />
       </div>
