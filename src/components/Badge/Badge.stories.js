@@ -28,8 +28,8 @@ export default {
         type: 'select'
       }
     },
-    shape: {
-      options: ['rounded', 'square'],
+    size: {
+      options: ['default', 'small'],
       control: {
         type: 'select'
       }

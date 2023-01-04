@@ -1,10 +1,8 @@
 <template>
   <div class="inline-block">
     <div
-      :class="['flex justify-center align-center type-small-600 text-gray-500 bg-gray-50',
-               {'!type-xs-600' : small},
-               { 'px-4 py-1 rounded-full': rounded },
-               { 'px-2 py-1 rounded-sm': square },
+      :class="['flex justify-center align-center px-4 py-1 rounded-full text-gray-500 bg-gray-50',
+               [ small ? '!type-xs-600' : 'type-small-600' ],
                { 'bg-blue-50 text-blue-600': info },
                { 'bg-green-50 text-green-700': success },
                { 'bg-orange-50 text-orange-600': warning },
@@ -26,13 +24,6 @@ export default {
       default: 'default',
       validator: function (value) {
         return ['default', 'info', 'success', 'warning', 'error', 'gradient'].includes(value);
-      }
-    },
-    shape: {
-      type: String,
-      default: 'rounded',
-      validator: function (value) {
-        return ['rounded', 'square'].includes(value);
       }
     },
     size: {
@@ -58,12 +49,6 @@ export default {
     },
     gradient () {
       return this.variant === 'gradient';
-    },
-    rounded () {
-      return this.shape === 'rounded';
-    },
-    square () {
-      return this.shape === 'square';
     },
     small () {
       return this.size === 'small';
