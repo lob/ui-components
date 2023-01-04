@@ -112,7 +112,7 @@
       <button
         v-if="withCopyButton"
         type="button"
-        class="rounded-full px-3 h-7 type-xs-700 bg-black text-white hover:bg-gray-700 focus:outline-dashed focus:outline-black focus:outline-offset-1 active:bg-gray-800 focus:bg-gray-800"
+        class="rounded-full px-3 h-7 type-xs-700 bg-black text-white hover:bg-gray-700 focus-visible:outline-dashed focus-visible:outline-black focus-visible:outline-offset-1 active:bg-gray-800 focus:bg-gray-800"
         @click="copyToClipboard"
       >
         Copy
