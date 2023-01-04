@@ -60,7 +60,7 @@ const WithoutIcons = (args, { argTypes }) => ({
   components: { TopNavDropdown, TopNavDropdownItem, Signal, Map, CircleQuestion },
   setup: () => ({ args }),
   template: `
-    <TopNavDropdown v-bind="args">
+    <TopNavDropdown v-bind="args" navKey="">
       <TopNavDropdownItem id="api" to="/settings/main/account">
         API Status
       </TopNavDropdownItem>
@@ -86,7 +86,7 @@ const ItemTemplate = (args, { argTypes }) => ({
   components: { TopNavDropdownItem, Signal },
   setup: () => ({ args }),
   template: `
-    <TopNavDropdownItem id="1" to="/settings/main/account">
+    <TopNavDropdownItem id="1" to="/settings/main/account" navKey="">
       <template #icon> <Signal/> </template>
       API Status
     </TopNavDropdownItem>

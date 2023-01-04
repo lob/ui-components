@@ -22,7 +22,7 @@ The mega menu renders a semantic `nav` element. It is made to work with `TopNavD
 Example of using this component in a template, with a TopNavDropdownItem
 
 ```html
-<TopNavDropdown title="Resources">
+<TopNavDropdown title="Resources" navKey="">
   <TopNavDropdownItem to="/settings/main/account">
     Settings
   </TopNavDropdownItem>
@@ -46,7 +46,7 @@ You can optionally provide an icon to display for the item in the `#icon` slot.
 Example of using this component in a template
 
 ```html
-<TopNavDropdownItem to="/overview">
+<TopNavDropdownItem to="/overview" navKey="">
   <template #icon> <Signal /> </template>
   API Status
 </TopNavDropdownItem>
