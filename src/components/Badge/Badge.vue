@@ -24,11 +24,7 @@ export default {
       type: String,
       default: 'default',
       validator: function (value) {
-<<<<<<< HEAD
-        return ['default', 'info', 'success', 'warning', 'error', 'gradient'].includes(value);
-=======
         return ['default', 'secondary', 'info', 'success', 'warning', 'error', 'gradient'].includes(value);
->>>>>>> 9194502 (add secondary badge variant and cleanup mdx doc)
       }
     },
     size: {
