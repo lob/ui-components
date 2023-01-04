@@ -33,7 +33,7 @@ export default {
 
 <style lang="scss" scoped>
 .customOutline:has(:focus-visible) {
-  @apply outline-dotted;
+  @apply outline-dashed;
   @apply outline-black;
   @apply outline-offset-1;
 }
