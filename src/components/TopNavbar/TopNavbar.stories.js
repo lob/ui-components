@@ -4,7 +4,7 @@ import mdx from './TopNavbar.mdx';
 import TopNavDropdown from '@/components/TopNavDropdown/TopNavDropdown.vue';
 import TopNavDropdownItem from '@/components/TopNavDropdown/TopNavDropdownItem.vue';
 import TopNavButton from '@/components/TopNavDropdown/TopNavButton.vue';
-import { Signal, Map, PersonToPortal } from '../Icons';
+import { Signal, Map, PersonToPortal, CircleQuestion } from '../Icons';
 
 export default {
   title: 'Components/Top Navbar',
@@ -29,7 +29,7 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { TopNavbar, TopNavDropdown, TopNavDropdownItem, TopNavButton, Signal, Map, PersonToPortal },
+  components: { TopNavbar, TopNavDropdown, TopNavDropdownItem, TopNavButton, Signal, Map, PersonToPortal, CircleQuestion },
   setup: () => ({ args }),
   template: `
     <TopNavbar v-bind="args">
@@ -48,6 +48,10 @@ const Template = (args, { argTypes }) => ({
           <TopNavDropdownItem id="help" to="/settings/main/account">
             <template #icon> <Map/> </template>
             Help Center
+          </TopNavDropdownItem>
+          <TopNavDropdownItem id="support" to="/settings/main/account">
+            <template #icon> <CircleQuestion/> </template>
+            Support
           </TopNavDropdownItem>
         </TopNavDropdown>
 
