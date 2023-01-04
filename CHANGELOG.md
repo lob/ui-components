@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## v2.0.0-beta.20
+
+### Features
+
+Updates the styles of the `Badge` component
+
+### Breaking changes
+
+- removes the `shape` prop and `square` shape, the Badge will be rounded by default
+- removes `flint` and `turquoise` colors (adds `default` and `secondary` variants)
+
 ## v2.0.0-beta.19
 
 ### Features
