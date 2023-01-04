@@ -27,7 +27,7 @@ describe('TopNavDropdown', () => {
     const { queryByRole } = renderComponent({ props });
 
     const nav = queryByRole('navigation');
-    expect(nav).not.toHaveClass('xl:!block');
+    expect(nav).toHaveClass('!hidden');
   });
 
   it('shows the nested submenu on hover', async () => {
@@ -38,7 +38,7 @@ describe('TopNavDropdown', () => {
     await fireEvent.mouseEnter(menuContainer);
 
     const nav = queryByRole('navigation');
-    expect(nav).toHaveClass('xl:!block');
+    expect(nav).toHaveClass('!block');
   });
 
   it('emits a click event', async () => {
