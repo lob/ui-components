@@ -3,70 +3,86 @@
     <component
       :is="tag"
       :class="[
-        'no-underline py-3 !px-6 max-h-12 flex items-center w-full font-light whitespace-nowrap !text-sm text-left !text-gray-800 relative overflow-hidden hover:text-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent'
+        'py-3 !px-4 h-12 flex items-center w-full no-underline whitespace-nowrap',
+        'hover:bg-gray-50 focus:!outline-none focus:ring-none focus-visible:!rounded-none focus:ring-0 focus-visible:bg-gray-50 focus-visible:!ring-0',
+        { '!type-base-500 !text-gray-500 hover:text-gray-500 active:!text-gray-500' : !hasActiveChild && !isActive },
+        { '!type-base-600 !text-gray-800 hover:text-gray-800 active:text-gray-800' : hasActiveChild },
+        { '!type-base-600 !text-gray-800': isActive }
       ]"
+      :aria-label="title"
       :to="to"
       :underline="false"
-      active-class="text-normal bg-white-300 font-medium"
       @click.stop="handleNavigation"
       @[clickEvent]="toggleSubNav"
     >
-      <img
-        :src="iconSrc"
-        :alt="iconAltText"
-        :class="iconClasses ? `${iconClasses}` : 'w-6 align-bottom'"
-      >
+      <div class="w-5 h-5 transition-transform duration-100 ease-in">
+        <div v-if="expanded">
+          <slot
+            name="icon"
+            :title="title"
+          />
+        </div>
+        <div v-else>
+          <Tooltip position="right">
+            <template #content>
+              <div class="whitespace-nowrap !type-xs-500 !leading-3">
+                {{ title }}
+              </div>
+            </template>
+            <template #trigger>
+              <slot
+                name="icon"
+                :title="title"
+              />
+            </template>
+          </Tooltip>
+        </div>
+      </div>
       <span
         :class="[
-          'px-4',
-          { expanded: expanded },
-          { 'collapsed xl:hidden': !expanded },
+          'w-full flex items-center justify-between',
+          { 'xl:max-w-full ml-4': expanded },
+          { 'xl:max-w-0 xl:overflow-hidden xl:hidden': !expanded },
           itemClass
         ]"
         data-testid="collapsibleElement"
       >
         {{ title }}
-        <img
+        <ChevronDown
           v-if="collapsible && hasChildNavItems"
           :class="[
-            'w-6 absolute top-2 right-3',
-            { 'transform rotate-180': subNavOpen }
+            'ml-6 inline-block text-gray-500 transition-transform duration-100 ease-in',
+            { 'transform -rotate-180': subNavOpen }
           ]"
-          :src="`${$getConst('lobAssetsUrl')}/dashboard/navbar/caret-down.svg`"
-          :alt="subNavOpen ? 'Collapse' : 'Expand'"
-        >
+          role="img"
+          :title="subNavOpen ? 'Collapse' : 'Expand'"
+          data-testid="collapse-expand-icon"
+        />
       </span>
     </component>
 
+    <!-- this is a v-show so that "isActive" change is picked up  -->
     <ul
-      v-if="subNavOpen"
-      :class="['pl-12', { 'xl:hidden': !expanded }]"
+      v-show="subNavOpen"
+      :class="['ml-12 bg-gradient-to-b from-[#9f94ff] to-[#fa6a8c]', { 'xl:hidden': !expanded }]"
     >
-      <slot />
+      <div class="ml-0.5 bg-white">
+        <slot />
+      </div>
     </ul>
   </li>
 </template>
 
 <script>
+import ChevronDown from '../Icons/ChevronDown';
 import LobLink from '../Link/Link';
+import Tooltip from '../Tooltip/Tooltip.vue';
 
 export default {
   name: 'MainNavigationItem',
-  components: { LobLink },
+  components: { ChevronDown, LobLink, Tooltip },
   props: {
     title: {
-      type: String,
-      required: true
-    },
-    iconSrc: {
-      type: String,
-      required: true
-    },
-    iconClasses: {
-      type: String,
-      default: null
-    },
-    iconAltText: {
       type: String,
       required: true
     },
@@ -95,15 +111,22 @@ export default {
       default: ''
     }
   },
-  emits: ['nav', 'navItemWithChildClick'],
+  emits: ['nav', 'toggleCollapse'],
   data () {
     return {
-      subNavOpen: this.expanded && !this.subNavCollapsed
+      subNavOpen: this.expanded && !this.subNavCollapsed,
+      hasActiveChild: false
     };
   },
   computed: {
     hasChildNavItems () {
       return Boolean(this.$slots.default);
+    },
+    isActive () {
+      if (this.to === '/') {
+        return this.$route.path === '/';
+      }
+      return this.$route.path.startsWith(this.to);
     },
     tag () {
       return this.to ? 'LobLink' : 'button';
@@ -117,9 +140,11 @@ export default {
       if (this.collapsible) {
         this.subNavOpen = !this.subNavOpen;
       }
-
-      this.$emit('navItemWithChildClick', this.id);
-
+      if (!this.expanded) {
+        this.$parent.expanded = true;
+        this.subNavOpen = true;
+        this.$emit('toggleCollapse');
+      }
     },
     handleNavigation () {
       if (this.to) {
@@ -129,18 +154,3 @@ export default {
   }
 };
 </script>
-
-<style scoped lang="scss">
-@screen xl {
-  .expanded {
-    max-width: 100%;
-    transition: max-width 0.3s ease-in;
-  }
-
-  .collapsed {
-    max-width: 0;
-    overflow: hidden;
-    transition: max-width 0.3s ease-out;
-  }
-}
-</style>

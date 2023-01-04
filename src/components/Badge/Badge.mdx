@@ -1,5 +1,10 @@
-import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
-import Badge from './Badge.vue';
+import {
+  Preview,
+  Story,
+  ArgsTable,
+  PRIMARY_STORY,
+} from "@storybook/addon-docs";
+import Badge from "./Badge.vue";
 
 # Badge
 
@@ -11,33 +16,24 @@ Badges are a flexible component used to display small nuggets of text prominentl
 
 ## How to Use
 
-There are 6 variants of badges: info, success, warning, error, turquoise, and flint. By default, the badge will display as info.
+There are 6 variants of badges: `default`, `secondary`, `info`, `success`, `warning`, and `error`.
 
 You can change the variant of the badge by adding the `variant` prop to the component.
 
-There are also 2 shapes of badges: rounded and square. By default, the badge will display as rounded.
+There are 2 sizes of badges: `default` and `small`.
 
-You can change the shape of the badge by adding the `shape` prop to the component.
+To change the size of the badge add the `size` prop to the component.
 
-There are also 2 sizes of badges: default and small.
+Please note: though you can only insert text in the Storybook demo, the badge component will accept any valid HTML or Vue component.
 
-You can change the size of the badge by adding the `size` prop to the component.
-
-Please note: though you can only insert text in the Storybook demo, the card component will accept any valid HTML or Vue component.
-
-Example of using this component as a default rounded info badge in a template
+Example of using this component as a default badge in a template
 
 ```html
 <Badge>
-  <p>You are in <span class="bold">LIVE</span> mode, all verifications will be charged according to your <a href="#">chosen plan</a>.</p>
-</Badge>
-```
-
-Example of using this component as a square warning badge in a template
-
-```html
-<Badge variant="warning" shape="square">
-  <p>You are in <span class="bold">LIVE</span> mode, all verifications will be charged according to your <a href="#">chosen plan</a>.</p>
+  <p>
+    You are in <span class="bold">LIVE</span> mode, all verifications will be
+    charged according to your <a href="#">chosen plan</a>.
+  </p>
 </Badge>
 ```
 

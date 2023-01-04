@@ -2,10 +2,10 @@
   <fieldset
     role="radiogroup"
   >
-    <legend :class="[{'text-sm font-normal normal-case tracking-normal text-gray-500 mb-2 border-b-0': !srOnlyLegend}, {'sr-only': srOnlyLegend}]">
+    <legend :class="[{'text-sm type-small-300 text-gray-500 mb-1 border-b-0': !srOnlyLegend}, {'sr-only': srOnlyLegend}]">
       {{ legend }}
     </legend>
-    <div :class="['shadow flex flex-wrap p-1 bg-white rounded', { 'justify-center': center }]">
+    <div :class="['customOutline flex flex-wrap bg-white p-[1px] border border-gray-100 rounded-sm', { 'justify-center': center }]">
       <slot />
     </div>
   </fieldset>
@@ -31,3 +31,10 @@ export default {
 };
 </script>
 
+<style lang="scss" scoped>
+.customOutline:has(:focus-visible) {
+  @apply outline-dashed;
+  @apply outline-black;
+  @apply outline-offset-1;
+}
+</style>
