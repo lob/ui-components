@@ -8,7 +8,7 @@
         { 'type-small-700 py-3 px-5 max-h-11': regular },
         { 'type-xs-700 py-2 px-4 max-h-8': small },
         'flex justify-center items-center rounded-full bg-white text-gray-800 border border-gray-800 whitespace-nowrap h-min',
-        'hover:bg-gray-50 active:bg-gray-100 focus:bg-gray-100 focus:outline-dashed focus:outline-black focus:outline-offset-1'
+        'hover:bg-gray-50 active:bg-gray-100 focus:bg-gray-100 focus-visible:outline-dashed focus-visible:outline-black focus-visible:outline-offset-1'
       ]"
       @keydown.enter="onKeydown"
       @keydown.space="onKeydown"

@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## v2.0.0-beta.19
+
+### Features
+
+Updates the styles of the `Switch` component
+
+## v2.0.0-beta.18
+
+### Features
+
+Updates the styles of `Button` and `Link` components to only show the outline for keyboard navigation
+
 ## v2.0.0-beta.17
 
 ### Features
