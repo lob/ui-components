@@ -34,7 +34,7 @@ describe('Link', () => {
     const { queryByRole } = await renderComponent({ props });
 
     const link = queryByRole('link');
-    expect(link).toBeInTheDocument();
+    expect(link).toBeInTheDocument().toHaveClass('text-blue-600');
   });
 
   it('renders correctly when an internal link with an object', async () => {
@@ -68,7 +68,7 @@ describe('Link', () => {
     const { queryByRole } = await renderComponent({ props });
 
     const link = queryByRole('link');
-    expect(link).toBeInTheDocument();
+    expect(link).toBeInTheDocument().toHaveClass('!text-gray-400 pointer-events-none');
     expect(link).toHaveAttribute('aria-disabled', 'true');
   });
 
@@ -120,19 +120,32 @@ describe('Link', () => {
     expect(linkContent).not.toHaveClass('underline');
   });
 
-  it('renders the primary button style with warning color', async () => {
+  it('renders the primary button style', async () => {
     const slotContent = 'This is a link that looks like a button';
     const slots = { default: slotContent };
     const props = {
       ...initialProps,
-      variant: 'primary-button',
-      warning: true
+      variant: 'primary-button'
     };
     const { queryByText } = await renderComponent({ props, slots });
 
     const linkContent = queryByText(slotContent);
     expect(linkContent).toBeInTheDocument();
-    expect(linkContent).toHaveClass('bg-gradient-114 from-[#db1818] to-[#ec4949]');
+    expect(linkContent).toHaveClass('py-2 px-4 bg-black text-white');
+  });
+
+  it('renders the secondary button style', async () => {
+    const slotContent = 'This is a link that looks like a button';
+    const slots = { default: slotContent };
+    const props = {
+      ...initialProps,
+      variant: 'secondary-button'
+    };
+    const { queryByText } = await renderComponent({ props, slots });
+
+    const linkContent = queryByText(slotContent);
+    expect(linkContent).toBeInTheDocument();
+    expect(linkContent).toHaveClass('py-2 px-4 bg-white text-gray-800 border border-gray-800');
   });
 
 });

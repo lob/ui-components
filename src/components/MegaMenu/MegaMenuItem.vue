@@ -15,14 +15,15 @@
         alt=""
         :class="[
           'self-center transition-transform duration-200 ease-linear transform hover:scale-110',
-          {'w-10 h-10': small},
-          {'w-12 h-12': !small},
+          {'w-10 h-10': small && !iconClasses},
+          {'w-12 h-12': !small && !iconClasses},
+          {[`${iconClasses}`]: iconClasses},
           // Preserves the spacing this element creates.
           {'invisible': !imageSource}]"
       >
       <div class="pl-2 text-gray-900">
         <span
-          :class="['pt-1 opacity-75 transition-colors transition-opacity no-underline xl:pb-0.5 block relative align-top mx-auto whitespace-nowrap border-none text-normal text-lg hover:text-primary-500', {'py-1': small}]"
+          :class="['pt-1 opacity-75 transition-colors transition-opacity no-underline xl:pb-0.5 block relative align-top mx-auto whitespace-nowrap border-none type-base-500 text-lg hover:text-primary-500', {'py-1': small}]"
         >
           <slot />
         </span>
@@ -55,6 +56,10 @@ export default {
     imageSource: {
       type: String,
       required: false,
+      default: null
+    },
+    iconClasses: {
+      type: String,
       default: null
     },
     subtitle: {

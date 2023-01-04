@@ -20,20 +20,20 @@
         <Badge
           v-for="option in modelValue"
           :key="option.label || option"
-          variant="turquoise"
           :size="size"
-          class="my-2 ml-2"
         >
           <div class="flex items-center">
             {{ option.label || option }}
-            <LobButton
-              variant="none"
-              class="mt-0.5 ml-1 h-min"
+            <button
+              class="ml-2 -mr-1 h-min"
+              :aria-label="`t('multiselect.deselectLabel')-${option}`"
               @click="() => handleOptionDeselect(option)"
             >
-              <XmarkLarge size="s" />
-              <span class="sr-only">{{ t('multiselect.deselectLabel') }}</span>
-            </LobButton>
+              <XmarkLarge
+                size="s"
+                class="h-3"
+              />
+            </button>
           </div>
         </Badge>
       </template>
@@ -72,15 +72,14 @@
 <script>
 import TextInput from '../TextInput/TextInput';
 import Badge from '../Badge/Badge';
-import LobButton from '../Button/Button';
-import XmarkLarge from '../Icons/XmarkLarge';
+import { XmarkLarge } from '@/components/Icons';
 import { filterArrayByArray } from '../../utils/array';
 
 export default {
   name: 'Multiselect',
-  components: { TextInput, Badge, LobButton, XmarkLarge },
+  components: { TextInput, Badge, XmarkLarge },
   props: {
-    modelValue: { // selected
+    modelValue: {
       type: Array,
       required: true
     },

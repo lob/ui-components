@@ -4,7 +4,7 @@
       v-if="iconSrc"
       :src="iconSrc"
       :alt="iconAltText"
-      class="w-6 mr-1.5 align-bottom"
+      :class="iconClasses ? `${iconClasses}` : 'w-6 mr-1.5 align-bottom'"
     >
     <router-link
       v-for="crumb in crumbs"
@@ -44,6 +44,10 @@ export default {
     iconAltText: {
       type: String,
       default: ''
+    },
+    iconClasses: {
+      type: String,
+      default: null
     }
   },
   computed: {

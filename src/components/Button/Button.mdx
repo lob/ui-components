@@ -11,18 +11,21 @@ import LobButton from "./Button.vue";
 Buttons are styled semantic buttons that will handle all of the appropriate button states.
 
 <Preview>
-  <Story id="components-button--default" />
+  <Story id="components-button--primary" />
 </Preview>
 
 ## How to Use
 
-There are 4 variants of buttons: 'primary' & 'secondary', 'subtle', and 'link' style.
+There are 7 variants of buttons: `'primary'` (default), `'secondary'`, `'quiet'`, `'ghost'`, `'danger'`, `'secondary-danger'` and `'link'` style.
+
+The Button can be `'small'`, `'medium'`, `'large'` (default), or `'xl'`, defined by the `size` prop (String).
 
 You can change the variant of the button by adding the `variant` prop (String) to the component.
 
-The Button can be regular size (default, height: 48px) & or small (32px) with the `small` prop (Boolean).
+The `'link'` variant will render a button styled as the `Link` component.
+The `bold` prop (boolean), adds a bolder font & removes the underline from the link.
 
-The `warning` prop (Boolean) will change the button color to dark red if primary, and red outline if secondary.
+The disabled property applies disabled styles.
 
 Please note: though you can only insert text in the Storybook demo, the button component will accept any valid HTML or Vue component, as it uses a slot.
 
@@ -30,6 +33,12 @@ Example of using this component as a primary button in a template
 
 ```html
 <lob-button> This is a primary button </lob-button>
+```
+
+Example of using this component as a primary button with an icon in a template
+
+```html
+<lob-button> I am a button <Icon class="w-6 h-6 ml-1" /> </lob-button>
 ```
 
 Example of using this component as a secondary button in a template
