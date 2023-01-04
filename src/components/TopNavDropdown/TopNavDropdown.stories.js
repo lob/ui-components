@@ -50,7 +50,7 @@ const Template = (args, { argTypes }) => ({
 
 export const Primary = Template.bind({});
 Primary.args = {
-  title: 'Products',
+  title: 'Resources',
   id: '1',
   open: false
 };
@@ -76,7 +76,7 @@ const WithoutIcons = (args, { argTypes }) => ({
 
 export const WithoutItemIcons = WithoutIcons.bind({});
 WithoutItemIcons.args = {
-  title: 'Products',
+  title: 'Resources',
   id: '1',
   open: false
 };
@@ -88,7 +88,7 @@ const ItemTemplate = (args, { argTypes }) => ({
   template: `
     <TopNavDropdownItem id="1" to="/settings/main/account">
       <template #icon> <Signal/> </template>
-      And some text
+      API Status
     </TopNavDropdownItem>
   `
 });
