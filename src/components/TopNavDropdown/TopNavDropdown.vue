@@ -1,6 +1,6 @@
 <template>
   <div
-    class="block xl:inline-block relative z-50 mx-0 border-b-2 border-gray-100 xl:border-0"
+    class="inline-block relative z-50"
     data-testId="menu-container"
     @mouseenter="showNav = true"
     @mouseleave="showNav = false"
@@ -11,7 +11,7 @@
   >
     <div
       :id="dropdownToggleId"
-      :class="['inline-block cursor-pointer w-full xl:w-auto h-[76px] py-7 px-8',
+      :class="['inline-block cursor-pointer w-auto h-[76px] py-7 px-8',
                'transition-colors duration-200 ease-linear hover:bg-gray-50 focus:outline-black focus:outline-dotted']"
       tabindex="0"
       :aria-controls="dropdownListId"
@@ -26,24 +26,22 @@
           v-if=" showChevron"
           size="s"
           :class="['ml-2 -mr-2 transition-transform duration-200 ease-linear',
-                   { 'xl:transform xl:-rotate-180': showNav }]"
+                   { '-rotate-180': showNav }]"
         />
       </div>
     </div>
     <nav
       :id="dropdownListId"
       :aria-labelledby="dropdownToggleId"
-      :class="['hidden height-0 min-w-full xl:bg-white xl:absolute',
-               {'!block xl:hidden': showMobileNav},
-               {'xl:top-[78px] xl:!block': showNav},
-               {'xl:!hidden': !showNav},
-               {'xl:right-0': right}]"
+      :class="['min-w-full bg-white absolute',
+               { 'top-[78px] !block': showNav },
+               { '!hidden': !showNav },
+               { 'right-0': right }]"
     >
       <div
         ref="dropdownMenu"
-        :class="['height-0 p-4 h-auto w-full mt-1 opacity-100',
-                 {'!w-full xl:!mt-0': showMobileNav},
-                 {'md:shadow-large xl:border-none xl:bg-white': showNav}]"
+        :class="['p-4 h-auto w-full mt-1 opacity-100',
+                 { 'md:shadow-large bg-white': showNav }]"
       >
         <slot />
       </div>
@@ -81,8 +79,7 @@ export default {
   emits: ['click'],
   data () {
     return {
-      showNav: false,
-      showMobileNav: this.open
+      showNav: false
     };
   },
   computed: {
@@ -91,11 +88,6 @@ export default {
     },
     dropdownListId () {
       return `dropdown-list-${this.id}`;
-    }
-  },
-  watch: {
-    open (val) {
-      this.showMobileNav = val;
     }
   },
   methods: {
@@ -114,16 +106,13 @@ export default {
     },
     onBlur () {
       this.showNav = false;
-      this.showMobileNav = false;
     },
     onEscape () {
       this.$refs.titleItem.focus();
       this.showNav = false;
-      this.showMobileNav = false;
     },
     onClick ($event) {
       this.showNav = !this.showNav;
-      this.showMobileNav = !this.showMobileNav;
       this.$emit('click', $event);
     }
   }
