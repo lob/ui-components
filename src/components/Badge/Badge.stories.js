@@ -23,13 +23,13 @@ export default {
       }
     },
     variant: {
-      options: ['info', 'success', 'warning', 'error', 'turquoise', 'flint', 'gradient'],
+      options: ['default', 'secondary', 'info', 'success', 'warning', 'error', 'gradient'],
       control: {
         type: 'select'
       }
     },
-    shape: {
-      options: ['rounded', 'square'],
+    size: {
+      options: ['default', 'small'],
       control: {
         type: 'select'
       }
