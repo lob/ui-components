@@ -3,6 +3,7 @@
     <div
       :class="['flex justify-center align-center px-4 py-1 rounded-full text-gray-500 bg-gray-50',
                [ small ? '!type-xs-600' : 'type-small-600' ],
+               { '!bg-white text-gray-500 border border-gray-100': secondary },
                { 'bg-blue-50 text-blue-600': info },
                { 'bg-green-50 text-green-700': success },
                { 'bg-orange-50 text-orange-600': warning },
@@ -23,7 +24,11 @@ export default {
       type: String,
       default: 'default',
       validator: function (value) {
+<<<<<<< HEAD
         return ['default', 'info', 'success', 'warning', 'error', 'gradient'].includes(value);
+=======
+        return ['default', 'secondary', 'info', 'success', 'warning', 'error', 'gradient'].includes(value);
+>>>>>>> 9194502 (add secondary badge variant and cleanup mdx doc)
       }
     },
     size: {
@@ -35,6 +40,9 @@ export default {
     }
   },
   computed: {
+    secondary () {
+      return this.variant === 'secondary';
+    },
     info () {
       return this.variant === 'info';
     },
