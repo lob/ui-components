@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v2.0.0-beta.19
+
+### Features
+
+Updates the styles of the `Switch` component
+
 ## v2.0.0-beta.18
 
 ### Features
