@@ -44,7 +44,7 @@
           :class="variantDetails.color"
           data-testid="alertIcon"
         />
-        <div :class="['type-xs-400', {'mt-1': hasHeading && hasContent}]">
+        <div :class="['type-xs-400', {'mt-2': hasHeading && hasContent}]">
           <slot /> <!-- text/any content goes in the default slot -->
         </div>
       </div>
@@ -65,11 +65,9 @@
 </template>
 
 <script>
-import { Info, Checkmark, AlertCircle, XmarkLarge, ArrowLongRight } from '@/components/Icons';
+import { Info, Checkmark, AlertCircle, XmarkLarge, CircleInfo, CircleCheck, CircleExclamation } from '@/components/Icons';
 import LobLink from '../Link/Link';
-import CircleInfo from '../Icons/CircleInfo.vue';
-import CircleCheck from '../Icons/CircleCheck.vue';
-import CircleExclamation from '../Icons/CircleExclamation.vue';
+import ArrowUpRight from '../Icons/ArrowUpRight.vue';
 
 const LearnMoreLink = {
   template: `<LobLink
@@ -77,12 +75,12 @@ const LearnMoreLink = {
           :underline="false"
           target="_blank"
           role="link"
-          class="ml-4 !type-xs-400 text-gray-500"
+          class="ml-4 !type-small-500 text-gray-500 hover:!text-gray-500"
         >
           {{ linkDisplayText }}
-          <ArrowLongRight class="inline ml-0.5 mb-0.5" />
+          <ArrowUpRight class="inline ml-1 mb-1" />
         </LobLink>`,
-  components: { LobLink, ArrowLongRight },
+  components: { LobLink, ArrowUpRight },
   props: {
     learnMoreLink: String,
     linkDisplayText: String
