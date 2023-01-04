@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v2.0.0-beta.21
+
+### Features
+
+Adds the `TopNavDropdown` component that replaces the `MegaMenu` component
+
+### Breaking changes
+
+- the `MegaMenu` component is removed from the library
+
 ## v2.0.0-beta.20
 
 ### Features
