@@ -34,7 +34,7 @@
       :id="dropdownListId"
       :aria-labelledby="dropdownToggleId"
       :class="['min-w-full bg-white absolute',
-               { 'top-[78px] !block': showNav },
+               { 'top-[76px] !block border-t-2 border-gray-50': showNav },
                { '!hidden': !showNav },
                { 'right-0': right }]"
     >
