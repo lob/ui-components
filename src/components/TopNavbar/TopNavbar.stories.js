@@ -4,7 +4,7 @@ import mdx from './TopNavbar.mdx';
 import TopNavDropdown from '@/components/TopNavDropdown/TopNavDropdown.vue';
 import TopNavDropdownItem from '@/components/TopNavDropdown/TopNavDropdownItem.vue';
 import TopNavButton from '@/components/TopNavDropdown/TopNavButton.vue';
-import { Signal, Map, PersonToPortal, CircleQuestion } from '../Icons';
+import { Signal, Map, PersonToPortal, CircleQuestion, Gear } from '../Icons';
 
 export default {
   title: 'Components/Top Navbar',
@@ -29,7 +29,7 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { TopNavbar, TopNavDropdown, TopNavDropdownItem, TopNavButton, Signal, Map, PersonToPortal, CircleQuestion },
+  components: { TopNavbar, TopNavDropdown, TopNavDropdownItem, TopNavButton, Signal, Map, PersonToPortal, CircleQuestion, Gear },
   setup: () => ({ args }),
   template: `
     <TopNavbar v-bind="args">
@@ -40,7 +40,7 @@ const Template = (args, { argTypes }) => ({
         alt=""
       >
       <div class="flex items-center">
-        <TopNavDropdown right id="1" title="Resources" navKey="" :mobileNavs="{}">
+        <TopNavDropdown right id="1" title="Resources">
           <TopNavDropdownItem id="api" to="/settings/main/account">
             <template #icon> <Signal/> </template>
             API Status
@@ -55,10 +55,16 @@ const Template = (args, { argTypes }) => ({
           </TopNavDropdownItem>
         </TopNavDropdown>
 
-        <TopNavButton style="margin-left:1px;">
-            <template #icon> <PersonToPortal /> </template>
-            Sign Out
-        </TopNavButton>
+        <TopNavDropdown right id="2" title="Username">
+          <TopNavDropdownItem id="settings" to="/settings/main/account">
+            <template #icon> <Gear/> </template>
+            Settings
+          </TopNavDropdownItem>
+          <TopNavDropdownItem id="signout" to="/settings/main/account">
+          <template #icon> <PersonToPortal /> </template>
+          Sign Out
+          </TopNavDropdownItem>
+        </TopNavDropdown>
       </div>
       </div>
     </TopNavbar>
