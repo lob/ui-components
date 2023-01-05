@@ -11,12 +11,12 @@
         <component
           :is="variantDetails.icon"
           v-if="showIcon"
-          size="l"
+          size="xl"
           class="mr-2"
           :class="variantDetails.color"
           data-testid="alertIcon"
         />
-        <div class="type-base-700">
+        <div class="type-large-700">
           <slot name="heading" />
         </div>
       </div>
@@ -41,12 +41,12 @@
         <component
           :is="variantDetails.icon"
           v-if="showIcon && !hasHeading"
-          size="l"
+          size="xl"
           class="mr-2"
           :class="variantDetails.color"
           data-testid="alertIcon"
         />
-        <div :class="['type-small-400', {'mt-2': hasHeading && hasContent}]">
+        <div :class="['type-small-500', {'mt-2': hasHeading && hasContent}]">
           <slot /> <!-- text/any content goes in the default slot -->
         </div>
       </div>

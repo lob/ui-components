@@ -15,7 +15,7 @@ describe('Alert', () => {
       const { getByText } = renderComponent({ slots });
 
       const alertContent = getByText(content);
-      expect(alertContent).toBeInTheDocument().toHaveClass('type-small-400');
+      expect(alertContent).toBeInTheDocument().toHaveClass('type-small-500');
     });
 
     it('renders only the heading content', () => {
@@ -24,7 +24,7 @@ describe('Alert', () => {
       const { getByText } = renderComponent({ slots });
 
       const alertHeading = getByText(heading);
-      expect(alertHeading).toBeInTheDocument().toHaveClass('type-base-700');
+      expect(alertHeading).toBeInTheDocument().toHaveClass('type-large-700');
     });
 
     it('renders both the heading and default content', () => {
@@ -34,9 +34,9 @@ describe('Alert', () => {
       const { getByText } = renderComponent({ slots });
 
       const alertHeading = getByText(heading);
-      expect(alertHeading).toBeInTheDocument().toHaveClass('type-base-700');
+      expect(alertHeading).toBeInTheDocument().toHaveClass('type-large-700');
       const alertContent = getByText(content);
-      expect(alertContent).toBeInTheDocument().toHaveClass('type-small-400');
+      expect(alertContent).toBeInTheDocument().toHaveClass('type-small-500');
     });
 
   });
