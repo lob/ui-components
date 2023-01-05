@@ -11,7 +11,8 @@
         <component
           :is="variantDetails.icon"
           v-if="showIcon"
-          class="h-5 w-5 flex-shrink-0 mr-2"
+          size="l"
+          class="mr-2"
           :class="variantDetails.color"
           data-testid="alertIcon"
         />
@@ -40,7 +41,8 @@
         <component
           :is="variantDetails.icon"
           v-if="showIcon && !hasHeading"
-          class="h-5 w-5 flex-shrink-0 mr-2"
+          size="l"
+          class="mr-2"
           :class="variantDetails.color"
           data-testid="alertIcon"
         />
