@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import { Info, Checkmark, AlertCircle, XmarkLarge, CircleInfo, CircleCheck, CircleExclamation } from '@/components/Icons';
+import { Info, Checkmark, AlertCircle, XmarkLarge, CircleInfo, CircleCheck, CircleExclamation, TriangleExclamation } from '@/components/Icons';
 import LobLink from '../Link/Link';
 import ArrowUpRight from '../Icons/ArrowUpRight.vue';
 
@@ -109,7 +109,7 @@ const CloseButton = {
 
 export default {
   name: 'Alert',
-  components: { Info, Checkmark, AlertCircle, CloseButton, LearnMoreLink, CircleInfo, CircleCheck, CircleExclamation },
+  components: { Info, Checkmark, AlertCircle, CloseButton, LearnMoreLink, CircleInfo, CircleCheck, CircleExclamation, TriangleExclamation },
   props: {
     variant: {
       type: String,
@@ -145,8 +145,8 @@ export default {
       variants: [
         { variant: 'info', icon: 'CircleInfo', color: 'text-blue-700', bgColor: 'bg-blue-50' },
         { variant: 'success', icon: 'CircleCheck', color: 'text-green-700', bgColor: 'bg-green-50' },
-        { variant: 'warning', icon: 'CircleExclamation', color: 'text-orange-600', bgColor: 'bg-orange-50' },
-        { variant: 'error', icon: 'CircleExclamation', color: 'text-orange-600', bgColor: 'bg-red-50' }
+        { variant: 'warning', icon: 'TriangleExclamation', color: 'text-orange-600', bgColor: 'bg-orange-50' },
+        { variant: 'error', icon: 'CircleExclamation', color: 'text-red-600', bgColor: 'bg-red-50' }
       ] };
   },
   computed: {
