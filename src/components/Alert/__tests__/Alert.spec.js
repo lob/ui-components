@@ -15,7 +15,7 @@ describe('Alert', () => {
       const { getByText } = renderComponent({ slots });
 
       const alertContent = getByText(content);
-      expect(alertContent).toBeInTheDocument().toHaveClass('type-xs-400');
+      expect(alertContent).toBeInTheDocument().toHaveClass('type-small-400');
     });
 
     it('renders only the heading content', () => {
@@ -36,7 +36,7 @@ describe('Alert', () => {
       const alertHeading = getByText(heading);
       expect(alertHeading).toBeInTheDocument().toHaveClass('type-base-700');
       const alertContent = getByText(content);
-      expect(alertContent).toBeInTheDocument().toHaveClass('type-xs-400');
+      expect(alertContent).toBeInTheDocument().toHaveClass('type-small-400');
     });
 
   });
