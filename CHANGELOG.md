@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v2.0.0-beta.24
+
+### Bug Fixes
+
+Remove min width class from `Table`
+
 ## v2.0.0-beta.23
 
 ### Bug Fixes
