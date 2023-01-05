@@ -42,7 +42,7 @@
           :is="variantDetails.icon"
           v-if="showIcon && !hasHeading"
           size="xl"
-          class="mr-2"
+          class="mr-4"
           :class="variantDetails.color"
           data-testid="alertIcon"
         />
