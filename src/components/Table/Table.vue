@@ -1,5 +1,5 @@
 <template>
-  <table :class="spaceClassName">
+  <table :class="['spaceClassName min-w-min']">
     <slot />
   </table>
 </template>
