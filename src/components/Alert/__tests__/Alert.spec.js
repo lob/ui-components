@@ -56,7 +56,7 @@ describe('Alert', () => {
       const { getByTestId } = renderComponent({ slots, props: { variant: 'error' } });
 
       const alertContent = getByTestId('alert');
-      expect(alertContent).toBeInTheDocument().toHaveClass('text-orange-600 bg-red-50');
+      expect(alertContent).toBeInTheDocument().toHaveClass('text-red-600 bg-red-50');
     });
 
     it('renders the success colors with the success variant prop', () => {
