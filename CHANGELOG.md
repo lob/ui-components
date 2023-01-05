@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v2.0.0-beta.23
+
+### Bug Fixes
+
+Fix broken dynamic class in `Table`
+
 ## v2.0.0-beta.22
 
 ### Bug Fixes
