@@ -29,12 +29,12 @@
       :aria-required="required"
       :aria-disabled="disabled"
       :class="[
-        'cursor-default bg-white border rounded-lg border-gray-300 font-light text-gray-900 flex align-center items-center',
-        {'h-8 text-sm py-2 px-2.5': small},
-        {'h-12 py-2.5 px-4': default_},
-        {'!border-error bg-coral-200': error},
-        {'!border-success': success && !error},
-        {'!bg-white-100 pointer-events-none': disabled},
+        'flex align-center items-center bg-white rounded-sm border border-gray-200 hover:border-gray-300',
+        'focus:border-blue-500 focus-visible:outline-dashed focus-visible:outline-black focus-visible:outline-offset-1',
+        'type-small-500 h-11 py-2 px-3',
+        {'!border-green-700 !bg-green-50': success && !error},
+        {'!border-red-600 !bg-red-50': error},
+        {'!bg-gray-50 pointer-events-none': disabled},
         {'border-gray-500' : open || activeIndex > -1}
       ]"
       tabindex="0"
@@ -45,32 +45,25 @@
       <div
         :class="[
           'mr-8 truncate',
-          {'text-xs': small},
-          {'text-gray-100': disabled},
-          {'text-gray-900 !font-normal' : open || activeIndex > -1},
+          {'!text-gray-300': disabled},
+          {'text-gray-800' : open || activeIndex > -1},
           {'text-gray-500' : activeIndex < 0},
-          {'text-error': error}
+          {'text-green-600': success},
+          {'text-red-600': error}
         ]"
       >
         {{ value || placeholder }}
       </div>
       <chevron-down
-        v-if="!open"
         size="s"
         :class="[
-          'absolute right-2.5',
-          error ? 'text-error' : 'text-gray-900'
+          'absolute right-2.5 text-gray-500 transition-all duration-100',
+          {'text-green-600': success},
+          {'text-red-600': error},
+          {'text-gray-300': disabled},
+          {'-rotate-180': open}
         ]"
         data-testid="chevron-down"
-      />
-      <chevron-up
-        v-else
-        size="s"
-        :class="[
-          'absolute right-2.5',
-          error ? 'text-error' : 'text-gray-900'
-        ]"
-        data-testid="chevron-up"
       />
     </div>
     <div
@@ -210,13 +203,6 @@ export default {
         });
       }
     },
-    size: {
-      type: String,
-      default: 'default',
-      validator: function (value) {
-        return ['default', 'small'].includes(value);
-      }
-    },
     required: {
       type: Boolean,
       default: false
@@ -258,12 +244,6 @@ export default {
     };
   },
   computed: {
-    small () {
-      return this.size === 'small';
-    },
-    default_ () {
-      return this.size === 'default';
-    },
     optionItems () {
       return this.placeholder ? [{ label: this.placeholder, disabled: this.required }, ...this.options] : this.options;
     },
