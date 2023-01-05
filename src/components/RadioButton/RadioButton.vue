@@ -1,5 +1,5 @@
 <template>
-  <div class="focus-within:outline-dashed focus-within:outline-1 py-1 mr-5 relative">
+  <div class="customOutline py-1 mr-5 relative">
     <input
       :id="id"
       type="radio"
@@ -199,5 +199,11 @@ input {
   &:hover:not(:disabled):not(:checked):not(.radio__input--error) + label::after {
     @apply bg-gray-50;
   }
+}
+
+.customOutline:has(:focus-visible) {
+  @apply outline-dashed;
+  @apply outline-black;
+  @apply outline-offset-1;
 }
 </style>

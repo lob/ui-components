@@ -1,7 +1,7 @@
 <template>
   <div
     :class="[
-      'buttonContainer cursor-pointer border border-gray-300 rounded-sm pt-3 pb-3 mr-4 mb-1 focus-within:outline-dashed focus-within:outline-offset-1 focus:outline-black',
+      'buttonContainer cursor-pointer border border-gray-300 rounded-sm pt-3 pb-3 mr-4 mb-1 customOutline',
       fullWidth ? 'w-full' : 'w-[234px]',
       {'h-full' : fullHeight},
       {'!pb-8' : helperText},
@@ -214,5 +214,11 @@ input {
 
 .buttonContainer:hover:not(.radio__input--error):not(.disabled):not(.checked) label::after {
   @apply bg-gray-50;
+}
+
+.customOutline:has(:focus-visible) {
+  @apply outline-dashed;
+  @apply outline-black;
+  @apply outline-offset-1;
 }
 </style>
