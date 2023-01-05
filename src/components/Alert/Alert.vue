@@ -44,7 +44,7 @@
           :class="variantDetails.color"
           data-testid="alertIcon"
         />
-        <div :class="['type-xs-400', {'mt-2': hasHeading && hasContent}]">
+        <div :class="['type-small-400', {'mt-2': hasHeading && hasContent}]">
           <slot /> <!-- text/any content goes in the default slot -->
         </div>
       </div>
