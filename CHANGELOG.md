@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v2.0.0-beta.22
+
+### Features
+
+Updates the `Alert` component design and adds new optional features: headline, close button, and learn-more link
+
+### Breaking changes
+
+- the `linkColor` functionality in the Alert content is deprecated
+
 ## v2.0.0-beta.21
 
 ### Features
