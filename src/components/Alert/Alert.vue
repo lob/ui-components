@@ -75,7 +75,7 @@ const LearnMoreLink = {
           :underline="false"
           target="_blank"
           role="link"
-          class="ml-4 !type-small-500 text-gray-500 hover:!text-gray-500"
+          class="ml-4 !type-small-500 !text-gray-500 hover:!text-gray-500"
         >
           {{ linkDisplayText }}
           <ArrowUpRight class="inline ml-1 mb-1" />
@@ -94,7 +94,7 @@ const CloseButton = {
     data-testid="closeButton"
     @click="closeAlert"
   >
-    <XmarkLarge size="s" />
+    <XmarkLarge size="s" class="text-gray-500"/>
   </button>`,
   props: {
     closeButtonAriaLabel: { type: String, default: 'Close alert' }
