@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import { Info, Checkmark, AlertCircle, XmarkLarge, CircleInfo, CircleCheck, CircleExclamation, TriangleExclamation } from '@/components/Icons';
+import { CircleInfo, CircleCheck, CircleExclamation, TriangleExclamation, XmarkLarge } from '@/components/Icons';
 import LobLink from '../Link/Link';
 import ArrowUpRight from '../Icons/ArrowUpRight.vue';
 
@@ -109,7 +109,7 @@ const CloseButton = {
 
 export default {
   name: 'Alert',
-  components: { Info, Checkmark, AlertCircle, CloseButton, LearnMoreLink, CircleInfo, CircleCheck, CircleExclamation, TriangleExclamation },
+  components: { CloseButton, LearnMoreLink, CircleInfo, CircleCheck, CircleExclamation, TriangleExclamation },
   props: {
     variant: {
       type: String,
