@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## v2.0.0-beta.22
+## v2.0.0-beta.23
 
 ### Features
 
@@ -9,6 +9,12 @@ Updates the `Alert` component design and adds new optional features: headline, c
 ### Breaking changes
 
 - the `linkColor` functionality in the Alert content is deprecated
+
+## v2.0.0-beta.22
+
+### Bug Fixes
+
+Prevents `Table` component from having x-overflow
 
 ## v2.0.0-beta.21
 
