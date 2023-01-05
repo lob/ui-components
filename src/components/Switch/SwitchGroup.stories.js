@@ -35,6 +35,28 @@ Primary.args = {
   srOnlyLegend: true
 };
 
+const selectionModel = 'selection1';
+
+const TemplateWithThreeItems = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { SwitchGroup, SwitchItem },
+  data: () => ({ switchModel: selectionModel }),
+  setup: () => ({ args }),
+  template: `
+    <switch-group v-bind="args">
+      <switch-item name="mode" label="Selection 1" value="selection1" v-model="switchModel" />
+      <switch-item name="mode" label="Selection 2" value="selection2" v-model="switchModel" />
+      <switch-item name="mode" label="Selection 3" value="selection3" v-model="switchModel" />
+    </switch-group>
+  `
+});
+
+export const WithMoreOptions = TemplateWithThreeItems.bind({});
+WithMoreOptions.args = {
+  legend: 'Mode selection',
+  srOnlyLegend: true
+};
+
 const WithDisabledTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { SwitchGroup, SwitchItem },
@@ -42,8 +64,8 @@ const WithDisabledTemplate = (args, { argTypes }) => ({
   setup: () => ({ args }),
   template: `
     <switch-group v-bind="args">
-      <switch-item name="mode" label="Test" value="test" v-model="switchModel" />
-      <switch-item name="mode" label="Live" value="live" v-model="switchModel" disabled />
+      <switch-item name="mode" label="Selection 1" value="selection1" v-model="switchModel" />
+      <switch-item name="mode" label="Selection 2" value="selection2" v-model="switchModel" disabled />
     </switch-group>
   `
 });
@@ -70,7 +92,7 @@ const WithIconsTemplate = (args, { argTypes }) => ({
         value="map" 
         sr-only-label
       >
-        <Globe />
+        <Globe size="l" />
       </switch-item>
       <switch-item 
         v-model="withIconsModel" 
@@ -79,7 +101,7 @@ const WithIconsTemplate = (args, { argTypes }) => ({
         value="list" 
         sr-only-label
       >
-        <TableLayout />
+        <TableLayout size="l" />
       </switch-item>
     </switch-group>
   `

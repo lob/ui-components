@@ -24,19 +24,15 @@ export default {
       }
     },
     variant: {
-      options: ['primary', 'secondary', 'link', 'subtle'],
+      options: ['primary', 'secondary', 'danger', 'danger-secondary', 'quiet', 'ghost', 'link'],
       control: {
         type: 'select'
       }
     },
-    warning: {
+    size: {
+      options: ['small', 'medium', 'large', 'xl'],
       control: {
-        type: 'boolean'
-      }
-    },
-    small: {
-      control: {
-        type: 'boolean'
+        type: 'select'
       }
     }
   }
@@ -49,9 +45,45 @@ const Template = (args, { argTypes }) => ({
   template: '<lob-button v-bind="args" v-slot>{{ args.content }}</lob-button>'
 });
 
-export const Default = Template.bind({});
-Default.args = {
-  content: 'This is a button'
+export const Primary = Template.bind({});
+Primary.args = {
+  content: 'Primary button'
+};
+
+export const Secondary = Template.bind({});
+Secondary.args = {
+  content: 'Secondary button',
+  variant: 'secondary'
+};
+
+export const Danger = Template.bind({});
+Danger.args = {
+  content: 'Danger button',
+  variant: 'danger'
+};
+
+export const DangerSecondary = Template.bind({});
+DangerSecondary.args = {
+  content: 'Danger secondary button',
+  variant: 'danger-secondary'
+};
+
+export const Quiet = Template.bind({});
+Quiet.args = {
+  content: 'Quiet button',
+  variant: 'quiet'
+};
+
+export const Ghost = Template.bind({});
+Ghost.args = {
+  content: 'Ghost button',
+  variant: 'ghost'
+};
+
+export const StyledAsLink = Template.bind({});
+StyledAsLink.args = {
+  content: 'Styled as link',
+  variant: 'link'
 };
 
 const WithIconsTemplate = (args, { argTypes }) => ({

@@ -2,7 +2,6 @@ import '@testing-library/jest-dom';
 import { render } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
 import { translate } from '@/mixins';
-import en from '@/mixins/en';
 import Multiselect from '../Multiselect.vue';
 
 const mixins = [translate];
@@ -218,9 +217,9 @@ describe('Multiselect', () => {
     });
 
     it('renders an \'x\' button in the badge', async () => {
-      const { findByText } = component;
+      const { findByRole } = component;
 
-      const button = await findByText(en.multiselect.deselectLabel);
+      const button = await findByRole('button', { aria: 'Deselect-United States' });
       expect(button).toBeInTheDocument();
     });
 
@@ -242,7 +241,7 @@ describe('Multiselect', () => {
       const beforeText = getAllByText('United States');
       expect(beforeText).toHaveLength(1); // in the badge
 
-      const button = getByRole('button', { name: en.multiselect.deselectLabel });
+      const button = getByRole('button', { aria: 'Deselect-United States' });
       await userEvent.click(button);
 
       const emittedEvent = emitted();
@@ -254,7 +253,7 @@ describe('Multiselect', () => {
       const props = { ...initialProps, modelValue: [{ label: 'United States', value: 'US' }] };
       const { getByRole, findByLabelText, findAllByRole } = renderComponent({ props });
 
-      const button = getByRole('button', { name: en.multiselect.deselectLabel });
+      const button = getByRole('button', { aria: 'Deselect-United States' });
       await userEvent.click(button);
 
       const input = await findByLabelText(props.label);
@@ -324,9 +323,9 @@ describe('Multiselect', () => {
 
     it('adds the option back to the dropdown correctly when deselecting', async () => {
       props = { ...props, modelValue: ['Egypt'] };
-      const { findByText, findByLabelText, findAllByRole } = renderComponent({ props });
+      const { getByRole, findByLabelText, findAllByRole } = renderComponent({ props });
 
-      const button = await findByText(en.multiselect.deselectLabel);
+      const button = getByRole('button', { aria: 'Deselect-United States' });
       await userEvent.click(button);
 
       const input = await findByLabelText(props.label);

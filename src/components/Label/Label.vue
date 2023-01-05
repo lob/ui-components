@@ -1,28 +1,28 @@
 <template>
-  <span>
-    <label
-      :for="labelFor"
-      :class="[
-        readOnly ? 'text-gray-300' : 'text-gray-800',
-        srOnlyLabel ? 'sr-only' : 'flex items-center mb-1 type-small-700',
-        { 'justify-between flex-row-reverse': tooltipPosition === 'trailing' }
-      ]"
+  <span
+    :class="[
+      readOnly ? 'text-gray-300' : 'text-gray-800',
+      srOnlyLabel ? 'sr-only' : 'flex items-center mb-1 type-small-700',
+      { 'justify-between flex-row-reverse': tooltipContent && (tooltipPosition === 'trailing') }
+    ]"
+    data-testid="labelWrapper"
+  >
+    <Tooltip
+      v-if="tooltipContent"
+      position="bottom"
+      :class="['text-gray-500', { 'mr-1': tooltipPosition === 'leading' }]"
+      :data-testid="tooltipPosition === 'trailing' ? 'tooltip-trailing' : 'tooltip-leading'"
     >
-      <Tooltip
-        v-if="tooltipContent"
-        position="bottom"
-        :class="{ 'mr-1': tooltipPosition === 'leading' }"
-        :data-testid="tooltipPosition === 'trailing' ? 'tooltip-trailing' : 'tooltip-leading'"
-      >
-        <template #trigger>
-          <CircleInfo />
-        </template>
-        <template #content>
-          <p class="w-max max-w-[200px]">
-            {{ tooltipContent }}
-          </p>
-        </template>
-      </Tooltip>
+      <template #trigger>
+        <CircleInfo />
+      </template>
+      <template #content>
+        <p class="w-max max-w-[200px]">
+          {{ tooltipContent }}
+        </p>
+      </template>
+    </Tooltip>
+    <label :for="labelFor">
       <span>
         {{ label }}
         <span
