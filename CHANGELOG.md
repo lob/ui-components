@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v2.0.0-beta.26
+
+### Bug fixes
+
+Restores the Badge background color
 ## v2.0.0-beta.25
 
 ### Features
