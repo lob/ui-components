@@ -20,21 +20,30 @@ const Template = (args, { argTypes }) => ({
   decorators: [() => ({ template: '<div class="block"><story /></div>' })],
   components: { LoadingIndicator },
   setup: () => ({ args }),
+  template: '<loading-indicator></loading-indicator>'
+});
+
+export const Primary = Template.bind({});
+
+const TemplateWithBackground = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  decorators: [() => ({ template: '<div class="block"><story /></div>' })],
+  components: { LoadingIndicator },
+  setup: () => ({ args }),
   template: `
   <div style="margin:auto; background-color: #f7f5fa; padding: 2em;">
-    <loading-indicator/>
+    <loading-indicator></loading-indicator>
   </div>
   `
 });
 
-export const Primary = Template.bind({});
+export const WithBackground = TemplateWithBackground.bind({});
 
 const dataPresent = false;
 
 const AfterContentLoadedTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: {  LoadingIndicator },
-  decorators: [() => ({ template: '<div class="block"><story /></div>' })],
   setup: () => ({ args }),
   data: () => ({ dataPresent }),
   mounted () {
@@ -47,12 +56,7 @@ const AfterContentLoadedTemplate = (args, { argTypes }) => ({
       }, 3000);
     }
   },
-  template:
-  `
-  <div style="margin:auto; background-color: #f7f5fa; padding: 2em;">
-  <loading-indicator><div v-if="dataPresent">Loading spinner disappeared after 3 seconds</div></loading-indicator>
-  </div>
-  `
+  template: '<loading-indicator><div v-if="dataPresent">Loading spinner disappeared after 3 seconds</div></loading-indicator>'
 });
 
 export const AfterContentLoaded = AfterContentLoadedTemplate.bind({});
