@@ -1,5 +1,4 @@
 import Alert from './Alert.vue';
-import LobLink from '../Link/Link.vue';
 import mdx from './Alert.mdx';
 
 export default {
@@ -34,7 +33,7 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { Alert, LobLink },
+  components: { Alert },
   setup: () => ({ args }),
   template: `
     <alert v-bind="args">
@@ -52,7 +51,7 @@ Primary.args = { content };
 
 const TemplateWithHeading = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { Alert, LobLink },
+  components: { Alert },
   setup: () => ({ args }),
   template: `
     <alert v-bind="args">
@@ -69,7 +68,7 @@ WithHeading.args = { content };
 
 const TemplateHeadingOnly = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { Alert, LobLink },
+  components: { Alert },
   setup: () => ({ args }),
   template: `
   <div style="width: 500px">
