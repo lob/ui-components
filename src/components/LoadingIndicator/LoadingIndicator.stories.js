@@ -17,9 +17,14 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: {  LoadingIndicator },
+  decorators: [() => ({ template: '<div class="block"><story /></div>' })],
+  components: { LoadingIndicator },
   setup: () => ({ args }),
-  template: '<loading-indicator></loading-indicator>'
+  template: `
+  <div style="margin:auto; background-color: #f7f5fa; padding: 2em;">
+    <loading-indicator/>
+  </div>
+  `
 });
 
 export const Primary = Template.bind({});
@@ -29,6 +34,7 @@ const dataPresent = false;
 const AfterContentLoadedTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: {  LoadingIndicator },
+  decorators: [() => ({ template: '<div class="block"><story /></div>' })],
   setup: () => ({ args }),
   data: () => ({ dataPresent }),
   mounted () {
@@ -41,7 +47,12 @@ const AfterContentLoadedTemplate = (args, { argTypes }) => ({
       }, 3000);
     }
   },
-  template: '<loading-indicator><div v-if="dataPresent">Loading spinner disappeared after 3 seconds</div></loading-indicator>'
+  template:
+  `
+  <div style="margin:auto; background-color: #f7f5fa; padding: 2em;">
+  <loading-indicator><div v-if="dataPresent">Loading spinner disappeared after 3 seconds</div></loading-indicator>
+  </div>
+  `
 });
 
 export const AfterContentLoaded = AfterContentLoadedTemplate.bind({});
