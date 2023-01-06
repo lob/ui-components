@@ -82,7 +82,7 @@ const TemplateHeadingOnly = (args, { argTypes }) => ({
 
 export const WithLink = TemplateHeadingOnly.bind({});
 WithLink.args = {
-  learnMoreLink: 'https://www.lob.com/'
+  linkSrc: 'https://www.lob.com/'
 };
 
 export const WithCloseButton = TemplateWithHeading.bind({});
@@ -95,5 +95,5 @@ export const WithCloseAndLink = TemplateWithHeading.bind({});
 WithCloseAndLink.args = {
   content,
   showCloseButton: true,
-  learnMoreLink: 'https://www.lob.com/'
+  linkSrc: 'https://www.lob.com/'
 };

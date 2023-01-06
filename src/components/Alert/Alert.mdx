@@ -26,7 +26,7 @@ To hide the Alert Icon, set the `showIcon` prop to false.
 
 To include a Close (x) button, add the `showCloseButton` prop as true. The button will emit `close` on click.
 
-If adding a `learnMoreLink`(String) to be displayed, the link display text can also be set as the `linkDisplayText` (defaults to 'Learn more').
+If adding a link with `linkSrc`(String) to be displayed, the link display text can also be set as the `linkDisplayText` (defaults to 'Learn more').
 
 Please note: though you can only insert text in the Storybook demo, the component will accept any valid HTML or Vue component.
 
@@ -56,7 +56,7 @@ Example of using this component as a warning with a heading
 Example of using this component with a link
 
 ```html
-<alert learn-more-link="www.lob.com" link-display-text="click here for more">
+<alert link-src="www.lob.com" link-display-text="click here for more">
   {{ content }}
 </alert>
 ```

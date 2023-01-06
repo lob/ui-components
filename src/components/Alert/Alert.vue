@@ -5,7 +5,7 @@
   >
     <div
       v-if="hasHeading"
-      class="flex justify-between"
+      class="flex justify-between items-center"
     >
       <div class="flex items-center">
         <component
@@ -25,9 +25,9 @@
         :close-button-aria-label="closeButtonAriaLabel"
         @close="closeAlert"
       />
-      <LearnMoreLink
-        v-if="learnMoreLink && !hasContent"
-        :learn-more-link="learnMoreLink"
+      <LinkWithArrow
+        v-if="linkSrc && !hasContent"
+        :link-src="linkSrc"
         :link-display-text="linkDisplayText"
         :show-close-button="showCloseButton"
         @close="closeAlert"
@@ -57,9 +57,9 @@
       />
     </div>
     <div class="w-full flex justify-end">
-      <LearnMoreLink
-        v-if="learnMoreLink && hasContent"
-        :learn-more-link="learnMoreLink"
+      <LinkWithArrow
+        v-if="linkSrc && hasContent"
+        :link-src="linkSrc"
         :link-display-text="linkDisplayText"
       />
     </div>
@@ -71,9 +71,9 @@ import { CircleInfo, CircleCheck, CircleExclamation, TriangleExclamation, XmarkL
 import LobLink from '../Link/Link';
 import ArrowUpRight from '../Icons/ArrowUpRight.vue';
 
-const LearnMoreLink = {
+const LinkWithArrow = {
   template: `<LobLink
-          :to="learnMoreLink"
+          :to="linkSrc"
           :underline="false"
           target="_blank"
           role="link"
@@ -84,7 +84,7 @@ const LearnMoreLink = {
         </LobLink>`,
   components: { LobLink, ArrowUpRight },
   props: {
-    learnMoreLink: String,
+    linkSrc: String,
     linkDisplayText: String
   }
 };
@@ -111,7 +111,7 @@ const CloseButton = {
 
 export default {
   name: 'Alert',
-  components: { CloseButton, LearnMoreLink, CircleInfo, CircleCheck, CircleExclamation, TriangleExclamation },
+  components: { CloseButton, LinkWithArrow, CircleInfo, CircleCheck, CircleExclamation, TriangleExclamation },
   props: {
     variant: {
       type: String,
@@ -132,7 +132,7 @@ export default {
       type: String,
       default: 'Close alert'
     },
-    learnMoreLink: {
+    linkSrc: {
       type: String,
       default: null
     },

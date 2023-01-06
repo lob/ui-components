@@ -110,9 +110,9 @@ describe('Alert', () => {
       expect(emittedEvent).toHaveProperty('close');
     });
 
-    it('renders the Learn more link if the learnMoreLink prop is passed', async () => {
+    it('renders the link if the linkSrc prop is passed', async () => {
       const slots = { default: 'Hello, this is an alert.' };
-      const { getByRole } = renderComponent({ slots, props: { learnMoreLink: 'www.lob.com' } });
+      const { getByRole } = renderComponent({ slots, props: { linkSrc: 'www.lob.com' } });
 
       const link = getByRole('link', { name: 'Learn more' });
       expect(link).toBeInTheDocument();
