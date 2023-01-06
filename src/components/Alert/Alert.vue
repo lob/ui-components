@@ -1,35 +1,117 @@
 <template>
   <div
-    :class="['w-full border-l-4 py-3 px-4 rounded-r-lg flex justify-start items-center text-sm',
-             { 'bg-turquoise-100 border-turquoise-500': info },
-             { 'bg-mint-100 border-success': success },
-             { 'bg-lemon-100 border-warning': warning },
-             { 'bg-coral-100 border-coral-700': error }
-    ]"
+    :class="`w-full rounded-lg shadow-XLarge py-4 px-6 ${variantDetails.color} ${variantDetails.bgColor}`"
+    data-testid="alert"
   >
-    <component
-      :is="icon"
-      size="l"
-      :class="[{ 'text-gray-500': success },
-               { 'text-turquoise-500': info },
-               { 'text-warning': warning },
-               { 'text-coral-700': error }
-      ]"
-    />
-    <div class="px-4">
-      <slot :link-color="linkColor" />
+    <div
+      v-if="hasHeading"
+      class="flex justify-between items-center"
+    >
+      <div class="flex items-center">
+        <component
+          :is="variantDetails.icon"
+          v-if="showIcon"
+          size="xl"
+          class="mr-2"
+          :class="variantDetails.color"
+          data-testid="alertIcon"
+        />
+        <div class="type-large-700">
+          <slot name="heading" />
+        </div>
+      </div>
+      <CloseButton
+        v-if="showCloseButton"
+        :close-button-aria-label="closeButtonAriaLabel"
+        @close="closeAlert"
+      />
+      <LinkWithArrow
+        v-if="linkSrc && !hasContent"
+        :link-src="linkSrc"
+        :link-display-text="linkDisplayText"
+        :show-close-button="showCloseButton"
+        @close="closeAlert"
+      />
+    </div>
+    <div
+      v-if="hasContent"
+      class="flex items-center justify-between"
+    >
+      <div class="flex items-center">
+        <component
+          :is="variantDetails.icon"
+          v-if="showIcon && !hasHeading"
+          size="xl"
+          class="mr-4"
+          :class="variantDetails.color"
+          data-testid="alertIcon"
+        />
+        <div :class="['type-small-500', {'mt-2': hasHeading && hasContent}]">
+          <slot /> <!-- text/any content goes in the default slot -->
+        </div>
+      </div>
+      <CloseButton
+        v-if="showCloseButton && !hasHeading"
+        :close-button-aria-label="closeButtonAriaLabel"
+        @close="closeAlert"
+      />
+    </div>
+    <div class="w-full flex justify-end">
+      <LinkWithArrow
+        v-if="linkSrc && hasContent"
+        :link-src="linkSrc"
+        :link-display-text="linkDisplayText"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import CircleInfo from '../Icons/CircleInfo.vue';
-import CircleCheck from '../Icons/CircleCheck.vue';
-import CircleExclamation from '../Icons/CircleExclamation.vue';
+import { CircleInfo, CircleCheck, CircleExclamation, TriangleExclamation, XmarkLarge } from '@/components/Icons';
+import LobLink from '../Link/Link';
+import ArrowUpRight from '../Icons/ArrowUpRight.vue';
+
+const LinkWithArrow = {
+  template: `<LobLink
+          :to="linkSrc"
+          :underline="false"
+          target="_blank"
+          role="link"
+          class="ml-4 !type-small-500 !text-gray-500 hover:!text-gray-500"
+        >
+          {{ linkDisplayText }}
+          <ArrowUpRight class="inline ml-1 mb-1" />
+        </LobLink>`,
+  components: { LobLink, ArrowUpRight },
+  props: {
+    linkSrc: String,
+    linkDisplayText: String
+  }
+};
+
+const CloseButton = {
+  template: `
+  <button
+    :aria-label="closeButtonAriaLabel"
+    data-testid="closeButton"
+    @click="closeAlert"
+  >
+    <XmarkLarge size="s" class="text-gray-500"/>
+  </button>`,
+  props: {
+    closeButtonAriaLabel: { type: String, default: 'Close alert' }
+  },
+  components: { XmarkLarge },
+  methods: {
+    closeAlert () {
+      this.$emit('close');
+    }
+  }
+};
 
 export default {
   name: 'Alert',
-  components: { CircleInfo, CircleCheck, CircleExclamation },
+  components: { CloseButton, LinkWithArrow, CircleInfo, CircleCheck, CircleExclamation, TriangleExclamation },
   props: {
     variant: {
       type: String,
@@ -37,17 +119,37 @@ export default {
       validator: function (value) {
         return ['info', 'success', 'warning', 'error'].includes(value);
       }
+    },
+    showIcon: {
+      type: Boolean,
+      default: true
+    },
+    showCloseButton: {
+      type: Boolean,
+      default: false
+    },
+    closeButtonAriaLabel: {
+      type: String,
+      default: 'Close alert'
+    },
+    linkSrc: {
+      type: String,
+      default: null
+    },
+    linkDisplayText: {
+      type: String,
+      default: 'Learn more'
     }
   },
+  emits: ['close'],
   data () {
     return {
-      variantDetails: [
-        { variant: 'info', icon: 'CircleInfo', linkColor: 'text-turquoise-700' },
-        { variant: 'success', icon: 'CircleCheck', linkColor: 'text-mint-900' },
-        { variant: 'warning', icon: 'CircleExclamation', linkColor: 'text-gray-700' },
-        { variant: 'error', icon: 'CircleExclamation', linkColor: 'text-coral-700' }
-      ]
-    };
+      variants: [
+        { variant: 'info', icon: 'CircleInfo', color: 'text-blue-700', bgColor: 'bg-blue-50' },
+        { variant: 'success', icon: 'CircleCheck', color: 'text-green-700', bgColor: 'bg-green-50' },
+        { variant: 'warning', icon: 'TriangleExclamation', color: 'text-orange-600', bgColor: 'bg-orange-50' },
+        { variant: 'error', icon: 'CircleExclamation', color: 'text-red-600', bgColor: 'bg-red-50' }
+      ] };
   },
   computed: {
     info () {
@@ -62,13 +164,20 @@ export default {
     error () {
       return this.variant === 'error';
     },
-    icon () {
-      const selectedVariant = this.variantDetails.find((currentVariant) => currentVariant.variant === this.variant);
-      return selectedVariant.icon;
+    variantDetails () {
+      const selectedVariant = this.variants.find((currentVariant) => currentVariant.variant === this.variant);
+      return { icon: selectedVariant.icon, color: selectedVariant.color, bgColor: selectedVariant.bgColor };
     },
-    linkColor () {
-      const selectedVariant = this.variantDetails.find((currentVariant) => currentVariant.variant === this.variant);
-      return selectedVariant.linkColor;
+    hasHeading () {
+      return Boolean(this.$slots.heading);
+    },
+    hasContent () {
+      return Boolean(this.$slots.default);
+    }
+  },
+  methods: {
+    closeAlert () {
+      this.$emit('close');
     }
   }
 };
