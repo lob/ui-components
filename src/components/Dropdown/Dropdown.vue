@@ -72,9 +72,9 @@
       ref="listbox"
       role="listbox"
       :class="[
-        'bg-white absolute z-10 shadow-large overflow-y-auto left-0 top-full hidden w-full h-auto max-h-80',
-        { 'custom-list-height': listHeight },
-        { '!block': open }
+        'bg-white absolute z-10 shadow-large overflow-y-auto left-0 top-full w-full h-auto max-h-80',
+        open ? 'block' : 'hidden',
+        { 'custom-list-height': listHeight }
       ]"
     >
       <div

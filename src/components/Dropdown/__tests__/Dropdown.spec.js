@@ -191,7 +191,7 @@ describe('Dropdown', () => {
 
         await fireEvent.keyDown(select, { key, code: key });
 
-        expect(optionContainer).toHaveClass('!block');
+        expect(optionContainer).toHaveClass('block');
       });
 
     });
@@ -207,7 +207,7 @@ describe('Dropdown', () => {
 
       await fireEvent.keyDown(select, { key: 'Control', code: 'ControlLeft' });
 
-      expect(optionContainer).not.toHaveClass('!block');
+      expect(optionContainer).not.toHaveClass('block');
     });
 
     it('typing a character, it opens the listbox and focuses on the first match', async () => {
@@ -222,7 +222,7 @@ describe('Dropdown', () => {
 
       await fireEvent.keyDown(select, { key: 'b', code: 'KeyB' });
 
-      expect(optionContainer).toHaveClass('!block');
+      expect(optionContainer).toHaveClass('block');
       expect(options[1]).toHaveAttribute('aria-selected', 'true');
     });
 
@@ -237,7 +237,7 @@ describe('Dropdown', () => {
 
       await fireEvent.click(select);
 
-      expect(optionContainer).toHaveClass('!block');
+      expect(optionContainer).toHaveClass('block');
     });
 
   });
@@ -427,7 +427,7 @@ describe('Dropdown', () => {
       const select = queryByRole('combobox');
       const optionContainer = queryByRole('listbox');
 
-      expect(optionContainer).toHaveClass('!block');
+      expect(optionContainer).toHaveClass('block');
 
       await fireEvent.click(select);
 
