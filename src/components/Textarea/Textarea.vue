@@ -153,10 +153,10 @@ export default {
   computed: {
     showMaxLengthAlert () {
       return this.maxLength &&
-      this.modelValue.length >= this.maxLength - 5;
+      this.modelValue?.length >= this.maxLength - 5;
     },
     counterContent () {
-      return `${this.modelValue.length }/${this.maxLength}`;
+      return `${this.modelValue?.length }/${this.maxLength}`;
     }
   },
   methods: {
