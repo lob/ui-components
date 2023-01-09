@@ -32,10 +32,10 @@
         'flex align-center items-center bg-white rounded-sm border border-gray-200 hover:border-gray-300',
         'focus:border-blue-500 focus-visible:outline-dashed focus-visible:outline-black focus-visible:outline-offset-1',
         'type-small-500 h-11 py-2 px-3',
-        {'!border-green-700 !bg-green-50': success && !error},
-        {'!border-red-600 !bg-red-50': error},
-        {'!bg-gray-50 pointer-events-none': disabled},
-        {'border-gray-500' : open || activeIndex > -1}
+        { '!border-green-700 !bg-green-50': success && !error },
+        { '!border-red-600 !bg-red-50': error },
+        { '!bg-gray-50 pointer-events-none': disabled },
+        { 'border-gray-500' : open || activeIndex > -1 }
       ]"
       tabindex="0"
       @blur="onSelectBlur"
@@ -46,11 +46,11 @@
         :class="[
           'mr-8 truncate type-small-500',
           value ? 'text-gray-800' : 'text-gray-500',
-          {'!text-gray-300': disabled},
-          {'text-gray-800' : open || activeIndex > -1},
-          {'text-gray-500' : activeIndex < 0},
-          {'text-green-600': success},
-          {'text-red-600': error}
+          { '!text-gray-300': disabled },
+          { 'text-gray-800' : open || activeIndex > -1 },
+          { 'text-gray-500' : activeIndex < 0 },
+          { 'text-green-600': success },
+          { 'text-red-600': error }
         ]"
       >
         {{ value || placeholder }}
@@ -59,10 +59,10 @@
         size="s"
         :class="[
           'absolute right-2.5 text-gray-500 transition-all duration-100',
-          {'text-green-600': success},
-          {'text-red-600': error},
-          {'text-gray-300': disabled},
-          {'-rotate-180': open}
+          { 'text-green-600': success },
+          { 'text-red-600': error },
+          { 'text-gray-300': disabled },
+          { '-rotate-180': open }
         ]"
         data-testid="chevron-down"
       />
@@ -72,9 +72,9 @@
       ref="listbox"
       role="listbox"
       :class="[
-        'bg-white rounded-lg text-sm py-4 overflow-y-auto absolute left-0 top-full hidden w-full z-10 shadow h-auto max-h-80',
-        {'custom-list-height': listHeight},
-        {'!block': open }
+        'bg-white absolute z-10 shadow-large overflow-y-auto left-0 top-full hidden w-full h-auto max-h-80',
+        { 'custom-list-height': listHeight },
+        { '!block': open }
       ]"
     >
       <div

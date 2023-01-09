@@ -3,11 +3,11 @@
     :id="id"
     ref="option"
     :class="[
-      'h-10 px-4 flex items-center truncate',
-      selected ? 'text-black !type-small-700' : 'text-gray-500 !type-small-500',
-      {'font-light cursor-default': !option.disabled},
-      {'bg-gray-50 !text-gray-800': active && !option.disabled},
-      {'!text-gray-300 cursor-not-allowed': option.disabled}
+      'h-9 py-2 px-4 flex items-center truncate',
+      selected ? 'text-black type-small-700' : 'text-gray-500 type-small-500',
+      option.disabled ? '!text-gray-300 cursor-not-allowed': 'cursor-pointer',
+      { 'bg-gray-50 text-gray-800': active && !option.disabled },
+      { '!text-gray-300 !type-small-500': placeholder }
     ]"
     :aria-disabled="option.disabled"
     :aria-selected="active"
