@@ -1,9 +1,10 @@
 <template>
   <div class="inline-block">
     <div
-      :class="['flex justify-center align-center px-4 py-1 rounded-full text-gray-500 bg-gray-50',
+      :class="['flex justify-center align-center px-4 py-1 rounded-full',
                [ small ? '!type-xs-600' : 'type-small-600' ],
-               { '!bg-white text-gray-500 border border-gray-100': secondary },
+               { 'text-gray-500 bg-gray-50': defaultVariant },
+               { 'bg-white text-gray-500 border border-gray-100': secondary },
                { 'bg-blue-50 text-blue-600': info },
                { 'bg-green-50 text-green-700': success },
                { 'bg-orange-50 text-orange-600': warning },
@@ -36,6 +37,9 @@ export default {
     }
   },
   computed: {
+    defaultVariant () {
+      return this.variant === 'default';
+    },
     secondary () {
       return this.variant === 'secondary';
     },
