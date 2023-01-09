@@ -35,7 +35,7 @@
         { '!border-green-700 !bg-green-50': success && !error },
         { '!border-red-600 !bg-red-50': error },
         { '!bg-gray-50 pointer-events-none': disabled },
-        { 'border-gray-500' : open || activeIndex > -1 }
+        { 'border-gray-500' : open || activeIndex > -1 && !disabled }
       ]"
       tabindex="0"
       @blur="onSelectBlur"
@@ -58,7 +58,8 @@
       <chevron-down
         size="s"
         :class="[
-          'absolute right-2.5 text-gray-500 transition-all duration-100',
+          'absolute right-2.5 transition-all duration-100',
+          { 'text-gray-500': !success && !error && !disabled },
           { 'text-green-600': success },
           { 'text-red-600': error },
           { 'text-gray-300': disabled },
