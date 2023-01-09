@@ -61,18 +61,7 @@ const WithTooltipTemplate = (args, { argTypes }) => ({
       label="Name"
       labelFor="one"
       tooltipContent="Please enter Name"
-    >
-      <template v-slot:tooltip>
-        <Tooltip>
-          <template #trigger>
-            <Info />
-          </template>
-          <template #content>
-            Moon
-          </template>      
-        </Tooltip>
-      </template>
-    </LobLabel>
+    />
     <text-input v-bind="args" v-model="textInputVModel" />
   `
 });
