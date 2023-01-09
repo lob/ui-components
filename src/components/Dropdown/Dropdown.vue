@@ -1,132 +1,134 @@
 <!-- Implementation based on the accessible single select <div role="combobox" />  https://www.24a11y.com/2019/select-your-poison-part-2/ -->
 <!-- Code samples https://github.com/microsoft/sonder-ui/tree/master/src/components/select -->
 <template>
-  <lob-label
-    v-if="label"
-    :id="`${id}-label`"
-    :label="label"
-    :label-for="id"
-    :required="required"
-    :sr-only-label="srOnlyLabel"
-    :tooltip-content="tooltipContent"
-  />
-  <div
-    :class="[
-      'relative',
-      {'cursor-not-allowed': disabled}
-    ]"
-  >
+  <div>
+    <lob-label
+      v-if="label"
+      :id="`${id}-label`"
+      :label="label"
+      :label-for="id"
+      :required="required"
+      :sr-only-label="srOnlyLabel"
+      :tooltip-content="tooltipContent"
+    />
     <div
-      :id="`${id}-value`"
-      ref="input"
-      role="combobox"
-      aria-autocomplete="none"
-      aria-haspopup="listbox"
-      :aria-activedescendant="activeId"
-      :aria-expanded="open"
-      :aria-labelledby="`${id}-label`"
-      :aria-controls="`${id}-listbox`"
-      :aria-required="required"
-      :aria-disabled="disabled"
       :class="[
-        'flex align-center items-center bg-white rounded-sm border border-gray-200 hover:border-gray-300',
-        'focus:border-blue-500 focus-visible:outline-[1.5px] focus-visible:outline-dashed focus-visible:outline-black focus-visible:outline-offset-1',
-        'type-small-500 h-11 py-2 px-3',
-        { '!border-green-700 !bg-green-50': success && !error },
-        { '!border-red-600 !bg-red-50': error },
-        { '!bg-gray-50 pointer-events-none': disabled },
-        { 'border-gray-300' : open || activeIndex > -1 && !disabled }
+        'relative',
+        {'cursor-not-allowed': disabled}
       ]"
-      tabindex="0"
-      @blur="onSelectBlur"
-      @click="updateMenuState(!open)"
-      @keydown="onSelectKeydown"
     >
       <div
+        :id="`${id}-value`"
+        ref="input"
+        role="combobox"
+        aria-autocomplete="none"
+        aria-haspopup="listbox"
+        :aria-activedescendant="activeId"
+        :aria-expanded="open"
+        :aria-labelledby="`${id}-label`"
+        :aria-controls="`${id}-listbox`"
+        :aria-required="required"
+        :aria-disabled="disabled"
         :class="[
-          'mr-8 truncate type-small-500',
-          value ? 'text-gray-800' : 'text-gray-500',
-          { '!text-gray-300': disabled },
-          { 'text-gray-800' : open || activeIndex > -1 },
-          { 'text-gray-500' : activeIndex < 0 },
-          { 'text-green-600': success },
-          { 'text-red-600': error }
+          'flex align-center items-center bg-white rounded-sm border border-gray-200 hover:border-gray-300',
+          'focus:border-blue-500 focus-visible:outline-[1.5px] focus-visible:outline-dashed focus-visible:outline-black focus-visible:outline-offset-1',
+          'type-small-500 h-11 py-2 px-3',
+          { '!border-green-700 !bg-green-50': success && !error },
+          { '!border-red-600 !bg-red-50': error },
+          { '!bg-gray-50 pointer-events-none': disabled },
+          { 'border-gray-300' : open || activeIndex > -1 && !disabled }
         ]"
-      >
-        {{ value || placeholder }}
-      </div>
-      <chevron-down
-        size="s"
-        :class="[
-          'absolute right-2.5 transition-all duration-100',
-          { 'text-gray-500': !success && !error && !disabled },
-          { 'text-green-600': success },
-          { 'text-red-600': error },
-          { 'text-gray-300': disabled },
-          { '-rotate-180': open }
-        ]"
-        data-testid="chevron-down"
-      />
-    </div>
-    <transition
-      enter-active-class="duration-100 ease-out"
-      enter-from-class="opacity-0 -translate-y-2"
-      enter-to-class="opacity-100 translate-y-0"
-      leave-active-class="duration-100 ease-out"
-      leave-from-class="opacity-100 translate-y-0"
-      leave-to-class="opacity-0 -translate-y-2"
-    >
-      <div
-        v-show="open"
-        :id="`${id}-listbox`"
-        ref="listbox"
-        data-testid="listbox"
-        role="listbox"
-        :class="[
-          'bg-white absolute z-10 shadow-large overflow-y-auto left-0 top-full w-full h-auto max-h-80',
-          { 'custom-list-height': listHeight }
-        ]"
+        tabindex="0"
+        @blur="onSelectBlur"
+        @click="updateMenuState(!open)"
+        @keydown="onSelectKeydown"
       >
         <div
-          v-for="item in optionItems"
-          :key="item.id || item.label || item"
+          :class="[
+            'mr-8 truncate type-small-500',
+            value ? 'text-gray-800' : 'text-gray-500',
+            { '!text-gray-300': disabled },
+            { 'text-gray-800' : open || activeIndex > -1 },
+            { 'text-gray-500' : activeIndex < 0 },
+            { 'text-green-600': success },
+            { 'text-red-600': error }
+          ]"
+        >
+          {{ value || placeholder }}
+        </div>
+        <chevron-down
+          size="s"
+          :class="[
+            'absolute right-2.5 transition-all duration-100',
+            { 'text-gray-500': !success && !error && !disabled },
+            { 'text-green-600': success },
+            { 'text-red-600': error },
+            { 'text-gray-300': disabled },
+            { '-rotate-180': open }
+          ]"
+          data-testid="chevron-down"
+        />
+      </div>
+      <transition
+        enter-active-class="duration-100 ease-out"
+        enter-from-class="opacity-0 -translate-y-2"
+        enter-to-class="opacity-100 translate-y-0"
+        leave-active-class="duration-100 ease-out"
+        leave-from-class="opacity-100 translate-y-0"
+        leave-to-class="opacity-0 -translate-y-2"
+      >
+        <div
+          v-show="open"
+          :id="`${id}-listbox`"
+          ref="listbox"
+          data-testid="listbox"
+          role="listbox"
+          :class="[
+            'bg-white absolute z-10 shadow-large overflow-y-auto left-0 top-full w-full h-auto max-h-80',
+            { 'custom-list-height': listHeight }
+          ]"
         >
           <div
-            v-if="isOptGroup(item)"
-            role="group"
+            v-for="item in optionItems"
+            :key="item.id || item.label || item"
           >
-            <dropdown-item-group
-              :id="id"
-              :ref="(el) => setOptionRef(el, item)"
-              :group="item"
-              :active-index="activeIndex"
-              :selected-index="selectedIndex"
-              :placeholder-text="placeholder"
-              :flattened-options="flattenedOptions"
-              @mousedown="onOptionMousedown"
-              @mouseenter="onOptionMouseover"
-              @click="onOptionClick"
-            />
-          </div>
-          <div
-            v-else
-          >
-            <dropdown-item
-              :id="`${id}-${flattenedOptions.indexOf(item)}`"
-              :ref="(el) => setOptionRef(el, item)"
-              :option="item"
-              :index="flattenedOptions.indexOf(item)"
-              :active="activeIndex === flattenedOptions.indexOf(item)"
-              :selected="selectedIndex === flattenedOptions.indexOf(item)"
-              :placeholder="item.label === placeholder"
-              @mousedown="onOptionMousedown"
-              @mouseenter="onOptionMouseover"
-              @click="onOptionClick"
-            />
+            <div
+              v-if="isOptGroup(item)"
+              role="group"
+            >
+              <dropdown-item-group
+                :id="id"
+                :ref="(el) => setOptionRef(el, item)"
+                :group="item"
+                :active-index="activeIndex"
+                :selected-index="selectedIndex"
+                :placeholder-text="placeholder"
+                :flattened-options="flattenedOptions"
+                @mousedown="onOptionMousedown"
+                @mouseenter="onOptionMouseover"
+                @click="onOptionClick"
+              />
+            </div>
+            <div
+              v-else
+            >
+              <dropdown-item
+                :id="`${id}-${flattenedOptions.indexOf(item)}`"
+                :ref="(el) => setOptionRef(el, item)"
+                :option="item"
+                :index="flattenedOptions.indexOf(item)"
+                :active="activeIndex === flattenedOptions.indexOf(item)"
+                :selected="selectedIndex === flattenedOptions.indexOf(item)"
+                :placeholder="item.label === placeholder"
+                @mousedown="onOptionMousedown"
+                @mouseenter="onOptionMouseover"
+                @click="onOptionClick"
+              />
+            </div>
           </div>
         </div>
-      </div>
-    </transition>
+      </transition>
+    </div>
   </div>
 </template>
 
