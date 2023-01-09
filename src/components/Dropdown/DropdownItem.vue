@@ -56,11 +56,6 @@ export default {
     }
   },
   emits: ['click', 'mousedown', 'mouseenter'],
-  computed: {
-    default_ () {
-      return this.size === 'default';
-    }
-  },
   methods: {
     onMousedown ($event) {
       this.$emit('mousedown', $event);
