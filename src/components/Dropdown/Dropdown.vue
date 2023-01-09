@@ -67,55 +67,65 @@
         data-testid="chevron-down"
       />
     </div>
-    <div
-      :id="`${id}-listbox`"
-      ref="listbox"
-      role="listbox"
-      :class="[
-        'bg-white absolute z-10 shadow-large overflow-y-auto left-0 top-full w-full h-auto max-h-80',
-        open ? 'block' : 'hidden',
-        { 'custom-list-height': listHeight }
-      ]"
+    <transition
+      enter-active-class="duration-100 ease-out"
+      enter-from-class="opacity-0 -translate-y-2"
+      enter-to-class="opacity-100 translate-y-0"
+      leave-active-class="duration-100 ease-out"
+      leave-from-class="opacity-100 translate-y-0"
+      leave-to-class="opacity-0 -translate-y-2"
     >
       <div
-        v-for="item in optionItems"
-        :key="item.id || item.label || item"
+        v-show="open"
+        :id="`${id}-listbox`"
+        ref="listbox"
+        data-testid="listbox"
+        role="listbox"
+        :class="[
+          'bg-white absolute z-10 shadow-large overflow-y-auto left-0 top-full w-full h-auto max-h-80',
+          { 'custom-list-height': listHeight }
+        ]"
       >
         <div
-          v-if="isOptGroup(item)"
-          role="group"
+          v-for="item in optionItems"
+          :key="item.id || item.label || item"
         >
-          <dropdown-item-group
-            :id="id"
-            :ref="(el) => setOptionRef(el, item)"
-            :group="item"
-            :active-index="activeIndex"
-            :selected-index="selectedIndex"
-            :placeholder-text="placeholder"
-            :flattened-options="flattenedOptions"
-            @mousedown="onOptionMousedown"
-            @mouseenter="onOptionMouseover"
-            @click="onOptionClick"
-          />
-        </div>
-        <div
-          v-else
-        >
-          <dropdown-item
-            :id="`${id}-${flattenedOptions.indexOf(item)}`"
-            :ref="(el) => setOptionRef(el, item)"
-            :option="item"
-            :index="flattenedOptions.indexOf(item)"
-            :active="activeIndex === flattenedOptions.indexOf(item)"
-            :selected="selectedIndex === flattenedOptions.indexOf(item)"
-            :placeholder="item.label === placeholder"
-            @mousedown="onOptionMousedown"
-            @mouseenter="onOptionMouseover"
-            @click="onOptionClick"
-          />
+          <div
+            v-if="isOptGroup(item)"
+            role="group"
+          >
+            <dropdown-item-group
+              :id="id"
+              :ref="(el) => setOptionRef(el, item)"
+              :group="item"
+              :active-index="activeIndex"
+              :selected-index="selectedIndex"
+              :placeholder-text="placeholder"
+              :flattened-options="flattenedOptions"
+              @mousedown="onOptionMousedown"
+              @mouseenter="onOptionMouseover"
+              @click="onOptionClick"
+            />
+          </div>
+          <div
+            v-else
+          >
+            <dropdown-item
+              :id="`${id}-${flattenedOptions.indexOf(item)}`"
+              :ref="(el) => setOptionRef(el, item)"
+              :option="item"
+              :index="flattenedOptions.indexOf(item)"
+              :active="activeIndex === flattenedOptions.indexOf(item)"
+              :selected="selectedIndex === flattenedOptions.indexOf(item)"
+              :placeholder="item.label === placeholder"
+              @mousedown="onOptionMousedown"
+              @mouseenter="onOptionMouseover"
+              @click="onOptionClick"
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </transition>
   </div>
 </template>
 

@@ -11,6 +11,7 @@
     ]"
     :aria-disabled="option.disabled"
     :aria-selected="active"
+    data-testid="option"
     role="option"
     @mousedown="onMousedown"
     @mouseenter="onMouseEnter"
