@@ -1,5 +1,117 @@
 # CHANGELOG
 
+## v2.0.0-beta.27
+
+### Features
+
+changes the `LoadingIndicator` background color to transparent
+
+## v2.0.0-beta.26
+
+### Bug fixes
+
+Restores the Badge background color
+## v2.0.0-beta.25
+
+### Features
+
+Updates the `Alert` component design and adds new optional features: headline, close button, and link
+
+### Breaking changes
+
+- the `linkColor` functionality in the Alert content is deprecated
+
+## v2.0.0-beta.24
+
+### Bug Fixes
+
+Remove min width class from `Table`
+
+## v2.0.0-beta.23
+
+### Bug Fixes
+
+Fix broken dynamic class in `Table`
+
+## v2.0.0-beta.22
+
+### Bug Fixes
+
+Prevents `Table` component from having x-overflow
+
+## v2.0.0-beta.21
+
+### Features
+
+Adds the `TopNavDropdown` component that replaces the `MegaMenu` component
+
+### Breaking changes
+
+- the `MegaMenu` component is removed from the library
+
+## v2.0.0-beta.20
+
+### Features
+
+Updates the styles of the `Badge` component
+
+### Breaking changes
+
+- removes the `shape` prop and `square` shape, the Badge will be rounded by default
+- removes `flint` and `turquoise` colors (adds `default` and `secondary` variants)
+
+## v2.0.0-beta.19
+
+### Features
+
+Updates the styles of the `Switch` component
+
+## v2.0.0-beta.18
+
+### Features
+
+Updates the styles of `Button` and `Link` components to only show the outline for keyboard navigation
+
+## v2.0.0-beta.17
+
+### Features
+
+Updates the styles of `Button` and `Link` components
+
+### Breaking changes
+
+- `Button` and `Link` now have 4 sizes defined by the `size` prop (the `small` prop is removed)
+- `Button` variant 'subtle' is removed and replaced by 'quiet' and 'ghost' variants
+
+## v2.0.0-beta.16
+
+### Features
+
+Remove Icon titles, add aria-label for accessibility where `MainNavigationIcon` uses Icons
+
+## v2.0.0-beta.15
+
+### Features
+
+Update the styles of the `MainNavigation` component
+
+### Breaking changes
+
+- The icon is passed to a `MainNavigationItem` through the `#icon` slot, using the Icon components (or any svg)
+- The icon Tooltip is part of the `MainNavigationItem` component
+
+## v2.0.0-beta.14
+
+### Bug fixes
+
+Refactor the `Label` component to place the Tooltip outside the label
+
+## v2.0.0-beta.13
+
+### Features
+
+Add `iconClass` prop to `MegaMenuItem` & `MainNavigationItem` to adjust the icons size
+
 ## v2.0.0-beta.12
 
 ### Features

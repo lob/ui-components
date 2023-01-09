@@ -31,17 +31,23 @@ const renderComponent = async (options) => {
   return result;
 };
 
+const slots = {
+  icon: `<template #icon="{ title }">
+          <HouseChimney data-testid="overview-icon" size="xl" />
+        </template>`
+};
+
 describe('Main Navigation Item', () => {
 
   it('renders correctly', async () => {
     const props = initialProps;
-    const { queryByText, queryByAltText } = await renderComponent({ props });
+    const { queryByText, queryByTestId } = await renderComponent({ props, slots });
 
     const item = queryByText(props.title);
     expect(item).toBeInTheDocument();
 
-    const image = queryByAltText(props.iconAltText);
-    expect(image).toHaveAttribute('src', props.iconSrc);
+    const icon = queryByTestId('overview-icon');
+    expect(icon).toBeInTheDocument();
   });
 
   describe('with a to prop', () => {
@@ -111,10 +117,10 @@ describe('Main Navigation Item', () => {
 
       it('does not render a collapse/expand icon', async () => {
         const props = initialProps;
-        const { queryByAltText } = await renderComponent({ props });
+        const { queryByTestId } = await renderComponent({ props });
 
-        const image = queryByAltText(/Collapse|Expand/i);
-        expect(image).not.toBeInTheDocument();
+        const collapseExpandIcon = queryByTestId('collapse-expand-icon');
+        expect(collapseExpandIcon).not.toBeInTheDocument();
       });
 
     });
@@ -141,10 +147,10 @@ describe('Main Navigation Item', () => {
 
         it('renders a collapse/expand icon', async () => {
           const props = initialProps;
-          const { queryByAltText } = await renderComponent({ props, slots });
+          const { queryByTestId } = await renderComponent({ props, slots });
 
-          const image = queryByAltText(/Collapse|Expand/i);
-          expect(image).toBeInTheDocument();
+          const collapseExpandIcon = queryByTestId('collapse-expand-icon');
+          expect(collapseExpandIcon).toBeInTheDocument();
         });
 
         describe('and expanded', () => {
@@ -159,26 +165,26 @@ describe('Main Navigation Item', () => {
           });
 
           it('renders a collapse icon', async () => {
-            const { queryByAltText } = await renderComponent({ props, slots });
+            const { queryByTestId } = await renderComponent({ props, slots });
 
-            const image = queryByAltText(/Collapse/i);
-            expect(image).toBeInTheDocument();
+            const collapseExpandIcon = queryByTestId('collapse-expand-icon');
+            expect(collapseExpandIcon).toBeInTheDocument().toHaveClass('-rotate-180');
           });
 
           it('collapses the sub navigation when clicked', async () => {
-            const { getByText, queryByText, queryByAltText } = await renderComponent({ props, slots });
+            const { getByText, queryByText, queryByTestId } = await renderComponent({ props, slots });
 
             const button = getByText(props.title);
             fireEvent.click(button);
 
             await waitFor(() => {
               const slot = queryByText(new RegExp(slotContent));
-              expect(slot).not.toBeInTheDocument();
+              expect(slot).not.toBeVisible();
             });
 
             await waitFor(() => {
-              const image = queryByAltText(/Expand/i);
-              expect(image).toBeInTheDocument();
+              const collapseExpandIcon = queryByTestId('collapse-expand-icon');
+              expect(collapseExpandIcon).toBeInTheDocument().not.toHaveClass('-rotate-180');
             });
           });
 
@@ -196,26 +202,26 @@ describe('Main Navigation Item', () => {
           });
 
           it('renders an expand icon', async () => {
-            const { queryByAltText } = await renderComponent({ props, slots });
+            const { queryByTestId } = await renderComponent({ props, slots });
 
-            const image = queryByAltText(/Expand/i);
-            expect(image).toBeInTheDocument();
+            const collapseExpandIcon = queryByTestId('collapse-expand-icon');
+            expect(collapseExpandIcon).toBeInTheDocument().not.toHaveClass('-rotate-180');
           });
 
           it('expands the sub navigation when clicked', async () => {
-            const { getByText, queryByText, queryByAltText } = await renderComponent({ props, slots });
+            const { getByText, queryByText, queryByTestId } = await renderComponent({ props, slots });
 
             const button = getByText(props.title);
             fireEvent.click(button);
 
             await waitFor(() => {
               const slot = queryByText(new RegExp(slotContent));
-              expect(slot).toBeInTheDocument();
+              expect(slot).toBeVisible();
             });
 
             await waitFor(() => {
-              const image = queryByAltText(/Collapse/i);
-              expect(image).toBeInTheDocument();
+              const collapseExpandIcon = queryByTestId('collapse-expand-icon');
+              expect(collapseExpandIcon).toBeInTheDocument().toHaveClass('-rotate-180');
             });
           });
 
@@ -235,10 +241,10 @@ describe('Main Navigation Item', () => {
         });
 
         it('does not render a collapse/expand icon', async () => {
-          const { queryByAltText } = await renderComponent({ props, slots });
+          const { queryByTestId } = await renderComponent({ props, slots });
 
-          const image = queryByAltText(/Collapse|Expand/i);
-          expect(image).not.toBeInTheDocument();
+          const collapseExpandIcon = queryByTestId('collapse-expand-icon');
+          expect(collapseExpandIcon).not.toBeInTheDocument();
         });
 
         it('does not collapse the sub navigation when clicked', async () => {
@@ -282,7 +288,7 @@ describe('Main Navigation Item', () => {
       const { queryByTestId } = await renderComponent({ props });
 
       const collapsibleElement = queryByTestId('collapsibleElement');
-      expect(collapsibleElement).toHaveClass('expanded');
+      expect(collapsibleElement).toHaveClass('xl:max-w-full');
     });
 
   });
@@ -302,7 +308,7 @@ describe('Main Navigation Item', () => {
       const { queryByTestId } = await renderComponent({ props });
 
       const collapsibleElement = queryByTestId('collapsibleElement');
-      expect(collapsibleElement).not.toHaveClass('expanded');
+      expect(collapsibleElement).not.toHaveClass('xl:max-w-full');
     });
 
   });

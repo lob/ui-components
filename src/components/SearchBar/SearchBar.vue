@@ -24,7 +24,7 @@
           data-testid="clearSearchButton"
           @click="clearSearch"
         >
-          <XmarkLarge class="w-6 h-6" />
+          <XmarkLarge />
         </button>
       </template>
     </TextInput>

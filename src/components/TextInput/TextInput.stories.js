@@ -1,9 +1,7 @@
 import TextInput from './TextInput.vue';
+import LobLabel from '../Label/Label.vue';
 import mdx from './TextInput.mdx';
-
-import LobLabel from '@/components/Label/Label.vue';
-import Tooltip from '@/components/Tooltip/Tooltip.vue';
-import { MagnifyingGlass, Info, Upload } from '@/components/Icons';
+import { MagnifyingGlass, Upload } from '@/components/Icons';
 
 export default {
   title: 'Components/Text Input',
@@ -53,7 +51,7 @@ Primary.args = {
 
 const WithTooltipTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { TextInput, LobLabel, Info, Tooltip },
+  components: { TextInput, LobLabel },
   setup: () => ({ args }),
   data: () => ({ textInputVModel }),
   template: `

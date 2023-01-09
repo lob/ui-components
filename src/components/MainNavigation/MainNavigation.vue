@@ -1,29 +1,37 @@
 <template>
-  <nav class="xl:min-h-full relative bg-white-100 border-r-2 border-white-300">
-    <chevron-left
+  <nav class="xl:min-h-full p-4 relative bg-white border-r-2 border-white-300">
+    <button
       v-if="collapsible"
-      size="l"
-      :class="['hidden xl:block pr-0.5 cursor-pointer absolute z-10 text-gray-300 bg-white bg-opacity-100 border-2 border-white-300 rounded-xl -right-3 mt-3', { 'transform rotate-180': !expanded }]"
-      role="button"
+      :class="['hidden xl:block w-7 h-7 rounded-full absolute -right-3.5 mt-3 z-10',
+               'text-gray-500 bg-white border-2 border-white-300 transition-transform duration-100 ease-in',
+               { 'transform -rotate-180': !expanded }]"
       :aria-expanded="expanded"
       @click="animateDrawer"
-    />
+    >
+      <ChevronLeft
+        size="s"
+        class="m-auto mr-1.5"
+      />
+    </button>
     <ul
       data-testId="main-navigation-list"
       :class="[
-        'relative',
-        listClass,
+        'relative transition-width duration-100 ease-in',
         { expanded: collapsible && expanded },
         { collapsed: collapsible && !expanded }
       ]"
     >
-      <slot :expanded="expanded" />
+      <slot
+        :expanded="expanded"
+        :events="{toggleCollapse:animateDrawer}"
+      />
     </ul>
   </nav>
 </template>
 
 <script>
 import ChevronLeft from '@/components/Icons/ChevronLeft';
+
 export default {
   name: 'MainNavigation',
   components: { ChevronLeft },
@@ -31,10 +39,6 @@ export default {
     collapsible: {
       type: Boolean,
       default: true
-    },
-    listClass: {
-      type: String,
-      default: ''
     }
   },
   emits: ['toggleCollapse'],
@@ -58,11 +62,11 @@ nav {
 
   @screen xl {
     ul:not(.collapsed) {
-      width: 222px;
+      width: 100%;
     }
 
     ul.collapsed {
-      width: 70px;
+      width: 50px;
     }
   }
 }

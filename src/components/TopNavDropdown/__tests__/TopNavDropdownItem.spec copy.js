@@ -2,12 +2,7 @@ import '@testing-library/jest-dom';
 import { render } from '@testing-library/vue';
 import { createRouter, createMemoryHistory } from 'vue-router';
 import { constants } from '@/config';
-import MegaMenuItem from '../MegaMenuItem.vue';
-
-const initialProps = {
-  to: '/settings',
-  imageSource: 'image.svg'
-};
+import TopNavDropdownItem from '../TopNavDropdownItem.vue';
 
 const routes = [
   { path: '', component: { template: '<div></div>' } },
@@ -20,7 +15,7 @@ const router = createRouter({
 });
 
 const renderComponent = async (options) => {
-  const result = render(MegaMenuItem, {
+  const result = render(TopNavDropdownItem, {
     ...options,
     global: { plugins: [router, constants] }
   });
@@ -28,17 +23,15 @@ const renderComponent = async (options) => {
   return result;
 };
 
-describe('MegaMenuItem', () => {
+describe('TopNavDropdownItem', () => {
 
-  it('renders the subtitle when a subtitle is passed in', async () => {
-    const props = {
-      ...initialProps,
-      subtitle: 'subtitle'
-    };
-    const { queryByText } = await renderComponent({ props });
+  it('renders correctly', async () => {
+    const props = { to: '/settings' };
+    const slots = { default: 'settings' };
+    const { queryByText } = await renderComponent({ props, slots });
 
-    const subtitle = queryByText(props.subtitle);
-    expect(subtitle).toBeInTheDocument();
+    const itemTitle = queryByText('settings');
+    expect(itemTitle).toBeInTheDocument();
   });
 
 });
