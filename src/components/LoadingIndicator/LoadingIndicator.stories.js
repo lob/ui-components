@@ -17,12 +17,25 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: {  LoadingIndicator },
+  components: { LoadingIndicator },
   setup: () => ({ args }),
-  template: '<loading-indicator></loading-indicator>'
+  template: '<loading-indicator/>'
 });
 
 export const Primary = Template.bind({});
+
+const TemplateWithBackground = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { LoadingIndicator },
+  setup: () => ({ args }),
+  template: `
+  <div style="margin:auto; background-color: #f7f5fa; padding: 2em;">
+    <loading-indicator/>
+  </div>
+  `
+});
+
+export const WithBackground = TemplateWithBackground.bind({});
 
 const dataPresent = false;
 

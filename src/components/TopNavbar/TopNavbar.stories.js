@@ -1,51 +1,73 @@
-import routeDecorator from '../../../.storybook/routeDecorator';
+import routeDecorator, { routeTemplate } from '../../../.storybook/routeDecorator';
 import TopNavbar from './TopNavbar.vue';
 import mdx from './TopNavbar.mdx';
-import MegaMenu from '@/components/MegaMenu/MegaMenu.vue';
-import MegaMenuItem from '@/components/MegaMenu/MegaMenuItem.vue';
+import TopNavDropdown from '@/components/TopNavDropdown/TopNavDropdown.vue';
+import TopNavDropdownItem from '@/components/TopNavDropdown/TopNavDropdownItem.vue';
+import TopNavButton from '@/components/TopNavDropdown/TopNavButton.vue';
+import { Signal, Map, PersonToPortal, CircleQuestion, Gear } from '../Icons';
 
 export default {
   title: 'Components/Top Navbar',
   component: TopNavbar,
-  subcomponents: { MegaMenu, MegaMenuItem },
+  subcomponents: { TopNavDropdown, TopNavDropdownItem, TopNavButton },
   parameters: {
     docs: {
       page: mdx
     }
   },
   decorators: [
-    routeDecorator()
+    routeDecorator('/', [
+      {
+        path: '/settings/main/account',
+        component: {
+          template: routeTemplate('account')
+        }
+      }
+    ])
   ]
 };
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { TopNavbar, MegaMenu, MegaMenuItem },
+  components: { TopNavbar, TopNavDropdown, TopNavDropdownItem, TopNavButton, Signal, Map, PersonToPortal, CircleQuestion, Gear },
   setup: () => ({ args }),
   template: `
-    <topNavbar v-bind="args">
+    <TopNavbar v-bind="args">
+    <div style="width: 76vw; display: flex; justify-content: space-between;">
       <img
         :src="$getConst('lobAssetsUrl') + '/dashboard/navbar/lob-logo.svg'"
         width="95"
         alt=""
       >
-      <div class="md:pl-6">
-        <MegaMenu id="1" title="Some menu" navKey="" :mobileNavs="{}">
-          <MegaMenuItem to="/settings/main/account" small>
-            Some menu item
-          </MegaMenuItem>
-          <MegaMenuItem to="/settings/main/account" :imageSource="$getConst('lobAssetsUrl') + '/dashboard/navbar/settings.svg'" small>
-            Another menu item
-          </MegaMenuItem>
-        </MegaMenu>
+      <div class="flex items-center">
+        <TopNavDropdown right id="1" title="Resources">
+          <TopNavDropdownItem id="api" to="/settings/main/account">
+            <template #icon> <Signal/> </template>
+            API Status
+          </TopNavDropdownItem>
+          <TopNavDropdownItem id="help" to="/settings/main/account">
+            <template #icon> <Map/> </template>
+            Help Center
+          </TopNavDropdownItem>
+          <TopNavDropdownItem id="support" to="/settings/main/account">
+            <template #icon> <CircleQuestion/> </template>
+            Support
+          </TopNavDropdownItem>
+        </TopNavDropdown>
 
-        <MegaMenu id="2" title="Another menu" navKey="" :mobileNavs="{}">
-          <MegaMenuItem to="/settings/main/account" :imageSource="$getConst('lobAssetsUrl')+'/dashboard/navbar/settings.svg'" small>
-            Yet another menu item
-          </MegaMenuItem>
-        </MegaMenu>
+        <TopNavDropdown right id="2" title="Username">
+          <TopNavDropdownItem id="settings" to="/settings/main/account">
+            <template #icon> <Gear/> </template>
+            Settings
+          </TopNavDropdownItem>
+          <TopNavDropdownItem id="signout" to="/settings/main/account">
+          <template #icon> <PersonToPortal /> </template>
+          Sign Out
+          </TopNavDropdownItem>
+        </TopNavDropdown>
       </div>
-    </topNavbar>
+      </div>
+    </TopNavbar>
   `
 });
 

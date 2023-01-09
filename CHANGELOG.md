@@ -1,5 +1,54 @@
 # CHANGELOG
 
+## v2.0.0-beta.27
+
+### Features
+
+changes the `LoadingIndicator` background color to transparent
+
+## v2.0.0-beta.26
+
+### Bug fixes
+
+Restores the Badge background color
+## v2.0.0-beta.25
+
+### Features
+
+Updates the `Alert` component design and adds new optional features: headline, close button, and link
+
+### Breaking changes
+
+- the `linkColor` functionality in the Alert content is deprecated
+
+## v2.0.0-beta.24
+
+### Bug Fixes
+
+Remove min width class from `Table`
+
+## v2.0.0-beta.23
+
+### Bug Fixes
+
+Fix broken dynamic class in `Table`
+
+## v2.0.0-beta.22
+
+### Bug Fixes
+
+Prevents `Table` component from having x-overflow
+
+## v2.0.0-beta.21
+
+### Features
+
+Adds the `TopNavDropdown` component that replaces the `MegaMenu` component
+
+### Breaking changes
+
+- the `MegaMenu` component is removed from the library
+
 ## v2.0.0-beta.20
 
 ### Features
