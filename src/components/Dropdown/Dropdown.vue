@@ -120,7 +120,7 @@
 </template>
 
 <script>
-import { ChevronDown, ChevronUp } from '@/components/Icons';
+import { ChevronDown } from '@/components/Icons';
 import DropdownItemGroup from './DropdownItemGroup';
 import DropdownItem from './DropdownItem';
 import { findLastIndex, shallowEquals } from '@/utils';
@@ -164,7 +164,7 @@ const MenuActions = {
 
 export default {
   name: 'Dropdown',
-  components: { ChevronDown, ChevronUp, DropdownItemGroup, DropdownItem, LobLabel },
+  components: { ChevronDown, DropdownItemGroup, DropdownItem, LobLabel },
   props: {
     tooltipContent: {
       type: String,
