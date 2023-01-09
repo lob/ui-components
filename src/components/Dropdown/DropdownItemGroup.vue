@@ -2,9 +2,10 @@
   <div
     ref="group"
     role="group"
+    class="mt-1"
   >
     <div
-      class="ml-5 text-primary-500 uppercase text-xs cursor-default"
+      class="ml-4 text-black uppercase type-xs-500 cursor-default"
       @mousedown="onMousedown"
     >
       {{ group.label }}

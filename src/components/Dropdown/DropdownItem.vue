@@ -3,13 +3,11 @@
     :id="id"
     ref="option"
     :class="[
-      'border-l-4 border-l-transparent truncate flex items-center',
-      {'text-xs h-7 px-2.5': small},
-      {'h-10 px-4': default_},
+      'h-10 px-4 flex items-center truncate',
+      selected ? 'text-black !type-small-700' : 'text-gray-500 !type-small-500',
       {'font-light cursor-default': !option.disabled},
-      {'bg-white-300 text-primary-500 font-bold !border-l-primary-500': active && !option.disabled && !selected},
-      {'text-gray-100 cursor-not-allowed': option.disabled},
-      {'bg-primary-500 font-bold !text-white': selected}
+      {'bg-gray-50 !text-gray-800': active && !option.disabled},
+      {'!text-gray-300 cursor-not-allowed': option.disabled}
     ]"
     :aria-disabled="option.disabled"
     :aria-selected="active"
@@ -55,20 +53,10 @@ export default {
     placeholder: {
       type: Boolean,
       default: false
-    },
-    size: {
-      type: String,
-      default: 'default',
-      validator: function (value) {
-        return ['default', 'small'].includes(value);
-      }
     }
   },
   emits: ['click', 'mousedown', 'mouseenter'],
   computed: {
-    small () {
-      return this.size === 'small';
-    },
     default_ () {
       return this.size === 'default';
     }

@@ -44,7 +44,8 @@
     >
       <div
         :class="[
-          'mr-8 truncate',
+          'mr-8 truncate type-small-500',
+          value ? 'text-gray-800' : 'text-gray-500',
           {'!text-gray-300': disabled},
           {'text-gray-800' : open || activeIndex > -1},
           {'text-gray-500' : activeIndex < 0},
