@@ -30,7 +30,7 @@ export default {
 
 <style lang="scss" scoped>
 .loading-gif {
-  background: #fff url(https://s3.us-west-2.amazonaws.com/public.lob.com/sites/spinner-medium.svg) no-repeat center;
+  background: transparent url(https://s3.us-west-2.amazonaws.com/public.lob.com/sites/spinner-medium.svg) no-repeat center;
   background-size: 24px 24px;
   width: 100%;
   height: 50px;

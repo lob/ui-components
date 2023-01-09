@@ -1,6 +1,6 @@
 <template>
   <div
-    class="block xl:inline-block relative z-50 mx-0 px-0 border-b-2 border-gray-100 xl:border-0 focus:border-b-2"
+    class="inline-block relative z-50"
     data-testId="menu-container"
     @mouseenter="showNav = true"
     @mouseleave="showNav = false"
@@ -11,34 +11,37 @@
   >
     <div
       :id="dropdownToggleId"
-      class="w-full xl:w-auto outline-none mx-0 py-2.5 px-3 transition-colors duration-200 ease-linear text-gray-700 whitespace-nowrap active:text-primary-300 active:no-underline hover:text-primary-300 hover:no-underline inline-block cursor-pointer relative"
+      :class="['inline-block cursor-pointer w-auto h-[76px] py-7 px-8',
+               'transition-colors duration-200 ease-linear hover:bg-gray-50 focus:outline-black focus:outline-dashed']"
+      tabindex="0"
       :aria-controls="dropdownListId"
       aria-haspopup="menu"
     >
       <div
         ref="titleItem"
-        tabindex="0"
-        class="focus:outline-none focus:opacity-100 focus:ring-2 focus:ring-primary-100 focus:border-transparent flex-nowrap flex mt-0 flex-row justify-between xl:justify-start items-center px-2 py-1 xl:px-0 xl:py-0"
+        class="flex items-center type-small-700 text-gray-500 whitespace-nowrap"
       >
         {{ title }}
-        <img
-          :src="`${$getConst('lobAssetsUrl')}/dashboard/navbar/caret-down.svg`"
-          width="24"
-          alt=""
-          :class="['transition-transform duration-200 ease-linear -mr-1', {'xl:transform xl:rotate-180': showNav}]"
-        >
+        <ChevronDown
+          v-if=" showChevron"
+          size="s"
+          :class="['ml-2 -mr-2 transition-transform duration-200 ease-linear',
+                   { '-rotate-180': showNav }]"
+        />
       </div>
     </div>
     <nav
       :id="dropdownListId"
       :aria-labelledby="dropdownToggleId"
-      :class="['hidden height-0 min-w-full xl:rounded-lg xl:bg-white xl:absolute', {'!block xl:hidden': showMobileNav}, {'xl:top-9 xl:!block': showNav}, {'xl:!hidden': !showNav}, {'xl:right-0': right}]"
+      :class="['min-w-full bg-white absolute',
+               { 'top-[76px] !block border-t-2 border-gray-50': showNav },
+               { '!hidden': !showNav },
+               { 'right-0': right }]"
     >
       <div
         ref="dropdownMenu"
-        :class="['height-0 pt-6 pb-4 px-4 h-auto w-full mt-1 border-gray-100 opacity-100',
-                 {'!w-full xl:!mt-0': showMobileNav},
-                 {'boxShadowGray xl:border-none xl:rounded-lg xl:bg-white': showNav}]"
+        :class="['p-4 h-auto w-full mt-1 opacity-100',
+                 { 'md:shadow-large bg-white': showNav }]"
       >
         <slot />
       </div>
@@ -47,8 +50,10 @@
 </template>
 
 <script>
+import { ChevronDown } from '../Icons';
 export default {
-  name: 'MegaMenu',
+  name: 'TopNavDropdown',
+  components: { ChevronDown },
   props: {
     title: {
       type: String,
@@ -65,13 +70,16 @@ export default {
     right: {
       type: Boolean,
       default: false
+    },
+    showChevron: {
+      type: Boolean,
+      default: true
     }
   },
   emits: ['click'],
   data () {
     return {
-      showNav: false,
-      showMobileNav: this.open
+      showNav: false
     };
   },
   computed: {
@@ -80,11 +88,6 @@ export default {
     },
     dropdownListId () {
       return `dropdown-list-${this.id}`;
-    }
-  },
-  watch: {
-    open (val) {
-      this.showMobileNav = val;
     }
   },
   methods: {
@@ -103,26 +106,15 @@ export default {
     },
     onBlur () {
       this.showNav = false;
-      this.showMobileNav = false;
     },
     onEscape () {
       this.$refs.titleItem.focus();
       this.showNav = false;
-      this.showMobileNav = false;
     },
     onClick ($event) {
       this.showNav = !this.showNav;
-      this.showMobileNav = !this.showMobileNav;
       this.$emit('click', $event);
     }
   }
 };
 </script>
-
-<style lang="scss" scoped>
-@screen md {
-  .boxShadowGray {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.08);
-  }
-}
-</style>
