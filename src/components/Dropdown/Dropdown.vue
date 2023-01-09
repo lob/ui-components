@@ -35,7 +35,7 @@
         { '!border-green-700 !bg-green-50': success && !error },
         { '!border-red-600 !bg-red-50': error },
         { '!bg-gray-50 pointer-events-none': disabled },
-        { 'border-gray-500' : open || activeIndex > -1 && !disabled }
+        { 'border-gray-300' : open || activeIndex > -1 && !disabled }
       ]"
       tabindex="0"
       @blur="onSelectBlur"
