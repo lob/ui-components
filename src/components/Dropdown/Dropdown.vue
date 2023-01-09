@@ -30,7 +30,7 @@
       :aria-disabled="disabled"
       :class="[
         'flex align-center items-center bg-white rounded-sm border border-gray-200 hover:border-gray-300',
-        'focus:border-blue-500 focus-visible:outline-dashed focus-visible:outline-black focus-visible:outline-offset-1',
+        'focus:border-blue-500 focus-visible:outline-[1.5px] focus-visible:outline-dashed focus-visible:outline-black focus-visible:outline-offset-1',
         'type-small-500 h-11 py-2 px-3',
         { '!border-green-700 !bg-green-50': success && !error },
         { '!border-red-600 !bg-red-50': error },
