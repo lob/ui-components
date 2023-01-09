@@ -58,10 +58,10 @@ describe('Dropdown', () => {
     const { getByRole } = renderComponent({ props });
     const select = getByRole('combobox');
 
-    expect(select).toHaveClass('!border-error bg-coral-200');
+    expect(select).toHaveClass('!border-red-600 !bg-red-50');
   });
 
-  it('adds success class to the textarea when error prop is true', () => {
+  it('adds success class to the textarea when success prop is true', () => {
     const props = {
       ...initialProps,
       success: true
@@ -70,7 +70,7 @@ describe('Dropdown', () => {
     const { getByRole } = renderComponent({ props });
     const select = getByRole('combobox');
 
-    expect(select).toHaveClass('!border-success');
+    expect(select).toHaveClass('!border-green-700');
   });
 
   describe('without a placeholder', () => {
@@ -175,10 +175,7 @@ describe('Dropdown', () => {
       const { queryByTestId } = renderComponent({ props: initialProps });
 
       const chevronDown = queryByTestId('chevron-down');
-      expect(chevronDown).toBeInTheDocument();
-
-      const chevronUp = queryByTestId('chevron-up');
-      expect(chevronUp).not.toBeInTheDocument();
+      expect(chevronDown).toBeInTheDocument().not.toHaveClass('-rotate-180');
     });
 
     ['ArrowDown', 'ArrowUp', 'Enter', ' ', 'Home', 'End'].forEach(async (key) => {
@@ -261,14 +258,11 @@ describe('Dropdown', () => {
       await fireEvent.keyDown(select, { key: 'Enter', code: 'Enter' });
     });
 
-    it('displays the chevron icon pointing up', () => {
+    it('displays the chevron icon pointing down', () => {
       const { queryByTestId } = component;
 
-      const chevronUp = queryByTestId('chevron-up');
-      expect(chevronUp).toBeInTheDocument();
-
-      const chevronDown = queryByTestId('chevron-down');
-      expect(chevronDown).not.toBeInTheDocument();
+      const chevronUp = queryByTestId('chevron-down');
+      expect(chevronUp).toBeInTheDocument().toHaveClass('-rotate-180');
     });
 
     ['Enter', ' '].forEach(async (key) => {
