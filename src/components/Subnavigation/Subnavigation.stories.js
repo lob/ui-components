@@ -65,7 +65,7 @@ const TemplateUsingSlot = (args, { argTypes }) => ({
     <SubnavigationItem to="/user">
       <Gear class="mr-1"/>User
     </SubnavigationItem>
-    <SubnavigationItem to="/api-keys">
+    <SubnavigationItem disabled to="/api-keys">
       <Gear class="mr-1"/>API Keys 
     </SubnavigationItem>
     <SubnavigationItem to="/payment">
