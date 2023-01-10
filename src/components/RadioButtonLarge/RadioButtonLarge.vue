@@ -1,69 +1,64 @@
 <template>
   <div
     :class="[
-      {'min-h-[60px]': revealText},
-      {'!cursor-not-allowed': disabled},
-      {'h-full': fullHeight}
+      'buttonContainer cursor-pointer border border-gray-300 rounded-sm pt-3 pb-3 mr-4 mb-1 customOutline',
+      fullWidth ? 'w-full' : 'w-[234px]',
+      {'h-full' : fullHeight},
+      {'!pb-8' : helperText},
+      {'hover:border-gray-400': !disabled && !error},
+      {'!border-black checked': checked && !disabled && !error},
+      {'disabled !cursor-not-allowed border-gray-100': disabled},
+      {'!border-red-500 radio__input--error': error && !disabled}
     ]"
+    @click="onInput"
   >
-    <div
+    <input
+      :id="id"
+      ref="radioInput"
+      type="radio"
       :class="[
-        'min-h-[3rem] cursor-pointer bg-white top-1 inline-block mr-4 border border-gray-300 rounded-lg pl-2',
-        fullWidth ? 'w-full' : 'w-[200px]',
-        {'h-full': fullHeight},
-        {'hover:border-gray-300': !disabled},
-        {'!border-primary-500 ring-inset ring-1 ring-primary-500': checked && !disabled && !error},
-        {'bg-white-100 !cursor-not-allowed': disabled},
-        {'!border-error': error}
+        'absolute opacity-0',
+        {'radio__input--error': error},
+        {'!cursor-not-allowed': disabled}
       ]"
-      @mouseenter="onContainerHover"
-      @mouseleave="onContainerLeaveHover"
-      @click="onLargeButtonClick"
+      :name="name"
+      :value="value.toString()"
+      :checked="checked"
+      :disabled="disabled"
+      :required="required"
+      @input="onInput"
+      @click="onClick"
     >
-      <div
-        ref="contentContainer"
-        class="pb-1"
-      >
-        <RadioButton
-          :id="id"
-          class="w-full"
-          :v-model="modelValue"
-          :value="value"
-          :name="name"
-          :label="label"
-          :required="required"
-          :disabled="disabled"
-          :helper-text="helperText"
-          :large="true"
-          :large-checked="checked"
-          :large-hover="largeHover"
-          :error="error"
-          @click="onClick"
-          @input="onInput"
-        />
+    <label
+      :for="id"
+      :class="[
+        'relative flex type-base-500 top-[1px] left-[46px] cursor-pointer h-full pr-16',
+        {'text-gray-400 !cursor-not-allowed': disabled}
+      ]"
+    >
+      <div>
+        <slot>
+          {{ label }}
+        </slot>
         <div
-          v-if="revealText"
-          ref="revealText"
           :class="[
-            'hidden ml-8 text-sm text-gray-300 !font-normal cursor-pointer',
-            {'!block !text-primary-500' : checked},
-            {'!text-gray-100 cursor-not-allowed' : disabled}
+            'type-xs-400 text-gray-500',
+            {'!text-gray-300' : disabled},
+            {'-mb-4' : helperText}
           ]"
         >
-          {{ revealText }}
+          {{ helperText }}
         </div>
       </div>
-    </div>
+    </label>
   </div>
 </template>
 
 <script>
 import { getCurrentInstance } from 'vue';
-import RadioButton from '../RadioButton/RadioButton.vue';
 
 export default {
   name: 'RadioButtonLarge',
-  components: { RadioButton },
   props: {
     id: {
       type: String,
@@ -81,10 +76,6 @@ export default {
       type: [String, Boolean],
       default: ''
     },
-    error: {
-      type: Boolean,
-      default: false
-    },
     label: {
       type: String,
       default: ''
@@ -101,15 +92,15 @@ export default {
       type: String,
       default: ''
     },
-    revealText: {
-      type: String,
-      default: ''
-    },
-    fullWidth: {
+    error: {
       type: Boolean,
       default: false
     },
     fullHeight: {
+      type: Boolean,
+      default: false
+    },
+    fullWidth: {
       type: Boolean,
       default: false
     }
@@ -117,8 +108,7 @@ export default {
   emits: ['update:modelValue', 'input', 'click'],
   data () {
     return {
-      parent: null,
-      largeHover: false
+      parent: null
     };
   },
   computed: {
@@ -131,35 +121,104 @@ export default {
   },
   methods: {
     onInput () {
-      this.$emit('update:modelValue', this.value);
-      this.$emit('input', this.value);
+      if (!this.disabled) {
+        this.$emit('update:modelValue', this.value);
+        this.$emit('input', this.value);
+        this.$refs.radioInput.focus();
+      }
     },
     onClick ($event) {
       this.$emit('click', $event);
-    },
-    onLargeButtonClick () {
-      if (!this.disabled) {
-        this.$emit('update:modelValue', this.value);
-      }
-    },
-    onContainerHover () {
-      const revealText = this.$refs.revealText;
-      const contentContainer = this.$refs.contentContainer;
-      if (revealText) {
-        revealText.classList.add('!block');
-        contentContainer.classList.add('!-mt-1.5');
-      }
-      this.largeHover = true;
-    },
-    async onContainerLeaveHover () {
-      const revealText = this.$refs.revealText;
-      const contentContainer = this.$refs.contentContainer;
-      if (revealText && !this.checked) {
-        revealText.classList.remove('!block');
-        contentContainer.classList.remove('!-mt-1.5');
-      }
-      this.largeHover = false;
     }
   }
 };
 </script>
+
+<style scoped lang="scss">
+input {
+  + label {
+    &::before {
+      content: "";
+      top: 3px;
+      left: -22px;
+
+      @apply absolute;
+      @apply bg-white;
+      @apply border-gray-400;
+      @apply border-solid;
+      @apply border;
+      @apply h-4;
+      @apply rounded-lg;
+      @apply w-4;
+    }
+
+    &::after {
+      content: "";
+      left: -17px;
+
+      @apply top-2;
+      @apply absolute;
+      @apply h-1.5;
+      @apply inline-block;
+      @apply rounded-full;
+      @apply w-1.5;
+      @apply bg-white;
+    }
+  }
+
+  &.radio__input--error + label::before {
+    @apply border;
+    @apply border-red-500;
+  }
+
+  &:disabled:not(:checked) + label::before {
+    @apply border-gray-300;
+    @apply bg-gray-50;
+  }
+
+  &:disabled:not(:checked) + label::after {
+    @apply bg-gray-50;
+  }
+
+  &:disabled:checked + label::before {
+    @apply border-gray-300;
+    @apply bg-gray-300;
+  }
+
+  &.radio__input--error:not(:checked):not(:disabled) + label::before {
+    @apply bg-red-50;
+  }
+
+  &.radio__input--error:not(:checked):not(:disabled) + label::after {
+    @apply bg-red-50;
+  }
+
+  &.radio__input--error:checked:not(:disabled) + label::before {
+    @apply bg-red-500;
+  }
+
+  &.radio__input--error:checked:not(:disabled) + label::after {
+    @apply bg-white;
+  }
+
+  &:checked:not(:disabled):not(.radio__input--error) + label::before {
+    @apply bg-black;
+    @apply border-black;
+  }
+}
+
+.buttonContainer:hover:not(.radio__input--error):not(.disabled):not(.checked) label::before {
+  @apply border-gray-500;
+  @apply bg-gray-50;
+}
+
+.buttonContainer:hover:not(.radio__input--error):not(.disabled):not(.checked) label::after {
+  @apply bg-gray-50;
+}
+
+.customOutline:has(:focus-visible) {
+  @apply outline-dashed;
+  @apply outline-black;
+  @apply outline-offset-1;
+}
+</style>

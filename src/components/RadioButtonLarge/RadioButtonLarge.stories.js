@@ -63,23 +63,6 @@ WithShortHelperText.args = {
   helperText: 'Looks good'
 };
 
-const WithRevealTextTemplate = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
-  components: { RadioButtonLarge },
-  data: () => ({ vModel }),
-  setup: () => ({ args }),
-  template: '<radio-button-large v-bind="args" v-model="vModel" />'
-});
-
-export const WithRevealText = WithRevealTextTemplate.bind({});
-WithRevealText.args = {
-  name: 'postcard-size',
-  id: '4x6',
-  label: '4x6',
-  value: '4x6',
-  revealText: 'Standard postcard size'
-};
-
 const WithFullWidthTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { RadioButtonLarge },
