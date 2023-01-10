@@ -21,7 +21,7 @@
       :class="[
         `p-3 w-full rounded-sm text-gray-800 type-small-400 border border-gray-200 ${inputClass}`,
         `caret-gray-300 placeholder-gray-200 placeholder:type-small-400`,
-        { 'hover:border-gray-300 focus:border-blue-500 focus:hover:border-blue-500 focus:outline-dashed focus:outline-black focus:outline-offset-1': !disabled && !readonly },
+        { 'hover:border-gray-300 focus:border-blue-500 focus:hover:border-blue-500 focus:outline-[1.5px] focus:outline-dashed focus:outline-black focus:outline-offset-1': !disabled && !readonly },
         { 'text-green-700 placeholder-green-700 border-green-700 bg-green-50' : success },
         { 'text-red-600 placeholder-red-600 border-red-600 bg-red-50' : error },
         { 'focus:!border-red-600': showMaxLengthAlert },
