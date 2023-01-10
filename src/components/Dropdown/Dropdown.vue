@@ -11,12 +11,7 @@
       :sr-only-label="srOnlyLabel"
       :tooltip-content="tooltipContent"
     />
-    <div
-      :class="[
-        'relative',
-        {'cursor-not-allowed': disabled}
-      ]"
-    >
+    <div :class="[ 'relative', { 'cursor-not-allowed': disabled } ]">
       <div
         :id="`${id}-value`"
         ref="input"
@@ -30,9 +25,9 @@
         :aria-required="required"
         :aria-disabled="disabled"
         :class="[
-          'flex align-center items-center bg-white rounded-sm border border-gray-200 hover:border-gray-300',
+          'flex items-center justify-between bg-white rounded-sm border border-gray-200 hover:border-gray-300',
           'focus:border-blue-500 focus-visible:outline-[1.5px] focus-visible:outline-dashed focus-visible:outline-black focus-visible:outline-offset-1',
-          'type-small-500 h-11 py-2 px-3',
+          'type-small-500 h-11 py-2 px-4',
           { '!border-green-700 !bg-green-50': success && !error },
           { '!border-red-600 !bg-red-50': error },
           { '!bg-gray-50 pointer-events-none': disabled },
@@ -59,7 +54,7 @@
         <chevron-down
           size="s"
           :class="[
-            'absolute right-2.5 transition-all duration-100',
+            'transition-all duration-100',
             { 'text-gray-500': !success && !error && !disabled },
             { 'text-green-600': success },
             { 'text-red-600': error },
