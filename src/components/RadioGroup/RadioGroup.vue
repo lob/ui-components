@@ -1,20 +1,26 @@
 <template>
   <fieldset
     :class="[
-      'border-none m-0 p-0 flex',
-      {'flex-col' : separateLines}
+      'border-none flex'
     ]"
   >
-    <legend :class="[{'text-sm font-normal normal-case tracking-normal text-gray-500 mb-1 border-b-0':!srOnlyLegend}, {'sr-only': srOnlyLegend}]">
+    <legend :class="srOnlyLegend ? 'sr-only' : 'type-small-700 text-black mb-1.5'">
       {{ legend }}
       <span
         v-if="required"
-        class="text-sm text-error"
+        class="text-sm text-red-500"
       >
         *
       </span>
     </legend>
-    <slot />
+    <div
+      :class="[
+        'flex',
+        {'flex-col' : separateLines}
+      ]"
+    >
+      <slot />
+    </div>
   </fieldset>
 </template>
 
