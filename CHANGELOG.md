@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v2.0.0-beta.28
+
+### Features
+
+`RadioButton` and `RadioButtonLarge` design updates
+
 ## v2.0.0-beta.27
 
 ### Features
@@ -11,6 +17,7 @@ changes the `LoadingIndicator` background color to transparent
 ### Bug fixes
 
 Restores the Badge background color
+
 ## v2.0.0-beta.25
 
 ### Features
