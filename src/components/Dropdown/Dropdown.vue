@@ -79,7 +79,7 @@
           data-testid="listbox"
           role="listbox"
           :class="[
-            'bg-white absolute z-10 shadow-large overflow-y-auto left-0 top-full w-full h-auto max-h-80',
+            'bg-white absolute z-20 shadow-large overflow-y-auto left-0 top-full w-full h-auto max-h-80',
             { 'custom-list-height': listHeight }
           ]"
         >
