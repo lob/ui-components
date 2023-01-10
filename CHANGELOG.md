@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v2.0.0-beta.29
+
+### Features
+
+`Checkbox` and `MegaButton` design updates
+
 ## v2.0.0-beta.28
 
 ### Features
