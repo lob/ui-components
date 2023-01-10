@@ -75,7 +75,7 @@ export default {
       default: null
     },
     tooltipPosition: {
-      type: String, default: 'trailing',
+      type: String, default: 'leading',
       validator: function (value) {
         return ['leading', 'trailing'].includes(value);
       } },
