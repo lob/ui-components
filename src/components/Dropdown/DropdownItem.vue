@@ -6,7 +6,7 @@
       'h-9 py-2 px-4 flex items-center truncate',
       { 'text-gray-500 type-small-500 hover:bg-gray-50 hover:text-gray-800': !selected },
       { '!bg-black !text-white type-small-700': selected && !placeholder },
-      { 'bg-gray-50 text-gray-800 ring-1 ring-blue-500 ring-inset': active && !option.disabled },
+      { 'bg-gray-50 text-gray-800 ring-1 ring-blue-500 ring-inset hover:ring-0': active && !option.disabled },
       { '!text-gray-300 !type-small-500': placeholder },
       option.disabled ? '!text-gray-300 cursor-not-allowed': 'cursor-pointer'
     ]"
