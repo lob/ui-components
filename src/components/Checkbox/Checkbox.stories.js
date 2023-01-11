@@ -50,7 +50,6 @@ const GroupTemplate = (args, { argTypes }) => ({
       value="chocolate"
       :disabled="args.disabled"
       :required="args.required"
-      :error="args.error"
       :sameLine="args.sameLine"
     />
     <checkbox
@@ -60,7 +59,6 @@ const GroupTemplate = (args, { argTypes }) => ({
       value="vanilla"
       :disabled="args.disabled"
       :required="args.required"
-      :error="args.error"
       :sameLine="args.sameLine"
     />
     <checkbox
@@ -70,7 +68,6 @@ const GroupTemplate = (args, { argTypes }) => ({
       value="strawberry"
       :disabled="args.disabled"
       :required="args.required"
-      :error="args.error"
       :sameLine="args.sameLine"
     />
   </div>
