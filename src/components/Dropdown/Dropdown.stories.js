@@ -2,8 +2,6 @@ import Dropdown from './Dropdown.vue';
 import mdx from './Dropdown.mdx';
 
 import LobLabel from '@/components/Label/Label.vue';
-import Tooltip from '@/components/Tooltip/Tooltip.vue';
-import { Eye } from '@/components/Icons';
 
 export default {
   title: 'Components/Dropdown',
@@ -16,14 +14,6 @@ export default {
       page: mdx
     },
     layout: 'padded'
-  },
-  argTypes: {
-    size: {
-      options: ['small', 'default'],
-      control: {
-        type: 'select'
-      }
-    }
   }
 };
 const vModel = 'Squirtle';
@@ -103,160 +93,17 @@ WithObjectOptions.args = {
 
 export const WithStringOptions = Template.bind({});
 WithStringOptions.args = {
-  id: 'pokemon',
-  label: 'Choose a Pokemon',
+  id: 'fav-pet',
+  label: 'Favorite pet',
+  placeholder: 'Choose a pet',
   options: [
-    'Bulbasaur',
-    'Ivysaur',
-    'Venusaur',
-    'Charmander',
-    'Charmeleon',
-    'Charizard',
-    'Squirtle',
-    'Wartortle',
-    'Blastoise',
-    'Caterpie',
-    'Metapod',
-    'Butterfree',
-    'Weedle',
-    'Kakuna',
-    'Beedrill',
-    'Pidgey',
-    'Pidgeotto',
-    'Pidgeot',
-    'Rattata',
-    'Raticate',
-    'Spearow',
-    'Fearow',
-    'Ekans',
-    'Arbok',
-    'Pikachu',
-    'Raichu',
-    'Sandshrew',
-    'Sandslash',
-    'Nidoran♀',
-    'Nidorina',
-    'Nidoqueen',
-    'Nidoran♂',
-    'Nidorino',
-    'Nidoking',
-    'Clefairy',
-    'Clefable',
-    'Vulpix',
-    'Ninetales',
-    'Jigglypuff',
-    'Wigglytuff',
-    'Zubat',
-    'Golbat',
-    'Oddish',
-    'Gloom',
-    'Vileplume',
-    'Paras',
-    'Parasect',
-    'Venonat',
-    'Venomoth',
-    'Diglett',
-    'Dugtrio',
-    'Meowth',
-    'Persian',
-    'Psyduck',
-    'Golduck',
-    'Mankey',
-    'Primeape',
-    'Growlithe',
-    'Arcanine',
-    'Poliwag',
-    'Poliwhirl',
-    'Poliwrath',
-    'Abra',
-    'Kadabra',
-    'Alakazam',
-    'Machop',
-    'Machoke',
-    'Machamp',
-    'Bellsprout',
-    'Weepinbell',
-    'Victreebel',
-    'Tentacool',
-    'Tentacruel',
-    'Geodude',
-    'Graveler',
-    'Golem',
-    'Ponyta',
-    'Rapidash',
-    'Slowpoke',
-    'Slowbro',
-    'Magnemite',
-    'Magneton',
-    'Farfetch’d',
-    'Doduo',
-    'Dodrio',
-    'Seel',
-    'Dewgong',
-    'Grimer',
-    'Muk',
-    'Shellder',
-    'Cloyster',
-    'Gastly',
-    'Haunter',
-    'Gengar',
-    'Onix',
-    'Drowzee',
-    'Hypno',
-    'Krabby',
-    'Kingler',
-    'Voltorb',
-    'Electrode',
-    'Exeggcute',
-    'Exeggutor',
-    'Cubone',
-    'Marowak',
-    'Hitmonlee',
-    'Hitmonchan',
-    'Lickitung',
-    'Koffing',
-    'Weezing',
-    'Rhyhorn',
-    'Rhydon',
-    'Chansey',
-    'Tangela',
-    'Kangaskhan',
-    'Horsea',
-    'Seadra',
-    'Goldeen',
-    'Seaking',
-    'Staryu',
-    'Starmie',
-    'Mr. Mime',
-    'Scyther',
-    'Jynx',
-    'Electabuzz',
-    'Magmar',
-    'Pinsir',
-    'Tauros',
-    'Magikarp',
-    'Gyarados',
-    'Lapras',
-    'Ditto',
-    'Eevee',
-    'Vaporeon',
-    'Jolteon',
-    'Flareon',
-    'Porygon',
-    'Omanyte',
-    'Omastar',
-    'Kabuto',
-    'Kabutops',
-    'Aerodactyl',
-    'Snorlax',
-    'Articuno',
-    'Zapdos',
-    'Moltres',
-    'Dratini',
-    'Dragonair',
-    'Dragonite',
-    'Mewtwo',
-    'Mew'
+    'Dog',
+    'Cat',
+    'Bunny',
+    'Parrot',
+    'Goldfish',
+    'Iguana',
+    'Other'
   ]
 };
 
@@ -285,41 +132,33 @@ WithOptGroups.args = {
   ]
 };
 
-const moonVModel = 'Ganymede';
+const holidayVModel = 'Beach';
 
 const WithTooltipTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: {  Dropdown, Eye, LobLabel, Tooltip },
-  data: () => ({ moonVModel }),
+  components: { Dropdown, LobLabel },
+  data: () => ({ holidayVModel }),
   setup: () => ({ args }),
   template: `
     <LobLabel
-      label="Favorite Galilean Moon"
-      labelFor="galilean-moons"
-      tooltipContent="Dropdown tooltip"
-    >
-      <template v-slot:tooltip>
-        <Tooltip>
-          <template #trigger>
-            <Eye class="w-5 h-5" />
-          </template>
-          <template #content>
-            Tough choice, I know!
-          </template>
-        </Tooltip>
-      </template>
-    </LobLabel>
-    <dropdown v-bind="args" v-model="moonVModel" />
+      label="Best holiday destination"
+      labelFor="holiday-destination"
+      tooltipContent="Where would you go?"
+   />
+    <Dropdown v-bind="args" v-model="holidayVModel" />
   `
 });
 
 export const WithTooltip = WithTooltipTemplate.bind({});
 WithTooltip.args = {
-  id: 'galilean-moons',
+  id: 'holiday-destination',
+  label: 'Best holiday destination',
+  srOnlyLabel: true,
   options: [
-    'Io',
-    'Europa',
-    'Ganymede',
-    'Callisto'
+    'Beach',
+    'Mountains',
+    'Old town',
+    'Metropolis',
+    'Jungle'
   ]
 };

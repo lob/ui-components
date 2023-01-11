@@ -22,14 +22,9 @@ The dropdown will accept `options` as an array of string or objects. If you use 
 
 You can optionally provide a `placeholder` which will display in the select when a selection has not been made and will appear as a list header above the options.
 
-Like other input types, you can provide boolean props for `required`, `disabled`, and `error`.
+Like other input types, you can provide boolean props for `required`, `disabled`, `error`, and `success`.
 
-Customizations exist for<br />
-(1) the size of the dropdown with the `size` prop: "default" or "small"<br />
-
-(2) the height of the dropdown list
-
-The listHeight prop is available if you wanted to set a fixed height on the dropdown list, and any overflow will be scrollable. The height passed in should include the units (i.e. '5rem', '5px').
+You can customize the height of the dropdown list with the `listHeight` prop that will set a fixed height on the dropdown list, and any overflow will be scrollable. The height passed in should include the units (i.e. '5rem', '5px').
 
 Example of using this component in a template with simple string options
 
@@ -53,7 +48,6 @@ Example of the emitted event data
 
 ```js
 "Ginny";
-
 ```
 
 Example of using this component in a template with object options (for more complex use cases and to set disabled options).

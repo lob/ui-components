@@ -8,7 +8,7 @@
         v-if="$slots.content"
         ref="tooltipContainer"
         :class="[
-          'z-10 px-4 py-4 text-sm rounded-md m-auto bg-gray-900 text-white relative',
+          'z-20 px-4 py-4 text-sm rounded-md m-auto bg-gray-900 text-white relative',
           { 'opacity-0': !hover }
         ]"
       >
