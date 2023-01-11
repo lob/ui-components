@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## v2.0.0-beta.30
+
+### Features
+
+`TextInput` and `Textarea` design updates
+`Textarea` new (optional) features: character counter and max characters
+
+### Breaking Changes
+
+`size` prop and small size removed from `TextInput`
+
 ## v2.0.0-beta.29
 
 ### Features

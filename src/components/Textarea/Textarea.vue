@@ -7,6 +7,7 @@
       :required="required"
       :sr-only-label="srOnlyLabel"
       :tooltip-content="tooltipContent"
+      :tooltip-position="tooltipPosition"
     />
     <textarea
       :id="id"
@@ -16,15 +17,48 @@
       :disabled="disabled"
       :readonly="readonly"
       :placeholder="placeholder"
+      :maxlength="maxLength"
       :class="[
-        `bg-white text-gray-500 placeholder-gray-300 placeholder:font-light p-4 resize-none rounded-lg border border-gray-300 focus-within:outline-none w-full h-40 ${inputClass}`,
-        { 'border-error': error },
-        { '!bg-white-300 cursor-not-allowed': disabled || readonly },
-        { 'hover:border-gray-500 focus-within:ring-1 focus-within:ring-primary-500 focus-within:border-primary-500': !disabled && !readonly },
-        { 'border-gray-500 focus-within:border-primary-500' : modelValue }
+        `p-3 w-full rounded-sm text-gray-800 type-small-400 border border-gray-200 ${inputClass}`,
+        `caret-gray-300 placeholder-gray-200 placeholder:type-small-400`,
+        { 'hover:border-gray-300 focus:border-blue-500 focus:hover:border-blue-500 focus:outline-[1.5px] focus:outline-dashed focus:outline-black focus:outline-offset-1': !disabled && !readonly },
+        { 'text-green-700 placeholder-green-700 border-green-700 bg-green-50' : success },
+        { 'text-red-600 placeholder-red-600 border-red-600 bg-red-50' : error },
+        { 'focus:!border-red-600': showMaxLengthAlert },
+        { '!text-gray-300 !placeholder-gray-300 !bg-gray-50 !border-gray-200 cursor-not-allowed': disabled || readonly },
+        { 'resize-none' : !resizable }
       ]"
+      aria-describedby="charCounter"
       @input="onInput"
+      @focus="isAreaOnFocus = true"
+      @blur="isAreaOnFocus = false"
     />
+    <div
+      :class="['flex',
+               {'justify-between': helperText && maxLength},
+               {'justify-end': !helperText && maxLength}]"
+    >
+      <div
+        v-if="helperText"
+        :class="[
+          'text-gray-500 type-xs-400',
+          { 'text-green-700': success },
+          { 'text-red-600': error },
+          { '!text-gray-500': disabled }]"
+      >
+        {{ helperText }}
+      </div>
+      <div
+        v-show="showCounter && maxLength && isAreaOnFocus"
+        id="charCounter"
+        role="status"
+        aria-live="polite"
+        :class="['type-xs-400',
+                 showMaxLengthAlert ? 'text-red-700' : 'text-gray-500']"
+      >
+        {{ counterContent }}
+      </div>
+    </div>
   </div>
 </template>
 
@@ -40,6 +74,11 @@ export default {
       type: String,
       default: null
     },
+    tooltipPosition: {
+      type: String, default: 'leading',
+      validator: function (value) {
+        return ['leading', 'trailing'].includes(value);
+      } },
     id: {
       type: String,
       required: true
@@ -64,11 +103,19 @@ export default {
       type: String,
       default: ''
     },
+    helperText: {
+      type: String,
+      default: ''
+    },
     required: {
       type: Boolean,
       default: false
     },
     error: {
+      type: Boolean,
+      default: false
+    },
+    success: {
       type: Boolean,
       default: false
     },
@@ -83,9 +130,35 @@ export default {
     inputClass: {
       type: String,
       default: ''
+    },
+    resizable: {
+      type: Boolean,
+      default: false
+    },
+    showCounter: {
+      type: Boolean,
+      default: false
+    },
+    maxLength: {
+      type: [null, Number],
+      default: null
     }
   },
   emits: ['update:modelValue', 'input', 'change'],
+  data () {
+    return {
+      isAreaOnFocus: false
+    };
+  },
+  computed: {
+    showMaxLengthAlert () {
+      return this.maxLength &&
+      this.modelValue?.length >= this.maxLength - 5;
+    },
+    counterContent () {
+      return `${this.modelValue?.length }/${this.maxLength}`;
+    }
+  },
   methods: {
     onInput ($event) {
       this.$emit('update:modelValue', $event.target.value);

@@ -1,4 +1,5 @@
 import TextInput from './TextInput.vue';
+import LobLabel from '../Label/Label.vue';
 import mdx from './TextInput.mdx';
 import { MagnifyingGlass, Upload } from '@/components/Icons';
 
@@ -45,7 +46,30 @@ export const Primary = PrimaryTemplate.bind({});
 Primary.args = {
   id: 'name',
   label: 'Name',
-  placeholder: 'Your name here'
+  placeholder: 'Name'
+};
+
+const WithTooltipTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { TextInput, LobLabel },
+  setup: () => ({ args }),
+  data: () => ({ textInputVModel }),
+  template: `
+    <LobLabel
+      label="Name"
+      labelFor="one"
+      tooltipContent="Please enter Name"
+    />
+    <text-input v-bind="args" v-model="textInputVModel" />
+  `
+});
+
+export const WithTooltip = WithTooltipTemplate.bind({});
+WithTooltip.args = {
+  id: 'name',
+  label: 'name',
+  srOnlyLabel: true,
+  placeholder: 'Name'
 };
 
 const IconLeftTemplate = (args, { argTypes }) => ({
@@ -66,18 +90,18 @@ export const IconLeft = IconLeftTemplate.bind({});
 IconLeft.args = {
   id: 'name',
   label: 'Name',
-  placeholder: 'Your name here'
+  placeholder: 'Name'
 };
 
 const IconRightTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { TextInput, MagnifyingGlass },
+  components: { TextInput, Upload },
   setup: () => ({ args }),
   data: () => ({ textInputVModel }),
   template: `
     <text-input v-bind="args" v-model="textInputVModel">
       <template v-slot:iconRight>
-        <MagnifyingGlass />
+        <Upload />
       </template>
     </text-input>
   `
@@ -87,15 +111,7 @@ export const IconRight = IconRightTemplate.bind({});
 IconRight.args = {
   id: 'name',
   label: 'Name',
-  placeholder: 'Your name here'
-};
-
-export const WithTooltip = PrimaryTemplate.bind({});
-WithTooltip.args = {
-  id: 'name',
-  label: 'Name',
-  tooltipContent: 'Type name here',
-  tooltipPosition: 'trailing'
+  placeholder: 'Name'
 };
 
 const BothIconsTemplate = (args, { argTypes }) => ({
@@ -119,7 +135,15 @@ export const BothIcons = BothIconsTemplate.bind({});
 BothIcons.args = {
   id: 'name',
   label: 'Name',
-  placeholder: 'Your name here'
+  placeholder: 'Name'
+};
+
+export const WithClearButton = PrimaryTemplate.bind({});
+WithClearButton.args = {
+  id: 'name',
+  label: 'Name',
+  placeholder: 'Name',
+  withClearButton: true
 };
 
 const WithCopyButtonTemplate = (args, { argTypes }) => ({
