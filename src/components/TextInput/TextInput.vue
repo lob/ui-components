@@ -14,7 +14,7 @@
       aria-role="alert"
       aria-live="polite"
       :class="['absolute -top-4 ml-20',
-               {'-top-11': srOnlyLabel }]"
+               { '-top-11': srOnlyLabel }]"
     >
       <transition
         enter-active-class="duration-1000 ease-out"
@@ -32,7 +32,7 @@
           <div class="flex">
             <Check size="s" />
             <div class="ml-1.5">
-              Copied
+              {{ copiedTooltipContent }}
             </div>
           </div>
           <div class="absolute bg-transparent w-0 h-0 m-auto border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-gray-700 -bottom-2 left-0 right-0" />
@@ -42,20 +42,21 @@
     <div
       data-testId="input-container"
       :class="[
-        'bg-white h-12 pl-4 pr-4 py-2.5 rounded-lg flex items-center gap-2 border border-gray-300 focus-within:outline-none',
-        { '!pl-3 !pr-3 !h-8 !gap-1' : small },
-        {'hover:border-gray-300 focus-within:ring-1 focus-within:ring-primary-500 focus-within:border-primary-500': !disabled && !readonly},
-        {'!bg-white-100' : disabled},
-        {'!bg-white-100 focus-within:ring-1 focus-within:ring-primary-500 focus-within:border-primary-500' : readonly},
-        {'!border-coral-700 !bg-coral-100 focus-within:ring-1 focus-within:ring-coral-700': error},
-        {'!bg-white-100' : withCopyButton},
-        {'!flex-wrap !h-fit' : isMultiselect},
-        {'focus-within:border-primary-500' : modelValue && !error && !withCopyButton}
+        'bg-white h-11 px-3 py-2 rounded-sm flex items-center gap-2 border border-gray-200',
+        { 'hover:border-gray-300 focus-within:border-blue-500 focus-within:hover:border-blue-500  focus-within:outline-dashed focus-within:outline-black focus-within:outline-offset-1': !disabled && !readonly },
+        { '!border-green-700 !bg-green-50': success },
+        { '!border-red-600 !bg-red-50': error },
+        { '!bg-gray-50' : disabled || readonly || withCopyButton },
+        { '!flex-wrap !h-fit' : isMultiselect }
       ]"
     >
       <div
         v-if="iconLeft"
-        :class="['text-gray-500']"
+        :class="[modelValue && !disabled ? 'text-gray-800' : 'text-gray-500',
+                 { 'text-green-700' : success },
+                 { 'text-red-600' : error },
+                 { '!text-gray-300': disabled }
+        ]"
       >
         <slot name="iconLeft" />
       </div>
@@ -69,12 +70,12 @@
         :max="max"
         :pattern="pattern"
         :class="[
-          `leading-5 w-full text-gray-900 placeholder-gray-300 placeholder:font-light outline-none ${inputClass}`,
-          {'nonErrorAutofill' : !disabled && !readonly},
-          {'text-xs': small},
-          {'truncate': withCopyButton},
-          {'bg-white-100 cursor-not-allowed !text-gray-100 !placeholder-gray-300': disabled || readonly},
-          {'bg-coral-100 !placeholder-error !autofill:bg-coral-100 errorAutofill': error}
+          `w-full text-gray-800 type-small-400 caret-gray-300 placeholder-gray-200 placeholder:type-small-400 outline-none ${inputClass}`,
+          { 'nonErrorAutofill' : !disabled && !readonly },
+          { 'truncate': withCopyButton },
+          { 'bg-green-50 !placeholder-green-700': success },
+          { 'bg-red-50 !placeholder-red-600 !autofill:bg-red-50 errorAutofill': error },
+          { 'bg-gray-50 cursor-not-allowed !text-gray-300 !placeholder-gray-300': disabled || readonly }
         ]"
         :disabled="disabled"
         :required="required"
@@ -85,27 +86,30 @@
         @change="onChange"
         @invalid="onInvalid"
       >
-      <div
-        v-if="clearButton"
-        :class="['text-gray-500']"
+      <button
+        v-if="showClearButton && modelValue"
+        :class="[modelValue && !disabled ? 'text-gray-800' : 'text-gray-500',
+                 { 'text-green-700' : success },
+                 { 'text-red-600' : error },
+                 { '!text-gray-300': disabled }
+        ]"
+        @click="clearInput"
       >
-        <button
-          class="flex justify-center items-center"
-          variant="none"
-          @click="clearInput"
-        >
-          <XmarkLarge
-            :class="[
-              'h-[18px] w-[18px] cursor-pointer',
-              { 'bg-white-100' : disabled },
-              { 'bg-coral-100' : error }
-            ]"
-          />
-        </button>
-      </div>
+        <XmarkLarge
+          :class="[ 'h-3.5',
+                    'cursor-pointer',
+                    { 'bg-white-100' : disabled },
+                    { 'bg-coral-100' : error }
+          ]"
+        />
+      </button>
       <div
         v-if="iconRight"
-        :class="['text-gray-500']"
+        :class="[modelValue && !disabled ? 'text-gray-800' : 'text-gray-500',
+                 { 'text-green-700' : success },
+                 { 'text-red-600' : error },
+                 { '!text-gray-300': disabled }
+        ]"
       >
         <slot name="iconRight" />
       </div>
@@ -115,15 +119,16 @@
         class="rounded-full px-3 h-7 type-xs-700 bg-black text-white hover:bg-gray-700 focus-visible:outline-dashed focus-visible:outline-black focus-visible:outline-offset-1 active:bg-gray-800 focus:bg-gray-800"
         @click="copyToClipboard"
       >
-        Copy
+        {{ copyButtonLabel }}
       </button>
     </div>
     <div
       v-if="helperText"
       :class="[
-        'text-gray-500 text-xs pt-1',
-        {'text-error' : error},
-        {'text-gray-100' : disabled}
+        'text-gray-500 type-xs-400 mt-1',
+        { 'text-green-700' : success },
+        { 'text-red-600' : error },
+        { '!text-gray-500' : disabled }
       ]"
     >
       {{ helperText }}
@@ -202,12 +207,9 @@ export default {
       type: Boolean,
       default: false
     },
-    size: {
-      type: String,
-      default: 'default',
-      validator: function (value) {
-        return ['default', 'small'].includes(value);
-      }
+    success: {
+      type: Boolean,
+      default: false
     },
     readonly: {
       type: Boolean,
@@ -216,6 +218,14 @@ export default {
     withCopyButton: {
       type: Boolean,
       default: false
+    },
+    copyButtonLabel: {
+      type: String,
+      default: 'Copy'
+    },
+    copiedTooltipContent: {
+      type: String,
+      default: 'Copied'
     },
     selectOnClick: {
       type: Boolean,
@@ -233,7 +243,7 @@ export default {
       type: Boolean,
       default: false
     },
-    clearButton: {
+    withClearButton: {
       type: Boolean,
       default: false
     }
@@ -245,9 +255,6 @@ export default {
     };
   },
   computed: {
-    small () {
-      return this.size === 'small';
-    },
     iconLeft () {
       return this.$slots.iconLeft;
     },
@@ -258,7 +265,7 @@ export default {
       return this.$slots.selectedOptions;
     },
     showClearButton () {
-      return !this.isMultiselect && !this.iconRight && !this.withCopyButton;
+      return this.withClearButton && !this.isMultiselect && !this.iconRight && !this.withCopyButton;
     }
   },
   methods: {
@@ -315,14 +322,5 @@ export default {
 .errorAutofill:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px #f8e7e6 inset !important;
   box-shadow: 0 0 0 30px #f8e7e6 inset !important;
-}
-
-.primary:not(:disabled) {
-  background: linear-gradient(114.08deg, #1876db 7.95%, #5748ff 90.87%);
-}
-
-.primary:focus:not(:disabled),
-.primary:hover:not(:disabled):not(:focus) {
-  background: linear-gradient(114.08deg, #5748ff 7.95%, #1876db 90.87%);
 }
 </style>

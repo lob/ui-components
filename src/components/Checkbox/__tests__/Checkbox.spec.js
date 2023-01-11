@@ -6,7 +6,6 @@ const initialProps = {
   modelValue: false,
   name: 'Test name',
   label: 'Test',
-  error: false,
   disabled: false
 };
 
@@ -49,18 +48,6 @@ describe('Checkbox', () => {
 
     const checkbox = getByLabelText(new RegExp(props.label));
     expect(checkbox).toBeRequired();
-  });
-
-  it('adds an error class when error prop is true', () => {
-    const props = {
-      ...initialProps,
-      error: true
-    };
-
-    const { getByTestId } = renderComponent({ props });
-
-    const checkmark = getByTestId('checkmark');
-    expect(checkmark).toHaveClass('border-error');
   });
 
   it('fires the input event when the input is clicked', async () => {

@@ -17,21 +17,19 @@
       :class="[
         'text-gray-900',
         'h-full flex justify-center relative cursor-pointer',
-        'rounded-lg border-2 border-transparent ring-4 ring-transparent shadow-input',
-        'peer-focus-visible:ring-primary-100 peer-focus-visible:ring-4',
+        'rounded-lg border border-transparent shadow-input',
+        'peer-focus-visible:outline-dashed peer-focus-visible:outline-black peer-focus-visible:outline-offset-1',
         'peer-hover:shadow',
-        'peer-checked:border-2 peer-checked:border-primary-500 peer-checked:shadow',
+        'peer-checked:border peer-checked:border-black peer-checked:shadow',
         'peer-disabled:cursor-not-allowed peer-disabled:shadow-none peer-disabled:text-gray-100',
-        'peer-disabled:border-2 peer-checked:border-disabled-gray',
+        'peer-disabled:border peer-checked:border-disabled-gray',
         { 'max-w-[240px]': smallText },
         { 'min-w-[160px] max-w-[240px]': imageSource && !smallText },
         { 'items-center': !hasDisabledBanner && !smallText },
-        {'border-0' : topFullImage && !checked}
+        {'border-0' : topFullImage && !checked }
       ]"
     >
-      <div
-        class="w-full"
-      >
+      <div class="w-full">
         <div
           v-if="imageSource"
           data-testId="imageContainer"
@@ -57,7 +55,6 @@
             :alt="imageAltText"
           >
         </div>
-
         <div
           v-if="hasDisabledBanner && !imageSource"
           class="mt-0 top-0 inset-x-0 absolute text-center bg-turquoise-100 uppercase text-gray-700 text-sm tracking-wide font-bold p-1 rounded-t-lg"
@@ -65,7 +62,6 @@
         >
           {{ disabledBanner }}
         </div>
-
         <div
           :class="[
             { 'mx-6 xl:mx-10': !imageSource && !smallText },

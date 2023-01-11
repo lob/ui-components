@@ -1,10 +1,10 @@
 <template>
-  <div class="inline-block mr-6 mt-1">
+  <div class="customOutline py-1 mr-5 relative">
     <input
       :id="id"
       type="radio"
       :class="[
-        'm-0 p-0 opacity-0 mt-2',
+        'absolute opacity-0',
         {'radio__input--error': error},
         {'!cursor-not-allowed': disabled}
       ]"
@@ -13,34 +13,30 @@
       :checked="checked"
       :disabled="disabled"
       :required="required"
+      :readonly="readonly"
       @input="onInput"
       @click="onClick"
     >
     <label
       :for="id"
       :class="[
-        'relative flex font-light',
-        {'text-gray-100 !cursor-not-allowed': disabled},
-        {'text-primary-500' : checked && !disabled},
-        {'largeButton w-4/5 pt-2 ml-1' : large},
-        {'largeHover' : largeHover},
-        {'!pt-0.5 helperText' : large && helperText}
+        'relative flex type-base-500 left-[31px] pr-10 cursor-pointer',
+        {'text-gray-400 !cursor-not-allowed': disabled}
       ]"
     >
-      <div class="ml-4">
+      <div>
         <slot>
           {{ label }}
         </slot>
-      </div>
-      <div
-        :class="[
-          'text-sm ml-4 text-gray-500 !font-normal',
-          {'!text-error' : error},
-          {'!text-primary-500' : checked},
-          {'!text-gray-100' : disabled}
-        ]"
-      >
-        {{ helperText }}
+        <div
+          v-if="helperText"
+          :class="[
+            'type-xs-400 text-gray-500',
+            {'!text-gray-300' : disabled}
+          ]"
+        >
+          {{ helperText }}
+        </div>
       </div>
     </label>
   </div>
@@ -84,19 +80,11 @@ export default {
       type: String,
       default: ''
     },
-    large: {
-      type: Boolean,
-      default: false
-    },
-    largeChecked: {
-      type: Boolean,
-      default: false
-    },
-    largeHover: {
-      type: Boolean,
-      default: false
-    },
     error: {
+      type: Boolean,
+      default: false
+    },
+    readonly: {
       type: Boolean,
       default: false
     }
@@ -109,7 +97,7 @@ export default {
   },
   computed: {
     checked () {
-      return this.modelValue === this.value || this.largeChecked;
+      return this.modelValue === this.value;
     }
   },
   created () {
@@ -130,80 +118,51 @@ export default {
 <style scoped lang="scss">
 input {
   + label {
-    @apply relative;
-    @apply inline-block;
-    @apply cursor-pointer;
-
     &::before {
       content: "";
       top: 3px;
-      left: -8px;
+      left: -22px;
 
       @apply absolute;
-      @apply bg-transparent;
-      @apply border-gray-300;
+      @apply bg-white;
+      @apply border-gray-400;
       @apply border-solid;
       @apply border;
       @apply h-4;
-      @apply rounded-full;
+      @apply rounded-lg;
       @apply w-4;
     }
 
     &::after {
       content: "";
-      left: -4px;
+      left: -17px;
 
-      @apply top-[7px];
+      @apply top-2;
       @apply absolute;
-      @apply h-2;
+      @apply h-1.5;
       @apply inline-block;
       @apply rounded-full;
-      @apply w-2;
+      @apply w-1.5;
+      @apply bg-white;
     }
-  }
-
-  + label.largeButton {
-    &::before {
-      @apply mt-2;
-    }
-
-    &::after {
-      @apply mt-2;
-    }
-  }
-
-  + label.helperText {
-    &::before {
-      @apply mt-0.5;
-    }
-
-    &::after {
-      @apply mt-0.5;
-    }
-  }
-
-  &:disabled + label::before {
-    @apply border-gray-100;
   }
 
   &.radio__input--error + label::before {
-    @apply border-error;
+    @apply border-red-500;
   }
 
-  &:checked:not(:disabled) + label::before {
-    @apply border-2;
-    @apply border-primary-500;
+  &:disabled:not(:checked) + label::before {
+    @apply border-gray-300;
+    @apply bg-gray-50;
   }
 
-  &:checked:not(:disabled) + label::after {
-    @apply bg-primary-500;
+  &:disabled:not(:checked) + label::after {
+    @apply bg-gray-50;
   }
 
-  &:checked:disabled + label::after {
-    @apply bg-gray-100;
-    @apply h-2;
-    @apply w-2;
-    @apply top-[7px];
+  &:disabled:checked + label::before {
+    @apply border-gray-300;
+    @apply bg-gray-300;
   }
 
   &.radio__input--error:checked + label::before {
@@ -211,34 +170,40 @@ input {
     @apply border-error;
   }
 
-  &:hover:not(:disabled):not(:checked) + label::before {
-    @apply border-gray-900;
+  &.radio__input--error:not(:checked) + label::before {
+    @apply bg-red-50;
   }
 
-  &.radio__input--error:focus + label.largeButton::before {
-    @apply shadow-none;
+  &.radio__input--error:not(:checked) + label::after {
+    @apply bg-red-50;
   }
 
-  &.radio__input--error:focus:checked + label.largeButton::before {
-    @apply border-error;
+  &.radio__input--error:checked:not(:disabled) + label::before {
+    @apply bg-red-500;
   }
 
-  &.radio__input--error:checked:focus + label::before {
-    @apply border-error;
+  &.radio__input--error:checked:not(:disabled) + label::after {
+    @apply bg-white;
+  }
+
+  &:checked:not(:disabled):not(.radio__input--error) + label::before {
+    @apply bg-black;
+    @apply border-black;
   }
 
   &:hover:not(:disabled):not(:checked):not(.radio__input--error) + label::before {
-    @apply shadow-input;
-    @apply border-primary-500;
+    @apply border-gray-500;
+    @apply bg-gray-50;
   }
 
-  &:not(:disabled):not(:checked):not(.radio__input--error) + label.largeHover::before {
-    @apply shadow-input;
-    @apply border-primary-500;
+  &:hover:not(:disabled):not(:checked):not(.radio__input--error) + label::after {
+    @apply bg-gray-50;
   }
+}
 
-  &.radio__input--error:checked + label::after {
-    @apply bg-transparent;
-  }
+.customOutline:has(:focus-visible) {
+  @apply outline-dashed;
+  @apply outline-black;
+  @apply outline-offset-1;
 }
 </style>

@@ -34,7 +34,7 @@ const WithHelperTextTemplate = (args, { argTypes }) => ({
   components: { RadioButton },
   data: () => ({ vModel }),
   setup: () => ({ args }),
-  template: '<radio-button v-bind="args" v-model="vModel" />'
+  template: '<div style="width:200px"><radio-button v-bind="args" v-model="vModel" /></div>'
 });
 
 export const WithHelperText = WithHelperTextTemplate.bind({});
@@ -43,5 +43,5 @@ WithHelperText.args = {
   id: '4x6',
   label: '4x6',
   value: '4x6',
-  helperText: 'Standard Postcard Size'
+  helperText: 'Standard Postcard Size and a second line of text'
 };
