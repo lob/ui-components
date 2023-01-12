@@ -1,6 +1,7 @@
 import '@testing-library/jest-dom';
 import { render, fireEvent } from '@testing-library/vue';
 import Textarea from '../Textarea.vue';
+import userEvent from '@testing-library/user-event';
 
 const initialProps = {
   id: 'test',
@@ -29,7 +30,6 @@ describe('Textarea', () => {
 
     const { getByLabelText } = renderComponent({ props });
     const textarea = getByLabelText(new RegExp(props.label));
-
     expect(textarea).toBeRequired();
   });
 
@@ -41,8 +41,7 @@ describe('Textarea', () => {
 
     const { getByLabelText } = renderComponent({ props });
     const textarea = getByLabelText(props.label);
-
-    expect(textarea).toBeDisabled();
+    expect(textarea).toBeDisabled().toHaveClass('!bg-gray-50 !border-gray-200');
   });
 
   it('adds an error class to the textarea when error prop is true', () => {
@@ -53,8 +52,18 @@ describe('Textarea', () => {
 
     const { getByLabelText } = renderComponent({ props });
     const textarea = getByLabelText(props.label);
+    expect(textarea).toHaveClass('border-red-600 bg-red-50');
+  });
 
-    expect(textarea).toHaveClass('border-error');
+  it('adds a success class to the textarea when success prop is true', () => {
+    const props = {
+      ...initialProps,
+      success: true
+    };
+
+    const { getByLabelText } = renderComponent({ props });
+    const textarea = getByLabelText(props.label);
+    expect(textarea).toHaveClass('border-green-700 bg-green-50');
   });
 
   it('updates the v-model on textarea input', async () => {
@@ -73,7 +82,6 @@ describe('Textarea', () => {
 
     const updatedValue = 'hello!';
     await fireEvent.update(textarea, updatedValue);
-
     const emittedEvent = emitted();
     expect(emittedEvent).toHaveProperty('input');
     expect(emittedEvent.input[0]).toEqual([updatedValue]);
@@ -86,9 +94,67 @@ describe('Textarea', () => {
 
     const updatedValue = 'hello!';
     await fireEvent.update(textarea, updatedValue);
-
     const emittedEvent = emitted();
     expect(emittedEvent).toHaveProperty('change');
   });
 
+  describe('character counter', () => {
+
+    const propsWithCounter = {
+      ...initialProps,
+      showCounter: true,
+      maxLength: 20
+    };
+    let component;
+    beforeEach(() => {
+      component = renderComponent({ props: propsWithCounter });
+    });
+
+    it('does not show the counter if the area is not on focus', () => {
+      const { queryByRole } = component;
+
+      const counter = queryByRole('status');
+      expect(counter).not.toBeInTheDocument();
+    });
+
+    it('shows the counter when the textarea is focused', async () => {
+      const { getByLabelText, findByRole } = component;
+      const textarea = getByLabelText(propsWithCounter.label);
+      userEvent.click(textarea);
+
+      const counter = await findByRole('status');
+      expect(counter).toBeInTheDocument().toHaveTextContent(/0\/20/i).toHaveClass('text-gray-500');
+    });
+
+    it('counts the characters', async () => {
+      const { getByLabelText, findByRole, rerender } = component;
+      const textarea = getByLabelText(propsWithCounter.label);
+      userEvent.click(textarea);
+      await userEvent.type(textarea, 'thing');
+
+      rerender({ modelValue: 'thing' });
+      expect(textarea).toHaveValue('thing');
+
+      const counter = await findByRole('status');
+      expect(counter).toHaveTextContent(/5\/20/);
+      expect(counter).toBeInTheDocument().toHaveClass('text-gray-500');
+    });
+
+    it('is the error color when value length is more than (maxLength - 5)', async () => {
+      const { getByLabelText, findByRole, rerender } = component;
+      const textarea = getByLabelText(propsWithCounter.label);
+      userEvent.click(textarea);
+      await userEvent.type(textarea, 'is 16 characters');
+
+      rerender({ modelValue: 'is 16 characters' });
+      expect(textarea).toHaveValue('is 16 characters');
+
+      const counter = await findByRole('status');
+      expect(counter).toHaveTextContent(/16\/20/);
+      expect(counter).toBeInTheDocument().toHaveClass('text-red-700');
+    });
+
+  });
+
 });
+

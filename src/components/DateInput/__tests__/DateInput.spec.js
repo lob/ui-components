@@ -108,7 +108,7 @@ describe('DateInput', () => {
       const { getByText, getByTestId } = renderComponent({ props });
 
       const textInput = getByTestId('input-container');
-      expect(textInput).toHaveClass('!border-coral-700');
+      expect(textInput).toHaveClass('!border-red-600');
       const errorMessage = getByText('Date no longer valid');
       expect(errorMessage).toBeVisible();
     });

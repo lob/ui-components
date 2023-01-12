@@ -1,5 +1,32 @@
 # CHANGELOG
 
+## v2.0.0-beta.31
+
+### Features
+
+`Dropdown` design updates
+
+### Breaking Changes
+
+`size` prop and small variant removed from `Dropdown`
+
+## v2.0.0-beta.30
+
+### Features
+
+`TextInput` and `Textarea` design updates
+`Textarea` new (optional) features: character counter and max characters
+
+### Breaking Changes
+
+`size` prop and small variant removed from `TextInput`
+
+## v2.0.0-beta.29
+
+### Features
+
+`Checkbox` and `MegaButton` design updates
+
 ## v2.0.0-beta.28
 
 ### Features

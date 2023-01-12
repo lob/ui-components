@@ -19,19 +19,22 @@
     <span
       style="content: '';"
       :class="[
-        'checkmark w-4 h-4 mr-1 rounded-sm border-solid border border-gray-100 -left-5 absolute top-1',
+        'checkmark w-4 h-4 mr-1 rounded-sm border-solid border border-gray-200 -left-5 absolute top-1',
         { 'bg-white-300': disabled },
-        { '!bg-gray-100': disabled && checked },
-        { 'border-error': error },
-        { 'border-primary-500 bg-primary-500': checked }
+        { '!bg-gray-200': disabled && checked },
+        { 'border-black bg-black': checked && !disabled }
       ]"
       data-testId="checkmark"
     />
-    <!-- eslint-disable-next-line vue/no-v-html -->
-    <span v-html="label" />
+    <!-- eslint-disable vue/no-v-html -->
+    <span
+      :class="['ml-1 type-small-500', disabled ? 'text-gray-400' : 'text-gray-800']"
+      v-html="label"
+    />
+    <!-- eslint-enable vue/no-v-html -->
     <span
       v-if="required"
-      class="text-sm text-error"
+      class="text-sm text-red-500"
     >
       *
     </span>
@@ -58,10 +61,6 @@ export default {
       default: false
     },
     required: {
-      type: Boolean,
-      default: false
-    },
-    error: {
       type: Boolean,
       default: false
     },
@@ -99,15 +98,19 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.checkbox input:focus ~ .checkmark {
-  @apply outline-none;
-  @apply ring-2;
-  @apply ring-primary-100;
-  @apply border-transparent;
+.checkbox input:focus-visible ~ .checkmark {
+  @apply outline-dashed;
+  @apply outline-black;
+  @apply outline-offset-1;
 }
 
 .checkbox:hover input:not(:disabled) ~ .checkmark {
-  @apply shadow-input;
+  @apply border-gray-300;
+}
+
+.checkbox:hover input:checked:not(:disabled) ~ .checkmark {
+  @apply bg-gray-700;
+  @apply border-gray-700;
 }
 
 .checkmark::after {
@@ -118,11 +121,11 @@ export default {
 }
 
 .checkbox .checkmark::after {
-  border-width: 0 3px 3px 0;
-  top: 1px;
+  border-width: 0 2.5px 2.5px 0;
+  top: 2px;
   width: 5px;
-  height: 9px;
-  left: 4px;
+  height: 8px;
+  left: 4.5px;
 
   @apply border-solid;
   @apply border-white;

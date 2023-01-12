@@ -3,16 +3,16 @@
     :id="id"
     ref="option"
     :class="[
-      'border-l-4 border-l-transparent truncate flex items-center',
-      {'text-xs h-7 px-2.5': small},
-      {'h-10 px-4': default_},
-      {'font-light cursor-default': !option.disabled},
-      {'bg-white-300 text-primary-500 font-bold !border-l-primary-500': active && !option.disabled && !selected},
-      {'text-gray-100 cursor-not-allowed': option.disabled},
-      {'bg-primary-500 font-bold !text-white': selected}
+      'h-9 py-2 px-4 flex items-center truncate',
+      { 'text-gray-500 type-small-500 hover:bg-gray-50 hover:text-gray-800': !selected },
+      { '!bg-black !text-white type-small-700': selected && !placeholder },
+      { 'bg-gray-50 text-gray-800 ring-1 ring-blue-500 ring-inset hover:ring-0': active && !option.disabled },
+      { '!text-gray-300 !type-small-500': placeholder },
+      option.disabled ? '!text-gray-300 cursor-not-allowed': 'cursor-pointer'
     ]"
     :aria-disabled="option.disabled"
     :aria-selected="active"
+    data-testid="option"
     role="option"
     @mousedown="onMousedown"
     @mouseenter="onMouseEnter"
@@ -55,24 +55,9 @@ export default {
     placeholder: {
       type: Boolean,
       default: false
-    },
-    size: {
-      type: String,
-      default: 'default',
-      validator: function (value) {
-        return ['default', 'small'].includes(value);
-      }
     }
   },
   emits: ['click', 'mousedown', 'mouseenter'],
-  computed: {
-    small () {
-      return this.size === 'small';
-    },
-    default_ () {
-      return this.size === 'default';
-    }
-  },
   methods: {
     onMousedown ($event) {
       this.$emit('mousedown', $event);

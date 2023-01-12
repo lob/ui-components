@@ -1,133 +1,134 @@
 <!-- Implementation based on the accessible single select <div role="combobox" />  https://www.24a11y.com/2019/select-your-poison-part-2/ -->
 <!-- Code samples https://github.com/microsoft/sonder-ui/tree/master/src/components/select -->
 <template>
-  <lob-label
-    v-if="label"
-    :id="`${id}-label`"
-    :label="label"
-    :label-for="id"
-    :required="required"
-    :sr-only-label="srOnlyLabel"
-    :tooltip-content="tooltipContent"
-  />
-  <div
-    :class="[
-      'relative',
-      {'cursor-not-allowed': disabled}
-    ]"
-  >
-    <div
-      :id="`${id}-value`"
-      ref="input"
-      role="combobox"
-      aria-autocomplete="none"
-      aria-haspopup="listbox"
-      :aria-activedescendant="activeId"
-      :aria-expanded="open"
-      :aria-labelledby="`${id}-label`"
-      :aria-controls="`${id}-listbox`"
-      :aria-required="required"
-      :aria-disabled="disabled"
-      :class="[
-        'cursor-default bg-white border rounded-lg border-gray-300 font-light text-gray-900 flex align-center items-center',
-        {'h-8 text-sm py-2 px-2.5': small},
-        {'h-12 py-2.5 px-4': default_},
-        {'!border-error bg-coral-200': error},
-        {'!border-success': success && !error},
-        {'!bg-white-100 pointer-events-none': disabled},
-        {'border-gray-500' : open || activeIndex > -1}
-      ]"
-      tabindex="0"
-      @blur="onSelectBlur"
-      @click="updateMenuState(!open)"
-      @keydown="onSelectKeydown"
-    >
+  <div>
+    <lob-label
+      v-if="label"
+      :id="`${id}-label`"
+      :label="label"
+      :label-for="id"
+      :required="required"
+      :sr-only-label="srOnlyLabel"
+      :tooltip-content="tooltipContent"
+    />
+    <div :class="[ 'relative', { 'cursor-not-allowed': disabled } ]">
       <div
+        :id="`${id}-value`"
+        ref="input"
+        role="combobox"
+        aria-autocomplete="none"
+        aria-haspopup="listbox"
+        :aria-activedescendant="activeId"
+        :aria-expanded="open"
+        :aria-labelledby="`${id}-label`"
+        :aria-controls="`${id}-listbox`"
+        :aria-required="required"
+        :aria-disabled="disabled"
         :class="[
-          'mr-8 truncate',
-          {'text-xs': small},
-          {'text-gray-100': disabled},
-          {'text-gray-900 !font-normal' : open || activeIndex > -1},
-          {'text-gray-500' : activeIndex < 0},
-          {'text-error': error}
+          'flex items-center justify-between bg-white rounded-sm border border-gray-200 hover:border-gray-300',
+          'focus:border-blue-500 focus-visible:outline-[1.5px] focus-visible:outline-dashed focus-visible:outline-black focus-visible:outline-offset-1',
+          'type-small-500 h-11 py-2 px-4',
+          { '!border-green-700 !bg-green-50': success && !error },
+          { '!border-red-600 !bg-red-50': error },
+          { '!bg-gray-50 pointer-events-none': disabled },
+          { 'border-gray-300' : open || activeIndex > -1 && !disabled }
         ]"
-      >
-        {{ value || placeholder }}
-      </div>
-      <chevron-down
-        v-if="!open"
-        size="s"
-        :class="[
-          'absolute right-2.5',
-          error ? 'text-error' : 'text-gray-900'
-        ]"
-        data-testid="chevron-down"
-      />
-      <chevron-up
-        v-else
-        size="s"
-        :class="[
-          'absolute right-2.5',
-          error ? 'text-error' : 'text-gray-900'
-        ]"
-        data-testid="chevron-up"
-      />
-    </div>
-    <div
-      :id="`${id}-listbox`"
-      ref="listbox"
-      role="listbox"
-      :class="[
-        'bg-white rounded-lg text-sm py-4 overflow-y-auto absolute left-0 top-full hidden w-full z-50 shadow h-auto max-h-80',
-        {'custom-list-height': listHeight},
-        {'!block': open }
-      ]"
-    >
-      <div
-        v-for="item in optionItems"
-        :key="item.id || item.label || item"
+        tabindex="0"
+        @blur="onSelectBlur"
+        @click="updateMenuState(!open)"
+        @keydown="onSelectKeydown"
       >
         <div
-          v-if="isOptGroup(item)"
-          role="group"
+          :class="[
+            'mr-8 truncate type-small-500',
+            value ? 'text-gray-800' : 'text-gray-500',
+            { '!text-gray-300': disabled },
+            { 'text-gray-800' : open || activeIndex > -1 },
+            { 'text-gray-500' : activeIndex < 0 },
+            { 'text-green-600': success },
+            { 'text-red-600': error }
+          ]"
         >
-          <dropdown-item-group
-            :id="id"
-            :ref="(el) => setOptionRef(el, item)"
-            :group="item"
-            :active-index="activeIndex"
-            :selected-index="selectedIndex"
-            :placeholder-text="placeholder"
-            :flattened-options="flattenedOptions"
-            @mousedown="onOptionMousedown"
-            @mouseenter="onOptionMouseover"
-            @click="onOptionClick"
-          />
+          {{ value || placeholder }}
         </div>
-        <div
-          v-else
-        >
-          <dropdown-item
-            :id="`${id}-${flattenedOptions.indexOf(item)}`"
-            :ref="(el) => setOptionRef(el, item)"
-            :option="item"
-            :index="flattenedOptions.indexOf(item)"
-            :active="activeIndex === flattenedOptions.indexOf(item)"
-            :selected="selectedIndex === flattenedOptions.indexOf(item)"
-            :placeholder="item.label === placeholder"
-            :size="size"
-            @mousedown="onOptionMousedown"
-            @mouseenter="onOptionMouseover"
-            @click="onOptionClick"
-          />
-        </div>
+        <chevron-down
+          size="s"
+          :class="[
+            'transition-all duration-100',
+            { 'text-gray-500': !success && !error && !disabled },
+            { 'text-green-600': success },
+            { 'text-red-600': error },
+            { 'text-gray-300': disabled },
+            { '-rotate-180': open }
+          ]"
+          data-testid="chevron-down"
+        />
       </div>
+      <transition
+        enter-active-class="duration-100 ease-out"
+        enter-from-class="opacity-0 -translate-y-2"
+        enter-to-class="opacity-100 translate-y-0"
+        leave-active-class="duration-100 ease-out"
+        leave-from-class="opacity-100 translate-y-0"
+        leave-to-class="opacity-0 -translate-y-2"
+      >
+        <div
+          v-show="open"
+          :id="`${id}-listbox`"
+          ref="listbox"
+          data-testid="listbox"
+          role="listbox"
+          :class="[
+            'bg-white absolute z-20 shadow-large overflow-y-auto left-0 top-full w-full h-auto max-h-80',
+            { 'custom-list-height': listHeight }
+          ]"
+        >
+          <div
+            v-for="item in optionItems"
+            :key="item.id || item.label || item"
+          >
+            <div
+              v-if="isOptGroup(item)"
+              role="group"
+            >
+              <dropdown-item-group
+                :id="id"
+                :ref="(el) => setOptionRef(el, item)"
+                :group="item"
+                :active-index="activeIndex"
+                :selected-index="selectedIndex"
+                :placeholder-text="placeholder"
+                :flattened-options="flattenedOptions"
+                @mousedown="onOptionMousedown"
+                @mouseenter="onOptionMouseover"
+                @click="onOptionClick"
+              />
+            </div>
+            <div
+              v-else
+            >
+              <dropdown-item
+                :id="`${id}-${flattenedOptions.indexOf(item)}`"
+                :ref="(el) => setOptionRef(el, item)"
+                :option="item"
+                :index="flattenedOptions.indexOf(item)"
+                :active="activeIndex === flattenedOptions.indexOf(item)"
+                :selected="selectedIndex === flattenedOptions.indexOf(item)"
+                :placeholder="item.label === placeholder"
+                @mousedown="onOptionMousedown"
+                @mouseenter="onOptionMouseover"
+                @click="onOptionClick"
+              />
+            </div>
+          </div>
+        </div>
+      </transition>
     </div>
   </div>
 </template>
 
 <script>
-import { ChevronDown, ChevronUp } from '@/components/Icons';
+import { ChevronDown } from '@/components/Icons';
 import DropdownItemGroup from './DropdownItemGroup';
 import DropdownItem from './DropdownItem';
 import { findLastIndex, shallowEquals } from '@/utils';
@@ -171,7 +172,7 @@ const MenuActions = {
 
 export default {
   name: 'Dropdown',
-  components: { ChevronDown, ChevronUp, DropdownItemGroup, DropdownItem, LobLabel },
+  components: { ChevronDown, DropdownItemGroup, DropdownItem, LobLabel },
   props: {
     tooltipContent: {
       type: String,
@@ -208,13 +209,6 @@ export default {
           const isOptGroup = typeof o === 'object' && o.hasOwnProperty('label') && o.hasOwnProperty('options');
           return isString || isOption || isOptGroup;
         });
-      }
-    },
-    size: {
-      type: String,
-      default: 'default',
-      validator: function (value) {
-        return ['default', 'small'].includes(value);
       }
     },
     required: {
@@ -258,12 +252,6 @@ export default {
     };
   },
   computed: {
-    small () {
-      return this.size === 'small';
-    },
-    default_ () {
-      return this.size === 'default';
-    },
     optionItems () {
       return this.placeholder ? [{ label: this.placeholder, disabled: this.required }, ...this.options] : this.options;
     },
