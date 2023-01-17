@@ -40,7 +40,14 @@ describe('SubnavigationItem', () => {
     await router.isReady();
 
     const navItem = queryByRole('link', { name: 'Account' });
-    expect(navItem).toHaveClass('font-normal');
+    expect(navItem).toHaveClass('!text-black');
+  });
+
+  it('adds the correct classes when the item is disabled', () => {
+    const { queryByRole } = renderComponent({ props: { ...initialProps, disabled: true } });
+
+    const navItem = queryByRole('link', { name: 'Account' });
+    expect(navItem).toHaveClass('!text-gray-300');
   });
 
 });

@@ -1,6 +1,6 @@
 <template>
-  <nav class="overflow-x-auto">
-    <ul :class="`flex pb-0.5 border-b border-gray-100 ${ulClass}`">
+  <nav class="overflow-x-auto h-12 border-b border-gray-100 customOutline">
+    <ul :class="`flex items-baseline ${ulClass}`">
       <slot />
     </ul>
   </nav>
@@ -17,3 +17,11 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.customOutline:has(:focus-visible) {
+  @apply outline-dashed;
+  @apply outline-black;
+  @apply outline-offset-1;
+}
+</style>

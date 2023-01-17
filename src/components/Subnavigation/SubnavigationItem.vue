@@ -1,14 +1,21 @@
 <template>
-  <li
-    class="list-none mr-12 whitespace-nowrap"
-    :class="['relative pb-4', { 'lob-active-border': active }]"
-  >
+  <li class="list-none mx-1 relative">
     <LobLink
       :to="to"
       :underline="false"
-      :class="['pb-4 text-black font-light', { 'font-normal': active }]"
+      :disabled="disabled"
+      :tabindex="disabled ? -1 : 0"
+      :class="['inline-block px-1 py-3 !text-gray-500 type-small-600 whitespace-nowrap focus-visible:!outline-none',
+               'focus-visible:before:content[``] focus-visible:before:z-10 focus-visible:before:absolute focus-visible:before:inset-0 focus-visible:before:bottom-[-3px] ',
+               'hover:before:content[``] hover:before:z-10 hover:before:absolute hover:before:inset-0 hover:before:bottom-[-3px] hover:before:border-b-2',
+               { 'hover:!text-gray-600 focus-visible:!text-gray-600 focus-visible:before:border-b-2 hover:before:border-gray-300 focus-visible:before:border-gray-300': !active && !disabled },
+               { '!text-black before:content[``] before:z-10 before:absolute before:inset-0 before:bottom-[-3px] before:border-b-2 before:border-black': active },
+               { '!text-gray-300': disabled }]"
     >
       {{ title }}
+      <div class="flex items-center">
+        <slot />
+      </div>
     </LobLink>
   </li>
 </template>
@@ -31,6 +38,10 @@ export default {
     matchQueryString: {
       type: Boolean,
       default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -40,18 +51,3 @@ export default {
   }
 };
 </script>
-
-<style scoped lang="scss">
-  .lob-active-border::before {
-    content: " ";
-    bottom: -2px;
-
-    @apply absolute;
-    @apply z-10;
-    @apply top-0;
-    @apply left-0;
-    @apply right-0;
-    @apply border-b-3;
-    @apply border-primary-300;
-  }
-</style>
