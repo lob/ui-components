@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v2.0.0-beta.32
+
+### Features
+
+`Subnavigation` design updates
+
 ## v2.0.0-beta.31
 
 ### Features
