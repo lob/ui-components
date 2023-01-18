@@ -18,7 +18,7 @@
         'text-gray-900',
         'h-full flex justify-center relative cursor-pointer',
         'rounded-lg border border-transparent shadow-input',
-        'peer-focus-visible:outline-dashed peer-focus-visible:outline-black peer-focus-visible:outline-offset-1',
+        'peer-focus-visible:outline-dashed peer-focus-visible:outline-black peer-focus-visible:outline-offset-1 peer-focus-visible:outline-1',
         'peer-hover:shadow',
         'peer-checked:border peer-checked:border-black peer-checked:shadow',
         'peer-disabled:cursor-not-allowed peer-disabled:shadow-none peer-disabled:text-gray-100',

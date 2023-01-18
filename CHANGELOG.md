@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v2.0.0-beta.33
+
+### Features
+
+Reduce focus dashed outline widths to 1px
+
 ## v2.0.0-beta.32
 
 ### Features
