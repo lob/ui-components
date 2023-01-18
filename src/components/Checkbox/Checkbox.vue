@@ -99,6 +99,7 @@ export default {
 
 <style scoped lang="scss">
 .checkbox input:focus-visible ~ .checkmark {
+  @apply outline-1;
   @apply outline-dashed;
   @apply outline-black;
   @apply outline-offset-1;

@@ -217,6 +217,7 @@ input {
 }
 
 .customOutline:has(:focus-visible) {
+  @apply outline-1;
   @apply outline-dashed;
   @apply outline-black;
   @apply outline-offset-1;

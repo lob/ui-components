@@ -1,5 +1,5 @@
 <template>
-  <button class="type-small-700 text-gray-500 whitespace-nowrap h-[76px] px-8 hover:bg-gray-50 focus:outline-black focus:outline-dashed active:bg-black active:!text-white">
+  <button class="type-small-700 text-gray-500 whitespace-nowrap h-[76px] px-8 hover:bg-gray-50 focus:outline-black focus:outline-1 focus:outline-dashed active:bg-black active:!text-white">
     <div class="flex flex-col justify-center">
       <div class="flex items-center">
         <slot />

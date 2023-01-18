@@ -12,7 +12,7 @@
     <div
       :id="dropdownToggleId"
       :class="['inline-block cursor-pointer w-auto h-[76px] py-7 px-8',
-               'transition-colors duration-200 ease-linear hover:bg-gray-50 focus:outline-black focus:outline-dashed']"
+               'transition-colors duration-200 ease-linear hover:bg-gray-50 focus:outline-black focus:outline-dashed focus:outline-1']"
       tabindex="0"
       :aria-controls="dropdownListId"
       aria-haspopup="menu"
