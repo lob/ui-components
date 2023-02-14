@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v2.0.0-beta.34
+
+### Features
+
+Adds `uploading` as a valid value the prop `status` can have for the `Dropzone` component.
+
 ## v2.0.0-beta.33
 
 ### Features

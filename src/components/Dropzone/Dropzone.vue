@@ -148,10 +148,10 @@ export default {
     sampleLinkUrl: { type: String, default: null },
     progress: { type: [Number, null], default: null },
     file: {  type: Object, default: null },
-    status: { type: [String, null], default: null,
-      validator: function (value) {
-        return [null, 'error', 'success'].includes(value);
-      }
+    status: {
+      type: [String, null],
+      default: null,
+      validator: (value) => ([null, 'error', 'success', 'uploading'].includes(value))
     }
   },
   emits: ['select', 'remove'],
@@ -183,10 +183,10 @@ export default {
       return this.successStep && this.selectedFile;
     },
     selectedFileType () {
-      return this.selectedFile.type ? this.selectedFile.type.split('/')[1].toUpperCase() : 'File';
+      return this.selectedFile?.type?.split('/')[1].toUpperCase() || 'File';
     },
     selectedFileName () {
-      return this.selectedFile.name;
+      return this.selectedFile?.name || 'your file';
     },
     fileTypesArray () {
       const array = this.acceptType?.split(',') || [];

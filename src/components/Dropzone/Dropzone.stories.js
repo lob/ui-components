@@ -34,7 +34,7 @@ export default {
       }
     },
     status: {
-      options: [null, 'error', 'success'],
+      options: [null, 'error', 'success', 'uploading'],
       control: {
         type: 'select'
       }
