@@ -47,5 +47,8 @@ export default {
     resultsPrefix: 'View all',
     resultsSuffix: 'results...',
     noResults: 'No results found'
+  },
+  dropzone: {
+    yourFile: 'your file'
   }
 };

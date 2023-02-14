@@ -186,7 +186,7 @@ export default {
       return this.selectedFile?.type?.split('/')[1].toUpperCase() || 'File';
     },
     selectedFileName () {
-      return this.selectedFile?.name || 'your file';
+      return this.selectedFile?.name || this.t('dropzone.yourFile');
     },
     fileTypesArray () {
       const array = this.acceptType?.split(',') || [];
