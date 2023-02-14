@@ -164,6 +164,10 @@ While we're not strictly enforcing any particular WCAG standard (though we shoul
 - Sensical for screen reader users
 - Color contrast passes AA at least
 
+## Running storybook locally
+```bash
+npm run storybook
+```
 ## Unit testing
 ```bash
 npm run test
