@@ -9,9 +9,7 @@
         size="xxl"
         class="mb-3"
       />
-      <div
-        class="mb-2 type-xl-600 max-w-[246px] text-center"
-      >
+      <div class="mb-2 type-xl-600 max-w-[246px] text-center">
         {{ title }}
       </div>
       <div
