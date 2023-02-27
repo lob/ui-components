@@ -3,6 +3,9 @@ import { render } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
 import { fireEvent } from '@testing-library/vue';
 import Dropzone from '../Dropzone.vue';
+import { translate } from '@/mixins';
+
+const mixins = [translate];
 
 const textContentObject = {
   yourFile: 'Your file',
@@ -34,7 +37,7 @@ const initialProps = {
   maxSizeInBytes: 1048576
 };
 
-const renderComponent = (options) => render(Dropzone, { ...options });
+const renderComponent = (options) => render(Dropzone, { ...options, global: { mixins } });
 
 describe('Dropzone', () => {
 
@@ -225,6 +228,40 @@ describe('Dropzone', () => {
       expect(displayText).toBeInTheDocument();
       const emittedEvent = emitted();
       expect(emittedEvent).toHaveProperty('remove');
+    });
+
+    describe('when the confirmRemoveModal props is true', () => {
+
+      const props = {
+        ...initialProps,
+        confirmRemoveFile: true,
+        confirmModalTitle: 'Are you sure?',
+        confirmModalSubtext: 'You are about to delete your file',
+        confirmModalConfirmBtnText: 'Do it!'
+      };
+
+      it('launches the confirm remove modal before removing the file', async () => {
+        const { rerender, getByText, getByRole, findByText, emitted } = renderComponent({ props });
+        await rerender({ status: 'success' });
+
+        const removeFile = getByText(textContentObject.removeFileButtonText);
+        await userEvent.click(removeFile);
+
+        const modalTitle = getByText('Are you sure?');
+        expect(modalTitle).toBeVisible();
+
+        const modalSubtext = getByText('You are about to delete your file');
+        expect(modalSubtext).toBeVisible();
+
+        const confirmButton = getByRole('button', { name: 'Do it!' });
+        await userEvent.click(confirmButton);
+
+        const displayText = await findByText(textContentObject.dragAndDropHere);
+        expect(displayText).toBeVisible();
+        const emittedEvent = emitted();
+        expect(emittedEvent).toHaveProperty('remove');
+      });
+
     });
 
   });

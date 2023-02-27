@@ -83,7 +83,7 @@
         type="reset"
         aria-label="Remove file"
         class="mt-6 underline text-gray-500 !text-sm"
-        @click.stop="removeFile"
+        @click.stop="confirmRemoveFile ? confirmRemoveFileModalVisible = true : removeFile()"
       >
         {{ textContent.removeFileButtonText }}
       </button>
@@ -120,16 +120,25 @@
         {{ textContent.downloadSampleFile }}
       </LobLink>
     </div>
+    <ConfirmRemoveFileModal
+      :visible="confirmRemoveFileModalVisible"
+      :title="confirmModalTitle"
+      :subtext="confirmModalSubtext"
+      :confirm-button-text="confirmModalConfirmBtnText"
+      @close="confirmRemoveFileModalVisible = false"
+      @confirmClicked="removeFile"
+    />
   </div>
 </template>
 
 <script>
 import { formatBytes } from '@/utils/formatBytes';
 import { LobLink, ProgressBar, Upload } from '@/components';
+import ConfirmRemoveFileModal from './ConfirmRemoveFileModal.vue';
 
 export default {
   name: 'Dropzone',
-  components: { LobLink, ProgressBar, Upload },
+  components: { LobLink, ProgressBar, Upload, ConfirmRemoveFileModal },
   props: {
     textContent: { type: Object, required: true,
       validator: function (value) {
@@ -152,7 +161,11 @@ export default {
       type: [String, null],
       default: null,
       validator: (value) => ([null, 'error', 'success', 'uploading'].includes(value))
-    }
+    },
+    confirmRemoveFile: { type: Boolean, default: false },
+    confirmModalTitle: { type: String, default: '' },
+    confirmModalSubtext: { type: String, default: '' },
+    confirmModalConfirmBtnText: { type: String, default: '' }
   },
   emits: ['select', 'remove'],
   data: function () {
@@ -163,7 +176,8 @@ export default {
       dragOverlay: false,
       multipleFilesError: false,
       fileSizeError: false,
-      fileTypeError: false
+      fileTypeError: false,
+      confirmRemoveFileModalVisible: false
     };
   },
   computed: {

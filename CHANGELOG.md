@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v2.0.0-beta.35
+
+### Features
+
+Adds an optional confirm deletion modal to `Dropzone`
+
 ## v2.0.0-beta.34
 
 ### Features
