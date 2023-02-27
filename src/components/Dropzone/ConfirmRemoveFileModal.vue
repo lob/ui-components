@@ -1,7 +1,7 @@
 <template>
   <Modal
     :visible="visible"
-    close-button-aria-label="Cancel removing file"
+    :close-button-aria-label="t('dropzone.confirmRemoveFileModal.closeButtonAriaLabel')"
     @close="$emit('close')"
   >
     <div class="px-5 flex flex-col items-center">
