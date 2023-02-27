@@ -51,15 +51,15 @@ export default {
     },
     title: {
       type: String,
-      default: ''
+      required: true
     },
     subtext: {
       type: String,
-      default: ''
+      required: true
     },
     confirmButtonText: {
       type: String,
-      default: ''
+      required: true
     }
   },
   emits: ['close', 'confirmClicked']
