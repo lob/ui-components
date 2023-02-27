@@ -107,3 +107,50 @@ Primary.args = {
   status: null,
   sampleLinkUrl: 'https://www.lob.com/'
 };
+
+const WithConfirmModalTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { Dropzone },
+  setup: () => ({ args }),
+  data: () => ({ fileUploadStatus: args.status, selectedFile: null, textContentObject }),
+  methods: {
+    uploadAudienceFile () {
+      setTimeout(() => {
+        this.fileUploadStatus = 'success';
+      }, 2000);
+    },
+    removeAudienceFile () {
+      this.selectedFile = null;
+      this.fileUploadStatus = null;
+    }
+  },
+  template: `
+    <div style="width: 700px">
+        <Dropzone
+            input-id="dropzone"
+            :accept-type="args.acceptType"
+            :max-size-in-bytes="Number(args.maxSizeInBytes)"
+            :show-type-and-max-size="args.showTypeAndMaxSize"
+            :sample-link-url="args.sampleLinkUrl"
+            :status="fileUploadStatus"
+            :file="selectedFile"
+            :text-content="textContentObject"
+            @select="uploadAudienceFile"
+            @remove="removeAudienceFile"
+            confirm-remove-file
+            confirm-modal-title="Are you sure?"
+            confirm-modal-subtext="Pressing continue will delete your file"
+            confirm-modal-confirm-btn-text="Continue"
+        />
+    </div>
+`
+});
+
+export const WithConfirmRemoveModal = WithConfirmModalTemplate.bind({});
+WithConfirmRemoveModal.args = {
+  acceptType: '.csv',
+  maxSizeInBytes: '2147483648',
+  showTypeAndMaxSize: true,
+  status: null,
+  sampleLinkUrl: 'https://www.lob.com/'
+};

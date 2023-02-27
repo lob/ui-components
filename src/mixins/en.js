@@ -49,6 +49,10 @@ export default {
     noResults: 'No results found'
   },
   dropzone: {
-    yourFile: 'your file'
+    yourFile: 'your file',
+    confirmRemoveFileModal: {
+      closeButtonAriaLabel: 'Cancel deleting file',
+      goBack: 'Go Back'
+    }
   }
 };
