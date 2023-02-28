@@ -162,3 +162,27 @@ WithTooltip.args = {
     'Jungle'
   ]
 };
+
+const WithConfirmChangeModalTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: {  Dropdown },
+  data: () => ({ vModel }),
+  setup: () => ({ args }),
+  template: '<dropdown v-bind="args" v-model="vModel" confirm-change-modal></dropdown>'
+});
+
+export const WithConfirmChangeModal = WithConfirmChangeModalTemplate.bind({});
+WithConfirmChangeModal.args = {
+  id: 'fav-pet',
+  label: 'Favorite pet',
+  placeholder: 'Choose a pet',
+  options: [
+    'Dog',
+    'Cat',
+    'Bunny',
+    'Parrot',
+    'Goldfish',
+    'Iguana',
+    'Other'
+  ]
+};

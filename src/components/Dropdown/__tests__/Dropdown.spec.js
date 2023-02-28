@@ -1,6 +1,9 @@
 import '@testing-library/jest-dom';
 import { render, fireEvent } from '@testing-library/vue';
 import Dropdown from '../Dropdown.vue';
+import { translate } from '@/mixins';
+
+const mixins = [translate];
 
 const modelValue = '';
 const initialProps = {
@@ -10,7 +13,7 @@ const initialProps = {
   options: ['a', 'b', 'c']
 };
 
-const renderComponent = (options) => render(Dropdown, { ...options });
+const renderComponent = (options) => render(Dropdown, { global: { mixins }, ...options });
 
 describe('Dropdown', () => {
 
@@ -444,6 +447,22 @@ describe('Dropdown', () => {
       const emittedEvent = emitted();
       expect(emittedEvent).toHaveProperty('input');
       expect(emittedEvent.input[0][0]).toEqual(props.options[1]);
+    });
+
+  });
+
+  describe('when the confirm change modal option is set', () => {
+
+    const props = { ...initialProps, confirmChangeModal: true, modelValue: 'c' };
+
+    it('opens the confirm change modal when an option is selected', async () => {
+      const { getByRole, getByText, getAllByRole } = renderComponent({ props });
+      const select = getByRole('combobox');
+      await fireEvent.click(select);
+      const options = getAllByRole('option');
+      await fireEvent.click(options[0]);
+      const modalText = getByText(/Are you sure you want to change this option?/);
+      expect(modalText).toBeVisible();
     });
 
   });

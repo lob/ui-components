@@ -593,7 +593,7 @@ export default {
       this.$emit('change', $event);
     },
     tryOnOptionClick ($event, index) {
-      if (this.selectedIndex === -1) {
+      if (this.selectedIndex === -1 || (this.selectedIndex === index)) {
         this.onOptionClick($event, index);
       } else {
         this.confirmChangeModalVisible = true;
