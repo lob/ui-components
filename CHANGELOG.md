@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v2.0.0-beta.38
+
+### Bug fixes
+
+Fix component initialization order
+
 ## v2.0.0-beta.37
 
 ### Bug fixes
