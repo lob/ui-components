@@ -38,9 +38,9 @@
 </template>
 
 <script>
-import { Modal } from '@/components';
+import Modal from '../Modal/Modal.vue';
 import { TriangleExclamation } from '../Icons';
-import { LobButton } from '@/components';
+import LobButton from '../Button/Button.vue';
 export default {
   name: 'ConfirmChangeModal',
   components: { Modal, TriangleExclamation, LobButton },
