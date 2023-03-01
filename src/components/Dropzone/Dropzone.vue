@@ -121,6 +121,7 @@
       </LobLink>
     </div>
     <ConfirmRemoveFileModal
+      v-if="ConfirmRemoveFile"
       :visible="confirmRemoveFileModalVisible"
       :title="confirmModalTitle"
       :subtext="confirmModalSubtext"
