@@ -54,5 +54,13 @@ export default {
       closeButtonAriaLabel: 'Cancel deleting file',
       goBack: 'Go Back'
     }
+  },
+  dropdown: {
+    confirmChangeModal: {
+      closeButtonAriaLabel: 'Cancel changing option',
+      goBack: 'Go Back',
+      text: 'Are you sure you want to change this option?',
+      confirmButtonText: 'Continue'
+    }
   }
 };

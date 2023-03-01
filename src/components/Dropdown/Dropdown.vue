@@ -101,7 +101,7 @@
                 :flattened-options="flattenedOptions"
                 @mousedown="onOptionMousedown"
                 @mouseenter="onOptionMouseover"
-                @click="onOptionClick"
+                @click="tryOnOptionClick"
               />
             </div>
             <div
@@ -117,13 +117,21 @@
                 :placeholder="item.label === placeholder"
                 @mousedown="onOptionMousedown"
                 @mouseenter="onOptionMouseover"
-                @click="onOptionClick"
+                @click="tryOnOptionClick"
               />
             </div>
           </div>
         </div>
       </transition>
     </div>
+    <ConfirmChangeModal
+      :visible="confirmChangeModalVisible"
+      :confirm-change-modal-text="confirmChangeModalText"
+      :confirm-change-modal-subtext="confirmChangeModalSubtext"
+      :confirm-change-modal-confirm-button-text="confirmChangeModalConfirmButtonText"
+      @close="confirmChangeModalVisible=false; open=false"
+      @confirmClicked="changeOptionConfirmed"
+    />
   </div>
 </template>
 
@@ -133,6 +141,7 @@ import DropdownItemGroup from './DropdownItemGroup';
 import DropdownItem from './DropdownItem';
 import { findLastIndex, shallowEquals } from '@/utils';
 import LobLabel from '../Label/Label.vue';
+import ConfirmChangeModal from './ConfirmChangeModal';
 
 if (!Array.prototype.findLastIndex) {
   Array.prototype.findLastIndex = findLastIndex; //eslint-disable-line
@@ -172,7 +181,7 @@ const MenuActions = {
 
 export default {
   name: 'Dropdown',
-  components: { ChevronDown, DropdownItemGroup, DropdownItem, LobLabel },
+  components: { ChevronDown, DropdownItemGroup, DropdownItem, LobLabel, ConfirmChangeModal },
   props: {
     tooltipContent: {
       type: String,
@@ -230,6 +239,22 @@ export default {
     listHeight: {
       type: String,
       default: null
+    },
+    confirmChangeModal: {
+      type: Boolean,
+      default: false
+    },
+    confirmChangeModalText: {
+      type: String,
+      default: ''
+    },
+    confirmChangeModalSubtext: {
+      type: String,
+      default: ''
+    },
+    confirmChangeModalConfirmButtonText: {
+      type: String,
+      default: ''
     }
   },
   emits: ['update:modelValue', 'input', 'change', 'open:list', 'close:list', 'hover:option'],
@@ -248,7 +273,10 @@ export default {
       // timeout after each typed character
       searchTimeout: 0,
       // current accumulated search string
-      searchString: ''
+      searchString: '',
+      confirmChangeModalVisible: false,
+      changeOptionEvent: null,
+      indexBeingChangedTo: null
     };
   },
   computed: {
@@ -563,6 +591,24 @@ export default {
       this.$emit('update:modelValue', selected);
       this.$emit('input', selected);
       this.$emit('change', $event);
+    },
+    tryOnOptionClick ($event, index) {
+      if (this.confirmChangeModal) {
+        if (this.selectedIndex === -1 || this.selectedIndex === index) {
+          this.onOptionClick($event, index);
+        } else {
+          this.confirmChangeModalVisible = true;
+          this.changeOptionEvent = $event;
+          this.indexBeingChangedTo = index;
+        }
+      } else {
+        this.onOptionClick($event, index);
+      }
+    },
+    changeOptionConfirmed () {
+      const [event, index] = [this.changeOptionEvent, this.indexBeingChangedTo];
+      [this.changeOptionEvent, this.indexBeingChangedTo] = [null, null];
+      this.onOptionClick(event, index);
     }
   }
 };

@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v2.0.0-beta.36
+
+### Features
+
+Adds an optional confirm change modal to `Dropdown`
+
 ## v2.0.0-beta.35
 
 ### Features
