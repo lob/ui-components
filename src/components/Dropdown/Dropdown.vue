@@ -101,7 +101,7 @@
                 :flattened-options="flattenedOptions"
                 @mousedown="onOptionMousedown"
                 @mouseenter="onOptionMouseover"
-                @click="($event, index) => confirmChangeModal ? tryOnOptionClick($event, index) : onOptionClick($event, index)"
+                @click="tryOnOptionClick"
               />
             </div>
             <div
@@ -117,7 +117,7 @@
                 :placeholder="item.label === placeholder"
                 @mousedown="onOptionMousedown"
                 @mouseenter="onOptionMouseover"
-                @click="($event, index) => confirmChangeModal ? tryOnOptionClick($event, index) : onOptionClick($event, index)"
+                @click="tryOnOptionClick"
               />
             </div>
           </div>
@@ -593,12 +593,16 @@ export default {
       this.$emit('change', $event);
     },
     tryOnOptionClick ($event, index) {
-      if (this.selectedIndex === -1 || (this.selectedIndex === index)) {
-        this.onOptionClick($event, index);
+      if (this.confirmChangeModal) {
+        if (this.selectedIndex === -1 || this.selectedIndex === index) {
+          this.onOptionClick($event, index);
+        } else {
+          this.confirmChangeModalVisible = true;
+          this.changeOptionEvent = $event;
+          this.indexBeingChangedTo = index;
+        }
       } else {
-        this.confirmChangeModalVisible = true;
-        this.changeOptionEvent = $event;
-        this.indexBeingChangedTo = index;
+        this.onOptionClick($event, index);
       }
     },
     changeOptionConfirmed () {

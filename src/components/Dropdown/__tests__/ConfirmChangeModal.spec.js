@@ -6,7 +6,7 @@ import { translate } from '@/mixins';
 
 const mixins = [translate];
 
-const initialProps = {
+const props = {
   visible: true,
   title: 'Are you sure?',
   subtext: 'You are about to change your selection.',
@@ -16,8 +16,6 @@ const initialProps = {
 const renderComponent = (options) => render(ConfirmChangeModal, { ...options, global: { mixins } });
 
 describe('ConfirmChangeModal', () => {
-
-  const props = { ...initialProps };
 
   it('displays the correct text', () => {
     const { getByText } = renderComponent({ props });
