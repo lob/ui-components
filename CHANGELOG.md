@@ -4,6 +4,12 @@
 
 ### Bug fixes
 
+Fix component initialization order
+
+## v2.0.0-beta.37
+
+### Bug fixes
+
 Fixes incorrect prop names in `Dropdown`
 
 ## v2.0.0-beta.36
