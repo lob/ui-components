@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v2.0.0-beta.37
+
+### Bug fixes
+
+Fixes incorrect prop names in `Dropdown`
+
 ## v2.0.0-beta.36
 
 ### Features

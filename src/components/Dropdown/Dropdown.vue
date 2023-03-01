@@ -126,9 +126,9 @@
     </div>
     <ConfirmChangeModal
       :visible="confirmChangeModalVisible"
-      :confirm-change-modal-text="confirmChangeModalText"
-      :confirm-change-modal-subtext="confirmChangeModalSubtext"
-      :confirm-change-modal-confirm-button-text="confirmChangeModalConfirmButtonText"
+      :title="confirmModalTitle"
+      :subtext="confirmModalSubtext"
+      :confirm-button-text="confirmModalConfirmBtnText"
       @close="confirmChangeModalVisible=false; open=false"
       @confirmClicked="changeOptionConfirmed"
     />
@@ -244,17 +244,16 @@ export default {
       type: Boolean,
       default: false
     },
-    confirmChangeModalText: {
+    confirmModalTitle: {
       type: String,
       default: ''
     },
-    confirmChangeModalSubtext: {
+    confirmModalSubtext: {
       type: String,
       default: ''
     },
-    confirmChangeModalConfirmButtonText: {
-      type: String,
-      default: ''
+    confirmModalConfirmBtnText: {
+      type: String, default: ''
     }
   },
   emits: ['update:modelValue', 'input', 'change', 'open:list', 'close:list', 'hover:option'],
