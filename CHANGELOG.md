@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## v2.0.0-beta.37
+## v2.0.0-beta.38
 
 ### Bug fixes
 
