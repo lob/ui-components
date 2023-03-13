@@ -120,10 +120,11 @@ export default {
     this.parent = getCurrentInstance().parent;
   },
   methods: {
-    onInput () {
+    onInput ($event) {
       if (!this.disabled) {
         this.$emit('update:modelValue', this.value);
         this.$emit('input', this.value);
+        this.$emit('click', $event);
         this.$refs.radioInput.focus();
       }
     },
