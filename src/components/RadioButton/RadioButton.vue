@@ -107,7 +107,6 @@ export default {
     onInput () {
       this.$emit('update:modelValue', this.value);
       this.$emit('input', this.value);
-
     },
     onClick ($event) {
       this.$emit('click', $event);
