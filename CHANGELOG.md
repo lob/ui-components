@@ -1,10 +1,16 @@
 # CHANGELOG
 
-## v2.0.0-beta.39
+## v2.0.0-beta.40
 
 ### Bug fixes
 
 Fix click event not emitting on `RadioButtonLarge`
+
+## v2.0.0-beta.39
+
+### Bug fixes
+
+Add conditional rendering to confirm modal in `Dropzone` and `Dropdown`
 
 ## v2.0.0-beta.38
 

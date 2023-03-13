@@ -125,6 +125,7 @@
       </transition>
     </div>
     <ConfirmChangeModal
+      v-if="confirmChangeModal"
       :visible="confirmChangeModalVisible"
       :title="confirmModalTitle"
       :subtext="confirmModalSubtext"
