@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v2.0.0-beta.41
+
+### Bug fixes
+
+Make `RadioGroup` full width
+
 ## v2.0.0-beta.40
 
 ### Bug fixes
