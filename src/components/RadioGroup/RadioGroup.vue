@@ -15,7 +15,7 @@
     </legend>
     <div
       :class="[
-        'flex',
+        'flex w-full',
         {'flex-col' : separateLines}
       ]"
     >
