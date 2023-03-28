@@ -47,7 +47,7 @@
           </div>
           <img
             :class="[
-              'max-h-20 mx-auto',
+              'max-h-20 mx-auto rounded-t-lg',
               {'!max-h-full' : topFullImage},
               {'opacity-60' : disabled}
             ]"

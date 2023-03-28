@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v2.0.0-beta.42
+
+### Bug fixes
+
+Make `Megabutton` image rounded at top to prevent border overlap
+
 ## v2.0.0-beta.41
 
 ### Bug fixes
