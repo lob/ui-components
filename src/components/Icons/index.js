@@ -34,6 +34,7 @@ export { default as CircleXmark } from './CircleXmark';
 export { default as ClockSeven } from './ClockSeven';
 export { default as CloudArrowUp } from './CloudArrowUp';
 export { default as CodeIcon } from './CodeIcon';
+export { default as Coin } from './Coin';
 export { default as Copy } from './Copy';
 export { default as Download } from './Download';
 export { default as Edit } from './Edit';

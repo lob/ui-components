@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## v2.0.0-beta.44
+
+### Features
+
+Adds the `Tree`, `Car` and `Fire` icon to the icons library, with a props interface matching the other icons.
+
+## v2.0.0-beta.43
+
+### Features
+
+Adds a `Coin` icon to the icons library, with a props interface matching the other icons.
+
 ## v2.0.0-beta.42
 
 ### Bug fixes
