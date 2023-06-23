@@ -52,17 +52,25 @@ export default class CurrencyFormatter {
 
   /**
    * @param {number|null} value - The numeric value to format.
-   * @param {Intl.NumberFormatOptions} options
    * @returns {string} The formatted value.
    */
   format (value) {
     return (value !== null && !isNaN(value)) ? this.formatter.format(value) : '';
   }
 
+  /**
+   * @param {string} str A string in the format of either a number or valid en-US USD currency value. e.g. 210000, 21,000.00 or $21,000.00
+   * @returns {boolean}
+   */
   isNegative (str) {
     return str?.startsWith('-');
   }
 
+  /**
+   * Removes all non-numeric characters from a string.
+   * @param {string} str
+   * @returns {string}
+   */
   stripNonNumerics (str = '') {
     return str.replace(/[^0-9]/g, '');
   }
