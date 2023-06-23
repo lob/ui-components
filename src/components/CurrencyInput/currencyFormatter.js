@@ -16,7 +16,7 @@ export default class CurrencyFormatter {
    * @param {Intl.NumberFormatOptions} options
    */
   constructor (options) {
-    this.formatter = new Intl.NumberFormat('default', {
+    this.formatter = new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
       maximumFractionDigits: 2,
