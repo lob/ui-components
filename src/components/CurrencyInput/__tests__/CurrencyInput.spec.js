@@ -2,16 +2,16 @@ import '@testing-library/jest-dom';
 import { render, fireEvent } from '@testing-library/vue';
 import CurrencyInput from '../CurrencyInput.vue';
 
-const initialProps = {
-  id: 'test',
-  'v-model': 50,
-  inputProps: {
-    name: 'test',
-    label: 'label'
-  }
-};
 
 describe('Currency input', () => {
+  const initialProps = {
+    id: 'test',
+    'v-model': 50,
+    inputProps: {
+      name: 'test',
+      label: 'label'
+    }
+  };
 
   it('renders correctly', () => {
     const props = initialProps;
