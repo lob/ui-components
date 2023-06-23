@@ -42,8 +42,7 @@ const WithMinAndMaxTemplate = (args, { argTypes }) => ({
   components: { CurrencyInput },
   setup: () => ({ args }),
   data: () => ({ currencyInputVModel }),
-  template: `
-  '<currency-input v-bind="args" :min="0" :max="10000" v-model="currencyInputVModel" />`
+  template: '<currency-input v-bind="args" :min="0" :max="10000" v-model="currencyInputVModel" />'
 });
 
 export const WithMinAndMax = WithMinAndMaxTemplate.bind({});
