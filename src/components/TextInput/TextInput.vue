@@ -83,6 +83,7 @@
         :readonly="readonly"
         @input="onInput"
         @focus="onFocus"
+        @blur="onBlur"
         @change="onChange"
         @invalid="onInvalid"
       >
@@ -248,7 +249,7 @@ export default {
       default: false
     }
   },
-  emits: ['update:modelValue', 'input', 'change', 'focus', 'copy', 'invalid'],
+  emits: ['update:modelValue', 'input', 'change', 'focus', 'blur', 'copy', 'invalid'],
   data () {
     return {
       showCopied: false
@@ -289,6 +290,9 @@ export default {
         this.$refs.input.select();
       }
       this.$emit('focus', $event);
+    },
+    onBlur ($event) {
+      this.$emit('blur', $event);
     },
     onInvalid ($event) {
       this.$emit('invalid', $event.target);

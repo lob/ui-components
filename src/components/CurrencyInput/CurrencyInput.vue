@@ -1,0 +1,159 @@
+<template>
+  <TextInput
+    :id="id"
+    ref="textInput"
+    :readonly="false"
+    v-bind="inputProps"
+    @focus="onFocus"
+    @blur="onBlur"
+    @input="onInput"
+    @change="onChange"
+  />
+</template>
+<script>
+import TextInput from '../TextInput/TextInput';
+import CurrencyFormatter from './currencyFormatter';
+import { escapeRegExp } from '@/utils';
+
+/**
+ * Helper to count the occurrences of a given substring in a string
+ * @param {string} str
+ * @param {string} substr
+ * @returns {number}
+ */
+function countOccurrences (str, substr) {
+  return str.match(new RegExp(escapeRegExp(substr), 'g'))?.length || 0;
+}
+
+export default {
+  name: 'CurrencyInput',
+  components: {
+    TextInput
+  },
+  props: {
+    id: {
+      type: String,
+      default: null
+    },
+    modelValue: {
+      type: Number,
+      default: 0
+    },
+    inputProps: {
+      type: Object,
+      default: () => ({})
+    },
+    max: {
+      type: Number,
+      default: null
+    },
+    min: {
+      type: Number,
+      default: null
+    }
+  },
+  emits: ['update:modelValue', 'input', 'change', 'focus', 'blur'],
+  data () {
+    return {
+      focused: false,
+      formattedValue: '',
+      formatter: new CurrencyFormatter({
+        locale: 'en-US',
+        currency: 'USD',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      })
+    };
+  },
+  watch: {
+    modelValue (value) {
+      this.format(value);
+    }
+  },
+  mounted () {
+    this.format(this.modelValue);
+  },
+  methods: {
+    onBlur () {
+      this.format(this.modelValue);
+      this.$emit('blur');
+    },
+    onFocus () {
+      this.format(this.modelValue);
+      this.$emit('focus');
+    },
+    onChange ($event) {
+      this.$emit('change', $event);
+    },
+    onInput (v) {
+      let val = this.formatter.parse(v);
+
+      // enforce min/max
+      if (this.max !== null && val > this.max) {
+        val = this.max;
+      }
+      if (this.min !== null && val < this.min) {
+        val = this.min;
+      }
+
+      // handle formatting and emit numeric value as input event
+      this.format(val);
+      this.$emit('input', val);
+    },
+    /**
+     * takes a number, formats it as currency, and updates the input value
+     * @param {number|null} value
+     */
+    format (value) {
+      const inputEl = this.getInputEl();
+
+      // if user deletes all characters, set value to 0
+      if (value === null) {
+        this.$emit('update:modelValue', 0);
+        this.formattedValue = '$0.00';
+        return;
+      }
+
+      const formattedValue = this.formatter.format(value);
+
+      // if formatted value is invalid or a noop, do nothing, but keep the caret's behavior consistent
+      if (!formattedValue || formattedValue === this.formattedValue) {
+        const caretPosition = inputEl.selectionStart;
+        inputEl.value = this.formattedValue;
+        this.setCaretPosition(caretPosition);
+        return;
+      }
+
+      // If the number of commas in the formatted value has changed, adjust the caret position
+      const separatorOffset = countOccurrences(formattedValue, ',') - countOccurrences(this.formattedValue, ',');
+      const newCaretPosition = inputEl.selectionStart + separatorOffset;
+
+      // Update the value and formatted value
+      this.$emit('update:modelValue', this.formatter.parse(formattedValue));
+      this.formattedValue = formattedValue;
+
+      // Update the input value and caret position
+      inputEl.value = formattedValue;
+      this.setCaretPosition(newCaretPosition);
+
+    },
+    /**
+     * Sets the position of the caret in the input
+     * @param {number} start
+     * @param {number} end
+     */
+    setCaretPosition (start, end = start) {
+      this.getInputEl().setSelectionRange(start, end);
+    },
+    /**
+     * Returns the input element of the TextInput. Unfortunate that we need to do it this way, but in order
+     * to enforce the currency format within the input itself, and keep the caret position consistent
+     * we need to access the input element directly.
+     * @returns {HTMLInputElement}
+     */
+    getInputEl () {
+      return this.$refs.textInput.$refs.input;
+    }
+  }
+};
+</script>
