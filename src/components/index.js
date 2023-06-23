@@ -47,3 +47,4 @@ export { default as Stepper } from './Stepper/Stepper';
 export { default as StepperItem } from './Stepper/StepperItem';
 export { default as StepperVertical } from './StepperVertical/StepperVertical';
 export { default as Dropzone } from './Dropzone/Dropzone';
+export {default as CurrencyInput } from './CurrencyInput/CurrencyInput';
