@@ -2,8 +2,8 @@ import '@testing-library/jest-dom';
 import { render, fireEvent } from '@testing-library/vue';
 import CurrencyInput from '../CurrencyInput.vue';
 
-
 describe('Currency input', () => {
+
   const initialProps = {
     id: 'test',
     'v-model': 50,

@@ -146,7 +146,7 @@ export default {
       const separatorOffset = countOccurrences(formattedValue, ',') - countOccurrences(this.formattedValue, ',');
       let newCaretPosition = inputEl.selectionStart + separatorOffset;
       // If the user is inputting or deleting at the 0th index (the `$` sign), increment the caret position by an additional 1
-      if(newCaretPosition === 0 || newCaretPosition === 1) {
+      if (newCaretPosition === 0 || newCaretPosition === 1) {
         newCaretPosition = 2;
       }
 
