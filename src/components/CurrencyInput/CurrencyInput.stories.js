@@ -36,7 +36,6 @@ Primary.args = {
   placeholder: 'Amount'
 };
 
-
 const WithMinAndMaxTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { CurrencyInput },
