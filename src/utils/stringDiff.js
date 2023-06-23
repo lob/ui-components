@@ -3,7 +3,7 @@
  * @property {string} type - The type of edit that was made. One of 'insertion', 'edit', 'deletion', or null if the strings are identical.
  * @property {string} diff - The string that was inserted, edited, or deleted.
  * @property {number} diffIndex - The index at which the edit occurred.
- *
+  * @property {string} prevValue - The previous value of the string at the edit index, or null if the edit was an insertion.
  */
 
 /**
@@ -13,14 +13,6 @@
  * @returns {StringDiff}
  */
 export function stringDiff (str1, str2) {
-  if (str1 === str2) {
-    return {
-      type: null,
-      diff: '',
-      diffIndex: null
-    };
-  }
-
   const len1 = str1.length;
   const len2 = str2.length;
 
@@ -38,28 +30,38 @@ export function stringDiff (str1, str2) {
 
   let diff;
   let type;
-  let diffIndex;
-
+  let editIndex;
+  let prevValue;
   if (startIndex > endIndex1 && startIndex <= endIndex2) {
     // There was an insertion
     diff = str2.substring(startIndex, endIndex2 + 1);
     type = 'insertion';
-    diffIndex = startIndex;
+    editIndex = startIndex;
+    prevValue = null;
   } else if (startIndex <= endIndex1 && startIndex > endIndex2) {
     // There was a deletion
     diff = str1.substring(startIndex, endIndex1 + 1);
     type = 'deletion';
-    diffIndex = startIndex;
+    editIndex = startIndex;
+    prevValue = null;
   } else if (startIndex <= endIndex1 && startIndex <= endIndex2) {
     // There was a modification
-    diff = str1.substring(startIndex, endIndex1 + 1);
+    diff = str2.substring(startIndex, endIndex2 + 1);
     type = 'edit';
-    diffIndex = startIndex;
+    editIndex = startIndex;
+    prevValue = str1.substring(startIndex, endIndex1 + 1);
+  } else {
+    // The strings are identical
+    diff = '';
+    type = null;
+    editIndex = null;
+    prevValue = null;
   }
 
   return {
     type,
     diff,
-    diffIndex
+    editIndex,
+    prevValue
   };
 }

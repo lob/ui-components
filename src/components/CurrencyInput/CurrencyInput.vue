@@ -134,6 +134,10 @@ export default {
 
       const formattedValue = this.formatter.format(value);
 
+
+      const { diff, type, prevValue, editIndex }  = stringDiff(this.formattedValue, formattedValue);
+
+
       // if formatted value is invalid or a noop, do nothing, but keep the caret's behavior consistent
       if (!formattedValue || formattedValue === this.formattedValue) {
         const caretPosition = inputEl.selectionStart;
@@ -145,9 +149,15 @@ export default {
       // If the number of commas in the formatted value has changed, adjust the caret position
       const separatorOffset = countOccurrences(formattedValue, ',') - countOccurrences(this.formattedValue, ',');
       let newCaretPosition = inputEl.selectionStart + separatorOffset;
+
       // If the user is inputting or deleting at the 0th index (the `$` sign), increment the caret position by an additional 1
       if (newCaretPosition === 0 || newCaretPosition === 1) {
         newCaretPosition = 2;
+      }
+
+      // If the user replaces a '0' value, keep the caret position on the integer side of the decimal
+      if (type === 'edit' && editIndex <= this.formattedValue.indexOf('.') && prevValue === '0') {
+        newCaretPosition--;
       }
 
       // Update the value and formatted value
