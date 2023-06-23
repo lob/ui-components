@@ -35,3 +35,21 @@ Primary.args = {
   helperText: 'Helper text',
   placeholder: 'Amount'
 };
+
+
+const WithMinAndMaxTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { CurrencyInput },
+  setup: () => ({ args }),
+  data: () => ({ currencyInputVModel }),
+  template: `
+  '<currency-input v-bind="args" :min="0" :max="10000" v-model="currencyInputVModel" />`
+});
+
+export const WithMinAndMax = WithMinAndMaxTemplate.bind({});
+Primary.args = {
+  id: 'currency-input',
+  label: 'Currency Input',
+  min: 0,
+  max: 100000
+};
