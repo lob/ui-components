@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v2.0.0-beta.45
+
+### Features
+
+Adds the `CurrencyInput` component.
+
 ## v2.0.0-beta.44
 
 ### Features
