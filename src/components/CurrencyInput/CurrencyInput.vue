@@ -134,9 +134,7 @@ export default {
 
       const formattedValue = this.formatter.format(value);
 
-
-      const { diff, type, prevValue, editIndex }  = stringDiff(this.formattedValue, formattedValue);
-
+      const { type, prevValue, editIndex }  = stringDiff(this.formattedValue, formattedValue);
 
       // if formatted value is invalid or a noop, do nothing, but keep the caret's behavior consistent
       if (!formattedValue || formattedValue === this.formattedValue) {
