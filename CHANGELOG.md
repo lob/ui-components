@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v2.0.0-beta.47
+
+### Bugfixes
+
+Update `this` binding of currency formatter and input to function as expected in a NodeJS v14 environment.
 ## v2.0.0-beta.46
 
 ### Bugfixes
