@@ -77,7 +77,7 @@ export default {
     }
   },
   mounted () {
-    this.format(this.modelValue);
+    this.format.call(this, this.modelValue);
   },
   methods: {
     onBlur () {
