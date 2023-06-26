@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v2.0.0-beta.46
+
+### Bugfixes
+
+Stops the formatter for the `CurrencyInput` component from losing its `this` binding in rare cases.
 ## v2.0.0-beta.45
 
 ### Features
