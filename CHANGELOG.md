@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v2.0.0-beta.46
+
+### Bugfixes
+
+Explicitly bind `this` context of currency formatter to its parent object.
+
 ## v2.0.0-beta.45
 
 ### Features
