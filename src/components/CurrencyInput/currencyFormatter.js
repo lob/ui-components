@@ -55,7 +55,7 @@ export default class CurrencyFormatter {
    * @returns {string} The formatted value.
    */
   format (value) {
-    return (value !== null && !isNaN(value)) ? this.formatter.format(value) : '';
+    return (value !== null && !isNaN(value)) ? this.formatter.format.call(this.formatter, value) : '';
   }
 
   /**
