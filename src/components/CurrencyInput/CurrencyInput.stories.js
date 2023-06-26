@@ -45,7 +45,7 @@ const WithMinAndMaxTemplate = (args, { argTypes }) => ({
 });
 
 export const WithMinAndMax = WithMinAndMaxTemplate.bind({});
-Primary.args = {
+WithMinAndMax.args = {
   id: 'currency-input',
   label: 'Currency Input',
   min: 0,
