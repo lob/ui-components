@@ -22,7 +22,7 @@ export default class CurrencyFormatter {
       maximumFractionDigits: 2,
       minimumFractionDigits: 2,
       ...options
-    });
+    }).format;
   }
 
   /**
@@ -55,7 +55,7 @@ export default class CurrencyFormatter {
    * @returns {string} The formatted value.
    */
   format (value) {
-    return (value !== null && !isNaN(value)) ? this.formatter.format.call(this.formatter, value) : '';
+    return (value !== null && !isNaN(value)) ? this.formatter(value) : '';
   }
 
   /**
