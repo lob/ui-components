@@ -75,3 +75,4 @@ export { default as TriangleExclamation } from './TriangleExclamation';
 export { default as Upload } from './Upload';
 export { default as Webhooks } from './Webhooks';
 export { default as XmarkLarge } from './XmarkLarge';
+export { default as PuzzlePiece } from './PuzzlePiece';
