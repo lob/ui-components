@@ -24,11 +24,11 @@
         class="flex items-center type-small-700 text-gray-500 whitespace-nowrap"
       >
         <component
-          class="m-0 p-0"
           :is="icon"
           v-if="variant === 'icon' && icon"
           v-bind="iconProps"
-        ></component>
+          class="m-0 p-0"
+        />
         {{ title }}
         <ChevronDown
           v-if="showChevron"
@@ -99,25 +99,25 @@ export default {
     },
     iconProps: {
       type: Object,
-      default: {}
+      default: () => ({})
     }
   },
   emits: ['click'],
-  data() {
+  data () {
     return {
       showNav: false
     };
   },
   computed: {
-    dropdownToggleId() {
+    dropdownToggleId () {
       return `dropdown-toggle-${this.id}`;
     },
-    dropdownListId() {
+    dropdownListId () {
       return `dropdown-list-${this.id}`;
     }
   },
   methods: {
-    onKeydown($event) {
+    onKeydown ($event) {
       const anchorTags = this.$refs.dropdownMenu.getElementsByTagName('a');
       const firstAnchorTag = anchorTags[0];
       const lastAnchorTag = anchorTags[anchorTags.length - 1];
@@ -138,14 +138,14 @@ export default {
         this.onBlur();
       }
     },
-    onBlur() {
+    onBlur () {
       this.showNav = false;
     },
-    onEscape() {
+    onEscape () {
       this.$refs.titleItem.focus();
       this.showNav = false;
     },
-    onClick($event) {
+    onClick ($event) {
       this.showNav = !this.showNav;
       this.$emit('click', $event);
     }
