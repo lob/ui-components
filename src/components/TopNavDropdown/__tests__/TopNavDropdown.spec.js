@@ -1,6 +1,7 @@
 import '@testing-library/jest-dom';
 import { render, fireEvent } from '@testing-library/vue';
 import { constants } from '@/config';
+import { CircleQuestion } from '../../Icons';
 import TopNavDropdown from '../TopNavDropdown.vue';
 
 const initialProps = {
@@ -17,6 +18,14 @@ describe('TopNavDropdown', () => {
   it('renders correctly', () => {
     const props = initialProps;
     const { queryByRole } = renderComponent({ props });
+
+    const nav = queryByRole('navigation');
+    expect(nav).toBeInTheDocument();
+  });
+
+  it('renders correctly with an icon', () => {
+    const props = initialProps;
+    const { queryByRole } = renderComponent({ props: { ...props, icon: CircleQuestion, variant: 'icon' } });
 
     const nav = queryByRole('navigation');
     expect(nav).toBeInTheDocument();
