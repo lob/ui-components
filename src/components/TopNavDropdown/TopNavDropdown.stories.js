@@ -1,4 +1,6 @@
-import routeDecorator, { routeTemplate } from '../../../.storybook/routeDecorator';
+import routeDecorator, {
+  routeTemplate
+} from '../../../.storybook/routeDecorator';
 import TopNavDropdown from './TopNavDropdown.vue';
 import TopNavDropdownItem from './TopNavDropdownItem.vue';
 import mdx from './TopNavDropdown.mdx';
@@ -28,7 +30,13 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { TopNavDropdown, TopNavDropdownItem, Signal, Map, CircleQuestion },
+  components: {
+    TopNavDropdown,
+    TopNavDropdownItem,
+    Signal,
+    Map,
+    CircleQuestion
+  },
   setup: () => ({ args }),
   template: `
     <TopNavDropdown v-bind="args">
@@ -57,7 +65,13 @@ Primary.args = {
 
 const WithoutIcons = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { TopNavDropdown, TopNavDropdownItem, Signal, Map, CircleQuestion },
+  components: {
+    TopNavDropdown,
+    TopNavDropdownItem,
+    Signal,
+    Map,
+    CircleQuestion
+  },
   setup: () => ({ args }),
   template: `
     <TopNavDropdown v-bind="args" navKey="">
@@ -78,6 +92,43 @@ export const WithoutItemIcons = WithoutIcons.bind({});
 WithoutItemIcons.args = {
   title: 'Resources',
   id: '1',
+  open: false
+};
+
+const IconDropdownTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: {
+    TopNavDropdown,
+    TopNavDropdownItem,
+    Signal,
+    Map,
+    CircleQuestion
+  },
+  setup: () => ({ args }),
+  template: `
+    <TopNavDropdown v-bind="args" navKey="">
+      <TopNavDropdownItem id="api" to="/settings/main/account">
+        API Status
+      </TopNavDropdownItem>
+      <TopNavDropdownItem id="help" to="/settings/main/account">
+        Help Center
+      </TopNavDropdownItem>
+      <TopNavDropdownItem disabled id="support" to="/settings/main/account">
+        Support & FAQ
+      </TopNavDropdownItem>
+    </TopNavDropdown>
+    `
+});
+
+export const IconDropdown = IconDropdownTemplate.bind({});
+IconDropdown.args = {
+  id: '1',
+  variant: 'icon',
+  icon: Signal,
+  iconProps: {
+    size: 'xl'
+  },
+  showChevron: false,
   open: false
 };
 

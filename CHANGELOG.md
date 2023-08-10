@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.0-beta.49
+
+Adds the `icon` variant to the nav dropdown.
+
 ## v2.0.0-beta.48
 
 Adds the `PuzzlePiece` icon to the icons library, with a props interface matching the other icons.
