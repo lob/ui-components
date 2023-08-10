@@ -26,7 +26,7 @@
         <component
           class="m-0 p-0"
           :is="icon"
-          v-if="icon"
+          v-if="variant === 'icon' && icon"
           v-bind="iconProps"
         ></component>
         {{ title }}
@@ -88,6 +88,10 @@ export default {
     showChevron: {
       type: Boolean,
       default: true
+    },
+    variant: {
+      type: String,
+      default: 'text'
     },
     icon: {
       type: [Object, null],

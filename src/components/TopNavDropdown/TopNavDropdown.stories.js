@@ -123,6 +123,7 @@ const IconDropdownTemplate = (args, { argTypes }) => ({
 export const IconDropdown = IconDropdownTemplate.bind({});
 IconDropdown.args = {
   id: '1',
+  variant: 'icon',
   icon: Signal,
   iconProps: {
     size: 'xl'
