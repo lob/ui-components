@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## v2.0.0-beta.50
+
+Adds the `User` and `Bell` icons to the icons library, with a props interface matching the other icons
 ## v2.0.0-beta.49
 
 Adds the `icon` variant to the nav dropdown.
