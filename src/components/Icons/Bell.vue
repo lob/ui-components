@@ -6,14 +6,13 @@
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-  <path
-     id="path4"
-     :d="path"
-     stroke-linecap="round"
-     stroke-linejoin="round"
-     stroke="currentColor"
-     :stroke-width="currentSize / 10"
-   />
+    <path
+      :d="path"
+      :stroke-width="currentSize / 10"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke="currentColor"
+    />
   </svg>
 </template>
 
