@@ -70,8 +70,7 @@ export default {
   components: { ChevronDown },
   props: {
     title: {
-      type: String,
-      required: true
+      type: String
     },
     id: {
       type: String,

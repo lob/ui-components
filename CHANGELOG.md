@@ -1,8 +1,13 @@
 # CHANGELOG
 
+## v2.0.0-beta.51
+
+Updates the prop definitions for `TopNavDropdown` so that `title` is no longer a required prop.
+
 ## v2.0.0-beta.50
 
 Adds the `User` and `Bell` icons to the icons library, with a props interface matching the other icons
+
 ## v2.0.0-beta.49
 
 Adds the `icon` variant to the nav dropdown.
@@ -16,6 +21,7 @@ Adds the `PuzzlePiece` icon to the icons library, with a props interface matchin
 ### Bugfixes
 
 Update `this` binding of currency formatter and input to function as expected in a NodeJS v14 environment.
+
 ## v2.0.0-beta.46
 
 ### Bugfixes
