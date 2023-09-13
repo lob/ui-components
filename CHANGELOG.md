@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## v2.0.0-beta.52
+
+Add an option to pass stringToMatch prop to `SubnavigationItem`, this can be used to pass a string that is turned into a regex pattern
 ## v2.0.0-beta.51
 
 Updates the prop definitions for `TopNavDropdown` so that `title` is no longer a required prop.
