@@ -68,7 +68,7 @@ export default {
       }
       return this.matchQueryString ?
         this.$route.fullPath === this.to :
-        this.$route.fullPath.includes(this.to);
+        this.$route.fullPath?.includes(this.to);
     }
   }
 };
