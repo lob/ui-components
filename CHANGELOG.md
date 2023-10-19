@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## v2.0.0-beta.54
+
+Style changes for `Input` and `Label`
 ## v2.0.0-beta.53
 
 `SubnavigationItem` bug fix
