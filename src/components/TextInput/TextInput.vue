@@ -43,7 +43,7 @@
       data-testId="input-container"
       :class="[
         'bg-white h-11 px-3 py-2 rounded flex items-center gap-2 border border-gray-200',
-        { 'hover:border-gray-300 focus-within:border-blue-500 focus-within:hover:border-blue-500 focus-within:outline-black focus-within:outline-offset-1 focus-within:outline-1': !disabled && !readonly },
+        { 'hover:border-gray-300 focus-within:border-[#2D2D2F] focus-within:hover:border-[#2D2D2F] focus-within:outline-black focus-within:outline-offset-1 focus-within:outline-1': !disabled && !readonly },
         { '!border-green-700 !bg-green-50': success },
         { '!border-red-600 !bg-red-50': error },
         { '!bg-gray-50' : disabled || readonly || withCopyButton },
