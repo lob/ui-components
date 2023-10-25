@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.0-beta.55
+
+Adds the external link icon
+
 ## v2.0.0-beta.54
 
 Style changes for `Input` and `Label`

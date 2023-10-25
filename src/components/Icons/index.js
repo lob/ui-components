@@ -45,6 +45,7 @@ export { default as Envelope } from './Envelope';
 export { default as EnvelopesBulk } from './EnvelopesBulk';
 export { default as Exclamation } from './Exclamation';
 export { default as Export } from './Export';
+export { default as ExternalLink } from './ExternalLink';
 export { default as Eye } from './Eye';
 export { default as EyeSlash } from './EyeSlash';
 export { default as File } from './File';
