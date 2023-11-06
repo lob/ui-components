@@ -23,7 +23,9 @@
           id="header"
           :class="['pb-4', {'border-b border-gray-100': !noSectionDividers}]"
         >
-          <h1 class="pageheading">{{ header }}</h1>
+          <h1 class="pageheading">
+            {{ header }}
+          </h1>
           <h2
             v-if="subheader"
             class="text-default"
