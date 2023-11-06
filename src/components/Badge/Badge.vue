@@ -9,7 +9,8 @@
                { 'bg-green-50 text-green-700': success },
                { 'bg-orange-50 text-orange-600': warning },
                { 'bg-red-50 text-red-600': error },
-               { 'bg-gradient-114 from-[#1876db] to-[#5748ff] !text-white': gradient }
+               { 'bg-gradient-114 from-[#1876db] to-[#5748ff] !text-white': gradientPrimary },
+               { 'bg-gradient-114 from-[#9F94FF] to-[#FA6A8C] !text-white': gradientSecondary }
       ]"
     >
       <slot />
@@ -24,9 +25,8 @@ export default {
     variant: {
       type: String,
       default: 'default',
-      validator: function (value) {
-        return ['default', 'secondary', 'info', 'success', 'warning', 'error', 'gradient'].includes(value);
-      }
+      validator: (value) =>
+        ['default', 'secondary', 'info', 'success', 'warning', 'error', 'gradient-primary', 'gradient-secondary'].includes(value)
     },
     size: {
       type: String,
@@ -55,8 +55,11 @@ export default {
     error () {
       return this.variant === 'error';
     },
-    gradient () {
-      return this.variant === 'gradient';
+    gradientPrimary () {
+      return this.variant === 'gradient-primary';
+    },
+    gradientSecondary () {
+      return this.variant === 'gradient-secondary';
     },
     small () {
       return this.size === 'small';
