@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## v.2.0.0-beta.56
+
+Some style updates for `Modal` and `Badge`:
+- Modal: allow removing the section separators/dividers
+- Modal: allow a subheading
+- Badge: create a new variant for a new gradient
+
 ## v2.0.0-beta.55
 
 Adds the external link icon
