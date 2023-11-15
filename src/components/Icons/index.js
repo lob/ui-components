@@ -85,3 +85,4 @@ export { default as CloudData } from './CloudData';
 export { default as CreditCard } from './CreditCard';
 export { default as LocationPin } from './LocationPin';
 export { default as Users } from './Users';
+export { default as NavArrowLeft } from './NavArrowLeft';
