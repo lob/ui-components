@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v2.0.0-beta.57
+- Add `AppWindows` Icon
+- Add `CloudData` Icon
+- Add `CreditCard` Icon
+- Add `LocationPin` Icon
+- Add `NavArrowLeft` Icon
+- Add `PieChartSlice` Icon
+- Add `Users` Icon
+- Update `Chevron` and `Chevrons` Icons
+
 ## v2.0.0-beta.56
 
 Some style updates for `Modal` and `Badge`:
