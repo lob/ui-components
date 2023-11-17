@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## v2.0.0-beta.59
+- More icon styling tweaks
+
 ## v2.0.0-beta.58
 - Icon sizing style updates
 
