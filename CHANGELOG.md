@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## v2.0.0-beta.58
+- Icon sizing style updates
+
 ## v2.0.0-beta.57
 - Add `AppWindows` Icon
 - Add `CloudData` Icon
