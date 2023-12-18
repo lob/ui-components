@@ -174,6 +174,9 @@ export default {
     },
     textContent () {
       return this.$slots.text || this.text;
+    },
+    maxWidth () {
+      return this.customWidth || '240px';
     }
   },
   methods: {
