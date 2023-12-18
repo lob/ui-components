@@ -151,8 +151,8 @@ export default {
       default: false
     },
     customWidth: {
-     type: String,
-     default: '' 
+      type: String,
+      required: false
     }
   },
   emits: ['update:modelValue', 'input', 'click'],
