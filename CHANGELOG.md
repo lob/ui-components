@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## v2.0.0-beta.60
+- Updates the `MegaButton` component to accept custom widths
+
 ## v2.0.0-beta.59
 - More icon styling tweaks
 

@@ -28,7 +28,7 @@
           </h1>
           <h2
             v-if="subheader"
-            class="text-default"
+            class="text-default mt-2"
           >
             {{ subheader }}
           </h2>
