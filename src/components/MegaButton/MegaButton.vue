@@ -14,7 +14,7 @@
     >
     <label
       :for="id"
-      :style="{ 'width': customWidth || '' }"
+      :style="{ 'width': customWidth }"
       :class="[
         'text-gray-900',
         'h-full flex justify-center relative cursor-pointer',
@@ -24,8 +24,8 @@
         'peer-checked:border peer-checked:border-black peer-checked:shadow',
         'peer-disabled:cursor-not-allowed peer-disabled:shadow-none peer-disabled:text-gray-100',
         'peer-disabled:border peer-checked:border-disabled-gray',
-        smallText ? `max-w-[${maxWidth}]` : '',
-        imageSource && !smallText ? `min-w-[160px] max-w-[${maxWidth}]` : '',
+        smallText ? `max-w-[${customWidth}]` : '',
+        imageSource && !smallText ? `min-w-[160px] max-w-[${customWidth}]` : '',
         { 'items-center': !hasDisabledBanner && !smallText },
         {'border-0' : topFullImage && !checked }
       ]"
@@ -152,7 +152,7 @@ export default {
     },
     customWidth: {
       type: String,
-      default: ''
+      default: '240px'
     }
   },
   emits: ['update:modelValue', 'input', 'click'],
@@ -174,9 +174,6 @@ export default {
     },
     textContent () {
       return this.$slots.text || this.text;
-    },
-    maxWidth () {
-      return this.customWidth || '240px';
     }
   },
   methods: {
