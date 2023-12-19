@@ -148,6 +148,7 @@ export default {
         { variant: 'info', icon: 'CircleInfo', color: 'text-blue-700', bgColor: 'bg-blue-50' },
         { variant: 'success', icon: 'CircleCheck', color: 'text-green-700', bgColor: 'bg-green-50' },
         { variant: 'warning', icon: 'TriangleExclamation', color: 'text-orange-600', bgColor: 'bg-orange-50' },
+        { variant: 'refresh', icon: 'ArrowsRotate', color: 'text-purple-600', bgColor: 'bg-purple-50' },
         { variant: 'error', icon: 'CircleExclamation', color: 'text-red-600', bgColor: 'bg-red-50' }
       ] };
   },
@@ -160,6 +161,9 @@ export default {
     },
     warning () {
       return this.variant === 'warning';
+    },
+    refresh () {
+      return this.variant === 'refresh';
     },
     error () {
       return this.variant === 'error';
