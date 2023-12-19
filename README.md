@@ -189,6 +189,35 @@ We consider a component PR complete when it has the following:
 - Tests added/updated for any code added/updated
 - Existing tests & lint passes (integrated with GitHub Actions, but you can also run both locally)
 
+### Adding new Icons
+
+Our SVG Icons require a range of sizes from 14px to 24px. For convenience, you can use the following shell script to generate resized copies of an svg at the relevant sizes:
+
+```bash
+#!/bin/bash
+
+SIZES=(14 16 18 20 24)
+
+for FILENAME in "$@"
+do
+    echo "Processing $FILENAME"
+    for SIZE in "${SIZES[@]}"
+    do
+      echo "Resizing to $SIZE"x"$SIZE"
+      NEW="$(echo "$FILENAME" | sed -e "s/svg$/$SIZE.svg/")"
+      rsvg-convert "$FILENAME" -w $SIZE -h $SIZE -f svg -o "$NEW"
+    done
+    echo "Done processing $FILENAME"
+done
+
+# e.g. ./ResizeIcons.sh arrow_icon.svg house_icon.svg
+```
+**Note:** You must have librsvg installed to use this script:
+```
+brew install librsvg
+```
+
+
 ## Deploying Updates
 When a PR is opened Amplify will automatically build and deploy a PR preview.  You will see the URL for the preview in a comment from the Amplify bot in the PR.
 

@@ -2,7 +2,7 @@
   <transition name="fade">
     <div
       v-show="visible"
-      :class="['fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 z-30']"
+      class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 z-30"
       :aria-hidden="!visible"
       @mousedown="closeModal"
       @keydown.esc="closeModal"
@@ -14,26 +14,34 @@
         aria-describedby="modalDescription"
         :style="{'width': width}"
         :class="[
-          'relative bg-white flex flex-col overflow-y-auto shadow rounded-lg max-h-5/6', noPadding ? 'p-0' : 'p-5'
+          'relative bg-white flex flex-col overflow-y-auto shadow rounded-lg max-h-5/6', paddingClass
         ]"
         @mousedown.stop
       >
         <header
           v-if="header"
           id="header"
-          class="pageheading border-b border-gray-100 pb-4"
+          :class="['pb-4', {'border-b border-gray-100': !noSectionDividers}]"
         >
-          {{ header }}
+          <h1 class="pageheading">
+            {{ header }}
+          </h1>
+          <h2
+            v-if="subheader"
+            class="text-default mt-2"
+          >
+            {{ subheader }}
+          </h2>
         </header>
         <section
           id="modalDescription"
-          :class="[noPadding ? 'py-0' : 'py-5']"
+          :class="paddingClass"
         >
           <slot />
         </section>
         <footer
           v-if="hasFooter"
-          class="flex border-t border-gray-100 flex-col pt-4"
+          :class="['flex flex-col pt-4', {'border-t border-gray-100': !noSectionDividers}]"
         >
           <slot name="footer" />
         </footer>
@@ -69,11 +77,19 @@ export default {
       type: String,
       default: null
     },
+    subheader: {
+      type: String,
+      default: null
+    },
     closeButtonAriaLabel: {
       type: String,
       required: true
     },
     noPadding: {
+      type: Boolean,
+      default: false
+    },
+    noSectionDividers: {
       type: Boolean,
       default: false
     }
@@ -82,6 +98,9 @@ export default {
   computed: {
     hasFooter () {
       return Boolean(this.$slots.footer);
+    },
+    paddingClass () {
+      return this.noPadding ? 'p-0' : 'p-7';
     }
   },
   methods: {

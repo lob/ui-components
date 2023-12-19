@@ -1,0 +1,24 @@
+import {
+  Preview,
+  Story,
+  ArgsTable,
+  PRIMARY_STORY,
+} from "@storybook/addon-docs";
+import CurrencyInput from "./CurrencyInput.vue";
+
+# Currency Input
+
+A currency input component for billing form workflows.
+
+<Preview>
+  <Story id="components-currency-input--primary" />
+</Preview>
+
+## How to Use
+
+Exposes a similar props interface as a `TextInput` with `type="number"` - i.e. a numeric `v-model` binding, as well as `min` and `max` fields. You can pass all supported props to the contained `TextInput` component via `inputProps`.
+Icons are available for the left, right, or both sides of the input via `iconLeft` and `iconRight` named slots.
+
+## Props
+
+<ArgsTable story={PRIMARY_STORY} />

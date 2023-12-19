@@ -70,9 +70,26 @@ describe('DateInput', () => {
     let props;
     let component;
     let dateToSelect;
+    const RealDate = global.Date;
 
     beforeEach(() => {
       props = { ...initialProps, open: true };
+
+      const oldGlobalDate = global.Date;
+      global.Date = vi.fn((...args) => {
+        if (args.length) {
+          return new RealDate(...args);
+        }
+        return new Date(2021, 5, 14);
+      });
+      global.Date.now = RealDate.now;
+      global.Date.UTC = oldGlobalDate.UTC;
+
+      // immediately use real timers as soon as the component has been rendered as there are issues
+      // with using fake timers with event handler emulators (i.e. fireEvent and userEvent)
+      // but we need the fake timers just long enough to render the component with the mocked system time
+      // which ensures the minDate and maxDate default values are set correctly
+      vi.useRealTimers();
       component = renderComponent({ props });
       const { queryByText } = component;
       dateToSelect = queryByText(23).closest('button');

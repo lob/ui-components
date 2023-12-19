@@ -42,8 +42,8 @@
     <div
       data-testId="input-container"
       :class="[
-        'bg-white h-11 px-3 py-2 rounded-sm flex items-center gap-2 border border-gray-200',
-        { 'hover:border-gray-300 focus-within:border-blue-500 focus-within:hover:border-blue-500  focus-within:outline-dashed focus-within:outline-black focus-within:outline-offset-1 focus-within:outline-1': !disabled && !readonly },
+        'bg-white h-11 px-3 py-2 rounded flex items-center gap-2 border border-gray-200',
+        { 'hover:border-gray-300 focus-within:border-[#2D2D2F] focus-within:hover:border-[#2D2D2F] focus-within:outline-black focus-within:outline-offset-1 focus-within:outline-1': !disabled && !readonly },
         { '!border-green-700 !bg-green-50': success },
         { '!border-red-600 !bg-red-50': error },
         { '!bg-gray-50' : disabled || readonly || withCopyButton },
@@ -83,6 +83,7 @@
         :readonly="readonly"
         @input="onInput"
         @focus="onFocus"
+        @blur="onBlur"
         @change="onChange"
         @invalid="onInvalid"
       >
@@ -116,7 +117,7 @@
       <button
         v-if="withCopyButton"
         type="button"
-        class="rounded-full px-3 h-7 type-xs-700 bg-black text-white hover:bg-gray-700 focus-visible:outline-dashed focus-within:outline-1 focus-visible:outline-black focus-visible:outline-offset-1 active:bg-gray-800 focus:bg-gray-800"
+        class="rounded-full px-3 h-7 type-xs-700 bg-black text-white hover:bg-gray-700 focus-within:outline-1 focus-visible:outline-black focus-visible:outline-offset-1 active:bg-gray-800 focus:bg-gray-800"
         @click="copyToClipboard"
       >
         {{ copyButtonLabel }}
@@ -248,7 +249,7 @@ export default {
       default: false
     }
   },
-  emits: ['update:modelValue', 'input', 'change', 'focus', 'copy', 'invalid'],
+  emits: ['update:modelValue', 'input', 'change', 'focus', 'blur', 'copy', 'invalid'],
   data () {
     return {
       showCopied: false
@@ -289,6 +290,9 @@ export default {
         this.$refs.input.select();
       }
       this.$emit('focus', $event);
+    },
+    onBlur ($event) {
+      this.$emit('blur', $event);
     },
     onInvalid ($event) {
       this.$emit('invalid', $event.target);
