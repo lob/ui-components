@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 
 const renderComponent = (options) => render(Alert, { ...options });
 
-describe.only('Alert', () => {
+describe('Alert', () => {
 
   describe('alert content', () => {
 
