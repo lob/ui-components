@@ -117,7 +117,7 @@ export default {
       type: String,
       default: 'info',
       validator: function (value) {
-        return ['info', 'success', 'warning', 'error'].includes(value);
+        return ['info', 'success', 'warning', 'refresh', 'error'].includes(value);
       }
     },
     showIcon: {
