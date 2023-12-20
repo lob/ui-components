@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## v2.0.0-beta.63
+- Adds icons:
+  - `Exit`
+  - `FileAlt`
+  - `Gift`
+  - `LayerGroup`
+  - `OpenBook`
+  - `UserCircle`
+- Updates icons:
+  - `Signal`
+  - `User`
+
 ## v2.0.0-beta.62
 - Adds a `refresh` variant to `Alert`
 
