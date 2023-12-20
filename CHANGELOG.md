@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## v2.0.0-beta.64
+- Fixes import of `UserCircle` icon
+
 ## v2.0.0-beta.63
 - Adds icons:
   - `Exit`
