@@ -75,6 +75,14 @@ describe('Alert', () => {
       expect(alertContent).toBeInTheDocument().toHaveClass('text-orange-600 bg-orange-50');
     });
 
+    it('renders the refresh colors with the refresh variant prop', () => {
+      const slots = { default: 'Hello, this is an alert.' };
+      const { getByTestId } = renderComponent({ slots, props: { variant: 'refresh' } });
+
+      const alertContent = getByTestId('alert');
+      expect(alertContent).toBeInTheDocument().toHaveClass('text-purple-600 bg-purple-50');
+    });
+
   });
 
   describe('alert icons', () => {

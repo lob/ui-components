@@ -23,7 +23,7 @@ export default {
       }
     },
     variant: {
-      options: ['info', 'success', 'warning', 'error'],
+      options: ['info', 'success', 'warning', 'refresh', 'error'],
       control: {
         type: 'select'
       }
