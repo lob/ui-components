@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## v2.0.0-beta.62
+- Adds a `refresh` variant to `Alert`
+
 ## v2.0.0-beta.61
 - Updates the `MegaButton` component to accept custom widths
 
