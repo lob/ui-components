@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import { CircleInfo, CircleCheck, CircleExclamation, TriangleExclamation, XmarkLarge } from '@/components/Icons';
+import { CircleInfo, CircleCheck, CircleExclamation, TriangleExclamation, ArrowsRotate, XmarkLarge } from '@/components/Icons';
 import LobLink from '../Link/Link';
 import ArrowUpRight from '../Icons/ArrowUpRight.vue';
 
@@ -111,7 +111,7 @@ const CloseButton = {
 
 export default {
   name: 'Alert',
-  components: { CloseButton, LinkWithArrow, CircleInfo, CircleCheck, CircleExclamation, TriangleExclamation },
+  components: { CloseButton, LinkWithArrow, CircleInfo, CircleCheck, CircleExclamation, TriangleExclamation, ArrowsRotate },
   props: {
     variant: {
       type: String,
