@@ -31,7 +31,7 @@
           { '!border-green-700 !bg-green-50': success && !error },
           { '!border-red-600 !bg-red-50': error },
           { '!bg-gray-50 pointer-events-none': disabled },
-          { 'border-gray-300': open || (activeIndex > -1 && !disabled) },
+          { 'border-gray-300': open || (activeIndex > -1 && !disabled) }
         ]"
         tabindex="0"
         @blur="onSelectBlur"
@@ -46,7 +46,7 @@
             { 'text-gray-800': open || activeIndex > -1 },
             { 'text-gray-500': activeIndex < 0 },
             { 'text-green-600': success },
-            { 'text-red-600': error },
+            { 'text-red-600': error }
           ]"
         >
           {{ value || placeholder }}
@@ -59,7 +59,7 @@
             { 'text-green-600': success },
             { 'text-red-600': error },
             { 'text-gray-300': disabled },
-            { '-rotate-180': open },
+            { '-rotate-180': open }
           ]"
           data-testid="chevron-down"
         />
@@ -80,7 +80,7 @@
           role="listbox"
           :class="[
             'bg-white absolute z-20 shadow-large overflow-y-auto left-0 top-full w-full h-auto max-h-80',
-            { 'custom-list-height': listHeight },
+            { 'custom-list-height': listHeight }
           ]"
         >
           <div v-for="item in optionItems" :key="item.id || item.label || item">
@@ -132,82 +132,82 @@
 </template>
 
 <script>
-import { ChevronDown } from "@/components/Icons";
-import DropdownItemGroup from "./DropdownItemGroup";
-import DropdownItem from "./DropdownItem";
-import { findLastIndex, shallowEquals } from "@/utils";
-import LobLabel from "../Label/Label.vue";
-import ConfirmChangeModal from "./ConfirmChangeModal";
+import { ChevronDown } from '@/components/Icons';
+import DropdownItemGroup from './DropdownItemGroup';
+import DropdownItem from './DropdownItem';
+import { findLastIndex, shallowEquals } from '@/utils';
+import LobLabel from '../Label/Label.vue';
+import ConfirmChangeModal from './ConfirmChangeModal';
 
 if (!Array.prototype.findLastIndex) {
   Array.prototype.findLastIndex = findLastIndex; //eslint-disable-line
 }
 
 const Keys = {
-  Backspace: "Backspace",
-  Clear: "Clear",
-  Down: "ArrowDown",
-  End: "End",
-  Enter: "Enter",
-  Escape: "Escape",
-  Home: "Home",
-  Left: "ArrowLeft",
-  PageDown: "PageDown",
-  PageUp: "PageUp",
-  Right: "ArrowRight",
-  Space: " ",
-  Tab: "Tab",
-  Up: "ArrowUp",
+  Backspace: 'Backspace',
+  Clear: 'Clear',
+  Down: 'ArrowDown',
+  End: 'End',
+  Enter: 'Enter',
+  Escape: 'Escape',
+  Home: 'Home',
+  Left: 'ArrowLeft',
+  PageDown: 'PageDown',
+  PageUp: 'PageUp',
+  Right: 'ArrowRight',
+  Space: ' ',
+  Tab: 'Tab',
+  Up: 'ArrowUp'
 };
 
 const MenuActions = {
-  Close: "Close",
-  CloseSelect: "CloseSelect",
-  First: "First",
-  Last: "Last",
-  Next: "Next",
-  Open: "Open",
-  PageDown: "PageDown",
-  PageUp: "PageUp",
-  Previous: "Previous",
-  Select: "Select",
-  Space: "Space",
-  Type: "Type",
+  Close: 'Close',
+  CloseSelect: 'CloseSelect',
+  First: 'First',
+  Last: 'Last',
+  Next: 'Next',
+  Open: 'Open',
+  PageDown: 'PageDown',
+  PageUp: 'PageUp',
+  Previous: 'Previous',
+  Select: 'Select',
+  Space: 'Space',
+  Type: 'Type'
 };
 
 export default {
-  name: "Dropdown",
+  name: 'Dropdown',
   components: {
     ChevronDown,
     DropdownItemGroup,
     DropdownItem,
     LobLabel,
-    ConfirmChangeModal,
+    ConfirmChangeModal
   },
   props: {
     tooltipContent: {
       type: String,
-      default: null,
+      default: null
     },
     modelValue: {
       type: [String, Object],
-      required: true,
+      required: true
     },
     id: {
       type: String,
-      required: true,
+      required: true
     },
     label: {
       type: String,
-      required: true,
+      required: true
     },
     srOnlyLabel: {
       type: Boolean,
-      default: false,
+      default: false
     },
     placeholder: {
       type: String,
-      default: "",
+      default: ''
     },
     options: {
       type: Array,
@@ -215,60 +215,60 @@ export default {
       validator: function (value) {
         // The value must match be a string, an object with a label property, or an object with label and options
         return value.every((o) => {
-          const isString = typeof o === "string";
-          const isOption = typeof o === "object" && o.hasOwnProperty("label");
+          const isString = typeof o === 'string';
+          const isOption = typeof o === 'object' && o.hasOwnProperty('label');
           const isOptGroup =
-            typeof o === "object" &&
-            o.hasOwnProperty("label") &&
-            o.hasOwnProperty("options");
+            typeof o === 'object' &&
+            o.hasOwnProperty('label') &&
+            o.hasOwnProperty('options');
           return isString || isOption || isOptGroup;
         });
-      },
+      }
     },
     required: {
       type: Boolean,
-      default: false,
+      default: false
     },
     disabled: {
       type: Boolean,
-      default: false,
+      default: false
     },
     error: {
       type: Boolean,
-      default: false,
+      default: false
     },
     success: {
       type: Boolean,
-      default: false,
+      default: false
     },
     listHeight: {
       type: String,
-      default: null,
+      default: null
     },
     confirmChangeModal: {
       type: Boolean,
-      default: false,
+      default: false
     },
     confirmModalTitle: {
       type: String,
-      default: "",
+      default: ''
     },
     confirmModalSubtext: {
       type: String,
-      default: "",
+      default: ''
     },
     confirmModalConfirmBtnText: {
       type: String,
-      default: "",
-    },
+      default: ''
+    }
   },
   emits: [
-    "update:modelValue",
-    "input",
-    "change",
-    "open:list",
-    "close:list",
-    "hover:option",
+    'update:modelValue',
+    'input',
+    'change',
+    'open:list',
+    'close:list',
+    'hover:option'
   ],
   data() {
     return {
@@ -285,10 +285,10 @@ export default {
       // timeout after each typed character
       searchTimeout: 0,
       // current accumulated search string
-      searchString: "",
+      searchString: '',
       confirmChangeModalVisible: false,
       changeOptionEvent: null,
-      indexBeingChangedTo: null,
+      indexBeingChangedTo: null
     };
   },
   computed: {
@@ -296,7 +296,7 @@ export default {
       return this.placeholder
         ? [
             { label: this.placeholder, disabled: this.required },
-            ...this.options,
+            ...this.options
           ]
         : this.options;
     },
@@ -313,7 +313,7 @@ export default {
       if (this.selectedOptionItem) {
         return this.selectedOptionItem.label || this.selectedOptionItem;
       }
-      return "";
+      return '';
     },
     // minIndex that user can select (with mouse or keyboard)
     minIndex() {
@@ -326,22 +326,22 @@ export default {
       return this.flattenedOptions.findLastIndex((item) => !item.disabled);
     },
     activeId() {
-      return this.open ? `${this.id}-${this.activeIndex}` : "";
+      return this.open ? `${this.id}-${this.activeIndex}` : '';
     },
     optionsAreStrings() {
-      return typeof this.options[0] === "string";
-    },
+      return typeof this.options[0] === 'string';
+    }
   },
   watch: {
     open(val) {
-      val ? this.$emit("open:list") : this.$emit("close:list");
+      val ? this.$emit('open:list') : this.$emit('close:list');
     },
     options() {
       this.setSelectedInLifecycle();
     },
     modelValue() {
       this.setSelectedInLifecycle();
-    },
+    }
   },
   created() {
     this.setSelectedInLifecycle();
@@ -365,23 +365,23 @@ export default {
       }
     },
     isOptGroup(optionItem) {
-      return optionItem.hasOwnProperty("options");
+      return optionItem.hasOwnProperty('options');
     },
     setSelectedInLifecycle() {
       if (this.flattenedOptions) {
         const stringIndex = this.flattenedOptions.findIndex(
-          (o) => o === this.modelValue,
+          (o) => o === this.modelValue
         );
         const labelIndex =
           stringIndex === -1
             ? this.flattenedOptions.findIndex(
-                (o) => o.label === this.modelValue,
+                (o) => o.label === this.modelValue
               )
             : -1;
         const objectIndex =
           labelIndex === -1
             ? this.flattenedOptions.findIndex((o) =>
-                shallowEquals(o, this.modelValue),
+                shallowEquals(o, this.modelValue)
               )
             : -1;
         const index = Math.max(stringIndex, labelIndex, objectIndex);
@@ -417,11 +417,11 @@ export default {
 
     // filter an array of options against an input string
     // returns an array of options that begin with the filter string, case-independent
-    filterOptions(options = [], filter = "", exclude = []) {
+    filterOptions(options = [], filter = '', exclude = []) {
       const filterString = filter.toLowerCase().trim();
       return options.filter((option) => {
         let matches;
-        if (typeof option === "object") {
+        if (typeof option === 'object') {
           matches = option.label.toLowerCase().indexOf(filterString) === 0;
         } else {
           matches = option.toLowerCase().indexOf(filterString) === 0;
@@ -432,7 +432,7 @@ export default {
     // return select action from key press
     getActionFromKey($event, menuOpen) {
       const { key, altKey, ctrlKey, metaKey } = $event;
-      const openKeys = ["ArrowDown", "ArrowUp", "Enter", " ", "Home", "End"]; // all keys that will open the select
+      const openKeys = ['ArrowDown', 'ArrowUp', 'Enter', ' ', 'Home', 'End']; // all keys that will open the select
 
       // handle opening when closed
       if (!menuOpen && openKeys.includes(key)) {
@@ -443,7 +443,7 @@ export default {
       if (
         key === Keys.Backspace ||
         key === Keys.Clear ||
-        (key.length === 1 && key !== " " && !altKey && !ctrlKey && !metaKey)
+        (key.length === 1 && key !== ' ' && !altKey && !ctrlKey && !metaKey)
       ) {
         return MenuActions.Type;
       }
@@ -479,15 +479,15 @@ export default {
     getIndexByLetter(filter, startIndex = 0) {
       const orderedOptions = [
         ...this.flattenedOptions.slice(startIndex),
-        ...this.flattenedOptions.slice(0, startIndex),
+        ...this.flattenedOptions.slice(0, startIndex)
       ];
       const excludedOptions = [...this.flattenedOptions].filter(
-        (item) => item.disabled,
+        (item) => item.disabled
       );
       const firstMatch = this.filterOptions(
         orderedOptions,
         filter,
-        excludedOptions,
+        excludedOptions
       )[0];
       const allSameLetter = (array) =>
         array.every((letter) => letter === array[0]);
@@ -495,11 +495,11 @@ export default {
       // first check if there is an exact match for the typed string
       if (firstMatch) {
         return this.flattenedOptions.indexOf(firstMatch);
-      } else if (allSameLetter(filter.split(""))) {
+      } else if (allSameLetter(filter.split(''))) {
         const matches = this.filterOptions(
           orderedOptions,
           filter[0],
-          excludedOptions,
+          excludedOptions
         );
         return this.flattenedOptions.indexOf(matches[0]);
       } else {
@@ -509,12 +509,12 @@ export default {
     getSearchString(char) {
       // reset typing timeout and start new timeout
       // this allows us to make multiple-letter matches, like a native select
-      if (typeof this.searchTimeout === "number") {
+      if (typeof this.searchTimeout === 'number') {
         window.clearTimeout(this.searchTimeout);
       }
 
       this.searchTimeout = window.setTimeout(() => {
-        this.searchString = "";
+        this.searchString = '';
       }, 500);
 
       // add most recent letter to saved search string
@@ -598,7 +598,7 @@ export default {
       const searchString = this.getSearchString(letter);
       const searchIndex = this.getIndexByLetter(
         searchString,
-        this.activeIndex + 1,
+        this.activeIndex + 1
       );
 
       // if a match was found, go to it
@@ -621,7 +621,7 @@ export default {
     },
     onOptionMouseover($event, index) {
       this.onOptionChange(index);
-      this.$emit("hover:option", index);
+      this.$emit('hover:option', index);
     },
     onOptionChange(index) {
       this.activeIndex = index;
@@ -649,15 +649,15 @@ export default {
     selectOption($event, index) {
       this.selectedIndex = index;
       if (index === -1) {
-        this.$emit("update:modelValue", this.optionsAreStrings ? "" : {});
-        this.$emit("input", this.optionsAreStrings ? "" : {});
-        this.$emit("change", $event);
+        this.$emit('update:modelValue', this.optionsAreStrings ? '' : {});
+        this.$emit('input', this.optionsAreStrings ? '' : {});
+        this.$emit('change', $event);
         return;
       }
       const selected = this.flattenedOptions[index];
-      this.$emit("update:modelValue", selected);
-      this.$emit("input", selected);
-      this.$emit("change", $event);
+      this.$emit('update:modelValue', selected);
+      this.$emit('input', selected);
+      this.$emit('change', $event);
     },
     tryOnOptionClick($event, index) {
       if (this.confirmChangeModal) {
@@ -676,8 +676,8 @@ export default {
       const [event, index] = [this.changeOptionEvent, this.indexBeingChangedTo];
       [this.changeOptionEvent, this.indexBeingChangedTo] = [null, null];
       this.onOptionClick(event, index);
-    },
-  },
+    }
+  }
 };
 </script>
 

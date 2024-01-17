@@ -1,97 +1,97 @@
-import LobButton from "./Button.vue";
-import mdx from "./Button.mdx";
-import { Plus, Download } from "@/components/Icons";
+import LobButton from './Button.vue';
+import mdx from './Button.mdx';
+import { Plus, Download } from '@/components/Icons';
 
 export default {
-  title: "Components/Button",
+  title: 'Components/Button',
   component: LobButton,
   parameters: {
     docs: {
-      page: mdx,
-    },
+      page: mdx
+    }
   },
   argTypes: {
     content: {
       control: {
-        type: "text",
+        type: 'text'
       },
-      description: "Content to display inside of the button",
+      description: 'Content to display inside of the button',
       table: {
-        defaultValue: "This is a button",
+        defaultValue: 'This is a button',
         type: {
-          summary: "html or component",
-        },
-      },
+          summary: 'html or component'
+        }
+      }
     },
     variant: {
       options: [
-        "primary",
-        "secondary",
-        "danger",
-        "danger-secondary",
-        "quiet",
-        "ghost",
-        "link",
+        'primary',
+        'secondary',
+        'danger',
+        'danger-secondary',
+        'quiet',
+        'ghost',
+        'link'
       ],
       control: {
-        type: "select",
-      },
+        type: 'select'
+      }
     },
     size: {
-      options: ["small", "medium", "large", "xl"],
+      options: ['small', 'medium', 'large', 'xl'],
       control: {
-        type: "select",
-      },
-    },
-  },
+        type: 'select'
+      }
+    }
+  }
 };
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LobButton },
   setup: () => ({ args }),
-  template: '<lob-button v-bind="args" v-slot>{{ args.content }}</lob-button>',
+  template: '<lob-button v-bind="args" v-slot>{{ args.content }}</lob-button>'
 });
 
 export const Primary = Template.bind({});
 Primary.args = {
-  content: "Primary button",
+  content: 'Primary button'
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  content: "Secondary button",
-  variant: "secondary",
+  content: 'Secondary button',
+  variant: 'secondary'
 };
 
 export const Danger = Template.bind({});
 Danger.args = {
-  content: "Danger button",
-  variant: "danger",
+  content: 'Danger button',
+  variant: 'danger'
 };
 
 export const DangerSecondary = Template.bind({});
 DangerSecondary.args = {
-  content: "Danger secondary button",
-  variant: "danger-secondary",
+  content: 'Danger secondary button',
+  variant: 'danger-secondary'
 };
 
 export const Quiet = Template.bind({});
 Quiet.args = {
-  content: "Quiet button",
-  variant: "quiet",
+  content: 'Quiet button',
+  variant: 'quiet'
 };
 
 export const Ghost = Template.bind({});
 Ghost.args = {
-  content: "Ghost button",
-  variant: "ghost",
+  content: 'Ghost button',
+  variant: 'ghost'
 };
 
 export const StyledAsLink = Template.bind({});
 StyledAsLink.args = {
-  content: "Styled as link",
-  variant: "link",
+  content: 'Styled as link',
+  variant: 'link'
 };
 
 const WithIconsTemplate = (args, { argTypes }) => ({
@@ -102,10 +102,10 @@ const WithIconsTemplate = (args, { argTypes }) => ({
               <Download style="margin-right:10px;"/>
               {{ args.content }} 
               <Plus style="margin-left:10px;"/>
-            </lob-button>`,
+            </lob-button>`
 });
 
 export const WithIcons = WithIconsTemplate.bind({});
 WithIcons.args = {
-  content: "This is a button",
+  content: 'This is a button'
 };

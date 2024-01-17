@@ -15,11 +15,11 @@
 
 <script>
 export default {
-  name: "TopNavButton",
+  name: 'TopNavButton',
   computed: {
     hasIcon() {
       return Boolean(this.$slots.icon);
-    },
-  },
+    }
+  }
 };
 </script>

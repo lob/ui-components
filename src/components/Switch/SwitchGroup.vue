@@ -3,9 +3,9 @@
     <legend
       :class="[
         {
-          'text-sm type-small-300 text-gray-500 mb-1 border-b-0': !srOnlyLegend,
+          'text-sm type-small-300 text-gray-500 mb-1 border-b-0': !srOnlyLegend
         },
-        { 'sr-only': srOnlyLegend },
+        { 'sr-only': srOnlyLegend }
       ]"
     >
       {{ legend }}
@@ -13,7 +13,7 @@
     <div
       :class="[
         'customOutline flex flex-wrap bg-white p-[1px] border border-gray-100 rounded-sm',
-        { 'justify-center': center },
+        { 'justify-center': center }
       ]"
     >
       <slot />
@@ -23,21 +23,21 @@
 
 <script>
 export default {
-  name: "SwitchGroup",
+  name: 'SwitchGroup',
   props: {
     legend: {
       type: String,
-      required: true,
+      required: true
     },
     srOnlyLegend: {
       type: Boolean,
-      default: false,
+      default: false
     },
     center: {
       type: Boolean,
-      default: false,
-    },
-  },
+      default: false
+    }
+  }
 };
 </script>
 

@@ -6,7 +6,7 @@
       :class="[
         'absolute opacity-0',
         { 'radio__input--error': error },
-        { '!cursor-not-allowed': disabled },
+        { '!cursor-not-allowed': disabled }
       ]"
       :name="name"
       :value="value.toString()"
@@ -21,7 +21,7 @@
       :for="id"
       :class="[
         'relative flex type-base-500 left-[31px] pr-10 cursor-pointer',
-        { 'text-gray-400 !cursor-not-allowed': disabled },
+        { 'text-gray-400 !cursor-not-allowed': disabled }
       ]"
     >
       <div>
@@ -40,75 +40,75 @@
 </template>
 
 <script>
-import { getCurrentInstance } from "vue";
+import { getCurrentInstance } from 'vue';
 
 export default {
-  name: "RadioButton",
+  name: 'RadioButton',
   props: {
     id: {
       type: String,
-      required: true,
+      required: true
     },
     modelValue: {
       type: [String, Boolean],
-      default: null,
+      default: null
     },
     name: {
       type: String,
-      default: "",
+      default: ''
     },
     value: {
       type: [String, Boolean],
-      default: "",
+      default: ''
     },
     label: {
       type: String,
-      default: "",
+      default: ''
     },
     required: {
       type: Boolean,
-      default: false,
+      default: false
     },
     disabled: {
       type: Boolean,
-      default: false,
+      default: false
     },
     helperText: {
       type: String,
-      default: "",
+      default: ''
     },
     error: {
       type: Boolean,
-      default: false,
+      default: false
     },
     readonly: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
-  emits: ["update:modelValue", "input", "click"],
+  emits: ['update:modelValue', 'input', 'click'],
   data() {
     return {
-      parent: null,
+      parent: null
     };
   },
   computed: {
     checked() {
       return this.modelValue === this.value;
-    },
+    }
   },
   created() {
     this.parent = getCurrentInstance().parent;
   },
   methods: {
     onInput() {
-      this.$emit("update:modelValue", this.value);
-      this.$emit("input", this.value);
+      this.$emit('update:modelValue', this.value);
+      this.$emit('input', this.value);
     },
     onClick($event) {
-      this.$emit("click", $event);
-    },
-  },
+      this.$emit('click', $event);
+    }
+  }
 };
 </script>
 
@@ -116,7 +116,7 @@ export default {
 input {
   + label {
     &::before {
-      content: "";
+      content: '';
       top: 3px;
       left: -22px;
 
@@ -131,7 +131,7 @@ input {
     }
 
     &::after {
-      content: "";
+      content: '';
       left: -17px;
 
       @apply top-2;

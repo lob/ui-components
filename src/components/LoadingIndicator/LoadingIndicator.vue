@@ -10,15 +10,15 @@
 </template>
 
 <script>
-import { Comment } from "vue";
+import { Comment } from 'vue';
 
 export default {
-  name: "LoadingIndicator",
+  name: 'LoadingIndicator',
   props: {
     loadingClass: {
       type: String,
-      default: "",
-    },
+      default: ''
+    }
   },
   computed: {
     loading() {
@@ -26,8 +26,8 @@ export default {
         !this.$slots.default ||
         this.$slots.default().findIndex((o) => o.type !== Comment) === -1
       );
-    },
-  },
+    }
+  }
 };
 </script>
 

@@ -19,19 +19,19 @@ const iconInfo = {
   xl: { size: 20 },
   l: { size: 18 },
   m: { size: 16 },
-  s: { size: 14 },
+  s: { size: 14 }
 };
 
 export default {
-  name: "Exit",
+  name: 'Exit',
   props: {
     size: {
       type: String,
-      default: "m",
+      default: 'm',
       validator: function (value) {
-        return ["xxl", "xl", "l", "m", "s"].includes(value);
-      },
-    },
+        return ['xxl', 'xl', 'l', 'm', 's'].includes(value);
+      }
+    }
   },
   computed: {
     currentSize() {
@@ -39,7 +39,7 @@ export default {
     },
     path() {
       return iconInfo[this.size].path;
-    },
-  },
+    }
+  }
 };
 </script>

@@ -16,7 +16,7 @@ jobs:
 
       # Setup node and npm with the versions defined in package.json engines.
       - name: Install node and npm
-        uses: "./.github/actions/install-node-and-npm"
+        uses: './.github/actions/install-node-and-npm'
 
       - name: Install dependencies
         run: npm ci --legacy-peer-deps
@@ -41,7 +41,7 @@ jobs:
 
       # Setup node and npm with the versions defined in package.json engines.
       - name: Install node and npm
-        uses: "./.github/actions/install-node-and-npm"
+        uses: './.github/actions/install-node-and-npm'
 
       - name: Install dependencies
         run: npm ci --legacy-peer-deps
@@ -61,8 +61,8 @@ jobs:
         if: steps.publish.outputs.type != 'none'
         uses: actions/github-script@v5
         env:
-          NEW_VERSION: "${{ steps.publish.outputs.version }}"
-          OLD_VERSION: "${{ steps.publish.outputs.old-version }}"
+          NEW_VERSION: '${{ steps.publish.outputs.version }}'
+          OLD_VERSION: '${{ steps.publish.outputs.old-version }}'
         with:
           script: |
             const { OLD_VERSION, NEW_VERSION } = process.env;

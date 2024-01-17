@@ -15,7 +15,7 @@
         :style="{ width: width }"
         :class="[
           'relative bg-white flex flex-col overflow-y-auto shadow rounded-lg max-h-5/6',
-          paddingClass,
+          paddingClass
         ]"
         @mousedown.stop
       >
@@ -38,7 +38,7 @@
           v-if="hasFooter"
           :class="[
             'flex flex-col pt-4',
-            { 'border-t border-gray-100': !noSectionDividers },
+            { 'border-t border-gray-100': !noSectionDividers }
           ]"
         >
           <slot name="footer" />
@@ -46,7 +46,7 @@
         <button
           :class="[
             'absolute top-6 right-4 rounded-full w-7 h-7 p-1 cursor-pointer hover:bg-white-200',
-            'focus:outline-none focus:ring-2 focus:ring-primary-100',
+            'focus:outline-none focus:ring-2 focus:ring-primary-100'
           ]"
           :aria-label="closeButtonAriaLabel"
           @click="closeModal"
@@ -60,54 +60,54 @@
 </template>
 
 <script>
-import XmarkLarge from "../Icons/XmarkLarge";
+import XmarkLarge from '../Icons/XmarkLarge';
 export default {
-  name: "Modal",
+  name: 'Modal',
   components: { XmarkLarge },
   props: {
     visible: {
       type: Boolean,
-      default: false,
+      default: false
     },
     width: {
       type: String,
-      default: "",
+      default: ''
     },
     header: {
       type: String,
-      default: null,
+      default: null
     },
     subheader: {
       type: String,
-      default: null,
+      default: null
     },
     closeButtonAriaLabel: {
       type: String,
-      required: true,
+      required: true
     },
     noPadding: {
       type: Boolean,
-      default: false,
+      default: false
     },
     noSectionDividers: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
-  emits: ["close"],
+  emits: ['close'],
   computed: {
     hasFooter() {
       return Boolean(this.$slots.footer);
     },
     paddingClass() {
-      return this.noPadding ? "p-0" : "p-7";
-    },
+      return this.noPadding ? 'p-0' : 'p-7';
+    }
   },
   methods: {
     closeModal() {
-      this.$emit("close");
-    },
-  },
+      this.$emit('close');
+    }
+  }
 };
 </script>
 

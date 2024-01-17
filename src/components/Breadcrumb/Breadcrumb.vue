@@ -20,32 +20,32 @@
 </template>
 
 <script>
-import { ChevronRight } from "@/components/Icons";
-import { START_LOCATION } from "vue-router";
+import { ChevronRight } from '@/components/Icons';
+import { START_LOCATION } from 'vue-router';
 
-const URL_DELIMITER = "/";
+const URL_DELIMITER = '/';
 
 export default {
-  name: "Breadcrumb",
+  name: 'Breadcrumb',
   components: { ChevronRight },
   props: {
     startName: {
       // START_LOCATION does not have a name so we need to know what to display
       type: String,
-      required: true,
+      required: true
     },
     iconSrc: {
       type: String,
-      default: "",
+      default: ''
     },
     iconAltText: {
       type: String,
-      default: "",
+      default: ''
     },
     iconClasses: {
       type: String,
-      default: null,
-    },
+      default: null
+    }
   },
   computed: {
     crumbs() {
@@ -55,8 +55,8 @@ export default {
         // unique matched route records by path, grabbing the last duplicated if more than one
         const uniqueMatchedByPath = [
           ...new Map(
-            this.$route.matched.map((matched) => [matched.path, matched]),
-          ).values(),
+            this.$route.matched.map((matched) => [matched.path, matched])
+          ).values()
         ];
         routes = [...routes, ...uniqueMatchedByPath];
       }
@@ -64,10 +64,10 @@ export default {
       return routes.map((routeRecord, index) => {
         return {
           name: this.getCrumbDisplay(routeRecord),
-          path: this.getCrumbPath(routeRecord, index),
+          path: this.getCrumbPath(routeRecord, index)
         };
       });
-    },
+    }
   },
   methods: {
     titleize(str) {
@@ -77,14 +77,14 @@ export default {
 
       let sanitizedStr = str.toLowerCase();
 
-      let splitStr = sanitizedStr.split(" ");
+      let splitStr = sanitizedStr.split(' ');
       splitStr = splitStr.map((word) =>
         word.replace(/^[a-z]/i, (letter) => {
           return letter.toUpperCase();
-        }),
+        })
       );
 
-      sanitizedStr = splitStr.join(" ");
+      sanitizedStr = splitStr.join(' ');
       return sanitizedStr.trim();
     },
     getParamDisplay(lastChildInPath) {
@@ -102,7 +102,7 @@ export default {
       return this.titleize(lastChildInPath);
     },
     getCrumbDisplay(routeRecord) {
-      const displayName = routeRecord.meta?.displayName || "";
+      const displayName = routeRecord.meta?.displayName || '';
       const useParamsForDisplay =
         routeRecord.meta?.useParamsForDisplay || false;
       const pathSegments = routeRecord.path.split(URL_DELIMITER);
@@ -127,8 +127,8 @@ export default {
         .slice(0, index + 1)
         .join(URL_DELIMITER);
       return routeSubPathWithParams || routeRecord.path;
-    },
-  },
+    }
+  }
 };
 </script>
 

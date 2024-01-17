@@ -1,21 +1,21 @@
-import CurrencyInput from "./CurrencyInput.vue";
-import mdx from "./CurrencyInput.mdx";
+import CurrencyInput from './CurrencyInput.vue';
+import mdx from './CurrencyInput.mdx';
 
 export default {
-  title: "Components/Currency Input",
+  title: 'Components/Currency Input',
   component: CurrencyInput,
   parameters: {
     docs: {
-      page: mdx,
-    },
+      page: mdx
+    }
   },
   argTypes: {
-    "v-model": {
+    'v-model': {
       control: {
-        type: null,
-      },
-    },
-  },
+        type: null
+      }
+    }
+  }
 };
 
 const currencyInputVModel = 5000;
@@ -25,15 +25,15 @@ const PrimaryTemplate = (args, { argTypes }) => ({
   components: { CurrencyInput },
   setup: () => ({ args }),
   data: () => ({ currencyInputVModel }),
-  template: '<currency-input v-bind="args" v-model="currencyInputVModel" />',
+  template: '<currency-input v-bind="args" v-model="currencyInputVModel" />'
 });
 
 export const Primary = PrimaryTemplate.bind({});
 Primary.args = {
-  id: "currency-input",
-  label: "Currency Input",
-  helperText: "Helper text",
-  placeholder: "Amount",
+  id: 'currency-input',
+  label: 'Currency Input',
+  helperText: 'Helper text',
+  placeholder: 'Amount'
 };
 
 const WithMinAndMaxTemplate = (args, { argTypes }) => ({
@@ -42,13 +42,13 @@ const WithMinAndMaxTemplate = (args, { argTypes }) => ({
   setup: () => ({ args }),
   data: () => ({ currencyInputVModel }),
   template:
-    '<currency-input v-bind="args" :min="0" :max="10000" v-model="currencyInputVModel" />',
+    '<currency-input v-bind="args" :min="0" :max="10000" v-model="currencyInputVModel" />'
 });
 
 export const WithMinAndMax = WithMinAndMaxTemplate.bind({});
 WithMinAndMax.args = {
-  id: "currency-input",
-  label: "Currency Input",
+  id: 'currency-input',
+  label: 'Currency Input',
   min: 0,
-  max: 100000,
+  max: 100000
 };

@@ -1,46 +1,46 @@
-import DateInput from "./DateInput.vue";
-import mdx from "./DateInput.mdx";
+import DateInput from './DateInput.vue';
+import mdx from './DateInput.mdx';
 
 export default {
-  title: "Components/Date Input",
+  title: 'Components/Date Input',
   component: DateInput,
   parameters: {
     docs: {
-      page: mdx,
-    },
+      page: mdx
+    }
   },
   argTypes: {
     open: {
       table: {
-        disable: true,
-      },
+        disable: true
+      }
     },
     modelValue: {
       table: {
-        disable: true,
-      },
+        disable: true
+      }
     },
     min: {
       control: {
-        type: "date",
-      },
+        type: 'date'
+      }
     },
     max: {
       control: {
-        type: "date",
-      },
+        type: 'date'
+      }
     },
     error: {
       control: {
-        type: "boolean",
-      },
+        type: 'boolean'
+      }
     },
     errorMessage: {
       control: {
-        type: "text",
-      },
-    },
-  },
+        type: 'text'
+      }
+    }
+  }
 };
 
 const startDate = new Date();
@@ -56,21 +56,21 @@ const Template = (args, { argTypes }) => ({
     return { args };
   },
   template:
-    '<date-input v-bind="args" v-model="startDate" v-model:open="startDateOpen"></date-input>',
+    '<date-input v-bind="args" v-model="startDate" v-model:open="startDateOpen"></date-input>'
 });
 
 export const Primary = Template.bind({});
 Primary.args = {
-  id: "startDate",
-  label: "Start date",
-  srOnlyLabel: true,
+  id: 'startDate',
+  label: 'Start date',
+  srOnlyLabel: true
 };
 
 export const DisabledWeekendsAndHolidays = Template.bind({});
 DisabledWeekendsAndHolidays.args = {
-  id: "startDate",
-  label: "Start date",
+  id: 'startDate',
+  label: 'Start date',
   srOnlyLabel: true,
   disableWeekends: true,
-  disableHolidays: true,
+  disableHolidays: true
 };

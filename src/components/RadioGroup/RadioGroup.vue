@@ -14,24 +14,24 @@
 
 <script>
 export default {
-  name: "RadioGroup",
+  name: 'RadioGroup',
   props: {
     legend: {
       type: String,
-      default: "",
+      default: ''
     },
     srOnlyLegend: {
       type: Boolean,
-      default: false,
+      default: false
     },
     separateLines: {
       type: Boolean,
-      default: false,
+      default: false
     },
     required: {
       type: Boolean,
-      default: false,
-    },
-  },
+      default: false
+    }
+  }
 };
 </script>

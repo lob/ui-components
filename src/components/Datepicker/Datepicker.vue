@@ -6,7 +6,7 @@
     :class="[
       'hidden shadow px-6 py-4.5',
       { '!block': open },
-      { 'bg-white z-30 absolute': positionAbsolute },
+      { 'bg-white z-30 absolute': positionAbsolute }
     ]"
     role="dialog"
     aria-modal="true"
@@ -15,7 +15,7 @@
     @keydown="handleEscKey"
   >
     <div class="sr-only" aria-live="polite">
-      {{ t("datepicker.keyboardInstruction") }}
+      {{ t('datepicker.keyboardInstruction') }}
     </div>
     <button
       v-if="hideable"
@@ -25,19 +25,19 @@
       @click="hide"
     >
       <XmarkLarge class="w-4 h-4 p-0.5" />
-      <span class="sr-only">{{ t("datepicker.closeLabel") }}</span>
+      <span class="sr-only">{{ t('datepicker.closeLabel') }}</span>
     </button>
     <div class="flex justify-between pb-4.5">
       <button
         :class="[
           'text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
-          { '!text-gray-100': prevMonthDisabled },
+          { '!text-gray-100': prevMonthDisabled }
         ]"
         :disabled="prevMonthDisabled"
         @click="onPreviousMonthClick"
       >
         <chevron-left size="s" />
-        <span class="sr-only">{{ t("datepicker.prevMonthLabel") }}</span>
+        <span class="sr-only">{{ t('datepicker.prevMonthLabel') }}</span>
       </button>
       <div>
         <span
@@ -52,13 +52,13 @@
       <button
         :class="[
           'text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
-          { '!text-gray-100': nextMonthDisabled },
+          { '!text-gray-100': nextMonthDisabled }
         ]"
         :disabled="nextMonthDisabled"
         @click="onNextMonthClick"
       >
         <chevron-right size="s" />
-        <span class="sr-only">{{ t("datepicker.nextMonthLabel") }}</span>
+        <span class="sr-only">{{ t('datepicker.nextMonthLabel') }}</span>
       </button>
     </div>
     <DatepickerMonth
@@ -79,8 +79,8 @@
 </template>
 
 <script>
-import { ChevronLeft, ChevronRight, XmarkLarge } from "@/components/Icons";
-import DatepickerMonth from "./DatepickerMonth.vue";
+import { ChevronLeft, ChevronRight, XmarkLarge } from '@/components/Icons';
+import DatepickerMonth from './DatepickerMonth.vue';
 import {
   Keys,
   startOfWeek,
@@ -91,67 +91,67 @@ import {
   setYear,
   addDays,
   clamp,
-  inRange,
-} from "@/utils";
-import mitt from "mitt";
+  inRange
+} from '@/utils';
+import mitt from 'mitt';
 
 const emitter = mitt();
 
-const DATEPICKER_OPEN_EVENT = "datepicker-open";
+const DATEPICKER_OPEN_EVENT = 'datepicker-open';
 
 export default {
-  name: "Datepicker",
+  name: 'Datepicker',
   components: { DatepickerMonth, ChevronLeft, ChevronRight, XmarkLarge },
   props: {
     modelValue: {
       type: Date,
-      default: null,
+      default: null
     },
     id: {
       type: String,
-      required: true,
+      required: true
     },
     open: {
       type: Boolean,
-      default: false,
+      default: false
     },
     min: {
       type: Date,
-      default: null,
+      default: null
     },
     max: {
       type: Date,
-      default: null,
+      default: null
     },
     firstDayOfWeek: {
       type: Number,
-      default: 0,
+      default: 0
     },
     isDateDisabled: {
       type: Function,
-      default: () => false,
+      default: () => false
     },
     hideable: {
       type: Boolean,
-      default: true,
+      default: true
     },
     positionAbsolute: {
       type: Boolean,
-      default: true,
+      default: true
     },
     disableWeekends: {
       type: Boolean,
-      default: false,
+      default: false
     },
     disableHolidays: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
-  emits: ["update:modelValue", "update:open", "input"],
+  emits: ['update:modelValue', 'update:open', 'input'],
   data() {
     return {
-      focusedDate: this.modelValue || new Date(),
+      focusedDate: this.modelValue || new Date()
     };
   },
   computed: {
@@ -196,20 +196,20 @@ export default {
     },
     monthNames() {
       return [
-        this.t("datepicker.monthNameZero"),
-        this.t("datepicker.monthNameOne"),
-        this.t("datepicker.monthNameTwo"),
-        this.t("datepicker.monthNameThree"),
-        this.t("datepicker.monthNameFour"),
-        this.t("datepicker.monthNameFive"),
-        this.t("datepicker.monthNameSix"),
-        this.t("datepicker.monthNameSeven"),
-        this.t("datepicker.monthNameEight"),
-        this.t("datepicker.monthNameNine"),
-        this.t("datepicker.monthNameTen"),
-        this.t("datepicker.monthNameEleven"),
+        this.t('datepicker.monthNameZero'),
+        this.t('datepicker.monthNameOne'),
+        this.t('datepicker.monthNameTwo'),
+        this.t('datepicker.monthNameThree'),
+        this.t('datepicker.monthNameFour'),
+        this.t('datepicker.monthNameFive'),
+        this.t('datepicker.monthNameSix'),
+        this.t('datepicker.monthNameSeven'),
+        this.t('datepicker.monthNameEight'),
+        this.t('datepicker.monthNameNine'),
+        this.t('datepicker.monthNameTen'),
+        this.t('datepicker.monthNameEleven')
       ];
-    },
+    }
   },
   created() {
     emitter.on(DATEPICKER_OPEN_EVENT, this.handleOtherDatepickerOpened);
@@ -218,10 +218,10 @@ export default {
     if (this.open) {
       this.$refs.month.focusDate();
     }
-    window.addEventListener("click", this.onClickOutside, true);
+    window.addEventListener('click', this.onClickOutside, true);
   },
   unmounted() {
-    window.removeEventListener("click", this.onClickOutside);
+    window.removeEventListener('click', this.onClickOutside);
     emitter.off(DATEPICKER_OPEN_EVENT, this.handleOtherDatepickerOpened);
   },
   updated() {
@@ -384,15 +384,15 @@ export default {
     },
     hide() {
       if (this.hideable) {
-        this.$emit("update:open", false);
+        this.$emit('update:open', false);
       }
     },
     setValue(date) {
       const value = date;
       this.focusedDate = date;
-      this.$emit("input", value);
-      this.$emit("update:modelValue", value);
-    },
-  },
+      this.$emit('input', value);
+      this.$emit('update:modelValue', value);
+    }
+  }
 };
 </script>

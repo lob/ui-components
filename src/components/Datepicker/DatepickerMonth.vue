@@ -40,56 +40,56 @@ import {
   isEqual,
   inRange,
   isEqualMonth,
-  isWeekend,
-} from "@/utils";
-import DatepickerDay from "./DatepickerDay.vue";
-import { isBankHoliday } from "date-fns-holiday-us";
+  isWeekend
+} from '@/utils';
+import DatepickerDay from './DatepickerDay.vue';
+import { isBankHoliday } from 'date-fns-holiday-us';
 
 export default {
-  name: "DatepickerMonth",
+  name: 'DatepickerMonth',
   components: { DatepickerDay },
   props: {
     focusedDate: {
       type: Date,
-      default: null,
+      default: null
     },
     selectedDate: {
       type: Date,
-      default: null,
+      default: null
     },
     labelledById: {
       type: String,
-      default: "",
+      default: ''
     },
     firstDayOfWeek: {
       type: Number,
-      default: 0,
+      default: 0
     },
     min: {
       type: Date,
-      required: true,
+      required: true
     },
     max: {
       type: Date,
-      required: true,
+      required: true
     },
     isDateDisabled: {
       type: Function,
-      default: null,
+      default: null
     },
     disableWeekends: {
       type: Boolean,
-      default: false,
+      default: false
     },
     disableHolidays: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
-  emits: ["dateSelect", "click", "keydown"],
+  emits: ['dateSelect', 'click', 'keydown'],
   data() {
     return {
-      today: new Date(),
+      today: new Date()
     };
   },
   computed: {
@@ -98,15 +98,15 @@ export default {
     },
     dayNames() {
       return [
-        this.t("datepicker.dayNameZero"),
-        this.t("datepicker.dayNameOne"),
-        this.t("datepicker.dayNameTwo"),
-        this.t("datepicker.dayNameThree"),
-        this.t("datepicker.dayNameFour"),
-        this.t("datepicker.dayNameFive"),
-        this.t("datepicker.dayNameSix"),
+        this.t('datepicker.dayNameZero'),
+        this.t('datepicker.dayNameOne'),
+        this.t('datepicker.dayNameTwo'),
+        this.t('datepicker.dayNameThree'),
+        this.t('datepicker.dayNameFour'),
+        this.t('datepicker.dayNameFive'),
+        this.t('datepicker.dayNameSix')
       ];
-    },
+    }
   },
   methods: {
     chunk(array, chunkSize) {
@@ -151,20 +151,20 @@ export default {
       return inRange(date, this.min, this.max);
     },
     onDateSelect(value) {
-      this.$emit("dateSelect", value);
+      this.$emit('dateSelect', value);
     },
     onClick(value) {
-      this.$emit("click", value);
+      this.$emit('click', value);
     },
     onKeydown($event) {
-      this.$emit("keydown", $event);
+      this.$emit('keydown', $event);
     },
     focusDate() {
       if (this.$refs.focusedDate) {
         // focusedDate is an array because it's set inside a v-for but there should only ever be 1
         this.$refs.focusedDate[0].focus();
       }
-    },
-  },
+    }
+  }
 };
 </script>

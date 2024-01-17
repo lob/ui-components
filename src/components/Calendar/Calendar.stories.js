@@ -1,14 +1,14 @@
-import Calendar from "./Calendar.vue";
-import mdx from "./Calendar.mdx";
+import Calendar from './Calendar.vue';
+import mdx from './Calendar.mdx';
 
 export default {
-  title: "Components/Calendar",
+  title: 'Components/Calendar',
   component: Calendar,
   parameters: {
     docs: {
-      page: mdx,
-    },
-  },
+      page: mdx
+    }
+  }
 };
 const vModel = null;
 const Template = (args) => ({
@@ -20,7 +20,7 @@ const Template = (args) => ({
   id="some-id"
   v-model="vModel"
   />
-  `,
+  `
 });
 
 export const Primary = Template.bind({});
@@ -36,7 +36,7 @@ const WithSelectableRangeTemplate = (args) => ({
   v-model="vModel"
   :selectable-range="180"
   />
-  `,
+  `
 });
 
 export const WithSelectableRange = WithSelectableRangeTemplate.bind({});

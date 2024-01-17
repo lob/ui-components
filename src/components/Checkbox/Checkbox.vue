@@ -3,7 +3,7 @@
     :class="[
       'checkbox relative block mt-0 mb-1 ml-6 mr-3 text-left min-h-5',
       { 'cursor-not-allowed': disabled },
-      { 'inline-block': sameLine },
+      { 'inline-block': sameLine }
     ]"
   >
     <BaseCheckbox
@@ -17,12 +17,12 @@
       @click="($event) => $emit('click', $event)"
     />
     <span
-      style="content: &quot;&quot;"
+      style="content: ''"
       :class="[
         'checkmark w-4 h-4 mr-1 rounded-sm border-solid border border-gray-200 -left-5 absolute top-1',
         { 'bg-white-300': disabled },
         { '!bg-gray-200': disabled && checked },
-        { 'border-black bg-black': checked && !disabled },
+        { 'border-black bg-black': checked && !disabled }
       ]"
       data-testId="checkmark"
     />
@@ -30,7 +30,7 @@
     <span
       :class="[
         'ml-1 type-small-500',
-        disabled ? 'text-gray-400' : 'text-gray-800',
+        disabled ? 'text-gray-400' : 'text-gray-800'
       ]"
       v-html="label"
     />
@@ -40,58 +40,58 @@
 </template>
 
 <script>
-import BaseCheckbox from "./BaseCheckbox.vue";
+import BaseCheckbox from './BaseCheckbox.vue';
 
 export default {
-  name: "Checkbox",
+  name: 'Checkbox',
   components: { BaseCheckbox },
   props: {
     label: {
       type: String,
-      required: true,
+      required: true
     },
     value: {
       type: [String, Boolean],
-      default: null,
+      default: null
     },
     disabled: {
       type: Boolean,
-      default: false,
+      default: false
     },
     required: {
       type: Boolean,
-      default: false,
+      default: false
     },
     name: {
       type: String,
-      required: true,
+      required: true
     },
     sameLine: {
       type: Boolean,
-      default: false,
+      default: false
     },
     modelValue: {
       type: [Array, Boolean],
-      default: null,
-    },
+      default: null
+    }
   },
-  emits: ["update:modelValue", "input", "click"],
+  emits: ['update:modelValue', 'input', 'click'],
   computed: {
     checkboxValue: {
       get() {
         return this.modelValue;
       },
       set(checked) {
-        this.$emit("update:modelValue", checked);
-      },
+        this.$emit('update:modelValue', checked);
+      }
     },
     checked() {
-      if (this.checkboxValue && typeof this.checkboxValue === "object") {
+      if (this.checkboxValue && typeof this.checkboxValue === 'object') {
         return this.checkboxValue.includes(this.value);
       }
       return this.checkboxValue;
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -113,7 +113,7 @@ export default {
 }
 
 .checkmark::after {
-  content: "";
+  content: '';
 
   @apply absolute;
   @apply hidden;

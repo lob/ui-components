@@ -21,24 +21,24 @@
         <button
           :class="[
             'text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
-            { '!text-gray-100': prevMonthDisabled },
+            { '!text-gray-100': prevMonthDisabled }
           ]"
           :disabled="prevMonthDisabled"
           @click="onPreviousMonthClick"
         >
           <chevron-left size="s" class="mr-2" />
-          <span class="sr-only">{{ t("datepicker.prevMonthLabel") }}</span>
+          <span class="sr-only">{{ t('datepicker.prevMonthLabel') }}</span>
         </button>
         <button
           :class="[
             'text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
-            { '!text-gray-100': nextMonthDisabled },
+            { '!text-gray-100': nextMonthDisabled }
           ]"
           :disabled="nextMonthDisabled"
           @click="onNextMonthClick"
         >
           <chevron-right size="s" />
-          <span class="sr-only">{{ t("datepicker.nextMonthLabel") }}</span>
+          <span class="sr-only">{{ t('datepicker.nextMonthLabel') }}</span>
         </button>
       </div>
     </div>
@@ -59,8 +59,8 @@
 </template>
 
 <script>
-import { ChevronLeft, ChevronRight } from "@/components/Icons";
-import CalendarMonth from "./CalendarMonth.vue";
+import { ChevronLeft, ChevronRight } from '@/components/Icons';
+import CalendarMonth from './CalendarMonth.vue';
 import {
   Keys,
   startOfWeek,
@@ -71,54 +71,54 @@ import {
   setYear,
   addDays,
   clamp,
-  inRange,
-} from "@/utils";
+  inRange
+} from '@/utils';
 
 export default {
-  name: "Calendar",
+  name: 'Calendar',
   components: { CalendarMonth, ChevronLeft, ChevronRight },
   props: {
     modelValue: {
       type: Date,
-      default: null,
+      default: null
     },
     id: {
       type: String,
-      required: true,
+      required: true
     },
     max: {
       type: Date,
-      default: null,
+      default: null
     },
     min: {
       type: Date,
-      default: null,
+      default: null
     },
     firstDayOfWeek: {
       type: Number,
-      default: 0,
+      default: 0
     },
     isDateDisabled: {
       type: Function,
-      default: () => false,
+      default: () => false
     },
     hideable: {
       type: Boolean,
-      default: true,
+      default: true
     },
     positionAbsolute: {
       type: Boolean,
-      default: true,
+      default: true
     },
     selectableRange: {
       type: Number,
-      default: null,
-    },
+      default: null
+    }
   },
-  emits: ["update:modelValue", "input"],
+  emits: ['update:modelValue', 'input'],
   data() {
     return {
-      focusedDate: this.modelValue || new Date(),
+      focusedDate: this.modelValue || new Date()
     };
   },
   computed: {
@@ -163,20 +163,20 @@ export default {
     },
     monthNames() {
       return [
-        this.t("datepicker.monthNameZero"),
-        this.t("datepicker.monthNameOne"),
-        this.t("datepicker.monthNameTwo"),
-        this.t("datepicker.monthNameThree"),
-        this.t("datepicker.monthNameFour"),
-        this.t("datepicker.monthNameFive"),
-        this.t("datepicker.monthNameSix"),
-        this.t("datepicker.monthNameSeven"),
-        this.t("datepicker.monthNameEight"),
-        this.t("datepicker.monthNameNine"),
-        this.t("datepicker.monthNameTen"),
-        this.t("datepicker.monthNameEleven"),
+        this.t('datepicker.monthNameZero'),
+        this.t('datepicker.monthNameOne'),
+        this.t('datepicker.monthNameTwo'),
+        this.t('datepicker.monthNameThree'),
+        this.t('datepicker.monthNameFour'),
+        this.t('datepicker.monthNameFive'),
+        this.t('datepicker.monthNameSix'),
+        this.t('datepicker.monthNameSeven'),
+        this.t('datepicker.monthNameEight'),
+        this.t('datepicker.monthNameNine'),
+        this.t('datepicker.monthNameTen'),
+        this.t('datepicker.monthNameEleven')
       ];
-    },
+    }
   },
   mounted() {
     this.$refs.month.focusDate();
@@ -313,9 +313,9 @@ export default {
     setValue(date) {
       const value = date;
       this.focusedDate = date;
-      this.$emit("input", value);
-      this.$emit("update:modelValue", value);
-    },
-  },
+      this.$emit('input', value);
+      this.$emit('update:modelValue', value);
+    }
+  }
 };
 </script>

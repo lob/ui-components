@@ -11,13 +11,13 @@
         'hover:before:content[``] hover:before:z-10 hover:before:absolute hover:before:inset-0 hover:before:bottom-[-3px] hover:before:border-b-2',
         {
           'hover:!text-gray-600 focus-visible:!text-gray-600 focus-visible:before:border-b-2 hover:before:border-gray-300 focus-visible:before:border-gray-300':
-            !active && !disabled,
+            !active && !disabled
         },
         {
           '!text-black before:content[``] before:z-10 before:absolute before:inset-0 before:bottom-[-3px] before:border-b-2 before:border-black':
-            active,
+            active
         },
-        { '!text-gray-300': disabled },
+        { '!text-gray-300': disabled }
       ]"
     >
       {{ title }}
@@ -29,39 +29,39 @@
 </template>
 
 <script>
-import LobLink from "../Link/Link";
+import LobLink from '../Link/Link';
 
 export default {
-  name: "SubnavigationItem",
+  name: 'SubnavigationItem',
   components: {
-    LobLink,
+    LobLink
   },
   props: {
     title: {
       type: String,
-      default: "",
+      default: ''
     },
     to: {
       type: String,
-      default: "",
+      default: ''
     },
     matchQueryString: {
       type: Boolean,
-      default: false,
+      default: false
     },
     disabled: {
       type: Boolean,
-      default: false,
+      default: false
     },
     stringToMatch: {
       type: String,
-      default: "",
-    },
+      default: ''
+    }
   },
   computed: {
     active() {
       if (this.stringToMatch) {
-        const pattern = new RegExp(`${this.stringToMatch}`, "gi");
+        const pattern = new RegExp(`${this.stringToMatch}`, 'gi');
         if (pattern.test(this.$route.fullPath)) {
           return true;
         }
@@ -69,7 +69,7 @@ export default {
       return this.matchQueryString
         ? this.$route.fullPath === this.to
         : this.$route.fullPath?.includes(this.to);
-    },
-  },
+    }
+  }
 };
 </script>

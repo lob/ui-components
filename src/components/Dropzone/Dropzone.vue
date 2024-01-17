@@ -10,12 +10,12 @@
         'border border-dashed rounded-md focus:outline-none focus:ring-4 focus:ring-primary-100',
         {
           'border-turquoise-500 bg-white-300 hover:bg-flint-100 cursor-pointer':
-            defaultStep,
+            defaultStep
         },
         { 'border-turquoise-500 bg-white-100': uploadingStep },
         { 'border-coral-700 bg-coral-100 cursor-pointer': errorStep },
         { 'border-success bg-mint-100 bg': successStep },
-        { 'opacity-70': !successStep && dragOverlay },
+        { 'opacity-70': !successStep && dragOverlay }
       ]"
       @drop.stop.prevent="onDropFile"
       @dragover.stop.prevent="onDragOver"
@@ -35,7 +35,7 @@
           'subheading-1',
           defaultStep ? 'text-gray-700 mt-2' : 'mt-6',
           { 'text-primary-500': uploadingStep },
-          { 'text-error': errorStep },
+          { 'text-error': errorStep }
         ]"
       >
         {{ displayText }}
@@ -79,7 +79,7 @@
         :class="[
           'mt-4 flex items-center rounded-lg px-4 h-[32px]',
           'primaryBtnStyle text-white font-medium text-sm',
-          'focus-visible:ring-4 focus-visible:ring-primary-100 focus:outline-none',
+          'focus-visible:ring-4 focus-visible:ring-primary-100 focus:outline-none'
         ]"
         @click.stop
       >
@@ -147,12 +147,12 @@
 </template>
 
 <script>
-import { formatBytes } from "@/utils/formatBytes";
-import { LobLink, ProgressBar, Upload } from "@/components";
-import ConfirmRemoveFileModal from "./ConfirmRemoveFileModal.vue";
+import { formatBytes } from '@/utils/formatBytes';
+import { LobLink, ProgressBar, Upload } from '@/components';
+import ConfirmRemoveFileModal from './ConfirmRemoveFileModal.vue';
 
 export default {
-  name: "Dropzone",
+  name: 'Dropzone',
   components: { LobLink, ProgressBar, Upload, ConfirmRemoveFileModal },
   props: {
     textContent: {
@@ -160,32 +160,32 @@ export default {
       required: true,
       validator: function (value) {
         const requiredKeys = [
-          "dragAndDropHere",
-          "yourFile",
-          "or",
-          "uploadFileButtonText",
-          "acceptedFormatIs",
-          "acceptedFormatsAre",
-          "maxFileSizeIs",
-          "downloadSampleFile",
-          "uploading",
-          "mightTakeAMinute",
-          "looksGreat",
-          "removeFileButtonText",
-          "fileFor",
-          "couldNotUpload",
-          "canOnlySelectOneFile",
-          "fileIsTooLarge",
-          "fileTypeNotValid",
-          "defaultErrorText",
-          "errorMessage",
-          "successMessage",
+          'dragAndDropHere',
+          'yourFile',
+          'or',
+          'uploadFileButtonText',
+          'acceptedFormatIs',
+          'acceptedFormatsAre',
+          'maxFileSizeIs',
+          'downloadSampleFile',
+          'uploading',
+          'mightTakeAMinute',
+          'looksGreat',
+          'removeFileButtonText',
+          'fileFor',
+          'couldNotUpload',
+          'canOnlySelectOneFile',
+          'fileIsTooLarge',
+          'fileTypeNotValid',
+          'defaultErrorText',
+          'errorMessage',
+          'successMessage'
         ];
         return requiredKeys.every((key) => value.hasOwnProperty(key));
-      },
+      }
     },
     inputId: { type: String, required: true },
-    acceptType: { type: String, default: "/*" },
+    acceptType: { type: String, default: '/*' },
     maxSizeInBytes: { type: [Number, null], default: null },
     showTypeAndMaxSize: { type: Boolean, default: true },
     sampleLinkUrl: { type: String, default: null },
@@ -195,56 +195,56 @@ export default {
       type: [String, null],
       default: null,
       validator: (value) =>
-        [null, "error", "success", "uploading"].includes(value),
+        [null, 'error', 'success', 'uploading'].includes(value)
     },
     confirmRemoveFile: { type: Boolean, default: false },
-    confirmModalTitle: { type: String, default: "" },
-    confirmModalSubtext: { type: String, default: "" },
-    confirmModalConfirmBtnText: { type: String, default: "" },
+    confirmModalTitle: { type: String, default: '' },
+    confirmModalSubtext: { type: String, default: '' },
+    confirmModalConfirmBtnText: { type: String, default: '' }
   },
-  emits: ["select", "remove"],
+  emits: ['select', 'remove'],
   data: function () {
     return {
       formatBytes,
       selectedFile: this.file,
-      currentStep: this.status ?? "default",
+      currentStep: this.status ?? 'default',
       dragOverlay: false,
       multipleFilesError: false,
       fileSizeError: false,
       fileTypeError: false,
-      confirmRemoveFileModalVisible: false,
+      confirmRemoveFileModalVisible: false
     };
   },
   computed: {
     defaultStep() {
-      return this.currentStep === "default";
+      return this.currentStep === 'default';
     },
     errorStep() {
-      return this.currentStep === "error";
+      return this.currentStep === 'error';
     },
     uploadingStep() {
-      return this.currentStep === "uploading";
+      return this.currentStep === 'uploading';
     },
     successStep() {
-      return this.currentStep === "success";
+      return this.currentStep === 'success';
     },
     fileHasBeenSelected() {
       return this.successStep && this.selectedFile;
     },
     selectedFileType() {
-      return this.selectedFile?.type?.split("/")[1].toUpperCase() || "File";
+      return this.selectedFile?.type?.split('/')[1].toUpperCase() || 'File';
     },
     selectedFileName() {
-      return this.selectedFile?.name || this.t("dropzone.yourFile");
+      return this.selectedFile?.name || this.t('dropzone.yourFile');
     },
     fileTypesArray() {
-      const array = this.acceptType?.split(",") || [];
+      const array = this.acceptType?.split(',') || [];
       return array.map((type) => type.trim());
     },
     fileTypesString() {
       return this.fileTypesArray
-        .map((t) => t.replace(/[^a-zA-Z]/g, ""))
-        .join(", ")
+        .map((t) => t.replace(/[^a-zA-Z]/g, ''))
+        .join(', ')
         .toUpperCase();
     },
     isDroppingDisabled() {
@@ -260,7 +260,7 @@ export default {
       if (this.uploadingStep) {
         return `${this.textContent.uploading} ${this.selectedFileName}...`;
       }
-      return "";
+      return '';
     },
     subText() {
       if (this.errorStep) {
@@ -281,18 +281,18 @@ export default {
       } else if (this.uploadingStep) {
         return this.textContent.mightTakeAMinute;
       }
-      return "";
+      return '';
     },
     currentStepIcon() {
       return `https://s3.us-west-2.amazonaws.com/public.lob.com/dashboard/campaigns/file-${this.currentStep}.png`;
-    },
+    }
   },
   watch: {
     status(val) {
       if (val) {
         this.currentStep = val;
       }
-    },
+    }
   },
   methods: {
     clearErrors() {
@@ -325,7 +325,7 @@ export default {
     isSingleFile(fileLoad) {
       if (fileLoad.length > 1) {
         this.multipleFilesError = true;
-        this.currentStep = "error";
+        this.currentStep = 'error';
         this.$refs.selectForm.reset();
         return false;
       }
@@ -334,7 +334,7 @@ export default {
     isFileSizeValid(file) {
       if (this.maxSizeInBytes && file?.size > this.maxSizeInBytes) {
         this.fileSizeError = true;
-        this.currentStep = "error";
+        this.currentStep = 'error';
         this.$refs.selectForm.reset();
         return false;
       }
@@ -342,13 +342,13 @@ export default {
     },
     isFileTypeValid(file) {
       if (file.type) {
-        const fileType = file.type.split("/")[1];
+        const fileType = file.type.split('/')[1];
         const typeExistsInFileTypesArray = this.fileTypesArray.includes(
-          `.${fileType}`,
+          `.${fileType}`
         );
-        if (this.acceptType !== "/*" && !typeExistsInFileTypesArray) {
+        if (this.acceptType !== '/*' && !typeExistsInFileTypesArray) {
           this.fileTypeError = true;
-          this.currentStep = "error";
+          this.currentStep = 'error';
           return false;
         }
       }
@@ -356,14 +356,14 @@ export default {
     },
     selectEmitFile(file) {
       this.selectedFile = file;
-      this.$emit("select", this.selectedFile);
-      this.currentStep = "uploading";
+      this.$emit('select', this.selectedFile);
+      this.currentStep = 'uploading';
     },
     removeFile() {
       this.selectedFile = null;
-      this.$emit("remove");
+      this.$emit('remove');
       this.$refs.selectForm.reset();
-      this.currentStep = "default";
+      this.currentStep = 'default';
       this.clearErrors();
     },
     onDragOver() {
@@ -382,8 +382,8 @@ export default {
         return;
       }
       this.$refs.fileElement.click();
-    },
-  },
+    }
+  }
 };
 </script>
 

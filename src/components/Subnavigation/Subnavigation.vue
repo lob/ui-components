@@ -8,13 +8,13 @@
 
 <script>
 export default {
-  name: "Subnavigation",
+  name: 'Subnavigation',
   props: {
     ulClass: {
       type: String,
-      default: "",
-    },
-  },
+      default: ''
+    }
+  }
 };
 </script>
 

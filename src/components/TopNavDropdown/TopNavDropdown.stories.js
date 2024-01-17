@@ -1,31 +1,31 @@
 import routeDecorator, {
-  routeTemplate,
-} from "../../../.storybook/routeDecorator";
-import TopNavDropdown from "./TopNavDropdown.vue";
-import TopNavDropdownItem from "./TopNavDropdownItem.vue";
-import mdx from "./TopNavDropdown.mdx";
-import { Signal, Map, CircleQuestion } from "../Icons";
+  routeTemplate
+} from '../../../.storybook/routeDecorator';
+import TopNavDropdown from './TopNavDropdown.vue';
+import TopNavDropdownItem from './TopNavDropdownItem.vue';
+import mdx from './TopNavDropdown.mdx';
+import { Signal, Map, CircleQuestion } from '../Icons';
 
 export default {
-  title: "Components/Top Nav Dropdown",
+  title: 'Components/Top Nav Dropdown',
   component: TopNavDropdown,
   subcomponents: { TopNavDropdownItem },
   decorators: [
-    routeDecorator("/", [
+    routeDecorator('/', [
       {
-        path: "/settings/main/account",
+        path: '/settings/main/account',
         component: {
-          template: routeTemplate("account"),
-        },
-      },
-    ]),
+          template: routeTemplate('account')
+        }
+      }
+    ])
   ],
   parameters: {
     docs: {
-      page: mdx,
-    },
+      page: mdx
+    }
   },
-  argTypes: {},
+  argTypes: {}
 };
 
 const Template = (args, { argTypes }) => ({
@@ -35,7 +35,7 @@ const Template = (args, { argTypes }) => ({
     TopNavDropdownItem,
     Signal,
     Map,
-    CircleQuestion,
+    CircleQuestion
   },
   setup: () => ({ args }),
   template: `
@@ -53,14 +53,14 @@ const Template = (args, { argTypes }) => ({
         Support & FAQ
       </TopNavDropdownItem>
     </TopNavDropdown>
-    `,
+    `
 });
 
 export const Primary = Template.bind({});
 Primary.args = {
-  title: "Resources",
-  id: "1",
-  open: false,
+  title: 'Resources',
+  id: '1',
+  open: false
 };
 
 const WithoutIcons = (args, { argTypes }) => ({
@@ -70,7 +70,7 @@ const WithoutIcons = (args, { argTypes }) => ({
     TopNavDropdownItem,
     Signal,
     Map,
-    CircleQuestion,
+    CircleQuestion
   },
   setup: () => ({ args }),
   template: `
@@ -85,14 +85,14 @@ const WithoutIcons = (args, { argTypes }) => ({
         Support & FAQ
       </TopNavDropdownItem>
     </TopNavDropdown>
-    `,
+    `
 });
 
 export const WithoutItemIcons = WithoutIcons.bind({});
 WithoutItemIcons.args = {
-  title: "Resources",
-  id: "1",
-  open: false,
+  title: 'Resources',
+  id: '1',
+  open: false
 };
 
 const IconDropdownTemplate = (args, { argTypes }) => ({
@@ -102,7 +102,7 @@ const IconDropdownTemplate = (args, { argTypes }) => ({
     TopNavDropdownItem,
     Signal,
     Map,
-    CircleQuestion,
+    CircleQuestion
   },
   setup: () => ({ args }),
   template: `
@@ -117,19 +117,19 @@ const IconDropdownTemplate = (args, { argTypes }) => ({
         Support & FAQ
       </TopNavDropdownItem>
     </TopNavDropdown>
-    `,
+    `
 });
 
 export const IconDropdown = IconDropdownTemplate.bind({});
 IconDropdown.args = {
-  id: "1",
-  variant: "icon",
+  id: '1',
+  variant: 'icon',
   icon: Signal,
   iconProps: {
-    size: "xl",
+    size: 'xl'
   },
   showChevron: false,
-  open: false,
+  open: false
 };
 
 const ItemTemplate = (args, { argTypes }) => ({
@@ -141,11 +141,11 @@ const ItemTemplate = (args, { argTypes }) => ({
       <template #icon> <Signal/> </template>
       API Status
     </TopNavDropdownItem>
-  `,
+  `
 });
 
 export const Item = ItemTemplate.bind({});
 Item.args = {
-  to: "/settings/main/account",
-  small: true,
+  to: '/settings/main/account',
+  small: true
 };

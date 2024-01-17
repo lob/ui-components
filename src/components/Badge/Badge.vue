@@ -12,12 +12,12 @@
         { 'bg-red-50 text-red-600': error },
         {
           'bg-gradient-114 from-[#1876db] to-[#5748ff] !text-white':
-            gradientPrimary,
+            gradientPrimary
         },
         {
           'bg-gradient-114 from-[#9F94FF] to-[#FA6A8C] !text-white':
-            gradientSecondary,
-        },
+            gradientSecondary
+        }
       ]"
     >
       <slot />
@@ -27,59 +27,59 @@
 
 <script>
 export default {
-  name: "Badge",
+  name: 'Badge',
   props: {
     variant: {
       type: String,
-      default: "default",
+      default: 'default',
       validator: (value) =>
         [
-          "default",
-          "secondary",
-          "info",
-          "success",
-          "warning",
-          "error",
-          "gradient-primary",
-          "gradient-secondary",
-        ].includes(value),
+          'default',
+          'secondary',
+          'info',
+          'success',
+          'warning',
+          'error',
+          'gradient-primary',
+          'gradient-secondary'
+        ].includes(value)
     },
     size: {
       type: String,
-      default: "default",
+      default: 'default',
       validator: function (value) {
-        return ["default", "small"].includes(value);
-      },
-    },
+        return ['default', 'small'].includes(value);
+      }
+    }
   },
   computed: {
     defaultVariant() {
-      return this.variant === "default";
+      return this.variant === 'default';
     },
     secondary() {
-      return this.variant === "secondary";
+      return this.variant === 'secondary';
     },
     info() {
-      return this.variant === "info";
+      return this.variant === 'info';
     },
     success() {
-      return this.variant === "success";
+      return this.variant === 'success';
     },
     warning() {
-      return this.variant === "warning";
+      return this.variant === 'warning';
     },
     error() {
-      return this.variant === "error";
+      return this.variant === 'error';
     },
     gradientPrimary() {
-      return this.variant === "gradient-primary";
+      return this.variant === 'gradient-primary';
     },
     gradientSecondary() {
-      return this.variant === "gradient-secondary";
+      return this.variant === 'gradient-secondary';
     },
     small() {
-      return this.size === "small";
-    },
-  },
+      return this.size === 'small';
+    }
+  }
 };
 </script>

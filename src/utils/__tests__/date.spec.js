@@ -11,10 +11,10 @@ import {
   clamp,
   inRange,
   isEqualMonth,
-  isEqual,
-} from "@/utils";
+  isEqual
+} from '@/utils';
 
-const testDate = new Date("2021-05-03T11:01:58.135Z");
+const testDate = new Date('2021-05-03T11:01:58.135Z');
 const realDate = Date;
 
 const dateMock = class extends Date {
@@ -38,9 +38,9 @@ afterAll(() => {
   global.Date = realDate;
 });
 
-describe("date helpers", () => {
-  describe("addDays", () => {
-    it("returns a date in the future when days param is positive", () => {
+describe('date helpers', () => {
+  describe('addDays', () => {
+    it('returns a date in the future when days param is positive', () => {
       const difference = 2;
 
       const result = addDays(today, difference);
@@ -48,7 +48,7 @@ describe("date helpers", () => {
       expect(result.getDate() - today.getDate()).toEqual(difference);
     });
 
-    it("returns a date in the past when days param is negative", () => {
+    it('returns a date in the past when days param is negative', () => {
       const difference = -2;
 
       const result = addDays(today, difference);
@@ -57,8 +57,8 @@ describe("date helpers", () => {
     });
   });
 
-  describe("setMonth", () => {
-    it("returns a new date with the month set to the appropriate value", () => {
+  describe('setMonth', () => {
+    it('returns a new date with the month set to the appropriate value', () => {
       const month = 2;
 
       const result = setMonth(today, month);
@@ -67,8 +67,8 @@ describe("date helpers", () => {
     });
   });
 
-  describe("setYear", () => {
-    it("returns a new date with the year set to the appropriate value", () => {
+  describe('setYear', () => {
+    it('returns a new date with the year set to the appropriate value', () => {
       const year = 2020;
 
       const result = setYear(today, year);
@@ -77,66 +77,66 @@ describe("date helpers", () => {
     });
   });
 
-  describe("isEqualMonth", () => {
-    it("returns false when one of the params is null", () => {
+  describe('isEqualMonth', () => {
+    it('returns false when one of the params is null', () => {
       const testDate = null;
       expect(isEqualMonth(today, testDate)).toEqual(false);
     });
 
-    it("returns false when the dates are in different months in the same year", () => {
+    it('returns false when the dates are in different months in the same year', () => {
       const testDate = new Date(2021, 2, 1);
       expect(isEqualMonth(today, testDate)).toEqual(false);
     });
 
-    it("returns false when the dates are in the same month in different years", () => {
+    it('returns false when the dates are in the same month in different years', () => {
       const testDate = new Date(2020, 4, 1);
       expect(isEqualMonth(today, testDate)).toEqual(false);
     });
 
-    it("returns true when the dates are in the same month in the same year", () => {
+    it('returns true when the dates are in the same month in the same year', () => {
       const testDate = new Date(2021, 4, 1);
       expect(isEqualMonth(today, testDate)).toEqual(true);
     });
   });
 
-  describe("isEqual", () => {
-    it("returns false when one of the params is null", () => {
+  describe('isEqual', () => {
+    it('returns false when one of the params is null', () => {
       const testDate = null;
       expect(isEqual(today, testDate)).toEqual(false);
     });
 
-    it("returns false when the dates are different dates in different months", () => {
+    it('returns false when the dates are different dates in different months', () => {
       const testDate = new Date(2021, 2, 1);
       expect(isEqualMonth(today, testDate)).toEqual(false);
     });
 
-    it("returns false when the dates are the same date in different months", () => {
+    it('returns false when the dates are the same date in different months', () => {
       const testDate = new Date(2020, 2, 3);
       expect(isEqualMonth(today, testDate)).toEqual(false);
     });
 
-    it("returns true when the dates are the same date in the same month", () => {
+    it('returns true when the dates are the same date in the same month', () => {
       const testDate = new Date(2021, 4, 3);
       expect(isEqualMonth(today, testDate)).toEqual(true);
     });
   });
 
-  describe("startOfWeek", () => {
-    it("returns the Sunday at the start of the week for the provided date", () => {
+  describe('startOfWeek', () => {
+    it('returns the Sunday at the start of the week for the provided date', () => {
       const start = startOfWeek(today);
       expect(start.getFullYear()).toEqual(today.getFullYear());
       expect(start.getMonth()).toEqual(today.getMonth());
       expect(start.getDate()).toEqual(2);
     });
 
-    it("returns the start of the week (today) for the provided date when the firstDayOfWeek param is Monday", () => {
+    it('returns the start of the week (today) for the provided date when the firstDayOfWeek param is Monday', () => {
       const start = startOfWeek(today, DaysOfWeek.Monday);
       expect(start.getFullYear()).toEqual(today.getFullYear());
       expect(start.getMonth()).toEqual(today.getMonth());
       expect(start.getDate()).toEqual(3);
     });
 
-    it("returns last week Tuesday as the start of the week for the provided date when the firstDayOfWeek param is Tuesday", () => {
+    it('returns last week Tuesday as the start of the week for the provided date when the firstDayOfWeek param is Tuesday', () => {
       const start = startOfWeek(today, DaysOfWeek.Tuesday);
       expect(start.getFullYear()).toEqual(today.getFullYear());
       expect(start.getMonth()).toEqual(3);
@@ -144,22 +144,22 @@ describe("date helpers", () => {
     });
   });
 
-  describe("endOfWeek", () => {
-    it("returns the Saturday at the start of the week for the provided date", () => {
+  describe('endOfWeek', () => {
+    it('returns the Saturday at the start of the week for the provided date', () => {
       const start = endOfWeek(today);
       expect(start.getFullYear()).toEqual(today.getFullYear());
       expect(start.getMonth()).toEqual(today.getMonth());
       expect(start.getDate()).toEqual(8);
     });
 
-    it("returns next Sunday for the provided date when the firstDayOfWeek param is Monday", () => {
+    it('returns next Sunday for the provided date when the firstDayOfWeek param is Monday', () => {
       const start = endOfWeek(today, DaysOfWeek.Monday);
       expect(start.getFullYear()).toEqual(today.getFullYear());
       expect(start.getMonth()).toEqual(today.getMonth());
       expect(start.getDate()).toEqual(9);
     });
 
-    it("returns today (end of week) as the start of the week for the provided date when the firstDayOfWeek param is Tuesday", () => {
+    it('returns today (end of week) as the start of the week for the provided date when the firstDayOfWeek param is Tuesday', () => {
       today = new Date();
       const start = endOfWeek(today, DaysOfWeek.Tuesday);
       expect(start.getFullYear()).toEqual(today.getFullYear());
@@ -168,8 +168,8 @@ describe("date helpers", () => {
     });
   });
 
-  describe("startOfMonth", () => {
-    it("returns the first of the month for the date", () => {
+  describe('startOfMonth', () => {
+    it('returns the first of the month for the date', () => {
       today = new Date();
       const start = startOfMonth(today);
       expect(start.getFullYear()).toEqual(today.getFullYear());
@@ -178,8 +178,8 @@ describe("date helpers", () => {
     });
   });
 
-  describe("endOfMonth", () => {
-    it("returns the last of the month for the date", () => {
+  describe('endOfMonth', () => {
+    it('returns the last of the month for the date', () => {
       const start = endOfMonth(today);
       expect(start.getFullYear()).toEqual(today.getFullYear());
       expect(start.getMonth()).toEqual(today.getMonth());
@@ -187,8 +187,8 @@ describe("date helpers", () => {
     });
   });
 
-  describe("getViewOfMonth", () => {
-    it("returns full weeks given start and end of the month (going back to previous month if does not start on a Sunday)", () => {
+  describe('getViewOfMonth', () => {
+    it('returns full weeks given start and end of the month (going back to previous month if does not start on a Sunday)', () => {
       const month = getViewOfMonth(today);
       const firstDay = month[0];
       const lastDay = month[month.length - 1];
@@ -203,8 +203,8 @@ describe("date helpers", () => {
     });
   });
 
-  describe("clamp", () => {
-    it("returns the date if it is within range of the min and max", () => {
+  describe('clamp', () => {
+    it('returns the date if it is within range of the min and max', () => {
       const min = new Date(2021, 4, 1);
       const max = new Date(2021, 4, 30);
       const date = clamp(today, min, max);
@@ -212,7 +212,7 @@ describe("date helpers", () => {
       expect(date).toEqual(today);
     });
 
-    it("returns the min if the date is less than the min", () => {
+    it('returns the min if the date is less than the min', () => {
       const min = new Date(2021, 6, 1);
       const max = new Date(2021, 6, 30);
       const date = clamp(today, min, max);
@@ -220,7 +220,7 @@ describe("date helpers", () => {
       expect(date).toEqual(min);
     });
 
-    it("returns the max if the date is greater than the max", () => {
+    it('returns the max if the date is greater than the max', () => {
       const min = new Date(2021, 3, 1);
       const max = new Date(2021, 3, 30);
       const date = clamp(today, min, max);
@@ -229,8 +229,8 @@ describe("date helpers", () => {
     });
   });
 
-  describe("inRange", () => {
-    it("returns true if it is within range of the min and max", () => {
+  describe('inRange', () => {
+    it('returns true if it is within range of the min and max', () => {
       const min = new Date(2021, 4, 1);
       const max = new Date(2021, 4, 30);
       const result = inRange(today, min, max);
@@ -238,7 +238,7 @@ describe("date helpers", () => {
       expect(result).toEqual(true);
     });
 
-    it("returns false if the date is less than the min", () => {
+    it('returns false if the date is less than the min', () => {
       const min = new Date(2021, 6, 1);
       const max = new Date(2021, 6, 30);
       const result = inRange(today, min, max);
@@ -246,7 +246,7 @@ describe("date helpers", () => {
       expect(result).toEqual(false);
     });
 
-    it("returns false if the date is greater than the max", () => {
+    it('returns false if the date is greater than the max', () => {
       const min = new Date(2021, 3, 1);
       const max = new Date(2021, 3, 30);
       const result = inRange(today, min, max);

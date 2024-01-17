@@ -24,15 +24,15 @@
 </template>
 
 <script>
-import DropdownItem from "./DropdownItem";
+import DropdownItem from './DropdownItem';
 
 export default {
-  name: "DropdownItemGroup",
+  name: 'DropdownItemGroup',
   components: { DropdownItem },
   props: {
     id: {
       type: String,
-      default: "",
+      default: ''
     },
     group: {
       type: Object,
@@ -40,23 +40,23 @@ export default {
       validator: function (value) {
         // The value must match be an object with a label and options property
         return (
-          typeof value === "object" &&
-          value.hasOwnProperty("label") &&
-          value.hasOwnProperty("options")
+          typeof value === 'object' &&
+          value.hasOwnProperty('label') &&
+          value.hasOwnProperty('options')
         );
-      },
+      }
     },
     activeIndex: {
       type: Number,
-      default: null,
+      default: null
     },
     selectedIndex: {
       type: Number,
-      default: null,
+      default: null
     },
     placeholderText: {
       type: String,
-      default: "",
+      default: ''
     },
     flattenedOptions: {
       type: Array,
@@ -64,17 +64,17 @@ export default {
       validator: function (value) {
         // The value must match be a string or an object with a label property
         return value.every((o) => {
-          const isString = typeof o === "string";
-          const isOption = typeof o === "object" && o.hasOwnProperty("label");
+          const isString = typeof o === 'string';
+          const isOption = typeof o === 'object' && o.hasOwnProperty('label');
           return isString || isOption;
         });
-      },
-    },
+      }
+    }
   },
-  emits: ["click", "mousedown", "mouseenter"],
+  emits: ['click', 'mousedown', 'mouseenter'],
   data() {
     return {
-      activeOptionRef: null,
+      activeOptionRef: null
     };
   },
   methods: {
@@ -87,20 +87,20 @@ export default {
       }
     },
     onMousedown($event) {
-      this.$emit("mousedown", $event);
+      this.$emit('mousedown', $event);
     },
     onMouseEnter($event, index) {
-      this.$emit("mouseenter", $event, index);
+      this.$emit('mouseenter', $event, index);
     },
     onClick($event, index) {
-      this.$emit("click", $event, index);
+      this.$emit('click', $event, index);
     },
     getOffsetHeight() {
       return this.activeOptionRef.offsetHeight;
     },
     getOffsetTop() {
       return this.activeOptionRef.offsetTop;
-    },
-  },
+    }
+  }
 };
 </script>

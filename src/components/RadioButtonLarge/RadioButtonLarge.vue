@@ -8,7 +8,7 @@
       { 'hover:border-gray-400': !disabled && !error },
       { '!border-black checked': checked && !disabled && !error },
       { 'disabled !cursor-not-allowed border-gray-100': disabled },
-      { '!border-red-500 radio__input--error': error && !disabled },
+      { '!border-red-500 radio__input--error': error && !disabled }
     ]"
     @click="onInput"
   >
@@ -19,7 +19,7 @@
       :class="[
         'absolute opacity-0',
         { 'radio__input--error': error },
-        { '!cursor-not-allowed': disabled },
+        { '!cursor-not-allowed': disabled }
       ]"
       :name="name"
       :value="value.toString()"
@@ -33,7 +33,7 @@
       :for="id"
       :class="[
         'relative flex type-base-500 top-[1px] left-[46px] cursor-pointer h-full pr-16',
-        { 'text-gray-400 !cursor-not-allowed': disabled },
+        { 'text-gray-400 !cursor-not-allowed': disabled }
       ]"
     >
       <div>
@@ -44,7 +44,7 @@
           :class="[
             'type-xs-400 text-gray-500',
             { '!text-gray-300': disabled },
-            { '-mb-4': helperText },
+            { '-mb-4': helperText }
           ]"
         >
           {{ helperText }}
@@ -55,66 +55,66 @@
 </template>
 
 <script>
-import { getCurrentInstance } from "vue";
+import { getCurrentInstance } from 'vue';
 
 export default {
-  name: "RadioButtonLarge",
+  name: 'RadioButtonLarge',
   props: {
     id: {
       type: String,
-      required: true,
+      required: true
     },
     modelValue: {
       type: [String, Boolean],
-      default: null,
+      default: null
     },
     name: {
       type: String,
-      default: "",
+      default: ''
     },
     value: {
       type: [String, Boolean],
-      default: "",
+      default: ''
     },
     label: {
       type: String,
-      default: "",
+      default: ''
     },
     required: {
       type: Boolean,
-      default: false,
+      default: false
     },
     disabled: {
       type: Boolean,
-      default: false,
+      default: false
     },
     helperText: {
       type: String,
-      default: "",
+      default: ''
     },
     error: {
       type: Boolean,
-      default: false,
+      default: false
     },
     fullHeight: {
       type: Boolean,
-      default: false,
+      default: false
     },
     fullWidth: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
-  emits: ["update:modelValue", "input", "click"],
+  emits: ['update:modelValue', 'input', 'click'],
   data() {
     return {
-      parent: null,
+      parent: null
     };
   },
   computed: {
     checked() {
       return this.modelValue === this.value;
-    },
+    }
   },
   created() {
     this.parent = getCurrentInstance().parent;
@@ -122,16 +122,16 @@ export default {
   methods: {
     onInput($event) {
       if (!this.disabled) {
-        this.$emit("update:modelValue", this.value);
-        this.$emit("input", this.value);
-        this.$emit("click", $event);
+        this.$emit('update:modelValue', this.value);
+        this.$emit('input', this.value);
+        this.$emit('click', $event);
         this.$refs.radioInput.focus();
       }
     },
     onClick($event) {
-      this.$emit("click", $event);
-    },
-  },
+      this.$emit('click', $event);
+    }
+  }
 };
 </script>
 
@@ -139,7 +139,7 @@ export default {
 input {
   + label {
     &::before {
-      content: "";
+      content: '';
       top: 3px;
       left: -22px;
 
@@ -154,7 +154,7 @@ input {
     }
 
     &::after {
-      content: "";
+      content: '';
       left: -17px;
 
       @apply top-2;

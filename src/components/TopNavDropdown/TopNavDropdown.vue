@@ -13,7 +13,7 @@
       :id="dropdownToggleId"
       :class="[
         'inline-block cursor-pointer w-auto h-[76px] py-7 px-8',
-        'transition-colors duration-200 ease-linear hover:bg-gray-50 focus:outline-black focus:outline-dashed focus:outline-1',
+        'transition-colors duration-200 ease-linear hover:bg-gray-50 focus:outline-black focus:outline-dashed focus:outline-1'
       ]"
       tabindex="0"
       :aria-controls="dropdownListId"
@@ -35,7 +35,7 @@
           size="s"
           :class="[
             'ml-2 -mr-2 transition-transform duration-200 ease-linear',
-            { '-rotate-180': showNav },
+            { '-rotate-180': showNav }
           ]"
         />
       </div>
@@ -47,14 +47,14 @@
         'min-w-full bg-white absolute',
         { 'top-[76px] !block border-t-2 border-gray-50': showNav },
         { '!hidden': !showNav },
-        { 'right-0': right },
+        { 'right-0': right }
       ]"
     >
       <div
         ref="dropdownMenu"
         :class="[
           'p-4 h-auto w-full mt-1 opacity-100',
-          { 'md:shadow-large bg-white': showNav },
+          { 'md:shadow-large bg-white': showNav }
         ]"
       >
         <slot />
@@ -64,48 +64,48 @@
 </template>
 
 <script>
-import { ChevronDown } from "../Icons";
+import { ChevronDown } from '../Icons';
 export default {
-  name: "TopNavDropdown",
+  name: 'TopNavDropdown',
   components: { ChevronDown },
   props: {
     title: {
       type: String,
-      default: "",
+      default: ''
     },
     id: {
       type: String,
-      required: true,
+      required: true
     },
     open: {
       type: Boolean,
-      default: false,
+      default: false
     },
     right: {
       type: Boolean,
-      default: false,
+      default: false
     },
     showChevron: {
       type: Boolean,
-      default: true,
+      default: true
     },
     variant: {
       type: String,
-      default: "text",
+      default: 'text'
     },
     icon: {
       type: [Object, null],
-      default: null,
+      default: null
     },
     iconProps: {
       type: Object,
-      default: () => ({}),
-    },
+      default: () => ({})
+    }
   },
-  emits: ["click"],
+  emits: ['click'],
   data() {
     return {
-      showNav: false,
+      showNav: false
     };
   },
   computed: {
@@ -114,16 +114,16 @@ export default {
     },
     dropdownListId() {
       return `dropdown-list-${this.id}`;
-    },
+    }
   },
   methods: {
     onKeydown($event) {
-      const anchorTags = this.$refs.dropdownMenu.getElementsByTagName("a");
+      const anchorTags = this.$refs.dropdownMenu.getElementsByTagName('a');
       const firstAnchorTag = anchorTags[0];
       const lastAnchorTag = anchorTags[anchorTags.length - 1];
 
       if (
-        $event.key === "Tab" &&
+        $event.key === 'Tab' &&
         $event.shiftKey &&
         $event.target === firstAnchorTag
       ) {
@@ -131,7 +131,7 @@ export default {
       }
 
       if (
-        $event.key === "Tab" &&
+        $event.key === 'Tab' &&
         !$event.shiftKey &&
         $event.target === lastAnchorTag
       ) {
@@ -147,8 +147,8 @@ export default {
     },
     onClick($event) {
       this.showNav = !this.showNav;
-      this.$emit("click", $event);
-    },
-  },
+      this.$emit('click', $event);
+    }
+  }
 };
 </script>

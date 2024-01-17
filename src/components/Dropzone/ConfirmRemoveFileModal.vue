@@ -16,7 +16,7 @@
       </div>
       <div class="flex w-full justify-center">
         <LobButton size="small" class="mr-4" @click="$emit('close')">
-          {{ t("dropzone.confirmRemoveFileModal.goBack") }}
+          {{ t('dropzone.confirmRemoveFileModal.goBack') }}
         </LobButton>
         <LobButton
           size="small"
@@ -34,30 +34,30 @@
 </template>
 
 <script>
-import { Modal } from "@/components";
-import { TriangleExclamation } from "../Icons";
-import { LobButton } from "@/components";
+import { Modal } from '@/components';
+import { TriangleExclamation } from '../Icons';
+import { LobButton } from '@/components';
 export default {
-  name: "ConfirmRemoveFileModal",
+  name: 'ConfirmRemoveFileModal',
   components: { Modal, TriangleExclamation, LobButton },
   props: {
     visible: {
       type: Boolean,
-      required: true,
+      required: true
     },
     title: {
       type: String,
-      required: true,
+      required: true
     },
     subtext: {
       type: String,
-      required: true,
+      required: true
     },
     confirmButtonText: {
       type: String,
-      required: true,
-    },
+      required: true
+    }
   },
-  emits: ["close", "confirmClicked"],
+  emits: ['close', 'confirmClicked']
 };
 </script>

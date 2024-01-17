@@ -2,7 +2,7 @@
   <label
     :class="[
       'flex items-center relative h-6 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
-      { 'cursor-not-allowed': disabled },
+      { 'cursor-not-allowed': disabled }
     ]"
   >
     <BaseCheckbox
@@ -22,7 +22,7 @@
         { '!bg-gray-100 ': disabled && checked },
         { checked: checked },
         { '!bg-primary-500 !border-primary-500': checked && !disabled },
-        { '!border-error': error },
+        { '!border-error': error }
       ]"
       data-testid="toggle"
     />
@@ -34,68 +34,68 @@
 </template>
 
 <script>
-import BaseCheckbox from "../Checkbox/BaseCheckbox.vue";
+import BaseCheckbox from '../Checkbox/BaseCheckbox.vue';
 
 export default {
-  name: "ToggleButton",
+  name: 'ToggleButton',
   components: { BaseCheckbox },
   props: {
     modelValue: {
       type: [Array, Boolean],
-      default: null,
+      default: null
     },
     name: {
       type: String,
-      required: true,
+      required: true
     },
     value: {
       type: [String, Boolean],
-      default: null,
+      default: null
     },
     label: {
       type: String,
-      required: true,
+      required: true
     },
     disabled: {
       type: Boolean,
-      default: false,
+      default: false
     },
     error: {
       type: Boolean,
-      default: false,
+      default: false
     },
     required: {
       type: Boolean,
-      default: false,
+      default: false
     },
     srOnlyLabel: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
-  emits: ["update:modelValue", "input", "click"],
+  emits: ['update:modelValue', 'input', 'click'],
   computed: {
     checkboxValue: {
       get() {
         return this.modelValue;
       },
       set(checked) {
-        this.$emit("update:modelValue", checked);
-      },
+        this.$emit('update:modelValue', checked);
+      }
     },
     checked() {
-      if (this.checkboxValue && typeof this.checkboxValue === "object") {
+      if (this.checkboxValue && typeof this.checkboxValue === 'object') {
         return this.checkboxValue.includes(this.value);
       }
       return this.checkboxValue;
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style scoped lang="scss">
 .toggle::before {
-  content: "";
+  content: '';
 
   @apply absolute;
   @apply w-3;

@@ -4,7 +4,7 @@
       'whitespace-nowrap cursor-pointer text-lg font-thin rounded-r-full',
       'customHoverTrigger focus:font-bold focus:outline-none focus-visible:ring-2',
       { 'text-primary-500 focus-visible:ring-primary-500': !darkMode },
-      { 'text-white focus-visible:ring-white': darkMode },
+      { 'text-white focus-visible:ring-white': darkMode }
     ]"
     tabindex="0"
     @keydown.enter="selectStep"
@@ -18,14 +18,14 @@
         { 'text-white': active && !darkMode },
         { 'text-primary-500': active && darkMode },
         { 'w-14 customHoverW': !active },
-        { 'w-full delay-100 font-bold': active },
+        { 'w-full delay-100 font-bold': active }
       ]"
     >
       <span
         :class="[
           'ml-7 inline-block w-4',
           { 'text-white': !darkMode },
-          { 'text-primary-500': darkMode },
+          { 'text-primary-500': darkMode }
         ]"
       >
         {{ index + 1 }}
@@ -34,7 +34,7 @@
         :class="[
           'ml-7 mr-6',
           { 'text-white': active && !darkMode },
-          { 'text-primary-500': active && darkMode },
+          { 'text-primary-500': active && darkMode }
         ]"
       >
         {{ step.displayName }}
@@ -45,18 +45,18 @@
 
 <script>
 export default {
-  name: "StepperVerticalItem",
+  name: 'StepperVerticalItem',
   props: {
     step: { type: Object, required: true },
     index: { type: Number, required: true },
     active: { type: Boolean, default: false },
-    darkMode: { type: Boolean, default: false },
+    darkMode: { type: Boolean, default: false }
   },
   methods: {
     selectStep(kbdEvent) {
       kbdEvent.path[0].click();
-    },
-  },
+    }
+  }
 };
 </script>
 

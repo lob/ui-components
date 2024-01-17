@@ -34,12 +34,12 @@ npm install @lob/ui-components
 Add the following code in your own project's entry file (e.g. `main.js`) This will allow you to use the components anywhere.
 
 ```javascript
-import { createApp } from "vue";
-import components from "@lob/ui-components";
+import { createApp } from 'vue';
+import components from '@lob/ui-components';
 
-import "@lob/ui-components/dist/ui-components.css";
+import '@lob/ui-components/dist/ui-components.css';
 
-createApp(App).use(components).mount("#app");
+createApp(App).use(components).mount('#app');
 ```
 
 ### Styling
@@ -52,7 +52,7 @@ npm install --save-dev tailwind-plugin-lob
 
 ```js
 module.exports = {
-  plugins: [require("tailwind-plugin-lob")],
+  plugins: [require('tailwind-plugin-lob')]
   // If you need to specify other options, you can set other options
 };
 ```
@@ -68,35 +68,35 @@ npm install vue-i18n@next
 ```
 
 ```javascript
-import { createApp } from "vue";
-import { createI18n } from "vue-i18n";
-import components from "@lob/ui-components";
+import { createApp } from 'vue';
+import { createI18n } from 'vue-i18n';
+import components from '@lob/ui-components';
 
-import "@lob/ui-components/dist/ui-components.css";
+import '@lob/ui-components/dist/ui-components.css';
 
 // we recommend putting each locale object in its own file (i.e. in src/locales and exporting)
 const messages = {
   en: {
     message: {
-      hello: "hello world",
-    },
+      hello: 'hello world'
+    }
   },
   es: {
     message: {
-      hello: "hola mundo",
-    },
-  },
+      hello: 'hola mundo'
+    }
+  }
 };
 
 const i18n = VueI18n.createI18n({
-  locale: "es", // set locale, we recommend creating a function to get the user's default local
-  fallbackLocale: "en", // set fallback locale, we recommend putting this in your env vars
-  messages, // set locale messages
+  locale: 'es', // set locale, we recommend creating a function to get the user's default local
+  fallbackLocale: 'en', // set fallback locale, we recommend putting this in your env vars
+  messages // set locale messages
   // If you need to specify other options, you can set other options
   // ...
 });
 
-createApp(App).use(i18n).use(components).mount("#app");
+createApp(App).use(i18n).use(components).mount('#app');
 ```
 
 ## Development

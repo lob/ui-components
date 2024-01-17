@@ -1,59 +1,59 @@
-import Badge from "./Badge.vue";
-import mdx from "./Badge.mdx";
+import Badge from './Badge.vue';
+import mdx from './Badge.mdx';
 
 export default {
-  title: "Components/Badge",
+  title: 'Components/Badge',
   component: Badge,
   parameters: {
     docs: {
-      page: mdx,
-    },
+      page: mdx
+    }
   },
   argTypes: {
     content: {
       control: {
-        type: "text",
+        type: 'text'
       },
-      description: "Content to display inside of the card",
+      description: 'Content to display inside of the card',
       table: {
-        defaultValue: "I am a card.",
+        defaultValue: 'I am a card.',
         type: {
-          summary: "html or component",
-        },
-      },
+          summary: 'html or component'
+        }
+      }
     },
     variant: {
       options: [
-        "default",
-        "secondary",
-        "info",
-        "success",
-        "warning",
-        "error",
-        "gradient-primary",
-        "gradient-secondary",
+        'default',
+        'secondary',
+        'info',
+        'success',
+        'warning',
+        'error',
+        'gradient-primary',
+        'gradient-secondary'
       ],
       control: {
-        type: "select",
-      },
+        type: 'select'
+      }
     },
     size: {
-      options: ["default", "small"],
+      options: ['default', 'small'],
       control: {
-        type: "select",
-      },
-    },
-  },
+        type: 'select'
+      }
+    }
+  }
 };
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { Badge },
   setup: () => ({ args }),
-  template: '<badge v-slot v-bind="args">{{ args.content }}</badge>',
+  template: '<badge v-slot v-bind="args">{{ args.content }}</badge>'
 });
 
 export const Primary = Template.bind({});
 Primary.args = {
-  content: "Badge text.",
+  content: 'Badge text.'
 };

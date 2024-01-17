@@ -15,7 +15,7 @@
       :class="[
         'px-5 pb-5',
         { 'pt-4': hasHeaderContent },
-        { 'pt-6': !hasHeaderContent },
+        { 'pt-6': !hasHeaderContent }
       ]"
     >
       <slot />
@@ -24,38 +24,38 @@
 </template>
 
 <script>
-import mitt from "mitt";
+import mitt from 'mitt';
 
 const emitter = mitt();
 
-const FILTER_OPEN_EVENT = "filter-open";
+const FILTER_OPEN_EVENT = 'filter-open';
 
 export default {
-  name: "FilterContent",
+  name: 'FilterContent',
   props: {
     open: {
       type: Boolean,
-      default: false,
+      default: false
     },
     boundElement: {
       type: Object,
-      default: null,
-    },
+      default: null
+    }
   },
-  emits: ["update:open"],
+  emits: ['update:open'],
   computed: {
     hasHeaderContent() {
       return Boolean(this.$slots.header);
-    },
+    }
   },
   created() {
     emitter.on(FILTER_OPEN_EVENT, this.handleOtherFilterOpened);
   },
   mounted() {
-    window.addEventListener("click", this.onClickOutside, true);
+    window.addEventListener('click', this.onClickOutside, true);
   },
   unmounted() {
-    window.removeEventListener("click", this.onClickOutside);
+    window.removeEventListener('click', this.onClickOutside);
     emitter.off(FILTER_OPEN_EVENT, this.handleOtherFilterOpened);
   },
   updated() {
@@ -91,8 +91,8 @@ export default {
       }
     },
     hide() {
-      this.$emit("update:open", false);
-    },
-  },
+      this.$emit('update:open', false);
+    }
+  }
 };
 </script>

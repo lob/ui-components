@@ -11,11 +11,11 @@
   />
 </template>
 <script>
-import TextInput from "../TextInput/TextInput";
-import CurrencyFormatter from "./currencyFormatter";
-import { escapeRegExp, stringDiff } from "@/utils";
+import TextInput from '../TextInput/TextInput';
+import CurrencyFormatter from './currencyFormatter';
+import { escapeRegExp, stringDiff } from '@/utils';
 
-const ZERO = "$0.00";
+const ZERO = '$0.00';
 
 /**
  * Helper to count the occurrences of a given substring in a string
@@ -24,57 +24,57 @@ const ZERO = "$0.00";
  * @returns {number}
  */
 function countOccurrences(str, substr) {
-  return str.match(new RegExp(escapeRegExp(substr), "g"))?.length || 0;
+  return str.match(new RegExp(escapeRegExp(substr), 'g'))?.length || 0;
 }
 
 export default {
-  name: "CurrencyInput",
+  name: 'CurrencyInput',
   components: {
-    TextInput,
+    TextInput
   },
   props: {
     id: {
       type: String,
-      default: null,
+      default: null
     },
     modelValue: {
       type: Number,
-      default: 0,
+      default: 0
     },
     inputProps: {
       type: Object,
-      default: () => ({}),
+      default: () => ({})
     },
     max: {
       type: Number,
-      default: null,
+      default: null
     },
     min: {
       type: Number,
-      default: null,
+      default: null
     },
     selectOnFocus: {
       type: Boolean,
-      default: true,
-    },
+      default: true
+    }
   },
-  emits: ["update:modelValue", "input", "change", "focus", "blur"],
+  emits: ['update:modelValue', 'input', 'change', 'focus', 'blur'],
   data() {
     return {
       focused: false,
-      formattedValue: "",
+      formattedValue: '',
       formatter: new CurrencyFormatter({
-        locale: "en-US",
-        currency: "USD",
+        locale: 'en-US',
+        currency: 'USD',
         minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      }),
+        maximumFractionDigits: 2
+      })
     };
   },
   watch: {
     modelValue(value) {
       this.format(value);
-    },
+    }
   },
   mounted() {
     this.format.call(this, this.modelValue);
@@ -82,23 +82,23 @@ export default {
   methods: {
     onBlur() {
       this.format(this.modelValue);
-      this.$emit("blur");
+      this.$emit('blur');
     },
     onFocus() {
       this.format(this.modelValue);
       if (this.selectOnFocus) {
         this.getInputEl().select();
       }
-      this.$emit("focus");
+      this.$emit('focus');
     },
     onChange($event) {
-      this.$emit("change", $event);
+      this.$emit('change', $event);
     },
     onInput(v) {
-      const { diff, type } = stringDiff(this.formattedValue, v ?? "");
+      const { diff, type } = stringDiff(this.formattedValue, v ?? '');
 
       // if the user deletes the decimal,
-      if (diff === "." && type === "deletion") {
+      if (diff === '.' && type === 'deletion') {
         // if the user deletes the decimal, specifically, re-insert it to avoid unexpected behavior
         v = this.formattedValue;
       }
@@ -115,7 +115,7 @@ export default {
 
       // handle formatting and emit numeric value as input event
       this.format(val);
-      this.$emit("input", val);
+      this.$emit('input', val);
     },
     /**
      * takes a number, formats it as currency, and updates the input value
@@ -126,7 +126,7 @@ export default {
 
       // if user deletes all characters, set value to 0
       if (value === null) {
-        this.$emit("update:modelValue", 0);
+        this.$emit('update:modelValue', 0);
         this.formattedValue = ZERO;
         return;
       }
@@ -135,7 +135,7 @@ export default {
 
       const { type, prevValue, editIndex } = stringDiff(
         this.formattedValue,
-        formattedValue,
+        formattedValue
       );
 
       // if formatted value is invalid or a noop, do nothing, but keep the caret's behavior consistent
@@ -148,8 +148,8 @@ export default {
 
       // If the number of commas in the formatted value has changed, adjust the caret position
       const separatorOffset =
-        countOccurrences(formattedValue, ",") -
-        countOccurrences(this.formattedValue, ",");
+        countOccurrences(formattedValue, ',') -
+        countOccurrences(this.formattedValue, ',');
       let newCaretPosition = inputEl.selectionStart + separatorOffset;
 
       // If the user is inputting or deleting at the 0th index (the `$` sign), increment the caret position by an additional 1
@@ -159,15 +159,15 @@ export default {
 
       // If the user replaces a '0' value, keep the caret position on the integer side of the decimal
       if (
-        type === "edit" &&
-        editIndex <= this.formattedValue.indexOf(".") &&
-        prevValue === "0"
+        type === 'edit' &&
+        editIndex <= this.formattedValue.indexOf('.') &&
+        prevValue === '0'
       ) {
         newCaretPosition--;
       }
 
       // Update the value and formatted value
-      this.$emit("update:modelValue", this.formatter.parse(formattedValue));
+      this.$emit('update:modelValue', this.formatter.parse(formattedValue));
       this.formattedValue = formattedValue;
 
       // Update the input value and caret position
@@ -191,7 +191,7 @@ export default {
      */
     getInputEl() {
       return this.$refs.textInput.$refs.input;
-    },
-  },
+    }
+  }
 };
 </script>

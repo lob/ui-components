@@ -18,7 +18,7 @@
  */
 export function findLastIndex(predicate, thisArg) {
   // The callback must be a function.
-  if (typeof predicate !== "function") {
+  if (typeof predicate !== 'function') {
     throw new TypeError();
   }
 
@@ -38,10 +38,10 @@ export function findLastIndex(predicate, thisArg) {
  * @returns {Array} The elements of the base array that do not exist in the secondary array
  */
 export function filterArrayByArray(baseArray, filterArray) {
-  const hasObjects = baseArray.every((o) => typeof o === "object");
+  const hasObjects = baseArray.every((o) => typeof o === 'object');
   if (hasObjects) {
     return baseArray.filter(
-      (obj1) => !filterArray.some((obj2) => obj1.label === obj2.label),
+      (obj1) => !filterArray.some((obj2) => obj1.label === obj2.label)
     );
   } else {
     return baseArray.filter((item) => !filterArray.includes(item));

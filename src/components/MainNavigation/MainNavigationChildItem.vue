@@ -11,8 +11,8 @@
         [
           isActive
             ? '!type-small-600 !text-gray-800 hover:!text-gray-800 active:!text-gray-800'
-            : '!type-small-500 !text-gray-500 hover:!text-gray-500 active:!text-gray-500',
-        ],
+            : '!type-small-500 !text-gray-500 hover:!text-gray-500 active:!text-gray-500'
+        ]
       ]"
       :underline="false"
       @click.stop="handleNavigation"
@@ -23,26 +23,26 @@
 </template>
 
 <script>
-import LobLink from "../Link/Link";
+import LobLink from '../Link/Link';
 
 export default {
-  name: "MainNavigationChildItem",
+  name: 'MainNavigationChildItem',
   components: { LobLink },
   props: {
     title: {
       type: String,
-      required: true,
+      required: true
     },
     to: {
       type: String,
-      required: true,
-    },
+      required: true
+    }
   },
-  emits: ["nav"],
+  emits: ['nav'],
   computed: {
     isActive() {
       return this.$route.path.startsWith(this.to);
-    },
+    }
   },
   watch: {
     isActive(val) {
@@ -54,12 +54,12 @@ export default {
       } else {
         this.$parent.hasActiveChild = false;
       }
-    },
+    }
   },
   methods: {
     handleNavigation() {
-      this.$emit("nav", this.to);
-    },
-  },
+      this.$emit('nav', this.to);
+    }
+  }
 };
 </script>

@@ -1,22 +1,22 @@
-import "@testing-library/jest-dom";
-import { render } from "@testing-library/vue";
-import StepperVerticalItem from "../StepperVerticalItem.vue";
+import '@testing-library/jest-dom';
+import { render } from '@testing-library/vue';
+import StepperVerticalItem from '../StepperVerticalItem.vue';
 
 const initialProps = {
   step: {
-    path: "/settings",
-    displayName: "Configure settings",
-    pathName: "Create Campaign Step One",
+    path: '/settings',
+    displayName: 'Configure settings',
+    pathName: 'Create Campaign Step One'
   },
   index: 0,
-  active: true,
+  active: true
 };
 
 const renderComponent = (options) =>
   render(StepperVerticalItem, { ...options });
 
-describe("StepperVerticalItem", () => {
-  it("renders the step pathName", () => {
+describe('StepperVerticalItem', () => {
+  it('renders the step pathName', () => {
     const props = initialProps;
     const { getByText } = renderComponent({ props });
 
@@ -24,17 +24,17 @@ describe("StepperVerticalItem", () => {
     expect(step).toBeInTheDocument();
   });
 
-  describe("active step", () => {
-    it("has blue background", () => {
+  describe('active step', () => {
+    it('has blue background', () => {
       const props = initialProps;
       const { getByText } = renderComponent({ props });
 
-      const stepWrap = getByText(props.step.displayName).closest("div");
-      expect(stepWrap).toHaveClass("bg-primary-500");
+      const stepWrap = getByText(props.step.displayName).closest('div');
+      expect(stepWrap).toHaveClass('bg-primary-500');
     });
   });
 
-  describe("dark mode", () => {
+  describe('dark mode', () => {
     let props;
     let component;
     beforeEach(() => {
@@ -43,11 +43,11 @@ describe("StepperVerticalItem", () => {
       component = renderComponent({ props });
     });
 
-    it("active step has white background", () => {
+    it('active step has white background', () => {
       const { getByText } = component;
 
-      const stepWrap = getByText(props.step.displayName).closest("div");
-      expect(stepWrap).toHaveClass("bg-white");
+      const stepWrap = getByText(props.step.displayName).closest('div');
+      expect(stepWrap).toHaveClass('bg-white');
     });
   });
 });

@@ -1,28 +1,28 @@
-import { SearchBar } from "@/components";
-import mdx from "./SearchBar.mdx";
-import iconOverview from "@/assets/images/iconOverview.svg";
+import { SearchBar } from '@/components';
+import mdx from './SearchBar.mdx';
+import iconOverview from '@/assets/images/iconOverview.svg';
 import routeDecorator, {
-  routeTemplate,
-} from "../../../.storybook/routeDecorator";
+  routeTemplate
+} from '../../../.storybook/routeDecorator';
 
 export default {
-  title: "Components/Search Bar",
+  title: 'Components/Search Bar',
   component: SearchBar,
   decorators: [
-    routeDecorator("/", [
+    routeDecorator('/', [
       {
-        path: "/search",
+        path: '/search',
         component: {
-          template: routeTemplate("search"),
-        },
-      },
-    ]),
+          template: routeTemplate('search')
+        }
+      }
+    ])
   ],
   parameters: {
     docs: {
-      page: mdx,
-    },
-  },
+      page: mdx
+    }
+  }
 };
 
 const PrimaryTemplate = (args, { argTypes }) => ({
@@ -49,7 +49,7 @@ const PrimaryTemplate = (args, { argTypes }) => ({
         </td>
       </template>
     </SearchBar>
-    `,
+    `
 });
 
 export const Primary = PrimaryTemplate.bind({});
@@ -58,87 +58,87 @@ Primary.args = {
     const allPostCards = [
       {
         img: `/${iconOverview}`,
-        description: "campaign ad",
-        type: "postcard",
+        description: 'campaign ad',
+        type: 'postcard'
       },
       {
         img: `/${iconOverview}`,
-        description: "soccer postcard",
-        type: "postcard",
+        description: 'soccer postcard',
+        type: 'postcard'
       },
       {
         img: `/${iconOverview}`,
-        description: "baseball mail",
-        type: "postcard",
+        description: 'baseball mail',
+        type: 'postcard'
       },
       {
         img: `/${iconOverview}`,
-        description: "basketball email",
-        type: "postcard",
+        description: 'basketball email',
+        type: 'postcard'
       },
       {
-        img: "https://upload.wikimedia.org/wikipedia/commons/1/13/Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg",
-        description: "campaign ad 1000",
-        type: "postcard",
+        img: 'https://upload.wikimedia.org/wikipedia/commons/1/13/Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg',
+        description: 'campaign ad 1000',
+        type: 'postcard'
       },
       {
-        img: "https://upload.wikimedia.org/wikipedia/commons/1/13/Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg",
-        description: "soccer postcard 1000",
-        type: "postcard",
+        img: 'https://upload.wikimedia.org/wikipedia/commons/1/13/Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg',
+        description: 'soccer postcard 1000',
+        type: 'postcard'
       },
       {
-        img: "https://upload.wikimedia.org/wikipedia/commons/1/13/Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg",
-        description: "baseball mail 1000",
-        type: "postcard",
+        img: 'https://upload.wikimedia.org/wikipedia/commons/1/13/Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg',
+        description: 'baseball mail 1000',
+        type: 'postcard'
       },
       {
-        img: "https://upload.wikimedia.org/wikipedia/commons/1/13/Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg",
-        description: "basketball email 1000",
-        type: "postcard",
-      },
-      {
-        img: `/${iconOverview}`,
-        description: "campaign ad",
-        type: "postcard",
+        img: 'https://upload.wikimedia.org/wikipedia/commons/1/13/Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg',
+        description: 'basketball email 1000',
+        type: 'postcard'
       },
       {
         img: `/${iconOverview}`,
-        description: "soccer postcard",
-        type: "postcard",
+        description: 'campaign ad',
+        type: 'postcard'
       },
       {
         img: `/${iconOverview}`,
-        description: "baseball mail",
-        type: "postcard",
+        description: 'soccer postcard',
+        type: 'postcard'
       },
       {
         img: `/${iconOverview}`,
-        description: "basketball email",
-        type: "postcard",
+        description: 'baseball mail',
+        type: 'postcard'
       },
       {
-        img: "https://upload.wikimedia.org/wikipedia/commons/1/13/Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg",
-        description: "campaign ad 1000",
-        type: "postcard",
+        img: `/${iconOverview}`,
+        description: 'basketball email',
+        type: 'postcard'
       },
       {
-        img: "https://upload.wikimedia.org/wikipedia/commons/1/13/Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg",
-        description: "soccer postcard 1000",
-        type: "postcard",
+        img: 'https://upload.wikimedia.org/wikipedia/commons/1/13/Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg',
+        description: 'campaign ad 1000',
+        type: 'postcard'
       },
       {
-        img: "https://upload.wikimedia.org/wikipedia/commons/1/13/Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg",
-        description: "baseball mail 1000",
-        type: "postcard",
+        img: 'https://upload.wikimedia.org/wikipedia/commons/1/13/Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg',
+        description: 'soccer postcard 1000',
+        type: 'postcard'
       },
       {
-        img: "https://upload.wikimedia.org/wikipedia/commons/1/13/Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg",
-        description: "basketball email 1000",
-        type: "postcard",
+        img: 'https://upload.wikimedia.org/wikipedia/commons/1/13/Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg',
+        description: 'baseball mail 1000',
+        type: 'postcard'
       },
+      {
+        img: 'https://upload.wikimedia.org/wikipedia/commons/1/13/Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg',
+        description: 'basketball email 1000',
+        type: 'postcard'
+      }
     ];
     const results = allPostCards.filter((postCard) =>
-      postCard.description.includes(searchTerm),
+      postCard.description.includes(searchTerm)
     );
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -146,6 +146,6 @@ Primary.args = {
       }, 1500); // waits for 1500ms before returning results, so it's more 'realistic'
     });
   },
-  link: "/search",
-  count: 10,
+  link: '/search',
+  count: 10
 };

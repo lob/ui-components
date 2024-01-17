@@ -5,8 +5,8 @@
       srOnlyLabel ? 'sr-only' : 'flex items-center mb-1 type-small-500',
       {
         'justify-between flex-row-reverse':
-          tooltipContent && tooltipPosition === 'trailing',
-      },
+          tooltipContent && tooltipPosition === 'trailing'
+      }
     ]"
     data-testid="labelWrapper"
   >
@@ -40,15 +40,15 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
-import Tooltip from "../Tooltip/Tooltip.vue";
-import CircleInfo from "../Icons/CircleInfo.vue";
+import { defineComponent } from 'vue';
+import Tooltip from '../Tooltip/Tooltip.vue';
+import CircleInfo from '../Icons/CircleInfo.vue';
 
 export default defineComponent({
-  name: "LobLabel",
+  name: 'LobLabel',
   components: {
     Tooltip,
-    CircleInfo,
+    CircleInfo
   },
   props: {
     label: { type: String, required: true },
@@ -58,17 +58,17 @@ export default defineComponent({
     tooltipContent: { type: String, default: null },
     tooltipPosition: {
       type: String,
-      default: "leading",
+      default: 'leading',
       validator: function (value) {
-        return ["leading", "trailing"].includes(value);
-      },
+        return ['leading', 'trailing'].includes(value);
+      }
     },
-    readOnly: { type: Boolean, default: false },
+    readOnly: { type: Boolean, default: false }
   },
   computed: {
     tooltip() {
       return this.$slots.tooltip;
-    },
-  },
+    }
+  }
 });
 </script>

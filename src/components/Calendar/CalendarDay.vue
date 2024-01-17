@@ -9,16 +9,16 @@
       { 'bg-gray-100': today },
       {
         'z-10 !bg-primary-500 text-white shadow-input border border-white':
-          selected,
+          selected
       },
       {
         'border border-gray-100 hover:border-white hover:shadow-input focus:bg-white-300':
-          selectableRange && selectable,
+          selectableRange && selectable
       },
       {
         '!cursor-not-allowed focus:ring-0 hover:bg-transparent':
-          selectableRange && notSelectable,
-      },
+          selectableRange && notSelectable
+      }
     ]"
     :role="disabled ? 'button' : null"
     :tabindex="focused ? 0 : -1"
@@ -34,44 +34,44 @@
 </template>
 
 <script>
-import { addDays } from "date-fns";
+import { addDays } from 'date-fns';
 
 export default {
-  name: "CalendarDay",
+  name: 'CalendarDay',
   props: {
     date: {
       type: Date,
-      default: null,
+      default: null
     },
     today: {
       type: Boolean,
-      default: false,
+      default: false
     },
     focused: {
       type: Boolean,
-      default: false,
+      default: false
     },
     selected: {
       type: Boolean,
-      default: false,
+      default: false
     },
     disabled: {
       type: Boolean,
-      default: false,
+      default: false
     },
     inRange: {
       type: Boolean,
-      default: true,
+      default: true
     },
     selectableRange: {
       type: Number,
-      default: null,
-    },
+      default: null
+    }
   },
-  emits: ["click", "dateSelect", "keydown"],
+  emits: ['click', 'dateSelect', 'keydown'],
   computed: {
     tag() {
-      return this.disabled ? "span" : "button";
+      return this.disabled ? 'span' : 'button';
     },
     currentDate() {
       return this.date.getDate();
@@ -90,25 +90,25 @@ export default {
     },
     notSelectable() {
       return !this.selectable;
-    },
+    }
   },
   methods: {
     onClick($event) {
       if (this.selectableRange && !this.selectable) {
         return;
       }
-      this.$emit("click", $event);
-      this.$emit("dateSelect", this.date);
+      this.$emit('click', $event);
+      this.$emit('dateSelect', this.date);
     },
     onKeydown($event) {
       if (this.selectableRange && !this.selectable) {
         return;
       }
-      this.$emit("keydown", $event);
+      this.$emit('keydown', $event);
     },
     focus() {
       this.$refs.date.focus();
-    },
-  },
+    }
+  }
 };
 </script>

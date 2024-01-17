@@ -1,4 +1,4 @@
-$lob-assets-url: "https://s3-us-west-2.amazonaws.com/public.lob.com";
+$lob-assets-url: 'https://s3-us-west-2.amazonaws.com/public.lob.com';
 
 /* Messina */
 
@@ -7,10 +7,10 @@ $lob-assets-url: "https://s3-us-west-2.amazonaws.com/public.lob.com";
   font-style: normal;
   font-weight: 300;
   src:
-    url("#{$lob-assets-url}/fonts/messina/MessinaSansWeb-Light.woff2")
-      format("woff2"),
-    url("#{$lob-assets-url}/fonts/messina/MessinaSansWeb-Light.woff")
-      format("woff");
+    url('#{$lob-assets-url}/fonts/messina/MessinaSansWeb-Light.woff2')
+      format('woff2'),
+    url('#{$lob-assets-url}/fonts/messina/MessinaSansWeb-Light.woff')
+      format('woff');
 }
 
 @font-face {
@@ -18,10 +18,10 @@ $lob-assets-url: "https://s3-us-west-2.amazonaws.com/public.lob.com";
   font-style: italic;
   font-weight: 300;
   src:
-    url("#{$lob-assets-url}/fonts/messina/MessinaSansWeb-LightItalic.woff2")
-      format("woff2"),
-    url("#{$lob-assets-url}/fonts/messina/MessinaSansWeb-LightItalic.woff")
-      format("woff");
+    url('#{$lob-assets-url}/fonts/messina/MessinaSansWeb-LightItalic.woff2')
+      format('woff2'),
+    url('#{$lob-assets-url}/fonts/messina/MessinaSansWeb-LightItalic.woff')
+      format('woff');
 }
 
 @font-face {
@@ -29,10 +29,10 @@ $lob-assets-url: "https://s3-us-west-2.amazonaws.com/public.lob.com";
   font-style: normal;
   font-weight: 400;
   src:
-    url("#{$lob-assets-url}/fonts/messina/MessinaSansWeb-Book.woff2")
-      format("woff2"),
-    url("#{$lob-assets-url}/fonts/messina/MessinaSansWeb-Book.woff")
-      format("woff");
+    url('#{$lob-assets-url}/fonts/messina/MessinaSansWeb-Book.woff2')
+      format('woff2'),
+    url('#{$lob-assets-url}/fonts/messina/MessinaSansWeb-Book.woff')
+      format('woff');
 }
 
 @font-face {
@@ -40,10 +40,10 @@ $lob-assets-url: "https://s3-us-west-2.amazonaws.com/public.lob.com";
   font-style: italic;
   font-weight: 400;
   src:
-    url("#{$lob-assets-url}/fonts/messina/MessinaSansWeb-BookItalic.woff2")
-      format("woff2"),
-    url("#{$lob-assets-url}/fonts/messina/MessinaSansWeb-BookItalic.woff")
-      format("woff");
+    url('#{$lob-assets-url}/fonts/messina/MessinaSansWeb-BookItalic.woff2')
+      format('woff2'),
+    url('#{$lob-assets-url}/fonts/messina/MessinaSansWeb-BookItalic.woff')
+      format('woff');
 }
 
 @font-face {
@@ -51,10 +51,10 @@ $lob-assets-url: "https://s3-us-west-2.amazonaws.com/public.lob.com";
   font-style: normal;
   font-weight: 500;
   src:
-    url("#{$lob-assets-url}/fonts/messina/MessinaSansWeb-Regular.woff2")
-      format("woff2"),
-    url("#{$lob-assets-url}/fonts/messina/MessinaSansWeb-Regular.woff")
-      format("woff");
+    url('#{$lob-assets-url}/fonts/messina/MessinaSansWeb-Regular.woff2')
+      format('woff2'),
+    url('#{$lob-assets-url}/fonts/messina/MessinaSansWeb-Regular.woff')
+      format('woff');
 }
 
 @font-face {
@@ -62,10 +62,10 @@ $lob-assets-url: "https://s3-us-west-2.amazonaws.com/public.lob.com";
   font-style: italic;
   font-weight: 500;
   src:
-    url("#{$lob-assets-url}/fonts/messina/MessinaSansWeb-RegularItalic.woff2")
-      format("woff2"),
-    url("#{$lob-assets-url}/fonts/messina/MessinaSansWeb-RegularItalic.woff")
-      format("woff");
+    url('#{$lob-assets-url}/fonts/messina/MessinaSansWeb-RegularItalic.woff2')
+      format('woff2'),
+    url('#{$lob-assets-url}/fonts/messina/MessinaSansWeb-RegularItalic.woff')
+      format('woff');
 }
 
 @font-face {
@@ -73,10 +73,10 @@ $lob-assets-url: "https://s3-us-west-2.amazonaws.com/public.lob.com";
   font-style: normal;
   font-weight: 600;
   src:
-    url("#{$lob-assets-url}/fonts/messina/MessinaSansWeb-SemiBold.woff2")
-      format("woff2"),
-    url("#{$lob-assets-url}/fonts/messina/MessinaSansWeb-SemiBold.woff")
-      format("woff");
+    url('#{$lob-assets-url}/fonts/messina/MessinaSansWeb-SemiBold.woff2')
+      format('woff2'),
+    url('#{$lob-assets-url}/fonts/messina/MessinaSansWeb-SemiBold.woff')
+      format('woff');
 }
 
 @font-face {
@@ -84,10 +84,10 @@ $lob-assets-url: "https://s3-us-west-2.amazonaws.com/public.lob.com";
   font-style: italic;
   font-weight: 600;
   src:
-    url("#{$lob-assets-url}/fonts/messina/MessinaSansWeb-SemiBoldItalic.woff2")
-      format("woff2"),
-    url("#{$lob-assets-url}/fonts/messina/MessinaSansWeb-SemiBoldItalic.woff")
-      format("woff");
+    url('#{$lob-assets-url}/fonts/messina/MessinaSansWeb-SemiBoldItalic.woff2')
+      format('woff2'),
+    url('#{$lob-assets-url}/fonts/messina/MessinaSansWeb-SemiBoldItalic.woff')
+      format('woff');
 }
 
 @font-face {
@@ -95,10 +95,10 @@ $lob-assets-url: "https://s3-us-west-2.amazonaws.com/public.lob.com";
   font-style: normal;
   font-weight: 700;
   src:
-    url("#{$lob-assets-url}/fonts/messina/MessinaSansWeb-Bold.woff2")
-      format("woff2"),
-    url("#{$lob-assets-url}/fonts/messina/MessinaSansWeb-Bold.woff")
-      format("woff");
+    url('#{$lob-assets-url}/fonts/messina/MessinaSansWeb-Bold.woff2')
+      format('woff2'),
+    url('#{$lob-assets-url}/fonts/messina/MessinaSansWeb-Bold.woff')
+      format('woff');
 }
 
 @font-face {
@@ -106,10 +106,10 @@ $lob-assets-url: "https://s3-us-west-2.amazonaws.com/public.lob.com";
   font-style: italic;
   font-weight: 700;
   src:
-    url("#{$lob-assets-url}/fonts/messina/MessinaSansWeb-BoldItalic.woff2")
-      format("woff2"),
-    url("#{$lob-assets-url}/fonts/messina/MessinaSansWeb-BoldItalic.woff")
-      format("woff");
+    url('#{$lob-assets-url}/fonts/messina/MessinaSansWeb-BoldItalic.woff2')
+      format('woff2'),
+    url('#{$lob-assets-url}/fonts/messina/MessinaSansWeb-BoldItalic.woff')
+      format('woff');
 }
 
 @font-face {
@@ -117,10 +117,10 @@ $lob-assets-url: "https://s3-us-west-2.amazonaws.com/public.lob.com";
   font-style: normal;
   font-weight: 800;
   src:
-    url("#{$lob-assets-url}/fonts/messina/MessinaSansWeb-Black.woff2")
-      format("woff2"),
-    url("#{$lob-assets-url}/fonts/messina/MessinaSansWeb-Black.woff")
-      format("woff");
+    url('#{$lob-assets-url}/fonts/messina/MessinaSansWeb-Black.woff2')
+      format('woff2'),
+    url('#{$lob-assets-url}/fonts/messina/MessinaSansWeb-Black.woff')
+      format('woff');
 }
 
 @font-face {
@@ -128,8 +128,8 @@ $lob-assets-url: "https://s3-us-west-2.amazonaws.com/public.lob.com";
   font-style: italic;
   font-weight: 800;
   src:
-    url("#{$lob-assets-url}/fonts/messina/MessinaSansWeb-BlackItalic.woff2")
-      format("woff2"),
-    url("#{$lob-assets-url}/fonts/messina/MessinaSansWeb-BlackItalic.woff")
-      format("woff");
+    url('#{$lob-assets-url}/fonts/messina/MessinaSansWeb-BlackItalic.woff2')
+      format('woff2'),
+    url('#{$lob-assets-url}/fonts/messina/MessinaSansWeb-BlackItalic.woff')
+      format('woff');
 }

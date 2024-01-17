@@ -29,13 +29,13 @@
 </template>
 
 <script>
-import { config } from "tailwind-plugin-lob";
+import { config } from 'tailwind-plugin-lob';
 
 const { theme } = config;
 const { colors } = theme;
 
 export default {
-  name: "Theme",
+  name: 'Theme',
   computed: {
     themeColors() {
       delete colors.transparent;
@@ -44,7 +44,7 @@ export default {
     },
     theme() {
       return theme;
-    },
-  },
+    }
+  }
 };
 </script>

@@ -43,24 +43,24 @@ export function stringDiff(str1, str2) {
   if (startIndex > endIndex1 && startIndex <= endIndex2) {
     // There was an insertion
     diff = str2.substring(startIndex, endIndex2 + 1);
-    type = "insertion";
+    type = 'insertion';
     editIndex = startIndex;
     prevValue = null;
   } else if (startIndex <= endIndex1 && startIndex > endIndex2) {
     // There was a deletion
     diff = str1.substring(startIndex, endIndex1 + 1);
-    type = "deletion";
+    type = 'deletion';
     editIndex = startIndex;
     prevValue = null;
   } else if (startIndex <= endIndex1 && startIndex <= endIndex2) {
     // There was a modification
     diff = str2.substring(startIndex, endIndex2 + 1);
-    type = "edit";
+    type = 'edit';
     editIndex = startIndex;
     prevValue = str1.substring(startIndex, endIndex1 + 1);
   } else {
     // The strings are identical
-    diff = "";
+    diff = '';
     type = null;
     editIndex = null;
     prevValue = null;
@@ -70,6 +70,6 @@ export function stringDiff(str1, str2) {
     type,
     diff,
     editIndex,
-    prevValue,
+    prevValue
   };
 }

@@ -1,14 +1,14 @@
-import Checkbox from "./Checkbox.vue";
-import mdx from "./Checkbox.mdx";
+import Checkbox from './Checkbox.vue';
+import mdx from './Checkbox.mdx';
 
 export default {
-  title: "Components/Checkbox",
+  title: 'Components/Checkbox',
   component: Checkbox,
   parameters: {
     docs: {
-      page: mdx,
-    },
-  },
+      page: mdx
+    }
+  }
 };
 
 const checkboxVModel = true;
@@ -25,14 +25,14 @@ const SingleTemplate = (args, { argTypes }) => ({
       v-bind="args"
       v-model="checkboxVModel" 
     ></checkbox>
-    `,
+    `
 });
 
 export const Single = SingleTemplate.bind({});
 Single.args = {
   label:
     'Agree to <a href="https://lob.com/legal#legal_terms_of_service">Terms and Conditions</a>',
-  name: "terms",
+  name: 'terms'
 };
 
 const arrayVModel = [];
@@ -72,10 +72,10 @@ const GroupTemplate = (args, { argTypes }) => ({
       :sameLine="args.sameLine"
     />
   </div>
-    `,
+    `
 });
 
 export const Group = GroupTemplate.bind({});
 Group.args = {
-  sameLine: true,
+  sameLine: true
 };

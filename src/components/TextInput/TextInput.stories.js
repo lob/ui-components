@@ -1,61 +1,61 @@
-import TextInput from "./TextInput.vue";
-import LobLabel from "../Label/Label.vue";
-import mdx from "./TextInput.mdx";
-import { MagnifyingGlass, Upload } from "@/components/Icons";
+import TextInput from './TextInput.vue';
+import LobLabel from '../Label/Label.vue';
+import mdx from './TextInput.mdx';
+import { MagnifyingGlass, Upload } from '@/components/Icons';
 
 export default {
-  title: "Components/Text Input",
+  title: 'Components/Text Input',
   component: TextInput,
   parameters: {
     docs: {
-      page: mdx,
-    },
+      page: mdx
+    }
   },
   argTypes: {
-    "v-model": {
+    'v-model': {
       control: {
-        type: null,
-      },
+        type: null
+      }
     },
     size: {
-      options: ["default", "small"],
+      options: ['default', 'small'],
       control: {
-        type: "select",
-      },
+        type: 'select'
+      }
     },
     type: {
       options: [
-        "date",
-        "email",
-        "number",
-        "password",
-        "tel",
-        "text",
-        "url",
-        "time",
+        'date',
+        'email',
+        'number',
+        'password',
+        'tel',
+        'text',
+        'url',
+        'time'
       ],
       control: {
-        type: "select",
-      },
-    },
-  },
+        type: 'select'
+      }
+    }
+  }
 };
 
-const textInputVModel = "";
+const textInputVModel = '';
 
 const PrimaryTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { TextInput },
   setup: () => ({ args }),
   data: () => ({ textInputVModel }),
-  template: '<text-input v-bind="args" v-model="textInputVModel" />',
+  template: '<text-input v-bind="args" v-model="textInputVModel" />'
 });
 
 export const Primary = PrimaryTemplate.bind({});
 Primary.args = {
-  id: "name",
-  label: "Name",
-  placeholder: "Name",
+  id: 'name',
+  label: 'Name',
+  placeholder: 'Name'
 };
 
 const WithTooltipTemplate = (args, { argTypes }) => ({
@@ -70,15 +70,15 @@ const WithTooltipTemplate = (args, { argTypes }) => ({
       tooltipContent="Please enter Name"
     />
     <text-input v-bind="args" v-model="textInputVModel" />
-  `,
+  `
 });
 
 export const WithTooltip = WithTooltipTemplate.bind({});
 WithTooltip.args = {
-  id: "name",
-  label: "name",
+  id: 'name',
+  label: 'name',
   srOnlyLabel: true,
-  placeholder: "Name",
+  placeholder: 'Name'
 };
 
 const IconLeftTemplate = (args, { argTypes }) => ({
@@ -92,14 +92,14 @@ const IconLeftTemplate = (args, { argTypes }) => ({
         <MagnifyingGlass />
       </template>
     </text-input>
-  `,
+  `
 });
 
 export const IconLeft = IconLeftTemplate.bind({});
 IconLeft.args = {
-  id: "name",
-  label: "Name",
-  placeholder: "Name",
+  id: 'name',
+  label: 'Name',
+  placeholder: 'Name'
 };
 
 const IconRightTemplate = (args, { argTypes }) => ({
@@ -113,14 +113,14 @@ const IconRightTemplate = (args, { argTypes }) => ({
         <Upload />
       </template>
     </text-input>
-  `,
+  `
 });
 
 export const IconRight = IconRightTemplate.bind({});
 IconRight.args = {
-  id: "name",
-  label: "Name",
-  placeholder: "Name",
+  id: 'name',
+  label: 'Name',
+  placeholder: 'Name'
 };
 
 const BothIconsTemplate = (args, { argTypes }) => ({
@@ -137,36 +137,36 @@ const BothIconsTemplate = (args, { argTypes }) => ({
         <Upload />
       </template>
     </text-input>
-  `,
+  `
 });
 
 export const BothIcons = BothIconsTemplate.bind({});
 BothIcons.args = {
-  id: "name",
-  label: "Name",
-  placeholder: "Name",
+  id: 'name',
+  label: 'Name',
+  placeholder: 'Name'
 };
 
 export const WithClearButton = PrimaryTemplate.bind({});
 WithClearButton.args = {
-  id: "name",
-  label: "Name",
-  placeholder: "Name",
-  withClearButton: true,
+  id: 'name',
+  label: 'Name',
+  placeholder: 'Name',
+  withClearButton: true
 };
 
 const WithCopyButtonTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { TextInput },
   setup: () => ({ args }),
-  template: '<text-input v-bind="args" />',
+  template: '<text-input v-bind="args" />'
 });
 
 export const WithCopyButton = WithCopyButtonTemplate.bind({});
 WithCopyButton.args = {
-  id: "copy-this",
-  label: "Copy this",
-  modelValue: "Direct Mail and Address Verification",
+  id: 'copy-this',
+  label: 'Copy this',
+  modelValue: 'Direct Mail and Address Verification',
   readonly: true,
-  withCopyButton: true,
+  withCopyButton: true
 };

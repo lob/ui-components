@@ -7,17 +7,17 @@
 </template>
 
 <script>
-import { config } from "tailwind-plugin-lob";
+import { config } from 'tailwind-plugin-lob';
 
 const { theme } = config;
 const { fontSize } = theme.extend;
 
 export default {
-  name: "Theme",
+  name: 'Theme',
   computed: {
     sizes() {
       return Object.keys(fontSize);
-    },
-  },
+    }
+  }
 };
 </script>

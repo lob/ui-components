@@ -12,7 +12,7 @@
     <div
       :class="[
         'absolute inset-0 rounded-full border border-primary-500 bg-white',
-        { 'z-[1]': percentage },
+        { 'z-[1]': percentage }
       ]"
     />
     <!-- div with overflow hidden - important for containing the bar -->
@@ -21,7 +21,7 @@
       <div
         :class="[
           'absolute inset-0 rounded-full',
-          { 'bg-[#000] z-[2]': percentage },
+          { 'bg-[#000] z-[2]': percentage }
         ]"
         :style="percentage ? `width: ${styleWidth}` : ''"
       />
@@ -33,7 +33,7 @@
         :class="[
           'absolute inset-0 w-full rounded-full gradientBg transition-all duration-500 ease-out',
           { 'z-[4] mix-blend-screen': percentage },
-          { 'animate-indybar': !percentage },
+          { 'animate-indybar': !percentage }
         ]"
       />
     </div>
@@ -49,15 +49,15 @@
 
 <script>
 export default {
-  name: "ProgressBar",
+  name: 'ProgressBar',
   props: {
     percentage: {
       type: Number,
       default: 0,
       validator(value) {
         return value >= 0 && value <= 100;
-      },
-    },
+      }
+    }
   },
   computed: {
     displayedPercentage() {
@@ -72,28 +72,28 @@ export default {
     },
     styleWidth() {
       if (this.percentage < 0) {
-        return "0%";
+        return '0%';
       } else if (this.percentage > 0 && this.percentage < 100) {
         return `${this.percentage}%`;
       } else if (this.percentage >= 100) {
-        return "100%";
+        return '100%';
       } else {
-        return "";
+        return '';
       }
-    },
+    }
   },
   watch: {
     percentage(value) {
       if (value > 0) {
         const pb = this.$refs.progressbar;
-        pb.setAttribute("aria-valuenow", this.percentage);
-        pb.setAttribute("aria-valuenmin", 0);
-        pb.setAttribute("aria-valuemax", 100);
-        pb.setAttribute("aria-busy", this.percentage === 100 ? false : true);
-        pb.setAttribute("aria-valuetext", `In progress, ${this.percentage}%`);
+        pb.setAttribute('aria-valuenow', this.percentage);
+        pb.setAttribute('aria-valuenmin', 0);
+        pb.setAttribute('aria-valuemax', 100);
+        pb.setAttribute('aria-busy', this.percentage === 100 ? false : true);
+        pb.setAttribute('aria-valuetext', `In progress, ${this.percentage}%`);
       }
-    },
-  },
+    }
+  }
 };
 </script>
 

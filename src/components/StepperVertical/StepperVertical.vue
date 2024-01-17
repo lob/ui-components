@@ -13,36 +13,36 @@
 </template>
 
 <script>
-import StepperVerticalItem from "./StepperVerticalItem.vue";
+import StepperVerticalItem from './StepperVerticalItem.vue';
 
 export default {
-  name: "StepperVertical",
+  name: 'StepperVertical',
   components: { StepperVerticalItem },
   props: {
     steps: {
       type: Array,
       required: true,
       validator: function (value) {
-        const hasDisplayName = (obj) => obj.hasOwnProperty("displayName");
+        const hasDisplayName = (obj) => obj.hasOwnProperty('displayName');
         return Array.isArray(value) && value.every(hasDisplayName);
-      },
+      }
     },
     activeStepIndex: { type: Number, required: true },
-    darkMode: { type: Boolean, default: false },
+    darkMode: { type: Boolean, default: false }
   },
-  emits: ["goToStep"],
+  emits: ['goToStep'],
   computed: {
     activeStep() {
       return this.steps[this.activeStepIndex];
-    },
+    }
   },
   methods: {
     handleClick(step) {
-      this.$emit("goToStep", step);
+      this.$emit('goToStep', step);
     },
     getIsActiveStep(index) {
       return index === this.activeStepIndex;
-    },
-  },
+    }
+  }
 };
 </script>

@@ -48,139 +48,139 @@
         {{ option.label || option }}
       </li>
       <li v-if="displayedOptions.length === 0 && search" class="my-1 mx-4">
-        {{ t("multiselect.noMatch") }}
+        {{ t('multiselect.noMatch') }}
       </li>
       <li v-if="displayedOptions.length === 0 && !search" class="my-1 mx-4">
-        {{ t("multiselect.allSelected") }}
+        {{ t('multiselect.allSelected') }}
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import TextInput from "../TextInput/TextInput";
-import Badge from "../Badge/Badge";
-import { XmarkLarge } from "@/components/Icons";
-import { filterArrayByArray } from "../../utils/array";
+import TextInput from '../TextInput/TextInput';
+import Badge from '../Badge/Badge';
+import { XmarkLarge } from '@/components/Icons';
+import { filterArrayByArray } from '../../utils/array';
 
 export default {
-  name: "Multiselect",
+  name: 'Multiselect',
   components: { TextInput, Badge, XmarkLarge },
   props: {
     modelValue: {
       type: Array,
-      required: true,
+      required: true
     },
     id: {
       type: String,
-      required: true,
+      required: true
     },
     label: {
       type: String,
-      required: true,
+      required: true
     },
     srOnlyLabel: {
       type: Boolean,
-      default: false,
+      default: false
     },
     placeholder: {
       type: String,
-      default: "",
+      default: ''
     },
     size: {
       type: String,
-      default: "default",
+      default: 'default',
       validator: function (value) {
-        return ["default", "small"].includes(value);
-      },
+        return ['default', 'small'].includes(value);
+      }
     },
     matchOn: {
       type: String,
-      default: "label",
+      default: 'label',
       validator: function (value) {
-        return ["label", "value", "both"].includes(value);
-      },
+        return ['label', 'value', 'both'].includes(value);
+      }
     },
     options: {
       type: Array,
       required: true,
       validator: function (value) {
         // The value must be an array of strings or objects with label properties
-        const isString = value.every((o) => typeof o === "string");
+        const isString = value.every((o) => typeof o === 'string');
         const isOption = value.every(
-          (o) => typeof o === "object" && o.hasOwnProperty("label"),
+          (o) => typeof o === 'object' && o.hasOwnProperty('label')
         );
         return isString || isOption;
-      },
+      }
     },
     inputWidthClass: {
       type: String,
-      default: "!w-40",
-    },
+      default: '!w-40'
+    }
   },
-  emits: ["update:modelValue"],
+  emits: ['update:modelValue'],
   data() {
     return {
       open: false,
       availableOptions: filterArrayByArray(this.options, this.modelValue),
-      search: "",
+      search: ''
     };
   },
   computed: {
     optionsHasObjects() {
       return (
         this.availableOptions.length &&
-        this.availableOptions.every((o) => typeof o === "object")
+        this.availableOptions.every((o) => typeof o === 'object')
       );
     },
     optionsHasValueProp() {
-      return this.availableOptions.every((o) => o.hasOwnProperty("value"));
+      return this.availableOptions.every((o) => o.hasOwnProperty('value'));
     },
     displayedOptions() {
       if (this.search) {
         const search = this.search.toLowerCase();
         if (this.optionsHasObjects) {
           switch (this.matchOn) {
-            case "value":
+            case 'value':
               return this.availableOptions.filter((o) =>
-                o.value.toLowerCase().includes(search),
+                o.value.toLowerCase().includes(search)
               );
-            case "both":
+            case 'both':
               return this.availableOptions.filter(
                 (o) =>
                   o.label.toLowerCase().includes(search) ||
-                  o.value.toLowerCase().includes(search),
+                  o.value.toLowerCase().includes(search)
               );
             default:
               return this.availableOptions.filter((o) =>
-                o.label.toLowerCase().includes(search),
+                o.label.toLowerCase().includes(search)
               );
           }
         } else {
           return this.availableOptions.filter((o) =>
-            o.toLowerCase().includes(search),
+            o.toLowerCase().includes(search)
           );
         }
       } else {
         return this.availableOptions;
       }
-    },
+    }
   },
   mounted() {
-    window.addEventListener("click", this.onClickOutside, true);
+    window.addEventListener('click', this.onClickOutside, true);
 
     // checking if a user has specified matchOn 'value' or 'both' but doesn't have 'value' in object
-    if (this.matchOn !== "label") {
-      const hasValueProp = this.options.every((o) => o.hasOwnProperty("value"));
+    if (this.matchOn !== 'label') {
+      const hasValueProp = this.options.every((o) => o.hasOwnProperty('value'));
       if (!hasValueProp) {
         throw new Error(
-          "You've specified matching on 'value' or 'both' but some objects in your options array don't have 'value' properties.",
+          "You've specified matching on 'value' or 'both' but some objects in your options array don't have 'value' properties."
         );
       }
     }
   },
   unmounted() {
-    window.removeEventListener("click", this.onClickOutside);
+    window.removeEventListener('click', this.onClickOutside);
   },
   methods: {
     onClickOutside($event) {
@@ -201,21 +201,21 @@ export default {
     },
     handleOptionSelect(selectedOpt) {
       const newSelectedList = [...this.modelValue, selectedOpt];
-      this.$emit("update:modelValue", newSelectedList);
+      this.$emit('update:modelValue', newSelectedList);
 
       if (this.optionsHasObjects) {
         this.availableOptions = this.availableOptions.filter(
-          (o) => o.label !== selectedOpt.label,
+          (o) => o.label !== selectedOpt.label
         );
       } else {
         this.availableOptions = filterArrayByArray(
           this.options,
-          newSelectedList,
+          newSelectedList
         );
       }
 
       if (this.search) {
-        this.search = "";
+        this.search = '';
       }
       this.open = false;
     },
@@ -223,16 +223,16 @@ export default {
       let newSelectedList;
       if (this.optionsHasObjects) {
         newSelectedList = this.modelValue.filter(
-          (o) => o.label !== deselectedOpt.label,
+          (o) => o.label !== deselectedOpt.label
         );
       } else {
         newSelectedList = this.modelValue.filter((o) => o !== deselectedOpt);
       }
-      this.$emit("update:modelValue", newSelectedList);
+      this.$emit('update:modelValue', newSelectedList);
 
       // filter all options by selected, so that the newly deselected value gets put in the same order in the list that it was in before
       this.availableOptions = filterArrayByArray(this.options, newSelectedList);
-    },
-  },
+    }
+  }
 };
 </script>

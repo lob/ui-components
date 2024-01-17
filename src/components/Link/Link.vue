@@ -25,35 +25,35 @@
         { '!text-gray-400': isLink && disabled },
         {
           'bg-black text-white hover:bg-gray-700 hover:text-white active:bg-gray-800 focus:bg-gray-800':
-            primaryButton,
+            primaryButton
         },
         {
           'bg-white text-gray-800 border border-gray-800 hover:bg-gray-50 hover:text-gray-800 focus:border-gray-800 active:bg-gray-100 focus:bg-gray-100':
-            secondaryButton,
+            secondaryButton
         },
         { '!border-gray-200 !text-gray-400': secondaryButton && disabled },
         {
           'bg-gray-50 text-gray-500 border border-gray-300 hover:bg-gray-100 hover:text-gray-600 hover:border-gray-400 active:bg-gray-100 active:text-gray-600 active:border-gray-500 focus:bg-gray-100 focus:text-gray-600':
-            quietButton,
+            quietButton
         },
         {
           'bg-transparent text-gray-500 hover:bg-gray-100 hover:text-gray-600 active:bg-gray-200 active:text-gray-600 focus:bg-gray-100 focus:text-gray-600':
-            ghostButton,
+            ghostButton
         },
         {
           '!bg-gray-100 !text-gray-300 !border-none':
-            (primaryButton || quietButton || ghostButton) && disabled,
+            (primaryButton || quietButton || ghostButton) && disabled
         },
         {
           'bg-red-500 text-white hover:bg-red-600 active:bg-red-700 focus:bg-red-600':
-            dangerButton,
+            dangerButton
         },
         { '!bg-red-200 !text-red-400': dangerButton && disabled },
         {
           'bg-white text-red-500 border border-red-500 hover:bg-red-50 hover:border-red-600 hover:text-red-600 active:bg-red-100 active:border-red-700 active:text-red-700 focus:bg-red-50 focus:border-red-600 focus:text-red-600':
-            dangerSecondaryButton,
+            dangerSecondaryButton
         },
-        { '!border-red-300 !text-red-300': dangerSecondaryButton && disabled },
+        { '!border-red-300 !text-red-300': dangerSecondaryButton && disabled }
       ]"
     >
       <slot />
@@ -67,96 +67,96 @@
 </template>
 
 <script>
-import { ChevronRight } from "@/components/Icons";
+import { ChevronRight } from '@/components/Icons';
 export default {
-  name: "LobLink",
+  name: 'LobLink',
   components: { ChevronRight },
   inheritAttrs: false,
   props: {
     variant: {
       type: String,
-      default: "link",
+      default: 'link',
       validator: function (value) {
         return [
-          "link",
-          "primary-button",
-          "secondary-button",
-          "quiet-button",
-          "ghost-button",
-          "danger-button",
-          "danger-secondary-button",
+          'link',
+          'primary-button',
+          'secondary-button',
+          'quiet-button',
+          'ghost-button',
+          'danger-button',
+          'danger-secondary-button'
         ].includes(value);
-      },
+      }
     },
     size: {
       type: String,
-      default: "base",
+      default: 'base',
       validator: function (value) {
-        return ["small", "base", "large", "xl"].includes(value);
-      },
+        return ['small', 'base', 'large', 'xl'].includes(value);
+      }
     },
     underline: {
       type: Boolean,
-      default: true,
+      default: true
     },
     bold: {
       type: Boolean,
-      default: false,
+      default: false
     },
     disabled: {
       type: Boolean,
-      default: false,
+      default: false
     },
     to: {
       type: [String, Object],
-      default: "",
+      default: ''
     },
     target: {
       type: String,
-      default: "_self",
+      default: '_self'
     },
     withChevron: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   computed: {
     isLink() {
-      return this.variant === "link";
+      return this.variant === 'link';
     },
     isButton() {
-      return this.variant !== "link";
+      return this.variant !== 'link';
     },
     isExternal() {
       const protocolRelativePattern = /^https?:\/\/|^\/\//i;
       return (
-        typeof this.to === "string" && protocolRelativePattern.test(this.to)
+        typeof this.to === 'string' && protocolRelativePattern.test(this.to)
       );
     },
     tag() {
-      return this.isExternal ? "a" : "router-link";
+      return this.isExternal ? 'a' : 'router-link';
     },
     linkProp() {
-      return this.isExternal ? "href" : "to";
+      return this.isExternal ? 'href' : 'to';
     },
     primaryButton() {
-      return this.variant === "primary-button";
+      return this.variant === 'primary-button';
     },
     secondaryButton() {
-      return this.variant === "secondary-button";
+      return this.variant === 'secondary-button';
     },
     quietButton() {
-      return this.variant === "quiet-button";
+      return this.variant === 'quiet-button';
     },
     ghostButton() {
-      return this.variant === "ghost-button";
+      return this.variant === 'ghost-button';
     },
     dangerButton() {
-      return this.variant === "danger-button";
+      return this.variant === 'danger-button';
     },
     dangerSecondaryButton() {
-      return this.variant === "danger-secondary-button";
-    },
-  },
+      return this.variant === 'danger-secondary-button';
+    }
+  }
 };
 </script>

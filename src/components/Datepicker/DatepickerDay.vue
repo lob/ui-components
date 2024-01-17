@@ -7,7 +7,7 @@
       { '!text-gray-100 !bg-transparent pointer-events-none': disabled },
       { 'cursor-default pointer-events-none': isOutsideRange },
       { 'bg-gray-100': today },
-      { 'z-10 !bg-primary-500 text-white rounded-full': selected },
+      { 'z-10 !bg-primary-500 text-white rounded-full': selected }
     ]"
     :role="disabled ? 'button' : null"
     :tabindex="focused ? 0 : -1"
@@ -24,37 +24,37 @@
 
 <script>
 export default {
-  name: "DatepickerDay",
+  name: 'DatepickerDay',
   props: {
     date: {
       type: Date,
-      default: null,
+      default: null
     },
     today: {
       type: Boolean,
-      default: false,
+      default: false
     },
     focused: {
       type: Boolean,
-      default: false,
+      default: false
     },
     selected: {
       type: Boolean,
-      default: false,
+      default: false
     },
     disabled: {
       type: Boolean,
-      default: false,
+      default: false
     },
     inRange: {
       type: Boolean,
-      default: true,
-    },
+      default: true
+    }
   },
-  emits: ["click", "dateSelect", "keydown"],
+  emits: ['click', 'dateSelect', 'keydown'],
   computed: {
     tag() {
-      return this.disabled ? "span" : "button";
+      return this.disabled ? 'span' : 'button';
     },
     currentDate() {
       return this.date.getDate();
@@ -64,19 +64,19 @@ export default {
     },
     isOutsideRange() {
       return !this.inRange;
-    },
+    }
   },
   methods: {
     onClick($event) {
-      this.$emit("click", $event);
-      this.$emit("dateSelect", this.date);
+      this.$emit('click', $event);
+      this.$emit('dateSelect', this.date);
     },
     onKeydown($event) {
-      this.$emit("keydown", $event);
+      this.$emit('keydown', $event);
     },
     focus() {
       this.$refs.date.focus();
-    },
-  },
+    }
+  }
 };
 </script>

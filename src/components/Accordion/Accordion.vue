@@ -14,7 +14,7 @@
         class="my-1.5 mx-2"
         :class="[
           'transition-transform duration-200 ease-linear -mr-1',
-          { 'xl:transform xl:rotate-90': expanded },
+          { 'xl:transform xl:rotate-90': expanded }
         ]"
       />
     </h2>
@@ -30,28 +30,28 @@
 </template>
 
 <script>
-import ChevronRight from "../Icons/ChevronRight";
+import ChevronRight from '../Icons/ChevronRight';
 
 export default {
-  name: "Accordion",
+  name: 'Accordion',
   components: { ChevronRight },
   props: {
     title: {
       type: String,
-      default: "Accordion Title",
+      default: 'Accordion Title'
     },
     defaultOpen: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
     return {
-      expanded: false,
+      expanded: false
     };
   },
   created() {
     this.expanded = this.defaultOpen;
-  },
+  }
 };
 </script>

@@ -1,15 +1,15 @@
-import "@testing-library/jest-dom";
-import { render } from "@testing-library/vue";
-import LobLabel from "../Label.vue";
+import '@testing-library/jest-dom';
+import { render } from '@testing-library/vue';
+import LobLabel from '../Label.vue';
 
 const initialProps = {
-  id: "test",
-  label: "test",
-  labelFor: "test",
+  id: 'test',
+  label: 'test',
+  labelFor: 'test'
 };
 
-describe("LobLabel", () => {
-  it("renders correctly", () => {
+describe('LobLabel', () => {
+  it('renders correctly', () => {
     const props = initialProps;
     const { getByText } = render(LobLabel, { props });
 
@@ -17,41 +17,41 @@ describe("LobLabel", () => {
     expect(label).toBeInTheDocument();
   });
 
-  it("shows the asterisk when the required prop is true", () => {
+  it('shows the asterisk when the required prop is true', () => {
     const props = {
       ...initialProps,
-      required: true,
+      required: true
     };
 
     const { getByText } = render(LobLabel, { props });
     const label = getByText(props.label);
-    const asterisk = getByText("*");
+    const asterisk = getByText('*');
     expect(label).toContainElement(asterisk);
   });
 
-  describe("if a tooltip is added", () => {
-    it("the tooltip shows on the left by default", () => {
-      const props = { ...initialProps, tooltipContent: "magic tooltip" };
+  describe('if a tooltip is added', () => {
+    it('the tooltip shows on the left by default', () => {
+      const props = { ...initialProps, tooltipContent: 'magic tooltip' };
       const { getByTestId } = render(LobLabel, { props });
 
-      const tooltip = getByTestId("tooltip-leading");
+      const tooltip = getByTestId('tooltip-leading');
       expect(tooltip).toBeInTheDocument();
-      const labelWrapper = getByTestId("labelWrapper");
-      expect(labelWrapper).not.toHaveClass("justify-between");
+      const labelWrapper = getByTestId('labelWrapper');
+      expect(labelWrapper).not.toHaveClass('justify-between');
     });
 
-    it("the tooltip shows on the right if tooltipPosition:trailing is added", () => {
+    it('the tooltip shows on the right if tooltipPosition:trailing is added', () => {
       const props = {
         ...initialProps,
-        tooltipContent: "magic tooltip",
-        tooltipPosition: "trailing",
+        tooltipContent: 'magic tooltip',
+        tooltipPosition: 'trailing'
       };
       const { getByTestId } = render(LobLabel, { props });
 
-      const tooltip = getByTestId("tooltip-trailing");
+      const tooltip = getByTestId('tooltip-trailing');
       expect(tooltip).toBeInTheDocument();
-      const labelWrapper = getByTestId("labelWrapper");
-      expect(labelWrapper).toHaveClass("justify-between flex-row-reverse");
+      const labelWrapper = getByTestId('labelWrapper');
+      expect(labelWrapper).toHaveClass('justify-between flex-row-reverse');
     });
   });
 });

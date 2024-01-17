@@ -14,29 +14,29 @@
 </template>
 
 <script>
-import * as Icons from "@/components/Icons";
+import * as Icons from '@/components/Icons';
 
 export default {
-  name: "Icons",
+  name: 'Icons',
   components: { ...Icons },
   props: {
     size: {
       type: String,
-      default: "m",
+      default: 'm',
       validator: function (value) {
-        return ["xxl", "xl", "l", "m", "s"].includes(value);
-      },
+        return ['xxl', 'xl', 'l', 'm', 's'].includes(value);
+      }
     },
     storyOnlyColorClass: {
       type: String,
-      default: "black",
-    },
+      default: 'black'
+    }
   },
   computed: {
     icons() {
       return Icons;
-    },
-  },
+    }
+  }
 };
 </script>
 

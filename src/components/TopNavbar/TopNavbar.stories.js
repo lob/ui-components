@@ -1,32 +1,32 @@
 import routeDecorator, {
-  routeTemplate,
-} from "../../../.storybook/routeDecorator";
-import TopNavbar from "./TopNavbar.vue";
-import mdx from "./TopNavbar.mdx";
-import TopNavDropdown from "@/components/TopNavDropdown/TopNavDropdown.vue";
-import TopNavDropdownItem from "@/components/TopNavDropdown/TopNavDropdownItem.vue";
-import TopNavButton from "@/components/TopNavDropdown/TopNavButton.vue";
-import { Signal, Map, PersonToPortal, CircleQuestion, Gear } from "../Icons";
+  routeTemplate
+} from '../../../.storybook/routeDecorator';
+import TopNavbar from './TopNavbar.vue';
+import mdx from './TopNavbar.mdx';
+import TopNavDropdown from '@/components/TopNavDropdown/TopNavDropdown.vue';
+import TopNavDropdownItem from '@/components/TopNavDropdown/TopNavDropdownItem.vue';
+import TopNavButton from '@/components/TopNavDropdown/TopNavButton.vue';
+import { Signal, Map, PersonToPortal, CircleQuestion, Gear } from '../Icons';
 
 export default {
-  title: "Components/Top Navbar",
+  title: 'Components/Top Navbar',
   component: TopNavbar,
   subcomponents: { TopNavDropdown, TopNavDropdownItem, TopNavButton },
   parameters: {
     docs: {
-      page: mdx,
-    },
+      page: mdx
+    }
   },
   decorators: [
-    routeDecorator("/", [
+    routeDecorator('/', [
       {
-        path: "/settings/main/account",
+        path: '/settings/main/account',
         component: {
-          template: routeTemplate("account"),
-        },
-      },
-    ]),
-  ],
+          template: routeTemplate('account')
+        }
+      }
+    ])
+  ]
 };
 
 const Template = (args, { argTypes }) => ({
@@ -40,7 +40,7 @@ const Template = (args, { argTypes }) => ({
     Map,
     PersonToPortal,
     CircleQuestion,
-    Gear,
+    Gear
   },
   setup: () => ({ args }),
   template: `
@@ -80,7 +80,7 @@ const Template = (args, { argTypes }) => ({
       </div>
       </div>
     </TopNavbar>
-  `,
+  `
 });
 
 export const Primary = Template.bind({});

@@ -1,34 +1,34 @@
-import Alert from "./Alert.vue";
-import mdx from "./Alert.mdx";
+import Alert from './Alert.vue';
+import mdx from './Alert.mdx';
 
 export default {
-  title: "Components/Alert",
+  title: 'Components/Alert',
   component: Alert,
   parameters: {
     docs: {
-      page: mdx,
-    },
+      page: mdx
+    }
   },
   argTypes: {
     content: {
       control: {
-        type: "text",
+        type: 'text'
       },
-      description: "Content to display inside of the card",
+      description: 'Content to display inside of the card',
       table: {
-        defaultValue: "I am a card.",
+        defaultValue: 'I am a card.',
         type: {
-          summary: "html or component",
-        },
-      },
+          summary: 'html or component'
+        }
+      }
     },
     variant: {
-      options: ["info", "success", "warning", "refresh", "error"],
+      options: ['info', 'success', 'warning', 'refresh', 'error'],
       control: {
-        type: "select",
-      },
-    },
-  },
+        type: 'select'
+      }
+    }
+  }
 };
 
 const Template = (args, { argTypes }) => ({
@@ -42,10 +42,10 @@ const Template = (args, { argTypes }) => ({
         <br> This is an extra line of random text.
         </template>
     </alert>
-  `,
+  `
 });
 const content =
-  "You are in LIVE mode, all verifications will be charged according to your chosen plan.";
+  'You are in LIVE mode, all verifications will be charged according to your chosen plan.';
 
 export const Primary = Template.bind({});
 Primary.args = { content };
@@ -62,7 +62,7 @@ const TemplateWithHeading = (args, { argTypes }) => ({
         <br> This is an extra line of random text.
       </template>
     </alert>
-  `,
+  `
 });
 export const WithHeading = TemplateWithHeading.bind({});
 WithHeading.args = { content };
@@ -77,23 +77,23 @@ const TemplateHeadingOnly = (args, { argTypes }) => ({
       <template v-slot:heading> Alert title! </template>
     </alert>
   </div>
-  `,
+  `
 });
 
 export const WithLink = TemplateHeadingOnly.bind({});
 WithLink.args = {
-  linkSrc: "https://www.lob.com/",
+  linkSrc: 'https://www.lob.com/'
 };
 
 export const WithCloseButton = TemplateWithHeading.bind({});
 WithCloseButton.args = {
   content,
-  showCloseButton: true,
+  showCloseButton: true
 };
 
 export const WithCloseAndLink = TemplateWithHeading.bind({});
 WithCloseAndLink.args = {
   content,
   showCloseButton: true,
-  linkSrc: "https://www.lob.com/",
+  linkSrc: 'https://www.lob.com/'
 };

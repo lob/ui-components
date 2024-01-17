@@ -5,7 +5,7 @@
       :class="[
         'hidden xl:block w-7 h-7 rounded-full absolute -right-3.5 mt-3 z-10',
         'text-gray-500 bg-white border-2 border-white-300 transition-transform duration-100 ease-in',
-        { 'transform -rotate-180': !expanded },
+        { 'transform -rotate-180': !expanded }
       ]"
       :aria-expanded="expanded"
       @click="animateDrawer"
@@ -17,7 +17,7 @@
       :class="[
         'relative transition-width duration-100 ease-in',
         { expanded: collapsible && expanded },
-        { collapsed: collapsible && !expanded },
+        { collapsed: collapsible && !expanded }
       ]"
     >
       <slot :expanded="expanded" :events="{ toggleCollapse: animateDrawer }" />
@@ -26,29 +26,29 @@
 </template>
 
 <script>
-import ChevronLeft from "@/components/Icons/ChevronLeft";
+import ChevronLeft from '@/components/Icons/ChevronLeft';
 
 export default {
-  name: "MainNavigation",
+  name: 'MainNavigation',
   components: { ChevronLeft },
   props: {
     collapsible: {
       type: Boolean,
-      default: true,
-    },
+      default: true
+    }
   },
-  emits: ["toggleCollapse"],
+  emits: ['toggleCollapse'],
   data() {
     return {
-      expanded: true,
+      expanded: true
     };
   },
   methods: {
     animateDrawer() {
       this.expanded = !this.expanded;
-      this.$emit("toggleCollapse");
-    },
-  },
+      this.$emit('toggleCollapse');
+    }
+  }
 };
 </script>
 

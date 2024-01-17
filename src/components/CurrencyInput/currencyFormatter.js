@@ -1,5 +1,5 @@
-export const DECIMAL_SEPARATORS = [",", "."];
-export const INT_PATTERN = "(0|[1-9]\\d*)";
+export const DECIMAL_SEPARATORS = [',', '.'];
+export const INT_PATTERN = '(0|[1-9]\\d*)';
 
 /**
  * Helper to check whether or not a string is a valid number.
@@ -15,12 +15,12 @@ export default class CurrencyFormatter {
    * @param {Intl.NumberFormatOptions} options
    */
   constructor(options) {
-    this.formatter = new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
+    this.formatter = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
       maximumFractionDigits: 2,
       minimumFractionDigits: 2,
-      ...options,
+      ...options
     }).format;
   }
 
@@ -36,7 +36,7 @@ export default class CurrencyFormatter {
 
     const negative = this.isNegative(str);
 
-    let [int, frac] = str.split(".");
+    let [int, frac] = str.split('.');
     int = this.stripNonNumerics(int);
     frac = this.stripNonNumerics(frac);
 
@@ -45,7 +45,7 @@ export default class CurrencyFormatter {
     if (!isValidNumber(str)) {
       return null;
     }
-    return Number(`${negative ? "-" : ""}${str}`);
+    return Number(`${negative ? '-' : ''}${str}`);
   }
 
   /**
@@ -53,7 +53,7 @@ export default class CurrencyFormatter {
    * @returns {string} The formatted value.
    */
   format(value) {
-    return value !== null && !isNaN(value) ? this.formatter(value) : "";
+    return value !== null && !isNaN(value) ? this.formatter(value) : '';
   }
 
   /**
@@ -61,7 +61,7 @@ export default class CurrencyFormatter {
    * @returns {boolean}
    */
   isNegative(str) {
-    return str?.startsWith("-");
+    return str?.startsWith('-');
   }
 
   /**
@@ -69,7 +69,7 @@ export default class CurrencyFormatter {
    * @param {string} str
    * @returns {string}
    */
-  stripNonNumerics(str = "") {
-    return str.replace(/[^0-9]/g, "");
+  stripNonNumerics(str = '') {
+    return str.replace(/[^0-9]/g, '');
   }
 }

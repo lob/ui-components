@@ -16,7 +16,7 @@
         { 'border-none': alignRight && first },
         { 'border-dashed': dashedBorder },
         { 'border-t': textBottom },
-        { 'border-b': textTop },
+        { 'border-b': textTop }
       ]"
     />
   </div>
@@ -24,49 +24,49 @@
 
 <script>
 export default {
-  name: "StepperItemBorder",
+  name: 'StepperItemBorder',
   props: {
     borderColor: {
       type: String,
-      default: null,
+      default: null
     },
     color: {
       type: String,
-      default: null,
+      default: null
     },
     alignLeft: {
       type: Boolean,
-      required: true,
+      required: true
     },
     alignCenter: {
       type: Boolean,
-      required: true,
+      required: true
     },
     alignRight: {
       type: Boolean,
-      required: true,
+      required: true
     },
     first: {
       type: Boolean,
-      required: true,
+      required: true
     },
     last: {
       type: Boolean,
-      required: true,
+      required: true
     },
     textBottom: {
       type: Boolean,
-      required: true,
+      required: true
     },
     textTop: {
       type: Boolean,
-      required: true,
+      required: true
     },
     dashedBorder: {
       type: Boolean,
-      required: true,
-    },
-  },
+      required: true
+    }
+  }
 };
 </script>
 
@@ -88,7 +88,7 @@ export default {
   @apply bg-current;
   @apply absolute;
 
-  content: "";
+  content: '';
 }
 
 .half-border.border-b:not(.half-border-left):not(.half-border-right)::after {

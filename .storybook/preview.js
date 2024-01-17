@@ -1,8 +1,8 @@
-import { app } from "@storybook/vue3";
-import * as mixins from "@/mixins";
-import * as configs from "@/config";
+import { app } from '@storybook/vue3';
+import * as mixins from '@/mixins';
+import * as configs from '@/config';
 
-import "@/assets/styles/main.scss";
+import '@/assets/styles/main.scss';
 
 app.use(configs.constants);
 for (const mixinName in mixins) {
@@ -11,13 +11,13 @@ for (const mixinName in mixins) {
 }
 
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
+  actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
     matchers: {
       color: /(background|color)$/i,
-      date: /Date$/,
+      date: /Date$/
     },
-    sort: "requiredFirst",
+    sort: 'requiredFirst'
   },
-  layout: "centered",
+  layout: 'centered'
 };

@@ -14,7 +14,7 @@
         <button
           :class="[
             'block',
-            searchTerm ? 'opacity-100 cursor-pointer' : 'opacity-0',
+            searchTerm ? 'opacity-100 cursor-pointer' : 'opacity-0'
           ]"
           :aria-label="t('search.closeLabel')"
           :disabled="disabled"
@@ -35,7 +35,7 @@
         class="text-center py-4 border-white-300 border-b-2 text-gray-500"
       >
         <template v-if="searching">
-          {{ t("search.loading") }}
+          {{ t('search.loading') }}
         </template>
         <template v-else-if="searchResults.length">
           <LobLink
@@ -44,12 +44,12 @@
             class="hover:text-primary-700"
             @click="hide"
           >
-            {{ t("search.resultsPrefix") }} {{ totalResults }}
-            {{ t("search.resultsSuffix") }}
+            {{ t('search.resultsPrefix') }} {{ totalResults }}
+            {{ t('search.resultsSuffix') }}
           </LobLink>
         </template>
         <template v-else>
-          {{ t("search.noResults") }}
+          {{ t('search.noResults') }}
         </template>
       </div>
       <LobTable
@@ -73,16 +73,16 @@
 </template>
 
 <script>
-import TextInput from "../TextInput/TextInput";
-import LobTable from "../Table/Table";
-import TableBody from "../Table/TableBody";
-import TableRow from "../Table/TableRow";
-import LobLink from "../Link/Link.vue";
-import MagnifyingGlass from "../Icons/MagnifyingGlass";
-import XmarkLarge from "../Icons/XmarkLarge";
+import TextInput from '../TextInput/TextInput';
+import LobTable from '../Table/Table';
+import TableBody from '../Table/TableBody';
+import TableRow from '../Table/TableRow';
+import LobLink from '../Link/Link.vue';
+import MagnifyingGlass from '../Icons/MagnifyingGlass';
+import XmarkLarge from '../Icons/XmarkLarge';
 
 export default {
-  name: "SearchBar",
+  name: 'SearchBar',
   components: {
     TextInput,
     LobTable,
@@ -90,33 +90,33 @@ export default {
     TableRow,
     LobLink,
     MagnifyingGlass,
-    XmarkLarge,
+    XmarkLarge
   },
   props: {
     searchFunction: {
       type: Function,
-      required: true,
+      required: true
     },
     count: {
       type: Number,
-      default: 0,
+      default: 0
     },
     link: {
       type: String,
-      default: "",
+      default: ''
     },
     header: {
       type: Boolean,
-      default: true,
-    },
+      default: true
+    }
   },
   data() {
     return {
-      searchTerm: "",
+      searchTerm: '',
       searchResults: [],
       searching: false,
       timeout: null,
-      visible: false,
+      visible: false
     };
   },
   computed: {
@@ -125,7 +125,7 @@ export default {
     },
     totalResults() {
       return this.count ? this.count : this.searchResults.length;
-    },
+    }
   },
   watch: {
     searchTerm(val) {
@@ -133,13 +133,13 @@ export default {
         this.visible = true;
         this.debounceSearch(val);
       }
-    },
+    }
   },
   mounted() {
-    window.addEventListener("click", this.onClickOutside);
+    window.addEventListener('click', this.onClickOutside);
   },
   unmounted() {
-    window.removeEventListener("click", this.onClickOutside);
+    window.removeEventListener('click', this.onClickOutside);
   },
   methods: {
     debounceSearch(searchTerm, delayMs) {
@@ -161,7 +161,7 @@ export default {
     },
     clearSearch() {
       if (this.searchTerm) {
-        this.searchTerm = "";
+        this.searchTerm = '';
         this.searchResults = [];
       }
     },
@@ -178,7 +178,7 @@ export default {
     },
     hide() {
       this.visible = false;
-    },
-  },
+    }
+  }
 };
 </script>

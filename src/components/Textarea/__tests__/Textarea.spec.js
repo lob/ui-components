@@ -1,20 +1,20 @@
-import "@testing-library/jest-dom";
-import { render, fireEvent } from "@testing-library/vue";
-import Textarea from "../Textarea.vue";
-import userEvent from "@testing-library/user-event";
+import '@testing-library/jest-dom';
+import { render, fireEvent } from '@testing-library/vue';
+import Textarea from '../Textarea.vue';
+import userEvent from '@testing-library/user-event';
 
 const initialProps = {
-  id: "test",
-  name: "test",
-  label: "label",
-  modelValue: "",
+  id: 'test',
+  name: 'test',
+  label: 'label',
+  modelValue: ''
 };
 
 const renderComponent = (options, configure = null) =>
   render(Textarea, { ...options }, configure);
 
-describe("Textarea", () => {
-  it("renders correctly", () => {
+describe('Textarea', () => {
+  it('renders correctly', () => {
     const props = initialProps;
     const { getByLabelText } = renderComponent({ props });
 
@@ -22,10 +22,10 @@ describe("Textarea", () => {
     expect(textarea).toBeInTheDocument();
   });
 
-  it("requires the textarea when required prop is true", () => {
+  it('requires the textarea when required prop is true', () => {
     const props = {
       ...initialProps,
-      required: true,
+      required: true
     };
 
     const { getByLabelText } = renderComponent({ props });
@@ -33,127 +33,127 @@ describe("Textarea", () => {
     expect(textarea).toBeRequired();
   });
 
-  it("disables the textarea when disabled prop is true", () => {
+  it('disables the textarea when disabled prop is true', () => {
     const props = {
       ...initialProps,
-      disabled: true,
+      disabled: true
     };
 
     const { getByLabelText } = renderComponent({ props });
     const textarea = getByLabelText(props.label);
-    expect(textarea).toBeDisabled().toHaveClass("!bg-gray-50 !border-gray-200");
+    expect(textarea).toBeDisabled().toHaveClass('!bg-gray-50 !border-gray-200');
   });
 
-  it("adds an error class to the textarea when error prop is true", () => {
+  it('adds an error class to the textarea when error prop is true', () => {
     const props = {
       ...initialProps,
-      error: true,
+      error: true
     };
 
     const { getByLabelText } = renderComponent({ props });
     const textarea = getByLabelText(props.label);
-    expect(textarea).toHaveClass("border-red-600 bg-red-50");
+    expect(textarea).toHaveClass('border-red-600 bg-red-50');
   });
 
-  it("adds a success class to the textarea when success prop is true", () => {
+  it('adds a success class to the textarea when success prop is true', () => {
     const props = {
       ...initialProps,
-      success: true,
+      success: true
     };
 
     const { getByLabelText } = renderComponent({ props });
     const textarea = getByLabelText(props.label);
-    expect(textarea).toHaveClass("border-green-700 bg-green-50");
+    expect(textarea).toHaveClass('border-green-700 bg-green-50');
   });
 
-  it("updates the v-model on textarea input", async () => {
+  it('updates the v-model on textarea input', async () => {
     const props = initialProps;
     const { getByLabelText } = renderComponent({ props });
     const textarea = getByLabelText(props.label);
 
-    await fireEvent.update(textarea, "hello!");
-    expect(textarea.value).toEqual("hello!");
+    await fireEvent.update(textarea, 'hello!');
+    expect(textarea.value).toEqual('hello!');
   });
 
-  it("fires the input event on textarea input", async () => {
+  it('fires the input event on textarea input', async () => {
     const props = initialProps;
     const { getByLabelText, emitted } = renderComponent({ props });
     const textarea = getByLabelText(props.label);
 
-    const updatedValue = "hello!";
+    const updatedValue = 'hello!';
     await fireEvent.update(textarea, updatedValue);
     const emittedEvent = emitted();
-    expect(emittedEvent).toHaveProperty("input");
+    expect(emittedEvent).toHaveProperty('input');
     expect(emittedEvent.input[0]).toEqual([updatedValue]);
   });
 
-  it("fires the change event on textarea input", async () => {
+  it('fires the change event on textarea input', async () => {
     const props = initialProps;
     const { getByLabelText, emitted } = renderComponent({ props });
     const textarea = getByLabelText(props.label);
 
-    const updatedValue = "hello!";
+    const updatedValue = 'hello!';
     await fireEvent.update(textarea, updatedValue);
     const emittedEvent = emitted();
-    expect(emittedEvent).toHaveProperty("change");
+    expect(emittedEvent).toHaveProperty('change');
   });
 
-  describe("character counter", () => {
+  describe('character counter', () => {
     const propsWithCounter = {
       ...initialProps,
       showCounter: true,
-      maxLength: 20,
+      maxLength: 20
     };
     let component;
     beforeEach(() => {
       component = renderComponent({ props: propsWithCounter });
     });
 
-    it("does not show the counter if the area is not on focus", () => {
+    it('does not show the counter if the area is not on focus', () => {
       const { queryByRole } = component;
 
-      const counter = queryByRole("status");
+      const counter = queryByRole('status');
       expect(counter).not.toBeInTheDocument();
     });
 
-    it("shows the counter when the textarea is focused", async () => {
+    it('shows the counter when the textarea is focused', async () => {
       const { getByLabelText, findByRole } = component;
       const textarea = getByLabelText(propsWithCounter.label);
       userEvent.click(textarea);
 
-      const counter = await findByRole("status");
+      const counter = await findByRole('status');
       expect(counter)
         .toBeInTheDocument()
         .toHaveTextContent(/0\/20/i)
-        .toHaveClass("text-gray-500");
+        .toHaveClass('text-gray-500');
     });
 
-    it("counts the characters", async () => {
+    it('counts the characters', async () => {
       const { getByLabelText, findByRole, rerender } = component;
       const textarea = getByLabelText(propsWithCounter.label);
       userEvent.click(textarea);
-      await userEvent.type(textarea, "thing");
+      await userEvent.type(textarea, 'thing');
 
-      rerender({ modelValue: "thing" });
-      expect(textarea).toHaveValue("thing");
+      rerender({ modelValue: 'thing' });
+      expect(textarea).toHaveValue('thing');
 
-      const counter = await findByRole("status");
+      const counter = await findByRole('status');
       expect(counter).toHaveTextContent(/5\/20/);
-      expect(counter).toBeInTheDocument().toHaveClass("text-gray-500");
+      expect(counter).toBeInTheDocument().toHaveClass('text-gray-500');
     });
 
-    it("is the error color when value length is more than (maxLength - 5)", async () => {
+    it('is the error color when value length is more than (maxLength - 5)', async () => {
       const { getByLabelText, findByRole, rerender } = component;
       const textarea = getByLabelText(propsWithCounter.label);
       userEvent.click(textarea);
-      await userEvent.type(textarea, "is 16 characters");
+      await userEvent.type(textarea, 'is 16 characters');
 
-      rerender({ modelValue: "is 16 characters" });
-      expect(textarea).toHaveValue("is 16 characters");
+      rerender({ modelValue: 'is 16 characters' });
+      expect(textarea).toHaveValue('is 16 characters');
 
-      const counter = await findByRole("status");
+      const counter = await findByRole('status');
       expect(counter).toHaveTextContent(/16\/20/);
-      expect(counter).toBeInTheDocument().toHaveClass("text-red-700");
+      expect(counter).toBeInTheDocument().toHaveClass('text-red-700');
     });
   });
 });

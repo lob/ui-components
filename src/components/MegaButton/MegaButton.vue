@@ -27,7 +27,7 @@
         smallText ? `max-w-[${customWidth}]` : '',
         imageSource && !smallText ? `min-w-[160px] max-w-[${customWidth}]` : '',
         { 'items-center': !hasDisabledBanner && !smallText },
-        { 'border-0': topFullImage && !checked },
+        { 'border-0': topFullImage && !checked }
       ]"
     >
       <div class="w-full">
@@ -47,7 +47,7 @@
             :class="[
               'max-h-20 mx-auto rounded-t-lg',
               { '!max-h-full': topFullImage },
-              { 'opacity-60': disabled },
+              { 'opacity-60': disabled }
             ]"
             :src="imageSource"
             :alt="imageAltText"
@@ -66,7 +66,7 @@
             { 'mx-6': smallText },
             { 'my-8': !hasDisabledBanner },
             { 'mt-12 mb-6': hasDisabledBanner && !imageSource },
-            { 'mt-12 mb-6': hasDisabledBanner },
+            { 'mt-12 mb-6': hasDisabledBanner }
           ]"
         >
           <div
@@ -74,7 +74,7 @@
               'text-lg font-medium',
               { 'text-center': !smallText },
               { 'text-left': smallText },
-              { 'text-[1.25rem] 2xl:text-[2rem] whitespace-nowrap': megaText },
+              { 'text-[1.25rem] 2xl:text-[2rem] whitespace-nowrap': megaText }
             ]"
           >
             <slot name="label">
@@ -94,62 +94,62 @@
 
 <script>
 export default {
-  name: "MegaButton",
+  name: 'MegaButton',
   props: {
     id: {
       type: String,
-      required: true,
+      required: true
     },
     modelValue: {
       type: [String, Boolean],
-      default: null,
+      default: null
     },
     name: {
       type: String,
-      default: "",
+      default: ''
     },
     value: {
       type: [String, Boolean],
-      default: "",
+      default: ''
     },
     label: {
       type: String,
-      default: "",
+      default: ''
     },
     text: {
       type: String,
-      default: "",
+      default: ''
     },
     disabledBanner: {
       type: String,
-      default: null,
+      default: null
     },
     disabled: {
       type: Boolean,
-      default: false,
+      default: false
     },
     imageSource: {
       type: String,
-      default: null,
+      default: null
     },
     imageAltText: {
       type: String,
-      default: "",
+      default: ''
     },
     topFullImage: {
       type: Boolean,
-      default: false,
+      default: false
     },
     ariaDisabled: {
       type: Boolean,
-      default: false,
+      default: false
     },
     customWidth: {
       type: String,
-      default: "240px",
-    },
+      default: '240px'
+    }
   },
-  emits: ["update:modelValue", "input", "click"],
+  emits: ['update:modelValue', 'input', 'click'],
   computed: {
     checked() {
       return this.modelValue === this.value;
@@ -168,17 +168,17 @@ export default {
     },
     textContent() {
       return this.$slots.text || this.text;
-    },
+    }
   },
   methods: {
     onInput() {
-      this.$emit("update:modelValue", this.value);
-      this.$emit("input", this.value);
+      this.$emit('update:modelValue', this.value);
+      this.$emit('input', this.value);
     },
     onClick($event) {
-      this.$emit("click", $event);
-    },
-  },
+      this.$emit('click', $event);
+    }
+  }
 };
 </script>
 
@@ -187,7 +187,7 @@ label {
   box-shadow: 0 4.32px 12.95px rgba(0, 0, 0, 0.08);
 }
 
-input[type="radio"]:disabled + label {
+input[type='radio']:disabled + label {
   border: 1px solid #c4c4c4;
   color: #8c8c8c;
   box-shadow: none;

@@ -68,10 +68,10 @@ import {
   CircleExclamation,
   TriangleExclamation,
   ArrowsRotate,
-  XmarkLarge,
-} from "@/components/Icons";
-import LobLink from "../Link/Link";
-import ArrowUpRight from "../Icons/ArrowUpRight.vue";
+  XmarkLarge
+} from '@/components/Icons';
+import LobLink from '../Link/Link';
+import ArrowUpRight from '../Icons/ArrowUpRight.vue';
 
 const LinkWithArrow = {
   template: `<LobLink
@@ -87,8 +87,8 @@ const LinkWithArrow = {
   components: { LobLink, ArrowUpRight },
   props: {
     linkSrc: String,
-    linkDisplayText: String,
-  },
+    linkDisplayText: String
+  }
 };
 
 const CloseButton = {
@@ -101,18 +101,18 @@ const CloseButton = {
     <XmarkLarge size="s" class="text-gray-500"/>
   </button>`,
   props: {
-    closeButtonAriaLabel: { type: String, default: "Close alert" },
+    closeButtonAriaLabel: { type: String, default: 'Close alert' }
   },
   components: { XmarkLarge },
   methods: {
     closeAlert() {
-      this.$emit("close");
-    },
-  },
+      this.$emit('close');
+    }
+  }
 };
 
 export default {
-  name: "Alert",
+  name: 'Alert',
   components: {
     CloseButton,
     LinkWithArrow,
@@ -120,100 +120,100 @@ export default {
     CircleCheck,
     CircleExclamation,
     TriangleExclamation,
-    ArrowsRotate,
+    ArrowsRotate
   },
   props: {
     variant: {
       type: String,
-      default: "info",
+      default: 'info',
       validator: function (value) {
-        return ["info", "success", "warning", "refresh", "error"].includes(
-          value,
+        return ['info', 'success', 'warning', 'refresh', 'error'].includes(
+          value
         );
-      },
+      }
     },
     showIcon: {
       type: Boolean,
-      default: true,
+      default: true
     },
     showCloseButton: {
       type: Boolean,
-      default: false,
+      default: false
     },
     closeButtonAriaLabel: {
       type: String,
-      default: "Close alert",
+      default: 'Close alert'
     },
     linkSrc: {
       type: String,
-      default: null,
+      default: null
     },
     linkDisplayText: {
       type: String,
-      default: "Learn more",
-    },
+      default: 'Learn more'
+    }
   },
-  emits: ["close"],
+  emits: ['close'],
   data() {
     return {
       variants: [
         {
-          variant: "info",
-          icon: "CircleInfo",
-          color: "text-blue-700",
-          bgColor: "bg-blue-50",
+          variant: 'info',
+          icon: 'CircleInfo',
+          color: 'text-blue-700',
+          bgColor: 'bg-blue-50'
         },
         {
-          variant: "success",
-          icon: "CircleCheck",
-          color: "text-green-700",
-          bgColor: "bg-green-50",
+          variant: 'success',
+          icon: 'CircleCheck',
+          color: 'text-green-700',
+          bgColor: 'bg-green-50'
         },
         {
-          variant: "warning",
-          icon: "TriangleExclamation",
-          color: "text-orange-600",
-          bgColor: "bg-orange-50",
+          variant: 'warning',
+          icon: 'TriangleExclamation',
+          color: 'text-orange-600',
+          bgColor: 'bg-orange-50'
         },
         {
-          variant: "refresh",
-          icon: "ArrowsRotate",
-          color: "text-purple-600",
-          bgColor: "bg-purple-50",
+          variant: 'refresh',
+          icon: 'ArrowsRotate',
+          color: 'text-purple-600',
+          bgColor: 'bg-purple-50'
         },
         {
-          variant: "error",
-          icon: "CircleExclamation",
-          color: "text-red-600",
-          bgColor: "bg-red-50",
-        },
-      ],
+          variant: 'error',
+          icon: 'CircleExclamation',
+          color: 'text-red-600',
+          bgColor: 'bg-red-50'
+        }
+      ]
     };
   },
   computed: {
     info() {
-      return this.variant === "info";
+      return this.variant === 'info';
     },
     success() {
-      return this.variant === "success";
+      return this.variant === 'success';
     },
     warning() {
-      return this.variant === "warning";
+      return this.variant === 'warning';
     },
     refresh() {
-      return this.variant === "refresh";
+      return this.variant === 'refresh';
     },
     error() {
-      return this.variant === "error";
+      return this.variant === 'error';
     },
     variantDetails() {
       const selectedVariant = this.variants.find(
-        (currentVariant) => currentVariant.variant === this.variant,
+        (currentVariant) => currentVariant.variant === this.variant
       );
       return {
         icon: selectedVariant.icon,
         color: selectedVariant.color,
-        bgColor: selectedVariant.bgColor,
+        bgColor: selectedVariant.bgColor
       };
     },
     hasHeading() {
@@ -221,12 +221,12 @@ export default {
     },
     hasContent() {
       return Boolean(this.$slots.default);
-    },
+    }
   },
   methods: {
     closeAlert() {
-      this.$emit("close");
-    },
-  },
+      this.$emit('close');
+    }
+  }
 };
 </script>

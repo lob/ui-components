@@ -46,12 +46,12 @@
         'bg-white h-11 px-3 py-2 rounded flex items-center gap-2 border border-gray-200',
         {
           'hover:border-gray-300 focus-within:border-[#2D2D2F] focus-within:hover:border-[#2D2D2F] focus-within:outline-black focus-within:outline-offset-1 focus-within:outline-1':
-            !disabled && !readonly,
+            !disabled && !readonly
         },
         { '!border-green-700 !bg-green-50': success },
         { '!border-red-600 !bg-red-50': error },
         { '!bg-gray-50': disabled || readonly || withCopyButton },
-        { '!flex-wrap !h-fit': isMultiselect },
+        { '!flex-wrap !h-fit': isMultiselect }
       ]"
     >
       <div
@@ -60,7 +60,7 @@
           modelValue && !disabled ? 'text-gray-800' : 'text-gray-500',
           { 'text-green-700': success },
           { 'text-red-600': error },
-          { '!text-gray-300': disabled },
+          { '!text-gray-300': disabled }
         ]"
       >
         <slot name="iconLeft" />
@@ -81,12 +81,12 @@
           { 'bg-green-50 !placeholder-green-700': success },
           {
             'bg-red-50 !placeholder-red-600 !autofill:bg-red-50 errorAutofill':
-              error,
+              error
           },
           {
             'bg-gray-50 cursor-not-allowed !text-gray-300 !placeholder-gray-300':
-              disabled || readonly,
-          },
+              disabled || readonly
+          }
         ]"
         :disabled="disabled"
         :required="required"
@@ -104,7 +104,7 @@
           modelValue && !disabled ? 'text-gray-800' : 'text-gray-500',
           { 'text-green-700': success },
           { 'text-red-600': error },
-          { '!text-gray-300': disabled },
+          { '!text-gray-300': disabled }
         ]"
         @click="clearInput"
       >
@@ -113,7 +113,7 @@
             'h-3.5',
             'cursor-pointer',
             { 'bg-white-100': disabled },
-            { 'bg-coral-100': error },
+            { 'bg-coral-100': error }
           ]"
         />
       </button>
@@ -123,7 +123,7 @@
           modelValue && !disabled ? 'text-gray-800' : 'text-gray-500',
           { 'text-green-700': success },
           { 'text-red-600': error },
-          { '!text-gray-300': disabled },
+          { '!text-gray-300': disabled }
         ]"
       >
         <slot name="iconRight" />
@@ -143,7 +143,7 @@
         'text-gray-500 type-xs-400 mt-1',
         { 'text-green-700': success },
         { 'text-red-600': error },
-        { '!text-gray-500': disabled },
+        { '!text-gray-500': disabled }
       ]"
     >
       {{ helperText }}
@@ -152,141 +152,141 @@
 </template>
 
 <script>
-import LobLabel from "../Label/Label.vue";
-import Check from "../Icons/Check.vue";
-import XmarkLarge from "../Icons/XmarkLarge.vue";
+import LobLabel from '../Label/Label.vue';
+import Check from '../Icons/Check.vue';
+import XmarkLarge from '../Icons/XmarkLarge.vue';
 
 export default {
-  name: "TextInput",
+  name: 'TextInput',
   components: { LobLabel, Check, XmarkLarge },
   props: {
     tooltipContent: {
       type: String,
-      default: null,
+      default: null
     },
     tooltipPosition: {
       type: String,
-      default: "trailing",
+      default: 'trailing',
       validator: function (value) {
-        return ["leading", "trailing"].includes(value);
-      },
+        return ['leading', 'trailing'].includes(value);
+      }
     },
     modelValue: {
       type: [String, Number],
-      default: null,
+      default: null
     },
     id: {
       type: String,
-      required: true,
+      required: true
     },
     type: {
       type: String,
-      default: "text",
+      default: 'text',
       validator: function (value) {
         return [
-          "date",
-          "email",
-          "number",
-          "password",
-          "tel",
-          "text",
-          "url",
-          "time",
+          'date',
+          'email',
+          'number',
+          'password',
+          'tel',
+          'text',
+          'url',
+          'time'
         ].includes(value);
-      },
+      }
     },
     // Used by number inputs.
     min: {
       type: Number,
-      default: null,
+      default: null
     },
     // Used by number inputs.
     max: {
       type: Number,
-      default: null,
+      default: null
     },
     // Used by tel inputs.
     pattern: {
       type: String,
-      default: null,
+      default: null
     },
     label: {
       type: String,
-      required: true,
+      required: true
     },
     srOnlyLabel: {
       type: Boolean,
-      default: false,
+      default: false
     },
     placeholder: {
       type: String,
-      default: null,
+      default: null
     },
     disabled: {
       type: Boolean,
-      default: false,
+      default: false
     },
     required: {
       type: Boolean,
-      default: false,
+      default: false
     },
     error: {
       type: Boolean,
-      default: false,
+      default: false
     },
     success: {
       type: Boolean,
-      default: false,
+      default: false
     },
     readonly: {
       type: Boolean,
-      default: false,
+      default: false
     },
     withCopyButton: {
       type: Boolean,
-      default: false,
+      default: false
     },
     copyButtonLabel: {
       type: String,
-      default: "Copy",
+      default: 'Copy'
     },
     copiedTooltipContent: {
       type: String,
-      default: "Copied",
+      default: 'Copied'
     },
     selectOnClick: {
       type: Boolean,
-      default: false,
+      default: false
     },
     inputClass: {
       type: String,
-      default: "",
+      default: ''
     },
     helperText: {
       type: String,
-      default: "",
+      default: ''
     },
     isMultiselect: {
       type: Boolean,
-      default: false,
+      default: false
     },
     withClearButton: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   emits: [
-    "update:modelValue",
-    "input",
-    "change",
-    "focus",
-    "blur",
-    "copy",
-    "invalid",
+    'update:modelValue',
+    'input',
+    'change',
+    'focus',
+    'blur',
+    'copy',
+    'invalid'
   ],
   data() {
     return {
-      showCopied: false,
+      showCopied: false
     };
   },
   computed: {
@@ -306,47 +306,47 @@ export default {
         !this.iconRight &&
         !this.withCopyButton
       );
-    },
+    }
   },
   methods: {
     copyToClipboard() {
       this.showCopied = true;
       this.$refs.input.select();
-      document.execCommand("copy");
-      this.$emit("copy");
+      document.execCommand('copy');
+      this.$emit('copy');
       this.copied = true;
       setTimeout(() => {
         this.showCopied = false;
       }, 1500);
     },
     onInput($event) {
-      this.$emit("update:modelValue", $event.target.value);
-      this.$emit("input", $event.target.value);
-      this.$emit("change", $event);
+      this.$emit('update:modelValue', $event.target.value);
+      this.$emit('input', $event.target.value);
+      this.$emit('change', $event);
     },
     onFocus($event) {
       if (this.selectOnClick) {
         this.$refs.input.select();
       }
-      this.$emit("focus", $event);
+      this.$emit('focus', $event);
     },
     onBlur($event) {
-      this.$emit("blur", $event);
+      this.$emit('blur', $event);
     },
     onInvalid($event) {
-      this.$emit("invalid", $event.target);
+      this.$emit('invalid', $event.target);
     },
     focus() {
       this.$refs.input.focus();
     },
     clearInput($event) {
       $event.preventDefault();
-      this.$refs.input.value = "";
-      this.$emit("update:modelValue", "");
-      this.$emit("input", "");
-      this.$emit("change", $event);
-    },
-  },
+      this.$refs.input.value = '';
+      this.$emit('update:modelValue', '');
+      this.$emit('input', '');
+      this.$emit('change', $event);
+    }
+  }
 };
 </script>
 

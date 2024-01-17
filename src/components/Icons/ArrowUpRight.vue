@@ -16,6 +16,6 @@
 <script>
 // temporarily this icon is not exported, it is currently only used by the Alert component
 export default {
-  name: "ArrowUpRight",
+  name: 'ArrowUpRight'
 };
 </script>

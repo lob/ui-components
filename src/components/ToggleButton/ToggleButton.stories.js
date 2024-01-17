@@ -1,14 +1,14 @@
-import ToggleButton from "./ToggleButton.vue";
-import mdx from "./ToggleButton.mdx";
+import ToggleButton from './ToggleButton.vue';
+import mdx from './ToggleButton.mdx';
 
 export default {
-  title: "Components/Toggle Button",
+  title: 'Components/Toggle Button',
   component: ToggleButton,
   parameters: {
     docs: {
-      page: mdx,
-    },
-  },
+      page: mdx
+    }
+  }
 };
 
 const vModel = true;
@@ -23,14 +23,14 @@ const SingleTemplate = (args, { argTypes }) => ({
       v-bind="args"
       v-model="vModel" 
     ></toggle-button>
-    `,
+    `
 });
 
 export const Single = SingleTemplate.bind({});
 Single.args = {
-  label: "4 x 6",
-  name: "4x6",
-  value: "4x6",
+  label: '4 x 6',
+  name: '4x6',
+  value: '4x6'
 };
 
 const arrayVModel = [];
@@ -73,7 +73,7 @@ const GroupTemplate = (args, { argTypes }) => ({
       value="A5"
     />
   </div>
-    `,
+    `
 });
 
 export const Group = GroupTemplate.bind({});

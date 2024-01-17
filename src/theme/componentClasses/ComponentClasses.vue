@@ -10,28 +10,28 @@
 
 <script>
 const componentClasses = [
-  "banner-small",
-  "banner-medium",
-  "banner-default",
-  "pageheading",
-  "subheading-1",
-  "text-default",
-  "text-default-light",
-  "text-default-bold",
-  "text-small",
-  "text-small-light",
-  "text-small-bold",
-  "caps-large",
-  "caps-medium",
-  "caps-small",
+  'banner-small',
+  'banner-medium',
+  'banner-default',
+  'pageheading',
+  'subheading-1',
+  'text-default',
+  'text-default-light',
+  'text-default-bold',
+  'text-small',
+  'text-small-light',
+  'text-small-bold',
+  'caps-large',
+  'caps-medium',
+  'caps-small'
 ];
 
 export default {
-  name: "Theme",
+  name: 'Theme',
   computed: {
     compClasses() {
       return componentClasses;
-    },
-  },
+    }
+  }
 };
 </script>
