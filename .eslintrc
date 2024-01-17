@@ -1,16 +1,12 @@
 {
-  "extends": [
-    "lob/browser",
-    "plugin:vue/vue3-recommended"
-  ],
+  "extends": ["lob/browser", "plugin:vue/vue3-recommended", "prettier"],
+  "plugins": ["plugins"],
   "globals": {
     "URLSearchParams": false,
     "vi": false
   },
   "parser": "vue-eslint-parser",
-  "ignorePatterns": [
-    "!/.storybook"
-  ],
+  "ignorePatterns": ["!/.storybook"],
   "rules": {
     "lob/align-equals": 0,
     "no-extra-parens": 0,
@@ -23,7 +19,8 @@
     "prefer-template": 0,
     "vue/comma-dangle": 2,
     "vue/multi-word-component-names": 0,
-    "vue/v-on-event-hyphenation": 0
+    "vue/v-on-event-hyphenation": 0,
+    "prettier/prettier": "error"
   },
   "overrides": [
     {
@@ -33,7 +30,8 @@
       ],
       "env": {
         "jest": true
-      }
+      },
+      "plugins": ["prettier", "lob"]
     }
   ],
   "root": true,
