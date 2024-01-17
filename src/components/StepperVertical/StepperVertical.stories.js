@@ -1,24 +1,40 @@
-import StepperVertical from './StepperVertical.vue';
-import StepperVerticalItem from './StepperVerticalItem.vue';
-import mdx from './StepperVertical.mdx';
+import StepperVertical from "./StepperVertical.vue";
+import StepperVerticalItem from "./StepperVerticalItem.vue";
+import mdx from "./StepperVertical.mdx";
 
 export default {
-  title: 'Components/StepperVertical',
+  title: "Components/StepperVertical",
   component: StepperVertical,
   subcomponents: { StepperVerticalItem },
   parameters: {
     docs: {
-      page: mdx
-    }
+      page: mdx,
+    },
   },
   args: {
     steps: [
-      { path: '/settings', displayName: 'Configure settings', pathName: 'Create Campaign Step One' },
-      { path: '/audience', displayName: 'Add audience', pathName: 'Create Campaign Step Two' },
-      { path: '/creative', displayName: 'Choose creative', pathName: 'Create Campaign Step Three' },
-      { path: '/confirm', displayName: 'Review campaign', pathName: 'Create Campaign Step Four' }
-    ]
-  }
+      {
+        path: "/settings",
+        displayName: "Configure settings",
+        pathName: "Create Campaign Step One",
+      },
+      {
+        path: "/audience",
+        displayName: "Add audience",
+        pathName: "Create Campaign Step Two",
+      },
+      {
+        path: "/creative",
+        displayName: "Choose creative",
+        pathName: "Create Campaign Step Three",
+      },
+      {
+        path: "/confirm",
+        displayName: "Review campaign",
+        pathName: "Create Campaign Step Four",
+      },
+    ],
+  },
 };
 
 const activeStepIndex = 0;
@@ -28,9 +44,9 @@ const Template = (args) => ({
   setup: () => ({ args }),
   data: () => ({ activeStepIndex }),
   methods: {
-    handleGoToStep (step) {
+    handleGoToStep(step) {
       this.activeStepIndex = args.steps.findIndex((s) => s === step);
-    }
+    },
   },
   template: `<div style="width: 300px;">
                 <StepperVertical 
@@ -38,7 +54,7 @@ const Template = (args) => ({
                 :active-step-index="activeStepIndex"
                 @goToStep="(step)=> handleGoToStep(step)" 
               />
-            </div>`
+            </div>`,
 });
 
 export const Default = Template.bind({});
@@ -48,9 +64,9 @@ const DarkTemplate = (args) => ({
   setup: () => ({ args }),
   data: () => ({ activeStepIndex }),
   methods: {
-    handleGoToStep (step) {
+    handleGoToStep(step) {
       this.activeStepIndex = args.steps.findIndex((s) => s === step);
-    }
+    },
   },
   template: `<div style="width: 300px;">
               <StepperVertical 
@@ -60,7 +76,7 @@ const DarkTemplate = (args) => ({
                 :active-step-index="activeStepIndex"
                 @goToStep="(step)=> handleGoToStep(step)"  
               />
-            </div>`
+            </div>`,
 });
 
 export const DarkMode = DarkTemplate.bind({});

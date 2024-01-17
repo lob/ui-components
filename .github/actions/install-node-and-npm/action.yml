@@ -1,12 +1,12 @@
 name: Install Node and NPM
-description: 'Determine required node and npm versions and install'
+description: "Determine required node and npm versions and install"
 
 outputs:
   node_version:
-    description: 'The node version installed'
+    description: "The node version installed"
     value: ${{ steps.node_version.outputs.prop }}
   npm_version:
-    description: 'The npm version installed'
+    description: "The npm version installed"
     value: ${{ steps.npm_version.outputs.prop }}
 
 runs:

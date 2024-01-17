@@ -1,9 +1,14 @@
-import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
-import SearchBar from './SearchBar.vue';
+import {
+  Preview,
+  Story,
+  ArgsTable,
+  PRIMARY_STORY,
+} from "@storybook/addon-docs";
+import SearchBar from "./SearchBar.vue";
 
 # SearchBar
 
-This search bar component is designed to render an input for the user to enter their search term and then a table with the search results. 
+This search bar component is designed to render an input for the user to enter their search term and then a table with the search results.
 
 <Preview>
   <Story id="components-search-bar--primary" />
@@ -20,25 +25,14 @@ The table has a slot for you to define how to render a single result row which i
 To use this component, here is an example
 
 ```html
-<SearchBar
-  searchFunction="myCustomSearch"
->
-  <template
-    #default="{ result }"
-    class="min-w-full"
-  >
+<SearchBar searchFunction="myCustomSearch">
+  <template #default="{ result }" class="min-w-full">
     <td>
       <img class="w-5 h-5" :src="result.img" />
     </td>
-    <td>
-      {{ result.description }}
-    </td>
-    <td>
-      {{ result.type }}
-    </td>
-    <td>
-      >
-    </td>
+    <td>{{ result.description }}</td>
+    <td>{{ result.type }}</td>
+    <td>></td>
   </template>
 </SearchBar>
 ```

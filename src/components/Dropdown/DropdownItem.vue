@@ -4,11 +4,17 @@
     ref="option"
     :class="[
       'h-9 py-2 px-4 flex items-center truncate',
-      { 'text-gray-500 type-small-500 hover:bg-gray-50 hover:text-gray-800': !selected },
+      {
+        'text-gray-500 type-small-500 hover:bg-gray-50 hover:text-gray-800':
+          !selected,
+      },
       { '!bg-black !text-white type-small-700': selected && !placeholder },
-      { 'bg-gray-50 text-gray-800 ring-1 ring-blue-500 ring-inset hover:ring-0': active && !option.disabled },
+      {
+        'bg-gray-50 text-gray-800 ring-1 ring-blue-500 ring-inset hover:ring-0':
+          active && !option.disabled,
+      },
       { '!text-gray-300 !type-small-500': placeholder },
-      option.disabled ? '!text-gray-300 cursor-not-allowed': 'cursor-pointer'
+      option.disabled ? '!text-gray-300 cursor-not-allowed' : 'cursor-pointer',
     ]"
     :aria-disabled="option.disabled"
     :aria-selected="active"
@@ -24,58 +30,59 @@
 
 <script>
 export default {
-  name: 'DropdownItem',
+  name: "DropdownItem",
   props: {
     id: {
       type: String,
-      required: true
+      required: true,
     },
     option: {
       type: [String, Object],
       required: true,
       validator: function (value) {
         // The value must match be a string or an object with a label property
-        const isString = typeof value === 'string';
-        const isOption = typeof value === 'object' && value.hasOwnProperty('label');
+        const isString = typeof value === "string";
+        const isOption =
+          typeof value === "object" && value.hasOwnProperty("label");
         return isString || isOption;
-      }
+      },
     },
     index: {
       type: Number,
-      default: 0
+      default: 0,
     },
     active: {
       type: Boolean,
-      default: false
+      default: false,
     },
     selected: {
       type: Boolean,
-      default: false
+      default: false,
     },
     placeholder: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
-  emits: ['click', 'mousedown', 'mouseenter'],
+  emits: ["click", "mousedown", "mouseenter"],
   methods: {
-    onMousedown ($event) {
-      this.$emit('mousedown', $event);
+    onMousedown($event) {
+      this.$emit("mousedown", $event);
     },
-    onMouseEnter ($event) {
-      this.$emit('mouseenter', $event, this.index);
+    onMouseEnter($event) {
+      this.$emit("mouseenter", $event, this.index);
     },
-    onClick ($event) {
-      if (!this.option.hasOwnProperty('disabled') || !this.option.disabled) {
-        this.$emit('click', $event, this.index);
+    onClick($event) {
+      if (!this.option.hasOwnProperty("disabled") || !this.option.disabled) {
+        this.$emit("click", $event, this.index);
       }
     },
-    getOffsetHeight () {
+    getOffsetHeight() {
       return this.$refs.option.offsetHeight;
     },
-    getOffsetTop () {
+    getOffsetTop() {
       return this.$refs.option.offsetTop;
-    }
-  }
+    },
+  },
 };
 </script>

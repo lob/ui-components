@@ -1,4 +1,4 @@
-import en from './en';
+import en from "./en";
 
 /** nest-i18n mixin
  *
@@ -15,25 +15,28 @@ export default {
      * @param {String} str the key to translate
      * @returns {String}
      */
-    t (str) {
-      if ('$t' in this) {
+    t(str) {
+      if ("$t" in this) {
         const translation = this.$t(str);
         if (translation && translation !== str) {
           return translation;
         }
       }
 
-      const strParts = str.split('.');
-      const localEnglishTranslation = strParts.reduce((accumulator, currentValue) => {
-        accumulator = accumulator[currentValue];
-        return accumulator;
-      }, en);
+      const strParts = str.split(".");
+      const localEnglishTranslation = strParts.reduce(
+        (accumulator, currentValue) => {
+          accumulator = accumulator[currentValue];
+          return accumulator;
+        },
+        en,
+      );
 
       if (localEnglishTranslation) {
         return localEnglishTranslation;
       }
 
       return str;
-    }
-  }
+    },
+  },
 };

@@ -11,10 +11,10 @@
       :aria-disabled="ariaDisabled"
       @input="onInput"
       @click="onClick"
-    >
+    />
     <label
       :for="id"
-      :style="{ 'width': customWidth }"
+      :style="{ width: customWidth }"
       :class="[
         'text-gray-900',
         'h-full flex justify-center relative cursor-pointer',
@@ -27,17 +27,14 @@
         smallText ? `max-w-[${customWidth}]` : '',
         imageSource && !smallText ? `min-w-[160px] max-w-[${customWidth}]` : '',
         { 'items-center': !hasDisabledBanner && !smallText },
-        {'border-0' : topFullImage && !checked }
+        { 'border-0': topFullImage && !checked },
       ]"
     >
       <div class="w-full">
         <div
           v-if="imageSource"
           data-testId="imageContainer"
-          :class="[
-            'mx-4 my-6',
-            {'!m-0' : topFullImage}
-          ]"
+          :class="['mx-4 my-6', { '!m-0': topFullImage }]"
         >
           <div
             v-if="hasDisabledBanner"
@@ -49,12 +46,12 @@
           <img
             :class="[
               'max-h-20 mx-auto rounded-t-lg',
-              {'!max-h-full' : topFullImage},
-              {'opacity-60' : disabled}
+              { '!max-h-full': topFullImage },
+              { 'opacity-60': disabled },
             ]"
             :src="imageSource"
             :alt="imageAltText"
-          >
+          />
         </div>
         <div
           v-if="hasDisabledBanner && !imageSource"
@@ -69,7 +66,7 @@
             { 'mx-6': smallText },
             { 'my-8': !hasDisabledBanner },
             { 'mt-12 mb-6': hasDisabledBanner && !imageSource },
-            { 'mt-12 mb-6': hasDisabledBanner }
+            { 'mt-12 mb-6': hasDisabledBanner },
           ]"
         >
           <div
@@ -77,17 +74,14 @@
               'text-lg font-medium',
               { 'text-center': !smallText },
               { 'text-left': smallText },
-              { 'text-[1.25rem] 2xl:text-[2rem] whitespace-nowrap': megaText }
+              { 'text-[1.25rem] 2xl:text-[2rem] whitespace-nowrap': megaText },
             ]"
           >
             <slot name="label">
               {{ label }}
             </slot>
           </div>
-          <div
-            v-if="smallText"
-            class="text-left mt-1 text-[14px]"
-          >
+          <div v-if="smallText" class="text-left mt-1 text-[14px]">
             <slot name="text">
               <p>{{ text }}</p>
             </slot>
@@ -100,96 +94,95 @@
 
 <script>
 export default {
-  name: 'MegaButton',
+  name: "MegaButton",
   props: {
     id: {
       type: String,
-      required: true
+      required: true,
     },
     modelValue: {
       type: [String, Boolean],
-      default: null
+      default: null,
     },
     name: {
       type: String,
-      default: ''
+      default: "",
     },
     value: {
       type: [String, Boolean],
-      default: ''
+      default: "",
     },
     label: {
       type: String,
-      default: ''
+      default: "",
     },
     text: {
       type: String,
-      default: ''
+      default: "",
     },
     disabledBanner: {
       type: String,
-      default: null
+      default: null,
     },
     disabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     imageSource: {
       type: String,
-      default: null
+      default: null,
     },
     imageAltText: {
       type: String,
-      default: ''
+      default: "",
     },
     topFullImage: {
       type: Boolean,
-      default: false
+      default: false,
     },
     ariaDisabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     customWidth: {
       type: String,
-      default: '240px'
-    }
+      default: "240px",
+    },
   },
-  emits: ['update:modelValue', 'input', 'click'],
+  emits: ["update:modelValue", "input", "click"],
   computed: {
-    checked () {
+    checked() {
       return this.modelValue === this.value;
     },
-    hasDisabledBanner () {
+    hasDisabledBanner() {
       return this.disabled && this.disabledBanner;
     },
-    megaText () {
+    megaText() {
       return this.labelContent && !this.textContent && !this.imageSource;
     },
-    smallText () {
+    smallText() {
       return this.labelContent && this.textContent;
     },
-    labelContent () {
+    labelContent() {
       return this.$slots.label || this.label;
     },
-    textContent () {
+    textContent() {
       return this.$slots.text || this.text;
-    }
+    },
   },
   methods: {
-    onInput () {
-      this.$emit('update:modelValue', this.value);
-      this.$emit('input', this.value);
+    onInput() {
+      this.$emit("update:modelValue", this.value);
+      this.$emit("input", this.value);
     },
-    onClick ($event) {
-      this.$emit('click', $event);
-    }
-  }
+    onClick($event) {
+      this.$emit("click", $event);
+    },
+  },
 };
 </script>
 
 <style scoped lang="scss">
-
 label {
   box-shadow: 0 4.32px 12.95px rgba(0, 0, 0, 0.08);
 }
@@ -199,5 +192,4 @@ input[type="radio"]:disabled + label {
   color: #8c8c8c;
   box-shadow: none;
 }
-
 </style>

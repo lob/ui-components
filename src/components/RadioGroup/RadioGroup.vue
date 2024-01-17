@@ -1,24 +1,12 @@
 <template>
-  <fieldset
-    :class="[
-      'border-none flex'
-    ]"
-  >
-    <legend :class="srOnlyLegend ? 'sr-only' : 'type-small-700 text-black mb-1.5'">
-      {{ legend }}
-      <span
-        v-if="required"
-        class="text-sm text-red-500"
-      >
-        *
-      </span>
-    </legend>
-    <div
-      :class="[
-        'flex w-full',
-        {'flex-col' : separateLines}
-      ]"
+  <fieldset :class="['border-none flex']">
+    <legend
+      :class="srOnlyLegend ? 'sr-only' : 'type-small-700 text-black mb-1.5'"
     >
+      {{ legend }}
+      <span v-if="required" class="text-sm text-red-500"> * </span>
+    </legend>
+    <div :class="['flex w-full', { 'flex-col': separateLines }]">
       <slot />
     </div>
   </fieldset>
@@ -26,24 +14,24 @@
 
 <script>
 export default {
-  name: 'RadioGroup',
+  name: "RadioGroup",
   props: {
     legend: {
       type: String,
-      default: ''
+      default: "",
     },
     srOnlyLegend: {
       type: Boolean,
-      default: false
+      default: false,
     },
     separateLines: {
       type: Boolean,
-      default: false
+      default: false,
     },
     required: {
       type: Boolean,
-      default: false
-    }
-  }
+      default: false,
+    },
+  },
 };
 </script>

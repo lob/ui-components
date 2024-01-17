@@ -1,15 +1,15 @@
-import FilterContent from './FilterContent.vue';
-import { LobButton, Checkbox, RadioGroup, RadioButton } from '@/components';
-import mdx from './FilterContent.mdx';
+import FilterContent from "./FilterContent.vue";
+import { LobButton, Checkbox, RadioGroup, RadioButton } from "@/components";
+import mdx from "./FilterContent.mdx";
 
 export default {
-  title: 'Components/Filter Content',
+  title: "Components/Filter Content",
   component: FilterContent,
   parameters: {
     docs: {
-      page: mdx
-    }
-  }
+      page: mdx,
+    },
+  },
 };
 
 const open = false;
@@ -17,7 +17,7 @@ const selectedFilters = [];
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: {  FilterContent, LobButton, Checkbox },
+  components: { FilterContent, LobButton, Checkbox },
   data: () => ({ open, selectedFilters }),
   setup: () => ({ args }),
   template: `
@@ -58,16 +58,16 @@ const Template = (args, { argTypes }) => ({
         </div>
       </filter-content>
     </div>
-  `
+  `,
 });
 
 export const Primary = Template.bind({});
 
-const selectedFilter = '';
+const selectedFilter = "";
 
 const WithHeaderTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: {  FilterContent, LobButton, RadioGroup, RadioButton },
+  components: { FilterContent, LobButton, RadioGroup, RadioButton },
   data: () => ({ open, selectedFilter }),
   setup: () => ({ args }),
   template: `
@@ -101,8 +101,7 @@ const WithHeaderTemplate = (args, { argTypes }) => ({
         </div>
       </filter-content>
     </div>
-  `
+  `,
 });
 
 export const WithHeader = WithHeaderTemplate.bind({});
-

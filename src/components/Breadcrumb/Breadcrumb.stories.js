@@ -1,66 +1,68 @@
-import routeDecorator, { routeTemplate } from '../../../.storybook/routeDecorator';
+import routeDecorator, {
+  routeTemplate,
+} from "../../../.storybook/routeDecorator";
 
-import Breadcrumb from './Breadcrumb.vue';
-import mdx from './Breadcrumb.mdx';
-import iconOverview from '@/assets/images/iconOverview.svg';
+import Breadcrumb from "./Breadcrumb.vue";
+import mdx from "./Breadcrumb.mdx";
+import iconOverview from "@/assets/images/iconOverview.svg";
 
 export default {
-  title: 'Components/Breadcrumb',
+  title: "Components/Breadcrumb",
   component: Breadcrumb,
   decorators: [
-    routeDecorator('/envelopes/env_f488a53a4801c87f5', [
+    routeDecorator("/envelopes/env_f488a53a4801c87f5", [
       {
-        path: '/',
+        path: "/",
         component: {
-          template: routeTemplate('overview')
-        }
+          template: routeTemplate("overview"),
+        },
       },
       {
-        path: '/envelopes',
+        path: "/envelopes",
         component: {
-          template: '<div><h1>Envelopes</h1><router-view /></div>'
+          template: "<div><h1>Envelopes</h1><router-view /></div>",
         },
         children: [
           {
-            path: '',
-            name: 'EnvelopesList',
+            path: "",
+            name: "EnvelopesList",
             component: {
-              template: routeTemplate('envelopes')
+              template: routeTemplate("envelopes"),
             },
             meta: {
-              displayName: 'Envelopes'
-            }
+              displayName: "Envelopes",
+            },
           },
           {
-            path: ':id',
-            name: 'ViewEnvelope',
+            path: ":id",
+            name: "ViewEnvelope",
             component: {
-              template: routeTemplate('view')
+              template: routeTemplate("view"),
             },
             meta: {
-              useParamsForDisplay: true
-            }
-          }
-        ]
-      }
-    ])
+              useParamsForDisplay: true,
+            },
+          },
+        ],
+      },
+    ]),
   ],
   parameters: {
     docs: {
-      page: mdx
-    }
-  }
+      page: mdx,
+    },
+  },
 };
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { Breadcrumb },
   setup: () => ({ args }),
-  template: '<breadcrumb v-bind="args"></breadcrumb>'
+  template: '<breadcrumb v-bind="args"></breadcrumb>',
 });
 
 export const Primary = Template.bind({});
 Primary.args = {
-  startName: 'Dashboard',
-  iconSrc: `/${iconOverview}`
+  startName: "Dashboard",
+  iconSrc: `/${iconOverview}`,
 };

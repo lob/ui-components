@@ -3,7 +3,10 @@
     :class="[
       readOnly ? 'text-gray-300' : 'text-gray-800',
       srOnlyLabel ? 'sr-only' : 'flex items-center mb-1 type-small-500',
-      { 'justify-between flex-row-reverse': tooltipContent && (tooltipPosition === 'trailing') }
+      {
+        'justify-between flex-row-reverse':
+          tooltipContent && tooltipPosition === 'trailing',
+      },
     ]"
     data-testid="labelWrapper"
   >
@@ -11,7 +14,9 @@
       v-if="tooltipContent"
       position="bottom"
       :class="['text-gray-500', { 'mr-1': tooltipPosition === 'leading' }]"
-      :data-testid="tooltipPosition === 'trailing' ? 'tooltip-trailing' : 'tooltip-leading'"
+      :data-testid="
+        tooltipPosition === 'trailing' ? 'tooltip-trailing' : 'tooltip-leading'
+      "
     >
       <template #trigger>
         <CircleInfo />
@@ -25,10 +30,7 @@
     <label :for="labelFor">
       <span>
         {{ label }}
-        <span
-          v-if="required"
-          class="ml-1 text-small-700 text-red-500"
-        >
+        <span v-if="required" class="ml-1 text-small-700 text-red-500">
           *
         </span>
       </span>
@@ -38,15 +40,15 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue';
-import Tooltip from '../Tooltip/Tooltip.vue';
-import CircleInfo from '../Icons/CircleInfo.vue';
+import { defineComponent } from "vue";
+import Tooltip from "../Tooltip/Tooltip.vue";
+import CircleInfo from "../Icons/CircleInfo.vue";
 
 export default defineComponent({
-  name: 'LobLabel',
+  name: "LobLabel",
   components: {
     Tooltip,
-    CircleInfo
+    CircleInfo,
   },
   props: {
     label: { type: String, required: true },
@@ -54,16 +56,19 @@ export default defineComponent({
     required: { type: Boolean, default: false },
     srOnlyLabel: { type: Boolean, default: false },
     tooltipContent: { type: String, default: null },
-    tooltipPosition: { type: String, default: 'leading',
+    tooltipPosition: {
+      type: String,
+      default: "leading",
       validator: function (value) {
-        return ['leading', 'trailing'].includes(value);
-      } },
-    readOnly: { type: Boolean, default: false }
+        return ["leading", "trailing"].includes(value);
+      },
+    },
+    readOnly: { type: Boolean, default: false },
   },
   computed: {
-    tooltip () {
+    tooltip() {
       return this.$slots.tooltip;
-    }
-  }
+    },
+  },
 });
 </script>

@@ -3,12 +3,12 @@
     :class="[
       'buttonContainer cursor-pointer border border-gray-300 rounded-sm pt-3 pb-3 mr-4 mb-1 customOutline',
       fullWidth ? 'w-full' : 'w-[234px]',
-      {'h-full' : fullHeight},
-      {'!pb-8' : helperText},
-      {'hover:border-gray-400': !disabled && !error},
-      {'!border-black checked': checked && !disabled && !error},
-      {'disabled !cursor-not-allowed border-gray-100': disabled},
-      {'!border-red-500 radio__input--error': error && !disabled}
+      { 'h-full': fullHeight },
+      { '!pb-8': helperText },
+      { 'hover:border-gray-400': !disabled && !error },
+      { '!border-black checked': checked && !disabled && !error },
+      { 'disabled !cursor-not-allowed border-gray-100': disabled },
+      { '!border-red-500 radio__input--error': error && !disabled },
     ]"
     @click="onInput"
   >
@@ -18,8 +18,8 @@
       type="radio"
       :class="[
         'absolute opacity-0',
-        {'radio__input--error': error},
-        {'!cursor-not-allowed': disabled}
+        { 'radio__input--error': error },
+        { '!cursor-not-allowed': disabled },
       ]"
       :name="name"
       :value="value.toString()"
@@ -28,12 +28,12 @@
       :required="required"
       @input="onInput"
       @click="onClick"
-    >
+    />
     <label
       :for="id"
       :class="[
         'relative flex type-base-500 top-[1px] left-[46px] cursor-pointer h-full pr-16',
-        {'text-gray-400 !cursor-not-allowed': disabled}
+        { 'text-gray-400 !cursor-not-allowed': disabled },
       ]"
     >
       <div>
@@ -43,8 +43,8 @@
         <div
           :class="[
             'type-xs-400 text-gray-500',
-            {'!text-gray-300' : disabled},
-            {'-mb-4' : helperText}
+            { '!text-gray-300': disabled },
+            { '-mb-4': helperText },
           ]"
         >
           {{ helperText }}
@@ -55,83 +55,83 @@
 </template>
 
 <script>
-import { getCurrentInstance } from 'vue';
+import { getCurrentInstance } from "vue";
 
 export default {
-  name: 'RadioButtonLarge',
+  name: "RadioButtonLarge",
   props: {
     id: {
       type: String,
-      required: true
+      required: true,
     },
     modelValue: {
       type: [String, Boolean],
-      default: null
+      default: null,
     },
     name: {
       type: String,
-      default: ''
+      default: "",
     },
     value: {
       type: [String, Boolean],
-      default: ''
+      default: "",
     },
     label: {
       type: String,
-      default: ''
+      default: "",
     },
     required: {
       type: Boolean,
-      default: false
+      default: false,
     },
     disabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     helperText: {
       type: String,
-      default: ''
+      default: "",
     },
     error: {
       type: Boolean,
-      default: false
+      default: false,
     },
     fullHeight: {
       type: Boolean,
-      default: false
+      default: false,
     },
     fullWidth: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
-  emits: ['update:modelValue', 'input', 'click'],
-  data () {
+  emits: ["update:modelValue", "input", "click"],
+  data() {
     return {
-      parent: null
+      parent: null,
     };
   },
   computed: {
-    checked () {
+    checked() {
       return this.modelValue === this.value;
-    }
+    },
   },
-  created () {
+  created() {
     this.parent = getCurrentInstance().parent;
   },
   methods: {
-    onInput ($event) {
+    onInput($event) {
       if (!this.disabled) {
-        this.$emit('update:modelValue', this.value);
-        this.$emit('input', this.value);
-        this.$emit('click', $event);
+        this.$emit("update:modelValue", this.value);
+        this.$emit("input", this.value);
+        this.$emit("click", $event);
         this.$refs.radioInput.focus();
       }
     },
-    onClick ($event) {
-      this.$emit('click', $event);
-    }
-  }
+    onClick($event) {
+      this.$emit("click", $event);
+    },
+  },
 };
 </script>
 
@@ -208,12 +208,14 @@ input {
   }
 }
 
-.buttonContainer:hover:not(.radio__input--error):not(.disabled):not(.checked) label::before {
+.buttonContainer:hover:not(.radio__input--error):not(.disabled):not(.checked)
+  label::before {
   @apply border-gray-500;
   @apply bg-gray-50;
 }
 
-.buttonContainer:hover:not(.radio__input--error):not(.disabled):not(.checked) label::after {
+.buttonContainer:hover:not(.radio__input--error):not(.disabled):not(.checked)
+  label::after {
   @apply bg-gray-50;
 }
 

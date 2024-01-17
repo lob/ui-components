@@ -1,5 +1,10 @@
-import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
-import FileUpload from './FileUpload.vue';
+import {
+  Preview,
+  Story,
+  ArgsTable,
+  PRIMARY_STORY,
+} from "@storybook/addon-docs";
+import FileUpload from "./FileUpload.vue";
 
 # File Upload 'Button'
 
@@ -24,11 +29,7 @@ Only one file is able to be uploaded per button.
 When a file is selected, a `fileUpload` event will be emitted along with the event object itself.
 
 ```html
-<FileUpload
-  id="file-upload"
-  label="Choose File"
-  accept=".pdf"
-/>
+<FileUpload id="file-upload" label="Choose File" accept=".pdf" />
 ```
 
 ## Props

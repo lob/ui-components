@@ -5,8 +5,8 @@
       type="radio"
       :class="[
         'absolute opacity-0',
-        {'radio__input--error': error},
-        {'!cursor-not-allowed': disabled}
+        { 'radio__input--error': error },
+        { '!cursor-not-allowed': disabled },
       ]"
       :name="name"
       :value="value.toString()"
@@ -16,12 +16,12 @@
       :readonly="readonly"
       @input="onInput"
       @click="onClick"
-    >
+    />
     <label
       :for="id"
       :class="[
         'relative flex type-base-500 left-[31px] pr-10 cursor-pointer',
-        {'text-gray-400 !cursor-not-allowed': disabled}
+        { 'text-gray-400 !cursor-not-allowed': disabled },
       ]"
     >
       <div>
@@ -30,10 +30,7 @@
         </slot>
         <div
           v-if="helperText"
-          :class="[
-            'type-xs-400 text-gray-500',
-            {'!text-gray-300' : disabled}
-          ]"
+          :class="['type-xs-400 text-gray-500', { '!text-gray-300': disabled }]"
         >
           {{ helperText }}
         </div>
@@ -43,75 +40,75 @@
 </template>
 
 <script>
-import { getCurrentInstance } from 'vue';
+import { getCurrentInstance } from "vue";
 
 export default {
-  name: 'RadioButton',
+  name: "RadioButton",
   props: {
     id: {
       type: String,
-      required: true
+      required: true,
     },
     modelValue: {
       type: [String, Boolean],
-      default: null
+      default: null,
     },
     name: {
       type: String,
-      default: ''
+      default: "",
     },
     value: {
       type: [String, Boolean],
-      default: ''
+      default: "",
     },
     label: {
       type: String,
-      default: ''
+      default: "",
     },
     required: {
       type: Boolean,
-      default: false
+      default: false,
     },
     disabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     helperText: {
       type: String,
-      default: ''
+      default: "",
     },
     error: {
       type: Boolean,
-      default: false
+      default: false,
     },
     readonly: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
-  emits: ['update:modelValue', 'input', 'click'],
-  data () {
+  emits: ["update:modelValue", "input", "click"],
+  data() {
     return {
-      parent: null
+      parent: null,
     };
   },
   computed: {
-    checked () {
+    checked() {
       return this.modelValue === this.value;
-    }
+    },
   },
-  created () {
+  created() {
     this.parent = getCurrentInstance().parent;
   },
   methods: {
-    onInput () {
-      this.$emit('update:modelValue', this.value);
-      this.$emit('input', this.value);
+    onInput() {
+      this.$emit("update:modelValue", this.value);
+      this.$emit("input", this.value);
     },
-    onClick ($event) {
-      this.$emit('click', $event);
-    }
-  }
+    onClick($event) {
+      this.$emit("click", $event);
+    },
+  },
 };
 </script>
 
@@ -191,12 +188,14 @@ input {
     @apply border-black;
   }
 
-  &:hover:not(:disabled):not(:checked):not(.radio__input--error) + label::before {
+  &:hover:not(:disabled):not(:checked):not(.radio__input--error)
+    + label::before {
     @apply border-gray-500;
     @apply bg-gray-50;
   }
 
-  &:hover:not(:disabled):not(:checked):not(.radio__input--error) + label::after {
+  &:hover:not(:disabled):not(:checked):not(.radio__input--error)
+    + label::after {
     @apply bg-gray-50;
   }
 }

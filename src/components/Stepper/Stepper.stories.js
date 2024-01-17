@@ -1,17 +1,17 @@
-import Stepper from './Stepper.vue';
-import StepperItem from './StepperItem.vue';
-import mdx from './Stepper.mdx';
+import Stepper from "./Stepper.vue";
+import StepperItem from "./StepperItem.vue";
+import mdx from "./Stepper.mdx";
 
 export default {
-  title: 'Components/Stepper',
+  title: "Components/Stepper",
   component: Stepper,
   subcomponents: { StepperItem },
   parameters: {
     docs: {
-      page: mdx
-    }
+      page: mdx,
+    },
   },
-  argTypes: {}
+  argTypes: {},
 };
 
 const Template = (args) => ({
@@ -42,27 +42,27 @@ const Template = (args) => ({
       </StepperItem>
     </Stepper>
     </div>
-    `
+    `,
 });
 
 export const Primary = Template.bind({});
 Primary.argTypes = {
   alignment: {
-    options: ['left', 'center', 'right'],
+    options: ["left", "center", "right"],
     control: {
-      type: 'select'
-    }
+      type: "select",
+    },
   },
   textVerticalAlign: {
-    options: ['bottom', 'top'],
+    options: ["bottom", "top"],
     control: {
-      type: 'select'
-    }
-  }
+      type: "select",
+    },
+  },
 };
 Primary.args = {
-  alignment: 'center',
-  textVerticalAlign: 'bottom'
+  alignment: "center",
+  textVerticalAlign: "bottom",
 };
 
 const ComplexTemplate = (args) => ({
@@ -119,7 +119,7 @@ const ComplexTemplate = (args) => ({
         </p>
       </StepperItem>
     </Stepper>
-    `
+    `,
 });
 
 export const Complex = ComplexTemplate.bind({});
@@ -132,34 +132,34 @@ const ItemTemplate = (args, { argTypes }) => ({
     <StepperItem v-bind="args">
       Some text
     </StepperItem>
-    `
+    `,
 });
 
 export const Item = ItemTemplate.bind({});
 Item.argTypes = {
   position: {
-    options: ['first', 'middle', 'last'],
+    options: ["first", "middle", "last"],
     control: {
-      type: 'select'
-    }
+      type: "select",
+    },
   },
   alignment: {
-    options: ['left', 'center', 'right'],
+    options: ["left", "center", "right"],
     control: {
-      type: 'select'
-    }
+      type: "select",
+    },
   },
   textVerticalAlign: {
-    options: ['bottom', 'top'],
+    options: ["bottom", "top"],
     control: {
-      type: 'select'
-    }
-  }
+      type: "select",
+    },
+  },
 };
 
 Item.args = {
   active: true,
   finished: true,
-  position: 'middle',
-  dashedBorder: false
+  position: "middle",
+  dashedBorder: false,
 };

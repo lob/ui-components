@@ -3,10 +3,7 @@
     :class="`w-full rounded-lg shadow-XLarge py-4 px-6 ${variantDetails.color} ${variantDetails.bgColor}`"
     data-testid="alert"
   >
-    <div
-      v-if="hasHeading"
-      class="flex justify-between items-center"
-    >
+    <div v-if="hasHeading" class="flex justify-between items-center">
       <div class="flex items-center">
         <component
           :is="variantDetails.icon"
@@ -33,10 +30,7 @@
         @close="closeAlert"
       />
     </div>
-    <div
-      v-if="hasContent"
-      class="flex items-center justify-between"
-    >
+    <div v-if="hasContent" class="flex items-center justify-between">
       <div class="flex items-center">
         <component
           :is="variantDetails.icon"
@@ -46,8 +40,9 @@
           :class="variantDetails.color"
           data-testid="alertIcon"
         />
-        <div :class="['type-small-500', {'mt-2': hasHeading && hasContent}]">
-          <slot /> <!-- text/any content goes in the default slot -->
+        <div :class="['type-small-500', { 'mt-2': hasHeading && hasContent }]">
+          <slot />
+          <!-- text/any content goes in the default slot -->
         </div>
       </div>
       <CloseButton
@@ -67,9 +62,16 @@
 </template>
 
 <script>
-import { CircleInfo, CircleCheck, CircleExclamation, TriangleExclamation, ArrowsRotate, XmarkLarge } from '@/components/Icons';
-import LobLink from '../Link/Link';
-import ArrowUpRight from '../Icons/ArrowUpRight.vue';
+import {
+  CircleInfo,
+  CircleCheck,
+  CircleExclamation,
+  TriangleExclamation,
+  ArrowsRotate,
+  XmarkLarge,
+} from "@/components/Icons";
+import LobLink from "../Link/Link";
+import ArrowUpRight from "../Icons/ArrowUpRight.vue";
 
 const LinkWithArrow = {
   template: `<LobLink
@@ -85,8 +87,8 @@ const LinkWithArrow = {
   components: { LobLink, ArrowUpRight },
   props: {
     linkSrc: String,
-    linkDisplayText: String
-  }
+    linkDisplayText: String,
+  },
 };
 
 const CloseButton = {
@@ -99,90 +101,132 @@ const CloseButton = {
     <XmarkLarge size="s" class="text-gray-500"/>
   </button>`,
   props: {
-    closeButtonAriaLabel: { type: String, default: 'Close alert' }
+    closeButtonAriaLabel: { type: String, default: "Close alert" },
   },
   components: { XmarkLarge },
   methods: {
-    closeAlert () {
-      this.$emit('close');
-    }
-  }
+    closeAlert() {
+      this.$emit("close");
+    },
+  },
 };
 
 export default {
-  name: 'Alert',
-  components: { CloseButton, LinkWithArrow, CircleInfo, CircleCheck, CircleExclamation, TriangleExclamation, ArrowsRotate },
+  name: "Alert",
+  components: {
+    CloseButton,
+    LinkWithArrow,
+    CircleInfo,
+    CircleCheck,
+    CircleExclamation,
+    TriangleExclamation,
+    ArrowsRotate,
+  },
   props: {
     variant: {
       type: String,
-      default: 'info',
+      default: "info",
       validator: function (value) {
-        return ['info', 'success', 'warning', 'refresh', 'error'].includes(value);
-      }
+        return ["info", "success", "warning", "refresh", "error"].includes(
+          value,
+        );
+      },
     },
     showIcon: {
       type: Boolean,
-      default: true
+      default: true,
     },
     showCloseButton: {
       type: Boolean,
-      default: false
+      default: false,
     },
     closeButtonAriaLabel: {
       type: String,
-      default: 'Close alert'
+      default: "Close alert",
     },
     linkSrc: {
       type: String,
-      default: null
+      default: null,
     },
     linkDisplayText: {
       type: String,
-      default: 'Learn more'
-    }
+      default: "Learn more",
+    },
   },
-  emits: ['close'],
-  data () {
+  emits: ["close"],
+  data() {
     return {
       variants: [
-        { variant: 'info', icon: 'CircleInfo', color: 'text-blue-700', bgColor: 'bg-blue-50' },
-        { variant: 'success', icon: 'CircleCheck', color: 'text-green-700', bgColor: 'bg-green-50' },
-        { variant: 'warning', icon: 'TriangleExclamation', color: 'text-orange-600', bgColor: 'bg-orange-50' },
-        { variant: 'refresh', icon: 'ArrowsRotate', color: 'text-purple-600', bgColor: 'bg-purple-50' },
-        { variant: 'error', icon: 'CircleExclamation', color: 'text-red-600', bgColor: 'bg-red-50' }
-      ] };
+        {
+          variant: "info",
+          icon: "CircleInfo",
+          color: "text-blue-700",
+          bgColor: "bg-blue-50",
+        },
+        {
+          variant: "success",
+          icon: "CircleCheck",
+          color: "text-green-700",
+          bgColor: "bg-green-50",
+        },
+        {
+          variant: "warning",
+          icon: "TriangleExclamation",
+          color: "text-orange-600",
+          bgColor: "bg-orange-50",
+        },
+        {
+          variant: "refresh",
+          icon: "ArrowsRotate",
+          color: "text-purple-600",
+          bgColor: "bg-purple-50",
+        },
+        {
+          variant: "error",
+          icon: "CircleExclamation",
+          color: "text-red-600",
+          bgColor: "bg-red-50",
+        },
+      ],
+    };
   },
   computed: {
-    info () {
-      return this.variant === 'info';
+    info() {
+      return this.variant === "info";
     },
-    success () {
-      return this.variant === 'success';
+    success() {
+      return this.variant === "success";
     },
-    warning () {
-      return this.variant === 'warning';
+    warning() {
+      return this.variant === "warning";
     },
-    refresh () {
-      return this.variant === 'refresh';
+    refresh() {
+      return this.variant === "refresh";
     },
-    error () {
-      return this.variant === 'error';
+    error() {
+      return this.variant === "error";
     },
-    variantDetails () {
-      const selectedVariant = this.variants.find((currentVariant) => currentVariant.variant === this.variant);
-      return { icon: selectedVariant.icon, color: selectedVariant.color, bgColor: selectedVariant.bgColor };
+    variantDetails() {
+      const selectedVariant = this.variants.find(
+        (currentVariant) => currentVariant.variant === this.variant,
+      );
+      return {
+        icon: selectedVariant.icon,
+        color: selectedVariant.color,
+        bgColor: selectedVariant.bgColor,
+      };
     },
-    hasHeading () {
+    hasHeading() {
       return Boolean(this.$slots.heading);
     },
-    hasContent () {
+    hasContent() {
       return Boolean(this.$slots.default);
-    }
+    },
   },
   methods: {
-    closeAlert () {
-      this.$emit('close');
-    }
-  }
+    closeAlert() {
+      this.$emit("close");
+    },
+  },
 };
 </script>

@@ -6,22 +6,22 @@
 
 <script>
 export default {
-  name: 'LobTable',
+  name: "LobTable",
   props: {
     space: {
       type: String,
-      default: 'md',
+      default: "md",
       validator: function (value) {
-        return ['sm', 'md', 'lg'].includes(value);
-      }
-    }
+        return ["sm", "md", "lg"].includes(value);
+      },
+    },
   },
   computed: {
-    spaceClassName () {
+    spaceClassName() {
       return `space-${this.space}`;
-    }
+    },
   },
-  methods: {}
+  methods: {},
 };
 </script>
 

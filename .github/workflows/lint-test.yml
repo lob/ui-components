@@ -5,7 +5,7 @@ on:
     branches-ignore:
       - main
     tags-ignore:
-      - '**'
+      - "**"
 
 jobs:
   # Run lint and tests
@@ -19,7 +19,7 @@ jobs:
 
       # Setup node and npm with the versions defined in package.json engines.
       - name: Install node and npm
-        uses: './.github/actions/install-node-and-npm'
+        uses: "./.github/actions/install-node-and-npm"
 
       - name: Install dependencies
         run: npm ci --legacy-peer-deps

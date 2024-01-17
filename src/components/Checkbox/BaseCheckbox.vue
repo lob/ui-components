@@ -9,62 +9,62 @@
     :required="required"
     @input="onInput"
     @click="onClick"
-  >
+  />
 </template>
 
 <script>
 export default {
-  name: 'BaseCheckbox',
+  name: "BaseCheckbox",
   props: {
     modelValue: {
       type: [Array, Boolean],
-      default: null
+      default: null,
     },
     name: {
       type: String,
-      required: true
+      required: true,
     },
     value: {
       type: [String, Boolean],
-      default: null
+      default: null,
     },
     disabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     required: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
-  emits: ['update:modelValue', 'input', 'click'],
+  emits: ["update:modelValue", "input", "click"],
   computed: {
-    checked () {
-      if (this.modelValue && typeof this.modelValue === 'object') {
+    checked() {
+      if (this.modelValue && typeof this.modelValue === "object") {
         return this.modelValue.includes(this.value);
       }
       return this.modelValue;
-    }
+    },
   },
   methods: {
-    onInput ($event) {
-      if (this.modelValue && typeof this.modelValue === 'object') {
+    onInput($event) {
+      if (this.modelValue && typeof this.modelValue === "object") {
         const checked = [...this.modelValue];
         if (checked.includes(this.value)) {
           checked.splice(checked.indexOf(this.value), 1);
         } else {
           checked.push(this.value);
         }
-        this.$emit('update:modelValue', checked);
-        this.$emit('input', checked);
+        this.$emit("update:modelValue", checked);
+        this.$emit("input", checked);
       } else {
-        this.$emit('update:modelValue', $event.target.checked);
-        this.$emit('input', $event.target.checked);
+        this.$emit("update:modelValue", $event.target.checked);
+        this.$emit("input", $event.target.checked);
       }
     },
-    onClick ($event) {
-      this.$emit('click', $event);
-    }
-  }
+    onClick($event) {
+      this.$emit("click", $event);
+    },
+  },
 };
 </script>

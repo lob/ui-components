@@ -12,10 +12,7 @@
       @keydown.space.stop="isOpen = !isOpen"
     >
       <template #iconRight>
-        <Calendar
-          :size="size==='small'? 's' : 'l'"
-          class="text-gray-900"
-        />
+        <Calendar :size="size === 'small' ? 's' : 'l'" class="text-gray-900" />
       </template>
     </TextInput>
     <Datepicker
@@ -24,7 +21,7 @@
       v-model:open="isOpen"
       :min="min"
       :max="max"
-      :class="['absolute w-72', {'right-0' : rightJustified}]"
+      :class="['absolute w-72', { 'right-0': rightJustified }]"
       :disable-weekends="disableWeekends"
       :disable-holidays="disableHolidays"
     />
@@ -40,103 +37,103 @@
 </template>
 
 <script>
-import { format } from 'date-fns';
-import TextInput from '../TextInput/TextInput';
-import Datepicker from '../Datepicker/Datepicker';
-import Calendar from '../Icons/Calendar.vue';
-import CircleExclamation from '../Icons/CircleExclamation.vue';
+import { format } from "date-fns";
+import TextInput from "../TextInput/TextInput";
+import Datepicker from "../Datepicker/Datepicker";
+import Calendar from "../Icons/Calendar.vue";
+import CircleExclamation from "../Icons/CircleExclamation.vue";
 
 export default {
-  name: 'DateInput',
+  name: "DateInput",
   components: { TextInput, Datepicker, Calendar, CircleExclamation },
   props: {
     id: {
       type: String,
-      required: true
+      required: true,
     },
     label: {
       type: String,
-      required: true
+      required: true,
     },
     modelValue: {
       type: Date,
-      default: null
+      default: null,
     },
     open: {
       type: Boolean,
-      required: true
+      required: true,
     },
     srOnlyLabel: {
       type: Boolean,
-      default: false
+      default: false,
     },
     min: {
       type: Date,
-      default: new Date(new Date().setMonth(new Date().getMonth() - 12))
+      default: new Date(new Date().setMonth(new Date().getMonth() - 12)),
     },
     max: {
       type: Date,
-      default: new Date(new Date().setMonth(new Date().getMonth() + 12))
+      default: new Date(new Date().setMonth(new Date().getMonth() + 12)),
     },
     rightJustified: {
       type: Boolean,
-      default: false
+      default: false,
     },
     size: {
       type: String,
-      default: 'default',
+      default: "default",
       validator: function (value) {
-        return ['default', 'small'].includes(value);
-      }
+        return ["default", "small"].includes(value);
+      },
     },
     disableWeekends: {
       type: Boolean,
-      default: false
+      default: false,
     },
     disableHolidays: {
       type: Boolean,
-      default: false
+      default: false,
     },
     error: {
       type: Boolean,
-      default: false
+      default: false,
     },
     errorMessage: {
       type: [String, null],
-      default: null
-    }
+      default: null,
+    },
   },
-  emits: ['update:modelValue', 'update:open'],
+  emits: ["update:modelValue", "update:open"],
   computed: {
     date: {
-      get () {
+      get() {
         return this.modelValue;
       },
-      set (date) {
-        this.$emit('update:modelValue', date);
-      }
+      set(date) {
+        this.$emit("update:modelValue", date);
+      },
     },
     isOpen: {
-      get () {
+      get() {
         return this.open;
       },
-      set (isOpen) {
-        this.$emit('update:open', isOpen);
-      }
+      set(isOpen) {
+        this.$emit("update:open", isOpen);
+      },
     },
-    dateString () {
+    dateString() {
       if (this.date) {
-        return format(this.date, this.t('dateFormat'));
+        return format(this.date, this.t("dateFormat"));
       } else {
-        return '';
+        return "";
       }
     },
-    datepickerId () {
+    datepickerId() {
       return `${this.id}-datepicker`;
     },
-    inputId () {
+    inputId() {
       return `${this.id}-input`;
-    }
-  }
+    },
+  },
 };
 </script>

@@ -1,5 +1,10 @@
-import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
-import ToggleButton from './ToggleButton.vue';
+import {
+  Preview,
+  Story,
+  ArgsTable,
+  PRIMARY_STORY,
+} from "@storybook/addon-docs";
+import ToggleButton from "./ToggleButton.vue";
 
 # Toggle Button
 
@@ -18,11 +23,7 @@ The label and v-model are required. The other props are optional.
 To use this toggle button as a simple boolean, here is an example
 
 ```html
-<toggle-button
-  label="I am a toggle button"
-  v-model="mySwitch"
->
-</toggle-button>
+<toggle-button label="I am a toggle button" v-model="mySwitch"> </toggle-button>
 ```
 
 To use this toggle button in a list to indicate an array of selected options, use the same v-model for all buttons. It will be an array of strings.
@@ -31,25 +32,25 @@ Here is an example
 
 ```html
 <div>
-    <toggle-button
-      label="Chocolate"
-      v-model="selectedIceCreamFlavors"
-      name="chocolate"
-      value="chocolate"
-    />
-    <toggle-button
-      label="Vanilla"
-      v-model="selectedIceCreamFlavors"
-      name="vanilla"
-      value="vanilla"
-    />
-    <toggle-button
-      label="Strawberry"
-      v-model="selectedIceCreamFlavors"
-      name="strawberry"
-      value="strawberry"
-    />
-  </div>
+  <toggle-button
+    label="Chocolate"
+    v-model="selectedIceCreamFlavors"
+    name="chocolate"
+    value="chocolate"
+  />
+  <toggle-button
+    label="Vanilla"
+    v-model="selectedIceCreamFlavors"
+    name="vanilla"
+    value="vanilla"
+  />
+  <toggle-button
+    label="Strawberry"
+    v-model="selectedIceCreamFlavors"
+    name="strawberry"
+    value="strawberry"
+  />
+</div>
 ```
 
 ## Props

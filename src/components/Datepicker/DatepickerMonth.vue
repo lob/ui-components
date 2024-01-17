@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="text-sm grid gap-y-3"
-    :aria-labelledby="labelledById"
-  >
+  <div class="text-sm grid gap-y-3" :aria-labelledby="labelledById">
     <header class="grid grid-cols-7 gap-3">
       <div
         v-for="dayName in mapWithOffset(dayNames, firstDayOfWeek)"
@@ -19,11 +16,7 @@
       :key="week"
       class="grid grid-cols-7 gap-3"
     >
-      <div
-        v-for="date in week"
-        :key="date"
-        class=""
-      >
+      <div v-for="date in week" :key="date" class="">
         <DatepickerDay
           :ref="isFocused(date) ? 'focusedDate' : null"
           :date="date"
@@ -42,75 +35,81 @@
 </template>
 
 <script>
-import { getViewOfMonth, isEqual, inRange, isEqualMonth, isWeekend } from '@/utils';
-import DatepickerDay from './DatepickerDay.vue';
-import { isBankHoliday } from 'date-fns-holiday-us';
+import {
+  getViewOfMonth,
+  isEqual,
+  inRange,
+  isEqualMonth,
+  isWeekend,
+} from "@/utils";
+import DatepickerDay from "./DatepickerDay.vue";
+import { isBankHoliday } from "date-fns-holiday-us";
 
 export default {
-  name: 'DatepickerMonth',
+  name: "DatepickerMonth",
   components: { DatepickerDay },
   props: {
     focusedDate: {
       type: Date,
-      default: null
+      default: null,
     },
     selectedDate: {
       type: Date,
-      default: null
+      default: null,
     },
     labelledById: {
       type: String,
-      default: ''
+      default: "",
     },
     firstDayOfWeek: {
       type: Number,
-      default: 0
+      default: 0,
     },
     min: {
       type: Date,
-      required: true
+      required: true,
     },
     max: {
       type: Date,
-      required: true
+      required: true,
     },
     isDateDisabled: {
       type: Function,
-      default: null
+      default: null,
     },
     disableWeekends: {
       type: Boolean,
-      default: false
+      default: false,
     },
     disableHolidays: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
-  emits: ['dateSelect', 'click', 'keydown'],
-  data () {
+  emits: ["dateSelect", "click", "keydown"],
+  data() {
     return {
-      today: new Date()
+      today: new Date(),
     };
   },
   computed: {
-    days () {
+    days() {
       return getViewOfMonth(this.focusedDate, this.firstDayOfWeek);
     },
-    dayNames () {
+    dayNames() {
       return [
-        this.t('datepicker.dayNameZero'),
-        this.t('datepicker.dayNameOne'),
-        this.t('datepicker.dayNameTwo'),
-        this.t('datepicker.dayNameThree'),
-        this.t('datepicker.dayNameFour'),
-        this.t('datepicker.dayNameFive'),
-        this.t('datepicker.dayNameSix')
+        this.t("datepicker.dayNameZero"),
+        this.t("datepicker.dayNameOne"),
+        this.t("datepicker.dayNameTwo"),
+        this.t("datepicker.dayNameThree"),
+        this.t("datepicker.dayNameFour"),
+        this.t("datepicker.dayNameFive"),
+        this.t("datepicker.dayNameSix"),
       ];
-    }
+    },
   },
   methods: {
-    chunk (array, chunkSize) {
+    chunk(array, chunkSize) {
       const result = [];
 
       for (let i = 0; i < array.length; i += chunkSize) {
@@ -119,46 +118,53 @@ export default {
 
       return result;
     },
-    mapWithOffset (array, startingOffset) {
+    mapWithOffset(array, startingOffset) {
       return array.map((_, i) => {
         const adjustedIndex = (i + startingOffset) % array.length;
         return array[adjustedIndex];
       });
     },
-    isToday (date) {
+    isToday(date) {
       return isEqual(date, this.today);
     },
-    isFocused (date) {
+    isFocused(date) {
       return isEqual(date, this.focusedDate);
     },
-    isSelected (date) {
+    isSelected(date) {
       return isEqual(date, this.selectedDate);
     },
-    isDisabled (date) {
+    isDisabled(date) {
       const isInSameMonth = isEqualMonth(date, this.focusedDate);
       const isInRange = inRange(date, this.min, this.max);
-      const isDateDisabled = this.isDateDisabled ? this.isDateDisabled(date) : false;
-      return !isInSameMonth || !isInRange || isDateDisabled ||
-       (this.disableWeekends && isWeekend(date)) || (this.disableHolidays && isBankHoliday(date));
+      const isDateDisabled = this.isDateDisabled
+        ? this.isDateDisabled(date)
+        : false;
+      return (
+        !isInSameMonth ||
+        !isInRange ||
+        isDateDisabled ||
+        (this.disableWeekends && isWeekend(date)) ||
+        (this.disableHolidays && isBankHoliday(date))
+      );
     },
-    isInRange (date) {
+    isInRange(date) {
       return inRange(date, this.min, this.max);
     },
-    onDateSelect (value) {
-      this.$emit('dateSelect', value);
+    onDateSelect(value) {
+      this.$emit("dateSelect", value);
     },
-    onClick (value) {
-      this.$emit('click', value);
+    onClick(value) {
+      this.$emit("click", value);
     },
-    onKeydown ($event) {
-      this.$emit('keydown', $event);
+    onKeydown($event) {
+      this.$emit("keydown", $event);
     },
-    focusDate () {
+    focusDate() {
       if (this.$refs.focusedDate) {
         // focusedDate is an array because it's set inside a v-for but there should only ever be 1
         this.$refs.focusedDate[0].focus();
       }
-    }
-  }
+    },
+  },
 };
 </script>

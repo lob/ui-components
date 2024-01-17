@@ -1,20 +1,20 @@
-import RadioGroup from './RadioGroup.vue';
-import RadioButton from '../RadioButton/RadioButton.vue';
-import RadioButtonLarge from '../RadioButtonLarge/RadioButtonLarge.vue';
-import mdx from './RadioGroup.mdx';
+import RadioGroup from "./RadioGroup.vue";
+import RadioButton from "../RadioButton/RadioButton.vue";
+import RadioButtonLarge from "../RadioButtonLarge/RadioButtonLarge.vue";
+import mdx from "./RadioGroup.mdx";
 
 export default {
-  title: 'Components/Radio Group',
+  title: "Components/Radio Group",
   component: RadioGroup,
   subcomponents: { RadioButton, RadioButtonLarge },
   parameters: {
     docs: {
-      page: mdx
-    }
-  }
+      page: mdx,
+    },
+  },
 };
 
-const radioModel = '4x6';
+const radioModel = "4x6";
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
@@ -45,16 +45,16 @@ const Template = (args, { argTypes }) => ({
         v-model="radioModel"
       />
     </radio-group>
-  `
+  `,
 });
 
 export const Primary = Template.bind({});
 Primary.args = {
-  legend: 'Postcard Size',
-  separateLines: false
+  legend: "Postcard Size",
+  separateLines: false,
 };
 
-const booleanModel = '';
+const booleanModel = "";
 
 const BooleanTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
@@ -78,16 +78,16 @@ const BooleanTemplate = (args, { argTypes }) => ({
         v-model="booleanModel"
       />
     </radio-group>
-  `
+  `,
 });
 
 export const Boolean = BooleanTemplate.bind({});
 Boolean.args = {
-  legend: 'Postcard Size',
-  separateLines: false
+  legend: "Postcard Size",
+  separateLines: false,
 };
 
-const withHelperTextModel = '';
+const withHelperTextModel = "";
 
 const WithHelperTextTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
@@ -121,16 +121,16 @@ const WithHelperTextTemplate = (args, { argTypes }) => ({
     helper-text="This is helper text"
   />
     </radio-group>
-  `
+  `,
 });
 
 export const WithHelperText = WithHelperTextTemplate.bind({});
 WithHelperText.args = {
-  legend: 'Postcard Size',
-  separateLines: false
+  legend: "Postcard Size",
+  separateLines: false,
 };
 
-const largeGroupModel = '4x6';
+const largeGroupModel = "4x6";
 
 const LargeGroupTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
@@ -161,16 +161,16 @@ const LargeGroupTemplate = (args, { argTypes }) => ({
     v-model="largeGroupModel"
   />
     </radio-group>
-  `
+  `,
 });
 
 export const LargeGroup = LargeGroupTemplate.bind({});
 LargeGroup.args = {
-  legend: 'Postcard Size',
-  separateLines: false
+  legend: "Postcard Size",
+  separateLines: false,
 };
 
-const largeGroupWithFullHeightModel = '';
+const largeGroupWithFullHeightModel = "";
 
 const LargeGroupWithFullHeightTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
@@ -204,12 +204,13 @@ const LargeGroupWithFullHeightTemplate = (args, { argTypes }) => ({
         />
       </div>
     </radio-group>
-  `
+  `,
 });
 
-export const LargeGroupWithFullHeight = LargeGroupWithFullHeightTemplate.bind({});
+export const LargeGroupWithFullHeight = LargeGroupWithFullHeightTemplate.bind(
+  {},
+);
 LargeGroupWithFullHeight.args = {
-  legend: 'Postcard Size',
-  separateLines: false
+  legend: "Postcard Size",
+  separateLines: false,
 };
-

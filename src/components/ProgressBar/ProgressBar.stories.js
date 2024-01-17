@@ -1,27 +1,26 @@
-import ProgressBar from './ProgressBar.vue';
-import mdx from './ProgressBar.mdx';
+import ProgressBar from "./ProgressBar.vue";
+import mdx from "./ProgressBar.mdx";
 
 export default {
-  title: 'Components/ProgressBar',
+  title: "Components/ProgressBar",
   component: ProgressBar,
   parameters: {
     docs: {
-      page: mdx
-    }
-  }
+      page: mdx,
+    },
+  },
 };
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: {  ProgressBar },
+  components: { ProgressBar },
   setup: () => ({ args }),
-  template: '<ProgressBar v-bind="args" />'
+  template: '<ProgressBar v-bind="args" />',
 });
 
 export const Indeterminate = Template.bind({});
 
 export const WithPercentage = Template.bind({});
 WithPercentage.args = {
-  percentage: 25
+  percentage: 25,
 };
-

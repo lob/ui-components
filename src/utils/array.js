@@ -8,17 +8,17 @@
  */
 
 /**
-* Returns the index of the last element in the array where predicate is true, and -1
-* otherwise.
-* @param {callbackFn} predicate findLastIndex calls predicate once for each element of the array, in descending
-* order, until it finds one where predicate returns true. If such an element is found,
-* findLastIndex immediately returns that element index. Otherwise, findLastIndex returns -1.
-* @param {Object[]} thisArg Value to use as this when executing callbackFn. (optional)
-* @return {number} The index
-*/
-export function findLastIndex (predicate, thisArg) {
+ * Returns the index of the last element in the array where predicate is true, and -1
+ * otherwise.
+ * @param {callbackFn} predicate findLastIndex calls predicate once for each element of the array, in descending
+ * order, until it finds one where predicate returns true. If such an element is found,
+ * findLastIndex immediately returns that element index. Otherwise, findLastIndex returns -1.
+ * @param {Object[]} thisArg Value to use as this when executing callbackFn. (optional)
+ * @return {number} The index
+ */
+export function findLastIndex(predicate, thisArg) {
   // The callback must be a function.
-  if (typeof predicate !== 'function') {
+  if (typeof predicate !== "function") {
     throw new TypeError();
   }
 
@@ -37,10 +37,12 @@ export function findLastIndex (predicate, thisArg) {
  * @param {Array} filterArray The secondary array to 'filter' by
  * @returns {Array} The elements of the base array that do not exist in the secondary array
  */
-export function filterArrayByArray (baseArray, filterArray) {
-  const hasObjects = baseArray.every((o) => typeof o === 'object');
+export function filterArrayByArray(baseArray, filterArray) {
+  const hasObjects = baseArray.every((o) => typeof o === "object");
   if (hasObjects) {
-    return baseArray.filter((obj1) => !filterArray.some((obj2) => obj1.label === obj2.label));
+    return baseArray.filter(
+      (obj1) => !filterArray.some((obj2) => obj1.label === obj2.label),
+    );
   } else {
     return baseArray.filter((item) => !filterArray.includes(item));
   }

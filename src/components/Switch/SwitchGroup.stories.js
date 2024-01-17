@@ -1,20 +1,20 @@
-import SwitchGroup from './SwitchGroup.vue';
-import SwitchItem from './SwitchItem.vue';
-import { Globe, TableLayout } from '@/components/Icons';
-import mdx from './SwitchGroup.mdx';
+import SwitchGroup from "./SwitchGroup.vue";
+import SwitchItem from "./SwitchItem.vue";
+import { Globe, TableLayout } from "@/components/Icons";
+import mdx from "./SwitchGroup.mdx";
 
 export default {
-  title: 'Components/Switch Group',
+  title: "Components/Switch Group",
   component: SwitchGroup,
   subcomponents: { SwitchItem },
   parameters: {
     docs: {
-      page: mdx
-    }
-  }
+      page: mdx,
+    },
+  },
 };
 
-const switchModel = 'test';
+const switchModel = "test";
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
@@ -26,16 +26,16 @@ const Template = (args, { argTypes }) => ({
       <switch-item name="mode" label="Test" value="test" v-model="switchModel" />
       <switch-item name="mode" label="Live" value="live" v-model="switchModel" />
     </switch-group>
-  `
+  `,
 });
 
 export const Primary = Template.bind({});
 Primary.args = {
-  legend: 'Environment mode',
-  srOnlyLegend: true
+  legend: "Environment mode",
+  srOnlyLegend: true,
 };
 
-const selectionModel = 'selection1';
+const selectionModel = "selection1";
 
 const TemplateWithThreeItems = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
@@ -48,13 +48,13 @@ const TemplateWithThreeItems = (args, { argTypes }) => ({
       <switch-item name="mode" label="Selection 2" value="selection2" v-model="switchModel" />
       <switch-item name="mode" label="Selection 3" value="selection3" v-model="switchModel" />
     </switch-group>
-  `
+  `,
 });
 
 export const WithMoreOptions = TemplateWithThreeItems.bind({});
 WithMoreOptions.args = {
-  legend: 'Mode selection',
-  srOnlyLegend: true
+  legend: "Mode selection",
+  srOnlyLegend: true,
 };
 
 const WithDisabledTemplate = (args, { argTypes }) => ({
@@ -67,16 +67,16 @@ const WithDisabledTemplate = (args, { argTypes }) => ({
       <switch-item name="mode" label="Selection 1" value="selection1" v-model="switchModel" />
       <switch-item name="mode" label="Selection 2" value="selection2" v-model="switchModel" disabled />
     </switch-group>
-  `
+  `,
 });
 
 export const WithDisabled = WithDisabledTemplate.bind({});
 WithDisabled.args = {
-  legend: 'Environment mode',
-  srOnlyLegend: true
+  legend: "Environment mode",
+  srOnlyLegend: true,
 };
 
-const withIconsModel = 'map';
+const withIconsModel = "map";
 
 const WithIconsTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
@@ -104,11 +104,11 @@ const WithIconsTemplate = (args, { argTypes }) => ({
         <TableLayout size="l" />
       </switch-item>
     </switch-group>
-  `
+  `,
 });
 
 export const WithIcons = WithIconsTemplate.bind({});
 WithIcons.args = {
-  legend: 'Chart type',
-  srOnlyLegend: true
+  legend: "Chart type",
+  srOnlyLegend: true,
 };

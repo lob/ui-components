@@ -4,15 +4,24 @@
     ref="date"
     :class="[
       'rounded-full text-small leading-6 text-gray-900 bg-transparent p-4 my-1 cursor-pointer inline-flex items-center justify-center w-6 h-6 relative text-center hover:bg-white-300 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
-      {'!text-gray-100 !bg-transparent': disabled},
-      {'cursor-default pointer-events-none': isOutsideRange},
-      {'bg-gray-100': today},
-      {'z-10 !bg-primary-500 text-white shadow-input border border-white': selected},
-      {'border border-gray-100 hover:border-white hover:shadow-input focus:bg-white-300' : selectableRange && selectable},
-      {'!cursor-not-allowed focus:ring-0 hover:bg-transparent' : selectableRange && notSelectable}
+      { '!text-gray-100 !bg-transparent': disabled },
+      { 'cursor-default pointer-events-none': isOutsideRange },
+      { 'bg-gray-100': today },
+      {
+        'z-10 !bg-primary-500 text-white shadow-input border border-white':
+          selected,
+      },
+      {
+        'border border-gray-100 hover:border-white hover:shadow-input focus:bg-white-300':
+          selectableRange && selectable,
+      },
+      {
+        '!cursor-not-allowed focus:ring-0 hover:bg-transparent':
+          selectableRange && notSelectable,
+      },
     ]"
     :role="disabled ? 'button' : null"
-    :tabindex="focused ? 0: -1"
+    :tabindex="focused ? 0 : -1"
     :disabled="disabled || isOutsideRange"
     :aria-pressed="disabled ? false : selected"
     :aria-disabled="disabled"
@@ -25,78 +34,81 @@
 </template>
 
 <script>
-import { addDays } from 'date-fns';
+import { addDays } from "date-fns";
 
 export default {
-  name: 'CalendarDay',
+  name: "CalendarDay",
   props: {
     date: {
       type: Date,
-      default: null
+      default: null,
     },
     today: {
       type: Boolean,
-      default: false
+      default: false,
     },
     focused: {
       type: Boolean,
-      default: false
+      default: false,
     },
     selected: {
       type: Boolean,
-      default: false
+      default: false,
     },
     disabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     inRange: {
       type: Boolean,
-      default: true
+      default: true,
     },
     selectableRange: {
       type: Number,
-      default: null
-    }
-  },
-  emits: ['click', 'dateSelect', 'keydown'],
-  computed: {
-    tag () {
-      return this.disabled ? 'span' : 'button';
+      default: null,
     },
-    currentDate () {
+  },
+  emits: ["click", "dateSelect", "keydown"],
+  computed: {
+    tag() {
+      return this.disabled ? "span" : "button";
+    },
+    currentDate() {
       return this.date.getDate();
     },
-    formattedCurrentDate () {
+    formattedCurrentDate() {
       return new Intl.DateTimeFormat().format(this.date);
     },
-    isOutsideRange () {
+    isOutsideRange() {
       return !this.inRange;
     },
-    selectable () {
-      return (new Date(this.date) > new Date() || this.today) && new Date(this.date) < addDays(new Date(), this.selectableRange || 1);
+    selectable() {
+      return (
+        (new Date(this.date) > new Date() || this.today) &&
+        new Date(this.date) < addDays(new Date(), this.selectableRange || 1)
+      );
     },
-    notSelectable () {
+    notSelectable() {
       return !this.selectable;
-    }
+    },
   },
   methods: {
-    onClick ($event) {
+    onClick($event) {
       if (this.selectableRange && !this.selectable) {
         return;
       }
-      this.$emit('click', $event);
-      this.$emit('dateSelect', this.date);
+      this.$emit("click", $event);
+      this.$emit("dateSelect", this.date);
     },
-    onKeydown ($event) {
+    onKeydown($event) {
       if (this.selectableRange && !this.selectable) {
         return;
       }
-      this.$emit('keydown', $event);
+      this.$emit("keydown", $event);
     },
-    focus () {
+    focus() {
       this.$refs.date.focus();
-    }
-  }
+    },
+  },
 };
 </script>

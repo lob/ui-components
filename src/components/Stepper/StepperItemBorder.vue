@@ -1,27 +1,22 @@
 <template>
-  <div
-    :class="[
-      'w-full text-white',
-      {'custom-color': color}
-    ]"
-  >
+  <div :class="['w-full text-white', { 'custom-color': color }]">
     <div
       :class="[
         'stepper-item-border flex flex-col relative border-primary-500',
-        {'custom-border-color': borderColor},
-        {'items-start': alignLeft},
-        {'items-center': alignCenter},
-        {'items-end': alignRight},
-        {'border-none': alignLeft && last},
-        {'half-border': alignCenter},
-        {'half-border-right': first},
-        {'half-border-left': last},
-        {'half-border-bottom': (first || last) && textBottom},
-        {'half-border-top': (first || last) && textTop},
-        {'border-none': alignRight && first},
-        {'border-dashed': dashedBorder},
-        {'border-t': textBottom},
-        {'border-b': textTop}
+        { 'custom-border-color': borderColor },
+        { 'items-start': alignLeft },
+        { 'items-center': alignCenter },
+        { 'items-end': alignRight },
+        { 'border-none': alignLeft && last },
+        { 'half-border': alignCenter },
+        { 'half-border-right': first },
+        { 'half-border-left': last },
+        { 'half-border-bottom': (first || last) && textBottom },
+        { 'half-border-top': (first || last) && textTop },
+        { 'border-none': alignRight && first },
+        { 'border-dashed': dashedBorder },
+        { 'border-t': textBottom },
+        { 'border-b': textTop },
       ]"
     />
   </div>
@@ -29,49 +24,49 @@
 
 <script>
 export default {
-  name: 'StepperItemBorder',
+  name: "StepperItemBorder",
   props: {
     borderColor: {
       type: String,
-      default: null
+      default: null,
     },
     color: {
       type: String,
-      default: null
+      default: null,
     },
     alignLeft: {
       type: Boolean,
-      required: true
+      required: true,
     },
     alignCenter: {
       type: Boolean,
-      required: true
+      required: true,
     },
     alignRight: {
       type: Boolean,
-      required: true
+      required: true,
     },
     first: {
       type: Boolean,
-      required: true
+      required: true,
     },
     last: {
       type: Boolean,
-      required: true
+      required: true,
     },
     textBottom: {
       type: Boolean,
-      required: true
+      required: true,
     },
     textTop: {
       type: Boolean,
-      required: true
+      required: true,
     },
     dashedBorder: {
       type: Boolean,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 };
 </script>
 
@@ -121,6 +116,8 @@ export default {
 }
 
 .custom-border-color {
-  border-color: v-bind(borderColor); /* stylelint-disable-line value-keyword-case */
+  border-color: v-bind(
+    borderColor
+  ); /* stylelint-disable-line value-keyword-case */
 }
 </style>

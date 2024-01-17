@@ -1,35 +1,47 @@
-import routeDecorator, { routeTemplate } from '../../../.storybook/routeDecorator';
-import TopNavbar from './TopNavbar.vue';
-import mdx from './TopNavbar.mdx';
-import TopNavDropdown from '@/components/TopNavDropdown/TopNavDropdown.vue';
-import TopNavDropdownItem from '@/components/TopNavDropdown/TopNavDropdownItem.vue';
-import TopNavButton from '@/components/TopNavDropdown/TopNavButton.vue';
-import { Signal, Map, PersonToPortal, CircleQuestion, Gear } from '../Icons';
+import routeDecorator, {
+  routeTemplate,
+} from "../../../.storybook/routeDecorator";
+import TopNavbar from "./TopNavbar.vue";
+import mdx from "./TopNavbar.mdx";
+import TopNavDropdown from "@/components/TopNavDropdown/TopNavDropdown.vue";
+import TopNavDropdownItem from "@/components/TopNavDropdown/TopNavDropdownItem.vue";
+import TopNavButton from "@/components/TopNavDropdown/TopNavButton.vue";
+import { Signal, Map, PersonToPortal, CircleQuestion, Gear } from "../Icons";
 
 export default {
-  title: 'Components/Top Navbar',
+  title: "Components/Top Navbar",
   component: TopNavbar,
   subcomponents: { TopNavDropdown, TopNavDropdownItem, TopNavButton },
   parameters: {
     docs: {
-      page: mdx
-    }
+      page: mdx,
+    },
   },
   decorators: [
-    routeDecorator('/', [
+    routeDecorator("/", [
       {
-        path: '/settings/main/account',
+        path: "/settings/main/account",
         component: {
-          template: routeTemplate('account')
-        }
-      }
-    ])
-  ]
+          template: routeTemplate("account"),
+        },
+      },
+    ]),
+  ],
 };
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { TopNavbar, TopNavDropdown, TopNavDropdownItem, TopNavButton, Signal, Map, PersonToPortal, CircleQuestion, Gear },
+  components: {
+    TopNavbar,
+    TopNavDropdown,
+    TopNavDropdownItem,
+    TopNavButton,
+    Signal,
+    Map,
+    PersonToPortal,
+    CircleQuestion,
+    Gear,
+  },
   setup: () => ({ args }),
   template: `
     <TopNavbar v-bind="args">
@@ -68,9 +80,8 @@ const Template = (args, { argTypes }) => ({
       </div>
       </div>
     </TopNavbar>
-  `
+  `,
 });
 
 export const Primary = Template.bind({});
-Primary.args = {
-};
+Primary.args = {};

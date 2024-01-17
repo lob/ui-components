@@ -1,5 +1,7 @@
 <template>
-  <span :class="[{ 'cursor-not-allowed': disabled, 'cursor-pointer': !disabled }]">
+  <span
+    :class="[{ 'cursor-not-allowed': disabled, 'cursor-pointer': !disabled }]"
+  >
     <component
       :is="tag"
       :[linkProp]="to"
@@ -7,28 +9,51 @@
       :rel="target === '_blank' ? 'noopener noreferrer' : ''"
       :aria-disabled="disabled"
       v-bind="$attrs"
-      :class=" [
+      :class="[
         { 'pointer-events-none': disabled },
-        { 'underline': isLink && underline },
+        { underline: isLink && underline },
         { [`type-${size}-600`]: isLink },
         { [`type-${size}-800 no-underline`]: isLink && bold },
-        isLink ? 'text-blue-600 hover:text-blue-500' : 'flex justify-center items-center rounded-full',
+        isLink
+          ? 'text-blue-600 hover:text-blue-500'
+          : 'flex justify-center items-center rounded-full',
         'focus-visible:outline-1 focus-visible:outline-dashed focus-visible:outline-black focus-visible:outline-offset-1 focus:ring-0 whitespace-nowrap h-min',
-        { 'type-xs-700 py-2 px-4': isButton && size==='small' },
-        { 'type-small-700 py-2 px-4': isButton && size==='base' },
-        { 'type-small-700 py-3 px-5': isButton && size==='large' },
-        { 'type-base-700 py-[14px] px-6': isButton && size==='xl' },
+        { 'type-xs-700 py-2 px-4': isButton && size === 'small' },
+        { 'type-small-700 py-2 px-4': isButton && size === 'base' },
+        { 'type-small-700 py-3 px-5': isButton && size === 'large' },
+        { 'type-base-700 py-[14px] px-6': isButton && size === 'xl' },
         { '!text-gray-400': isLink && disabled },
-        { 'bg-black text-white hover:bg-gray-700 hover:text-white active:bg-gray-800 focus:bg-gray-800' : primaryButton },
-        { 'bg-white text-gray-800 border border-gray-800 hover:bg-gray-50 hover:text-gray-800 focus:border-gray-800 active:bg-gray-100 focus:bg-gray-100' : secondaryButton },
+        {
+          'bg-black text-white hover:bg-gray-700 hover:text-white active:bg-gray-800 focus:bg-gray-800':
+            primaryButton,
+        },
+        {
+          'bg-white text-gray-800 border border-gray-800 hover:bg-gray-50 hover:text-gray-800 focus:border-gray-800 active:bg-gray-100 focus:bg-gray-100':
+            secondaryButton,
+        },
         { '!border-gray-200 !text-gray-400': secondaryButton && disabled },
-        { 'bg-gray-50 text-gray-500 border border-gray-300 hover:bg-gray-100 hover:text-gray-600 hover:border-gray-400 active:bg-gray-100 active:text-gray-600 active:border-gray-500 focus:bg-gray-100 focus:text-gray-600' : quietButton },
-        { 'bg-transparent text-gray-500 hover:bg-gray-100 hover:text-gray-600 active:bg-gray-200 active:text-gray-600 focus:bg-gray-100 focus:text-gray-600' : ghostButton },
-        { '!bg-gray-100 !text-gray-300 !border-none': (primaryButton || quietButton || ghostButton) && disabled },
-        { 'bg-red-500 text-white hover:bg-red-600 active:bg-red-700 focus:bg-red-600' : dangerButton },
+        {
+          'bg-gray-50 text-gray-500 border border-gray-300 hover:bg-gray-100 hover:text-gray-600 hover:border-gray-400 active:bg-gray-100 active:text-gray-600 active:border-gray-500 focus:bg-gray-100 focus:text-gray-600':
+            quietButton,
+        },
+        {
+          'bg-transparent text-gray-500 hover:bg-gray-100 hover:text-gray-600 active:bg-gray-200 active:text-gray-600 focus:bg-gray-100 focus:text-gray-600':
+            ghostButton,
+        },
+        {
+          '!bg-gray-100 !text-gray-300 !border-none':
+            (primaryButton || quietButton || ghostButton) && disabled,
+        },
+        {
+          'bg-red-500 text-white hover:bg-red-600 active:bg-red-700 focus:bg-red-600':
+            dangerButton,
+        },
         { '!bg-red-200 !text-red-400': dangerButton && disabled },
-        { 'bg-white text-red-500 border border-red-500 hover:bg-red-50 hover:border-red-600 hover:text-red-600 active:bg-red-100 active:border-red-700 active:text-red-700 focus:bg-red-50 focus:border-red-600 focus:text-red-600' : dangerSecondaryButton },
-        { '!border-red-300 !text-red-300': dangerSecondaryButton && disabled }
+        {
+          'bg-white text-red-500 border border-red-500 hover:bg-red-50 hover:border-red-600 hover:text-red-600 active:bg-red-100 active:border-red-700 active:text-red-700 focus:bg-red-50 focus:border-red-600 focus:text-red-600':
+            dangerSecondaryButton,
+        },
+        { '!border-red-300 !text-red-300': dangerSecondaryButton && disabled },
       ]"
     >
       <slot />
@@ -42,86 +67,96 @@
 </template>
 
 <script>
-import { ChevronRight } from '@/components/Icons';
+import { ChevronRight } from "@/components/Icons";
 export default {
-  name: 'LobLink',
+  name: "LobLink",
   components: { ChevronRight },
   inheritAttrs: false,
   props: {
     variant: {
       type: String,
-      default: 'link',
+      default: "link",
       validator: function (value) {
-        return ['link', 'primary-button', 'secondary-button', 'quiet-button', 'ghost-button', 'danger-button', 'danger-secondary-button'].includes(value);
-      }
+        return [
+          "link",
+          "primary-button",
+          "secondary-button",
+          "quiet-button",
+          "ghost-button",
+          "danger-button",
+          "danger-secondary-button",
+        ].includes(value);
+      },
     },
     size: {
       type: String,
-      default: 'base',
+      default: "base",
       validator: function (value) {
-        return ['small', 'base', 'large', 'xl'].includes(value);
-      }
+        return ["small", "base", "large", "xl"].includes(value);
+      },
     },
     underline: {
       type: Boolean,
-      default: true
+      default: true,
     },
     bold: {
       type: Boolean,
-      default: false
+      default: false,
     },
     disabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     to: {
       type: [String, Object],
-      default: ''
+      default: "",
     },
     target: {
       type: String,
-      default: '_self'
+      default: "_self",
     },
     withChevron: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
-    isLink () {
-      return this.variant === 'link';
+    isLink() {
+      return this.variant === "link";
     },
-    isButton () {
-      return this.variant !== 'link';
+    isButton() {
+      return this.variant !== "link";
     },
-    isExternal () {
+    isExternal() {
       const protocolRelativePattern = /^https?:\/\/|^\/\//i;
-      return typeof this.to === 'string' && protocolRelativePattern.test(this.to);
+      return (
+        typeof this.to === "string" && protocolRelativePattern.test(this.to)
+      );
     },
-    tag () {
-      return this.isExternal ? 'a' : 'router-link';
+    tag() {
+      return this.isExternal ? "a" : "router-link";
     },
-    linkProp () {
-      return this.isExternal ? 'href' : 'to';
+    linkProp() {
+      return this.isExternal ? "href" : "to";
     },
-    primaryButton () {
-      return this.variant === 'primary-button';
+    primaryButton() {
+      return this.variant === "primary-button";
     },
-    secondaryButton () {
-      return this.variant === 'secondary-button';
+    secondaryButton() {
+      return this.variant === "secondary-button";
     },
-    quietButton () {
-      return this.variant === 'quiet-button';
+    quietButton() {
+      return this.variant === "quiet-button";
     },
-    ghostButton () {
-      return this.variant === 'ghost-button';
+    ghostButton() {
+      return this.variant === "ghost-button";
     },
-    dangerButton () {
-      return this.variant === 'danger-button';
+    dangerButton() {
+      return this.variant === "danger-button";
     },
-    dangerSecondaryButton () {
-      return this.variant === 'danger-secondary-button';
-    }
-  }
+    dangerSecondaryButton() {
+      return this.variant === "danger-secondary-button";
+    },
+  },
 };
 </script>

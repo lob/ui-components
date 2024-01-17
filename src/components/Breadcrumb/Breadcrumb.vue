@@ -5,7 +5,7 @@
       :src="iconSrc"
       :alt="iconAltText"
       :class="iconClasses ? `${iconClasses}` : 'w-6 mr-1.5 align-bottom'"
-    >
+    />
     <router-link
       v-for="crumb in crumbs"
       :key="crumb.name"
@@ -14,79 +14,80 @@
       exact-active-class="!text-primary-500"
     >
       {{ crumb.name }}
-      <chevron-right
-        size="s"
-        class="mx-2"
-      />
+      <chevron-right size="s" class="mx-2" />
     </router-link>
   </nav>
 </template>
 
 <script>
-import { ChevronRight } from '@/components/Icons';
-import { START_LOCATION } from 'vue-router';
+import { ChevronRight } from "@/components/Icons";
+import { START_LOCATION } from "vue-router";
 
-const URL_DELIMITER = '/';
+const URL_DELIMITER = "/";
 
 export default {
-  name: 'Breadcrumb',
+  name: "Breadcrumb",
   components: { ChevronRight },
   props: {
     startName: {
       // START_LOCATION does not have a name so we need to know what to display
       type: String,
-      required: true
+      required: true,
     },
     iconSrc: {
       type: String,
-      default: ''
+      default: "",
     },
     iconAltText: {
       type: String,
-      default: ''
+      default: "",
     },
     iconClasses: {
       type: String,
-      default: null
-    }
+      default: null,
+    },
   },
   computed: {
-    crumbs () {
-      let routes = [
-        { name: this.startName, path: START_LOCATION.path }
-      ];
+    crumbs() {
+      let routes = [{ name: this.startName, path: START_LOCATION.path }];
 
       if (this.$route.path !== START_LOCATION.path) {
         // unique matched route records by path, grabbing the last duplicated if more than one
-        const uniqueMatchedByPath = [...new Map(this.$route.matched.map((matched) => [matched.path, matched])).values()];
+        const uniqueMatchedByPath = [
+          ...new Map(
+            this.$route.matched.map((matched) => [matched.path, matched]),
+          ).values(),
+        ];
         routes = [...routes, ...uniqueMatchedByPath];
       }
 
       return routes.map((routeRecord, index) => {
         return {
           name: this.getCrumbDisplay(routeRecord),
-          path: this.getCrumbPath(routeRecord, index)
+          path: this.getCrumbPath(routeRecord, index),
         };
       });
-    }
+    },
   },
   methods: {
-    titleize (str) {
+    titleize(str) {
       if (!str) {
         return null;
       }
 
       let sanitizedStr = str.toLowerCase();
 
-      let splitStr = sanitizedStr.split(' ');
-      splitStr = splitStr.map((word) => word.replace(/^[a-z]/i, (letter) => {
-        return letter.toUpperCase();
-      }));
+      let splitStr = sanitizedStr.split(" ");
+      splitStr = splitStr.map((word) =>
+        word.replace(/^[a-z]/i, (letter) => {
+          return letter.toUpperCase();
+        }),
+      );
 
-      sanitizedStr = splitStr.join(' ');
+      sanitizedStr = splitStr.join(" ");
       return sanitizedStr.trim();
     },
-    getParamDisplay (lastChildInPath) {
+    getParamDisplay(lastChildInPath) {
       const lastChildIsParam = lastChildInPath.match(/^:(.*)/);
 
       let param;
@@ -97,12 +98,13 @@ export default {
 
       return param;
     },
-    getPathDisplay (lastChildInPath) {
+    getPathDisplay(lastChildInPath) {
       return this.titleize(lastChildInPath);
     },
-    getCrumbDisplay (routeRecord) {
-      const displayName = routeRecord.meta?.displayName || '';
-      const useParamsForDisplay = routeRecord.meta?.useParamsForDisplay || false;
+    getCrumbDisplay(routeRecord) {
+      const displayName = routeRecord.meta?.displayName || "";
+      const useParamsForDisplay =
+        routeRecord.meta?.useParamsForDisplay || false;
       const pathSegments = routeRecord.path.split(URL_DELIMITER);
       const lastChildInPath = pathSegments[pathSegments.length - 1];
 
@@ -119,11 +121,14 @@ export default {
 
       return displayName || fallbackDisplay;
     },
-    getCrumbPath (routeRecord, index) {
-      const routeSubPathWithParams = this.$route.path.split(URL_DELIMITER).slice(0, index + 1).join(URL_DELIMITER);
+    getCrumbPath(routeRecord, index) {
+      const routeSubPathWithParams = this.$route.path
+        .split(URL_DELIMITER)
+        .slice(0, index + 1)
+        .join(URL_DELIMITER);
       return routeSubPathWithParams || routeRecord.path;
-    }
-  }
+    },
+  },
 };
 </script>
 

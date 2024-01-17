@@ -1,22 +1,22 @@
-import Dropdown from '../Dropdown/Dropdown.vue';
-import LobButton from '../Button/Button.vue';
-import RadioButton from '../RadioButton/RadioButton.vue';
-import RadioGroup from '../RadioGroup/RadioGroup.vue';
-import Modal from './Modal.vue';
-import mdx from './Modal.mdx';
+import Dropdown from "../Dropdown/Dropdown.vue";
+import LobButton from "../Button/Button.vue";
+import RadioButton from "../RadioButton/RadioButton.vue";
+import RadioGroup from "../RadioGroup/RadioGroup.vue";
+import Modal from "./Modal.vue";
+import mdx from "./Modal.mdx";
 
 export default {
-  title: 'Components/Modal',
+  title: "Components/Modal",
   component: Modal,
   parameters: {
     docs: {
-      page: mdx
-    }
-  }
+      page: mdx,
+    },
+  },
 };
 
 const isModalVisible = false;
-const radioModel = 'yes';
+const radioModel = "yes";
 
 const PrimaryTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
@@ -48,10 +48,10 @@ const PrimaryTemplate = (args, { argTypes }) => ({
         </div>
       </template>
     </Modal>
-    `
+    `,
 });
 
-const dropVModel = '';
+const dropVModel = "";
 const WithDropdownTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { Modal, LobButton, Dropdown },
@@ -89,13 +89,11 @@ const WithDropdownTemplate = (args, { argTypes }) => ({
         </div>
       </template>
     </Modal>
-    `
+    `,
 });
 
 export const Primary = PrimaryTemplate.bind({});
-Primary.args = {
-};
+Primary.args = {};
 
 export const WithDropdown = WithDropdownTemplate.bind({});
-WithDropdown.args = {
-};
+WithDropdown.args = {};

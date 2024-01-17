@@ -1,7 +1,7 @@
-import '@testing-library/jest-dom';
-import { render, fireEvent, waitFor } from '@testing-library/vue';
-import SearchBar from '../SearchBar.vue';
-import { translate } from '@/mixins';
+import "@testing-library/jest-dom";
+import { render, fireEvent, waitFor } from "@testing-library/vue";
+import SearchBar from "../SearchBar.vue";
+import { translate } from "@/mixins";
 
 const mixins = [translate];
 
@@ -9,123 +9,124 @@ const initialProps = {
   searchFunction: (searchTerm) => {
     const allPostCards = [
       {
-        img: '',
-        description: 'campaign ad',
-        type: 'postcard'
+        img: "",
+        description: "campaign ad",
+        type: "postcard",
       },
       {
-        img: '',
-        description: 'soccer postcard',
-        type: 'postcard'
+        img: "",
+        description: "soccer postcard",
+        type: "postcard",
       },
       {
-        img: '',
-        description: 'baseball mail',
-        type: 'postcard'
+        img: "",
+        description: "baseball mail",
+        type: "postcard",
       },
       {
-        img: '',
-        description: 'basketball email',
-        type: 'postcard'
-      }
+        img: "",
+        description: "basketball email",
+        type: "postcard",
+      },
     ];
-    const results = allPostCards.filter((postCard) => postCard.description.includes(searchTerm));
+    const results = allPostCards.filter((postCard) =>
+      postCard.description.includes(searchTerm),
+    );
     return new Promise((resolve) => {
       resolve(results);
     });
-  }
+  },
 };
 
-const renderComponent = (options) => render(SearchBar, { ...options, global: { mixins } });
+const renderComponent = (options) =>
+  render(SearchBar, { ...options, global: { mixins } });
 
-describe('SearchBar', () => {
-
-  it('clears entered searchTerm when x button is clicked', async () => {
-    const searchTerm = 'something';
+describe("SearchBar", () => {
+  it("clears entered searchTerm when x button is clicked", async () => {
+    const searchTerm = "something";
     const props = {
-      ...initialProps
+      ...initialProps,
     };
 
     const { queryByTestId, container } = renderComponent({ props });
 
-    const input = container.querySelector('#searchBar');
+    const input = container.querySelector("#searchBar");
     await fireEvent.update(input, searchTerm);
     expect(input.value).toBe(searchTerm);
 
-    const button = queryByTestId('clearSearchButton');
+    const button = queryByTestId("clearSearchButton");
     await fireEvent.click(button);
-    expect(input.value).toBe('');
+    expect(input.value).toBe("");
   });
 
-  it('does not show the clear button if there is no search term present', async () => {
+  it("does not show the clear button if there is no search term present", async () => {
     const props = {
-      ...initialProps
+      ...initialProps,
     };
 
     const { queryByTestId } = renderComponent({ props });
 
-    const button = queryByTestId('clearSearchButton');
-    expect(button).toHaveClass('opacity-0');
+    const button = queryByTestId("clearSearchButton");
+    expect(button).toHaveClass("opacity-0");
     expect(button).toBeDisabled();
   });
 
-  it('executes the search function when the user types', async () => {
-    const searchTerm = 'baseball';
+  it("executes the search function when the user types", async () => {
+    const searchTerm = "baseball";
     const props = {
-      ...initialProps
+      ...initialProps,
     };
 
     const { container, getByText } = renderComponent({ props });
 
-    const input = container.querySelector('#searchBar');
+    const input = container.querySelector("#searchBar");
     await fireEvent.update(input, searchTerm);
     expect(input.value).toBe(searchTerm);
 
     await waitFor(() => {
-      expect(getByText('View all 1 results...')).toBeInTheDocument();
+      expect(getByText("View all 1 results...")).toBeInTheDocument();
     });
   });
 
-  it('hides the search results when the user clicks outside the search bar', async () => {
-    const searchTerm = 'baseball';
+  it("hides the search results when the user clicks outside the search bar", async () => {
+    const searchTerm = "baseball";
     const props = {
-      ...initialProps
+      ...initialProps,
     };
 
     const { queryByRole, container, getByText } = renderComponent({ props });
 
-    const input = container.querySelector('#searchBar');
+    const input = container.querySelector("#searchBar");
     await fireEvent.update(input, searchTerm);
     expect(input.value).toBe(searchTerm);
 
-    let searchResults = queryByRole('results');
+    let searchResults = queryByRole("results");
     await waitFor(() => {
-      expect(getByText('View all 1 results...')).toBeInTheDocument();
+      expect(getByText("View all 1 results...")).toBeInTheDocument();
     });
     await fireEvent.click(container);
-    searchResults = queryByRole('results');
+    searchResults = queryByRole("results");
     await waitFor(() => {
       expect(searchResults).not.toBeInTheDocument();
     });
   });
 
-  it('does not clear the input when the user clicks outside the search bar', async () => {
-    const searchTerm = 'baseball';
+  it("does not clear the input when the user clicks outside the search bar", async () => {
+    const searchTerm = "baseball";
     const props = {
-      ...initialProps
+      ...initialProps,
     };
 
     const { container, getByText } = renderComponent({ props });
 
-    const input = container.querySelector('#searchBar');
+    const input = container.querySelector("#searchBar");
     await fireEvent.update(input, searchTerm);
     expect(input.value).toBe(searchTerm);
 
     await waitFor(() => {
-      expect(getByText('View all 1 results...')).toBeInTheDocument();
+      expect(getByText("View all 1 results...")).toBeInTheDocument();
     });
     await fireEvent.click(container);
     expect(input.value).toBe(searchTerm);
   });
-
 });

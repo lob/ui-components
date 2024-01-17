@@ -2,9 +2,9 @@
   <div
     :class="[
       'stepper-item flex flex-col relative border-current mb-8',
-      {'items-start': alignLeft},
-      {'items-center': alignCenter},
-      {'items-end': alignRight}
+      { 'items-start': alignLeft },
+      { 'items-center': alignCenter },
+      { 'items-end': alignRight },
     ]"
   >
     <StepperItemBorder
@@ -23,32 +23,29 @@
     <div
       :class="[
         'w-16 md:w-32 min-w-max  flex flex-col relative',
-        {'items-start': alignLeft},
-        {'items-center': alignCenter},
-        {'items-end': alignRight}
+        { 'items-start': alignLeft },
+        { 'items-center': alignCenter },
+        { 'items-end': alignRight },
       ]"
     >
-      <div
-        v-if="textTop"
-        class="mb-6"
-      >
+      <div v-if="textTop" class="mb-6">
         <slot />
       </div>
       <div
         :class="[
           'z-10 rounded-full w-5 h-5 absolute border border-transparent text-primary-500 bg-white',
-          {'!border-current': active},
-          {'custom-text-color': color},
-          {'custom-background-color': backgroundColor}
+          { '!border-current': active },
+          { 'custom-text-color': color },
+          { 'custom-background-color': backgroundColor },
         ]"
         :style="`top: ${textTop ? '2.427rem' : '-0.627rem'}`"
       >
         <div
           :class="[
             'rounded-full w-3 h-3 absolute bg-current text-primary-500',
-            {'custom-text-color': color}
+            { 'custom-text-color': color },
           ]"
-          style="left: 0.1875rem; top: 0.1875rem;"
+          style="left: 0.1875rem; top: 0.1875rem"
         >
           <check
             v-if="finished"
@@ -56,10 +53,7 @@
           />
         </div>
       </div>
-      <div
-        v-if="textBottom"
-        class="mt-6"
-      >
+      <div v-if="textBottom" class="mt-6">
         <slot />
       </div>
     </div>
@@ -80,77 +74,77 @@
 </template>
 
 <script>
-import { Check } from '../Icons';
-import StepperItemBorder from './StepperItemBorder.vue';
+import { Check } from "../Icons";
+import StepperItemBorder from "./StepperItemBorder.vue";
 
 export default {
-  name: 'StepperItem',
+  name: "StepperItem",
   components: { Check, StepperItemBorder },
   props: {
     position: {
       type: String,
-      default: 'middle',
-      validator: (prop) => ['first', 'middle', 'last'].includes(prop)
+      default: "middle",
+      validator: (prop) => ["first", "middle", "last"].includes(prop),
     },
     alignment: {
       type: String,
-      default: 'center',
-      validator: (prop) => ['left', 'center', 'right'].includes(prop)
+      default: "center",
+      validator: (prop) => ["left", "center", "right"].includes(prop),
     },
     textVerticalAlign: {
       type: String,
-      default: 'bottom',
-      validator: (prop) => ['bottom', 'top'].includes(prop)
+      default: "bottom",
+      validator: (prop) => ["bottom", "top"].includes(prop),
     },
     color: {
       type: String,
-      default: null
+      default: null,
     },
     // will default to color if not provided
     borderColor: {
       type: String,
-      default: null
+      default: null,
     },
     backgroundColor: {
       type: String,
-      default: null
+      default: null,
     },
     active: {
       type: Boolean,
-      default: false
+      default: false,
     },
     finished: {
       type: Boolean,
-      default: false
+      default: false,
     },
     dashedBorder: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
-    first () {
-      return this.position === 'first';
+    first() {
+      return this.position === "first";
     },
-    last () {
-      return this.position === 'last';
+    last() {
+      return this.position === "last";
     },
-    alignLeft () {
-      return this.alignment === 'left';
+    alignLeft() {
+      return this.alignment === "left";
     },
-    alignCenter () {
-      return this.alignment === 'center';
+    alignCenter() {
+      return this.alignment === "center";
     },
-    alignRight () {
-      return this.alignment === 'right';
+    alignRight() {
+      return this.alignment === "right";
     },
-    textTop () {
-      return this.textVerticalAlign === 'top';
+    textTop() {
+      return this.textVerticalAlign === "top";
     },
-    textBottom () {
-      return this.textVerticalAlign === 'bottom';
-    }
-  }
+    textBottom() {
+      return this.textVerticalAlign === "bottom";
+    },
+  },
 };
 </script>
 
@@ -168,6 +162,8 @@ export default {
 }
 
 .custom-background-color {
-  background-color: v-bind(backgroundColor); /* stylelint-disable-line value-keyword-case */
+  background-color: v-bind(
+    backgroundColor
+  ); /* stylelint-disable-line value-keyword-case */
 }
 </style>

@@ -1,30 +1,30 @@
-import LobTable from './Table.vue';
-import TableHeader from './TableHeader.vue';
-import TableBody from './TableBody.vue';
-import TableRow from './TableRow.vue';
-import LobButton from '../Button/Button.vue';
-import mdx from './Table.mdx';
+import LobTable from "./Table.vue";
+import TableHeader from "./TableHeader.vue";
+import TableBody from "./TableBody.vue";
+import TableRow from "./TableRow.vue";
+import LobButton from "../Button/Button.vue";
+import mdx from "./Table.mdx";
 
 export default {
-  title: 'Components/Table',
+  title: "Components/Table",
   component: LobTable,
   subcomponents: { TableHeader, TableRow, TableBody, LobButton },
   decorators: [
-    () => ({ template: '<div style="width: 700px"><story /></div>' })
+    () => ({ template: '<div style="width: 700px"><story /></div>' }),
   ],
   parameters: {
     docs: {
-      page: mdx
-    }
+      page: mdx,
+    },
   },
   argTypes: {
     space: {
-      options: ['sm', 'md', 'lg'],
+      options: ["sm", "md", "lg"],
       control: {
-        type: 'select'
-      }
-    }
-  }
+        type: "select",
+      },
+    },
+  },
 };
 
 const SimpleTableTemplate = (args, { argTypes }) => ({
@@ -44,21 +44,21 @@ const SimpleTableTemplate = (args, { argTypes }) => ({
         </TableRow>
       </TableBody>
     </lob-table>
-  `
+  `,
 });
 
 export const SimpleTable = SimpleTableTemplate.bind({});
 SimpleTable.args = {
   items: [
     {
-      name: 'Jane Cooper',
-      description: 'Regional Paradigm Technician'
+      name: "Jane Cooper",
+      description: "Regional Paradigm Technician",
     },
     {
-      name: 'Cody Fisher',
-      description: 'Product Directives Officer'
-    }
-  ]
+      name: "Cody Fisher",
+      description: "Product Directives Officer",
+    },
+  ],
 };
 
 const TableWithASingleCellRowTemplate = (args, { argTypes }) => ({
@@ -83,23 +83,25 @@ const TableWithASingleCellRowTemplate = (args, { argTypes }) => ({
         </template>
       </TableBody>
     </lob-table>
-  `
+  `,
 });
 
 export const TableWithASingleCellRow = TableWithASingleCellRowTemplate.bind({});
 TableWithASingleCellRow.args = {
   items: [
     {
-      name: 'Jane Cooper',
-      description: 'Regional Paradigm Technician',
-      extraDescription: 'Details: Jane Cooper joined in January 2015 and worked as a Paradigm Technician'
+      name: "Jane Cooper",
+      description: "Regional Paradigm Technician",
+      extraDescription:
+        "Details: Jane Cooper joined in January 2015 and worked as a Paradigm Technician",
     },
     {
-      name: 'Cody Fisher',
-      description: 'Product Directives Officer',
-      extraDescription: 'Details: Cody Fisher joined in November 2000 and worked on the directives since establishment'
-    }
-  ]
+      name: "Cody Fisher",
+      description: "Product Directives Officer",
+      extraDescription:
+        "Details: Cody Fisher joined in November 2000 and worked on the directives since establishment",
+    },
+  ],
 };
 
 const TableWithActionTemplate = (args, { argTypes }) => ({
@@ -121,22 +123,22 @@ const TableWithActionTemplate = (args, { argTypes }) => ({
         </TableRow>
       </TableBody>
     </lob-table>
-  `
+  `,
 });
 
 export const TableWithAction = TableWithActionTemplate.bind({});
 TableWithAction.args = {
   items: [
     {
-      name: 'Jane Cooper',
-      description: 'Regional Paradigm Technician'
+      name: "Jane Cooper",
+      description: "Regional Paradigm Technician",
     },
     {
-      name: 'Cody Fisher',
-      description: 'Product Directives Officer'
-    }
+      name: "Cody Fisher",
+      description: "Product Directives Officer",
+    },
   ],
-  space: 'md'
+  space: "md",
 };
 
 const TableWithRowHoverEffectTemplate = (args, { argTypes }) => ({
@@ -144,9 +146,9 @@ const TableWithRowHoverEffectTemplate = (args, { argTypes }) => ({
   components: { LobTable, TableHeader, TableRow, TableBody },
   setup: () => ({ args }),
   methods: {
-    handleClick (item) {
+    handleClick(item) {
       console.log(`clicked row: ${item.name}`); //eslint-disable-line
-    }
+    },
   },
   template: `
     <lob-table class="min-w-full divide-y divide-gray-200" :space="args.space">
@@ -163,20 +165,20 @@ const TableWithRowHoverEffectTemplate = (args, { argTypes }) => ({
         </TableRow>
       </TableBody>
     </lob-table>
-  `
+  `,
 });
 
 export const TableWithRowHoverEffect = TableWithRowHoverEffectTemplate.bind({});
 TableWithRowHoverEffect.args = {
   items: [
     {
-      name: 'Jane Cooper',
-      description: 'Regional Paradigm Technician'
+      name: "Jane Cooper",
+      description: "Regional Paradigm Technician",
     },
     {
-      name: 'Cody Fisher',
-      description: 'Product Directives Officer'
-    }
+      name: "Cody Fisher",
+      description: "Product Directives Officer",
+    },
   ],
-  space: 'lg'
+  space: "lg",
 };

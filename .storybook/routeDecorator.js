@@ -1,22 +1,22 @@
-import { createMemoryHistory, createRouter } from 'vue-router';
-import { app } from '@storybook/vue3';
+import { createMemoryHistory, createRouter } from "vue-router";
+import { app } from "@storybook/vue3";
 
 let routerInstalled = false;
 let router;
 
 export const routeTemplate = (name) => `<div>${name}</div>`;
 
-export default (path = '/', routes = []) => {
+export default (path = "/", routes = []) => {
   routes = [
-    { path: '', component: { template: routeTemplate('default empty') } },
-    { path: '', component: { template: routeTemplate('default /') } },
-    ...routes
+    { path: "", component: { template: routeTemplate("default empty") } },
+    { path: "", component: { template: routeTemplate("default /") } },
+    ...routes,
   ];
   return (storyFn) => {
     if (!routerInstalled) {
       router = createRouter({
         history: createMemoryHistory(),
-        routes
+        routes,
       });
       app.use(router);
       routerInstalled = true;

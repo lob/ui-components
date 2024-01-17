@@ -1,5 +1,10 @@
-import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
-import Textarea from './Textarea.vue';
+import {
+  Preview,
+  Story,
+  ArgsTable,
+  PRIMARY_STORY,
+} from "@storybook/addon-docs";
+import Textarea from "./Textarea.vue";
 
 # Textarea
 
@@ -16,11 +21,7 @@ You can pass in the `v-model` prop to bind the textarea to the parent component'
 You can pass in a `@change` handler to trigger a custom function on change events. The `event` object will be emitted along with the `change` event.
 
 ```html
-<textarea
-  name="FancyTextarea"
-  label="Fancy text"
-  v-model="form.fancy"
-/>
+<textarea name="FancyTextarea" label="Fancy text" v-model="form.fancy" />
 ```
 
 ## Props
