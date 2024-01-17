@@ -1,6 +1,6 @@
 {
   "extends": ["lob/browser", "plugin:vue/vue3-recommended", "prettier"],
-  "plugins": ["plugins"],
+  "plugins": ["prettier"],
   "globals": {
     "URLSearchParams": false,
     "vi": false
