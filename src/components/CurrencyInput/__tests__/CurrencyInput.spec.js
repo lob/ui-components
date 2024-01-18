@@ -64,7 +64,6 @@ describe('Currency input', () => {
     expect(helperText).toBeInTheDocument();
   });
 
-
   describe('if show dollar sign is false', () => {
     it('does not show the dollar sign', async () => {
       const props = { ...initialProps, showDollarSign: false };
@@ -76,6 +75,5 @@ describe('Currency input', () => {
       await fireEvent.update(currencyInput, '6.00');
       expect(currencyInput.value).toEqual('6.00');
     });
-
   });
 });

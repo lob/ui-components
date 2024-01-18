@@ -157,7 +157,10 @@ export default {
       let newCaretPosition = inputEl.selectionStart + separatorOffset;
 
       // If the user is inputting or deleting at the 0th index (the `$` sign), increment the caret position by an additional 1 unless showDollarSign is false
-      if (this.showDollarSign && (newCaretPosition === 0 || newCaretPosition === 1)) {
+      if (
+        this.showDollarSign &&
+        (newCaretPosition === 0 || newCaretPosition === 1)
+      ) {
         newCaretPosition = 2;
       } else if (!this.showDollarSign && newCaretPosition === 0) {
         newCaretPosition = 1;
