@@ -56,6 +56,10 @@ export default {
     selectOnFocus: {
       type: Boolean,
       default: true
+    },
+    showDollarSign: {
+      type: Boolean,
+      default: true
     }
   },
   emits: ['update:modelValue', 'input', 'change', 'focus', 'blur'],
@@ -132,7 +136,7 @@ export default {
         return;
       }
 
-      const formattedValue = this.formatter.format(value);
+      let formattedValue = this.formatter.format(value);
 
       const { type, prevValue, editIndex }  = stringDiff(this.formattedValue, formattedValue);
 
@@ -148,14 +152,21 @@ export default {
       const separatorOffset = countOccurrences(formattedValue, ',') - countOccurrences(this.formattedValue, ',');
       let newCaretPosition = inputEl.selectionStart + separatorOffset;
 
-      // If the user is inputting or deleting at the 0th index (the `$` sign), increment the caret position by an additional 1
-      if (newCaretPosition === 0 || newCaretPosition === 1) {
+      // If the user is inputting or deleting at the 0th index (the `$` sign), increment the caret position by an additional 1 unless showDollarSign is false
+      if (this.showDollarSign && (newCaretPosition === 0 || newCaretPosition === 1)) {
         newCaretPosition = 2;
+      } else if (!this.showDollarSign && newCaretPosition === 0) {
+        newCaretPosition = 1;
       }
 
       // If the user replaces a '0' value, keep the caret position on the integer side of the decimal
       if (type === 'edit' && editIndex <= this.formattedValue.indexOf('.') && prevValue === '0') {
         newCaretPosition--;
+      }
+
+      // If showDollarSign is false, remove it from formatted value
+      if (!this.showDollarSign) {
+        formattedValue = formattedValue.slice(1);
       }
 
       // Update the value and formatted value
