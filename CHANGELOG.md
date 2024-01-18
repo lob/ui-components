@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.0
+- Removing beta tag since this is no longer in beta
+- Adds a `showDollarSign` prop to the `CurrencyInput` component so we can hide it at will
+
 ## v2.0.0-beta.64
 
 - Fixes import of `UserCircle` icon
