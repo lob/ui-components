@@ -59,16 +59,16 @@ export default {
     }
   },
   computed: {
-    active () {
+    active() {
       if (this.stringToMatch) {
         const pattern = new RegExp(`${this.stringToMatch}`, 'gi');
         if (pattern.test(this.$route.fullPath)) {
           return true;
         }
       }
-      return this.matchQueryString ?
-        this.$route.fullPath === this.to :
-        this.$route.fullPath?.includes(this.to);
+      return this.matchQueryString
+        ? this.$route.fullPath === this.to
+        : this.$route.fullPath?.includes(this.to);
     }
   }
 };

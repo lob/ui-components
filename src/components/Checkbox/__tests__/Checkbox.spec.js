@@ -12,7 +12,6 @@ const initialProps = {
 const renderComponent = (options) => render(Checkbox, { ...options });
 
 describe('Checkbox', () => {
-
   it('renders correctly', () => {
     const props = {
       ...initialProps
@@ -75,9 +74,7 @@ describe('Checkbox', () => {
   });
 
   describe('when the v-model is a simple boolean', () => {
-
     describe('when the v-model is false', () => {
-
       it('does not check the input', () => {
         const props = initialProps;
         const { getByLabelText } = renderComponent({ props });
@@ -98,11 +95,9 @@ describe('Checkbox', () => {
         expect(emittedEvent.input[0]).toEqual([true]);
         expect(checkbox).toBeChecked();
       });
-
     });
 
     describe('when the v-model is true', () => {
-
       it('checks the input when the v-model is true', () => {
         const props = {
           ...initialProps,
@@ -129,13 +124,10 @@ describe('Checkbox', () => {
         expect(emittedEvent.input[0]).toEqual([false]);
         expect(checkbox).not.toBeChecked();
       });
-
     });
-
   });
 
   describe('when the v-model is an array', () => {
-
     it('does not check the input when the v-model does not contain the value', () => {
       const props = {
         ...initialProps,
@@ -177,7 +169,5 @@ describe('Checkbox', () => {
       expect(emittedEvent.input[0][0]).toContain('test');
       expect(checkbox).toBeChecked();
     });
-
   });
-
 });

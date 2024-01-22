@@ -1,34 +1,30 @@
 <template>
   <Modal
     :visible="visible"
-    :close-button-aria-label="t('dropzone.confirmRemoveFileModal.closeButtonAriaLabel')"
+    :close-button-aria-label="
+      t('dropzone.confirmRemoveFileModal.closeButtonAriaLabel')
+    "
     @close="$emit('close')"
   >
     <div class="px-5 flex flex-col items-center">
-      <TriangleExclamation
-        size="xxl"
-        class="mb-3"
-      />
+      <TriangleExclamation size="xxl" class="mb-3" />
       <div class="mb-2 type-xl-600 max-w-[246px] text-center">
         {{ title }}
       </div>
-      <div
-        class="mb-6 type-base-400 max-w-[320px] text-center"
-      >
+      <div class="mb-6 type-base-400 max-w-[320px] text-center">
         {{ subtext }}
       </div>
       <div class="flex w-full justify-center">
-        <LobButton
-          size="small"
-          class="mr-4"
-          @click="$emit('close')"
-        >
+        <LobButton size="small" class="mr-4" @click="$emit('close')">
           {{ t('dropzone.confirmRemoveFileModal.goBack') }}
         </LobButton>
         <LobButton
           size="small"
           variant="secondary"
-          @click="$emit('confirmClicked'); $emit('close')"
+          @click="
+            $emit('confirmClicked');
+            $emit('close');
+          "
         >
           {{ confirmButtonText }}
         </LobButton>

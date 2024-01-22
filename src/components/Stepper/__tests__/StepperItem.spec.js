@@ -2,7 +2,7 @@ import '@testing-library/jest-dom';
 import { render } from '@testing-library/vue';
 import StepperItem from '../StepperItem.vue';
 
-const renderComponent =  (options) => {
+const renderComponent = (options) => {
   const result = render(StepperItem, {
     ...options
   });
@@ -10,7 +10,6 @@ const renderComponent =  (options) => {
 };
 
 describe('StepperItem', () => {
-
   it('renders as a middle step with center alignment by default', async () => {
     const { container } = renderComponent({});
 
@@ -43,5 +42,4 @@ describe('StepperItem', () => {
     const item = container.querySelector('.half-border-left');
     expect(item).toBeInTheDocument();
   });
-
 });

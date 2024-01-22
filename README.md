@@ -1,4 +1,5 @@
 # UI Components
+
 Lob's Vue component library. This repo is public. We are building our components in public to showcase the work that Lob is doing to create a consistent design system as well as follow best practices in modern web development and accessibility.
 
 This component library can be found at [https://ui-components.lob.com/](https://ui-components.lob.com/).
@@ -25,6 +26,7 @@ This component library can be found at [https://ui-components.lob.com/](https://
 - [Publish to NPM](#publish-to-npm)
 
 ## To use in project
+
 ```bash
 npm install @lob/ui-components
 ```
@@ -37,17 +39,16 @@ import components from '@lob/ui-components';
 
 import '@lob/ui-components/dist/ui-components.css';
 
-createApp(App)
-  .use(components)
-  .mount('#app');
+createApp(App).use(components).mount('#app');
 ```
 
 ### Styling
+
 If you would like to use the same Tailwind configuration in your project as is used in this component library, you can install and configure it via a plugin in your `tailwind.config.js`. Note, you'll need to have already installed Tailwind.
+
 ```bash
 npm install --save-dev tailwind-plugin-lob
 ```
-
 
 ```js
 module.exports = {
@@ -57,6 +58,7 @@ module.exports = {
 ```
 
 ### Internationalization
+
 This component library supports optional (though strongly encouraged 🙃) internationalization with [vue-i18n](https://vue-i18n.intlify.dev/).
 
 Without vue-i18n in your application, labels and screen reader instructions will be in English. To provide different translations or translations in other languages, install vue-i18n and put the following code in your app's entry file (e.g. `main.js`)
@@ -84,30 +86,31 @@ const messages = {
       hello: 'hola mundo'
     }
   }
-}
+};
 
 const i18n = VueI18n.createI18n({
   locale: 'es', // set locale, we recommend creating a function to get the user's default local
   fallbackLocale: 'en', // set fallback locale, we recommend putting this in your env vars
-  messages, // set locale messages
+  messages // set locale messages
   // If you need to specify other options, you can set other options
   // ...
-})
+});
 
-createApp(App)
-  .use(i18n)
-  .use(components)
-  .mount('#app');
+createApp(App).use(i18n).use(components).mount('#app');
 ```
 
 ## Development
+
 Before installing node modules, make sure you have the node and npm versions installed matching what's listed in the `engines` in `package.json`.
 
 ### Conventions
+
 #### `src` alias
+
 The path to the `src` directory is aliased as `@` so we can avoid relative paths in our imports. This makes our codebase more resilient as it grows because if we refactor and move files around, we won't have to spend as much time fixing relative path imports.
 
 #### Atomic components
+
 When applicable, split components up across multiple smaller components. For example, don't put every element of the nav bar into one component called `NavBar` - split them up into a `NavBarListItem` and the nav bar itself.
 
 #### Default to Slots
@@ -115,6 +118,7 @@ When applicable, split components up across multiple smaller components. For exa
 When you're not sure how many children a parent component may have, default to using slots so that it's as extendable as possible.
 
 #### Styling
+
 We try to avoid custom scoped styles in our components and use the Tailwind classes everywhere possible.
 
 If your designs are off by a pixel or two from Tailwind presets, we **highly recommend** using the Tailwind presets instead of creating one-off styles.
@@ -165,20 +169,25 @@ While we're not strictly enforcing any particular WCAG standard (though we shoul
 - Color contrast passes AA at least
 
 ## Running storybook locally
+
 ```bash
 npm run storybook
 ```
+
 ## Unit testing
+
 ```bash
 npm run test
 ```
 
 ## Lints and fixes files
+
 ```bash
 npm run lint
 ```
 
 ## Contributing
+
 ### A Complete PR for a Component
 
 We consider a component PR complete when it has the following:
@@ -212,14 +221,16 @@ done
 
 # e.g. ./ResizeIcons.sh arrow_icon.svg house_icon.svg
 ```
+
 **Note:** You must have librsvg installed to use this script:
+
 ```
 brew install librsvg
 ```
 
-
 ## Deploying Updates
-When a PR is opened Amplify will automatically build and deploy a PR preview.  You will see the URL for the preview in a comment from the Amplify bot in the PR.
+
+When a PR is opened Amplify will automatically build and deploy a PR preview. You will see the URL for the preview in a comment from the Amplify bot in the PR.
 
 When the PR is merged to `main` Amplify will auto build and deploy to [https://ui-components.lob.com/](https://ui-components.lob.com/).
 
@@ -228,9 +239,8 @@ When the PR is merged to `main` Amplify will auto build and deploy to [https://u
 We have a GitHub Action set up to publish this package automatically to NPM when the version number in `package.json` is incremented on the `main` branch.
 
 If you need to publish manually, you can do:
+
 ```bash
 npm run build
 npm publish
 ```
-
-

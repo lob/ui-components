@@ -1,13 +1,16 @@
 # CHANGELOG
 
 ## v2.0.0
+
 - Removing beta tag since this is no longer in beta
 - Adds a `showDollarSign` prop to the `CurrencyInput` component so we can hide it at will
 
 ## v2.0.0-beta.64
+
 - Fixes import of `UserCircle` icon
 
 ## v2.0.0-beta.63
+
 - Adds icons:
   - `Exit`
   - `FileAlt`
@@ -20,18 +23,23 @@
   - `User`
 
 ## v2.0.0-beta.62
+
 - Adds a `refresh` variant to `Alert`
 
 ## v2.0.0-beta.61
+
 - Updates the `MegaButton` component to accept custom widths
 
 ## v2.0.0-beta.59
+
 - More icon styling tweaks
 
 ## v2.0.0-beta.58
+
 - Icon sizing style updates
 
 ## v2.0.0-beta.57
+
 - Add `AppWindows` Icon
 - Add `CloudData` Icon
 - Add `CreditCard` Icon
@@ -44,6 +52,7 @@
 ## v2.0.0-beta.56
 
 Some style updates for `Modal` and `Badge`:
+
 - Modal: allow removing the section separators/dividers
 - Modal: allow a subheading
 - Badge: create a new variant for a new gradient
@@ -55,12 +64,15 @@ Adds the external link icon
 ## v2.0.0-beta.54
 
 Style changes for `Input` and `Label`
+
 ## v2.0.0-beta.53
 
 `SubnavigationItem` bug fix
+
 ## v2.0.0-beta.52
 
 Add an option to pass stringToMatch prop to `SubnavigationItem`, this can be used to pass a string that is turned into a regex pattern
+
 ## v2.0.0-beta.51
 
 Updates the prop definitions for `TopNavDropdown` so that `title` is no longer a required prop.

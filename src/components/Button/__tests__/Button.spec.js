@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { render  } from '@testing-library/vue';
+import { render } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
 import LobButton from '../Button.vue';
 
@@ -11,10 +11,10 @@ beforeEach(() => {
   slots = { default: [slotContent] };
 });
 
-const renderComponent = (options, configure = null) => render(LobButton, { ...options }, configure);
+const renderComponent = (options, configure = null) =>
+  render(LobButton, { ...options }, configure);
 
 describe('Button', () => {
-
   it('renders the primary variant by default', () => {
     const { queryByRole, queryByText } = renderComponent({ slots });
     const button = queryByRole('button');
@@ -50,39 +50,67 @@ describe('Button', () => {
   });
 
   it('renders the secondary variant', () => {
-    const { queryByRole } = renderComponent({ slots, props: { variant: 'secondary' } });
+    const { queryByRole } = renderComponent({
+      slots,
+      props: { variant: 'secondary' }
+    });
     const button = queryByRole('button');
-    expect(button).toBeInTheDocument().toHaveClass('bg-white text-gray-800 border border-gray-800');
+    expect(button)
+      .toBeInTheDocument()
+      .toHaveClass('bg-white text-gray-800 border border-gray-800');
   });
 
   it('renders the quiet variant', () => {
-    const { queryByRole } = renderComponent({ slots, props: { variant: 'quiet' } });
+    const { queryByRole } = renderComponent({
+      slots,
+      props: { variant: 'quiet' }
+    });
     const button = queryByRole('button');
-    expect(button).toBeInTheDocument().toHaveClass('bg-gray-50 text-gray-500 border border-gray-300');
+    expect(button)
+      .toBeInTheDocument()
+      .toHaveClass('bg-gray-50 text-gray-500 border border-gray-300');
   });
 
   it('renders the ghost variant', () => {
-    const { queryByRole } = renderComponent({ slots, props: { variant: 'ghost' } });
+    const { queryByRole } = renderComponent({
+      slots,
+      props: { variant: 'ghost' }
+    });
     const button = queryByRole('button');
-    expect(button).toBeInTheDocument().toHaveClass('bg-transparent text-gray-500 hover:bg-gray-100');
+    expect(button)
+      .toBeInTheDocument()
+      .toHaveClass('bg-transparent text-gray-500 hover:bg-gray-100');
   });
 
   it('renders the danger variant', () => {
-    const { queryByRole } = renderComponent({ slots, props: { variant: 'danger' } });
+    const { queryByRole } = renderComponent({
+      slots,
+      props: { variant: 'danger' }
+    });
     const button = queryByRole('button');
     expect(button).toBeInTheDocument().toHaveClass('bg-red-500 text-white');
   });
 
   it('renders the danger-secondary variant', () => {
-    const { queryByRole } = renderComponent({ slots, props: { variant: 'danger-secondary' } });
+    const { queryByRole } = renderComponent({
+      slots,
+      props: { variant: 'danger-secondary' }
+    });
     const button = queryByRole('button');
-    expect(button).toBeInTheDocument().toHaveClass('bg-white text-red-500 border border-red-500');
+    expect(button)
+      .toBeInTheDocument()
+      .toHaveClass('bg-white text-red-500 border border-red-500');
   });
 
   it('renders the link variant', () => {
-    const { queryByRole } = renderComponent({ slots, props: { variant: 'link' } });
+    const { queryByRole } = renderComponent({
+      slots,
+      props: { variant: 'link' }
+    });
     const button = queryByRole('button');
-    expect(button).toBeInTheDocument().toHaveClass('!text-blue-600 underline').not.toHaveClass('py-3 px-5');
+    expect(button)
+      .toBeInTheDocument()
+      .toHaveClass('!text-blue-600 underline')
+      .not.toHaveClass('py-3 px-5');
   });
-
 });

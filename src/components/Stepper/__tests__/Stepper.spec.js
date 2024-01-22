@@ -7,7 +7,6 @@ let slots;
 const renderComponent = (options) => render(Stepper, { ...options });
 
 describe('Stepper', () => {
-
   it('renders correctly', () => {
     const slotContent = 'Stepper stuff';
     slots = { default: slotContent };
@@ -16,5 +15,4 @@ describe('Stepper', () => {
     const stepperContent = queryByText(slotContent);
     expect(stepperContent).toBeInTheDocument();
   });
-
 });

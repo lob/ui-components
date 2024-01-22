@@ -8,7 +8,11 @@
       :to="to"
       :class="[
         'block !w-full py-2 pl-4 whitespace-nowrap focus:ring-0 focus:!outline-none focus-visible:bg-gray-50 focus-visible:!ring-0 focus-visible:!rounded-none focus-visible:!ring-offset-0',
-        [ isActive ? '!type-small-600 !text-gray-800 hover:!text-gray-800 active:!text-gray-800' : '!type-small-500 !text-gray-500 hover:!text-gray-500 active:!text-gray-500' ]
+        [
+          isActive
+            ? '!type-small-600 !text-gray-800 hover:!text-gray-800 active:!text-gray-800'
+            : '!type-small-500 !text-gray-500 hover:!text-gray-500 active:!text-gray-500'
+        ]
       ]"
       :underline="false"
       @click.stop="handleNavigation"
@@ -36,12 +40,12 @@ export default {
   },
   emits: ['nav'],
   computed: {
-    isActive () {
+    isActive() {
       return this.$route.path.startsWith(this.to);
     }
   },
   watch: {
-    isActive (val) {
+    isActive(val) {
       if (val) {
         //nextTick if true, so that true overwrittes the false coming from the other child item
         this.$nextTick(() => {
@@ -53,7 +57,7 @@ export default {
     }
   },
   methods: {
-    handleNavigation () {
+    handleNavigation() {
       this.$emit('nav', this.to);
     }
   }

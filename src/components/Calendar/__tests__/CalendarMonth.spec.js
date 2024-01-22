@@ -13,10 +13,10 @@ const initialProps = {
   max: addYears(new Date(), 1)
 };
 
-const renderComponent = (options) => render(CalendarMonth, { ...options, global: { mixins } });
+const renderComponent = (options) =>
+  render(CalendarMonth, { ...options, global: { mixins } });
 
 describe('CalendarMonth', () => {
-
   it('renders correctly', () => {
     const props = initialProps;
     const { queryAllByRole } = renderComponent({ props });
@@ -60,5 +60,4 @@ describe('CalendarMonth', () => {
     const emittedEvent = emitted();
     expect(emittedEvent).toHaveProperty('dateSelect');
   });
-
 });

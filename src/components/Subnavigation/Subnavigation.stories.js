@@ -1,4 +1,6 @@
-import routeDecorator, { routeTemplate } from '../../../.storybook/routeDecorator';
+import routeDecorator, {
+  routeTemplate
+} from '../../../.storybook/routeDecorator';
 import Subnavigation from './Subnavigation.vue';
 import SubnavigationItem from './SubnavigationItem.vue';
 import { Gear } from '../Icons';

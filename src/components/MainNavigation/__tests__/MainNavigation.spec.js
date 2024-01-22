@@ -2,10 +2,10 @@ import '@testing-library/jest-dom';
 import { render, fireEvent } from '@testing-library/vue';
 import MainNavigation from '../MainNavigation.vue';
 
-const renderComponent = (options, configure = null) => render(MainNavigation, { ...options }, configure);
+const renderComponent = (options, configure = null) =>
+  render(MainNavigation, { ...options }, configure);
 
 describe('Main Navigation', () => {
-
   it('renders correctly', () => {
     const { queryByRole } = renderComponent();
 
@@ -14,7 +14,6 @@ describe('Main Navigation', () => {
   });
 
   describe('when collapsible', () => {
-
     it('collapses when collapse button is clicked', async () => {
       const { queryByRole } = renderComponent();
 
@@ -24,11 +23,9 @@ describe('Main Navigation', () => {
       const list = queryByRole('list');
       expect(list).toHaveClass('collapsed');
     });
-
   });
 
   describe('when not collapsible', () => {
-
     it('does not contain button to collapse', async () => {
       const props = { collapsible: false };
       const { queryByRole } = renderComponent({ props });
@@ -37,7 +34,5 @@ describe('Main Navigation', () => {
 
       expect(collapseButton).not.toBeInTheDocument();
     });
-
   });
-
 });

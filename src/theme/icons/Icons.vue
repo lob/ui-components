@@ -1,10 +1,6 @@
 <template>
   <div class="w-full grid gap-3 text-black">
-    <div
-      v-for="icon in icons"
-      :key="icon"
-      class="p-2"
-    >
+    <div v-for="icon in icons" :key="icon" class="p-2">
       <div class="text-xs mb-1.5">
         {{ icon.name }}
       </div>
@@ -37,7 +33,7 @@ export default {
     }
   },
   computed: {
-    icons () {
+    icons() {
       return Icons;
     }
   }

@@ -34,10 +34,10 @@ export default {
     }
   },
   computed: {
-    currentSize () {
+    currentSize() {
       return iconInfo[this.size].size;
     },
-    path () {
+    path() {
       return iconInfo[this.size].path;
     }
   }

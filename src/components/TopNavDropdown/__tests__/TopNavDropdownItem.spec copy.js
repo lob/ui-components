@@ -24,7 +24,6 @@ const renderComponent = async (options) => {
 };
 
 describe('TopNavDropdownItem', () => {
-
   it('renders correctly', async () => {
     const props = { to: '/settings' };
     const slots = { default: 'settings' };
@@ -33,5 +32,4 @@ describe('TopNavDropdownItem', () => {
     const itemTitle = queryByText('settings');
     expect(itemTitle).toBeInTheDocument();
   });
-
 });

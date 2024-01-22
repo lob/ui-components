@@ -27,7 +27,6 @@ const renderComponent = (options) =>
   });
 
 describe('Main Navigation Child Item', () => {
-
   it('renders correctly', async () => {
     const props = initialProps;
     const { queryByText, queryByRole } = renderComponent({ props });
@@ -63,7 +62,6 @@ describe('Main Navigation Child Item', () => {
   });
 
   describe('when clicked', () => {
-
     it('emits a nav event', async () => {
       const props = initialProps;
 
@@ -78,7 +76,5 @@ describe('Main Navigation Child Item', () => {
       expect(emittedEvent).toHaveProperty('nav');
       expect(emittedEvent.nav[0][0]).toEqual('/overview');
     });
-
   });
-
 });

@@ -27,7 +27,7 @@ const textareaVModel = '';
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: {  Textarea },
+  components: { Textarea },
   setup: () => ({ args }),
   data: () => ({ textareaVModel }),
   template: `<div style="width: 400px;">

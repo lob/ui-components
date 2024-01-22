@@ -5,7 +5,6 @@ import TableHeader from '../TableHeader.vue';
 const renderComponent = (options = {}) => render(TableHeader, { ...options });
 
 describe('TableHeader', () => {
-
   it('renders TableHeader correctly', () => {
     const slotContent = 'Hello';
     const slots = { default: [slotContent] };
@@ -18,5 +17,4 @@ describe('TableHeader', () => {
     const slot = queryByText('Hello');
     expect(slot).toBeInTheDocument();
   });
-
 });

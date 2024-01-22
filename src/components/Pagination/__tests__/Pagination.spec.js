@@ -12,12 +12,11 @@ const initialProps = {
   limit: 10
 };
 
-const renderComponent = (options) => render(Pagination, { ...options, global: { mixins } });
+const renderComponent = (options) =>
+  render(Pagination, { ...options, global: { mixins } });
 
 describe('Pagination', () => {
-
   describe('when the first page is active', () => {
-
     let props;
 
     beforeEach(() => {
@@ -51,11 +50,9 @@ describe('Pagination', () => {
       const button = getByRole('button', { name: /last page/i });
       expect(button).not.toBeDisabled();
     });
-
   });
 
   describe('when a middle page is active', () => {
-
     let props;
 
     beforeEach(() => {
@@ -92,11 +89,9 @@ describe('Pagination', () => {
       const button = getByRole('button', { name: /last page/i });
       expect(button).not.toBeDisabled();
     });
-
   });
 
   describe('when the last page is active', () => {
-
     let props;
 
     beforeEach(() => {
@@ -133,11 +128,9 @@ describe('Pagination', () => {
       const button = getByRole('button', { name: /last page/i });
       expect(button).toBeDisabled();
     });
-
   });
 
   describe('when there are no results', () => {
-
     it('does not render pagination at all', () => {
       const props = {
         ...initialProps,
@@ -148,11 +141,9 @@ describe('Pagination', () => {
 
       expect(queryByText(/result/i)).toBeNull();
     });
-
   });
 
   describe('paging events', () => {
-
     let props;
 
     beforeEach(() => {
@@ -205,7 +196,5 @@ describe('Pagination', () => {
       expect(emittedEvent).toHaveProperty('change');
       expect(emittedEvent.change[0][0].page).toEqual(3);
     });
-
   });
-
 });

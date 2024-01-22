@@ -5,8 +5,14 @@
       :class="[
         'py-3 !px-4 h-12 flex items-center w-full no-underline whitespace-nowrap',
         'hover:bg-gray-50 focus:!outline-none focus:ring-none focus-visible:!rounded-none focus:ring-0 focus-visible:bg-gray-50 focus-visible:!ring-0',
-        { '!type-base-500 !text-gray-500 hover:text-gray-500 active:!text-gray-500' : !hasActiveChild && !isActive },
-        { '!type-base-600 !text-gray-800 hover:text-gray-800 active:text-gray-800' : hasActiveChild },
+        {
+          '!type-base-500 !text-gray-500 hover:text-gray-500 active:!text-gray-500':
+            !hasActiveChild && !isActive
+        },
+        {
+          '!type-base-600 !text-gray-800 hover:text-gray-800 active:text-gray-800':
+            hasActiveChild
+        },
         { '!type-base-600 !text-gray-800': isActive }
       ]"
       :aria-label="title"
@@ -17,10 +23,7 @@
     >
       <div class="w-5 h-5 transition-transform duration-100 ease-in">
         <div v-if="expanded">
-          <slot
-            name="icon"
-            :title="title"
-          />
+          <slot name="icon" :title="title" />
         </div>
         <div v-else>
           <Tooltip position="right">
@@ -30,10 +33,7 @@
               </div>
             </template>
             <template #trigger>
-              <slot
-                name="icon"
-                :title="title"
-              />
+              <slot name="icon" :title="title" />
             </template>
           </Tooltip>
         </div>
@@ -64,7 +64,10 @@
     <!-- this is a v-show so that "isActive" change is picked up  -->
     <ul
       v-show="subNavOpen"
-      :class="['ml-12 bg-gradient-to-b from-[#9f94ff] to-[#fa6a8c]', { 'xl:hidden': !expanded }]"
+      :class="[
+        'ml-12 bg-gradient-to-b from-[#9f94ff] to-[#fa6a8c]',
+        { 'xl:hidden': !expanded }
+      ]"
     >
       <div class="ml-0.5 bg-white">
         <slot />
@@ -112,31 +115,31 @@ export default {
     }
   },
   emits: ['nav', 'toggleCollapse'],
-  data () {
+  data() {
     return {
       subNavOpen: this.expanded && !this.subNavCollapsed,
       hasActiveChild: false
     };
   },
   computed: {
-    hasChildNavItems () {
+    hasChildNavItems() {
       return Boolean(this.$slots.default);
     },
-    isActive () {
+    isActive() {
       if (this.to === '/') {
         return this.$route.path === '/';
       }
       return this.$route.path.startsWith(this.to);
     },
-    tag () {
+    tag() {
       return this.to ? 'LobLink' : 'button';
     },
-    clickEvent () {
+    clickEvent() {
       return !this.to ? 'click' : null;
     }
   },
   methods: {
-    toggleSubNav () {
+    toggleSubNav() {
       if (this.collapsible) {
         this.subNavOpen = !this.subNavOpen;
       }
@@ -146,7 +149,7 @@ export default {
         this.$emit('toggleCollapse');
       }
     },
-    handleNavigation () {
+    handleNavigation() {
       if (this.to) {
         this.$emit('nav', this.to);
       }

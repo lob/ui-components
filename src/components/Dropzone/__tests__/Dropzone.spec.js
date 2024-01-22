@@ -37,13 +37,13 @@ const initialProps = {
   maxSizeInBytes: 1048576
 };
 
-const renderComponent = (options) => render(Dropzone, { ...options, global: { mixins } });
+const renderComponent = (options) =>
+  render(Dropzone, { ...options, global: { mixins } });
 
 describe('Dropzone', () => {
-
   describe('default step', () => {
-
-    let props; let component;
+    let props;
+    let component;
     beforeEach(() => {
       props = initialProps;
       component = renderComponent({ props });
@@ -66,7 +66,9 @@ describe('Dropzone', () => {
     it('displays the Upload button', () => {
       const { getByRole } = component;
 
-      const uploadButton = getByRole('button', { name: textContentObject.uploadFileButtonText });
+      const uploadButton = getByRole('button', {
+        name: textContentObject.uploadFileButtonText
+      });
       expect(uploadButton).toBeInTheDocument();
     });
 
@@ -74,17 +76,19 @@ describe('Dropzone', () => {
       const { getByRole } = component;
 
       const dropzoneForm = getByRole('form');
-      expect(dropzoneForm).toHaveClass('border border-dashed border-turquoise-500 bg-white-300');
+      expect(dropzoneForm).toHaveClass(
+        'border border-dashed border-turquoise-500 bg-white-300'
+      );
     });
-
   });
 
   describe('file type and size information', () => {
-
     it('displays the max size and file types accepted if showTypeAdMaxSize true', () => {
-      const props = { ...initialProps,
+      const props = {
+        ...initialProps,
         acceptType: '.csv',
-        maxSizeInBytes: 1048576 };
+        maxSizeInBytes: 1048576
+      };
 
       const { getByText } = renderComponent({ props });
       const typeInfoText = getByText(/The only accepted file format is/i);
@@ -98,10 +102,12 @@ describe('Dropzone', () => {
     });
 
     it('does not display size/type info if showTypeAdMaxSize false', () => {
-      const props = { ...initialProps,
+      const props = {
+        ...initialProps,
         acceptType: '.csv',
         maxSizeInBytes: 1048576,
-        showTypeAndMaxSize: false };
+        showTypeAndMaxSize: false
+      };
 
       const { queryByText } = renderComponent({ props });
       const typeInfoText = queryByText(/The only accepted file format is/i);
@@ -109,27 +115,25 @@ describe('Dropzone', () => {
       const sizeInfoText = queryByText(/Max file size is/i);
       expect(sizeInfoText).not.toBeInTheDocument();
     });
-
   });
 
   describe('if the file status is not null', () => {
-
     it('the dropzone shows the correct status', () => {
-
-      const props = { ...initialProps,
+      const props = {
+        ...initialProps,
         status: 'success',
-        file: { name: 'audience.csv', type: 'csv' } };
+        file: { name: 'audience.csv', type: 'csv' }
+      };
 
       const { getByText } = renderComponent({ props });
       const success = getByText(/was successfully uploaded/i);
       expect(success).toBeInTheDocument();
     });
-
   });
 
   describe('when file is selected / uploading step', () => {
-
-    let component; let props;
+    let component;
+    let props;
     beforeEach(() => {
       props = initialProps;
       component = renderComponent({ props });
@@ -138,7 +142,10 @@ describe('Dropzone', () => {
       const uploadButton = getByRole('button', { name: /Upload file/i });
       expect(uploadButton).toBeInTheDocument();
 
-      const file = new File(['testCsvFile'], 'testCsvFile.csv', { type: 'text/csv', size: '1MB' });
+      const file = new File(['testCsvFile'], 'testCsvFile.csv', {
+        type: 'text/csv',
+        size: '1MB'
+      });
       userEvent.upload(uploadButton, file);
     });
 
@@ -155,11 +162,9 @@ describe('Dropzone', () => {
       const progressbar = await findByRole('progressbar');
       expect(progressbar).toBeInTheDocument();
     });
-
   });
 
   describe('error status', () => {
-
     let props;
     beforeEach(() => {
       props = initialProps;
@@ -170,11 +175,12 @@ describe('Dropzone', () => {
       await rerender({ status: 'error' });
 
       const dropzoneForm = getByRole('form');
-      expect(dropzoneForm).toHaveClass('border border-dashed border-coral-700 bg-coral-100');
+      expect(dropzoneForm).toHaveClass(
+        'border border-dashed border-coral-700 bg-coral-100'
+      );
     });
 
     describe('with no errorMessage', () => {
-
       it('displays the defaultErrorText', async () => {
         const { rerender, getByText } = renderComponent({ props });
         await rerender({ status: 'error', errorMessage: null });
@@ -182,25 +188,24 @@ describe('Dropzone', () => {
         const errorText = getByText(textContentObject.defaultErrorText);
         expect(errorText).toBeInTheDocument();
       });
-
     });
 
     describe('with errorMessage', () => {
-
       it('displays the errorMessage passed by the prop', async () => {
         const { rerender, getByText } = renderComponent({ props });
-        await rerender({ ...props, status: 'error', textContent: { ...textContentObject, errorMessage: 'oh no' } });
+        await rerender({
+          ...props,
+          status: 'error',
+          textContent: { ...textContentObject, errorMessage: 'oh no' }
+        });
 
         const errorText = getByText(/oh no/i);
         expect(errorText).toBeInTheDocument();
       });
-
     });
-
   });
 
   describe('success status', () => {
-
     it('displays the success text', async () => {
       const props = initialProps;
       const { rerender, getByText } = renderComponent({ props });
@@ -218,7 +223,9 @@ describe('Dropzone', () => {
 
     it('clicking the remove button returns the uploader to the default state', async () => {
       const props = initialProps;
-      const { rerender, getByText, findByText, emitted } = renderComponent({ props });
+      const { rerender, getByText, findByText, emitted } = renderComponent({
+        props
+      });
       await rerender({ status: 'success' });
 
       const removeFile = getByText(textContentObject.removeFileButtonText);
@@ -231,7 +238,6 @@ describe('Dropzone', () => {
     });
 
     describe('when the confirmRemoveModal props is true', () => {
-
       const props = {
         ...initialProps,
         confirmRemoveFile: true,
@@ -241,7 +247,8 @@ describe('Dropzone', () => {
       };
 
       it('launches the confirm remove modal before removing the file', async () => {
-        const { rerender, getByText, getByRole, findByText, emitted } = renderComponent({ props });
+        const { rerender, getByText, getByRole, findByText, emitted } =
+          renderComponent({ props });
         await rerender({ status: 'success' });
 
         const removeFile = getByText(textContentObject.removeFileButtonText);
@@ -261,13 +268,10 @@ describe('Dropzone', () => {
         const emittedEvent = emitted();
         expect(emittedEvent).toHaveProperty('remove');
       });
-
     });
-
   });
 
   describe('dropping: internal checks for file size & type', () => {
-
     let props;
     beforeEach(() => {
       props = initialProps;
@@ -276,7 +280,9 @@ describe('Dropzone', () => {
     it('does not allow a larger file to be selected', async () => {
       const { getByTestId, findByText } = renderComponent({ props });
       const fileDropzone = getByTestId('drop-area');
-      const file = new File(['testCsvFile'], 'testCsvFile.csv', { type: 'text/csv' });
+      const file = new File(['testCsvFile'], 'testCsvFile.csv', {
+        type: 'text/csv'
+      });
       Object.defineProperty(file, 'size', { value: 12345678 });
       fireEvent.drop(fileDropzone, {
         dataTransfer: {
@@ -284,7 +290,9 @@ describe('Dropzone', () => {
         }
       });
 
-      const tooLarge = await findByText('Audience exceeds file size limit of 1MB');
+      const tooLarge = await findByText(
+        'Audience exceeds file size limit of 1MB'
+      );
       expect(tooLarge).toBeInTheDocument();
     });
 
@@ -294,11 +302,15 @@ describe('Dropzone', () => {
       const fileDropzone = getByTestId('drop-area');
       fireEvent.drop(fileDropzone, {
         dataTransfer: {
-          files: [new File(['testImgFile'], 'testImgFile.jpg', { type: 'image/jpg' })]
+          files: [
+            new File(['testImgFile'], 'testImgFile.jpg', { type: 'image/jpg' })
+          ]
         }
       });
 
-      const notAcceptedType =  await findByText(/File is not a valid file type./i);
+      const notAcceptedType = await findByText(
+        /File is not a valid file type./i
+      );
       expect(notAcceptedType).toBeInTheDocument();
     });
 
@@ -306,8 +318,12 @@ describe('Dropzone', () => {
       const { getByTestId, findByText } = renderComponent({ props });
 
       const fileDropzone = getByTestId('drop-area');
-      const file1 = new File(['testCsvFile'], 'testCsvFile.csv', { type: 'text/csv' });
-      const file2 = new File(['testCsvFile2'], 'testCsvFile2.csv', { type: 'text/csv' });
+      const file1 = new File(['testCsvFile'], 'testCsvFile.csv', {
+        type: 'text/csv'
+      });
+      const file2 = new File(['testCsvFile2'], 'testCsvFile2.csv', {
+        type: 'text/csv'
+      });
       fireEvent.drop(fileDropzone, {
         dataTransfer: {
           files: [file1, file2]
@@ -319,10 +335,14 @@ describe('Dropzone', () => {
     });
 
     it('allows a file of the right type & size to be dropped & emits the file', async () => {
-      const { getByTestId, getByText, rerender, emitted } = renderComponent({ props });
+      const { getByTestId, getByText, rerender, emitted } = renderComponent({
+        props
+      });
 
       const fileDropzone = getByTestId('drop-area');
-      const file = new File(['testCsvFile'], 'testCsvFile.csv', { type: 'text/csv' });
+      const file = new File(['testCsvFile'], 'testCsvFile.csv', {
+        type: 'text/csv'
+      });
       fireEvent.drop(fileDropzone, {
         dataTransfer: {
           files: [file]
@@ -341,10 +361,14 @@ describe('Dropzone', () => {
     });
 
     it('allows a file of undefined type to be dropped & emits the file', async () => {
-      const { getByTestId, getByText, rerender, emitted } = renderComponent({ props });
+      const { getByTestId, getByText, rerender, emitted } = renderComponent({
+        props
+      });
 
       const fileDropzone = getByTestId('drop-area');
-      const file = new File(['testCsvFile'], 'testCsvFile.csv', { type: undefined });
+      const file = new File(['testCsvFile'], 'testCsvFile.csv', {
+        type: undefined
+      });
       fireEvent.drop(fileDropzone, {
         dataTransfer: {
           files: [file]
@@ -365,7 +389,9 @@ describe('Dropzone', () => {
     it('does not allow dropping a file if another file is selected (dropping is disabled)', async () => {
       const { getByTestId, getByText, rerender } = renderComponent({ props });
       const fileDropzone = getByTestId('drop-area');
-      const file = new File(['testCsvFile'], 'testCsvFile.csv', { type: 'text/csv' });
+      const file = new File(['testCsvFile'], 'testCsvFile.csv', {
+        type: 'text/csv'
+      });
       fireEvent.drop(fileDropzone, {
         dataTransfer: {
           files: [file]
@@ -378,7 +404,9 @@ describe('Dropzone', () => {
       expect(fileName).toBeInTheDocument();
       expect(success).toBeInTheDocument();
 
-      const secondFile = new File(['secondFile'], 'secondFile.csv', { type: 'text/csv' });
+      const secondFile = new File(['secondFile'], 'secondFile.csv', {
+        type: 'text/csv'
+      });
       fireEvent.drop(fileDropzone, {
         dataTransfer: {
           files: [secondFile]
@@ -387,8 +415,5 @@ describe('Dropzone', () => {
 
       expect(fileName).toBeInTheDocument();
     });
-
   });
-
 });
-

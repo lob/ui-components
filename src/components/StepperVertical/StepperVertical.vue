@@ -1,7 +1,7 @@
 <template>
   <div>
     <StepperVerticalItem
-      v-for="step, index in steps"
+      v-for="(step, index) in steps"
       :key="step"
       :step="step"
       :dark-mode="darkMode"
@@ -19,25 +19,28 @@ export default {
   name: 'StepperVertical',
   components: { StepperVerticalItem },
   props: {
-    steps: { type: Array, required: true,
+    steps: {
+      type: Array,
+      required: true,
       validator: function (value) {
         const hasDisplayName = (obj) => obj.hasOwnProperty('displayName');
         return Array.isArray(value) && value.every(hasDisplayName);
-      } },
+      }
+    },
     activeStepIndex: { type: Number, required: true },
     darkMode: { type: Boolean, default: false }
   },
   emits: ['goToStep'],
   computed: {
-    activeStep () {
+    activeStep() {
       return this.steps[this.activeStepIndex];
     }
   },
   methods: {
-    handleClick (step) {
+    handleClick(step) {
       this.$emit('goToStep', step);
     },
-    getIsActiveStep (index) {
+    getIsActiveStep(index) {
       return index === this.activeStepIndex;
     }
   }

@@ -14,7 +14,6 @@ const initialProps = {
 };
 
 describe('Radio Button', () => {
-
   it('does not check the input when the value does not match the modelValue', () => {
     const props = initialProps;
     const { getByLabelText } = render(RadioButtonLarge, {
@@ -79,5 +78,4 @@ describe('Radio Button', () => {
     expect(emittedEvent).toHaveProperty('input');
     expect(emittedEvent.input[0]).toEqual([props.value]);
   });
-
 });

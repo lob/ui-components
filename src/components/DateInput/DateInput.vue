@@ -12,10 +12,7 @@
       @keydown.space.stop="isOpen = !isOpen"
     >
       <template #iconRight>
-        <Calendar
-          :size="size==='small'? 's' : 'l'"
-          class="text-gray-900"
-        />
+        <Calendar :size="size === 'small' ? 's' : 'l'" class="text-gray-900" />
       </template>
     </TextInput>
     <Datepicker
@@ -24,7 +21,7 @@
       v-model:open="isOpen"
       :min="min"
       :max="max"
-      :class="['absolute w-72', {'right-0' : rightJustified}]"
+      :class="['absolute w-72', { 'right-0': rightJustified }]"
       :disable-weekends="disableWeekends"
       :disable-holidays="disableHolidays"
     />
@@ -109,32 +106,32 @@ export default {
   emits: ['update:modelValue', 'update:open'],
   computed: {
     date: {
-      get () {
+      get() {
         return this.modelValue;
       },
-      set (date) {
+      set(date) {
         this.$emit('update:modelValue', date);
       }
     },
     isOpen: {
-      get () {
+      get() {
         return this.open;
       },
-      set (isOpen) {
+      set(isOpen) {
         this.$emit('update:open', isOpen);
       }
     },
-    dateString () {
+    dateString() {
       if (this.date) {
         return format(this.date, this.t('dateFormat'));
       } else {
         return '';
       }
     },
-    datepickerId () {
+    datepickerId() {
       return `${this.id}-datepicker`;
     },
-    inputId () {
+    inputId() {
       return `${this.id}-input`;
     }
   }

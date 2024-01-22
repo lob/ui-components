@@ -19,12 +19,14 @@ const router = createRouter({
   routes
 });
 
-const renderComponent = (options) => render(SubnavigationItem, { ...options, global: { plugins: [router] } });
+const renderComponent = (options) =>
+  render(SubnavigationItem, { ...options, global: { plugins: [router] } });
 
 describe('SubnavigationItem', () => {
-
   it('renders correctly', async () => {
-    const { queryByText, queryByRole } = renderComponent({ props: initialProps });
+    const { queryByText, queryByRole } = renderComponent({
+      props: initialProps
+    });
     await router.isReady();
 
     let item = queryByText(initialProps.title);
@@ -44,10 +46,11 @@ describe('SubnavigationItem', () => {
   });
 
   it('adds the correct classes when the item is disabled', () => {
-    const { queryByRole } = renderComponent({ props: { ...initialProps, disabled: true } });
+    const { queryByRole } = renderComponent({
+      props: { ...initialProps, disabled: true }
+    });
 
     const navItem = queryByRole('link', { name: 'Account' });
     expect(navItem).toHaveClass('!text-gray-300');
   });
-
 });

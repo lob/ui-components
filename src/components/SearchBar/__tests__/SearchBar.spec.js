@@ -29,17 +29,19 @@ const initialProps = {
         type: 'postcard'
       }
     ];
-    const results = allPostCards.filter((postCard) => postCard.description.includes(searchTerm));
+    const results = allPostCards.filter((postCard) =>
+      postCard.description.includes(searchTerm)
+    );
     return new Promise((resolve) => {
       resolve(results);
     });
   }
 };
 
-const renderComponent = (options) => render(SearchBar, { ...options, global: { mixins } });
+const renderComponent = (options) =>
+  render(SearchBar, { ...options, global: { mixins } });
 
 describe('SearchBar', () => {
-
   it('clears entered searchTerm when x button is clicked', async () => {
     const searchTerm = 'something';
     const props = {
@@ -127,5 +129,4 @@ describe('SearchBar', () => {
     await fireEvent.click(container);
     expect(input.value).toBe(searchTerm);
   });
-
 });

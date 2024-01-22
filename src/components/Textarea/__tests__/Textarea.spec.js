@@ -10,10 +10,10 @@ const initialProps = {
   modelValue: ''
 };
 
-const renderComponent = (options, configure = null) => render(Textarea, { ...options }, configure);
+const renderComponent = (options, configure = null) =>
+  render(Textarea, { ...options }, configure);
 
 describe('Textarea', () => {
-
   it('renders correctly', () => {
     const props = initialProps;
     const { getByLabelText } = renderComponent({ props });
@@ -99,7 +99,6 @@ describe('Textarea', () => {
   });
 
   describe('character counter', () => {
-
     const propsWithCounter = {
       ...initialProps,
       showCounter: true,
@@ -123,7 +122,10 @@ describe('Textarea', () => {
       userEvent.click(textarea);
 
       const counter = await findByRole('status');
-      expect(counter).toBeInTheDocument().toHaveTextContent(/0\/20/i).toHaveClass('text-gray-500');
+      expect(counter)
+        .toBeInTheDocument()
+        .toHaveTextContent(/0\/20/i)
+        .toHaveClass('text-gray-500');
     });
 
     it('counts the characters', async () => {
@@ -153,8 +155,5 @@ describe('Textarea', () => {
       expect(counter).toHaveTextContent(/16\/20/);
       expect(counter).toBeInTheDocument().toHaveClass('text-red-700');
     });
-
   });
-
 });
-

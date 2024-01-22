@@ -1,5 +1,5 @@
 <template>
-  <div :class="{ 'relative': withCopyButton }">
+  <div :class="{ relative: withCopyButton }">
     <LobLabel
       v-if="label"
       :label="label"
@@ -13,8 +13,7 @@
       v-if="withCopyButton"
       aria-role="alert"
       aria-live="polite"
-      :class="['absolute -top-4 ml-20',
-               { '-top-11': srOnlyLabel }]"
+      :class="['absolute -top-4 ml-20', { '-top-11': srOnlyLabel }]"
     >
       <transition
         enter-active-class="duration-1000 ease-out"
@@ -35,7 +34,9 @@
               {{ copiedTooltipContent }}
             </div>
           </div>
-          <div class="absolute bg-transparent w-0 h-0 m-auto border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-gray-700 -bottom-2 left-0 right-0" />
+          <div
+            class="absolute bg-transparent w-0 h-0 m-auto border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-gray-700 -bottom-2 left-0 right-0"
+          />
         </div>
       </transition>
     </div>
@@ -43,19 +44,23 @@
       data-testId="input-container"
       :class="[
         'bg-white h-11 px-3 py-2 rounded flex items-center gap-2 border border-gray-200',
-        { 'hover:border-gray-300 focus-within:border-[#2D2D2F] focus-within:hover:border-[#2D2D2F] focus-within:outline-black focus-within:outline-offset-1 focus-within:outline-1': !disabled && !readonly },
+        {
+          'hover:border-gray-300 focus-within:border-[#2D2D2F] focus-within:hover:border-[#2D2D2F] focus-within:outline-black focus-within:outline-offset-1 focus-within:outline-1':
+            !disabled && !readonly
+        },
         { '!border-green-700 !bg-green-50': success },
         { '!border-red-600 !bg-red-50': error },
-        { '!bg-gray-50' : disabled || readonly || withCopyButton },
-        { '!flex-wrap !h-fit' : isMultiselect }
+        { '!bg-gray-50': disabled || readonly || withCopyButton },
+        { '!flex-wrap !h-fit': isMultiselect }
       ]"
     >
       <div
         v-if="iconLeft"
-        :class="[modelValue && !disabled ? 'text-gray-800' : 'text-gray-500',
-                 { 'text-green-700' : success },
-                 { 'text-red-600' : error },
-                 { '!text-gray-300': disabled }
+        :class="[
+          modelValue && !disabled ? 'text-gray-800' : 'text-gray-500',
+          { 'text-green-700': success },
+          { 'text-red-600': error },
+          { '!text-gray-300': disabled }
         ]"
       >
         <slot name="iconLeft" />
@@ -71,11 +76,17 @@
         :pattern="pattern"
         :class="[
           `w-full text-gray-800 type-small-400 caret-gray-300 placeholder-gray-200 placeholder:type-small-400 outline-none ${inputClass}`,
-          { 'nonErrorAutofill' : !disabled && !readonly },
-          { 'truncate': withCopyButton },
+          { nonErrorAutofill: !disabled && !readonly },
+          { truncate: withCopyButton },
           { 'bg-green-50 !placeholder-green-700': success },
-          { 'bg-red-50 !placeholder-red-600 !autofill:bg-red-50 errorAutofill': error },
-          { 'bg-gray-50 cursor-not-allowed !text-gray-300 !placeholder-gray-300': disabled || readonly }
+          {
+            'bg-red-50 !placeholder-red-600 !autofill:bg-red-50 errorAutofill':
+              error
+          },
+          {
+            'bg-gray-50 cursor-not-allowed !text-gray-300 !placeholder-gray-300':
+              disabled || readonly
+          }
         ]"
         :disabled="disabled"
         :required="required"
@@ -86,30 +97,33 @@
         @blur="onBlur"
         @change="onChange"
         @invalid="onInvalid"
-      >
+      />
       <button
         v-if="showClearButton && modelValue"
-        :class="[modelValue && !disabled ? 'text-gray-800' : 'text-gray-500',
-                 { 'text-green-700' : success },
-                 { 'text-red-600' : error },
-                 { '!text-gray-300': disabled }
+        :class="[
+          modelValue && !disabled ? 'text-gray-800' : 'text-gray-500',
+          { 'text-green-700': success },
+          { 'text-red-600': error },
+          { '!text-gray-300': disabled }
         ]"
         @click="clearInput"
       >
         <XmarkLarge
-          :class="[ 'h-3.5',
-                    'cursor-pointer',
-                    { 'bg-white-100' : disabled },
-                    { 'bg-coral-100' : error }
+          :class="[
+            'h-3.5',
+            'cursor-pointer',
+            { 'bg-white-100': disabled },
+            { 'bg-coral-100': error }
           ]"
         />
       </button>
       <div
         v-if="iconRight"
-        :class="[modelValue && !disabled ? 'text-gray-800' : 'text-gray-500',
-                 { 'text-green-700' : success },
-                 { 'text-red-600' : error },
-                 { '!text-gray-300': disabled }
+        :class="[
+          modelValue && !disabled ? 'text-gray-800' : 'text-gray-500',
+          { 'text-green-700': success },
+          { 'text-red-600': error },
+          { '!text-gray-300': disabled }
         ]"
       >
         <slot name="iconRight" />
@@ -127,9 +141,9 @@
       v-if="helperText"
       :class="[
         'text-gray-500 type-xs-400 mt-1',
-        { 'text-green-700' : success },
-        { 'text-red-600' : error },
-        { '!text-gray-500' : disabled }
+        { 'text-green-700': success },
+        { 'text-red-600': error },
+        { '!text-gray-500': disabled }
       ]"
     >
       {{ helperText }}
@@ -150,10 +164,13 @@ export default {
       type: String,
       default: null
     },
-    tooltipPosition: { type: String, default: 'trailing',
+    tooltipPosition: {
+      type: String,
+      default: 'trailing',
       validator: function (value) {
         return ['leading', 'trailing'].includes(value);
-      } },
+      }
+    },
     modelValue: {
       type: [String, Number],
       default: null
@@ -166,7 +183,16 @@ export default {
       type: String,
       default: 'text',
       validator: function (value) {
-        return ['date', 'email', 'number', 'password', 'tel', 'text', 'url', 'time'].includes(value);
+        return [
+          'date',
+          'email',
+          'number',
+          'password',
+          'tel',
+          'text',
+          'url',
+          'time'
+        ].includes(value);
       }
     },
     // Used by number inputs.
@@ -249,28 +275,41 @@ export default {
       default: false
     }
   },
-  emits: ['update:modelValue', 'input', 'change', 'focus', 'blur', 'copy', 'invalid'],
-  data () {
+  emits: [
+    'update:modelValue',
+    'input',
+    'change',
+    'focus',
+    'blur',
+    'copy',
+    'invalid'
+  ],
+  data() {
     return {
       showCopied: false
     };
   },
   computed: {
-    iconLeft () {
+    iconLeft() {
       return this.$slots.iconLeft;
     },
-    iconRight () {
+    iconRight() {
       return this.$slots.iconRight;
     },
-    selectedOptions () {
+    selectedOptions() {
       return this.$slots.selectedOptions;
     },
-    showClearButton () {
-      return this.withClearButton && !this.isMultiselect && !this.iconRight && !this.withCopyButton;
+    showClearButton() {
+      return (
+        this.withClearButton &&
+        !this.isMultiselect &&
+        !this.iconRight &&
+        !this.withCopyButton
+      );
     }
   },
   methods: {
-    copyToClipboard () {
+    copyToClipboard() {
       this.showCopied = true;
       this.$refs.input.select();
       document.execCommand('copy');
@@ -280,27 +319,27 @@ export default {
         this.showCopied = false;
       }, 1500);
     },
-    onInput ($event) {
+    onInput($event) {
       this.$emit('update:modelValue', $event.target.value);
       this.$emit('input', $event.target.value);
       this.$emit('change', $event);
     },
-    onFocus ($event) {
+    onFocus($event) {
       if (this.selectOnClick) {
         this.$refs.input.select();
       }
       this.$emit('focus', $event);
     },
-    onBlur ($event) {
+    onBlur($event) {
       this.$emit('blur', $event);
     },
-    onInvalid ($event) {
+    onInvalid($event) {
       this.$emit('invalid', $event.target);
     },
-    focus () {
+    focus() {
       this.$refs.input.focus();
     },
-    clearInput ($event) {
+    clearInput($event) {
       $event.preventDefault();
       this.$refs.input.value = '';
       this.$emit('update:modelValue', '');

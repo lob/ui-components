@@ -1,7 +1,6 @@
 import { formatBytes } from '../formatBytes';
 
 describe('formatBytes', () => {
-
   it('returns the correct size in bytes', () => {
     const expected = '10Bytes';
     const actual = formatBytes(10);
@@ -19,5 +18,4 @@ describe('formatBytes', () => {
     const actual = formatBytes(2147483648);
     expect(actual).toEqual(expected);
   });
-
 });

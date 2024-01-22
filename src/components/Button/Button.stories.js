@@ -24,7 +24,15 @@ export default {
       }
     },
     variant: {
-      options: ['primary', 'secondary', 'danger', 'danger-secondary', 'quiet', 'ghost', 'link'],
+      options: [
+        'primary',
+        'secondary',
+        'danger',
+        'danger-secondary',
+        'quiet',
+        'ghost',
+        'link'
+      ],
       control: {
         type: 'select'
       }

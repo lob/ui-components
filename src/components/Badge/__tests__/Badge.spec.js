@@ -7,7 +7,6 @@ let slots;
 const renderComponent = (options) => render(Badge, { ...options });
 
 describe('Badge', () => {
-
   it('renders correctly', () => {
     const slotContent = 'Hello, this is a badge.';
     slots = { default: slotContent };
@@ -16,5 +15,4 @@ describe('Badge', () => {
     const badgeContent = queryByText(slotContent);
     expect(badgeContent).toBeInTheDocument();
   });
-
 });

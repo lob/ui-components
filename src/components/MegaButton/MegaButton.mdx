@@ -1,4 +1,9 @@
-import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
+import {
+  Preview,
+  Story,
+  ArgsTable,
+  PRIMARY_STORY
+} from '@storybook/addon-docs';
 import MegaButton from './MegaButton.vue';
 
 # MegaButton
@@ -13,11 +18,11 @@ import MegaButton from './MegaButton.vue';
 
 There are 3 forms of megabuttons:
 
-1) A large text, or mega text version, which just shows the label, given as either a prop or a `#label` slot. Unsurprisingly, this form uses a much larger text size than the others.
+1. A large text, or mega text version, which just shows the label, given as either a prop or a `#label` slot. Unsurprisingly, this form uses a much larger text size than the others.
 
-2) The label with text version, which uses its label as a heading and accepts a text prop or a `#text` slot.
+2. The label with text version, which uses its label as a heading and accepts a text prop or a `#text` slot.
 
-3) An image version, which uses an imageSource prop to (you're not going to believe this) display an image.
+3. An image version, which uses an imageSource prop to (you're not going to believe this) display an image.
 
 The format changes automatically based on which props you provide. Just give it a label, and it'll be a mega text. Provide an imageSource and you get the image version. Give it text and it'll format itself appropriately.
 

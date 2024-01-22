@@ -9,10 +9,10 @@ const initialProps = {
   accept: '.pdf'
 };
 
-const renderComponent = (options, configure = null) => render(FileUpload, { ...options }, configure);
+const renderComponent = (options, configure = null) =>
+  render(FileUpload, { ...options }, configure);
 
 describe('FileUpload', () => {
-
   it('renders correctly', () => {
     const props = initialProps;
     const { getByRole } = renderComponent({ props });
@@ -33,7 +33,6 @@ describe('FileUpload', () => {
   });
 
   describe('when a file is selected', () => {
-
     let props;
     let component;
     let input;
@@ -67,7 +66,5 @@ describe('FileUpload', () => {
       const input = queryByLabelText('hello.pdf');
       expect(input).toBeInTheDocument();
     });
-
   });
-
 });

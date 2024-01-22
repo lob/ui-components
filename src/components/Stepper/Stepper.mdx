@@ -2,10 +2,10 @@ import {
   Preview,
   Story,
   ArgsTable,
-  PRIMARY_STORY,
-} from "@storybook/addon-docs";
-import Stepper from "./Stepper.vue";
-import StepperItem from "./StepperItem.vue";
+  PRIMARY_STORY
+} from '@storybook/addon-docs';
+import Stepper from './Stepper.vue';
+import StepperItem from './StepperItem.vue';
 
 # Stepper
 
@@ -19,16 +19,12 @@ The stepper component is just a container with a margin for `stepper-item` compo
 
 The stepper renders some space for `stepper-item` components. However, you can also write custom components for its slot.
 
-
 Example of using this component with two stepper-items.
+
 ```html
 <stepper>
-  <stepper-item position="first" :finished="true">
-    First step
-  </stepper-item>
-  <stepper-item position="last" :active="true">
-    Last step
-  </stepper-item>
+  <stepper-item position="first" :finished="true"> First step </stepper-item>
+  <stepper-item position="last" :active="true"> Last step </stepper-item>
 </stepper>
 ```
 
@@ -54,7 +50,7 @@ You can specify the `color` prop of the StepperItem. By default the marker and b
 
 If you'd like to control the border color independently of the marker color, you can provide a `borderColor` prop.
 
-The final few props are booleans that toggle some state of the StepperItem. 
+The final few props are booleans that toggle some state of the StepperItem.
 
 `active` will add a larger border around the marker.
 
@@ -62,10 +58,15 @@ The final few props are booleans that toggle some state of the StepperItem.
 
 And `dashedBorder` will make the border behind the marker a dashed instead of a solid line.
 
-
 Example of using this component.
+
 ```html
-<stepper-item alignment="left" color="#ffb6db" border-color="#ccc" :dashed-border="true">
+<stepper-item
+  alignment="left"
+  color="#ffb6db"
+  border-color="#ccc"
+  :dashed-border="true"
+>
   Last step
 </stepper-item>
 ```

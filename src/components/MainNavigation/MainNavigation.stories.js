@@ -1,11 +1,19 @@
-import routeDecorator, { routeTemplate } from '../../../.storybook/routeDecorator';
+import routeDecorator, {
+  routeTemplate
+} from '../../../.storybook/routeDecorator';
 
 import MainNavigation from './MainNavigation.vue';
 import MainNavigationItem from './MainNavigationItem.vue';
 import MainNavigationChildItem from './MainNavigationChildItem.vue';
 import mdx from './MainNavigation.mdx';
 import iconOverview from '@/assets/images/iconOverview.svg';
-import { HouseChimney, ChartMixed, AddressBook, LocationDot, EnvelopesBulk } from '../Icons';
+import {
+  HouseChimney,
+  ChartMixed,
+  AddressBook,
+  LocationDot,
+  EnvelopesBulk
+} from '../Icons';
 
 export default {
   title: 'Components/Main Navigation',
@@ -84,7 +92,16 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { MainNavigation, MainNavigationChildItem, MainNavigationItem, HouseChimney, ChartMixed, AddressBook, LocationDot, EnvelopesBulk  },
+  components: {
+    MainNavigation,
+    MainNavigationChildItem,
+    MainNavigationItem,
+    HouseChimney,
+    ChartMixed,
+    AddressBook,
+    LocationDot,
+    EnvelopesBulk
+  },
   decorators: [() => ({ template: '<div class="block"><story /></div>' })],
   setup: () => ({ args }),
   template: `

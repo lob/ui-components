@@ -13,10 +13,10 @@ const initialProps = {
   label: 'Start date'
 };
 
-const renderComponent = (options = {}) => render(DateInput, { global: { mixins }, ...options });
+const renderComponent = (options = {}) =>
+  render(DateInput, { global: { mixins }, ...options });
 
 describe('DateInput', () => {
-
   it('renders an input', () => {
     const props = initialProps;
     const { getByLabelText } = renderComponent({ props });
@@ -26,7 +26,6 @@ describe('DateInput', () => {
   });
 
   describe('when closed', () => {
-
     it('does not render a datepicker', () => {
       const props = initialProps;
       const { queryByRole } = renderComponent({ props });
@@ -34,11 +33,9 @@ describe('DateInput', () => {
       const dialog = queryByRole('dialog');
       expect(dialog).not.toBeInTheDocument();
     });
-
   });
 
   describe('when open', () => {
-
     it('renders a datepicker', () => {
       const props = { ...initialProps, open: true };
       const { queryByRole } = renderComponent({ props });
@@ -46,9 +43,7 @@ describe('DateInput', () => {
       const dialog = queryByRole('dialog');
       expect(dialog).toBeInTheDocument();
       expect(dialog).toHaveAttribute('aria-hidden', 'false');
-
     });
-
   });
 
   it('emits an update:open event with value true when clicking the input', async () => {
@@ -66,7 +61,6 @@ describe('DateInput', () => {
   });
 
   describe('selecting a date', () => {
-
     let props;
     let component;
     let dateToSelect;
@@ -103,7 +97,6 @@ describe('DateInput', () => {
       expect(emittedEvent).toHaveProperty('update:open');
 
       expect(emittedEvent['update:open'][0][0]).toEqual(false);
-
     });
 
     it('emits an update:modelValue event', async () => {
@@ -113,15 +106,19 @@ describe('DateInput', () => {
       const emittedEvent = emitted();
       expect(emittedEvent).toHaveProperty('update:modelValue');
 
-      expect(emittedEvent['update:modelValue'][0][0]).toEqual(new Date(2022, 5, 23));
+      expect(emittedEvent['update:modelValue'][0][0]).toEqual(
+        new Date(2022, 5, 23)
+      );
     });
-
   });
 
   describe('when it has an error and errorMessage', () => {
-
     it('shows the error state/red border and the error message', () => {
-      const props = { ...initialProps, error: true, errorMessage: 'Date no longer valid' };
+      const props = {
+        ...initialProps,
+        error: true,
+        errorMessage: 'Date no longer valid'
+      };
       const { getByText, getByTestId } = renderComponent({ props });
 
       const textInput = getByTestId('input-container');
@@ -129,7 +126,5 @@ describe('DateInput', () => {
       const errorMessage = getByText('Date no longer valid');
       expect(errorMessage).toBeVisible();
     });
-
   });
-
 });

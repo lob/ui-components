@@ -110,7 +110,7 @@ export const WithTooltipTrailing = WithTooltipTemplate.bind({});
 WithTooltipTrailing.args = {
   label: 'Name',
   labelFor: 'Name',
-  tooltipContent: 'Tooltip Content to include some more information about this input field',
+  tooltipContent:
+    'Tooltip Content to include some more information about this input field',
   tooltipPosition: 'trailing'
 };
-

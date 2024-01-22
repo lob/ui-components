@@ -9,7 +9,6 @@ const initialProps = {
 };
 
 describe('LobLabel', () => {
-
   it('renders correctly', () => {
     const props = initialProps;
     const { getByText } = render(LobLabel, { props });
@@ -24,14 +23,13 @@ describe('LobLabel', () => {
       required: true
     };
 
-    const { getByText } = render(LobLabel, { props  });
+    const { getByText } = render(LobLabel, { props });
     const label = getByText(props.label);
     const asterisk = getByText('*');
     expect(label).toContainElement(asterisk);
   });
 
   describe('if a tooltip is added', () => {
-
     it('the tooltip shows on the left by default', () => {
       const props = { ...initialProps, tooltipContent: 'magic tooltip' };
       const { getByTestId } = render(LobLabel, { props });
@@ -43,7 +41,11 @@ describe('LobLabel', () => {
     });
 
     it('the tooltip shows on the right if tooltipPosition:trailing is added', () => {
-      const props = { ...initialProps, tooltipContent: 'magic tooltip', tooltipPosition: 'trailing' };
+      const props = {
+        ...initialProps,
+        tooltipContent: 'magic tooltip',
+        tooltipPosition: 'trailing'
+      };
       const { getByTestId } = render(LobLabel, { props });
 
       const tooltip = getByTestId('tooltip-trailing');
@@ -51,8 +53,5 @@ describe('LobLabel', () => {
       const labelWrapper = getByTestId('labelWrapper');
       expect(labelWrapper).toHaveClass('justify-between flex-row-reverse');
     });
-
   });
-
 });
-

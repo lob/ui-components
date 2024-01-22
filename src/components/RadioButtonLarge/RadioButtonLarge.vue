@@ -3,12 +3,12 @@
     :class="[
       'buttonContainer cursor-pointer border border-gray-300 rounded-sm pt-3 pb-3 mr-4 mb-1 customOutline',
       fullWidth ? 'w-full' : 'w-[234px]',
-      {'h-full' : fullHeight},
-      {'!pb-8' : helperText},
-      {'hover:border-gray-400': !disabled && !error},
-      {'!border-black checked': checked && !disabled && !error},
-      {'disabled !cursor-not-allowed border-gray-100': disabled},
-      {'!border-red-500 radio__input--error': error && !disabled}
+      { 'h-full': fullHeight },
+      { '!pb-8': helperText },
+      { 'hover:border-gray-400': !disabled && !error },
+      { '!border-black checked': checked && !disabled && !error },
+      { 'disabled !cursor-not-allowed border-gray-100': disabled },
+      { '!border-red-500 radio__input--error': error && !disabled }
     ]"
     @click="onInput"
   >
@@ -18,8 +18,8 @@
       type="radio"
       :class="[
         'absolute opacity-0',
-        {'radio__input--error': error},
-        {'!cursor-not-allowed': disabled}
+        { 'radio__input--error': error },
+        { '!cursor-not-allowed': disabled }
       ]"
       :name="name"
       :value="value.toString()"
@@ -28,12 +28,12 @@
       :required="required"
       @input="onInput"
       @click="onClick"
-    >
+    />
     <label
       :for="id"
       :class="[
         'relative flex type-base-500 top-[1px] left-[46px] cursor-pointer h-full pr-16',
-        {'text-gray-400 !cursor-not-allowed': disabled}
+        { 'text-gray-400 !cursor-not-allowed': disabled }
       ]"
     >
       <div>
@@ -43,8 +43,8 @@
         <div
           :class="[
             'type-xs-400 text-gray-500',
-            {'!text-gray-300' : disabled},
-            {'-mb-4' : helperText}
+            { '!text-gray-300': disabled },
+            { '-mb-4': helperText }
           ]"
         >
           {{ helperText }}
@@ -106,21 +106,21 @@ export default {
     }
   },
   emits: ['update:modelValue', 'input', 'click'],
-  data () {
+  data() {
     return {
       parent: null
     };
   },
   computed: {
-    checked () {
+    checked() {
       return this.modelValue === this.value;
     }
   },
-  created () {
+  created() {
     this.parent = getCurrentInstance().parent;
   },
   methods: {
-    onInput ($event) {
+    onInput($event) {
       if (!this.disabled) {
         this.$emit('update:modelValue', this.value);
         this.$emit('input', this.value);
@@ -128,7 +128,7 @@ export default {
         this.$refs.radioInput.focus();
       }
     },
-    onClick ($event) {
+    onClick($event) {
       this.$emit('click', $event);
     }
   }
@@ -139,7 +139,7 @@ export default {
 input {
   + label {
     &::before {
-      content: "";
+      content: '';
       top: 3px;
       left: -22px;
 
@@ -154,7 +154,7 @@ input {
     }
 
     &::after {
-      content: "";
+      content: '';
       left: -17px;
 
       @apply top-2;
@@ -208,12 +208,14 @@ input {
   }
 }
 
-.buttonContainer:hover:not(.radio__input--error):not(.disabled):not(.checked) label::before {
+.buttonContainer:hover:not(.radio__input--error):not(.disabled):not(.checked)
+  label::before {
   @apply border-gray-500;
   @apply bg-gray-50;
 }
 
-.buttonContainer:hover:not(.radio__input--error):not(.disabled):not(.checked) label::after {
+.buttonContainer:hover:not(.radio__input--error):not(.disabled):not(.checked)
+  label::after {
   @apply bg-gray-50;
 }
 

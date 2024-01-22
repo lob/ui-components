@@ -1,4 +1,6 @@
-import routeDecorator, { routeTemplate } from '../../../.storybook/routeDecorator';
+import routeDecorator, {
+  routeTemplate
+} from '../../../.storybook/routeDecorator';
 import TopNavbar from './TopNavbar.vue';
 import mdx from './TopNavbar.mdx';
 import TopNavDropdown from '@/components/TopNavDropdown/TopNavDropdown.vue';
@@ -29,7 +31,17 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { TopNavbar, TopNavDropdown, TopNavDropdownItem, TopNavButton, Signal, Map, PersonToPortal, CircleQuestion, Gear },
+  components: {
+    TopNavbar,
+    TopNavDropdown,
+    TopNavDropdownItem,
+    TopNavButton,
+    Signal,
+    Map,
+    PersonToPortal,
+    CircleQuestion,
+    Gear
+  },
   setup: () => ({ args }),
   template: `
     <TopNavbar v-bind="args">
@@ -72,5 +84,4 @@ const Template = (args, { argTypes }) => ({
 });
 
 export const Primary = Template.bind({});
-Primary.args = {
-};
+Primary.args = {};

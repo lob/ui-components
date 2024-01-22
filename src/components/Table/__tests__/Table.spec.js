@@ -5,7 +5,6 @@ import Table from '../Table.vue';
 const renderComponent = (options = {}) => render(Table, { ...options });
 
 describe('Table', () => {
-
   it('renders Table correctly', () => {
     const slotContent = 'Hello';
     const slots = { default: [slotContent] };
@@ -18,5 +17,4 @@ describe('Table', () => {
     const slot = queryByText('Hello');
     expect(slot).toBeInTheDocument();
   });
-
 });

@@ -12,7 +12,6 @@ const initialProps = {
 const renderComponent = (options) => render(CalendarDay, { ...options });
 
 describe('CalendarDay', () => {
-
   it('renders correctly', () => {
     const props = initialProps;
     const { queryByRole } = renderComponent({ props });
@@ -47,7 +46,6 @@ describe('CalendarDay', () => {
   });
 
   describe('when not disabled', () => {
-
     it('sets the aria-pressed attribute when selected is true', () => {
       const props = { ...initialProps, selected: true };
       const { queryByRole } = renderComponent({ props });
@@ -55,11 +53,9 @@ describe('CalendarDay', () => {
       const button = queryByRole('button');
       expect(button).toHaveAttribute('aria-pressed', 'true');
     });
-
   });
 
   describe('when disabled', () => {
-
     let props;
 
     beforeEach(() => {
@@ -79,7 +75,6 @@ describe('CalendarDay', () => {
       const button = queryByRole('button');
       expect(button).toHaveAttribute('aria-pressed', 'false');
     });
-
   });
 
   it('disables the button if the date is outside the range', () => {
@@ -91,7 +86,6 @@ describe('CalendarDay', () => {
   });
 
   describe('when the date is selectable', () => {
-
     it('has a gray border', () => {
       const props = { ...initialProps, today: true };
       const { queryByRole } = renderComponent({ props });
@@ -133,11 +127,9 @@ describe('CalendarDay', () => {
       expect(emittedEvent).toHaveProperty('dateSelect');
       expect(emittedEvent.dateSelect[0][0]).toEqual(props.date);
     });
-
   });
 
   describe('when the date is not selectable', () => {
-
     it('has the correct classes', () => {
       const props = { date: addDays(new Date(), 181), selectableRange: 180 };
       const { queryByRole } = renderComponent({ props });
@@ -179,7 +171,5 @@ describe('CalendarDay', () => {
       const emittedEvent = emitted();
       expect(emittedEvent).not.toHaveProperty('dateSelect');
     });
-
   });
-
 });

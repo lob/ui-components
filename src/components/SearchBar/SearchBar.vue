@@ -1,8 +1,5 @@
 <template>
-  <div
-    ref="searchBar"
-    class="relative"
-  >
+  <div ref="searchBar" class="relative">
     <TextInput
       id="searchBar"
       v-model="searchTerm"
@@ -47,7 +44,8 @@
             class="hover:text-primary-700"
             @click="hide"
           >
-            {{ t('search.resultsPrefix') }} {{ totalResults }} {{ t('search.resultsSuffix') }}
+            {{ t('search.resultsPrefix') }} {{ totalResults }}
+            {{ t('search.resultsSuffix') }}
           </LobLink>
         </template>
         <template v-else>
@@ -85,7 +83,15 @@ import XmarkLarge from '../Icons/XmarkLarge';
 
 export default {
   name: 'SearchBar',
-  components: { TextInput, LobTable, TableBody, TableRow, LobLink, MagnifyingGlass, XmarkLarge },
+  components: {
+    TextInput,
+    LobTable,
+    TableBody,
+    TableRow,
+    LobLink,
+    MagnifyingGlass,
+    XmarkLarge
+  },
   props: {
     searchFunction: {
       type: Function,
@@ -104,7 +110,7 @@ export default {
       default: true
     }
   },
-  data () {
+  data() {
     return {
       searchTerm: '',
       searchResults: [],
@@ -114,60 +120,63 @@ export default {
     };
   },
   computed: {
-    disabled () {
+    disabled() {
       return !this.searchTerm;
     },
-    totalResults () {
+    totalResults() {
       return this.count ? this.count : this.searchResults.length;
     }
   },
   watch: {
-    searchTerm (val) {
+    searchTerm(val) {
       if (val) {
         this.visible = true;
         this.debounceSearch(val);
       }
     }
   },
-  mounted () {
+  mounted() {
     window.addEventListener('click', this.onClickOutside);
   },
-  unmounted () {
+  unmounted() {
     window.removeEventListener('click', this.onClickOutside);
   },
   methods: {
-    debounceSearch (searchTerm, delayMs)  {
+    debounceSearch(searchTerm, delayMs) {
       this.searching = true;
       clearTimeout(this.timeout);
       this.timeout = setTimeout(() => {
         this.search(searchTerm);
       }, delayMs || 500);
     },
-    search (val) {
+    search(val) {
       this.searchResults = [];
-      this.searchFunction(val).then((results) => {
-        this.searchResults = results;
-      }).finally(() => {
-        this.searching = false;
-      });
+      this.searchFunction(val)
+        .then((results) => {
+          this.searchResults = results;
+        })
+        .finally(() => {
+          this.searching = false;
+        });
     },
-    clearSearch () {
+    clearSearch() {
       if (this.searchTerm) {
         this.searchTerm = '';
         this.searchResults = [];
       }
     },
-    onClickOutside ($event) {
+    onClickOutside($event) {
       if (this.$refs.searchBar) {
         const clickOnTheContainer = this.$refs.searchBar === $event.target;
-        const clickOnChild = this.$refs.searchBar && this.$refs.searchBar.contains($event.target);
+        const clickOnChild =
+          this.$refs.searchBar && this.$refs.searchBar.contains($event.target);
 
         if (!clickOnTheContainer && !clickOnChild) {
           this.hide();
         }
       }
     },
-    hide () {
+    hide() {
       this.visible = false;
     }
   }

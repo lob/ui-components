@@ -38,10 +38,12 @@ const slots = {
 };
 
 describe('Main Navigation Item', () => {
-
   it('renders correctly', async () => {
     const props = initialProps;
-    const { queryByText, queryByTestId } = await renderComponent({ props, slots });
+    const { queryByText, queryByTestId } = await renderComponent({
+      props,
+      slots
+    });
 
     const item = queryByText(props.title);
     expect(item).toBeInTheDocument();
@@ -51,7 +53,6 @@ describe('Main Navigation Item', () => {
   });
 
   describe('with a to prop', () => {
-
     it('renders a link', async () => {
       const props = {
         ...initialProps,
@@ -67,7 +68,6 @@ describe('Main Navigation Item', () => {
     });
 
     describe('when clicked', () => {
-
       it('emits a nav event', async () => {
         const props = {
           ...initialProps,
@@ -83,13 +83,10 @@ describe('Main Navigation Item', () => {
         expect(emittedEvent).toHaveProperty('nav');
         expect(emittedEvent.nav[0][0]).toEqual('/overview');
       });
-
     });
-
   });
 
   describe('without a to prop', () => {
-
     it('renders a button', async () => {
       const props = initialProps;
       const { queryByRole } = await renderComponent({ props });
@@ -114,7 +111,6 @@ describe('Main Navigation Item', () => {
     });
 
     describe('without chld nav items', () => {
-
       it('does not render a collapse/expand icon', async () => {
         const props = initialProps;
         const { queryByTestId } = await renderComponent({ props });
@@ -122,16 +118,14 @@ describe('Main Navigation Item', () => {
         const collapseExpandIcon = queryByTestId('collapse-expand-icon');
         expect(collapseExpandIcon).not.toBeInTheDocument();
       });
-
     });
 
     describe('with child nav items', () => {
-
       let slots;
       let slotContent;
 
       beforeEach(() => {
-        slotContent = 'I\'m a child';
+        slotContent = "I'm a child";
         slots = { default: [`<ul><li>${slotContent}</li></ul>`] };
       });
 
@@ -144,7 +138,6 @@ describe('Main Navigation Item', () => {
       });
 
       describe('when collapsible', () => {
-
         it('renders a collapse/expand icon', async () => {
           const props = initialProps;
           const { queryByTestId } = await renderComponent({ props, slots });
@@ -154,7 +147,6 @@ describe('Main Navigation Item', () => {
         });
 
         describe('and expanded', () => {
-
           let props;
 
           beforeEach(() => {
@@ -168,11 +160,14 @@ describe('Main Navigation Item', () => {
             const { queryByTestId } = await renderComponent({ props, slots });
 
             const collapseExpandIcon = queryByTestId('collapse-expand-icon');
-            expect(collapseExpandIcon).toBeInTheDocument().toHaveClass('-rotate-180');
+            expect(collapseExpandIcon)
+              .toBeInTheDocument()
+              .toHaveClass('-rotate-180');
           });
 
           it('collapses the sub navigation when clicked', async () => {
-            const { getByText, queryByText, queryByTestId } = await renderComponent({ props, slots });
+            const { getByText, queryByText, queryByTestId } =
+              await renderComponent({ props, slots });
 
             const button = getByText(props.title);
             fireEvent.click(button);
@@ -184,14 +179,14 @@ describe('Main Navigation Item', () => {
 
             await waitFor(() => {
               const collapseExpandIcon = queryByTestId('collapse-expand-icon');
-              expect(collapseExpandIcon).toBeInTheDocument().not.toHaveClass('-rotate-180');
+              expect(collapseExpandIcon)
+                .toBeInTheDocument()
+                .not.toHaveClass('-rotate-180');
             });
           });
-
         });
 
         describe('and collapsed', () => {
-
           let props;
 
           beforeEach(() => {
@@ -205,11 +200,14 @@ describe('Main Navigation Item', () => {
             const { queryByTestId } = await renderComponent({ props, slots });
 
             const collapseExpandIcon = queryByTestId('collapse-expand-icon');
-            expect(collapseExpandIcon).toBeInTheDocument().not.toHaveClass('-rotate-180');
+            expect(collapseExpandIcon)
+              .toBeInTheDocument()
+              .not.toHaveClass('-rotate-180');
           });
 
           it('expands the sub navigation when clicked', async () => {
-            const { getByText, queryByText, queryByTestId } = await renderComponent({ props, slots });
+            const { getByText, queryByText, queryByTestId } =
+              await renderComponent({ props, slots });
 
             const button = getByText(props.title);
             fireEvent.click(button);
@@ -221,16 +219,15 @@ describe('Main Navigation Item', () => {
 
             await waitFor(() => {
               const collapseExpandIcon = queryByTestId('collapse-expand-icon');
-              expect(collapseExpandIcon).toBeInTheDocument().toHaveClass('-rotate-180');
+              expect(collapseExpandIcon)
+                .toBeInTheDocument()
+                .toHaveClass('-rotate-180');
             });
           });
-
         });
-
       });
 
       describe('when not collapsible', () => {
-
         let props;
 
         beforeEach(() => {
@@ -248,7 +245,10 @@ describe('Main Navigation Item', () => {
         });
 
         it('does not collapse the sub navigation when clicked', async () => {
-          const { getByText, queryByText } = await renderComponent({ props, slots });
+          const { getByText, queryByText } = await renderComponent({
+            props,
+            slots
+          });
 
           const button = getByText(props.title);
           fireEvent.click(button);
@@ -258,15 +258,11 @@ describe('Main Navigation Item', () => {
             expect(slot).toBeInTheDocument();
           });
         });
-
       });
-
     });
-
   });
 
   describe('with a itemClass prop', () => {
-
     it('renders a link', async () => {
       const props = {
         ...initialProps,
@@ -278,11 +274,9 @@ describe('Main Navigation Item', () => {
       expect(item).toBeInTheDocument();
       expect(item).toHaveClass('font-bold');
     });
-
   });
 
   describe('when parent nav is expanded', () => {
-
     it('expands its content appropriately', async () => {
       const props = initialProps;
       const { queryByTestId } = await renderComponent({ props });
@@ -290,11 +284,9 @@ describe('Main Navigation Item', () => {
       const collapsibleElement = queryByTestId('collapsibleElement');
       expect(collapsibleElement).toHaveClass('xl:max-w-full');
     });
-
   });
 
   describe('when parent nav is collapsed', () => {
-
     let props;
 
     beforeEach(() => {
@@ -310,8 +302,5 @@ describe('Main Navigation Item', () => {
       const collapsibleElement = queryByTestId('collapsibleElement');
       expect(collapsibleElement).not.toHaveClass('xl:max-w-full');
     });
-
   });
-
 });
-

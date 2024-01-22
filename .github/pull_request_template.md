@@ -1,6 +1,6 @@
 ## JIRA
 
-* A link to the JIRA ticket
+- A link to the JIRA ticket
 
 <!--
 ## Technical Design Doc
@@ -9,7 +9,7 @@
 
 ## Description
 
-* Explains generally what the ticket is and why we are doing it
+- Explains generally what the ticket is and why we are doing it
 
 <!--
 ## Screenshots

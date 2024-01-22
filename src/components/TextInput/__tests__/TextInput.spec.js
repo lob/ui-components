@@ -11,7 +11,6 @@ const initialProps = {
 };
 
 describe('Text input', () => {
-
   it('renders correctly', () => {
     const props = initialProps;
     const { getByLabelText } = render(TextInput, {
@@ -110,7 +109,7 @@ describe('Text input', () => {
   });
 
   it('renders the slot content', async () => {
-    const slotContent = 'I\'m an icon';
+    const slotContent = "I'm an icon";
     const slots = { iconLeft: [`${slotContent}`] };
 
     const props = initialProps;
@@ -152,7 +151,6 @@ describe('Text input', () => {
   });
 
   describe('with tooltip', () => {
-
     const propsTooltip = {
       ...initialProps,
       label: 'company',
@@ -165,7 +163,9 @@ describe('Text input', () => {
     };
 
     it('the label is correctly associated with the input when the tooltip is trailing', async () => {
-      const { getByLabelText, getByTestId } = render(TextInput, { props: propsTooltip });
+      const { getByLabelText, getByTestId } = render(TextInput, {
+        props: propsTooltip
+      });
       const companyInput = getByLabelText(propsTooltip.label);
       expect(companyInput).toBeInTheDocument();
       await userEvent.type(companyInput, 'lob');
@@ -175,17 +175,17 @@ describe('Text input', () => {
     });
 
     it('the label is correctly associated with the input when the tooltip is leading', () => {
-      const { getByLabelText, getByTestId } = render(TextInput, { props: propsTooltipLeading });
+      const { getByLabelText, getByTestId } = render(TextInput, {
+        props: propsTooltipLeading
+      });
       const companyInput = getByLabelText(propsTooltip.label);
       expect(companyInput).toBeInTheDocument();
       const tooltipLeading = getByTestId('tooltip-leading');
       expect(tooltipLeading).toBeInTheDocument();
     });
-
   });
 
   describe('with Copy Button', () => {
-
     let component;
     beforeEach(async () => {
       const props = {
@@ -197,7 +197,7 @@ describe('Text input', () => {
       });
     });
 
-    it('renders the Copy button that emits \'copy\' event onClick', async () => {
+    it("renders the Copy button that emits 'copy' event onClick", async () => {
       const { getByRole, emitted } = component;
 
       const button = getByRole('button', { name: /copy/i });
@@ -209,7 +209,7 @@ describe('Text input', () => {
       expect(emittedEvent).toHaveProperty('copy');
     });
 
-    it('shows the \'Copied\' tooltip when copied', async () => {
+    it("shows the 'Copied' tooltip when copied", async () => {
       const { getByRole, queryByTestId, findByTestId } = component;
 
       const notVisibleTip = queryByTestId('copiedTip');
@@ -221,7 +221,5 @@ describe('Text input', () => {
       const visibleCopiedTip = await findByTestId('copiedTip');
       expect(visibleCopiedTip).toBeInTheDocument();
     });
-
   });
-
 });

@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="text-sm grid gap-y-3"
-    :aria-labelledby="labelledById"
-  >
+  <div class="text-sm grid gap-y-3" :aria-labelledby="labelledById">
     <header class="grid grid-cols-7 gap-2">
       <div
         v-for="dayName in mapWithOffset(dayNames, firstDayOfWeek)"
@@ -19,11 +16,7 @@
       :key="week"
       class="grid grid-cols-7 gap-2"
     >
-      <div
-        v-for="date in week"
-        :key="date"
-        class=""
-      >
+      <div v-for="date in week" :key="date" class="">
         <CalendarDay
           :ref="isFocused(date) ? 'focusedDate' : null"
           :date="date"
@@ -84,16 +77,16 @@ export default {
     }
   },
   emits: ['dateSelect', 'click', 'keydown'],
-  data () {
+  data() {
     return {
       today: new Date()
     };
   },
   computed: {
-    days () {
+    days() {
       return getViewOfMonth(this.focusedDate, this.firstDayOfWeek);
     },
-    dayNames () {
+    dayNames() {
       return [
         this.t('datepicker.dayNameZero'),
         this.t('datepicker.dayNameOne'),
@@ -106,7 +99,7 @@ export default {
     }
   },
   methods: {
-    chunk (array, chunkSize) {
+    chunk(array, chunkSize) {
       const result = [];
 
       for (let i = 0; i < array.length; i += chunkSize) {
@@ -115,40 +108,42 @@ export default {
 
       return result;
     },
-    mapWithOffset (array, startingOffset) {
+    mapWithOffset(array, startingOffset) {
       return array.map((_, i) => {
         const adjustedIndex = (i + startingOffset) % array.length;
         return array[adjustedIndex];
       });
     },
-    isToday (date) {
+    isToday(date) {
       return isEqual(date, this.today);
     },
-    isFocused (date) {
+    isFocused(date) {
       return isEqual(date, this.focusedDate);
     },
-    isSelected (date) {
+    isSelected(date) {
       return isEqual(date, this.selectedDate);
     },
-    isDisabled (date) {
+    isDisabled(date) {
       const isInSameMonth = isEqualMonth(date, this.focusedDate);
       const isInRange = inRange(date, this.min, this.max);
-      const isDateDisabled = this.isDateDisabled ? this.isDateDisabled(date) : false;
+      const isDateDisabled = this.isDateDisabled
+        ? this.isDateDisabled(date)
+        : false;
       return !isInSameMonth || !isInRange || isDateDisabled;
     },
-    isInRange (date) {
+    isInRange(date) {
       return inRange(date, this.min, this.max);
     },
-    onDateSelect (value) {
+    onDateSelect(value) {
       this.$emit('dateSelect', value);
     },
-    onClick (value) {
+    onClick(value) {
       this.$emit('click', value);
     },
-    onKeydown ($event) {
+    onKeydown($event) {
       this.$emit('keydown', $event);
     },
-    focusDate () {
+    focusDate() {
       if (this.$refs.focusedDate) {
         // focusedDate is an array because it's set inside a v-for but there should only ever be 1
         this.$refs.focusedDate[0].focus();

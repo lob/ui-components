@@ -11,10 +11,14 @@ const initialProps = {
   id: '1'
 };
 
-const renderComponent = (options, configure = null) => render(TopNavDropdown, { ...options, global: { plugins: [constants] } }, configure);
+const renderComponent = (options, configure = null) =>
+  render(
+    TopNavDropdown,
+    { ...options, global: { plugins: [constants] } },
+    configure
+  );
 
 describe('TopNavDropdown', () => {
-
   it('renders correctly', () => {
     const props = initialProps;
     const { queryByRole } = renderComponent({ props });
@@ -25,7 +29,9 @@ describe('TopNavDropdown', () => {
 
   it('renders correctly with an icon', () => {
     const props = initialProps;
-    const { queryByRole } = renderComponent({ props: { ...props, icon: CircleQuestion, variant: 'icon' } });
+    const { queryByRole } = renderComponent({
+      props: { ...props, icon: CircleQuestion, variant: 'icon' }
+    });
 
     const nav = queryByRole('navigation');
     expect(nav).toBeInTheDocument();
@@ -60,5 +66,4 @@ describe('TopNavDropdown', () => {
     const emittedEvent = emitted();
     expect(emittedEvent).toHaveProperty('click');
   });
-
 });

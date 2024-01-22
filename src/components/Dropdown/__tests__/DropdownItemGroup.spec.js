@@ -7,24 +7,16 @@ const initialProps = {
   id: 'id',
   group: {
     label: 'group',
-    options: [
-      'opt 1',
-      'opt 2'
-    ]
+    options: ['opt 1', 'opt 2']
   },
   activeIndex: 0,
   placeholderText: '',
-  flattenedOptions: [
-    'opt 1',
-    'opt 2',
-    'opt 3'
-  ]
+  flattenedOptions: ['opt 1', 'opt 2', 'opt 3']
 };
 
 const renderComponent = (options) => render(DropdownItemGroup, { ...options });
 
 describe('DropdownItemGroup', () => {
-
   it('renders an option for each item in the group', () => {
     const props = initialProps;
     const { queryAllByRole, queryByText } = renderComponent({ props });
@@ -82,5 +74,4 @@ describe('DropdownItemGroup', () => {
     const [event, index] = emittedEvents.mouseenter[0];
     expect(index).toEqual(0);
   });
-
 });

@@ -2,16 +2,15 @@
   <nav class="xl:min-h-full p-4 relative bg-white border-r-2 border-white-300">
     <button
       v-if="collapsible"
-      :class="['hidden xl:block w-7 h-7 rounded-full absolute -right-3.5 mt-3 z-10',
-               'text-gray-500 bg-white border-2 border-white-300 transition-transform duration-100 ease-in',
-               { 'transform -rotate-180': !expanded }]"
+      :class="[
+        'hidden xl:block w-7 h-7 rounded-full absolute -right-3.5 mt-3 z-10',
+        'text-gray-500 bg-white border-2 border-white-300 transition-transform duration-100 ease-in',
+        { 'transform -rotate-180': !expanded }
+      ]"
       :aria-expanded="expanded"
       @click="animateDrawer"
     >
-      <ChevronLeft
-        size="s"
-        class="m-auto mr-1.5"
-      />
+      <ChevronLeft size="s" class="m-auto mr-1.5" />
     </button>
     <ul
       data-testId="main-navigation-list"
@@ -21,10 +20,7 @@
         { collapsed: collapsible && !expanded }
       ]"
     >
-      <slot
-        :expanded="expanded"
-        :events="{toggleCollapse:animateDrawer}"
-      />
+      <slot :expanded="expanded" :events="{ toggleCollapse: animateDrawer }" />
     </ul>
   </nav>
 </template>
@@ -42,13 +38,13 @@ export default {
     }
   },
   emits: ['toggleCollapse'],
-  data () {
+  data() {
     return {
       expanded: true
     };
   },
   methods: {
-    animateDrawer () {
+    animateDrawer() {
       this.expanded = !this.expanded;
       this.$emit('toggleCollapse');
     }

@@ -2,12 +2,11 @@ import '@testing-library/jest-dom';
 import { render } from '@testing-library/vue';
 import LoadingIndicator from '../LoadingIndicator.vue';
 
-const renderComponent = (options = {}) => render(LoadingIndicator, { ...options });
+const renderComponent = (options = {}) =>
+  render(LoadingIndicator, { ...options });
 
 describe('LoadingIndicator', () => {
-
   describe('when there is no content in the default slot', () => {
-
     it('renders as loading for screenreader users', () => {
       const { getByTestId } = renderComponent();
       const loading = getByTestId('loading-indicator');
@@ -19,11 +18,9 @@ describe('LoadingIndicator', () => {
       const loading = getByTestId('loading-indicator');
       expect(loading).toHaveClass('loading-gif');
     });
-
   });
 
   describe('when there is content in the default slot', () => {
-
     let slotContent;
     let slots;
     beforeEach(() => {
@@ -48,7 +45,5 @@ describe('LoadingIndicator', () => {
       const defaultSlot = getByText(slotContent);
       expect(defaultSlot).toBeInTheDocument();
     });
-
   });
-
 });

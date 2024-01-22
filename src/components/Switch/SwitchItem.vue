@@ -3,7 +3,10 @@
     :class="[
       'rounded-[1px] flex type-base-600',
       { '!bg-black checked text-white': checked },
-      { 'bg-white text-gray-500 hover:bg-gray-50 active:test-gray-600 active:bg-gray-100': !checked && !disabled },
+      {
+        'bg-white text-gray-500 hover:bg-gray-50 active:test-gray-600 active:bg-gray-100':
+          !checked && !disabled
+      },
       { '!text-gray-300': disabled }
     ]"
   >
@@ -17,15 +20,12 @@
       :disabled="disabled"
       @input="onInput"
       @click="onClick"
-    >
+    />
     <label
       :for="value"
-      :class="[
-        'px-4 py-2 cursor-pointer',
-        { 'cursor-not-allowed': disabled }
-      ]"
+      :class="['px-4 py-2 cursor-pointer', { 'cursor-not-allowed': disabled }]"
     >
-      <span :class="[{'sr-only': srOnlyLabel}]">
+      <span :class="[{ 'sr-only': srOnlyLabel }]">
         {{ label }}
       </span>
       <slot />
@@ -64,16 +64,16 @@ export default {
   },
   emits: ['update:modelValue', 'input', 'click'],
   computed: {
-    checked () {
+    checked() {
       return this.modelValue === this.value;
     }
   },
   methods: {
-    onInput () {
+    onInput() {
       this.$emit('input', this.value);
       this.$emit('update:modelValue', this.value);
     },
-    onClick ($event) {
+    onClick($event) {
       this.$emit('click', $event);
     }
   }

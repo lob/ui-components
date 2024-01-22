@@ -1,5 +1,10 @@
 <template>
-  <span :class="[{'text-gray-900 hover:text-primary-300': !disabled}, { 'text-gray-100 hover:text-gray-100' : disabled }]">
+  <span
+    :class="[
+      { 'text-gray-900 hover:text-primary-300': !disabled },
+      { 'text-gray-100 hover:text-gray-100': disabled }
+    ]"
+  >
     <chevrons-left v-if="first" />
     <chevron-left v-if="previous" />
     <chevron-right v-if="next" />
@@ -8,7 +13,12 @@
 </template>
 
 <script>
-import { ChevronsLeft, ChevronLeft, ChevronRight, ChevronsRight }  from '@/components/Icons';
+import {
+  ChevronsLeft,
+  ChevronLeft,
+  ChevronRight,
+  ChevronsRight
+} from '@/components/Icons';
 
 export default {
   name: 'PageArrowIcon',
@@ -37,4 +47,3 @@ export default {
   }
 };
 </script>
-

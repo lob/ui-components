@@ -12,42 +12,42 @@
         aria-modal="true"
         aria-labelledby="header"
         aria-describedby="modalDescription"
-        :style="{'width': width}"
+        :style="{ width: width }"
         :class="[
-          'relative bg-white flex flex-col overflow-y-auto shadow rounded-lg max-h-5/6', paddingClass
+          'relative bg-white flex flex-col overflow-y-auto shadow rounded-lg max-h-5/6',
+          paddingClass
         ]"
         @mousedown.stop
       >
         <header
           v-if="header"
           id="header"
-          :class="['pb-4', {'border-b border-gray-100': !noSectionDividers}]"
+          :class="['pb-4', { 'border-b border-gray-100': !noSectionDividers }]"
         >
           <h1 class="pageheading">
             {{ header }}
           </h1>
-          <h2
-            v-if="subheader"
-            class="text-default mt-2"
-          >
+          <h2 v-if="subheader" class="text-default mt-2">
             {{ subheader }}
           </h2>
         </header>
-        <section
-          id="modalDescription"
-          :class="paddingClass"
-        >
+        <section id="modalDescription" :class="paddingClass">
           <slot />
         </section>
         <footer
           v-if="hasFooter"
-          :class="['flex flex-col pt-4', {'border-t border-gray-100': !noSectionDividers}]"
+          :class="[
+            'flex flex-col pt-4',
+            { 'border-t border-gray-100': !noSectionDividers }
+          ]"
         >
           <slot name="footer" />
         </footer>
         <button
-          :class="['absolute top-6 right-4 rounded-full w-7 h-7 p-1 cursor-pointer hover:bg-white-200',
-                   'focus:outline-none focus:ring-2 focus:ring-primary-100']"
+          :class="[
+            'absolute top-6 right-4 rounded-full w-7 h-7 p-1 cursor-pointer hover:bg-white-200',
+            'focus:outline-none focus:ring-2 focus:ring-primary-100'
+          ]"
           :aria-label="closeButtonAriaLabel"
           @click="closeModal"
           @keyup.enter="closeModal"
@@ -96,15 +96,15 @@ export default {
   },
   emits: ['close'],
   computed: {
-    hasFooter () {
+    hasFooter() {
       return Boolean(this.$slots.footer);
     },
-    paddingClass () {
+    paddingClass() {
       return this.noPadding ? 'p-0' : 'p-7';
     }
   },
   methods: {
-    closeModal () {
+    closeModal() {
       this.$emit('close');
     }
   }

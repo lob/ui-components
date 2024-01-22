@@ -5,8 +5,8 @@
       type="radio"
       :class="[
         'absolute opacity-0',
-        {'radio__input--error': error},
-        {'!cursor-not-allowed': disabled}
+        { 'radio__input--error': error },
+        { '!cursor-not-allowed': disabled }
       ]"
       :name="name"
       :value="value.toString()"
@@ -16,12 +16,12 @@
       :readonly="readonly"
       @input="onInput"
       @click="onClick"
-    >
+    />
     <label
       :for="id"
       :class="[
         'relative flex type-base-500 left-[31px] pr-10 cursor-pointer',
-        {'text-gray-400 !cursor-not-allowed': disabled}
+        { 'text-gray-400 !cursor-not-allowed': disabled }
       ]"
     >
       <div>
@@ -30,10 +30,7 @@
         </slot>
         <div
           v-if="helperText"
-          :class="[
-            'type-xs-400 text-gray-500',
-            {'!text-gray-300' : disabled}
-          ]"
+          :class="['type-xs-400 text-gray-500', { '!text-gray-300': disabled }]"
         >
           {{ helperText }}
         </div>
@@ -90,25 +87,25 @@ export default {
     }
   },
   emits: ['update:modelValue', 'input', 'click'],
-  data () {
+  data() {
     return {
       parent: null
     };
   },
   computed: {
-    checked () {
+    checked() {
       return this.modelValue === this.value;
     }
   },
-  created () {
+  created() {
     this.parent = getCurrentInstance().parent;
   },
   methods: {
-    onInput () {
+    onInput() {
       this.$emit('update:modelValue', this.value);
       this.$emit('input', this.value);
     },
-    onClick ($event) {
+    onClick($event) {
       this.$emit('click', $event);
     }
   }
@@ -119,7 +116,7 @@ export default {
 input {
   + label {
     &::before {
-      content: "";
+      content: '';
       top: 3px;
       left: -22px;
 
@@ -134,7 +131,7 @@ input {
     }
 
     &::after {
-      content: "";
+      content: '';
       left: -17px;
 
       @apply top-2;
@@ -191,12 +188,14 @@ input {
     @apply border-black;
   }
 
-  &:hover:not(:disabled):not(:checked):not(.radio__input--error) + label::before {
+  &:hover:not(:disabled):not(:checked):not(.radio__input--error)
+    + label::before {
     @apply border-gray-500;
     @apply bg-gray-50;
   }
 
-  &:hover:not(:disabled):not(:checked):not(.radio__input--error) + label::after {
+  &:hover:not(:disabled):not(:checked):not(.radio__input--error)
+    + label::after {
     @apply bg-gray-50;
   }
 }

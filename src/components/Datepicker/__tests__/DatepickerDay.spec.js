@@ -9,7 +9,6 @@ const initialProps = {
 const renderComponent = (options) => render(DatepickerDay, { ...options });
 
 describe('DatepickerDay', () => {
-
   it('renders correctly', () => {
     const props = initialProps;
     const { queryByRole } = renderComponent({ props });
@@ -44,7 +43,6 @@ describe('DatepickerDay', () => {
   });
 
   describe('when not disabled', () => {
-
     it('sets the aria-pressed attribute when selected is true', () => {
       const props = { ...initialProps, selected: true };
       const { queryByRole } = renderComponent({ props });
@@ -52,11 +50,9 @@ describe('DatepickerDay', () => {
       const button = queryByRole('button');
       expect(button).toHaveAttribute('aria-pressed', 'true');
     });
-
   });
 
   describe('when disabled', () => {
-
     let props;
 
     beforeEach(() => {
@@ -76,7 +72,6 @@ describe('DatepickerDay', () => {
       const button = queryByRole('button');
       expect(button).toHaveAttribute('aria-pressed', 'false');
     });
-
   });
 
   it('disables the button if the date is outside the range', () => {
@@ -120,5 +115,4 @@ describe('DatepickerDay', () => {
     expect(emittedEvent).toHaveProperty('dateSelect');
     expect(emittedEvent.dateSelect[0][0]).toEqual(props.date);
   });
-
 });

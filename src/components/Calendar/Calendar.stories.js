@@ -24,8 +24,7 @@ const Template = (args) => ({
 });
 
 export const Primary = Template.bind({});
-Primary.args = {
-};
+Primary.args = {};
 
 const WithSelectableRangeTemplate = (args) => ({
   components: { Calendar },
@@ -41,5 +40,4 @@ const WithSelectableRangeTemplate = (args) => ({
 });
 
 export const WithSelectableRange = WithSelectableRangeTemplate.bind({});
-WithSelectableRange.args = {
-};
+WithSelectableRange.args = {};

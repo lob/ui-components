@@ -15,7 +15,7 @@ export default {
      * @param {String} str the key to translate
      * @returns {String}
      */
-    t (str) {
+    t(str) {
       if ('$t' in this) {
         const translation = this.$t(str);
         if (translation && translation !== str) {
@@ -24,10 +24,13 @@ export default {
       }
 
       const strParts = str.split('.');
-      const localEnglishTranslation = strParts.reduce((accumulator, currentValue) => {
-        accumulator = accumulator[currentValue];
-        return accumulator;
-      }, en);
+      const localEnglishTranslation = strParts.reduce(
+        (accumulator, currentValue) => {
+          accumulator = accumulator[currentValue];
+          return accumulator;
+        },
+        en
+      );
 
       if (localEnglishTranslation) {
         return localEnglishTranslation;

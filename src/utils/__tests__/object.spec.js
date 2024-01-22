@@ -1,9 +1,7 @@
 import { shallowEquals } from '../object';
 
 describe('object utils', () => {
-
   describe('shallowEquals', () => {
-
     let obj1;
     let obj2;
 
@@ -38,7 +36,5 @@ describe('object utils', () => {
       obj2 = { a: 1, b: 2, c: 3 };
       expect(shallowEquals(obj1, obj2)).toEqual(true);
     });
-
   });
-
 });

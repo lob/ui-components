@@ -17,7 +17,7 @@ const selectedFilters = [];
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: {  FilterContent, LobButton, Checkbox },
+  components: { FilterContent, LobButton, Checkbox },
   data: () => ({ open, selectedFilters }),
   setup: () => ({ args }),
   template: `
@@ -67,7 +67,7 @@ const selectedFilter = '';
 
 const WithHeaderTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: {  FilterContent, LobButton, RadioGroup, RadioButton },
+  components: { FilterContent, LobButton, RadioGroup, RadioButton },
   data: () => ({ open, selectedFilter }),
   setup: () => ({ args }),
   template: `
@@ -105,4 +105,3 @@ const WithHeaderTemplate = (args, { argTypes }) => ({
 });
 
 export const WithHeader = WithHeaderTemplate.bind({});
-

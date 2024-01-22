@@ -24,10 +24,7 @@
         @click="pageClick(1)"
       >
         <span class="sr-only">{{ t('pagination.firstPageLabel') }}</span>
-        <page-arrow-icon
-          :first="true"
-          :disabled="page === 1"
-        />
+        <page-arrow-icon :first="true" :disabled="page === 1" />
       </button>
       <button
         :class="[
@@ -38,10 +35,7 @@
         @click="pageClick(page - 1)"
       >
         <span class="sr-only">{{ t('pagination.prevPageLabel') }}</span>
-        <page-arrow-icon
-          :previous="true"
-          :disabled="page <= 1"
-        />
+        <page-arrow-icon :previous="true" :disabled="page <= 1" />
       </button>
       <button
         :class="[
@@ -52,10 +46,7 @@
         @click="pageClick(page + 1)"
       >
         <span class="sr-only">{{ t('pagination.nextPageLabel') }}</span>
-        <page-arrow-icon
-          :next="true"
-          :disabled="offset + limit >= total"
-        />
+        <page-arrow-icon :next="true" :disabled="offset + limit >= total" />
       </button>
       <button
         :class="[
@@ -66,10 +57,7 @@
         @click="pageClick(lastPage)"
       >
         <span class="sr-only">{{ t('pagination.lastPageLabel') }}</span>
-        <page-arrow-icon
-          :last="true"
-          :disabled="offset + limit >= total"
-        />
+        <page-arrow-icon :last="true" :disabled="offset + limit >= total" />
       </button>
     </div>
 
@@ -135,24 +123,24 @@ export default {
   },
   emits: ['change'],
   computed: {
-    shouldRender () {
+    shouldRender() {
       return this.collection && this.collection.length > 0;
     },
-    paginationText () {
+    paginationText() {
       return `${this.offset + 1} - ${Math.min(
         this.offset + this.limit,
         this.total
       )} of ${this.total}`;
     },
-    offset () {
+    offset() {
       return (this.page - 1) * this.limit;
     },
-    lastPage () {
+    lastPage() {
       return Math.ceil(this.total / this.limit);
     }
   },
   methods: {
-    pageClick (newPage) {
+    pageClick(newPage) {
       this.$emit('change', { page: newPage });
     }
   }

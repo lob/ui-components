@@ -11,7 +11,11 @@ const initialProps = {
 const routes = [
   { path: '', component: { template: '<div></div>' } },
   { path: '/', component: { template: '<div>/</div>' } },
-  { path: '/settings', name: 'Settings', component: { template: '<div>settings</div>' } }
+  {
+    path: '/settings',
+    name: 'Settings',
+    component: { template: '<div>settings</div>' }
+  }
 ];
 const router = createRouter({
   history: createMemoryHistory(),
@@ -28,7 +32,6 @@ const renderComponent = async (options) => {
 };
 
 describe('Link', () => {
-
   it('renders correctly when an internal link with a string', async () => {
     const props = initialProps;
     const { queryByRole } = await renderComponent({ props });
@@ -68,7 +71,9 @@ describe('Link', () => {
     const { queryByRole } = await renderComponent({ props });
 
     const link = queryByRole('link');
-    expect(link).toBeInTheDocument().toHaveClass('!text-gray-400 pointer-events-none');
+    expect(link)
+      .toBeInTheDocument()
+      .toHaveClass('!text-gray-400 pointer-events-none');
     expect(link).toHaveAttribute('aria-disabled', 'true');
   });
 
@@ -145,7 +150,8 @@ describe('Link', () => {
 
     const linkContent = queryByText(slotContent);
     expect(linkContent).toBeInTheDocument();
-    expect(linkContent).toHaveClass('py-2 px-4 bg-white text-gray-800 border border-gray-800');
+    expect(linkContent).toHaveClass(
+      'py-2 px-4 bg-white text-gray-800 border border-gray-800'
+    );
   });
-
 });

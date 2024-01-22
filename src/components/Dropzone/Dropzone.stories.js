@@ -69,14 +69,18 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { Dropzone },
   setup: () => ({ args }),
-  data: () => ({ fileUploadStatus: args.status, selectedFile: null, textContentObject }),
+  data: () => ({
+    fileUploadStatus: args.status,
+    selectedFile: null,
+    textContentObject
+  }),
   methods: {
-    uploadAudienceFile () {
+    uploadAudienceFile() {
       setTimeout(() => {
         this.fileUploadStatus = 'success';
       }, 2000);
     },
-    removeAudienceFile () {
+    removeAudienceFile() {
       this.selectedFile = null;
       this.fileUploadStatus = null;
     }
@@ -112,14 +116,18 @@ const WithConfirmModalTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { Dropzone },
   setup: () => ({ args }),
-  data: () => ({ fileUploadStatus: args.status, selectedFile: null, textContentObject }),
+  data: () => ({
+    fileUploadStatus: args.status,
+    selectedFile: null,
+    textContentObject
+  }),
   methods: {
-    uploadAudienceFile () {
+    uploadAudienceFile() {
       setTimeout(() => {
         this.fileUploadStatus = 'success';
       }, 2000);
     },
-    removeAudienceFile () {
+    removeAudienceFile() {
       this.selectedFile = null;
       this.fileUploadStatus = null;
     }

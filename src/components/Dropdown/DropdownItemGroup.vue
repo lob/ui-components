@@ -1,9 +1,5 @@
 <template>
-  <div
-    ref="group"
-    role="group"
-    class="mt-1"
-  >
+  <div ref="group" role="group" class="mt-1">
     <div
       class="ml-4 text-black uppercase type-xs-500 cursor-default"
       @mousedown="onMousedown"
@@ -43,7 +39,11 @@ export default {
       required: true,
       validator: function (value) {
         // The value must match be an object with a label and options property
-        return typeof value === 'object' && value.hasOwnProperty('label') && value.hasOwnProperty('options');
+        return (
+          typeof value === 'object' &&
+          value.hasOwnProperty('label') &&
+          value.hasOwnProperty('options')
+        );
       }
     },
     activeIndex: {
@@ -72,30 +72,33 @@ export default {
     }
   },
   emits: ['click', 'mousedown', 'mouseenter'],
-  data () {
+  data() {
     return {
       activeOptionRef: null
     };
   },
   methods: {
-    setOptionRef (optionEl, option) {
-      if (optionEl && this.activeIndex === this.flattenedOptions.indexOf(option)) {
+    setOptionRef(optionEl, option) {
+      if (
+        optionEl &&
+        this.activeIndex === this.flattenedOptions.indexOf(option)
+      ) {
         this.activeOptionRef = optionEl;
       }
     },
-    onMousedown ($event) {
+    onMousedown($event) {
       this.$emit('mousedown', $event);
     },
-    onMouseEnter ($event, index) {
+    onMouseEnter($event, index) {
       this.$emit('mouseenter', $event, index);
     },
-    onClick ($event, index) {
+    onClick($event, index) {
       this.$emit('click', $event, index);
     },
-    getOffsetHeight () {
+    getOffsetHeight() {
       return this.activeOptionRef.offsetHeight;
     },
-    getOffsetTop () {
+    getOffsetTop() {
       return this.activeOptionRef.offsetTop;
     }
   }

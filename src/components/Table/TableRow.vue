@@ -8,9 +8,12 @@ export default {
       default: false
     }
   },
-  render () {
+  render() {
     const defaultSlot = this.$slots.default();
-    const isNestedSlot = defaultSlot[0].type === 'template' || defaultSlot[0].type.toString() === 'Symbol(Fragment)' || defaultSlot[0].type.toString() === 'Symbol()';
+    const isNestedSlot =
+      defaultSlot[0].type === 'template' ||
+      defaultSlot[0].type.toString() === 'Symbol(Fragment)' ||
+      defaultSlot[0].type.toString() === 'Symbol()';
 
     let items;
     if (isNestedSlot) {

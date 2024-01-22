@@ -1,13 +1,7 @@
 <template>
   <div>
-    <div
-      v-for="size in sizes"
-      :key="size"
-      class="mb-6"
-    >
-      <p :class="`text-${size}`">
-        text-{{ size }}
-      </p>
+    <div v-for="size in sizes" :key="size" class="mb-6">
+      <p :class="`text-${size}`">text-{{ size }}</p>
     </div>
   </div>
 </template>
@@ -21,7 +15,7 @@ const { fontSize } = theme.extend;
 export default {
   name: 'Theme',
   computed: {
-    sizes () {
+    sizes() {
       return Object.keys(fontSize);
     }
   }

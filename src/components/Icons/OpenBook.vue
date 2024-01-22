@@ -34,7 +34,7 @@ export default {
     }
   },
   computed: {
-    currentSize () {
+    currentSize() {
       return iconInfo[this.size].size;
     }
   }

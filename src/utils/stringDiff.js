@@ -3,7 +3,7 @@
  * @property {string} type - The type of edit that was made. One of 'insertion', 'edit', 'deletion', or null if the strings are identical.
  * @property {string} diff - The string that was inserted, edited, or deleted.
  * @property {number} diffIndex - The index at which the edit occurred.
-  * @property {string} prevValue - The previous value of the string at the edit index, or null if the edit was an insertion.
+ * @property {string} prevValue - The previous value of the string at the edit index, or null if the edit was an insertion.
  */
 
 /**
@@ -12,18 +12,26 @@
  * @param {string} str2
  * @returns {StringDiff}
  */
-export function stringDiff (str1, str2) {
+export function stringDiff(str1, str2) {
   const len1 = str1.length;
   const len2 = str2.length;
 
   let startIndex = 0;
-  while (startIndex < len1 && startIndex < len2 && str1[startIndex] === str2[startIndex]) {
+  while (
+    startIndex < len1 &&
+    startIndex < len2 &&
+    str1[startIndex] === str2[startIndex]
+  ) {
     startIndex++;
   }
 
   let endIndex1 = len1 - 1;
   let endIndex2 = len2 - 1;
-  while (endIndex1 >= 0 && endIndex2 >= 0 && str1[endIndex1] === str2[endIndex2]) {
+  while (
+    endIndex1 >= 0 &&
+    endIndex2 >= 0 &&
+    str1[endIndex1] === str2[endIndex2]
+  ) {
     endIndex1--;
     endIndex2--;
   }

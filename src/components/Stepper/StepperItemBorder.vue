@@ -1,27 +1,22 @@
 <template>
-  <div
-    :class="[
-      'w-full text-white',
-      {'custom-color': color}
-    ]"
-  >
+  <div :class="['w-full text-white', { 'custom-color': color }]">
     <div
       :class="[
         'stepper-item-border flex flex-col relative border-primary-500',
-        {'custom-border-color': borderColor},
-        {'items-start': alignLeft},
-        {'items-center': alignCenter},
-        {'items-end': alignRight},
-        {'border-none': alignLeft && last},
-        {'half-border': alignCenter},
-        {'half-border-right': first},
-        {'half-border-left': last},
-        {'half-border-bottom': (first || last) && textBottom},
-        {'half-border-top': (first || last) && textTop},
-        {'border-none': alignRight && first},
-        {'border-dashed': dashedBorder},
-        {'border-t': textBottom},
-        {'border-b': textTop}
+        { 'custom-border-color': borderColor },
+        { 'items-start': alignLeft },
+        { 'items-center': alignCenter },
+        { 'items-end': alignRight },
+        { 'border-none': alignLeft && last },
+        { 'half-border': alignCenter },
+        { 'half-border-right': first },
+        { 'half-border-left': last },
+        { 'half-border-bottom': (first || last) && textBottom },
+        { 'half-border-top': (first || last) && textTop },
+        { 'border-none': alignRight && first },
+        { 'border-dashed': dashedBorder },
+        { 'border-t': textBottom },
+        { 'border-b': textTop }
       ]"
     />
   </div>
@@ -93,7 +88,7 @@ export default {
   @apply bg-current;
   @apply absolute;
 
-  content: "";
+  content: '';
 }
 
 .half-border.border-b:not(.half-border-left):not(.half-border-right)::after {
@@ -121,6 +116,8 @@ export default {
 }
 
 .custom-border-color {
-  border-color: v-bind(borderColor); /* stylelint-disable-line value-keyword-case */
+  border-color: v-bind(
+    borderColor
+  ); /* stylelint-disable-line value-keyword-case */
 }
 </style>

@@ -4,9 +4,7 @@ import mdx from './Multiselect.mdx';
 export default {
   title: 'Components/Multiselect',
   component: Multiselect,
-  decorators: [
-    () => ({ template: '<div class="w-72"><story /></div>' })
-  ],
+  decorators: [() => ({ template: '<div class="w-72"><story /></div>' })],
   parameters: {
     docs: {
       page: mdx
@@ -43,7 +41,7 @@ const options = [
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: {  Multiselect },
+  components: { Multiselect },
   data: () => ({ selected }),
   setup: () => ({ args }),
   template: '<multiselect v-bind="args" v-model="selected"></multiselect>'

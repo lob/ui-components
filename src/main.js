@@ -4,7 +4,7 @@ import * as mixins from './mixins';
 import * as configs from './config';
 
 const ComponentLibrary = {
-  install (app) {
+  install(app) {
     app.use(configs.constants);
     for (const mixinName in mixins) {
       const mixin = mixins[mixinName];

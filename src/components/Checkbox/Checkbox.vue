@@ -17,7 +17,7 @@
       @click="($event) => $emit('click', $event)"
     />
     <span
-      style="content: '';"
+      style="content: ''"
       :class="[
         'checkmark w-4 h-4 mr-1 rounded-sm border-solid border border-gray-200 -left-5 absolute top-1',
         { 'bg-white-300': disabled },
@@ -28,16 +28,14 @@
     />
     <!-- eslint-disable vue/no-v-html -->
     <span
-      :class="['ml-1 type-small-500', disabled ? 'text-gray-400' : 'text-gray-800']"
+      :class="[
+        'ml-1 type-small-500',
+        disabled ? 'text-gray-400' : 'text-gray-800'
+      ]"
       v-html="label"
     />
     <!-- eslint-enable vue/no-v-html -->
-    <span
-      v-if="required"
-      class="text-sm text-red-500"
-    >
-      *
-    </span>
+    <span v-if="required" class="text-sm text-red-500"> * </span>
   </label>
 </template>
 
@@ -80,14 +78,14 @@ export default {
   emits: ['update:modelValue', 'input', 'click'],
   computed: {
     checkboxValue: {
-      get () {
+      get() {
         return this.modelValue;
       },
-      set (checked) {
+      set(checked) {
         this.$emit('update:modelValue', checked);
       }
     },
-    checked () {
+    checked() {
       if (this.checkboxValue && typeof this.checkboxValue === 'object') {
         return this.checkboxValue.includes(this.value);
       }
@@ -115,7 +113,7 @@ export default {
 }
 
 .checkmark::after {
-  content: "";
+  content: '';
 
   @apply absolute;
   @apply hidden;

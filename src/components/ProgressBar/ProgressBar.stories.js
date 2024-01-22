@@ -13,7 +13,7 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: {  ProgressBar },
+  components: { ProgressBar },
   setup: () => ({ args }),
   template: '<ProgressBar v-bind="args" />'
 });
@@ -24,4 +24,3 @@ export const WithPercentage = Template.bind({});
 WithPercentage.args = {
   percentage: 25
 };
-

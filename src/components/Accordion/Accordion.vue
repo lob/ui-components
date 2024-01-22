@@ -12,7 +12,10 @@
       {{ title }}
       <ChevronRight
         class="my-1.5 mx-2"
-        :class="['transition-transform duration-200 ease-linear -mr-1', {'xl:transform xl:rotate-90': expanded}]"
+        :class="[
+          'transition-transform duration-200 ease-linear -mr-1',
+          { 'xl:transform xl:rotate-90': expanded }
+        ]"
       />
     </h2>
   </button>
@@ -42,14 +45,13 @@ export default {
       default: false
     }
   },
-  data () {
+  data() {
     return {
       expanded: false
     };
   },
-  created () {
+  created() {
     this.expanded = this.defaultOpen;
   }
-
 };
 </script>

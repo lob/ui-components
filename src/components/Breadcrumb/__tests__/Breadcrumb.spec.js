@@ -60,7 +60,6 @@ const renderComponent = (options) =>
   render(Breadcrumb, { ...options, global: { plugins: [router] } });
 
 describe('Breadcrumb', () => {
-
   it('renders a semantic nav element', async () => {
     const props = initialProps;
     const { queryByRole } = renderComponent({ props });
@@ -101,7 +100,6 @@ describe('Breadcrumb', () => {
   });
 
   describe('when a display name is provided', () => {
-
     it('renders the correct text title-cased', async () => {
       const props = initialProps;
       const { getByText } = renderComponent({ props });
@@ -111,13 +109,10 @@ describe('Breadcrumb', () => {
       const navLink = getByText('Create Envelope');
       expect(navLink).toBeInTheDocument();
     });
-
   });
 
   describe('when there is not a display name', () => {
-
     describe('when useParamsForDisplay is true', () => {
-
       it('renders the correct text title-cased', async () => {
         const props = initialProps;
         const { getByText } = renderComponent({ props });
@@ -127,11 +122,9 @@ describe('Breadcrumb', () => {
         const navLink = getByText('23');
         expect(navLink).toBeInTheDocument();
       });
-
     });
 
     describe('when useParamsForDisplay is false', () => {
-
       it('renders the correct text title-cased', async () => {
         const props = initialProps;
         const { getByText } = renderComponent({ props });
@@ -141,13 +134,10 @@ describe('Breadcrumb', () => {
         const navLink = getByText('Edit Envelope');
         expect(navLink).toBeInTheDocument();
       });
-
     });
-
   });
 
   describe('when the path portion has a param', () => {
-
     it('interpolates the param into the route path', async () => {
       const props = initialProps;
       const { getByText } = renderComponent({ props });
@@ -157,7 +147,5 @@ describe('Breadcrumb', () => {
       const navLink = getByText('23');
       expect(navLink).toHaveAttribute('href', '/envelopes/23');
     });
-
   });
-
 });

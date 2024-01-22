@@ -23,7 +23,7 @@ const ZERO = '$0.00';
  * @param {string} substr
  * @returns {number}
  */
-function countOccurrences (str, substr) {
+function countOccurrences(str, substr) {
   return str.match(new RegExp(escapeRegExp(substr), 'g'))?.length || 0;
 }
 
@@ -63,7 +63,7 @@ export default {
     }
   },
   emits: ['update:modelValue', 'input', 'change', 'focus', 'blur'],
-  data () {
+  data() {
     return {
       focused: false,
       formattedValue: '',
@@ -76,31 +76,30 @@ export default {
     };
   },
   watch: {
-    modelValue (value) {
+    modelValue(value) {
       this.format(value);
     }
   },
-  mounted () {
+  mounted() {
     this.format.call(this, this.modelValue);
   },
   methods: {
-    onBlur () {
+    onBlur() {
       this.format(this.modelValue);
       this.$emit('blur');
     },
-    onFocus () {
+    onFocus() {
       this.format(this.modelValue);
       if (this.selectOnFocus) {
         this.getInputEl().select();
       }
       this.$emit('focus');
     },
-    onChange ($event) {
+    onChange($event) {
       this.$emit('change', $event);
     },
-    onInput (v) {
-
-      const { diff, type }  = stringDiff(this.formattedValue, v ?? '');
+    onInput(v) {
+      const { diff, type } = stringDiff(this.formattedValue, v ?? '');
 
       // if the user deletes the decimal,
       if (diff === '.' && type === 'deletion') {
@@ -126,7 +125,7 @@ export default {
      * takes a number, formats it as currency, and updates the input value
      * @param {number|null} value
      */
-    format (value) {
+    format(value) {
       const inputEl = this.getInputEl();
 
       // if user deletes all characters, set value to 0
@@ -138,7 +137,10 @@ export default {
 
       let formattedValue = this.formatter.format(value);
 
-      const { type, prevValue, editIndex }  = stringDiff(this.formattedValue, formattedValue);
+      const { type, prevValue, editIndex } = stringDiff(
+        this.formattedValue,
+        formattedValue
+      );
 
       // if formatted value is invalid or a noop, do nothing, but keep the caret's behavior consistent
       if (!formattedValue || formattedValue === this.formattedValue) {
@@ -149,18 +151,27 @@ export default {
       }
 
       // If the number of commas in the formatted value has changed, adjust the caret position
-      const separatorOffset = countOccurrences(formattedValue, ',') - countOccurrences(this.formattedValue, ',');
+      const separatorOffset =
+        countOccurrences(formattedValue, ',') -
+        countOccurrences(this.formattedValue, ',');
       let newCaretPosition = inputEl.selectionStart + separatorOffset;
 
       // If the user is inputting or deleting at the 0th index (the `$` sign), increment the caret position by an additional 1 unless showDollarSign is false
-      if (this.showDollarSign && (newCaretPosition === 0 || newCaretPosition === 1)) {
+      if (
+        this.showDollarSign &&
+        (newCaretPosition === 0 || newCaretPosition === 1)
+      ) {
         newCaretPosition = 2;
       } else if (!this.showDollarSign && newCaretPosition === 0) {
         newCaretPosition = 1;
       }
 
       // If the user replaces a '0' value, keep the caret position on the integer side of the decimal
-      if (type === 'edit' && editIndex <= this.formattedValue.indexOf('.') && prevValue === '0') {
+      if (
+        type === 'edit' &&
+        editIndex <= this.formattedValue.indexOf('.') &&
+        prevValue === '0'
+      ) {
         newCaretPosition--;
       }
 
@@ -176,14 +187,13 @@ export default {
       // Update the input value and caret position
       inputEl.value = formattedValue;
       this.setCaretPosition(newCaretPosition);
-
     },
     /**
      * Sets the position of the caret in the input
      * @param {number} start
      * @param {number} end
      */
-    setCaretPosition (start, end = start) {
+    setCaretPosition(start, end = start) {
       const input = this.getInputEl();
       input.setSelectionRange(start, end);
     },
@@ -193,7 +203,7 @@ export default {
      * we need to access the input element directly.
      * @returns {HTMLInputElement}
      */
-    getInputEl () {
+    getInputEl() {
       return this.$refs.textInput.$refs.input;
     }
   }

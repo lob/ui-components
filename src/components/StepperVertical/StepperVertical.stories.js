@@ -13,10 +13,26 @@ export default {
   },
   args: {
     steps: [
-      { path: '/settings', displayName: 'Configure settings', pathName: 'Create Campaign Step One' },
-      { path: '/audience', displayName: 'Add audience', pathName: 'Create Campaign Step Two' },
-      { path: '/creative', displayName: 'Choose creative', pathName: 'Create Campaign Step Three' },
-      { path: '/confirm', displayName: 'Review campaign', pathName: 'Create Campaign Step Four' }
+      {
+        path: '/settings',
+        displayName: 'Configure settings',
+        pathName: 'Create Campaign Step One'
+      },
+      {
+        path: '/audience',
+        displayName: 'Add audience',
+        pathName: 'Create Campaign Step Two'
+      },
+      {
+        path: '/creative',
+        displayName: 'Choose creative',
+        pathName: 'Create Campaign Step Three'
+      },
+      {
+        path: '/confirm',
+        displayName: 'Review campaign',
+        pathName: 'Create Campaign Step Four'
+      }
     ]
   }
 };
@@ -28,7 +44,7 @@ const Template = (args) => ({
   setup: () => ({ args }),
   data: () => ({ activeStepIndex }),
   methods: {
-    handleGoToStep (step) {
+    handleGoToStep(step) {
       this.activeStepIndex = args.steps.findIndex((s) => s === step);
     }
   },
@@ -48,7 +64,7 @@ const DarkTemplate = (args) => ({
   setup: () => ({ args }),
   data: () => ({ activeStepIndex }),
   methods: {
-    handleGoToStep (step) {
+    handleGoToStep(step) {
       this.activeStepIndex = args.steps.findIndex((s) => s === step);
     }
   },

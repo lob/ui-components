@@ -5,7 +5,6 @@ import TableBody from '../TableBody.vue';
 const renderComponent = (options = {}) => render(TableBody, { ...options });
 
 describe('TableBody', () => {
-
   it('renders TableBody correctly', () => {
     const slotContent = 'Hello';
     const slots = { default: [slotContent] };
@@ -18,5 +17,4 @@ describe('TableBody', () => {
     const slot = queryByText('Hello');
     expect(slot).toBeInTheDocument();
   });
-
 });

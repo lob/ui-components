@@ -1,11 +1,21 @@
 <template>
-  <fieldset
-    role="radiogroup"
-  >
-    <legend :class="[{'text-sm type-small-300 text-gray-500 mb-1 border-b-0': !srOnlyLegend}, {'sr-only': srOnlyLegend}]">
+  <fieldset role="radiogroup">
+    <legend
+      :class="[
+        {
+          'text-sm type-small-300 text-gray-500 mb-1 border-b-0': !srOnlyLegend
+        },
+        { 'sr-only': srOnlyLegend }
+      ]"
+    >
       {{ legend }}
     </legend>
-    <div :class="['customOutline flex flex-wrap bg-white p-[1px] border border-gray-100 rounded-sm', { 'justify-center': center }]">
+    <div
+      :class="[
+        'customOutline flex flex-wrap bg-white p-[1px] border border-gray-100 rounded-sm',
+        { 'justify-center': center }
+      ]"
+    >
       <slot />
     </div>
   </fieldset>

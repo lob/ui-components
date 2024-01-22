@@ -8,7 +8,6 @@ const initialProps = {
 };
 
 describe('Switch Group', () => {
-
   it('renders a legend for accessibility', () => {
     const props = initialProps;
     const { queryByText } = render(SwitchGroup, {
@@ -18,5 +17,4 @@ describe('Switch Group', () => {
     const legend = queryByText(props.legend);
     expect(legend).toBeInTheDocument();
   });
-
 });

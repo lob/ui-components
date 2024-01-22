@@ -1,11 +1,12 @@
 import CurrencyFormatter from '../currencyFormatter';
 
 describe('Currency Formatter', () => {
-
-  const formatter =  new CurrencyFormatter({ minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const formatter = new CurrencyFormatter({
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
 
   describe('parse', () => {
-
     it('returns 0 for a null value or fully invalid currency string', () => {
       expect(formatter.parse('abc')).toEqual(0);
       expect(formatter.parse('')).toEqual(0);
@@ -62,11 +63,9 @@ describe('Currency Formatter', () => {
     it('correctly parses a negative float with a currency symbol', () => {
       expect(formatter.parse('-$123.45')).toEqual(-123.45);
     });
-
   });
 
   describe('format', () => {
-
     it('returns an empty string for null', () => {
       expect(formatter.format(null)).toEqual('');
     });
@@ -86,7 +85,5 @@ describe('Currency Formatter', () => {
     it('correctly formats a negative integer', () => {
       expect(formatter.format(-123)).toEqual('-$123.00');
     });
-
   });
-
 });

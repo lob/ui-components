@@ -103,21 +103,21 @@ export default {
     }
   },
   emits: ['click'],
-  data () {
+  data() {
     return {
       showNav: false
     };
   },
   computed: {
-    dropdownToggleId () {
+    dropdownToggleId() {
       return `dropdown-toggle-${this.id}`;
     },
-    dropdownListId () {
+    dropdownListId() {
       return `dropdown-list-${this.id}`;
     }
   },
   methods: {
-    onKeydown ($event) {
+    onKeydown($event) {
       const anchorTags = this.$refs.dropdownMenu.getElementsByTagName('a');
       const firstAnchorTag = anchorTags[0];
       const lastAnchorTag = anchorTags[anchorTags.length - 1];
@@ -138,14 +138,14 @@ export default {
         this.onBlur();
       }
     },
-    onBlur () {
+    onBlur() {
       this.showNav = false;
     },
-    onEscape () {
+    onEscape() {
       this.$refs.titleItem.focus();
       this.showNav = false;
     },
-    onClick ($event) {
+    onClick($event) {
       this.showNav = !this.showNav;
       this.$emit('click', $event);
     }

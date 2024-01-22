@@ -4,9 +4,7 @@ import userEvent from '@testing-library/user-event';
 import MegaButton from '../MegaButton.vue';
 
 describe('Megabutton', () => {
-
   describe('Megatext format', () => {
-
     const megatextProps = {
       id: 'megabutton',
       modelValue: '',
@@ -58,9 +56,7 @@ describe('Megabutton', () => {
     });
 
     describe('when disabled', () => {
-
       describe('without disabled banner', () => {
-
         it('has faded text and not allowed cursor', () => {
           const props = {
             ...megatextProps,
@@ -91,11 +87,9 @@ describe('Megabutton', () => {
           const imageDisabledBanner = queryByTestId('imageDisabledBanner');
           expect(imageDisabledBanner).toBeNull;
         });
-
       });
 
       describe('with disabled banner', () => {
-
         it('has faded text and not allowed cursor', () => {
           const props = {
             ...megatextProps,
@@ -144,15 +138,11 @@ describe('Megabutton', () => {
           const imageDisabledBanner = queryByTestId('imageDisabledBanner');
           expect(imageDisabledBanner).toBeNull;
         });
-
       });
-
     });
-
   });
 
   describe('Small text', () => {
-
     const smallTextProps = {
       id: 'megabutton',
       modelValue: '',
@@ -183,11 +173,9 @@ describe('Megabutton', () => {
       const text = getByText(props.text);
       expect(text).toBeInTheDocument();
     });
-
   });
 
   describe('Small text with image', () => {
-
     const textWithImageProps = {
       id: 'megabutton',
       modelValue: '',
@@ -232,7 +220,6 @@ describe('Megabutton', () => {
     });
 
     describe('with disabled banner', () => {
-
       it('has faded text and not allowed cursor', () => {
         const props = {
           ...textWithImageProps,
@@ -281,13 +268,10 @@ describe('Megabutton', () => {
         const imageDisabledBanner = queryByTestId('imageDisabledBanner');
         expect(imageDisabledBanner).toHaveTextContent(props.disabledBanner);
       });
-
     });
-
   });
 
   describe('Small text with image', () => {
-
     const textWithImageProps = {
       id: 'megabutton',
       modelValue: '',
@@ -332,7 +316,6 @@ describe('Megabutton', () => {
     });
 
     describe('with disabled banner', () => {
-
       it('has faded text and not allowed cursor', () => {
         const props = {
           ...textWithImageProps,
@@ -381,9 +364,6 @@ describe('Megabutton', () => {
         const imageDisabledBanner = queryByTestId('imageDisabledBanner');
         expect(imageDisabledBanner).toHaveTextContent(props.disabledBanner);
       });
-
     });
-
   });
-
 });

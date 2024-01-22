@@ -1,33 +1,41 @@
 <template>
   <div
-    :class="['whitespace-nowrap cursor-pointer text-lg font-thin rounded-r-full',
-             'customHoverTrigger focus:font-bold focus:outline-none focus-visible:ring-2',
-             { 'text-primary-500 focus-visible:ring-primary-500': !darkMode },
-             { 'text-white focus-visible:ring-white': darkMode }
+    :class="[
+      'whitespace-nowrap cursor-pointer text-lg font-thin rounded-r-full',
+      'customHoverTrigger focus:font-bold focus:outline-none focus-visible:ring-2',
+      { 'text-primary-500 focus-visible:ring-primary-500': !darkMode },
+      { 'text-white focus-visible:ring-white': darkMode }
     ]"
     tabindex="0"
     @keydown.enter="selectStep"
   >
     <div
-      :class="['rounded-r-full py-2 my-5',
-               'transition-all ease-linear duration-300',
-               { 'bg-primary-500': !darkMode },
-               { 'bg-white': darkMode },
-               { 'text-white': active && !darkMode },
-               { 'text-primary-500': active && darkMode },
-               { 'w-14 customHoverW': !active },
-               { 'w-full delay-100 font-bold': active }]"
+      :class="[
+        'rounded-r-full py-2 my-5',
+        'transition-all ease-linear duration-300',
+        { 'bg-primary-500': !darkMode },
+        { 'bg-white': darkMode },
+        { 'text-white': active && !darkMode },
+        { 'text-primary-500': active && darkMode },
+        { 'w-14 customHoverW': !active },
+        { 'w-full delay-100 font-bold': active }
+      ]"
     >
       <span
-        :class="['ml-7 inline-block w-4',
-                 { 'text-white': !darkMode },
-                 { 'text-primary-500': darkMode }]"
-      > {{ index + 1 }}
+        :class="[
+          'ml-7 inline-block w-4',
+          { 'text-white': !darkMode },
+          { 'text-primary-500': darkMode }
+        ]"
+      >
+        {{ index + 1 }}
       </span>
       <span
-        :class="['ml-7 mr-6',
-                 { 'text-white': active && !darkMode },
-                 { 'text-primary-500': active && darkMode }]"
+        :class="[
+          'ml-7 mr-6',
+          { 'text-white': active && !darkMode },
+          { 'text-primary-500': active && darkMode }
+        ]"
       >
         {{ step.displayName }}
       </span>
@@ -45,7 +53,7 @@ export default {
     darkMode: { type: Boolean, default: false }
   },
   methods: {
-    selectStep (kbdEvent) {
+    selectStep(kbdEvent) {
       kbdEvent.path[0].click();
     }
   }

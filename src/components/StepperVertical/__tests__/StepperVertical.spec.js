@@ -6,16 +6,32 @@ import StepperVertical from '../StepperVertical.vue';
 const initialProps = {
   activeStepIndex: 0,
   steps: [
-    { path: '/settings', displayName: 'Configure settings', pathName: 'Create Campaign Step One' },
-    { path: '/audience', displayName: 'Add audience', pathName: 'Create Campaign Step Two' },
-    { path: '/creative', displayName: 'Choose creative', pathName: 'Create Campaign Step Three' },
-    { path: '/confirm', displayName: 'Review campaign', pathName: 'Create Campaign Step Four' }
-  ] };
+    {
+      path: '/settings',
+      displayName: 'Configure settings',
+      pathName: 'Create Campaign Step One'
+    },
+    {
+      path: '/audience',
+      displayName: 'Add audience',
+      pathName: 'Create Campaign Step Two'
+    },
+    {
+      path: '/creative',
+      displayName: 'Choose creative',
+      pathName: 'Create Campaign Step Three'
+    },
+    {
+      path: '/confirm',
+      displayName: 'Review campaign',
+      pathName: 'Create Campaign Step Four'
+    }
+  ]
+};
 
 const renderComponent = (options) => render(StepperVertical, { ...options });
 
 describe('StepperVertical', () => {
-
   it('renders the steps pathNames', () => {
     const props = initialProps;
     const { getByText } = renderComponent({ props });
@@ -39,7 +55,6 @@ describe('StepperVertical', () => {
   });
 
   describe('activeStep passed by prop', () => {
-
     const props = {
       ...initialProps,
       activeStep: initialProps.steps[2]
@@ -51,11 +66,9 @@ describe('StepperVertical', () => {
       const step3 = getByText(props.steps[2].displayName).closest('div');
       expect(step3).toHaveClass('bg-primary-500');
     });
-
   });
 
   describe('clicking on a step', () => {
-
     let component;
     let props;
     let step2;
@@ -78,8 +91,5 @@ describe('StepperVertical', () => {
     it('the step clicked-on becomes active', () => {
       expect(step2).toHaveClass('bg-primary-500');
     });
-
   });
-
 });
-

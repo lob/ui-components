@@ -16,25 +16,22 @@ const initialProps = {
   open: false
 };
 
-const renderComponent = (options) => render(Datepicker, { ...options, global: { mixins } });
+const renderComponent = (options) =>
+  render(Datepicker, { ...options, global: { mixins } });
 
 describe('Datepicker', () => {
-
   const user = userEvent.setup({ delay: null });
 
   describe('when closed', () => {
-
     it('renders correctly', () => {
       const { queryByRole } = renderComponent({ props: { ...initialProps } });
 
       const dialog = queryByRole('dialog');
       expect(dialog).not.toBeInTheDocument();
     });
-
   });
 
   describe('when open', () => {
-
     let component;
 
     beforeEach(() => {
@@ -162,7 +159,6 @@ describe('Datepicker', () => {
 
       const monthText = queryByText('May 2021');
       expect(monthText).toBeInTheDocument();
-
     });
 
     it('goes to the next month when clicking next month button', async () => {
@@ -182,7 +178,9 @@ describe('Datepicker', () => {
       const emittedEvent = emitted();
       expect(emittedEvent).toHaveProperty('keydown');
 
-      const focusedDate = queryByText(modelValue.getDate() + 1).closest('button');
+      const focusedDate = queryByText(modelValue.getDate() + 1).closest(
+        'button'
+      );
       expect(focusedDate).toHaveFocus();
     });
 
@@ -193,7 +191,9 @@ describe('Datepicker', () => {
       const emittedEvent = emitted();
       expect(emittedEvent).toHaveProperty('keydown');
 
-      const focusedDate = queryByText(modelValue.getDate() - 1).closest('button');
+      const focusedDate = queryByText(modelValue.getDate() - 1).closest(
+        'button'
+      );
       expect(focusedDate).toHaveFocus();
     });
 
@@ -204,7 +204,9 @@ describe('Datepicker', () => {
       const emittedEvent = emitted();
       expect(emittedEvent).toHaveProperty('keydown');
 
-      const focusedDate = queryByText(modelValue.getDate() + 7).closest('button');
+      const focusedDate = queryByText(modelValue.getDate() + 7).closest(
+        'button'
+      );
       expect(focusedDate).toHaveFocus();
     });
 
@@ -215,7 +217,9 @@ describe('Datepicker', () => {
       const emittedEvent = emitted();
       expect(emittedEvent).toHaveProperty('keydown');
 
-      const focusedDate = queryByText(modelValue.getDate() - 7).closest('button');
+      const focusedDate = queryByText(modelValue.getDate() - 7).closest(
+        'button'
+      );
       expect(focusedDate).toHaveFocus();
     });
 
@@ -298,7 +302,6 @@ describe('Datepicker', () => {
     });
 
     describe('when a date is disabled', () => {
-
       it('using arrow keys skips over that date', async () => {
         const { rerender, queryByText, emitted } = component;
 
@@ -310,14 +313,14 @@ describe('Datepicker', () => {
         const emittedEvent = emitted();
         expect(emittedEvent).toHaveProperty('keydown');
 
-        const focusedDate = queryByText(modelValue.getDate() + 2).closest('button');
+        const focusedDate = queryByText(modelValue.getDate() + 2).closest(
+          'button'
+        );
         expect(focusedDate).toHaveFocus();
       });
-
     });
 
     describe('selecting a date', () => {
-
       let dateToSelect;
 
       beforeEach(() => {
@@ -333,7 +336,6 @@ describe('Datepicker', () => {
         expect(emittedEvent).toHaveProperty('update:open');
 
         expect(emittedEvent['update:open'][0][0]).toEqual(false);
-
       });
 
       it('emits an input event', async () => {
@@ -353,13 +355,16 @@ describe('Datepicker', () => {
         const emittedEvent = emitted();
         expect(emittedEvent).toHaveProperty('update:modelValue');
 
-        expect(emittedEvent['update:modelValue'][0][0]).toEqual(new Date(2021, 5, 23));
+        expect(emittedEvent['update:modelValue'][0][0]).toEqual(
+          new Date(2021, 5, 23)
+        );
       });
-
     });
 
     it('closes the datepicker when clicking outside the component', async () => {
-      const { emitted } = renderComponent({ props: { ...initialProps, open: true } });
+      const { emitted } = renderComponent({
+        props: { ...initialProps, open: true }
+      });
       await user.click(document.body);
 
       const emittedEvent = emitted();
@@ -367,7 +372,5 @@ describe('Datepicker', () => {
 
       expect(emittedEvent['update:open'][0][0]).toEqual(false);
     });
-
   });
-
 });

@@ -68,7 +68,8 @@ const WithFullWidthTemplate = (args, { argTypes }) => ({
   components: { RadioButtonLarge },
   data: () => ({ vModel }),
   setup: () => ({ args }),
-  template: '<div style="width: 800px"><radio-button-large v-bind="args" v-model="vModel" /></div>'
+  template:
+    '<div style="width: 800px"><radio-button-large v-bind="args" v-model="vModel" /></div>'
 });
 
 export const WithFullWidth = WithFullWidthTemplate.bind({});
@@ -77,6 +78,7 @@ WithFullWidth.args = {
   id: '4x6',
   label: '4x6',
   value: '4x6',
-  helperText: 'Standard postcard size. This is a very long description so we can see what happens when the text takes up two (or more) lines. All of the text should show inside the radio button, and not overflow outside of it.',
+  helperText:
+    'Standard postcard size. This is a very long description so we can see what happens when the text takes up two (or more) lines. All of the text should show inside the radio button, and not overflow outside of it.',
   fullWidth: true
 };

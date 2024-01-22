@@ -5,7 +5,6 @@ import FilterContent from '../FilterContent.vue';
 const renderComponent = (options = {}) => render(FilterContent, { ...options });
 
 describe('FilterContent', () => {
-
   it('does not render when open is false', () => {
     const props = { open: false };
     const { queryByTestId } = renderComponent({ props });
@@ -35,7 +34,6 @@ describe('FilterContent', () => {
   });
 
   describe('without a bound element', () => {
-
     const Component = {
       components: { FilterContent },
       template: `
@@ -44,7 +42,7 @@ describe('FilterContent', () => {
           <filter-content v-model:open="filterOpen"><span>content</span></filter-content>
         </div>
       `,
-      data () {
+      data() {
         return {
           filterOpen: false
         };
@@ -52,7 +50,7 @@ describe('FilterContent', () => {
     };
 
     it('always bubbles the click event when the element mutation v-model:open is clicked', async () => {
-      const { getByText, findByText  } = render(Component);
+      const { getByText, findByText } = render(Component);
       const button = getByText('button');
       await fireEvent.click(button);
       await findByText('content');
@@ -61,11 +59,9 @@ describe('FilterContent', () => {
       const content = await findByText('content');
       expect(content).toBeInTheDocument();
     });
-
   });
 
   describe('with a bound element', () => {
-
     const Component = {
       components: { FilterContent },
       template: `
@@ -74,7 +70,7 @@ describe('FilterContent', () => {
           <filter-content v-model:open="filterOpen" :bound-element="$refs.filterContentCtrl"><span>content</span></filter-content>
         </div>
       `,
-      data () {
+      data() {
         return {
           filterOpen: false
         };
@@ -82,7 +78,7 @@ describe('FilterContent', () => {
     };
 
     it('does not bubble the click event when the element mutation v-model:open is clicked', async () => {
-      const { getByText, queryByText, findByText  } = render(Component);
+      const { getByText, queryByText, findByText } = render(Component);
       const button = getByText('button');
       await fireEvent.click(button);
       await findByText('content');
@@ -93,11 +89,9 @@ describe('FilterContent', () => {
         expect(content).not.toBeInTheDocument();
       });
     });
-
   });
 
   describe('only one FilterContent can be open at a time', () => {
-
     const Component = {
       components: { FilterContent },
       template: `
@@ -108,7 +102,7 @@ describe('FilterContent', () => {
           <filter-content v-model:open="filter2Open" :bound-element="$refs.buttonTwo"><span>content 2</span></filter-content>
         </div>
       `,
-      data () {
+      data() {
         return {
           filter1Open: true,
           filter2Open: false
@@ -117,7 +111,7 @@ describe('FilterContent', () => {
     };
 
     it('closes the filter when opening another filter', async () => {
-      const { queryByTestId, queryByText  } = render(Component);
+      const { queryByTestId, queryByText } = render(Component);
       const button = queryByTestId('buttonToClick');
       await fireEvent.click(button);
 
@@ -128,7 +122,5 @@ describe('FilterContent', () => {
         expect(content2).toBeInTheDocument();
       });
     });
-
   });
-
 });

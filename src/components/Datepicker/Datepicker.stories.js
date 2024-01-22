@@ -19,7 +19,7 @@ const dateModel = null;
 const show = false;
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: {  Datepicker },
+  components: { Datepicker },
   data: () => ({ dateModel, show }),
   setup: () => ({ args }),
   template: `
@@ -56,7 +56,7 @@ const dateModel2 = null;
 const show2 = false;
 const WithMultipleTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: {  Datepicker },
+  components: { Datepicker },
   data: () => ({ dateModel, show, dateModel2, show2 }),
   setup: () => ({ args }),
   template: `

@@ -34,7 +34,8 @@ const WithHelperTextTemplate = (args, { argTypes }) => ({
   components: { RadioButton },
   data: () => ({ vModel }),
   setup: () => ({ args }),
-  template: '<div style="width:200px"><radio-button v-bind="args" v-model="vModel" /></div>'
+  template:
+    '<div style="width:200px"><radio-button v-bind="args" v-model="vModel" /></div>'
 });
 
 export const WithHelperText = WithHelperTextTemplate.bind({});

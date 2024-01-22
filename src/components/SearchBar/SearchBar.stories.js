@@ -1,7 +1,9 @@
 import { SearchBar } from '@/components';
 import mdx from './SearchBar.mdx';
 import iconOverview from '@/assets/images/iconOverview.svg';
-import routeDecorator, { routeTemplate } from '../../../.storybook/routeDecorator';
+import routeDecorator, {
+  routeTemplate
+} from '../../../.storybook/routeDecorator';
 
 export default {
   title: 'Components/Search Bar',
@@ -135,7 +137,9 @@ Primary.args = {
         type: 'postcard'
       }
     ];
-    const results = allPostCards.filter((postCard) => postCard.description.includes(searchTerm));
+    const results = allPostCards.filter((postCard) =>
+      postCard.description.includes(searchTerm)
+    );
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve(results);

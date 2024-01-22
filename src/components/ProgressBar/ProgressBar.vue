@@ -10,15 +10,19 @@
     <!-- div with just the border, absolute so that the border does not contain the bar,
     the gradient bar sits exactly on top of the border -->
     <div
-      :class="['absolute inset-0 rounded-full border border-primary-500 bg-white',
-               {'z-[1]': percentage}] "
+      :class="[
+        'absolute inset-0 rounded-full border border-primary-500 bg-white',
+        { 'z-[1]': percentage }
+      ]"
     />
     <!-- div with overflow hidden - important for containing the bar -->
     <div class="absolute inset-0 rounded-full overflow-hidden">
       <!-- div with black bg to trick the next div to turn the text white (has same width as the blue bar) -->
       <div
-        :class="['absolute inset-0 rounded-full',
-                 {'bg-[#000] z-[2]': percentage}]"
+        :class="[
+          'absolute inset-0 rounded-full',
+          { 'bg-[#000] z-[2]': percentage }
+        ]"
         :style="percentage ? `width: ${styleWidth}` : ''"
       />
       <!-- div with gradient blue fill with z-4 so it sits over the blackbg
@@ -26,9 +30,11 @@
       <div
         data-testid="innerbar"
         :style="percentage ? `width: ${styleWidth}` : ''"
-        :class="['absolute inset-0 w-full rounded-full gradientBg transition-all duration-500 ease-out',
-                 {'z-[4] mix-blend-screen': percentage},
-                 {'animate-indybar': !percentage}]"
+        :class="[
+          'absolute inset-0 w-full rounded-full gradientBg transition-all duration-500 ease-out',
+          { 'z-[4] mix-blend-screen': percentage },
+          { 'animate-indybar': !percentage }
+        ]"
       />
     </div>
     <!-- div with white text (turns black/white based on its background with mix-blend-difference) -->
@@ -48,13 +54,14 @@ export default {
     percentage: {
       type: Number,
       default: 0,
-      validator (value) {
+      validator(value) {
         return value >= 0 && value <= 100;
       }
     }
   },
   computed: {
-    displayedPercentage () { //do not show -0 or 100+ (in case of bug/mistake)
+    displayedPercentage() {
+      //do not show -0 or 100+ (in case of bug/mistake)
       if (this.percentage >= 100) {
         return 100;
       }
@@ -63,7 +70,7 @@ export default {
       }
       return this.percentage;
     },
-    styleWidth () {
+    styleWidth() {
       if (this.percentage < 0) {
         return '0%';
       } else if (this.percentage > 0 && this.percentage < 100) {
@@ -76,7 +83,7 @@ export default {
     }
   },
   watch: {
-    percentage (value) {
+    percentage(value) {
       if (value > 0) {
         const pb = this.$refs.progressbar;
         pb.setAttribute('aria-valuenow', this.percentage);

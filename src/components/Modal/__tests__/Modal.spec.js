@@ -4,10 +4,12 @@ import Modal from '../Modal.vue';
 
 const renderComponent = (options) => render(Modal, { ...options });
 
-const initialProps = { header: 'modal header', closeButtonAriaLabel: 'close this modal' };
+const initialProps = {
+  header: 'modal header',
+  closeButtonAriaLabel: 'close this modal'
+};
 
 describe('Modal', () => {
-
   it('is hidden by default', () => {
     const props = initialProps;
     const { queryByRole } = renderComponent({ props });
@@ -17,8 +19,8 @@ describe('Modal', () => {
   });
 
   describe('when visible (visible prop is true)', () => {
-
-    let component; let props;
+    let component;
+    let props;
     beforeEach(() => {
       props = {
         ...initialProps,
@@ -40,7 +42,5 @@ describe('Modal', () => {
       const modalHeader = getByText(props.header);
       expect(modalHeader).toBeVisible();
     });
-
   });
-
 });

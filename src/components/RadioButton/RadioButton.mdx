@@ -1,4 +1,9 @@
-import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
+import {
+  Preview,
+  Story,
+  ArgsTable,
+  PRIMARY_STORY
+} from '@storybook/addon-docs';
 import RadioButton from './RadioButton.vue';
 
 # Radio Button
@@ -40,8 +45,9 @@ Example with slot that contains label and tooltip
   @click="handleClick"
 >
   <div class="flex">
-    {{ service.description }} <!-- this becomes the label -->
-    <Tooltip /> 
+    {{ service.description }}
+    <!-- this becomes the label -->
+    <Tooltip />
   </div>
 </RadioButton>
 ```

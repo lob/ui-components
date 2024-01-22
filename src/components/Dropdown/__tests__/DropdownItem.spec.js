@@ -14,7 +14,6 @@ const initialProps = {
 const renderComponent = (options) => render(DropdownItem, { ...options });
 
 describe('DropdownItem', () => {
-
   it('renders correctly', () => {
     const props = initialProps;
     const { queryByRole, queryByText } = renderComponent({ props });
@@ -27,7 +26,10 @@ describe('DropdownItem', () => {
   });
 
   it('disables the option when it has an object property for disabled', () => {
-    const props = { ...initialProps, option: { label: 'option', disabled: true } };
+    const props = {
+      ...initialProps,
+      option: { label: 'option', disabled: true }
+    };
     const { queryByRole, queryByText } = renderComponent({ props });
 
     let option = queryByRole('option');
@@ -91,5 +93,4 @@ describe('DropdownItem', () => {
     const [event, index] = emittedEvents.mouseenter[0];
     expect(index).toEqual(0);
   });
-
 });

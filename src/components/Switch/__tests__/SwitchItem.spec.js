@@ -11,7 +11,6 @@ const initialProps = {
 };
 
 describe('Switch Item', () => {
-
   it('does not check the input when the value does not match the modelValue', () => {
     const props = initialProps;
     const { getByLabelText } = render(SwitchItem, {
@@ -62,5 +61,4 @@ describe('Switch Item', () => {
     expect(emittedEvent).toHaveProperty('input');
     expect(emittedEvent.input[0]).toEqual([props.value]);
   });
-
 });

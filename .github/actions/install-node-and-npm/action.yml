@@ -19,15 +19,15 @@ runs:
       id: node_version
       uses: notiz-dev/github-action-json-property@v0.1.0
       with:
-        path: "package.json"
-        prop_path: "engines.node"
+        path: 'package.json'
+        prop_path: 'engines.node'
 
     - name: Read npm version from package.json engines
       id: npm_version
       uses: notiz-dev/github-action-json-property@v0.1.0
       with:
-        path: "package.json"
-        prop_path: "engines.npm"
+        path: 'package.json'
+        prop_path: 'engines.npm'
 
     - name: Install Node ${{ steps.node_version.outputs.prop }}
       uses: actions/setup-node@v3

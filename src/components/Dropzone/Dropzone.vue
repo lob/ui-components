@@ -5,13 +5,18 @@
       data-testId="drop-area"
       :tabindex="0"
       role="form"
-      :class="['flex flex-col items-center justify-center text-center p-6 min-w-[288px] min-h-[288px]',
-               'border border-dashed rounded-md focus:outline-none focus:ring-4 focus:ring-primary-100',
-               { 'border-turquoise-500 bg-white-300 hover:bg-flint-100 cursor-pointer': defaultStep },
-               { 'border-turquoise-500 bg-white-100': uploadingStep },
-               { 'border-coral-700 bg-coral-100 cursor-pointer': errorStep },
-               { 'border-success bg-mint-100 bg': successStep },
-               { 'opacity-70': !successStep && dragOverlay }]"
+      :class="[
+        'flex flex-col items-center justify-center text-center p-6 min-w-[288px] min-h-[288px]',
+        'border border-dashed rounded-md focus:outline-none focus:ring-4 focus:ring-primary-100',
+        {
+          'border-turquoise-500 bg-white-300 hover:bg-flint-100 cursor-pointer':
+            defaultStep
+        },
+        { 'border-turquoise-500 bg-white-100': uploadingStep },
+        { 'border-coral-700 bg-coral-100 cursor-pointer': errorStep },
+        { 'border-success bg-mint-100 bg': successStep },
+        { 'opacity-70': !successStep && dragOverlay }
+      ]"
       @drop.stop.prevent="onDropFile"
       @dragover.stop.prevent="onDragOver"
       @dragleave.stop.prevent="onDragLeave"
@@ -23,12 +28,15 @@
         class="w-[148px] h-[112px] block mx-auto"
         :src="currentStepIcon"
         alt=""
-      >
+      />
       <div
         role="status"
-        :class="['subheading-1', defaultStep ? 'text-gray-700 mt-2' : 'mt-6',
-                 { 'text-primary-500': uploadingStep },
-                 { 'text-error': errorStep }]"
+        :class="[
+          'subheading-1',
+          defaultStep ? 'text-gray-700 mt-2' : 'mt-6',
+          { 'text-primary-500': uploadingStep },
+          { 'text-error': errorStep }
+        ]"
       >
         {{ displayText }}
       </div>
@@ -40,20 +48,18 @@
           {{ subText }}
         </div>
         <div v-if="successStep">
-          <span v-if="successStep && selectedFile">{{ textContent.yourFile }},</span>
-          <span
-            v-if="selectedFile"
-            class="font-medium break-all ml-1"
-          >"{{ selectedFile.name }}"</span>
+          <span v-if="successStep && selectedFile"
+            >{{ textContent.yourFile }},</span
+          >
+          <span v-if="selectedFile" class="font-medium break-all ml-1"
+            >"{{ selectedFile.name }}"</span
+          >
           <div>
             {{ textContent.successMessage }}
           </div>
         </div>
       </div>
-      <div
-        v-if="defaultStep"
-        class="mt-2 text-gray-700 text-default-light"
-      >
+      <div v-if="defaultStep" class="mt-2 text-gray-700 text-default-light">
         {{ textContent.or }}
       </div>
 
@@ -64,15 +70,17 @@
         :accept="acceptType"
         class="hidden"
         @change="onSelectFile"
-      >
+      />
       <label
         v-if="defaultStep || errorStep"
         :for="inputId"
         role="button"
         tabindex="0"
-        :class="['mt-4 flex items-center rounded-lg px-4 h-[32px]',
-                 'primaryBtnStyle text-white font-medium text-sm',
-                 'focus-visible:ring-4 focus-visible:ring-primary-100 focus:outline-none']"
+        :class="[
+          'mt-4 flex items-center rounded-lg px-4 h-[32px]',
+          'primaryBtnStyle text-white font-medium text-sm',
+          'focus-visible:ring-4 focus-visible:ring-primary-100 focus:outline-none'
+        ]"
         @click.stop
       >
         {{ textContent.uploadFileButtonText }} <Upload class="ml-2 -mr-1" />
@@ -83,16 +91,16 @@
         type="reset"
         aria-label="Remove file"
         class="mt-6 underline text-gray-500 !text-sm"
-        @click.stop="confirmRemoveFile ? confirmRemoveFileModalVisible = true : removeFile()"
+        @click.stop="
+          confirmRemoveFile
+            ? (confirmRemoveFileModalVisible = true)
+            : removeFile()
+        "
       >
         {{ textContent.removeFileButtonText }}
       </button>
 
-      <ProgressBar
-        v-if="uploadingStep"
-        :percentage="progress"
-        class="mt-6"
-      />
+      <ProgressBar v-if="uploadingStep" :percentage="progress" class="mt-6" />
     </form>
     <div class="mt-2 flex items-center justify-between">
       <div
@@ -101,14 +109,20 @@
       >
         <span v-if="acceptType && acceptType !== '/*'">
           <span v-if="fileTypesArray.length === 1">
-            {{ textContent.acceptedFormatIs }} <strong>{{ fileTypesString }}</strong>.
+            {{ textContent.acceptedFormatIs }}
+            <strong>{{ fileTypesString }}</strong
+            >.
           </span>
           <span v-if="fileTypesArray.length > 1">
-            {{ textContent.acceptedFormatsAre }} <strong>{{ fileTypesString }}</strong>.
+            {{ textContent.acceptedFormatsAre }}
+            <strong>{{ fileTypesString }}</strong
+            >.
           </span>
         </span>
         <span v-if="maxSizeInBytes">
-          {{ textContent.maxFileSizeIs }} <strong>{{ formatBytes(maxSizeInBytes) }}</strong>.
+          {{ textContent.maxFileSizeIs }}
+          <strong>{{ formatBytes(maxSizeInBytes) }}</strong
+          >.
         </span>
       </div>
       <LobLink
@@ -141,13 +155,32 @@ export default {
   name: 'Dropzone',
   components: { LobLink, ProgressBar, Upload, ConfirmRemoveFileModal },
   props: {
-    textContent: { type: Object, required: true,
+    textContent: {
+      type: Object,
+      required: true,
       validator: function (value) {
-        const requiredKeys = ['dragAndDropHere', 'yourFile', 'or', 'uploadFileButtonText',
-          'acceptedFormatIs', 'acceptedFormatsAre', 'maxFileSizeIs', 'downloadSampleFile',
-          'uploading', 'mightTakeAMinute', 'looksGreat', 'removeFileButtonText', 'fileFor',
-          'couldNotUpload', 'canOnlySelectOneFile', 'fileIsTooLarge', 'fileTypeNotValid',
-          'defaultErrorText', 'errorMessage', 'successMessage'];
+        const requiredKeys = [
+          'dragAndDropHere',
+          'yourFile',
+          'or',
+          'uploadFileButtonText',
+          'acceptedFormatIs',
+          'acceptedFormatsAre',
+          'maxFileSizeIs',
+          'downloadSampleFile',
+          'uploading',
+          'mightTakeAMinute',
+          'looksGreat',
+          'removeFileButtonText',
+          'fileFor',
+          'couldNotUpload',
+          'canOnlySelectOneFile',
+          'fileIsTooLarge',
+          'fileTypeNotValid',
+          'defaultErrorText',
+          'errorMessage',
+          'successMessage'
+        ];
         return requiredKeys.every((key) => value.hasOwnProperty(key));
       }
     },
@@ -157,11 +190,12 @@ export default {
     showTypeAndMaxSize: { type: Boolean, default: true },
     sampleLinkUrl: { type: String, default: null },
     progress: { type: [Number, null], default: null },
-    file: {  type: Object, default: null },
+    file: { type: Object, default: null },
     status: {
       type: [String, null],
       default: null,
-      validator: (value) => ([null, 'error', 'success', 'uploading'].includes(value))
+      validator: (value) =>
+        [null, 'error', 'success', 'uploading'].includes(value)
     },
     confirmRemoveFile: { type: Boolean, default: false },
     confirmModalTitle: { type: String, default: '' },
@@ -182,38 +216,41 @@ export default {
     };
   },
   computed: {
-    defaultStep () {
+    defaultStep() {
       return this.currentStep === 'default';
     },
-    errorStep () {
+    errorStep() {
       return this.currentStep === 'error';
     },
-    uploadingStep () {
+    uploadingStep() {
       return this.currentStep === 'uploading';
     },
-    successStep () {
+    successStep() {
       return this.currentStep === 'success';
     },
-    fileHasBeenSelected () {
+    fileHasBeenSelected() {
       return this.successStep && this.selectedFile;
     },
-    selectedFileType () {
+    selectedFileType() {
       return this.selectedFile?.type?.split('/')[1].toUpperCase() || 'File';
     },
-    selectedFileName () {
+    selectedFileName() {
       return this.selectedFile?.name || this.t('dropzone.yourFile');
     },
-    fileTypesArray () {
+    fileTypesArray() {
       const array = this.acceptType?.split(',') || [];
       return array.map((type) => type.trim());
     },
-    fileTypesString () {
-      return this.fileTypesArray.map((t) => t.replace(/[^a-zA-Z]/g, '')).join(', ').toUpperCase();
+    fileTypesString() {
+      return this.fileTypesArray
+        .map((t) => t.replace(/[^a-zA-Z]/g, ''))
+        .join(', ')
+        .toUpperCase();
     },
-    isDroppingDisabled () {
+    isDroppingDisabled() {
       return this.fileHasBeenSelected || this.uploadingStep;
     },
-    displayText () {
+    displayText() {
       if (this.errorStep) {
         return this.textContent.couldNotUpload;
       }
@@ -225,7 +262,7 @@ export default {
       }
       return '';
     },
-    subText () {
+    subText() {
       if (this.errorStep) {
         if (this.multipleFilesError) {
           return this.textContent.canOnlySelectOneFile;
@@ -236,8 +273,9 @@ export default {
         if (this.fileTypeError) {
           return this.textContent.fileTypeNotValid;
         }
-        return this.textContent.errorMessage || this.textContent.defaultErrorText;
-
+        return (
+          this.textContent.errorMessage || this.textContent.defaultErrorText
+        );
       } else if (this.defaultStep) {
         return this.textContent.dragAndDropHere;
       } else if (this.uploadingStep) {
@@ -245,43 +283,46 @@ export default {
       }
       return '';
     },
-    currentStepIcon () {
+    currentStepIcon() {
       return `https://s3.us-west-2.amazonaws.com/public.lob.com/dashboard/campaigns/file-${this.currentStep}.png`;
     }
   },
   watch: {
-    status (val) {
+    status(val) {
       if (val) {
         this.currentStep = val;
       }
     }
   },
   methods: {
-    clearErrors () {
+    clearErrors() {
       this.multipleFilesError = false;
       this.fileSizeError = false;
       this.fileTypeError = false;
     },
-    onSelectFile ($event) {
+    onSelectFile($event) {
       this.clearErrors();
       if (this.isFileSizeValid($event.target.files[0])) {
         this.selectEmitFile($event.target.files[0]);
       }
     },
-    onDropFile ($event) {
+    onDropFile($event) {
       this.clearErrors();
       if (this.isDroppingDisabled) {
         return;
       }
       if (this.isSingleFile($event.dataTransfer.files)) {
         const droppedFile = $event.dataTransfer.files[0];
-        if (this.isFileTypeValid(droppedFile) && this.isFileSizeValid(droppedFile)) {
+        if (
+          this.isFileTypeValid(droppedFile) &&
+          this.isFileSizeValid(droppedFile)
+        ) {
           this.selectEmitFile(droppedFile);
         }
       }
       this.dragOverlay = false;
     },
-    isSingleFile (fileLoad) {
+    isSingleFile(fileLoad) {
       if (fileLoad.length > 1) {
         this.multipleFilesError = true;
         this.currentStep = 'error';
@@ -290,7 +331,7 @@ export default {
       }
       return true;
     },
-    isFileSizeValid (file) {
+    isFileSizeValid(file) {
       if (this.maxSizeInBytes && file?.size > this.maxSizeInBytes) {
         this.fileSizeError = true;
         this.currentStep = 'error';
@@ -299,10 +340,12 @@ export default {
       }
       return true;
     },
-    isFileTypeValid (file) {
+    isFileTypeValid(file) {
       if (file.type) {
         const fileType = file.type.split('/')[1];
-        const typeExistsInFileTypesArray = this.fileTypesArray.includes(`.${fileType}`);
+        const typeExistsInFileTypesArray = this.fileTypesArray.includes(
+          `.${fileType}`
+        );
         if (this.acceptType !== '/*' && !typeExistsInFileTypesArray) {
           this.fileTypeError = true;
           this.currentStep = 'error';
@@ -311,30 +354,30 @@ export default {
       }
       return true;
     },
-    selectEmitFile (file) {
+    selectEmitFile(file) {
       this.selectedFile = file;
       this.$emit('select', this.selectedFile);
       this.currentStep = 'uploading';
     },
-    removeFile () {
+    removeFile() {
       this.selectedFile = null;
       this.$emit('remove');
       this.$refs.selectForm.reset();
       this.currentStep = 'default';
       this.clearErrors();
     },
-    onDragOver () {
+    onDragOver() {
       if (!this.isDroppingDisabled) {
         this.dragOverlay = true;
       }
     },
-    onDragLeave () {
+    onDragLeave() {
       this.dragOverlay = false;
     },
-    openFileDialog () {
+    openFileDialog() {
       this.$refs.fileElement.click();
     },
-    onAreaClick () {
+    onAreaClick() {
       if (this.fileHasBeenSelected) {
         return;
       }

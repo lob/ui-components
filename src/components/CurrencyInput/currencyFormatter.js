@@ -6,16 +6,15 @@ export const INT_PATTERN = '(0|[1-9]\\d*)';
  * @param {string} str
  * @returns {boolean}
  */
-function isValidNumber (str) {
+function isValidNumber(str) {
   return /^-?\d+(\.\d+)?$/.test(str);
 }
 
 export default class CurrencyFormatter {
-
   /**
    * @param {Intl.NumberFormatOptions} options
    */
-  constructor (options) {
+  constructor(options) {
     this.formatter = new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
@@ -30,7 +29,7 @@ export default class CurrencyFormatter {
    * @param {string} str - A string in the format of a number or valid USD currency value. e.g. 210000, 21,000.00 or $21,000.00
    * @returns {number} The parsed numeric value, or 0 if passed an empty string or nullish value.
    */
-  parse (str) {
+  parse(str) {
     if (!str) {
       return 0;
     }
@@ -47,22 +46,21 @@ export default class CurrencyFormatter {
       return null;
     }
     return Number(`${negative ? '-' : ''}${str}`);
-
   }
 
   /**
    * @param {number|null} value - The numeric value to format.
    * @returns {string} The formatted value.
    */
-  format (value) {
-    return (value !== null && !isNaN(value)) ? this.formatter(value) : '';
+  format(value) {
+    return value !== null && !isNaN(value) ? this.formatter(value) : '';
   }
 
   /**
    * @param {string} str A string in the format of either a number or valid en-US USD currency value. e.g. 210000, 21,000.00 or $21,000.00
    * @returns {boolean}
    */
-  isNegative (str) {
+  isNegative(str) {
     return str?.startsWith('-');
   }
 
@@ -71,8 +69,7 @@ export default class CurrencyFormatter {
    * @param {string} str
    * @returns {string}
    */
-  stripNonNumerics (str = '') {
+  stripNonNumerics(str = '') {
     return str.replace(/[^0-9]/g, '');
   }
-
 }

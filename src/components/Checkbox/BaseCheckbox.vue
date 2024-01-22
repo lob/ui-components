@@ -9,7 +9,7 @@
     :required="required"
     @input="onInput"
     @click="onClick"
-  >
+  />
 </template>
 
 <script>
@@ -39,7 +39,7 @@ export default {
   },
   emits: ['update:modelValue', 'input', 'click'],
   computed: {
-    checked () {
+    checked() {
       if (this.modelValue && typeof this.modelValue === 'object') {
         return this.modelValue.includes(this.value);
       }
@@ -47,7 +47,7 @@ export default {
     }
   },
   methods: {
-    onInput ($event) {
+    onInput($event) {
       if (this.modelValue && typeof this.modelValue === 'object') {
         const checked = [...this.modelValue];
         if (checked.includes(this.value)) {
@@ -62,7 +62,7 @@ export default {
         this.$emit('input', $event.target.checked);
       }
     },
-    onClick ($event) {
+    onClick($event) {
       this.$emit('click', $event);
     }
   }

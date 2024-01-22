@@ -7,7 +7,9 @@ export default {
   title: 'Components/Dropdown',
   component: Dropdown,
   decorators: [
-    () => ({ template: '<div style="width: 250px; margin: auto;"> <story /></div>' })
+    () => ({
+      template: '<div style="width: 250px; margin: auto;"> <story /></div>'
+    })
   ],
   parameters: {
     docs: {
@@ -20,7 +22,7 @@ const vModel = 'Squirtle';
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: {  Dropdown },
+  components: { Dropdown },
   data: () => ({ vModel }),
   setup: () => ({ args }),
   template: '<dropdown v-bind="args" v-model="vModel"></dropdown>'
@@ -96,15 +98,7 @@ WithStringOptions.args = {
   id: 'fav-pet',
   label: 'Favorite pet',
   placeholder: 'Choose a pet',
-  options: [
-    'Dog',
-    'Cat',
-    'Bunny',
-    'Parrot',
-    'Goldfish',
-    'Iguana',
-    'Other'
-  ]
+  options: ['Dog', 'Cat', 'Bunny', 'Parrot', 'Goldfish', 'Iguana', 'Other']
 };
 
 export const WithOptGroups = Template.bind({});
@@ -114,19 +108,11 @@ WithOptGroups.args = {
   options: [
     {
       label: 'Theropods',
-      options: [
-        'Tyrannosaurus',
-        'Velociraptor',
-        'Deinonychus'
-      ]
+      options: ['Tyrannosaurus', 'Velociraptor', 'Deinonychus']
     },
     {
       label: 'Sauropods',
-      options: [
-        'Diplodocus',
-        'Saltasaurus',
-        'Apatosaurus'
-      ]
+      options: ['Diplodocus', 'Saltasaurus', 'Apatosaurus']
     },
     'Brontosaurus'
   ]
@@ -154,21 +140,16 @@ WithTooltip.args = {
   id: 'holiday-destination',
   label: 'Best holiday destination',
   srOnlyLabel: true,
-  options: [
-    'Beach',
-    'Mountains',
-    'Old town',
-    'Metropolis',
-    'Jungle'
-  ]
+  options: ['Beach', 'Mountains', 'Old town', 'Metropolis', 'Jungle']
 };
 
 const WithConfirmChangeModalTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: {  Dropdown },
+  components: { Dropdown },
   data: () => ({ vModel }),
   setup: () => ({ args }),
-  template: '<dropdown v-bind="args" v-model="vModel" confirm-change-modal></dropdown>'
+  template:
+    '<dropdown v-bind="args" v-model="vModel" confirm-change-modal></dropdown>'
 });
 
 export const WithConfirmChangeModal = WithConfirmChangeModalTemplate.bind({});
@@ -176,13 +157,5 @@ WithConfirmChangeModal.args = {
   id: 'fav-pet',
   label: 'Favorite pet',
   placeholder: 'Choose a pet',
-  options: [
-    'Dog',
-    'Cat',
-    'Bunny',
-    'Parrot',
-    'Goldfish',
-    'Iguana',
-    'Other'
-  ]
+  options: ['Dog', 'Cat', 'Bunny', 'Parrot', 'Goldfish', 'Iguana', 'Other']
 };

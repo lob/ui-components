@@ -8,7 +8,6 @@ const initialProps = {
 };
 
 describe('Radio Group', () => {
-
   it('renders a legend for accessibility', () => {
     const props = initialProps;
     const { queryByText } = render(RadioGroup, {
@@ -18,5 +17,4 @@ describe('Radio Group', () => {
     const legend = queryByText(props.legend);
     expect(legend).toBeInTheDocument();
   });
-
 });

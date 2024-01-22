@@ -29,7 +29,6 @@ export default {
       }
     }
   }
-
 };
 
 const Template = (args, { argTypes }) => ({
@@ -90,7 +89,8 @@ WithTopFullImage.args = {
   disabled: false,
   disabledBanner: null,
   text: 'Minimum 80% fur by weight',
-  imageSource: 'https://s3.us-west-2.amazonaws.com/public.lob.com/dashboard/campaigns/card-with-enterprise-badge.png',
+  imageSource:
+    'https://s3.us-west-2.amazonaws.com/public.lob.com/dashboard/campaigns/card-with-enterprise-badge.png',
   topFullImage: true
 };
 

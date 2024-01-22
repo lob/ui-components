@@ -11,10 +11,10 @@
       :aria-disabled="ariaDisabled"
       @input="onInput"
       @click="onClick"
-    >
+    />
     <label
       :for="id"
-      :style="{ 'width': customWidth }"
+      :style="{ width: customWidth }"
       :class="[
         'text-gray-900',
         'h-full flex justify-center relative cursor-pointer',
@@ -27,17 +27,14 @@
         smallText ? `max-w-[${customWidth}]` : '',
         imageSource && !smallText ? `min-w-[160px] max-w-[${customWidth}]` : '',
         { 'items-center': !hasDisabledBanner && !smallText },
-        {'border-0' : topFullImage && !checked }
+        { 'border-0': topFullImage && !checked }
       ]"
     >
       <div class="w-full">
         <div
           v-if="imageSource"
           data-testId="imageContainer"
-          :class="[
-            'mx-4 my-6',
-            {'!m-0' : topFullImage}
-          ]"
+          :class="['mx-4 my-6', { '!m-0': topFullImage }]"
         >
           <div
             v-if="hasDisabledBanner"
@@ -49,12 +46,12 @@
           <img
             :class="[
               'max-h-20 mx-auto rounded-t-lg',
-              {'!max-h-full' : topFullImage},
-              {'opacity-60' : disabled}
+              { '!max-h-full': topFullImage },
+              { 'opacity-60': disabled }
             ]"
             :src="imageSource"
             :alt="imageAltText"
-          >
+          />
         </div>
         <div
           v-if="hasDisabledBanner && !imageSource"
@@ -84,10 +81,7 @@
               {{ label }}
             </slot>
           </div>
-          <div
-            v-if="smallText"
-            class="text-left mt-1 text-[14px]"
-          >
+          <div v-if="smallText" class="text-left mt-1 text-[14px]">
             <slot name="text">
               <p>{{ text }}</p>
             </slot>
@@ -157,31 +151,31 @@ export default {
   },
   emits: ['update:modelValue', 'input', 'click'],
   computed: {
-    checked () {
+    checked() {
       return this.modelValue === this.value;
     },
-    hasDisabledBanner () {
+    hasDisabledBanner() {
       return this.disabled && this.disabledBanner;
     },
-    megaText () {
+    megaText() {
       return this.labelContent && !this.textContent && !this.imageSource;
     },
-    smallText () {
+    smallText() {
       return this.labelContent && this.textContent;
     },
-    labelContent () {
+    labelContent() {
       return this.$slots.label || this.label;
     },
-    textContent () {
+    textContent() {
       return this.$slots.text || this.text;
     }
   },
   methods: {
-    onInput () {
+    onInput() {
       this.$emit('update:modelValue', this.value);
       this.$emit('input', this.value);
     },
-    onClick ($event) {
+    onClick($event) {
       this.$emit('click', $event);
     }
   }
@@ -189,15 +183,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
 label {
   box-shadow: 0 4.32px 12.95px rgba(0, 0, 0, 0.08);
 }
 
-input[type="radio"]:disabled + label {
+input[type='radio']:disabled + label {
   border: 1px solid #c4c4c4;
   color: #8c8c8c;
   box-shadow: none;
 }
-
 </style>

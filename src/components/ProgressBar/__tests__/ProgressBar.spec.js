@@ -5,20 +5,16 @@ import ProgressBar from '../ProgressBar.vue';
 const renderComponent = (options) => render(ProgressBar, { ...options });
 
 describe('ProgressBar', () => {
-
   describe('Indeterminate', () => {
-
     it('the inner bar has the indybar class', () => {
       const { queryByTestId } = renderComponent();
 
       const innerbar = queryByTestId('innerbar');
       expect(innerbar).toHaveClass('animate-indybar');
     });
-
   });
 
   describe('With percentage', () => {
-
     const props = { percentage: 25 };
 
     it('renders the percentage', () => {
@@ -34,11 +30,9 @@ describe('ProgressBar', () => {
       const innerbar = queryByTestId('innerbar');
       expect(innerbar).not.toHaveClass('animate-indybar');
     });
-
   });
 
   describe('test the watcher that adds aria attributes', () => {
-
     let component;
     beforeEach(() => {
       component = renderComponent({ props: { percentage: 0 } });
@@ -61,7 +55,5 @@ describe('ProgressBar', () => {
       expect(progressbar).toHaveAttribute('aria-valuemax', '100');
       expect(progressbar).toHaveAttribute('aria-valuetext', 'In progress, 35%');
     });
-
   });
-
 });

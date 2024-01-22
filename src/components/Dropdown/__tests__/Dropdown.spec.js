@@ -13,11 +13,11 @@ const initialProps = {
   options: ['a', 'b', 'c']
 };
 
-const renderComponent = (options) => render(Dropdown, { global: { mixins }, ...options });
+const renderComponent = (options) =>
+  render(Dropdown, { global: { mixins }, ...options });
 
 describe('Dropdown', () => {
-
-  it('renders correctly',  () => {
+  it('renders correctly', () => {
     const props = initialProps;
     const { getByRole, getByTestId } = renderComponent({ props });
 
@@ -77,7 +77,6 @@ describe('Dropdown', () => {
   });
 
   describe('without a placeholder', () => {
-
     it('does not include a placeholder in the options', () => {
       const props = initialProps;
       const { queryAllByTestId } = renderComponent({ props });
@@ -85,11 +84,9 @@ describe('Dropdown', () => {
       const options = queryAllByTestId('option');
       expect(options).toHaveLength(props.options.length);
     });
-
   });
 
   describe('with a placeholder', () => {
-
     it('includes a placeholder in the options', () => {
       const props = { placeholder: 'hello', ...initialProps };
       const { queryAllByTestId } = renderComponent({ props });
@@ -97,11 +94,9 @@ describe('Dropdown', () => {
       const options = queryAllByTestId('option');
       expect(options).toHaveLength(props.options.length + 1);
     });
-
   });
 
   describe('when listHeight is not provided', () => {
-
     it('sets the height of the listbox to a default', () => {
       const props = { ...initialProps };
       delete props.listHeight;
@@ -112,11 +107,9 @@ describe('Dropdown', () => {
       expect(listbox).toHaveClass('max-h-80');
       expect(listbox).not.toHaveClass('custom-list-height');
     });
-
   });
 
   describe('when listHeight is provided', () => {
-
     it('sets a custom height class on the listbox', () => {
       const props = { ...initialProps, listHeight: '15rem' };
 
@@ -125,14 +118,19 @@ describe('Dropdown', () => {
       const listbox = getByTestId('listbox');
       expect(listbox).toHaveClass('custom-list-height');
     });
-
   });
 
   describe('when an option is disabled', () => {
-
     let props;
     beforeEach(() => {
-      props = { ...initialProps, options: [{ label: 'a' }, { label: 'b', disabled: true }, { label: 'c' }] };
+      props = {
+        ...initialProps,
+        options: [
+          { label: 'a' },
+          { label: 'b', disabled: true },
+          { label: 'c' }
+        ]
+      };
     });
 
     it('renders that option disabled', () => {
@@ -169,11 +167,9 @@ describe('Dropdown', () => {
       await fireEvent.click(options[1]);
       expect(options[1]).not.toHaveAttribute('aria-selected', 'true');
     });
-
   });
 
   describe('when collapsed', () => {
-
     it('displays the chevron icon pointing down', () => {
       const { queryByTestId } = renderComponent({ props: initialProps });
 
@@ -181,23 +177,23 @@ describe('Dropdown', () => {
       expect(chevronDown).toBeInTheDocument().not.toHaveClass('-rotate-180');
     });
 
-    ['ArrowDown', 'ArrowUp', 'Enter', ' ', 'Home', 'End'].forEach(async (key) => {
+    ['ArrowDown', 'ArrowUp', 'Enter', ' ', 'Home', 'End'].forEach(
+      async (key) => {
+        it(`typing ${key}, it opens the listbox`, async () => {
+          const props = initialProps;
+          const { queryByRole, getByTestId } = renderComponent({ props });
 
-      it(`typing ${key}, it opens the listbox`, async () => {
-        const props = initialProps;
-        const { queryByRole, getByTestId } = renderComponent({ props });
+          const select = queryByRole('combobox');
+          let optionContainer = getByTestId('listbox');
+          expect(optionContainer).not.toBeVisible();
 
-        const select = queryByRole('combobox');
-        let optionContainer = getByTestId('listbox');
-        expect(optionContainer).not.toBeVisible();
+          await fireEvent.keyDown(select, { key, code: key });
 
-        await fireEvent.keyDown(select, { key, code: key });
-
-        optionContainer = getByTestId('listbox');
-        expect(optionContainer).toBeVisible();
-      });
-
-    });
+          optionContainer = getByTestId('listbox');
+          expect(optionContainer).toBeVisible();
+        });
+      }
+    );
 
     it('typing a non-open key, it does not open the listbox', async () => {
       const props = initialProps;
@@ -216,7 +212,9 @@ describe('Dropdown', () => {
 
     it('typing a character, it opens the listbox and focuses on the first match', async () => {
       const props = initialProps;
-      const { queryByRole, getAllByTestId, getByTestId } = renderComponent({ props });
+      const { queryByRole, getAllByTestId, getByTestId } = renderComponent({
+        props
+      });
 
       const select = queryByRole('combobox');
       let optionContainer = getByTestId('listbox');
@@ -245,17 +243,18 @@ describe('Dropdown', () => {
       optionContainer = getByTestId('listbox');
       expect(optionContainer).toBeVisible();
     });
-
   });
 
   describe('when opened', () => {
-
     let props;
     let component;
     let select;
 
     beforeEach(async () => {
-      props = { ...initialProps, options: [...initialProps.options, 'aaaa', 'aaab', 'aaac'] };
+      props = {
+        ...initialProps,
+        options: [...initialProps.options, 'aaaa', 'aaab', 'aaac']
+      };
       component = renderComponent({ props });
       const { queryByRole } = component;
       select = queryByRole('combobox');
@@ -275,7 +274,10 @@ describe('Dropdown', () => {
       it(`typing ${key}, it selects the current option and closes the listbox`, async () => {
         const { emitted } = component;
         // key down to option a
-        await fireEvent.keyDown(select, { key: 'ArrowDown', code: 'ArrowDown' });
+        await fireEvent.keyDown(select, {
+          key: 'ArrowDown',
+          code: 'ArrowDown'
+        });
         // key down to select and close
         await fireEvent.keyDown(select, { key, code: key });
         const emittedEvent = emitted();
@@ -285,13 +287,18 @@ describe('Dropdown', () => {
     });
 
     describe('typing ArrowUp', () => {
-
       it('will move to previous non-disabled item', async () => {
         const { queryAllByTestId } = component;
         // key down to option a
-        await fireEvent.keyDown(select, { key: 'ArrowDown', code: 'ArrowDown' });
+        await fireEvent.keyDown(select, {
+          key: 'ArrowDown',
+          code: 'ArrowDown'
+        });
         // key down to option b
-        await fireEvent.keyDown(select, { key: 'ArrowDown', code: 'ArrowDown' });
+        await fireEvent.keyDown(select, {
+          key: 'ArrowDown',
+          code: 'ArrowDown'
+        });
         // key up to option a
         await fireEvent.keyDown(select, { key: 'ArrowUp', code: 'ArrowUp' });
 
@@ -311,26 +318,36 @@ describe('Dropdown', () => {
       it('does not change the selection', async () => {
         const { emitted } = component;
         // key down to option a
-        await fireEvent.keyDown(select, { key: 'ArrowDown', code: 'ArrowDown' });
+        await fireEvent.keyDown(select, {
+          key: 'ArrowDown',
+          code: 'ArrowDown'
+        });
         // key down to option b
-        await fireEvent.keyDown(select, { key: 'ArrowDown', code: 'ArrowDown' });
+        await fireEvent.keyDown(select, {
+          key: 'ArrowDown',
+          code: 'ArrowDown'
+        });
         // key up to option a
         await fireEvent.keyDown(select, { key: 'ArrowUp', code: 'ArrowUp' });
 
         const emittedEvent = emitted();
         expect(emittedEvent).not.toHaveProperty('input');
       });
-
     });
 
     describe('typing ArrowDown', () => {
-
       it('will move to next non-disabled item', async () => {
         const { queryAllByTestId } = component;
         // key down to option a
-        await fireEvent.keyDown(select, { key: 'ArrowDown', code: 'ArrowDown' });
+        await fireEvent.keyDown(select, {
+          key: 'ArrowDown',
+          code: 'ArrowDown'
+        });
         // key down to option b
-        await fireEvent.keyDown(select, { key: 'ArrowDown', code: 'ArrowDown' });
+        await fireEvent.keyDown(select, {
+          key: 'ArrowDown',
+          code: 'ArrowDown'
+        });
 
         const options = queryAllByTestId('option');
         expect(options[1]).toHaveAttribute('aria-selected', 'true');
@@ -339,24 +356,35 @@ describe('Dropdown', () => {
       it('will not move if already on the last option', async () => {
         const { queryAllByTestId } = component;
         for (let i = 0; i < props.options.length; i++) {
-          await fireEvent.keyDown(select, { key: 'ArrowDown', code: 'ArrowDown' });
+          await fireEvent.keyDown(select, {
+            key: 'ArrowDown',
+            code: 'ArrowDown'
+          });
         }
         // key down to "next" option
-        await fireEvent.keyDown(select, { key: 'ArrowDown', code: 'ArrowDown' });
+        await fireEvent.keyDown(select, {
+          key: 'ArrowDown',
+          code: 'ArrowDown'
+        });
 
         const options = queryAllByTestId('option');
-        expect(options[options.length - 1]).toHaveAttribute('aria-selected', 'true');
+        expect(options[options.length - 1]).toHaveAttribute(
+          'aria-selected',
+          'true'
+        );
       });
 
       it('does not change the selection', async () => {
         const { emitted } = component;
         // key down to option a
-        await fireEvent.keyDown(select, { key: 'ArrowDown', code: 'ArrowDown' });
+        await fireEvent.keyDown(select, {
+          key: 'ArrowDown',
+          code: 'ArrowDown'
+        });
 
         const emittedEvent = emitted();
         expect(emittedEvent).not.toHaveProperty('input');
       });
-
     });
 
     it('typing Home, it moves to the first non-disabled item', async () => {
@@ -374,7 +402,10 @@ describe('Dropdown', () => {
       await fireEvent.keyDown(select, { key: 'End', code: 'End' });
 
       const options = queryAllByTestId('option');
-      expect(options[options.length - 1]).toHaveAttribute('aria-selected', 'true');
+      expect(options[options.length - 1]).toHaveAttribute(
+        'aria-selected',
+        'true'
+      );
     });
 
     it('typing a character, it focuses on the first match', async () => {
@@ -448,12 +479,14 @@ describe('Dropdown', () => {
       expect(emittedEvent).toHaveProperty('input');
       expect(emittedEvent.input[0][0]).toEqual(props.options[1]);
     });
-
   });
 
   describe('when the confirm change modal option is set', () => {
-
-    const props = { ...initialProps, confirmChangeModal: true, modelValue: 'c' };
+    const props = {
+      ...initialProps,
+      confirmChangeModal: true,
+      modelValue: 'c'
+    };
 
     it('opens the confirm change modal when an option is selected', async () => {
       const { getByRole, getByText, getAllByRole } = renderComponent({ props });
@@ -461,10 +494,10 @@ describe('Dropdown', () => {
       await fireEvent.click(select);
       const options = getAllByRole('option');
       await fireEvent.click(options[0]);
-      const modalText = getByText(/Are you sure you want to change this option?/);
+      const modalText = getByText(
+        /Are you sure you want to change this option?/
+      );
       expect(modalText).toBeVisible();
     });
-
   });
-
 });

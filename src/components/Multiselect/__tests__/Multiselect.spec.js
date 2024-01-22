@@ -20,10 +20,10 @@ const initialProps = {
   modelValue: []
 };
 
-const renderComponent = (options) => render(Multiselect, { ...options, global: { mixins } });
+const renderComponent = (options) =>
+  render(Multiselect, { ...options, global: { mixins } });
 
 describe('Multiselect', () => {
-
   it('renders correctly', async () => {
     const props = initialProps;
     const { findByLabelText } = renderComponent({ props });
@@ -33,7 +33,6 @@ describe('Multiselect', () => {
   });
 
   describe('placeholder', () => {
-
     it('renders initially', async () => {
       const props = initialProps;
       const { findByPlaceholderText } = renderComponent({ props });
@@ -41,11 +40,9 @@ describe('Multiselect', () => {
       const placeholder = await findByPlaceholderText(props.placeholder);
       expect(placeholder).toBeInTheDocument();
     });
-
   });
 
   describe('input click', () => {
-
     let props;
     let component;
 
@@ -78,11 +75,9 @@ describe('Multiselect', () => {
       const options = await findAllByRole('option');
       expect(options).toHaveLength(props.options.length);
     });
-
   });
 
   describe('typing in the input', () => {
-
     it('renders a filtered dropdown of options based on what was typed', async () => {
       const props = initialProps;
       const { findByLabelText, findAllByRole } = renderComponent({ props });
@@ -98,8 +93,7 @@ describe('Multiselect', () => {
     });
 
     describe('should match on', () => {
-
-      it('label only if \'label\' is passed in (or by default)', async () => {
+      it("label only if 'label' is passed in (or by default)", async () => {
         const props = { ...initialProps, matchOn: 'label' };
         const { findByLabelText, findAllByRole } = renderComponent({ props });
 
@@ -113,7 +107,7 @@ describe('Multiselect', () => {
         expect(options[0]).toHaveTextContent('Lao PDR');
       });
 
-      it('value only if \'value\' is passed in', async () => {
+      it("value only if 'value' is passed in", async () => {
         const props = { ...initialProps, matchOn: 'value' };
         const { findByLabelText, findAllByRole } = renderComponent({ props });
 
@@ -127,7 +121,7 @@ describe('Multiselect', () => {
         expect(options[0]).toHaveTextContent('Angola');
       });
 
-      it('label and value if \'both\' is passed in', async () => {
+      it("label and value if 'both' is passed in", async () => {
         const props = { ...initialProps, matchOn: 'both' };
         const { findByLabelText, findAllByRole } = renderComponent({ props });
 
@@ -141,13 +135,10 @@ describe('Multiselect', () => {
         expect(options[0]).toHaveTextContent('Angola');
         expect(options[1]).toHaveTextContent('Lao PDR');
       });
-
     });
-
   });
 
   describe('selecting an option', () => {
-
     let props;
     let component;
 
@@ -177,7 +168,9 @@ describe('Multiselect', () => {
       const emittedEvent = emitted();
       expect(emittedEvent).toHaveProperty('update:modelValue');
       expect(emittedEvent['update:modelValue'][0][0]).toHaveLength(1);
-      expect(emittedEvent['update:modelValue'][0][0][0].label).toEqual('United States');
+      expect(emittedEvent['update:modelValue'][0][0][0].label).toEqual(
+        'United States'
+      );
     });
 
     it('clears the text in the input', async () => {
@@ -196,30 +189,33 @@ describe('Multiselect', () => {
       const option = await queryByRole('option', { name: 'United States' });
       expect(option).not.toBeInTheDocument();
     });
-
   });
 
   describe('when options are selected', () => {
-
     let props;
     let component;
 
     beforeEach(async () => {
-      props = { ...initialProps, modelValue: [{ label: 'United States', value: 'US' }] };
+      props = {
+        ...initialProps,
+        modelValue: [{ label: 'United States', value: 'US' }]
+      };
       component = renderComponent({ props });
     });
 
-    it('renders a badge with the option\'s text', async () => {
+    it("renders a badge with the option's text", async () => {
       const { findByText } = component;
 
       const usText = await findByText('United States');
       expect(usText).toBeInTheDocument();
     });
 
-    it('renders an \'x\' button in the badge', async () => {
+    it("renders an 'x' button in the badge", async () => {
       const { findByRole } = component;
 
-      const button = await findByRole('button', { aria: 'Deselect-United States' });
+      const button = await findByRole('button', {
+        aria: 'Deselect-United States'
+      });
       expect(button).toBeInTheDocument();
     });
 
@@ -229,13 +225,14 @@ describe('Multiselect', () => {
       const placeholder = queryByPlaceholderText(props.placeholder);
       expect(placeholder).not.toBeInTheDocument();
     });
-
   });
 
   describe('deselecting an option', () => {
-
     it('emits a update:modelValue event', async () => {
-      const props = { ...initialProps, modelValue: [{ label: 'United States', value: 'US' }] };
+      const props = {
+        ...initialProps,
+        modelValue: [{ label: 'United States', value: 'US' }]
+      };
       const { getAllByText, getByRole, emitted } = renderComponent({ props });
 
       const beforeText = getAllByText('United States');
@@ -250,8 +247,13 @@ describe('Multiselect', () => {
     });
 
     it('adds the option back to the dropdown of options', async () => {
-      const props = { ...initialProps, modelValue: [{ label: 'United States', value: 'US' }] };
-      const { getByRole, findByLabelText, findAllByRole } = renderComponent({ props });
+      const props = {
+        ...initialProps,
+        modelValue: [{ label: 'United States', value: 'US' }]
+      };
+      const { getByRole, findByLabelText, findAllByRole } = renderComponent({
+        props
+      });
 
       const button = getByRole('button', { aria: 'Deselect-United States' });
       await userEvent.click(button);
@@ -263,15 +265,16 @@ describe('Multiselect', () => {
       expect(options).toHaveLength(props.options.length);
       expect(options[3]).toHaveTextContent(props.options[3].label);
     });
-
   });
 
   describe('passing in an array of strings as options', () => {
-
     let props;
 
     beforeEach(async () => {
-      props = { ...initialProps, options: ['Egypt', 'United States', 'Uruguay'] };
+      props = {
+        ...initialProps,
+        options: ['Egypt', 'United States', 'Uruguay']
+      };
     });
 
     it('renders correctly', async () => {
@@ -305,7 +308,8 @@ describe('Multiselect', () => {
     });
 
     it('filters the dropdown correctly when selecting', async () => {
-      const { findByLabelText, findAllByRole, emitted, queryByRole } = renderComponent({ props });
+      const { findByLabelText, findAllByRole, emitted, queryByRole } =
+        renderComponent({ props });
 
       const input = await findByLabelText(props.label);
       await userEvent.click(input);
@@ -323,7 +327,9 @@ describe('Multiselect', () => {
 
     it('adds the option back to the dropdown correctly when deselecting', async () => {
       props = { ...props, modelValue: ['Egypt'] };
-      const { getByRole, findByLabelText, findAllByRole } = renderComponent({ props });
+      const { getByRole, findByLabelText, findAllByRole } = renderComponent({
+        props
+      });
 
       const button = getByRole('button', { aria: 'Deselect-United States' });
       await userEvent.click(button);
@@ -335,7 +341,5 @@ describe('Multiselect', () => {
       expect(options).toHaveLength(props.options.length);
       expect(options[0]).toHaveTextContent(props.options[0]);
     });
-
   });
-
 });

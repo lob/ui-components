@@ -1,4 +1,9 @@
-import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
+import {
+  Preview,
+  Story,
+  ArgsTable,
+  PRIMARY_STORY
+} from '@storybook/addon-docs';
 import Checkbox from './Checkbox.vue';
 
 # Checkbox
@@ -18,11 +23,7 @@ The label and v-model are required. The other props are optional.
 To use this checkbox as a simple boolean, here is an example
 
 ```html
-<checkbox
-  label="I am a checkbox"
-  v-model="mySwitch"
->
-</checkbox>
+<checkbox label="I am a checkbox" v-model="mySwitch"> </checkbox>
 ```
 
 To use this checkbox in a list to indicate an array of selected options, use the same v-model for all checkboxes. It will be an array of strings.
@@ -31,25 +32,25 @@ Here is an example
 
 ```html
 <div>
-    <checkbox
-      label="Chocolate"
-      v-model="selectedIceCreamFlavors"
-      name="chocolate"
-      value="chocolate"
-    />
-    <checkbox
-      label="Vanilla"
-      v-model="selectedIceCreamFlavors"
-      name="vanilla"
-      value="vanilla"
-    />
-    <checkbox
-      label="Strawberry"
-      v-model="selectedIceCreamFlavors"
-      name="strawberry"
-      value="strawberry"
-    />
-  </div>
+  <checkbox
+    label="Chocolate"
+    v-model="selectedIceCreamFlavors"
+    name="chocolate"
+    value="chocolate"
+  />
+  <checkbox
+    label="Vanilla"
+    v-model="selectedIceCreamFlavors"
+    name="vanilla"
+    value="vanilla"
+  />
+  <checkbox
+    label="Strawberry"
+    v-model="selectedIceCreamFlavors"
+    name="strawberry"
+    value="strawberry"
+  />
+</div>
 ```
 
 ## Props

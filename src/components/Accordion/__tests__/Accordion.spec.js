@@ -10,17 +10,15 @@ const initialProps = {
 
 const renderComponent = (options = {}) => render(Accordion, { ...options });
 describe('Accordion', () => {
-
   it('renders correctly', () => {
     const props = initialProps;
     const { queryByText } = renderComponent({ props });
 
     const title = queryByText('Accordion Title');
     expect(title).toBeInTheDocument();
-
   });
 
-  it('doesn\'t display accordion content by default', () => {
+  it("doesn't display accordion content by default", () => {
     const props = initialProps;
     const { queryByRole } = renderComponent({ props });
 
@@ -36,7 +34,6 @@ describe('Accordion', () => {
 
     const slotTag = queryByRole('region');
     expect(slotTag).toBeInTheDocument();
-
   });
 
   it('hides content when clicked again', async () => {
@@ -52,11 +49,9 @@ describe('Accordion', () => {
     await userEvent.click(title);
 
     expect(slotTag).not.toBeInTheDocument();
-
   });
 
   describe('When props are passed in', () => {
-
     it('renders the accordion as open', () => {
       const openProps = {
         title: 'Accordion Title',
@@ -66,9 +61,6 @@ describe('Accordion', () => {
       const { queryByRole } = renderComponent({ props });
       const slotTag = queryByRole('region');
       expect(slotTag).toBeInTheDocument();
-
     });
-
   });
-
 });

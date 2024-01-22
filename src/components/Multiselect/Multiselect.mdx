@@ -1,17 +1,23 @@
-import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
+import {
+  Preview,
+  Story,
+  ArgsTable,
+  PRIMARY_STORY
+} from '@storybook/addon-docs';
 import Multiselect from './Multiselect.vue';
 
 # Multiselect
 
-Multiselect is a stylized, (soon-to-be**) accessible component that allows a user to filter a list of options based on what they type and select multiple options from the list.
+Multiselect is a stylized, (soon-to-be\*\*) accessible component that allows a user to filter a list of options based on what they type and select multiple options from the list.
 
-**Keyboard navigation and compatibility with screen readers will be worked on in part 2.
+\*\*Keyboard navigation and compatibility with screen readers will be worked on in part 2.
 
 <Preview>
   <Story id="components-multiselect--primary" />
 </Preview>
 
 ## How to Use
+
 To use the multiselect component, you must provide a `v-model`, an `id`, a `label`, and an array of `options`.
 
 The multiselect will accept `options` as an array of strings or an array of objects. If objects, each must have at least a `label` property. When an option is selected, the dropdown will emit an `update:modelValue` event with the updated array of selected options.
@@ -33,11 +39,13 @@ Example of using this component in a template with an array of strings
 const options = ['Ginny', 'Prudence', 'Brie', 'Jenny'];
 const modelValue = [];
 ```
+
 ```html
 <Multiselect
   id="pet"
   v-model="modelValue"
-  id="pet" label="Pet"
+  id="pet"
+  label="Pet"
   :options="options"
   placeholder="Pick a pet"
   inputWidthClass="w-40"
@@ -45,8 +53,9 @@ const modelValue = [];
 ```
 
 Example of the emitted event data if Ginny and Prudence were selected
+
 ```js
-['Ginny', 'Prudence']
+['Ginny', 'Prudence'];
 ```
 
 Example of using this component in a template with an array of objects
@@ -60,11 +69,13 @@ const options = [
 ];
 const modelValue = [];
 ```
+
 ```html
 <Multiselect
   id="pet"
   v-model="modelValue"
-  id="pet" label="Pet"
+  id="pet"
+  label="Pet"
   :options="options"
   placeholder="Pick a pet"
   inputWidthClass="w-40"
@@ -72,8 +83,12 @@ const modelValue = [];
 ```
 
 Example of the emitted event data if Ginny and Prudence were selected
+
 ```js
-[{ label: 'Ginny', value: 'Beth' }, { label: 'Prudence', value: 'Mercedes' }]
+[
+  { label: 'Ginny', value: 'Beth' },
+  { label: 'Prudence', value: 'Mercedes' }
+];
 ```
 
 ## Props

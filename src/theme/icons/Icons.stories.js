@@ -17,7 +17,16 @@ export default {
       }
     },
     storyOnlyColorClass: {
-      options: ['black', 'gray-500', 'blue-500', 'purple-500', 'red-500', 'orange-500', 'yellow-500', 'green-500'],
+      options: [
+        'black',
+        'gray-500',
+        'blue-500',
+        'purple-500',
+        'red-500',
+        'orange-500',
+        'yellow-500',
+        'green-500'
+      ],
       control: {
         type: 'select'
       }
@@ -29,7 +38,8 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { Icons },
   setup: () => ({ args }),
-  template: '<div style="width:80vw;"><Icons :size="args.size" :storyOnlyColorClass="args.storyOnlyColorClass"/></div>'
+  template:
+    '<div style="width:80vw;"><Icons :size="args.size" :storyOnlyColorClass="args.storyOnlyColorClass"/></div>'
 });
 
 export const Primary = Template.bind({});

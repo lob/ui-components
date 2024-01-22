@@ -207,9 +207,10 @@ const LargeGroupWithFullHeightTemplate = (args, { argTypes }) => ({
   `
 });
 
-export const LargeGroupWithFullHeight = LargeGroupWithFullHeightTemplate.bind({});
+export const LargeGroupWithFullHeight = LargeGroupWithFullHeightTemplate.bind(
+  {}
+);
 LargeGroupWithFullHeight.args = {
   legend: 'Postcard Size',
   separateLines: false
 };
-

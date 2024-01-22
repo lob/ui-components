@@ -8,7 +8,6 @@ const slots = {
 };
 
 describe('Tooltip', () => {
-
   it('renders correctly in the bottom position', () => {
     const { queryByText } = render(Tooltip, {
       slots
@@ -79,5 +78,4 @@ describe('Tooltip', () => {
     const emittedEvent = emitted();
     expect(emittedEvent).toHaveProperty('mouseleave');
   });
-
 });

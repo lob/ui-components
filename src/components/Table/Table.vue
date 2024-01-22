@@ -17,7 +17,7 @@ export default {
     }
   },
   computed: {
-    spaceClassName () {
+    spaceClassName() {
       return `space-${this.space}`;
     }
   },

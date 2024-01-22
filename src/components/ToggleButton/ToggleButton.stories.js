@@ -77,4 +77,3 @@ const GroupTemplate = (args, { argTypes }) => ({
 });
 
 export const Group = GroupTemplate.bind({});
-

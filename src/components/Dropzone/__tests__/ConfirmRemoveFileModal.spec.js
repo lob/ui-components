@@ -13,10 +13,10 @@ const initialProps = {
   confirmButtonText: 'Do it!'
 };
 
-const renderComponent = (options) => render(ConfirmRemoveFileModal, { ...options, global: { mixins } });
+const renderComponent = (options) =>
+  render(ConfirmRemoveFileModal, { ...options, global: { mixins } });
 
 describe('ConfirmRemoveFileModal', () => {
-
   const props = { ...initialProps };
 
   it('displays the correct text', () => {
@@ -37,11 +37,12 @@ describe('ConfirmRemoveFileModal', () => {
 
   it('emits the confirmClicked and close events when the confirm button is clicked', async () => {
     const { getByRole, emitted } = renderComponent({ props });
-    const confirmButton = getByRole('button', { name: props.confirmButtonText });
+    const confirmButton = getByRole('button', {
+      name: props.confirmButtonText
+    });
     await userEvent.click(confirmButton);
     const emittedEvent = emitted();
     expect(emittedEvent).toHaveProperty('confirmClicked');
     expect(emittedEvent).toHaveProperty('close');
   });
-
 });

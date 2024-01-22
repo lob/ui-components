@@ -2,8 +2,11 @@
   "extends": "stylelint-config-standard",
   "rules": {
     "at-rule-no-unknown": null,
-    "selector-pseudo-element-no-unknown": [true, {
-      ignorePseudoElements: ["v-deep"]
-    }],
+    "selector-pseudo-element-no-unknown": [
+      true,
+      {
+        "ignorePseudoElements": ["v-deep"]
+      }
+    ]
   }
 }

@@ -93,9 +93,7 @@ const WithDropdownTemplate = (args, { argTypes }) => ({
 });
 
 export const Primary = PrimaryTemplate.bind({});
-Primary.args = {
-};
+Primary.args = {};
 
 export const WithDropdown = WithDropdownTemplate.bind({});
-WithDropdown.args = {
-};
+WithDropdown.args = {};

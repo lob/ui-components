@@ -1,7 +1,13 @@
-import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
+import {
+  Preview,
+  Story,
+  ArgsTable,
+  PRIMARY_STORY
+} from '@storybook/addon-docs';
 import LobTable from './Table.vue';
 
 # Table
+
 Table is a flexible component that display sets of data
 
 <Preview>
@@ -22,14 +28,16 @@ Table is a flexible component that display sets of data
       <div>{{item.description}}</div>
     </TableRow>
     <TableRow :single-cell-row="true">
-        <div>{{item.fullLineDescription}}</div>
+      <div>{{item.fullLineDescription}}</div>
     </TableRow>
   </TableBody>
 </lob-table>
 ```
+
 There are 3 variants of space to set a space to the cell: sm, md, lg.
 
 You can still set tailwindcss classes to a table cell.
+
 ```html
 <TableHeader>
   <div class="px-3 py-4">Name</div>

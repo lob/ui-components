@@ -11,10 +11,10 @@ const initialProps = {
   id: 'test'
 };
 
-const renderComponent = (options) => render(Calendar, { ...options, global: { mixins } });
+const renderComponent = (options) =>
+  render(Calendar, { ...options, global: { mixins } });
 
 describe('Calendar', () => {
-
   let component;
   const RealDate = global.Date;
   const modelValue = new Date(2021, 5, 14);
@@ -78,7 +78,6 @@ describe('Calendar', () => {
 
     const monthText = queryByText('May 2021');
     expect(monthText).toBeInTheDocument();
-
   });
 
   it('goes to the next month when clicking next month button', async () => {
@@ -172,7 +171,6 @@ describe('Calendar', () => {
   });
 
   describe('selecting a date', () => {
-
     let dateToSelect;
 
     beforeEach(() => {
@@ -197,9 +195,9 @@ describe('Calendar', () => {
       const emittedEvent = emitted();
       expect(emittedEvent).toHaveProperty('update:modelValue');
 
-      expect(emittedEvent['update:modelValue'][0][0]).toEqual(new Date(2021, 5, 23));
+      expect(emittedEvent['update:modelValue'][0][0]).toEqual(
+        new Date(2021, 5, 23)
+      );
     });
-
   });
-
 });

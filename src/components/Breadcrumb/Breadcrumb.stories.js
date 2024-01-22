@@ -1,4 +1,6 @@
-import routeDecorator, { routeTemplate } from '../../../.storybook/routeDecorator';
+import routeDecorator, {
+  routeTemplate
+} from '../../../.storybook/routeDecorator';
 
 import Breadcrumb from './Breadcrumb.vue';
 import mdx from './Breadcrumb.mdx';

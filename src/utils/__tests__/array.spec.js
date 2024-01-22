@@ -2,19 +2,17 @@ import { findLastIndex } from '../array';
 
 beforeAll(() => {
   if (!Array.prototype.findLastIndex) {
-    Array.prototype.findLastIndex = findLastIndex; //eslint-disable-line 
+    Array.prototype.findLastIndex = findLastIndex; //eslint-disable-line
   }
 });
 
 afterAll(() => {
-    Array.prototype.findLastIndex = undefined; //eslint-disable-line 
+  Array.prototype.findLastIndex = undefined; //eslint-disable-line
 });
 
 describe('array utils', () => {
-
   describe('findLastIndex', () => {
-
-    it('throws an error when \'this\' is undefined', () => {
+    it("throws an error when 'this' is undefined", () => {
       const subject = null;
       expect(() => {
         subject.findLastIndex((el) => el === 'a');
@@ -45,7 +43,5 @@ describe('array utils', () => {
       const index = subject.findLastIndex((el) => el === 'c');
       expect(index).toEqual(-1);
     });
-
   });
-
 });

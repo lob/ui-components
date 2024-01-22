@@ -23,7 +23,16 @@ export default {
       }
     },
     variant: {
-      options: ['default', 'secondary', 'info', 'success', 'warning', 'error', 'gradient-primary', 'gradient-secondary'],
+      options: [
+        'default',
+        'secondary',
+        'info',
+        'success',
+        'warning',
+        'error',
+        'gradient-primary',
+        'gradient-secondary'
+      ],
       control: {
         type: 'select'
       }
@@ -39,7 +48,7 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: {  Badge },
+  components: { Badge },
   setup: () => ({ args }),
   template: '<badge v-slot v-bind="args">{{ args.content }}</badge>'
 });

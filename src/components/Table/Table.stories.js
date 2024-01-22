@@ -92,12 +92,14 @@ TableWithASingleCellRow.args = {
     {
       name: 'Jane Cooper',
       description: 'Regional Paradigm Technician',
-      extraDescription: 'Details: Jane Cooper joined in January 2015 and worked as a Paradigm Technician'
+      extraDescription:
+        'Details: Jane Cooper joined in January 2015 and worked as a Paradigm Technician'
     },
     {
       name: 'Cody Fisher',
       description: 'Product Directives Officer',
-      extraDescription: 'Details: Cody Fisher joined in November 2000 and worked on the directives since establishment'
+      extraDescription:
+        'Details: Cody Fisher joined in November 2000 and worked on the directives since establishment'
     }
   ]
 };
@@ -144,7 +146,7 @@ const TableWithRowHoverEffectTemplate = (args, { argTypes }) => ({
   components: { LobTable, TableHeader, TableRow, TableBody },
   setup: () => ({ args }),
   methods: {
-    handleClick (item) {
+    handleClick(item) {
       console.log(`clicked row: ${item.name}`); //eslint-disable-line
     }
   },

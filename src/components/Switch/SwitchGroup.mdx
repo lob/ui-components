@@ -1,4 +1,9 @@
-import { Preview, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
+import {
+  Preview,
+  Story,
+  ArgsTable,
+  PRIMARY_STORY
+} from '@storybook/addon-docs';
 import SwitchGroup from './SwitchGroup.vue';
 
 # Switch Group
@@ -11,20 +16,20 @@ A switch group represents a group of switch toggles.
 
 ## How to Use
 
-Wrap all switch items in a switch group with the title of the group passed in through the `legend` prop. 
+Wrap all switch items in a switch group with the title of the group passed in through the `legend` prop.
 
 If you don't want the legend visible, pass in `srOnlyLegend` as true. When the legend is hidden, it will still be accessible to screen readers.
 
 ```html
 <switch-group legend="Environment mode">
-  <switch-item name='mode' label="Test" value='test' v-model="switchModel" />
-  <switch-item name='mode' label="Live" value='live' v-model="switchModel" />
+  <switch-item name="mode" label="Test" value="test" v-model="switchModel" />
+  <switch-item name="mode" label="Live" value="live" v-model="switchModel" />
 </switch-group>
 ```
 
 # Switch Item
 
-The switch item component is used for rendering a specific toggle item in the switch group. 
+The switch item component is used for rendering a specific toggle item in the switch group.
 
 ## How to use
 

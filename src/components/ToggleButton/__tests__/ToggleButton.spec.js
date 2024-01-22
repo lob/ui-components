@@ -13,7 +13,6 @@ const initialProps = {
 const renderComponent = (options) => render(ToggleButton, { ...options });
 
 describe('ToggleButton', () => {
-
   it('renders correctly', () => {
     const props = {
       ...initialProps
@@ -88,9 +87,7 @@ describe('ToggleButton', () => {
   });
 
   describe('when the v-model is a simple boolean', () => {
-
     describe('when the v-model is false', () => {
-
       it('does not check the input', () => {
         const props = initialProps;
         const { getByLabelText } = renderComponent({ props });
@@ -111,11 +108,9 @@ describe('ToggleButton', () => {
         expect(emittedEvent.input[0]).toEqual([true]);
         expect(toggleButton).toBeChecked();
       });
-
     });
 
     describe('when the v-model is true', () => {
-
       it('checks the input when the v-model is true', () => {
         const props = {
           ...initialProps,
@@ -142,13 +137,10 @@ describe('ToggleButton', () => {
         expect(emittedEvent.input[0]).toEqual([false]);
         expect(toggleButton).not.toBeChecked();
       });
-
     });
-
   });
 
   describe('when the v-model is an array', () => {
-
     it('does not check the input when the v-model does not contain the value', () => {
       const props = {
         ...initialProps,
@@ -190,7 +182,5 @@ describe('ToggleButton', () => {
       expect(emittedEvent.input[0][0]).toContain('test');
       expect(toggleButton).toBeChecked();
     });
-
   });
-
 });

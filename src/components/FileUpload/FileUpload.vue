@@ -25,7 +25,7 @@
     readonly
     class="hidden"
     @change="onFilePicked"
-  >
+  />
 </template>
 
 <script>
@@ -50,28 +50,28 @@ export default {
     }
   },
   emits: ['fileUpload'],
-  data () {
+  data() {
     return {
       fileSelected: ''
     };
   },
   computed: {
-    regular () {
+    regular() {
       return !this.small;
     }
   },
   methods: {
-    onKeydown () {
+    onKeydown() {
       this.$refs.fileInput.click();
     },
-    onFilePicked (event) {
+    onFilePicked(event) {
       const file = event.target.files[0];
       if (file) {
         this.fileSelected = file.name;
         this.$emit('fileUpload', event);
       }
     },
-    clear () {
+    clear() {
       this.$refs.fileInput.value = null;
       this.fileSelected = '';
     }

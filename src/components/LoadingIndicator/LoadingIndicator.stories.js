@@ -6,7 +6,9 @@ export default {
   component: LoadingIndicator,
   decorators: [
     // hard-coding height and width b/c PurgeCSS removes classes not used in our components
-    () => ({ template: '<div style="height: 12rem; width: 24rem;"><story /></div>' })
+    () => ({
+      template: '<div style="height: 12rem; width: 24rem;"><story /></div>'
+    })
   ],
   parameters: {
     docs: {
@@ -41,20 +43,21 @@ const dataPresent = false;
 
 const AfterContentLoadedTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: {  LoadingIndicator },
+  components: { LoadingIndicator },
   setup: () => ({ args }),
   data: () => ({ dataPresent }),
-  mounted () {
+  mounted() {
     this.updateData();
   },
   methods: {
-    updateData () {
+    updateData() {
       setTimeout(() => {
         this.dataPresent = true;
       }, 3000);
     }
   },
-  template: '<loading-indicator><div v-if="dataPresent">Loading spinner disappeared after 3 seconds</div></loading-indicator>'
+  template:
+    '<loading-indicator><div v-if="dataPresent">Loading spinner disappeared after 3 seconds</div></loading-indicator>'
 });
 
 export const AfterContentLoaded = AfterContentLoadedTemplate.bind({});

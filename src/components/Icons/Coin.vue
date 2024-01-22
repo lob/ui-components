@@ -22,11 +22,7 @@
       stroke-linecap="round"
       stroke-linejoin="round"
     />
-    <path
-      :d="strikePath"
-      fill="currentColor"
-      :stroke-width="strokeWidth / 2"
-    />
+    <path :d="strikePath" fill="currentColor" :stroke-width="strokeWidth / 2" />
   </svg>
 </template>
 
@@ -91,19 +87,19 @@ export default {
     }
   },
   computed: {
-    currentSize () {
+    currentSize() {
       return iconInfo[this.size].size;
     },
-    curvePath () {
+    curvePath() {
       return iconInfo[this.size].curvePath;
     },
-    radius () {
+    radius() {
       return iconInfo[this.size].radius;
     },
-    strikePath () {
+    strikePath() {
       return iconInfo[this.size].strikePath;
     },
-    strokeWidth () {
+    strokeWidth() {
       return iconInfo[this.size].strokeWidth;
     }
   }

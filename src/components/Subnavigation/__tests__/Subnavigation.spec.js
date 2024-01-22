@@ -16,18 +16,20 @@ const router = createRouter({
 });
 
 const renderComponent = async (options) => {
-  const result = render(Subnavigation, { ...options, global: { plugins: [router] } });
+  const result = render(Subnavigation, {
+    ...options,
+    global: { plugins: [router] }
+  });
   await router.isReady();
   return result;
 };
 
 describe('Subnavigation', () => {
-
   let slots;
   let slotContent;
 
   beforeEach(() => {
-    slotContent = 'I\'m a child';
+    slotContent = "I'm a child";
     slots = { default: [`<li>${slotContent}</li>`] };
   });
 
@@ -44,5 +46,4 @@ describe('Subnavigation', () => {
     const slot = getByText(new RegExp(slotContent));
     expect(slot).toBeInTheDocument();
   });
-
 });

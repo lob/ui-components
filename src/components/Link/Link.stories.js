@@ -1,4 +1,6 @@
-import routeDecorator, { routeTemplate } from '../../../.storybook/routeDecorator';
+import routeDecorator, {
+  routeTemplate
+} from '../../../.storybook/routeDecorator';
 
 import LobLink from './Link.vue';
 import mdx from './Link.mdx';
@@ -36,7 +38,15 @@ export default {
       }
     },
     variant: {
-      options: ['link', 'primary-button', 'secondary-button', 'quiet-button', 'ghost-button', 'danger-button', 'danger-secondary-button'],
+      options: [
+        'link',
+        'primary-button',
+        'secondary-button',
+        'quiet-button',
+        'ghost-button',
+        'danger-button',
+        'danger-secondary-button'
+      ],
       control: {
         type: 'select'
       }
@@ -69,7 +79,8 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { LobLink },
   setup: () => ({ args }),
-  template: '<lob-link v-bind="args" to="/internal">{{ args.content }}</lob-link>'
+  template:
+    '<lob-link v-bind="args" to="/internal">{{ args.content }}</lob-link>'
 });
 
 export const DefaultLink = Template.bind({});

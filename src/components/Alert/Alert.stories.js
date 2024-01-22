@@ -44,7 +44,8 @@ const Template = (args, { argTypes }) => ({
     </alert>
   `
 });
-const content = 'You are in LIVE mode, all verifications will be charged according to your chosen plan.';
+const content =
+  'You are in LIVE mode, all verifications will be charged according to your chosen plan.';
 
 export const Primary = Template.bind({});
 Primary.args = { content };

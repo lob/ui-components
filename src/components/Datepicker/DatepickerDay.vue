@@ -4,13 +4,13 @@
     ref="date"
     :class="[
       'text-sm text-gray-900 bg-transparent px-2 py-1 cursor-pointer inline-flex items-center justify-center w-6 h-6 relative text-center hover:bg-white-300 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent',
-      {'!text-gray-100 !bg-transparent pointer-events-none': disabled},
-      {'cursor-default pointer-events-none': isOutsideRange},
-      {'bg-gray-100': today},
-      {'z-10 !bg-primary-500 text-white rounded-full': selected}
+      { '!text-gray-100 !bg-transparent pointer-events-none': disabled },
+      { 'cursor-default pointer-events-none': isOutsideRange },
+      { 'bg-gray-100': today },
+      { 'z-10 !bg-primary-500 text-white rounded-full': selected }
     ]"
     :role="disabled ? 'button' : null"
-    :tabindex="focused ? 0: -1"
+    :tabindex="focused ? 0 : -1"
     :disabled="disabled || isOutsideRange"
     :aria-pressed="disabled ? false : selected"
     :aria-disabled="disabled"
@@ -53,31 +53,30 @@ export default {
   },
   emits: ['click', 'dateSelect', 'keydown'],
   computed: {
-    tag () {
+    tag() {
       return this.disabled ? 'span' : 'button';
     },
-    currentDate () {
+    currentDate() {
       return this.date.getDate();
     },
-    formattedCurrentDate () {
+    formattedCurrentDate() {
       return new Intl.DateTimeFormat().format(this.date);
     },
-    isOutsideRange () {
+    isOutsideRange() {
       return !this.inRange;
     }
   },
   methods: {
-    onClick ($event) {
+    onClick($event) {
       this.$emit('click', $event);
       this.$emit('dateSelect', this.date);
     },
-    onKeydown ($event) {
+    onKeydown($event) {
       this.$emit('keydown', $event);
     },
-    focus () {
+    focus() {
       this.$refs.date.focus();
     }
   }
 };
 </script>
-
