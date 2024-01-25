@@ -1,5 +1,3 @@
-import { fr } from 'date-fns/locale';
-
 export { default as AddressBook } from './AddressBook';
 export { default as AppWindows } from './AppWindows';
 export { default as ArrowDownToLine } from './ArrowDownToLine';
