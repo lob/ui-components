@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.1
+
+- Adds a `CircleEmpty` icon.
+
 ## v2.0.0
 
 - Removing beta tag since this is no longer in beta

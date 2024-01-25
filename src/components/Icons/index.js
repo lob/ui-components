@@ -1,3 +1,5 @@
+import { fr } from 'date-fns/locale';
+
 export { default as AddressBook } from './AddressBook';
 export { default as AppWindows } from './AppWindows';
 export { default as ArrowDownToLine } from './ArrowDownToLine';
@@ -23,6 +25,7 @@ export { default as ChartLineUp } from './ChartLineUp';
 export { default as ChartMixed } from './ChartMixed';
 export { default as Check } from './Check';
 export { default as CircleCheck } from './CircleCheck';
+export { default as CircleEmpty } from './CircleEmpty';
 export { default as ChevronDown } from './ChevronDown';
 export { default as ChevronLeft } from './ChevronLeft';
 export { default as ChevronRight } from './ChevronRight';
