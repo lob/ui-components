@@ -15,6 +15,10 @@
           primary
       },
       {
+        'bg-[#483AC5] text-white hover:bg-[#6C61D1] active:bg-[#483AC5] focus:bg-[#483AC5]':
+          upgrade
+      },
+      {
         'bg-white text-gray-800 border border-gray-800 hover:bg-gray-50 active:bg-gray-100 focus:bg-gray-100 disabled:border-gray-200 disabled:text-gray-400 disabled:hover:bg-white':
           secondary
       },
@@ -62,6 +66,7 @@ export default {
       validator: function (value) {
         return [
           'primary',
+          'upgrade',
           'secondary',
           'danger',
           'danger-secondary',
@@ -103,6 +108,9 @@ export default {
     },
     primary() {
       return this.variant === 'primary';
+    },
+    upgrade() {
+      return this.variant === 'upgrade';
     },
     secondary() {
       return this.variant === 'secondary';

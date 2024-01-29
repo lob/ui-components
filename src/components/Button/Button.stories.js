@@ -26,6 +26,7 @@ export default {
     variant: {
       options: [
         'primary',
+        'upgrade',
         'secondary',
         'danger',
         'danger-secondary',
@@ -56,6 +57,12 @@ const Template = (args, { argTypes }) => ({
 export const Primary = Template.bind({});
 Primary.args = {
   content: 'Primary button'
+};
+
+export const Upgrade = Template.bind({});
+Upgrade.args = {
+  content: 'Upgrade button',
+  variant: 'upgrade'
 };
 
 export const Secondary = Template.bind({});
