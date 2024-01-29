@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v2.0.2
+
+- Adds button variant `Upgrade`.
+- Adds a `Lightning` icon.
+
 ## v2.0.1
 
 - Adds a `CircleEmpty` icon.

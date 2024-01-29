@@ -67,6 +67,7 @@ export { default as Globe } from './Globe';
 export { default as HouseChimney } from './HouseChimney';
 export { default as Info } from './Info';
 export { default as LayerGroup } from './LayerGroup';
+export { default as Lightning } from './Lightning';
 export { default as List } from './List';
 export { default as LocationDot } from './LocationDot';
 export { default as LocationPin } from './LocationPin';
