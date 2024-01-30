@@ -28,6 +28,10 @@
             primaryButton
         },
         {
+          'bg-[#483AC5] text-white hover:bg-[#6C61D1] active:bg-[#483AC5] focus:bg-[#483AC5]':
+            upgradeButton
+        },
+        {
           'bg-white text-gray-800 border border-gray-800 hover:bg-gray-50 hover:text-gray-800 focus:border-gray-800 active:bg-gray-100 focus:bg-gray-100':
             secondaryButton
         },
@@ -80,6 +84,7 @@ export default {
         return [
           'link',
           'primary-button',
+          'upgrade-button',
           'secondary-button',
           'quiet-button',
           'ghost-button',
@@ -141,6 +146,9 @@ export default {
     },
     primaryButton() {
       return this.variant === 'primary-button';
+    },
+    upgradeButton() {
+      return this.variant === 'upgrade-button';
     },
     secondaryButton() {
       return this.variant === 'secondary-button';

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.3
+
+- Adds link variant `upgrade-button`.
+
 ## v2.0.2
 
 - Adds button variant `Upgrade`.
