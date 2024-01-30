@@ -41,6 +41,7 @@ export default {
       options: [
         'link',
         'primary-button',
+        'upgrade-button',
         'secondary-button',
         'quiet-button',
         'ghost-button',
@@ -91,6 +92,11 @@ export const StyledAsPrimaryButton = Template.bind({});
 StyledAsPrimaryButton.args = {
   variant: 'primary-button',
   content: 'I look like a button'
+};
+export const StyledAsUpgradeButton = Template.bind({});
+StyledAsUpgradeButton.args = {
+  variant: 'upgrade-button',
+  content: 'I look like an upgrade button'
 };
 
 export const StyledAsSecondaryButton = Template.bind({});
