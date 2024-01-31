@@ -28,7 +28,7 @@
             primaryButton
         },
         {
-          'bg-[#483AC5] text-white hover:bg-[#6C61D1] active:bg-[#483AC5] focus:bg-[#483AC5]':
+          'bg-[#483AC5] text-white hover:text-white hover:bg-[#6C61D1] active:bg-[#483AC5] focus:bg-[#483AC5]':
             upgradeButton
         },
         {
