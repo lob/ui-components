@@ -1,18 +1,11 @@
-import {
-  Preview,
-  Story,
-  ArgsTable,
-  PRIMARY_STORY
-} from '@storybook/addon-docs';
-import Breadcrumb from './Breadcrumb.vue';
+import { Canvas, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
+import { Primary } from './Breadcrumb.stories';
 
 # Breadcrumb
 
 A breadcrumb component renders a list of links to go back up the navigation hierarchy from where the user currently is back to the home page.
 
-<Preview>
-  <Story id="components-breadcrumb--primary" />
-</Preview>
+<Canvas of={Primary} />
 
 ## How to Use
 
@@ -37,4 +30,4 @@ You'll need to provide a `startName` to tell the component what to name the root
 
 ## Props
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes story={PRIMARY_STORY} />

@@ -1,18 +1,11 @@
-import {
-  Preview,
-  Story,
-  ArgsTable,
-  PRIMARY_STORY
-} from '@storybook/addon-docs';
-import LobLabel from './Label.vue';
+import { Canvas, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
+import { Primary } from './Label.stories';
 
 # Lob Label
 
 A label component for all input components to have consistent labels.
 
-<Preview>
-  <Story id="components-label--with-input" />
-</Preview>
+<Canvas of={Primary} />
 
 ## How to Use
 
@@ -36,4 +29,4 @@ By default it will show on the left of the label ('leading'). If `tooltipPositio
 
 ## Props
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes story={PRIMARY_STORY} />

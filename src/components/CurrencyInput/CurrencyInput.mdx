@@ -1,18 +1,11 @@
-import {
-  Preview,
-  Story,
-  ArgsTable,
-  PRIMARY_STORY
-} from '@storybook/addon-docs';
-import CurrencyInput from './CurrencyInput.vue';
+import { Canvas, Story, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
+import { Primary } from './CurrencyInput.stories';
 
 # Currency Input
 
 A currency input component for billing form workflows.
 
-<Preview>
-  <Story id="components-currency-input--primary" />
-</Preview>
+<Canvas of={Primary} />
 
 ## How to Use
 
@@ -21,4 +14,4 @@ Icons are available for the left, right, or both sides of the input via `iconLef
 
 ## Props
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes story={PRIMARY_STORY} />

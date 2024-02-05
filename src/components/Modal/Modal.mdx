@@ -1,18 +1,11 @@
-import {
-  Preview,
-  Story,
-  ArgsTable,
-  PRIMARY_STORY
-} from '@storybook/addon-docs';
-import Modal from './Modal.vue';
+import { Canvas, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
+import { Primary } from './Modal.stories';
 
 # Modal
 
 A modal is a card that is opened upon action to display information.
 
-<Preview>
-  <Story id="components-modal--primary" />
-</Preview>
+<Canvas of={Primary} />
 
 ## How to Use
 
@@ -59,4 +52,4 @@ To add a footer, use the `#footer` slot. If no footer slot is provided, nothing 
 
 ## Props
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes story={PRIMARY_STORY} />

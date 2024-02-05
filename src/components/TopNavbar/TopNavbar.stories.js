@@ -50,26 +50,26 @@ const Template = (args, { argTypes }) => ({
         :src="$getConst('lobAssetsUrl') + '/dashboard/navbar/lob-logo.svg'"
         width="95"
         alt=""
-      >
+      />
       <div class="flex items-center">
         <TopNavDropdown right id="1" title="Resources">
           <TopNavDropdownItem id="api" to="/settings/main/account">
-            <template #icon> <Signal/> </template>
+            <template #icon> <Signal /> </template>
             API Status
           </TopNavDropdownItem>
           <TopNavDropdownItem id="help" to="/settings/main/account">
-            <template #icon> <Map/> </template>
+            <template #icon> <Map /> </template>
             Help Center
           </TopNavDropdownItem>
           <TopNavDropdownItem id="support" to="/settings/main/account">
-            <template #icon> <CircleQuestion/> </template>
+            <template #icon> <CircleQuestion /> </template>
             Support
           </TopNavDropdownItem>
         </TopNavDropdown>
 
         <TopNavDropdown right id="2" title="Username">
           <TopNavDropdownItem id="settings" to="/settings/main/account">
-            <template #icon> <Gear/> </template>
+            <template #icon> <Gear /> </template>
             Settings
           </TopNavDropdownItem>
           <TopNavDropdownItem id="signout" to="/settings/main/account">

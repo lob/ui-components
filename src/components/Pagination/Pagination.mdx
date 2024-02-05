@@ -1,18 +1,11 @@
-import {
-  Preview,
-  Story,
-  ArgsTable,
-  PRIMARY_STORY
-} from '@storybook/addon-docs';
-import Pagination from './Pagination.vue';
+import { Canvas, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
+import { FirstPageActive } from './Pagination.stories';
 
 # Pagination
 
 The pagination component is used for displaying a table's paging data such as the number of results and which results are current visible. It is also responsible for providing ways to page forward or backward through the table data.
 
-<Preview>
-  <Story id="components-pagination--first-page-active" />
-</Preview>
+<Canvas of={FirstPageActive} />
 
 ## How to Use
 
@@ -57,4 +50,4 @@ If you'd like to localize these labels, you can install `vue-i18n` into your app
 
 ## Props
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes story={PRIMARY_STORY} />

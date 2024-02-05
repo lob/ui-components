@@ -1,18 +1,11 @@
-import {
-  Preview,
-  Story,
-  ArgsTable,
-  PRIMARY_STORY
-} from '@storybook/addon-docs';
-import RadioGroup from './RadioGroup.vue';
+import { Canvas, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
+import { Primary } from './RadioGroup.stories';
 
 # Radio Group
 
 A radio group represents a group of radio buttons.
 
-<Preview>
-  <Story id="components-radio-group--primary" />
-</Preview>
+<Canvas of={Primary} />
 
 ## How to Use
 
@@ -36,4 +29,4 @@ If the legend is hidden, it will still be accessible to screen readers.
 
 ## Props
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes story={PRIMARY_STORY} />

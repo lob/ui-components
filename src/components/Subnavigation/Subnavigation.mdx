@@ -1,18 +1,11 @@
-import {
-  Preview,
-  Story,
-  ArgsTable,
-  PRIMARY_STORY
-} from '@storybook/addon-docs';
-import Subnavigation from './Subnavigation.vue';
+import { Canvas, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
+import { Primary } from './Subnavigation.stories';
 
 # Subnavigation
 
 The subnavigation component is used for displaying a secondary, horizontal navigation.
 
-<Preview>
-  <Story id="components-subnavigation--primary" />
-</Preview>
+<Canvas of={Primary} />
 
 ## How to Use
 
@@ -38,4 +31,4 @@ The subnavigation item component is used for displaying each individual tab in t
 
 ## Props
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes story={PRIMARY_STORY} />

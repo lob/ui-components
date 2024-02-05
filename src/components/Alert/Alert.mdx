@@ -1,18 +1,11 @@
-import {
-  Preview,
-  Story,
-  ArgsTable,
-  PRIMARY_STORY
-} from '@storybook/addon-docs';
-import Alert from './Alert.vue';
+import { Canvas, ArgTypes } from '@storybook/addon-docs';
+import { Primary } from './Alert.stories';
 
 # Alert
 
 Alerts are a flexible component used to display highlighted content prominently.
 
-<Preview>
-  <Story id="components-alert--primary" />
-</Preview>
+<Canvas of={Primary} />
 
 ## How to Use
 
@@ -63,4 +56,4 @@ Example of using this component with a link
 
 ## Props
 
-<ArgsTable story="{PRIMARY_STORY}" />
+<ArgTypes story="{PRIMARY_STORY}" />

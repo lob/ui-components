@@ -1,18 +1,11 @@
-import {
-  Preview,
-  Story,
-  ArgsTable,
-  PRIMARY_STORY
-} from '@storybook/addon-docs';
-import Datepicker from './Datepicker.vue';
+import { Canvas, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
+import { Primary } from './Datepicker.stories';
 
 # Datepicker
 
 Datepicker is a stylized, accessible component for seeing a calendar and choosing a date.
 
-<Preview>
-  <Story id="components-datepicker--primary" />
-</Preview>
+<Canvas of={Primary} />
 
 ## How to Use
 
@@ -93,4 +86,4 @@ If you'd like to localize these labels, you can install `vue-i18n` into your app
 
 ## Props
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes story={PRIMARY_STORY} />

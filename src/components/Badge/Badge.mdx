@@ -1,18 +1,11 @@
-import {
-  Preview,
-  Story,
-  ArgsTable,
-  PRIMARY_STORY
-} from '@storybook/addon-docs';
-import Badge from './Badge.vue';
+import { Canvas, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
+import { Primary } from './Badge.stories';
 
 # Badge
 
 Badges are a flexible component used to display small nuggets of text prominently.
 
-<Preview>
-  <Story id="components-badge--primary" />
-</Preview>
+<Canvas of={Primary} />
 
 ## How to Use
 
@@ -39,4 +32,4 @@ Example of using this component as a default badge in a template
 
 ## Props
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes story={PRIMARY_STORY} />

@@ -1,18 +1,11 @@
-import {
-  Preview,
-  Story,
-  ArgsTable,
-  PRIMARY_STORY
-} from '@storybook/addon-docs';
-import RadioButtonLarge from './RadioButtonLarge.vue';
+import { Canvas, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
+import { Primary } from './RadioButtonLarge.stories';
 
 # Radio Button
 
 A radio button typically represents a single option in a group of related choices. Only one can be selected at a time.
 
-<Preview>
-  <Story id="components-radio-button-large--primary" />
-</Preview>
+<Canvas of={Primary} />
 
 ## How to Use
 
@@ -54,4 +47,4 @@ Example with slot that contains label and tooltip
 
 ## Props
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes story={PRIMARY_STORY} />

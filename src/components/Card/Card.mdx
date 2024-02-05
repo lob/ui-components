@@ -1,18 +1,11 @@
-import {
-  Preview,
-  Story,
-  ArgsTable,
-  PRIMARY_STORY
-} from '@storybook/addon-docs';
-import Card from './Card.vue';
+import { Canvas, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
+import { Primary } from './Card.stories';
 
 # Card
 
 Cards are a flexible component used to display content in a variety of contexts.
 
-<Preview>
-  <Story id="components-card--primary" />
-</Preview>
+<Canvas of={Primary} />
 
 ## How to Use
 
@@ -26,4 +19,4 @@ Please note: though you can only insert text in the Storybook demo, the card com
 
 ## Props
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes story={PRIMARY_STORY} />

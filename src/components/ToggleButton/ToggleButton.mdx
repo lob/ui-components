@@ -1,18 +1,11 @@
-import {
-  Preview,
-  Story,
-  ArgsTable,
-  PRIMARY_STORY
-} from '@storybook/addon-docs';
-import ToggleButton from './ToggleButton.vue';
+import { Canvas, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
+import { Single } from './ToggleButton.stories';
 
 # Toggle Button
 
 A toggle button is a styled version of our checkbox.
 
-<Preview>
-  <Story id="components-toggle-button--single" />
-</Preview>
+<Canvas of={Single} />
 
 ## How to Use
 
@@ -55,4 +48,4 @@ Here is an example
 
 ## Props
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes story={PRIMARY_STORY} />

@@ -1,10 +1,5 @@
-import {
-  Preview,
-  Story,
-  ArgsTable,
-  PRIMARY_STORY
-} from '@storybook/addon-docs';
-import Dropzone from './Dropzone.vue';
+import { Canvas, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
+import { Primary } from './Dropzone.stories';
 
 # Dropzone
 
@@ -14,9 +9,7 @@ In addition to a mouse click that opens the select-file dialog, the drop zone ca
 
 It supports single file selection (or drop), and has built-in checks for the file type and size (based on props).
 
-<Preview>
-  <Story id="components-dropzone--primary" />
-</Preview>
+<Canvas of={Primary} />
 
 ## How to Use
 
@@ -63,4 +56,4 @@ Other supported props (optional):
 
 ## Props
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes story={PRIMARY_STORY} />

@@ -1,18 +1,11 @@
-import {
-  Preview,
-  Story,
-  ArgsTable,
-  PRIMARY_STORY
-} from '@storybook/addon-docs';
-import LobLink from './Link.vue';
+import { Canvas, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
+import { DefaultLink } from './Link.stories';
 
 # Link
 
 Links are styled semantic links. If you pass through a relative path (e.g. `/settings`), the link will become a router-link integrated with Vue router. If you pass through an external URL, the link will become an anchor tag.
 
-<Preview>
-  <Story id="components-link--default-link" />
-</Preview>
+<Canvas of={DefaultLink} />
 
 ## How to Use
 
@@ -49,4 +42,4 @@ Using the component with `target="_blank"` will automatically add `rel="noopener
 
 ## Props
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes story={PRIMARY_STORY} />

@@ -1,18 +1,11 @@
-import {
-  Preview,
-  Story,
-  ArgsTable,
-  PRIMARY_STORY
-} from '@storybook/addon-docs';
-import Dropdown from './Dropdown.vue';
+import { Canvas, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
+import { WithObjectOptions } from './Dropdown.stories';
 
 # Dropdown
 
 Dropdown is a stylized, accessible component that mimics the behavior of a native HTML `<select>`.
 
-<Preview>
-  <Story id="components-dropdown--with-object-options" />
-</Preview>
+<Canvas of={WithObjectOptions} />
 
 ## How to Use
 
@@ -82,4 +75,4 @@ Example of the emitted event data
 
 ## Props
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes story={PRIMARY_STORY} />
