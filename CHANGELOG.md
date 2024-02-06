@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## v2.0.6
+
+- Upgrade Vue
+- Upgrade Typescript
+- Install PrimeVue
+- Add `Icon` component
+
 ## v2.0.5
 
 - Upgrade Storybook
