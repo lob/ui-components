@@ -11,6 +11,7 @@ export { default as Datepicker } from './Datepicker/Datepicker';
 export { default as Dropdown } from './Dropdown/Dropdown';
 export { default as FileUpload } from './FileUpload/FileUpload';
 export { default as FilterContent } from './FilterContent/FilterContent';
+export { default as Icon } from './Icon/Icon.vue';
 export * from './Icons';
 export { default as LoadingIndicator } from './LoadingIndicator/LoadingIndicator';
 export { default as LobLink } from './Link/Link';

@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "jsx": "preserve",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true, // Allows JavaScript files to be imported
+    "checkJs": false, // Whether to type-check JavaScript files
+    "strict": true,
+    "noEmit": true, // To prevent TS from emitting .js and .d.ts files from .ts and .tsx files
+    "experimentalDecorators": true,
+    "skipLibCheck": true,
+    "lib": ["esnext", "dom"],
+    "types": ["vite/client", "jest"],
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.js", // Includes JS files
+    "src/**/*.vue"
+  ],
+  "exclude": ["node_modules"]
+}
