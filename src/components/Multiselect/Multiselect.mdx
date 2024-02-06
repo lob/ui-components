@@ -1,10 +1,5 @@
-import {
-  Preview,
-  Story,
-  ArgsTable,
-  PRIMARY_STORY
-} from '@storybook/addon-docs';
-import Multiselect from './Multiselect.vue';
+import { Canvas, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
+import { Primary } from './Multiselect.stories';
 
 # Multiselect
 
@@ -12,9 +7,7 @@ Multiselect is a stylized, (soon-to-be\*\*) accessible component that allows a u
 
 \*\*Keyboard navigation and compatibility with screen readers will be worked on in part 2.
 
-<Preview>
-  <Story id="components-multiselect--primary" />
-</Preview>
+<Canvas of={Primary} />
 
 ## How to Use
 
@@ -93,4 +86,4 @@ Example of the emitted event data if Ginny and Prudence were selected
 
 ## Props
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes story={PRIMARY_STORY} />

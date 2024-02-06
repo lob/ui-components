@@ -1,18 +1,11 @@
-import {
-  Preview,
-  Story,
-  ArgsTable,
-  PRIMARY_STORY
-} from '@storybook/addon-docs';
-import SwitchGroup from './SwitchGroup.vue';
+import { Canvas, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
+import { Primary } from './SwitchGroup.stories';
 
 # Switch Group
 
 A switch group represents a group of switch toggles.
 
-<Preview>
-  <Story id="components-switch-group--primary" />
-</Preview>
+<Canvas of={Primary} />
 
 ## How to Use
 
@@ -51,4 +44,4 @@ You can pass in a `@click` handler to trigger a custom function on click events.
 
 ## Props
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes story={PRIMARY_STORY} />

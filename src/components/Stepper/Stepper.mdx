@@ -1,19 +1,11 @@
-import {
-  Preview,
-  Story,
-  ArgsTable,
-  PRIMARY_STORY
-} from '@storybook/addon-docs';
-import Stepper from './Stepper.vue';
-import StepperItem from './StepperItem.vue';
+import { Canvas, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
+import { Primary, Item } from './Stepper.stories';
 
 # Stepper
 
 The stepper component is just a container with a margin for `stepper-item` components.
 
-<Preview>
-  <Story id="components-stepper--primary" />
-</Preview>
+<Canvas of={Primary} />
 
 ## How to Use
 
@@ -32,9 +24,7 @@ Example of using this component with two stepper-items.
 
 The `stepper-item` component is used for displaying a single item in the nested stepper.
 
-<Preview>
-  <Story id="components-stepper--item" />
-</Preview>
+<Canvas of={Item} />
 
 ## How to Use
 
@@ -73,4 +63,4 @@ Example of using this component.
 
 ## Props
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes story={PRIMARY_STORY} />

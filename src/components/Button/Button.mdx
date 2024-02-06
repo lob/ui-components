@@ -1,18 +1,11 @@
-import {
-  Preview,
-  Story,
-  ArgsTable,
-  PRIMARY_STORY
-} from '@storybook/addon-docs';
-import LobButton from './Button.vue';
+import { Canvas, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
+import { Primary } from './Button.stories';
 
 # Button
 
 Buttons are styled semantic buttons that will handle all of the appropriate button states.
 
-<Preview>
-  <Story id="components-button--primary" />
-</Preview>
+<Canvas of={Primary} />
 
 ## How to Use
 
@@ -49,4 +42,4 @@ Example of using this component as a secondary button in a template
 
 ## Props
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes story={PRIMARY_STORY} />

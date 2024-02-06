@@ -1,7 +1,6 @@
 import { createMemoryHistory, createRouter } from 'vue-router';
-import { app } from '@storybook/vue3';
+import { getCurrentInstance } from 'vue';
 
-let routerInstalled = false;
 let router;
 
 export const routeTemplate = (name) => `<div>${name}</div>`;
@@ -13,13 +12,17 @@ export default (path = '/', routes = []) => {
     ...routes
   ];
   return (storyFn) => {
-    if (!routerInstalled) {
+    // It is not recommended to utilize getCurrentInstance in production code, we should find a way to stop doing this.
+    const isVueRouterInstalled = Boolean(
+      getCurrentInstance().appContext.config.globalProperties.$router
+    );
+    if (!isVueRouterInstalled) {
+      const app = getCurrentInstance().appContext.app;
       router = createRouter({
         history: createMemoryHistory(),
         routes
       });
       app.use(router);
-      routerInstalled = true;
     } else {
       routes.forEach((r) => router.addRoute(r));
     }

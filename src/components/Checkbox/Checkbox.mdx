@@ -1,18 +1,11 @@
-import {
-  Preview,
-  Story,
-  ArgsTable,
-  PRIMARY_STORY
-} from '@storybook/addon-docs';
-import Checkbox from './Checkbox.vue';
+import { Canvas, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
+import { Single } from './Checkbox.stories';
 
 # Checkbox
 
 A checkbox represents a value a form that can either be true or false.
 
-<Preview>
-  <Story id="components-checkbox--single" />
-</Preview>
+<Canvas of={Single} />
 
 ## How to Use
 
@@ -55,4 +48,4 @@ Here is an example
 
 ## Props
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes story={PRIMARY_STORY} />

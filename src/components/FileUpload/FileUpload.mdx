@@ -1,10 +1,5 @@
-import {
-  Preview,
-  Story,
-  ArgsTable,
-  PRIMARY_STORY
-} from '@storybook/addon-docs';
-import FileUpload from './FileUpload.vue';
+import { Canvas, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
+import { Primary } from './FileUpload.stories';
 
 # File Upload 'Button'
 
@@ -12,9 +7,7 @@ The file upload 'button' is actually an input field with `type=file`, styled to 
 
 If placed in a container that has its width constrained in some way (e.g. with width or max-width) and the filename is long, the filename will be truncated with an ellipsis.
 
-<Preview>
-  <Story id="components-file-upload--primary" />
-</Preview>
+<Canvas of={Primary} />
 
 ## How to Use
 
@@ -34,4 +27,4 @@ When a file is selected, a `fileUpload` event will be emitted along with the eve
 
 ## Props
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes story={PRIMARY_STORY} />

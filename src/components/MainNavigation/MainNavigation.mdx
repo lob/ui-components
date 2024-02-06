@@ -1,20 +1,15 @@
+import { Canvas, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
 import {
-  Preview,
-  Story,
-  ArgsTable,
-  PRIMARY_STORY
-} from '@storybook/addon-docs';
-import MainNavigation from './MainNavigation.vue';
-import MainNavigationItem from './MainNavigationItem.vue';
-import MainNavigationChildItem from './MainNavigationChildItem.vue';
+  FullNavigation,
+  Item,
+  ItemWithChildItems
+} from './MainNavigation.stories';
 
 # MainNavigation
 
 The main navigation component is used for displaying the main, vertical navigation.
 
-<Preview>
-  <Story id="components-main-navigation--full-navigation" />
-</Preview>
+<Canvas of={FullNavigation} />
 
 ## How to Use
 
@@ -63,9 +58,7 @@ Example of using this component in a template
 
 The main navigation item component is used for displaying a top level navigation item in the main, vertical navigation.
 
-<Preview>
-  <Story id="components-main-navigation--item" />
-</Preview>
+<Canvas of={Item} />
 
 ## How to Use
 
@@ -115,9 +108,7 @@ Example of using this component in a template as a button with child nav items.
 
 The main navigation child item component is used for displaying a sub level navigation item in the main, vertical navigation.
 
-<Preview>
-  <Story id="components-main-navigation--child-item" />
-</Preview>
+<Canvas of={ItemWithChildItems} />
 
 ## How to Use
 
@@ -131,4 +122,4 @@ Example of using this component in a template
 
 ## Props
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes story={PRIMARY_STORY} />

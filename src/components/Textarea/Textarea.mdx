@@ -1,18 +1,11 @@
-import {
-  Preview,
-  Story,
-  ArgsTable,
-  PRIMARY_STORY
-} from '@storybook/addon-docs';
-import Textarea from './Textarea.vue';
+import { Canvas, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
+import { Primary } from './Textarea.stories';
 
 # Textarea
 
 A textarea component for entering large blocks of text in a form.
 
-<Preview>
-  <Story id="components-textarea--primary" />
-</Preview>
+<Canvas of={Primary} />
 
 ## How to Use
 
@@ -26,4 +19,4 @@ You can pass in a `@change` handler to trigger a custom function on change event
 
 ## Props
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes story={PRIMARY_STORY} />

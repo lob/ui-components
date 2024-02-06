@@ -1,18 +1,11 @@
-import {
-  Preview,
-  Story,
-  ArgsTable,
-  PRIMARY_STORY
-} from '@storybook/addon-docs';
-import LobTable from './Table.vue';
+import { Canvas, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
+import { SimpleTable } from './Table.stories';
 
 # Table
 
 Table is a flexible component that display sets of data
 
-<Preview>
-  <Story id="components-table--simple-table" />
-</Preview>
+<Canvas of={SimpleTable} />
 
 ## How to Use
 
@@ -47,4 +40,4 @@ You can still set tailwindcss classes to a table cell.
 
 ## Props
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes story={PRIMARY_STORY} />

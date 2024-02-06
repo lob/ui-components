@@ -26,7 +26,7 @@ const Template = (args, { argTypes }) => ({
   <div class="relative">
     <label>
       Enter a date
-      <input @click.stop="show = !show" :value="dateModel" class="border border-gray-300">
+      <input @click.stop="show = !show" :value="dateModel" class="border border-gray-300" />
     </label>
     <datepicker v-bind="args" v-model="dateModel" v-model:open="show"></datepicker>
   </div>
@@ -64,14 +64,14 @@ const WithMultipleTemplate = (args, { argTypes }) => ({
   <div class="relative">
     <label>
       Enter a date
-      <input @click.stop="show = !show" :value="dateModel" class="border border-gray-300">
+      <input @click.stop="show = !show" :value="dateModel" class="border border-gray-300" />
     </label>
     <datepicker v-bind="args" v-model="dateModel" v-model:open="show"></datepicker>
   </div>
   <div class="relative">
     <label>
       Enter a date
-      <input @click.stop="show2 = !show2" :value="dateModel2" class="border border-gray-300">
+      <input @click.stop="show2 = !show2" :value="dateModel2" class="border border-gray-300" />
     </label>
     <datepicker v-bind="args" v-model="dateModel2" v-model:open="show2"></datepicker>
   </div>

@@ -1,20 +1,11 @@
-import {
-  Preview,
-  Story,
-  ArgsTable,
-  PRIMARY_STORY
-} from '@storybook/addon-docs';
-import TopNavbar from './TopNavbar.vue';
-import TopNavDropdown from '../TopNavDropdown/TopNavDropdown.vue';
-import TopNavDropdownItem from '../TopNavDropdown/TopNavDropdownItem.vue';
+import { Canvas, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
+import { Primary } from './TopNavbar.stories';
 
 # Top Navbar
 
 This responsive component represents the fixed header of the webapp, with a default slot where to include (for example) the Lob logo, TopNavDropdowns, etc.
 
-<Preview>
-  <Story id="components-top-navbar--primary" />
-</Preview>
+<Canvas of={Primary} />
 
 ## How to Use
 
@@ -51,4 +42,4 @@ This responsive component represents the fixed header of the webapp, with a defa
 
 ## Props
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes story={PRIMARY_STORY} />

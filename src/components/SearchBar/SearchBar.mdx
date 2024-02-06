@@ -1,18 +1,11 @@
-import {
-  Preview,
-  Story,
-  ArgsTable,
-  PRIMARY_STORY
-} from '@storybook/addon-docs';
-import SearchBar from './SearchBar.vue';
+import { Canvas, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
+import { Primary } from './SearchBar.stories';
 
 # SearchBar
 
 This search bar component is designed to render an input for the user to enter their search term and then a table with the search results.
 
-<Preview>
-  <Story id="components-search-bar--primary" />
-</Preview>
+<Canvas of={Primary} />
 
 ## How to Use
 
@@ -39,4 +32,4 @@ To use this component, here is an example
 
 ## Props
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes story={PRIMARY_STORY} />

@@ -1,18 +1,11 @@
-import {
-  Preview,
-  Story,
-  ArgsTable,
-  PRIMARY_STORY
-} from '@storybook/addon-docs';
-import MegaButton from './MegaButton.vue';
+import { Canvas, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
+import { MegaText, WithImage, SmallText } from './MegaButton.stories';
 
 # MegaButton
 
-<Preview>
-  <Story id="components-mega-button--mega-text" />
-  <Story id="components-mega-button--with-image" />
-  <Story id="components-mega-button--small-text" />
-</Preview>
+<Canvas of={MegaText} />
+<Canvas of={WithImage} />
+<Canvas of={SmallText} />
 
 ## How to Use
 
@@ -43,4 +36,4 @@ If using a group of MegaButtons, wrap them in a `RadioGroup` so that they get wr
 
 ## Props
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes story={PRIMARY_STORY} />

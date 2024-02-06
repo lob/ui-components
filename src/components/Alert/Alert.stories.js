@@ -39,8 +39,8 @@ const Template = (args, { argTypes }) => ({
     <alert v-bind="args">
       <template v-slot:default>
         {{ args.content }} 
-        <br> This is an extra line of random text.
-        </template>
+        <br /> This is an extra line of random text.
+      </template>
     </alert>
   `
 });
@@ -59,7 +59,7 @@ const TemplateWithHeading = (args, { argTypes }) => ({
       <template v-slot:heading> Alert title! </template>
       <template v-slot:default>
         {{ args.content }} 
-        <br> This is an extra line of random text.
+        <br /> This is an extra line of random text.
       </template>
     </alert>
   `

@@ -1,18 +1,11 @@
-import {
-  Preview,
-  Story,
-  ArgsTable,
-  PRIMARY_STORY
-} from '@storybook/addon-docs';
-import Accordion from './Accordion.vue';
+import { Canvas, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
+import { Primary } from './Accordion.stories';
 
 # Accordion
 
 Accordions are vertically collapsing components used for displaying or hiding large chunks of content
 
-<Preview>
-  <Story id="components-accordion--primary" />
-</Preview>
+<Canvas of={Primary} />
 
 ## How to Use
 
@@ -34,4 +27,4 @@ The prop `defaultOpen` can be passed to the Accordion to have the Accordion rend
 
 ## Props
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes story={PRIMARY_STORY} />

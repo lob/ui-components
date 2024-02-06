@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.5
+
+- Upgrade Storybook
+
 ## v2.0.4
 
 - Fix text color for `Link` `upgrade-button` variant.
