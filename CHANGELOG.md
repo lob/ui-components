@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.7
+
+- Fix `Icon` component registration
+
 ## v2.0.6
 
 - Upgrade Vue

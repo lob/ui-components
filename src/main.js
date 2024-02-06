@@ -14,7 +14,7 @@ const ComponentLibrary = {
     // components
     for (const componentName in components) {
       const component = components[componentName];
-      app.component(component.name, component);
+      app.component(component.name || componentName, component);
     }
   }
 };
