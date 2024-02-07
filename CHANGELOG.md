@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.8
+
+- Fix `LobTable`s with nested slots
+
 ## v2.0.7
 
 - Fix `Icon` component registration
