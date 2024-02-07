@@ -1,5 +1,5 @@
 <template>
-  <Modal
+  <LegacyModal
     :visible="visible"
     :close-button-aria-label="
       t('dropdown.confirmChangeModal.closeButtonAriaLabel')
@@ -33,16 +33,16 @@
         </LobButton>
       </div>
     </div>
-  </Modal>
+  </LegacyModal>
 </template>
 
 <script>
-import Modal from '../Modal/Modal.vue';
+import LegacyModal from '../LegacyModal/LegacyModal.vue';
 import { TriangleExclamation } from '../Icons';
 import LobButton from '../Button/Button.vue';
 export default {
   name: 'ConfirmChangeModal',
-  components: { Modal, TriangleExclamation, LobButton },
+  components: { LegacyModal, TriangleExclamation, LobButton },
   props: {
     visible: {
       type: Boolean,

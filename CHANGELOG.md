@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v2.0.9
+
+- Implement new `Modal` component
+
+### Breaking Changes
+
+- The `Modal` component has been moved to `LegacyModal` due to the new `Modal` utilizing `v-model`
+
 ## v2.0.8
 
 - Fix `LobTable`s with nested slots

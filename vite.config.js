@@ -42,9 +42,9 @@ export default defineConfig({
     coverage: {
       include: ['src/**/*.{js,vue}'],
       exclude: [
-        'src/**/index.js', // No need to cover index files for exports
+        'src/**/index.{js,ts}', // No need to cover index files for exports
         'src/main.js', // No need to cover bootstrap file
-        'src/**/*.spec.js', // No need to cover test files
+        'src/**/*.spec.{js,ts}', // No need to cover test files
         'src/**/*.stories.js', // No need to cover stories files
         'src/theme/**', // No need to cover components just for showing theming
         'src/components/Icons/**' // No need to cover components just for rendering svg icons

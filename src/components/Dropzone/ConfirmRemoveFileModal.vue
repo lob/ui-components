@@ -1,5 +1,5 @@
 <template>
-  <Modal
+  <LegacyModal
     :visible="visible"
     :close-button-aria-label="
       t('dropzone.confirmRemoveFileModal.closeButtonAriaLabel')
@@ -30,16 +30,16 @@
         </LobButton>
       </div>
     </div>
-  </Modal>
+  </LegacyModal>
 </template>
 
 <script>
-import { Modal } from '@/components';
+import { LegacyModal } from '@/components';
 import { TriangleExclamation } from '../Icons';
 import { LobButton } from '@/components';
 export default {
   name: 'ConfirmRemoveFileModal',
-  components: { Modal, TriangleExclamation, LobButton },
+  components: { LegacyModal, TriangleExclamation, LobButton },
   props: {
     visible: {
       type: Boolean,

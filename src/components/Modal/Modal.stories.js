@@ -1,9 +1,11 @@
-import Dropdown from '../Dropdown/Dropdown.vue';
 import LobButton from '../Button/Button.vue';
 import RadioButton from '../RadioButton/RadioButton.vue';
 import RadioGroup from '../RadioGroup/RadioGroup.vue';
+import { IconName } from '../Icon/types';
+
 import Modal from './Modal.vue';
 import mdx from './Modal.mdx';
+import { ModalColor, ModalVariant } from './types';
 
 export default {
   title: 'Components/Modal',
@@ -11,6 +13,31 @@ export default {
   parameters: {
     docs: {
       page: mdx
+    }
+  },
+  argTypes: {
+    closable: {
+      control: {
+        type: 'boolean'
+      }
+    },
+    icon: {
+      options: Object.values(IconName),
+      control: {
+        type: 'select'
+      }
+    },
+    iconColor: {
+      options: Object.values(ModalColor),
+      control: {
+        type: 'select'
+      }
+    },
+    variant: {
+      options: Object.values(ModalVariant),
+      control: {
+        type: 'select'
+      }
     }
   }
 };
@@ -25,75 +52,33 @@ const PrimaryTemplate = (args, { argTypes }) => ({
   data: () => ({ isModalVisible, radioModel }),
   template: `
     <LobButton @click="isModalVisible = true">
-      Open Modal
+      Open Icon Modal
     </LobButton>
 
     <Modal
       v-bind="args"
-      :visible="isModalVisible"
-      header="Select Tracking Events"
-      closeButtonAriaLabel="Close Tracking Events Modal"
-      @close="isModalVisible = false"
+      v-model:visible="isModalVisible"
+      :header="args.header"
+      :icon="args.icon"
+      :iconColor="args.iconColor"
+      :closable="args.closable"
+      :width="args.width"
     >
-      Would you like to export an additional CSV of associated tracking events?
-      <RadioGroup>
-        <radio-button name="exportCSV" id="yes" value="yes" label="Yes" v-model="radioModel"/>
-        <radio-button name="exportCSV" id="no" value="no" label="No" v-model="radioModel" />
-      </RadioGroup>
+      A payment method is required in order to send mail and access live data. You won’t be charged anything until you place a live order.
 
-      <template v-slot:footer>
-        <div class="flex self-end">
-          <LobButton variant="secondary" @click="isModalVisible = false">Go back</LobButton>
-          <LobButton variant="primary" class="ml-2">Submit</LobButton>
-        </div>
-      </template>
-    </Modal>
-    `
-});
-
-const dropVModel = '';
-const WithDropdownTemplate = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
-  components: { Modal, LobButton, Dropdown },
-  setup: () => ({ args }),
-  data: () => ({ isModalVisible, dropVModel }),
-  template: `
-    <LobButton @click="isModalVisible = true">
-      Open Modal
-    </LobButton>
-    <Modal
-      v-bind="args"
-      width="500px"
-      :visible="isModalVisible"
-      header="A Modal with a Dropdown"
-      closeButtonAriaLabel="Close modal with dropdown"
-      @close="isModalVisible = false"
-    >
-      <div style="height: 150px;">
-        <div class="mb-5">Select a thing to continue:</div>
-        <Dropdown 
-          id="dropdown1" 
-          label="thing"
-          srOnlyLabel 
-          placeholder="Select a value"
-          :options="['one', 'two']" 
-          v-model="dropVModel"/>
-      </div>
-
-      <template v-slot:footer>
-        <div class="flex self-end">
-          <LobButton 
-          class="ml-2" 
-          :disabled="!dropVModel"
-          @click="isModalVisible=false">OK</LobButton>
-        </div>
+      <template #footer>
+        <LobButton variant="secondary" @click="isModalVisible = false">Cancel</LobButton>
+        <LobButton variant="primary">Confirm</LobButton>
       </template>
     </Modal>
     `
 });
 
 export const Primary = PrimaryTemplate.bind({});
-Primary.args = {};
-
-export const WithDropdown = WithDropdownTemplate.bind({});
-WithDropdown.args = {};
+Primary.args = {
+  closable: true,
+  header: 'Add a payment method to continue',
+  icon: IconName.MONEY_BILL,
+  iconColor: ModalColor.GREEN,
+  width: '550px'
+};

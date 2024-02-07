@@ -1,15 +1,15 @@
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/vue';
-import Modal from '../Modal.vue';
+import LegacyModal from '../LegacyModal.vue';
 
-const renderComponent = (options) => render(Modal, { ...options });
+const renderComponent = (options) => render(LegacyModal, { ...options });
 
 const initialProps = {
   header: 'modal header',
   closeButtonAriaLabel: 'close this modal'
 };
 
-describe('Modal', () => {
+describe('LegacyModal', () => {
   it('is hidden by default', () => {
     const props = initialProps;
     const { queryByRole } = renderComponent({ props });

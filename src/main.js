@@ -2,10 +2,12 @@ import './assets/styles/main.scss';
 import * as components from './components';
 import * as mixins from './mixins';
 import * as configs from './config';
+import PrimeVue from 'primevue/config';
 
 const ComponentLibrary = {
   install(app) {
     app.use(configs.constants);
+    app.use(PrimeVue, { unstyled: true });
     for (const mixinName in mixins) {
       const mixin = mixins[mixinName];
       app.mixin(mixin);

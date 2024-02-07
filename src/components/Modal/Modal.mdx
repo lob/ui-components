@@ -3,33 +3,14 @@ import { Primary } from './Modal.stories';
 
 # Modal
 
-A modal is a card that is opened upon action to display information.
-
 <Canvas of={Primary} />
 
-## How to Use
-
-This Modal component is designed to be used with slots to fill in its header and footer, and the default slot for its body.
-
-Here is an example of a button opening a modal.
-
-Visibility is controlled from the parent component using the `visible` prop. Note: this is not a `v-model`. You will need to update this when the `close` event is emitted.
-
-The `header` prop (required) will provide the modal heading; no heading will render if an empty string is passed to the prop.
-
-The `closeButtonAriaLabel` is also required, and will provide the close (X) button with an aria-label.
-
-To add a footer, use the `#footer` slot. If no footer slot is provided, nothing will be rendered in it's place.
+## Example
 
 ```html
-<LobButton @click="isModalVisible = true"> Open Modal </LobButton>
+<LobButton @click="isModalVisible = true">Open Modal</LobButton>
 
-<Modal
-  :visible="isModalVisible"
-  header="Select Tracking Events"
-  closeButtonAriaLabel="Close Modal"
-  @close="isModalVisible = false"
->
+<Modal v-model:visible="isModalVisible" header="Select Tracking Events">
   Would you like to export an additional CSV of associated tracking events?
   <RadioGroup>
     <radio-button
@@ -41,11 +22,9 @@ To add a footer, use the `#footer` slot. If no footer slot is provided, nothing 
     <radio-button name="exportCSV" value="no" label="No" v-model="radioModel" />
   </RadioGroup>
 
-  <template v-slot:footer>
-    <div class="flex self-end">
-      <LobButton variant="secondary">Go back</LobButton>
-      <LobButton variant="primary" class="ml-2">Submit</LobButton>
-    </div>
+  <template #footer>
+    <LobButton variant="secondary">Go back</LobButton>
+    <LobButton variant="primary" class="ml-2">Submit</LobButton>
   </template>
 </Modal>
 ```
