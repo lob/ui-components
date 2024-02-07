@@ -7,6 +7,7 @@ export default {
     const isNestedSlot =
       defaultSlot[0].type === 'template' ||
       defaultSlot[0].type.toString() === 'Symbol(Fragment)' ||
+      defaultSlot[0].type.toString() === 'Symbol(v-fgt)' ||
       defaultSlot[0].type.toString() === 'Symbol()';
 
     let columns;
