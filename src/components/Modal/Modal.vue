@@ -3,7 +3,9 @@
     :modal="showMask"
     :closable="closable"
     :pt="{
-      root: { class: `relative bg-white p-10 rounded-xl shadow-large` },
+      root: {
+        class: `relative bg-white p-10 rounded-xl shadow-large text-gray-800`
+      },
       mask: {
         style: 'animation: fadeIn 100ms;', // This is a hack. Without it the styles flash.
         class: 'backdrop-blur-sm backdrop-brightness-[.80]'
@@ -11,7 +13,10 @@
       header: { class: 'flex flex-col items-start justify-center mb-4' },
       content: { class: 'type-base-400' },
       footer: { class: 'flex justify-end mt-8 gap-4' },
-      closeButton: { class: 'absolute top-6 right-6 text-black' },
+      closeButton: {
+        class:
+          'absolute top-4 right-4 hover:bg-gray-50 active:bg-gray-100 p-2 rounded-full transition duration-300'
+      },
       transition: {
         enterFromClass: 'opacity-0 scale-95',
         enterActiveClass: 'transition duration-250 ease-out',
@@ -31,7 +36,7 @@
     @hide="emits('close')"
   >
     <template #closeicon>
-      <XmarkLarge />
+      <Icon icon="Close" size="xxl" />
     </template>
 
     <template #header>
@@ -61,15 +66,8 @@
 <script setup lang="ts">
 import { Icon } from '@/components/Icon';
 import { IconName } from '@/components/Icon/types';
-import XmarkLarge from '@/components/Icons/XmarkLarge.vue';
 import Dialog, { DialogProps } from 'primevue/dialog';
-import {
-  computed,
-  defineEmits,
-  defineProps,
-  useSlots,
-  withDefaults
-} from 'vue';
+import { computed, useSlots } from 'vue';
 
 import { ModalColor, ModalVariant } from './types';
 

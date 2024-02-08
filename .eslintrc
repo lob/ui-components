@@ -3,7 +3,10 @@
   "plugins": ["prettier"],
   "globals": {
     "URLSearchParams": false,
-    "vi": false
+    "vi": false,
+    "defineProps": false,
+    "defineEmits": false,
+    "withDefaults": false
   },
   "parser": "vue-eslint-parser",
   "parserOptions": {
