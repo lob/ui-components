@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.10
+
+- Downgrade Vue to 3.2.32
+
 ## v2.0.9
 
 - Implement new `Modal` component
