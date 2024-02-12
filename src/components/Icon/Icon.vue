@@ -13,13 +13,7 @@
 
 <script setup lang="ts">
 import { Size } from '@/types';
-import {
-  computed,
-  defineAsyncComponent,
-  defineProps,
-  watch,
-  withDefaults
-} from 'vue';
+import { computed, defineAsyncComponent, watch } from 'vue';
 
 import { IconName, IconSize } from './types';
 

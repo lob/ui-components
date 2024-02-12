@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v2.0.11
+
+- Update linting to understand Vue globals
+- Style the close button in `Modal`s
+- Add new icons for the `Icon` component
+  - `CircleCheck`
+  - `CircleClose`
+  - `CircleExclamation`
+  - `Close`
+
 ## v2.0.10
 
 - Downgrade Vue to 3.2.32
