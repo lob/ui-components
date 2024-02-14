@@ -21,6 +21,7 @@
       :input-id="id"
       :input-props="computedInputProps"
       :invalid="error"
+      :max-fraction-digits="maxFractionDigits"
       :max="max"
       :min-fraction-digits="minFractionDigits"
       :min="min"
