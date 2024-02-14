@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.13
+
+- Fix `maxFractionDigits` prop on `Number Input`
+
 ## v2.0.12
 
 - Removes the `CurrencyInput` component
