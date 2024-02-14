@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v2.0.12
+
+- Removes the `CurrencyInput` component
+- Add the `NumberInput` component
+
 ## v2.0.11
 
 - Update linting to understand Vue globals

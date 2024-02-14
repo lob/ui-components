@@ -23,6 +23,7 @@ export { default as MainNavigationChildItem } from './MainNavigation/MainNavigat
 export { default as MegaButton } from './MegaButton/MegaButton';
 export { default as Modal } from './Modal/Modal.vue';
 export { default as Multiselect } from './Multiselect/Multiselect';
+export { default as NumberInput } from './NumberInput/NumberInput.vue';
 export { default as Pagination } from './Pagination/Pagination';
 export { default as ProgressBar } from './ProgressBar/ProgressBar';
 export { default as RadioButton } from './RadioButton/RadioButton';
@@ -49,4 +50,3 @@ export { default as Stepper } from './Stepper/Stepper';
 export { default as StepperItem } from './Stepper/StepperItem';
 export { default as StepperVertical } from './StepperVertical/StepperVertical';
 export { default as Dropzone } from './Dropzone/Dropzone';
-export { default as CurrencyInput } from './CurrencyInput/CurrencyInput';
