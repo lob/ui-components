@@ -60,7 +60,7 @@ import InputNumber, { InputNumberProps } from 'primevue/inputnumber';
 import { InputHTMLAttributes, computed, useAttrs } from 'vue';
 
 import Label from '../Label/Label.vue';
-import { InputNumberMode } from './constants';
+import { NumberInputMode } from './constants';
 
 const attrs = useAttrs();
 
@@ -76,7 +76,7 @@ const props = withDefaults(
     maxFractionDigits?: InputNumberProps['maxFractionDigits'];
     min?: InputNumberProps['min'];
     minFractionDigits?: InputNumberProps['minFractionDigits'];
-    mode?: InputNumberMode;
+    mode?: NumberInputMode;
     modelValue?: number;
     name: string;
     placeholder?: InputNumberProps['placeholder'];
@@ -93,7 +93,7 @@ const props = withDefaults(
     maxFractionDigits: undefined,
     min: undefined,
     minFractionDigits: undefined,
-    mode: InputNumberMode.DECIMAL,
+    mode: NumberInputMode.DECIMAL,
     modelValue: 0,
     placeholder: undefined,
     readonly: false,
@@ -119,7 +119,7 @@ const computedInputProps = computed<InputHTMLAttributes>(() => {
   };
 });
 const currency = computed(() =>
-  props.mode === InputNumberMode.CURRENCY ? 'USD' : undefined
+  props.mode === NumberInputMode.CURRENCY ? 'USD' : undefined
 );
 </script>
 
@@ -189,3 +189,4 @@ const currency = computed(() =>
   }
 }
 </style>
+NumberInputModeNumberInputModeNumberInputModeNumberInputModeNumberInputModeNumberInputModeNumberInputModeNumberInputMode

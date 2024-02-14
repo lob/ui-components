@@ -1,10 +1,10 @@
-import InputNumber from './InputNumber.vue';
-import mdx from './InputNumber.mdx';
-import { InputNumberMode } from './constants';
+import NumberInput from './NumberInput.vue';
+import mdx from './NumberInput.mdx';
+import { NumberInputMode } from './constants';
 
 export default {
   title: 'Components/Input Number',
-  component: InputNumber,
+  component: NumberInput,
   parameters: {
     docs: {
       page: mdx
@@ -30,7 +30,7 @@ export default {
       control: 'number'
     },
     mode: {
-      options: Object.values(InputNumberMode),
+      options: Object.values(NumberInputMode),
       control: {
         type: 'select'
       }
@@ -44,14 +44,14 @@ export default {
   }
 };
 
-const inputNumberModel = 5000;
+const numberInputModel = 5000;
 
 const PrimaryTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { InputNumber },
+  components: { NumberInput },
   setup: () => ({ args }),
-  data: () => ({ inputNumberModel }),
-  template: '<InputNumber v-bind="args" v-model="inputNumberModel" />'
+  data: () => ({ numberInputModel }),
+  template: '<NumberInput v-bind="args" v-model="numberInputModel" />'
 });
 
 export const Primary = PrimaryTemplate.bind({});
@@ -61,17 +61,17 @@ Primary.args = {
   label: 'Input Number',
   helperText: 'Helper text',
   placeholder: 'Amount',
-  mode: InputNumberMode.DECIMAL
+  mode: NumberInputMode.DECIMAL
 };
 
-const inputCurrencyModel = 5000;
+const currencyInputModel = 5000;
 
 const CurrencyTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { InputNumber },
+  components: { NumberInput },
   setup: () => ({ args }),
-  data: () => ({ inputCurrencyModel }),
-  template: '<InputNumber v-bind="args" v-model="inputCurrencyModel" />'
+  data: () => ({ currencyInputModel }),
+  template: '<NumberInput v-bind="args" v-model="currencyInputModel" />'
 });
 
 export const Currency = CurrencyTemplate.bind({});
@@ -80,5 +80,5 @@ Currency.args = {
   name: 'input-currency',
   label: 'Input Currency',
   placeholder: 'Amount',
-  mode: InputNumberMode.CURRENCY
+  mode: NumberInputMode.CURRENCY
 };

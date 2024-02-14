@@ -1,10 +1,10 @@
 import '@testing-library/jest-dom';
 import { fireEvent, render } from '@testing-library/vue';
-import InputNumber from '../InputNumber.vue';
+import NumberInput from '../NumberInput.vue';
 import { ExtractPropTypes } from 'vue';
 
-describe('InputNumber', () => {
-  const DEFAULT_PROPS: ExtractPropTypes<typeof InputNumber> = {
+describe('NumberInput', () => {
+  const DEFAULT_PROPS: ExtractPropTypes<typeof NumberInput> = {
     label: 'Test Input Number',
     id: 'test-input-number',
     name: 'test',
@@ -13,7 +13,7 @@ describe('InputNumber', () => {
   };
 
   it('renders', () => {
-    const { getByTestId } = render(InputNumber, { props: DEFAULT_PROPS });
+    const { getByTestId } = render(NumberInput, { props: DEFAULT_PROPS });
     expect(getByTestId('uic-input-number-container')).toBeVisible();
     const label = getByTestId('uic-input-number-label');
     expect(label).toBeVisible();
@@ -25,7 +25,7 @@ describe('InputNumber', () => {
   });
 
   it('updates', () => {
-    const { getByTestId } = render(InputNumber, {
+    const { getByTestId } = render(NumberInput, {
       props: { ...DEFAULT_PROPS, modelValue: 50 }
     });
     const numberInput = getByTestId('uic-input-number');
@@ -36,7 +36,7 @@ describe('InputNumber', () => {
   });
 
   it('emits focus', () => {
-    const { getByTestId, emitted } = render(InputNumber, {
+    const { getByTestId, emitted } = render(NumberInput, {
       props: DEFAULT_PROPS
     });
     const numberInput = getByTestId('uic-input-number');
@@ -46,7 +46,7 @@ describe('InputNumber', () => {
   });
 
   it('emits blur', () => {
-    const { getByTestId, emitted } = render(InputNumber, {
+    const { getByTestId, emitted } = render(NumberInput, {
       props: DEFAULT_PROPS
     });
     const numberInput = getByTestId('uic-input-number');
