@@ -2,6 +2,7 @@
   <div
     class="uic-input-number-container"
     data-testid="uic-input-number-container"
+    v-bind="containerProps"
   >
     <Label
       :label-for="id"
@@ -11,6 +12,7 @@
       data-testid="uic-input-number-label"
     />
     <InputNumber
+      data-testid="testing-number"
       :currency="currency"
       :disabled="disabled"
       :input-class="[
@@ -33,7 +35,8 @@
       unstyled
       @blur="emits('blur')"
       @focus="emits('focus')"
-      @input="(e) => emits('update:modelValue', e.value as number)"
+      @update:modelValue="emits('update:modelValue', $event)"
+      @input="emits('update:modelValue', $event.value as number)"
     />
     <!-- The PrimeVue number input does not have helper text, I copied this from the PrimeVue text input. -->
     <small
@@ -58,7 +61,7 @@ export default {
 </script>
 <script setup lang="ts">
 import InputNumber, { InputNumberProps } from 'primevue/inputnumber';
-import { InputHTMLAttributes, computed, useAttrs } from 'vue';
+import { HTMLAttributes, InputHTMLAttributes, computed, useAttrs } from 'vue';
 
 import Label from '../Label/Label.vue';
 import { NumberInputMode } from './constants';
@@ -67,6 +70,7 @@ const attrs = useAttrs();
 
 const props = withDefaults(
   defineProps<{
+    containerProps?: HTMLAttributes;
     disabled?: InputNumberProps['disabled'];
     error?: boolean;
     helperText?: string;
@@ -86,6 +90,7 @@ const props = withDefaults(
     success?: boolean;
   }>(),
   {
+    containerProps: undefined,
     disabled: false,
     error: false,
     helperText: undefined,
@@ -130,7 +135,7 @@ const currency = computed(() =>
 }
 
 .uic-input-number {
-  @apply px-4 py-3;
+  @apply w-full px-4 py-3;
   @apply text-sm text-gray-800;
   @apply bg-white;
   @apply border border-gray-200 rounded;
@@ -190,4 +195,3 @@ const currency = computed(() =>
   }
 }
 </style>
-NumberInputModeNumberInputModeNumberInputModeNumberInputModeNumberInputModeNumberInputModeNumberInputModeNumberInputMode

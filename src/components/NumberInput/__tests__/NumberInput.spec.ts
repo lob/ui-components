@@ -24,34 +24,40 @@ describe('NumberInput', () => {
     expect(helperText.textContent).toContain(DEFAULT_PROPS.helperText);
   });
 
-  it('updates', () => {
-    const { getByTestId } = render(NumberInput, {
-      props: { ...DEFAULT_PROPS, modelValue: 50 }
+  it('updates', async () => {
+    const { emitted, getByTestId } = render(NumberInput, {
+      props: { ...DEFAULT_PROPS }
     });
     const numberInput = getByTestId('uic-input-number');
 
-    expect(numberInput).toHaveValue('50');
-    fireEvent.update(numberInput, '123');
+    expect(numberInput).not.toHaveValue('123');
+    expect(numberInput).not.toHaveAttribute('aria-valuenow', '123');
+
+    await fireEvent.update(numberInput, '123');
+    await fireEvent.blur(numberInput);
+
     expect(numberInput).toHaveValue('123');
+    expect(numberInput).toHaveAttribute('aria-valuenow', '123');
+    expect(emitted()).toHaveProperty('update:modelValue', [[123]]);
   });
 
-  it('emits focus', () => {
+  it('emits focus', async () => {
     const { getByTestId, emitted } = render(NumberInput, {
       props: DEFAULT_PROPS
     });
     const numberInput = getByTestId('uic-input-number');
 
-    fireEvent.focus(numberInput);
+    await fireEvent.focus(numberInput);
     expect(emitted()).toHaveProperty('focus');
   });
 
-  it('emits blur', () => {
+  it('emits blur', async () => {
     const { getByTestId, emitted } = render(NumberInput, {
       props: DEFAULT_PROPS
     });
     const numberInput = getByTestId('uic-input-number');
 
-    fireEvent.blur(numberInput);
+    await fireEvent.blur(numberInput);
     expect(emitted()).toHaveProperty('blur');
   });
 });

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.14
+
+- Fix `v-model` on `NumberInput`
+
 ## v2.0.13
 
 - Fix `maxFractionDigits` prop on `Number Input`
