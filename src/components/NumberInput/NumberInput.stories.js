@@ -3,7 +3,7 @@ import mdx from './NumberInput.mdx';
 import { NumberInputMode } from './constants';
 
 export default {
-  title: 'Components/Input Number',
+  title: 'Components/Number Input',
   component: NumberInput,
   parameters: {
     docs: {
