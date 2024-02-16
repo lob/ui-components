@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v2.0.15
+
+- Adds `IconColor` options to the `Modal` component of
+  - `error`
+  - `info`
+  - `neutral`
+  - `success`
+  - `upgrade`
+  - `warning`
+
 ## v2.0.14
 
 - Fix `v-model` on `NumberInput`

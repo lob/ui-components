@@ -69,7 +69,7 @@ import { IconName } from '@/components/Icon/types';
 import Dialog, { DialogProps } from 'primevue/dialog';
 import { computed, useSlots } from 'vue';
 
-import { ModalColor, ModalVariant } from './types';
+import { ModalColor, ModalVariant } from './constants';
 
 const props = withDefaults(
   defineProps<{
@@ -124,6 +124,24 @@ const hasFooter = computed(() => Boolean(slots.footer));
     }
     &-green {
       @apply bg-green-50 text-green-600;
+    }
+    &-success {
+      @apply bg-green-50 text-green-600;
+    }
+    &-error {
+      @apply bg-red-50 text-red-500;
+    }
+    &-warning {
+      @apply bg-yellow-50 text-yellow-700;
+    }
+    &-info {
+      @apply bg-blue-50 text-blue-500;
+    }
+    &-upgrade {
+      @apply bg-purple-50 text-purple-500;
+    }
+    &-neutral {
+      @apply bg-gray-50 text-black;
     }
   }
 }
