@@ -5,7 +5,7 @@ import { IconName } from '../Icon/types';
 
 import Modal from './Modal.vue';
 import mdx from './Modal.mdx';
-import { ModalColor, ModalVariant } from './types';
+import { ModalColor, ModalVariant } from './constants';
 
 export default {
   title: 'Components/Modal',
