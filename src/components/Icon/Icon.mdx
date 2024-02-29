@@ -1,16 +1,15 @@
-import { Canvas, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
+import { Canvas } from '@storybook/addon-docs';
 import { Primary } from './Icon.stories';
 
-# Modal
+# Icon
 
 <Canvas of={Primary} />
 
-## How to Use
+## Adding Icons
 
-```html
-
-```
-
-## Props
-
-<ArgTypes story={PRIMARY_STORY} />
+- Get the SVG for the new Icon
+- Create a new SVG file with the name of the icon within the `./svgs` directory
+  - Ensure the `<svg>` tag has no attributes
+  - Ensure the various `fill`/ `stroke`/ other colored SVG parts are set to `currentColor`
+- Within `./types.ts` add the new icon to the `IconName` constant ensuring the value matches the name of the SVG file
+- Within Storybook go to the `Icon > All Icons` page and ensure the icon shows up and the sizing matches the other icons

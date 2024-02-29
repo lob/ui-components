@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.16
+
+- Adds `CircleInfo` to the `Icon` component
+
 ## v2.0.15
 
 - Adds `IconColor` options to the `Modal` component of

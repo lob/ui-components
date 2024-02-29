@@ -21,6 +21,7 @@ export const IconName = {
   CIRCLE_CLOSE: 'CircleClose',
   CIRCLE_EMPTY: 'CircleEmpty',
   CIRCLE_EXCLAMATION: 'CircleExclamation',
+  CIRCLE_INFO: 'CircleInfo',
   CIRCLE_QUESTION: 'CircleQuestion',
   CIRCLE_USER: 'CircleUser',
   CLOSE: 'Close',
