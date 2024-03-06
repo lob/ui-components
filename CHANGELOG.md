@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.17
+
+- Add `FloatingActionButton` component
+
 ## v2.0.16
 
 - Adds `CircleInfo` to the `Icon` component
