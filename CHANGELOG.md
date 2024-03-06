@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## v2.0.17
+
 - Add `FloatingActionButton` component
 
 ## v2.0.16
