@@ -1,0 +1,30 @@
+import { Canvas, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
+import { Primary } from './FloatingActionButton.stories';
+
+# FloatingActionButton
+
+A floating action button (FAB) is a circular button that hovers above the user interface
+common or important action, such as creating a new item or performing a main action.
+FABs are commonly used in material design to enhance the user experience and provide
+quick access to key functionality.
+
+<Canvas of={Primary} />
+
+## How to Use
+
+Provide a string value for `labelText` and `buttonText` props.
+For the `buttonVariant` prop, you may use any possible value for the [Button](/docs/components-button--docs) component's 'variant' prop.
+
+```html
+<div>
+  <FloatingActionButton
+    labelText="2 mailpieces selected"
+    buttonText="Cancel Mail Pieces"
+    buttonVariant="danger-secondary"
+  />
+</div>
+```
+
+## Props
+
+<ArgTypes story={PRIMARY_STORY} />
