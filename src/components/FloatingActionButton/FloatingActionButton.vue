@@ -4,11 +4,7 @@
       class="p-4 flex justify-between drop-shadow-xl bg-white rounded-xl items-center border-gray-100 border"
     >
       <span class="pr-8">{{ labelText }}</span>
-      <Button
-        :variant="buttonVariant"
-        size="medium"
-        @click="emits('button-clicked')"
-      >
+      <Button :variant="buttonVariant" size="medium" @click="emits('click')">
         {{ buttonText }}
       </Button>
     </div>
@@ -31,6 +27,6 @@ withDefaults(
 );
 
 const emits = defineEmits<{
-  (e: 'button-clicked'): void; // eslint-disable-line no-unused-vars
+  (e: 'click'): void; // eslint-disable-line no-unused-vars
 }>();
 </script>

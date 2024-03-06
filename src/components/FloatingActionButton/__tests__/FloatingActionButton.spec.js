@@ -29,7 +29,7 @@ describe('FloatingActionButton', () => {
       const { queryByRole, emitted } = renderComponent({ props });
       const button = queryByRole('button');
       await userEvent.click(button);
-      expect(emitted()).toHaveProperty('button-clicked');
+      expect(emitted()).toHaveProperty('click');
     });
   });
 });
