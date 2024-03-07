@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.19
+
+- `FloatingActionButton` will now center on parent component rather than viewport
+
 ## v2.0.18
 
 - export `FloatingActionButton` component
