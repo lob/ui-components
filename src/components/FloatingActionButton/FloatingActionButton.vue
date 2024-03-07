@@ -1,7 +1,7 @@
 <template>
-  <div class="fixed bottom-6 left-0 w-full flex justify-center">
+  <div class="fixed bottom-6 w-full flex justify-center">
     <div
-      class="p-4 flex justify-between drop-shadow-xl bg-white rounded-xl items-center border-gray-100 border"
+      class="p-4 -translate-x-1/2 flex justify-between drop-shadow-xl bg-white rounded-xl items-center border-gray-100 border"
     >
       <span class="pr-8">{{ labelText }}</span>
       <Button :variant="buttonVariant" size="medium" @click="emits('click')">

@@ -55,11 +55,9 @@ const Template = (args, { argTypes }) => ({
   components: { FloatingActionButton },
   setup: () => ({ args }),
   template: `
-  <div style="max-height: 200px; overflow-y: auto;">
-    <div style="height: 5000px;">
-      <floating-action-button v-bind="args"></floating-action-button>
-    </div>
-  </div>
+      <div style="height: 100px; width: 100%;">
+        <floating-action-button v-bind="args"></floating-action-button>
+      </div>
 `
 });
 
