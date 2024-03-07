@@ -9,7 +9,6 @@
     "allowJs": true, // Allows JavaScript files to be imported
     "checkJs": false, // Whether to type-check JavaScript files
     "strict": true,
-    "noEmit": true, // To prevent TS from emitting .js and .d.ts files from .ts and .tsx files
     "experimentalDecorators": true,
     "skipLibCheck": true,
     "lib": ["esnext", "dom"],
@@ -18,7 +17,10 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    "declaration": true,
+    "declarationDir": "dist",
+    "outDir": "dist"
   },
   "include": [
     "src/**/*.ts",

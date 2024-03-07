@@ -1,6 +1,6 @@
 {
   "name": "@lob/ui-components",
-  "version": "2.0.19",
+  "version": "2.0.20",
   "engines": {
     "node": ">=20.2.0",
     "npm": ">=10.2.0"
@@ -17,6 +17,7 @@
     },
     "./dist/ui-components.css": "./dist/style.css"
   },
+  "types": "./dist/src/main.d.ts",
   "scripts": {
     "build": "vite build",
     "build-storybook": "storybook build",
@@ -84,6 +85,7 @@
     "tailwindcss": "^3.0.24",
     "typescript": "^5.1.6",
     "vite": "^3.1.4",
+    "vite-plugin-dts": "^3.7.3",
     "vitest": "^0.23.4",
     "vue-eslint-parser": "^7.6.0",
     "vue-loader": "^16.2.0",

@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## v2.0.20
+
+- Begin adding type definitions
+- Made the components `<Icon />` and `<Modal />` directly importable
+
+### Breaking Changes
+
+- `<Icon />` and `<Modal />` are no longer available as global components and must be imported directly
+
 ## v2.0.19
 
 - `FloatingActionButton` will now center on parent component rather than viewport
