@@ -1,85 +1,100 @@
 <template>
-  <div class="inline-block">
-    <div
-      :class="[
-        'flex justify-center align-center px-4 py-1 rounded-full',
-        [small ? '!type-xs-600' : 'type-small-600'],
-        { 'text-gray-500 bg-gray-50': defaultVariant },
-        { 'bg-white text-gray-500 border border-gray-100': secondary },
-        { 'bg-blue-50 text-blue-600': info },
-        { 'bg-green-50 text-green-700': success },
-        { 'bg-orange-50 text-orange-600': warning },
-        { 'bg-red-50 text-red-600': error },
-        {
-          'bg-gradient-114 from-[#1876db] to-[#5748ff] !text-white':
-            gradientPrimary
-        },
-        {
-          'bg-gradient-114 from-[#9F94FF] to-[#FA6A8C] !text-white':
-            gradientSecondary
-        }
-      ]"
-    >
-      <slot />
-    </div>
-  </div>
+  <Chip :class="`badge variant-${variant} color-${color} size-${size}`">
+    <Icon v-if="icon" :icon="icon" :size="size" />
+    <slot />
+  </Chip>
 </template>
 
-<script>
-export default {
-  name: 'Badge',
-  props: {
-    variant: {
-      type: String,
-      default: 'default',
-      validator: (value) =>
-        [
-          'default',
-          'secondary',
-          'info',
-          'success',
-          'warning',
-          'error',
-          'gradient-primary',
-          'gradient-secondary'
-        ].includes(value)
-    },
-    size: {
-      type: String,
-      default: 'default',
-      validator: function (value) {
-        return ['default', 'small'].includes(value);
-      }
+<script setup lang="ts">
+import Chip from 'primevue/chip';
+
+import { Icon } from '../Icon';
+import { IconName } from '../Icon/types';
+import { BadgeColor, BadgeSize, BadgeVariant } from './constants';
+
+withDefaults(
+  defineProps<{
+    color?: BadgeColor;
+    icon?: IconName;
+    size?: BadgeSize;
+    variant?: BadgeVariant;
+  }>(),
+  {
+    color: BadgeColor.PRIMARY,
+    icon: undefined,
+    size: BadgeSize.MD,
+    variant: BadgeVariant.PRIMARY
+  }
+);
+</script>
+
+<style scoped lang="scss">
+.badge {
+  @apply flex flex-row gap-1 items-center justify-center;
+  @apply px-4 py-1 border rounded-full;
+
+  &.size {
+    &-sm {
+      @apply type-xs-600;
     }
-  },
-  computed: {
-    defaultVariant() {
-      return this.variant === 'default';
-    },
-    secondary() {
-      return this.variant === 'secondary';
-    },
-    info() {
-      return this.variant === 'info';
-    },
-    success() {
-      return this.variant === 'success';
-    },
-    warning() {
-      return this.variant === 'warning';
-    },
-    error() {
-      return this.variant === 'error';
-    },
-    gradientPrimary() {
-      return this.variant === 'gradient-primary';
-    },
-    gradientSecondary() {
-      return this.variant === 'gradient-secondary';
-    },
-    small() {
-      return this.size === 'small';
+    &-md {
+      @apply type-small-600;
+    }
+    &-lg {
+      @apply type-base-600;
     }
   }
-};
-</script>
+
+  &.variant {
+    &-primary {
+      @apply border-transparent;
+
+      &.color {
+        &-primary {
+          @apply bg-gray-50 text-gray-500;
+        }
+        &-error {
+          @apply bg-error-light text-error-dark;
+        }
+        &-info {
+          @apply bg-info-light text-info-dark;
+        }
+        &-success {
+          @apply bg-success-light text-success-dark;
+        }
+        &-upgrade {
+          @apply bg-upgrade-light text-upgrade-dark;
+        }
+        &-warning {
+          @apply bg-warning-light text-warning-dark;
+        }
+      }
+    }
+
+    &-outlined {
+      @apply border bg-white;
+
+      &.color {
+        &-primary {
+          @apply border-gray-500 text-gray-500;
+        }
+        &-error {
+          @apply border-error-dark text-error-dark;
+        }
+        &-info {
+          @apply border-info-dark text-info-dark;
+        }
+        &-success {
+          @apply border-success-dark text-success-dark;
+        }
+        &-upgrade {
+          @apply border-upgrade-dark text-upgrade-dark;
+        }
+        &-warning {
+          @apply border-warning-dark text-warning-dark;
+        }
+      }
+    }
+  }
+}
+</style>

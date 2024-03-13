@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## v2.0.21
+
+- Refactor the `Badge` component's interface and implementation
+
+### Breaking Changes
+
+- The `Badge` interface has changed and does not contain as many variants in favor of utilizing `variant` and `color`
+- The `Badge` component is no longer available globally, it must be imported directly
+
 ## v2.0.20
 
 - Begin adding type definitions
