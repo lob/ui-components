@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.21
+
+- Change the border color for `secondary` buttons
+
 ## v2.0.20
 
 - Begin adding type definitions

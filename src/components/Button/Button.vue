@@ -19,7 +19,7 @@
           upgrade
       },
       {
-        'bg-white text-gray-800 border border-gray-800 hover:bg-gray-50 active:bg-gray-100 focus:bg-gray-100 disabled:border-gray-200 disabled:text-gray-400 disabled:hover:bg-white':
+        'bg-white text-gray-800 border border-gray-100 hover:border-gray-200 hover:bg-gray-50 active:bg-gray-100 focus:bg-gray-100 disabled:border-gray-200 disabled:text-gray-400 disabled:hover:bg-white':
           secondary
       },
       {
