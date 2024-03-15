@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v2.0.22
+
+- Made the `<NumberInput />` component directly importable
+
+### Breaking Changes
+
+- `<NumberInput />` is no longer available as a global component and must be imported directly
+
 ## v2.0.21
 
 - Change the border color for `secondary` buttons

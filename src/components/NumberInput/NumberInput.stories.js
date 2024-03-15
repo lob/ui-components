@@ -12,34 +12,79 @@ export default {
   },
   argTypes: {
     disabled: {
-      control: 'boolean'
+      control: 'boolean',
+      table: {
+        type: {
+          summary: 'boolean'
+        }
+      }
     },
     id: {
-      control: 'text'
+      control: 'text',
+      table: {
+        type: {
+          summary: 'string'
+        }
+      }
     },
     max: {
-      control: 'number'
+      control: 'number',
+      table: {
+        type: {
+          summary: 'number'
+        }
+      }
     },
     maxFractionDigits: {
-      control: 'number'
+      control: 'number',
+      table: {
+        type: {
+          summary: 'number'
+        }
+      }
     },
     min: {
-      control: 'number'
+      control: 'number',
+      table: {
+        type: {
+          summary: 'number'
+        }
+      }
     },
     minFractionDigits: {
-      control: 'number'
+      control: 'number',
+      table: {
+        type: {
+          summary: 'number'
+        }
+      }
     },
     mode: {
       options: Object.values(NumberInputMode),
       control: {
         type: 'select'
+      },
+      table: {
+        type: {
+          summary: Object.values(NumberInputMode).join('|')
+        }
       }
     },
     placeholder: {
-      control: 'text'
+      control: 'text',
+      table: {
+        type: {
+          summary: 'string'
+        }
+      }
     },
     readonly: {
-      control: 'boolean'
+      control: 'boolean',
+      table: {
+        type: {
+          summary: 'boolean'
+        }
+      }
     }
   }
 };

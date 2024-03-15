@@ -27,6 +27,7 @@ const ComponentLibrary = {
 // TODO Utilize the components export but first we will have to remove global usage.
 export * from './components/Icon';
 export * from './components/Modal';
+export * from './components/NumberInput';
 
 export default ComponentLibrary;
 
