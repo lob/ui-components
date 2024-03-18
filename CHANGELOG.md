@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.22
+
+- Change the border color for `secondary-button` links
+
 ## v2.0.21
 
 - Change the border color for `secondary` buttons

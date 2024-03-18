@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { render } from '@testing-library/vue';
+import { RenderOptions, render } from '@testing-library/vue';
 import { createRouter, createMemoryHistory } from 'vue-router';
 import { constants } from '@/config';
 import LobLink from '../Link.vue';
@@ -22,7 +22,7 @@ const router = createRouter({
   routes
 });
 
-const renderComponent = async (options) => {
+const renderComponent = async (options: RenderOptions) => {
   const result = render(LobLink, {
     ...options,
     global: { plugins: [router, constants] }
@@ -37,7 +37,8 @@ describe('Link', () => {
     const { queryByRole } = await renderComponent({ props });
 
     const link = queryByRole('link');
-    expect(link).toBeInTheDocument().toHaveClass('text-blue-600');
+    expect(link).toBeInTheDocument();
+    expect(link).toHaveClass('text-blue-600');
   });
 
   it('renders correctly when an internal link with an object', async () => {
@@ -71,9 +72,8 @@ describe('Link', () => {
     const { queryByRole } = await renderComponent({ props });
 
     const link = queryByRole('link');
-    expect(link)
-      .toBeInTheDocument()
-      .toHaveClass('!text-gray-400 pointer-events-none');
+    expect(link).toBeInTheDocument();
+    expect(link).toHaveClass('!text-gray-400 pointer-events-none');
     expect(link).toHaveAttribute('aria-disabled', 'true');
   });
 
@@ -151,7 +151,7 @@ describe('Link', () => {
     const linkContent = queryByText(slotContent);
     expect(linkContent).toBeInTheDocument();
     expect(linkContent).toHaveClass(
-      'py-2 px-4 bg-white text-gray-800 border border-gray-800'
+      'py-2 px-4 bg-white text-gray-800 border border-gray-100'
     );
   });
 });
