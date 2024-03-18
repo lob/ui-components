@@ -7,6 +7,7 @@ export { default as ArrowLongRight } from './ArrowLongRight';
 export { default as ArrowLongUp } from './ArrowLongUp';
 export { default as ArrowsRotate } from './ArrowsRotate';
 export { default as ArrowTrendUp } from './ArrowTrendUp';
+export { default as BankAccount } from './BankAccount';
 export { default as Bars } from './Bars';
 export { default as BarsStaggered } from './BarsStaggered';
 export { default as Bell } from './Bell';

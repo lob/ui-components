@@ -13,6 +13,7 @@ export const IconName = {
   APP_WINDOWS: 'AppWindows',
   ARROW_DOWN_TO_LINE: 'ArrowDownToLine',
   ARROW_TREND_UP: 'ArrowTrendUp',
+  BANK_ACCOUNT: 'BankAccount',
   BARS: 'Bars',
   BELL: 'Bell',
   BULLHORN: 'Bullhorn',
