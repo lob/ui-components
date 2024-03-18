@@ -32,7 +32,7 @@
             upgradeButton
         },
         {
-          'bg-white text-gray-800 border border-gray-800 hover:bg-gray-50 hover:text-gray-800 focus:border-gray-800 active:bg-gray-100 focus:bg-gray-100':
+          'bg-white text-gray-800 border border-gray-100 hover:border-gray-200 hover:bg-gray-50 hover:text-gray-800 focus:border-gray-800 active:bg-gray-100 focus:bg-gray-100':
             secondaryButton
         },
         { '!border-gray-200 !text-gray-400': secondaryButton && disabled },
