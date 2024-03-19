@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## v2.0.25
+
+- Refactor the `Badge` component's interface and implementation
+- Update styles of the `Alert` component
+
+### Breaking Changes
+
+- The `Badge` interface has changed and does not contain as many variants in favor of utilizing `variant` and `color`
+- Removes some `Badge` variants
+- The `Badge` component is no longer available globally, it must be imported directly
+
 ## v2.0.24
 
 - Adds an alternative to props for the Modal component through the use of slots

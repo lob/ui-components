@@ -1,34 +1,14 @@
 import { Canvas, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
-import { Primary } from './Badge.stories';
+import { AllBadges } from './Badge.stories';
+import { BadgeVariant } from './constants';
 
 # Badge
 
+<Canvas of={AllBadges} />
+
+## Usage
+
 Badges are a flexible component used to display small nuggets of text prominently.
-
-<Canvas of={Primary} />
-
-## How to Use
-
-There are 6 variants of badges: `default`, `secondary`, `info`, `success`, `warning`, and `error`.
-
-You can change the variant of the badge by adding the `variant` prop to the component.
-
-There are 2 sizes of badges: `default` and `small`.
-
-To change the size of the badge add the `size` prop to the component.
-
-Please note: though you can only insert text in the Storybook demo, the badge component will accept any valid HTML or Vue component.
-
-Example of using this component as a default badge in a template
-
-```html
-<Badge>
-  <p>
-    You are in <span class="bold">LIVE</span> mode, all verifications will be
-    charged according to your <a href="#">chosen plan</a>.
-  </p>
-</Badge>
-```
 
 ## Props
 
