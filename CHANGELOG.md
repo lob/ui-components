@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.23
+
+- Adds `BankAccount` to Icons and the `Icon` component
+
 ## v2.0.22
 
 - Change the border color for `secondary-button` links
