@@ -2,7 +2,7 @@
 
 ## v2.0.24
 
-- Adds an alternative to props for the Modal component through the user of slots
+- Adds an alternative to props for the Modal component through the use of slots
 
 ## v2.0.23
 

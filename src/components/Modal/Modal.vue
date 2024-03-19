@@ -44,17 +44,20 @@
         v-if="icon || slots.icon"
         :class="`modal-icon-container modal-${iconColor}`"
       >
-        <Icon v-if="icon" :icon="icon" :size-override="35" />
-        <slot name="icon" :size-override="35" />
+        <slot name="icon" :size-override="35">
+          <Icon v-if="icon" :icon="icon" :size-override="35" />
+        </slot>
       </div>
       <div>
         <p class="model-header-title">
-          {{ header }}
-          <slot name="header" />
+          <slot name="header">
+            {{ header }}
+          </slot>
         </p>
-        <p v-if="subheader" class="text-default mt-2">
-          {{ subheader }}
-          <slot name="subheader" />
+        <p v-if="subheader || slots.subheader" class="text-default mt-2">
+          <slot name="subheader">
+            {{ subheader }}
+          </slot>
         </p>
       </div>
     </template>
