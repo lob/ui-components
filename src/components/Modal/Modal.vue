@@ -40,15 +40,24 @@
     </template>
 
     <template #header>
-      <div v-if="icon" :class="`modal-icon-container modal-${iconColor}`">
-        <Icon :icon="icon" :size-override="35" />
+      <div
+        v-if="icon || slots.icon"
+        :class="`modal-icon-container modal-${iconColor}`"
+      >
+        <slot name="icon" :size-override="35">
+          <Icon v-if="icon" :icon="icon" :size-override="35" />
+        </slot>
       </div>
       <div>
         <p class="model-header-title">
-          {{ header }}
+          <slot name="header">
+            {{ header }}
+          </slot>
         </p>
-        <p v-if="subheader" class="text-default mt-2">
-          {{ subheader }}
+        <p v-if="subheader || slots.subheader" class="text-default mt-2">
+          <slot name="subheader">
+            {{ subheader }}
+          </slot>
         </p>
       </div>
     </template>
@@ -108,7 +117,9 @@ const emits = defineEmits<{
 const slots = useSlots();
 
 const hasHeader = computed(() =>
-  Boolean(props.header || props.subheader || props.icon)
+  Boolean(
+    props.header || props.subheader || props.icon || slots.header || slots.icon
+  )
 );
 const hasFooter = computed(() => Boolean(slots.footer));
 </script>

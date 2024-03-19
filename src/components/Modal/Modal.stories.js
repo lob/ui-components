@@ -1,6 +1,7 @@
 import LobButton from '../Button/Button.vue';
 import RadioButton from '../RadioButton/RadioButton.vue';
 import RadioGroup from '../RadioGroup/RadioGroup.vue';
+import Icon from '../Icon/Icon.vue';
 import { IconName } from '../Icon/types';
 
 import Modal from './Modal.vue';
@@ -47,7 +48,7 @@ const radioModel = 'yes';
 
 const PrimaryTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { Modal, LobButton, RadioButton, RadioGroup },
+  components: { Icon, Modal, LobButton, RadioButton, RadioGroup },
   setup: () => ({ args }),
   data: () => ({ isModalVisible, radioModel }),
   template: `
@@ -55,20 +56,31 @@ const PrimaryTemplate = (args, { argTypes }) => ({
       Open Icon Modal
     </LobButton>
 
-    <Modal
-      v-bind="args"
-      v-model:visible="isModalVisible"
-      :header="args.header"
-      :icon="args.icon"
-      :iconColor="args.iconColor"
-      :closable="args.closable"
-      :width="args.width"
-    >
-      A payment method is required in order to send mail and access live data. You won’t be charged anything until you place a live order.
+    <Modal v-model:visible="isModalVisible" icon-color="info">
+      <template #icon="iconProps">
+        <Icon icon="Bars" v-bind="iconProps" />
+      </template>
 
+      <template #header>
+        Select Tracking Events
+      </template>
+    
+      <template #default>
+        <p>Would you like to export an additional CSV of associated tracking events?</p>
+        <RadioGroup>
+          <radio-button
+            name="exportCSV"
+            value="yes"
+            label="Yes"
+            v-model="radioModel"
+          />
+          <radio-button name="exportCSV" value="no" label="No" v-model="radioModel" />
+        </RadioGroup>
+      </template>
+    
       <template #footer>
-        <LobButton variant="secondary" @click="isModalVisible = false">Cancel</LobButton>
-        <LobButton variant="primary">Confirm</LobButton>
+        <LobButton variant="secondary">Go back</LobButton>
+        <LobButton variant="primary" class="ml-2">Submit</LobButton>
       </template>
     </Modal>
     `

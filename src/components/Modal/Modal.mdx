@@ -5,13 +5,20 @@ import { Primary } from './Modal.stories';
 
 <Canvas of={Primary} />
 
-## Example
+## Usage
+
+### With Props
 
 ```html
-<LobButton @click="isModalVisible = true">Open Modal</LobButton>
-
-<Modal v-model:visible="isModalVisible" header="Select Tracking Events">
-  Would you like to export an additional CSV of associated tracking events?
+<Modal
+  v-model:visible="isModalVisible"
+  icon="Bars"
+  icon-color="info"
+  header="Select Tracking Events"
+>
+  <p>
+    Would you like to export an additional CSV of associated tracking events?
+  </p>
   <RadioGroup>
     <radio-button
       name="exportCSV"
@@ -21,6 +28,43 @@ import { Primary } from './Modal.stories';
     />
     <radio-button name="exportCSV" value="no" label="No" v-model="radioModel" />
   </RadioGroup>
+
+  <template #footer>
+    <LobButton variant="secondary">Go back</LobButton>
+    <LobButton variant="primary" class="ml-2">Submit</LobButton>
+  </template>
+</Modal>
+```
+
+### With Slots
+
+```html
+<Modal v-model:visible="isModalVisible" icon-color="info">
+  <template #icon="iconProps">
+    <Icon icon="Bars" v-bind="iconProps" />
+  </template>
+
+  <template #header> Select Tracking Events </template>
+
+  <template #default>
+    <p>
+      Would you like to export an additional CSV of associated tracking events?
+    </p>
+    <RadioGroup>
+      <radio-button
+        name="exportCSV"
+        value="yes"
+        label="Yes"
+        v-model="radioModel"
+      />
+      <radio-button
+        name="exportCSV"
+        value="no"
+        label="No"
+        v-model="radioModel"
+      />
+    </RadioGroup>
+  </template>
 
   <template #footer>
     <LobButton variant="secondary">Go back</LobButton>
