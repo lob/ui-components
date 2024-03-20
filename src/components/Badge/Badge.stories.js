@@ -1,5 +1,7 @@
+import { IconName } from '../Icon/types';
 import Badge from './Badge.vue';
 import mdx from './Badge.mdx';
+import { BadgeColor, BadgeSize, BadgeVariant } from './constants';
 
 export default {
   title: 'Components/Badge',
@@ -10,37 +12,59 @@ export default {
     }
   },
   argTypes: {
+    color: {
+      options: Object.values(BadgeColor),
+      control: {
+        type: 'select'
+      },
+      table: {
+        type: {
+          summary: Object.values(BadgeColor).join(' | ')
+        }
+      }
+    },
     content: {
       control: {
         type: 'text'
       },
-      description: 'Content to display inside of the card',
+      description: 'Slot content',
       table: {
-        defaultValue: 'I am a card.',
         type: {
-          summary: 'html or component'
+          summary: 'string | Vue.Component'
+        }
+      }
+    },
+    icon: {
+      options: Object.values(IconName),
+      control: {
+        type: 'select'
+      },
+      table: {
+        type: {
+          summary: Object.values(IconName).join(' | ')
         }
       }
     },
     variant: {
-      options: [
-        'default',
-        'secondary',
-        'info',
-        'success',
-        'warning',
-        'error',
-        'gradient-primary',
-        'gradient-secondary'
-      ],
+      options: Object.values(BadgeVariant),
       control: {
         type: 'select'
+      },
+      table: {
+        type: {
+          summary: Object.values(BadgeVariant).join(' | ')
+        }
       }
     },
     size: {
-      options: ['default', 'small'],
+      options: Object.values(BadgeSize),
       control: {
         type: 'select'
+      },
+      table: {
+        type: {
+          summary: Object.values(BadgeSize).join(' | ')
+        }
       }
     }
   }
@@ -50,10 +74,41 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { Badge },
   setup: () => ({ args }),
-  template: '<badge v-slot v-bind="args">{{ args.content }}</badge>'
+  template: '<Badge v-slot v-bind="args">{{ args.content }}</Badge>'
 });
 
 export const Primary = Template.bind({});
 Primary.args = {
+  content: 'Badge'
+};
+
+const AllBadgesTemplate = (args) => ({
+  components: { Badge },
+  setup: () => ({ args }),
+  template: `<div class="flex flex-col gap-4 items-center">
+    ${Object.values(BadgeVariant)
+      .map(
+        (variant) =>
+          `<div class="flex gap-2">
+        ${Object.values(BadgeColor)
+          .map(
+            (color) =>
+              `<div class="flex flex-col gap-2 items-center">
+            ${Object.values(BadgeSize)
+              .map(
+                (size) =>
+                  `<Badge variant="${variant}" color="${color}" size="${size}">Badge</Badge>`
+              )
+              .join('')}
+          </div>`
+          )
+          .join('')}
+      </div>`
+      )
+      .join('')}
+  </div>`
+});
+export const AllBadges = AllBadgesTemplate.bind({});
+AllBadges.args = {
   content: 'Badge text.'
 };

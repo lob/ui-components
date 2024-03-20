@@ -1,9 +1,10 @@
 import '@testing-library/jest-dom';
-import { render } from '@testing-library/vue';
+import { RenderOptions, render } from '@testing-library/vue';
 import Alert from '../Alert.vue';
 import userEvent from '@testing-library/user-event';
 
-const renderComponent = (options) => render(Alert, { ...options });
+const renderComponent = (options: RenderOptions) =>
+  render(Alert, { ...options });
 
 describe('Alert', () => {
   describe('alert content', () => {
@@ -13,7 +14,8 @@ describe('Alert', () => {
       const { getByText } = renderComponent({ slots });
 
       const alertContent = getByText(content);
-      expect(alertContent).toBeInTheDocument().toHaveClass('type-small-500');
+      expect(alertContent).toBeInTheDocument();
+      expect(alertContent).toHaveClass('type-small-600');
     });
 
     it('renders only the heading content', () => {
@@ -22,7 +24,8 @@ describe('Alert', () => {
       const { getByText } = renderComponent({ slots });
 
       const alertHeading = getByText(heading);
-      expect(alertHeading).toBeInTheDocument().toHaveClass('type-large-700');
+      expect(alertHeading).toBeInTheDocument();
+      expect(alertHeading).toHaveClass('type-base-700');
     });
 
     it('renders both the heading and default content', () => {
@@ -32,9 +35,11 @@ describe('Alert', () => {
       const { getByText } = renderComponent({ slots });
 
       const alertHeading = getByText(heading);
-      expect(alertHeading).toBeInTheDocument().toHaveClass('type-large-700');
+      expect(alertHeading).toBeInTheDocument();
+      expect(alertHeading).toHaveClass('type-base-700');
       const alertContent = getByText(content);
-      expect(alertContent).toBeInTheDocument().toHaveClass('type-small-500');
+      expect(alertContent).toBeInTheDocument();
+      expect(alertContent).toHaveClass('type-small-600');
     });
   });
 
@@ -44,9 +49,8 @@ describe('Alert', () => {
       const { getByTestId } = renderComponent({ slots });
 
       const alertContent = getByTestId('alert');
-      expect(alertContent)
-        .toBeInTheDocument()
-        .toHaveClass('text-blue-700 bg-blue-50');
+      expect(alertContent).toBeInTheDocument();
+      expect(alertContent).toHaveClass('text-info-dark bg-info-light');
     });
 
     it('renders the error colors with the error variant prop', () => {
@@ -57,9 +61,8 @@ describe('Alert', () => {
       });
 
       const alertContent = getByTestId('alert');
-      expect(alertContent)
-        .toBeInTheDocument()
-        .toHaveClass('text-red-600 bg-red-50');
+      expect(alertContent).toBeInTheDocument();
+      expect(alertContent).toHaveClass('text-error-dark bg-error-light');
     });
 
     it('renders the success colors with the success variant prop', () => {
@@ -70,9 +73,8 @@ describe('Alert', () => {
       });
 
       const alertContent = getByTestId('alert');
-      expect(alertContent)
-        .toBeInTheDocument()
-        .toHaveClass('text-green-700 bg-green-50');
+      expect(alertContent).toBeInTheDocument();
+      expect(alertContent).toHaveClass('text-success-dark bg-success-light');
     });
 
     it('renders the warning colors with the warning variant prop', () => {
@@ -83,9 +85,8 @@ describe('Alert', () => {
       });
 
       const alertContent = getByTestId('alert');
-      expect(alertContent)
-        .toBeInTheDocument()
-        .toHaveClass('text-orange-600 bg-orange-50');
+      expect(alertContent).toBeInTheDocument();
+      expect(alertContent).toHaveClass('text-warning-dark bg-warning-light');
     });
 
     it('renders the refresh colors with the refresh variant prop', () => {
@@ -96,9 +97,8 @@ describe('Alert', () => {
       });
 
       const alertContent = getByTestId('alert');
-      expect(alertContent)
-        .toBeInTheDocument()
-        .toHaveClass('text-purple-600 bg-purple-50');
+      expect(alertContent).toBeInTheDocument();
+      expect(alertContent).toHaveClass('text-purple-600 bg-purple-50');
     });
   });
 
@@ -108,7 +108,8 @@ describe('Alert', () => {
       const { getByTestId } = renderComponent({ slots });
 
       const alertIcon = getByTestId('alertIcon');
-      expect(alertIcon).toBeInTheDocument().toHaveClass('text-blue-700');
+      expect(alertIcon).toBeInTheDocument();
+      expect(alertIcon).toHaveClass('text-info-dark');
     });
 
     it('does not render the icon if the showIcon prop is false', () => {

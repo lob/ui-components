@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="`w-full rounded-lg shadow-XLarge py-4 px-6 ${variantDetails.color} ${variantDetails.bgColor}`"
+    :class="`w-full rounded-xl py-2 px-4 ${variantDetails.color} ${variantDetails.bgColor}`"
     data-testid="alert"
   >
     <div v-if="hasHeading" class="flex justify-between items-center">
@@ -8,12 +8,12 @@
         <component
           :is="variantDetails.icon"
           v-if="showIcon"
-          size="xl"
+          size="l"
           class="mr-2"
           :class="variantDetails.color"
           data-testid="alertIcon"
         />
-        <div class="type-large-700">
+        <div class="type-base-700">
           <slot name="heading" />
         </div>
       </div>
@@ -35,12 +35,12 @@
         <component
           :is="variantDetails.icon"
           v-if="showIcon && !hasHeading"
-          size="xl"
+          size="l"
           class="mr-4"
           :class="variantDetails.color"
           data-testid="alertIcon"
         />
-        <div :class="['type-small-500', { 'mt-2': hasHeading && hasContent }]">
+        <div :class="['type-small-600', { 'mt-1': hasHeading && hasContent }]">
           <slot />
           <!-- text/any content goes in the default slot -->
         </div>
@@ -67,9 +67,9 @@ import {
   CircleCheck,
   CircleExclamation,
   TriangleExclamation,
-  ArrowsRotate,
-  XmarkLarge
+  ArrowsRotate
 } from '@/components/Icons';
+import { Icon } from '../Icon';
 import LobLink from '../Link/Link';
 import ArrowUpRight from '../Icons/ArrowUpRight.vue';
 
@@ -98,12 +98,12 @@ const CloseButton = {
     data-testid="closeButton"
     @click="closeAlert"
   >
-    <XmarkLarge size="s" class="text-gray-500"/>
+    <Icon icon="Close" size="xl" class="text-gray-800"/>
   </button>`,
   props: {
     closeButtonAriaLabel: { type: String, default: 'Close alert' }
   },
-  components: { XmarkLarge },
+  components: { Icon },
   methods: {
     closeAlert() {
       this.$emit('close');
@@ -160,20 +160,20 @@ export default {
         {
           variant: 'info',
           icon: 'CircleInfo',
-          color: 'text-blue-700',
-          bgColor: 'bg-blue-50'
+          color: 'text-info-dark',
+          bgColor: 'bg-info-light'
         },
         {
           variant: 'success',
           icon: 'CircleCheck',
-          color: 'text-green-700',
-          bgColor: 'bg-green-50'
+          color: 'text-success-dark',
+          bgColor: 'bg-success-light'
         },
         {
           variant: 'warning',
           icon: 'TriangleExclamation',
-          color: 'text-orange-600',
-          bgColor: 'bg-orange-50'
+          color: 'text-warning-dark',
+          bgColor: 'bg-warning-light'
         },
         {
           variant: 'refresh',
@@ -184,8 +184,8 @@ export default {
         {
           variant: 'error',
           icon: 'CircleExclamation',
-          color: 'text-red-600',
-          bgColor: 'bg-red-50'
+          color: 'text-error-dark',
+          bgColor: 'bg-error-light'
         }
       ]
     };
