@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.26
+
+- Adds guardrails for the `RadioButtonLarge` components input events.
+
 ## v2.0.25
 
 - Refactor the `Badge` component's interface and implementation
