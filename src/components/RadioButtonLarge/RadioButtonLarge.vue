@@ -125,7 +125,7 @@ export default {
         this.$emit('update:modelValue', this.value);
         this.$emit('input', this.value);
         this.$emit('click', $event);
-        this.$refs.radioInput.focus();
+        if (this.$refs.radioInput) this.$refs.radioInput.focus();
       }
     },
     onClick($event) {
