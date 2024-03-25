@@ -1,4 +1,5 @@
 const plugin = require('tailwindcss/plugin');
+
 module.exports = {
   content: ['./src/**/*.vue'],
   safelist: [
@@ -15,6 +16,13 @@ module.exports = {
   theme: {
     fontFamily: {
       messina: ['Messina', 'sans-serif']
+    },
+    extend: {
+      colors: {
+        purple: {
+          800: '#483AC5'
+        }
+      }
     }
   },
   plugins: [

@@ -1,4 +1,5 @@
 import './assets/styles/main.scss';
+import 'primeicons/primeicons.css';
 import * as components from './components';
 import * as mixins from './mixins';
 import * as configs from './config';
@@ -28,6 +29,7 @@ const ComponentLibrary = {
 export * from './components/Badge';
 export * from './components/Icon';
 export * from './components/Modal';
+export * from './components/ImageFileUpload';
 
 export default ComponentLibrary;
 

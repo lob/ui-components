@@ -1,6 +1,6 @@
 {
   "name": "@lob/ui-components",
-  "version": "2.0.26",
+  "version": "2.0.27",
   "engines": {
     "node": ">=20.2.0",
     "npm": ">=10.2.0"
@@ -40,6 +40,7 @@
     "date-fns-holiday-us": "^0.3.1",
     "mitt": "^3.0.0",
     "primevue": "^3.43.0",
+    "primeicons": "^6.0.1",
     "vite-svg-loader": "^5.1.0",
     "vue": "^3.2.32",
     "vue-router": "^4.0.8"
@@ -94,6 +95,11 @@
   "peerDependencies": {
     "vue": "^3.2.32",
     "vue-i18n": "^9.0.0"
+  },
+  "overrides": {
+    "eslint-config-lob": {
+      "eslint": "^8.11.0"
+    }
   },
   "browserslist": [
     "> 1%",
