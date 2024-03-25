@@ -1,0 +1,27 @@
+import { Canvas, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
+import { Default, FileSizeError } from './ImageFileUpload.stories';
+
+# Image File Upload
+
+An image file upload component with image preview and drag and drop.
+
+## Default Configuration
+
+By default, the component will occupy the full height and width of its container and has a minimum height of 50px.
+When an image file is selected, the image preview and remove button are positioned at the very left and right of the
+component, respectively.
+
+Note that files cannot be dropped directly onto the choose button and if the component is not wide enough, the drop zone
+will be obscured by the choose button.
+
+<Canvas of={Default} layout={'padded'} />
+
+## Max File Size Error
+
+Choose any image file larger than 1 byte to see the error state when the file size exceeds the configured `maxFileSize`.
+
+<Canvas of={FileSizeError} layout={'padded'} />
+
+## Props
+
+<ArgTypes story={PRIMARY_STORY} />

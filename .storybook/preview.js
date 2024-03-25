@@ -4,6 +4,7 @@ import * as configs from '@/config';
 import PrimeVue from 'primevue/config';
 
 import '@/assets/styles/main.scss';
+import 'primeicons/primeicons.css';
 
 setup((app) => {
   app.use(configs.constants);
