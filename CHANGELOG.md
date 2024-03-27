@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.28
+
+- Upgrades `Vue` to latest `v3.4` release.
+
 ## v2.0.26
 
 - Adds guardrails for the `RadioButtonLarge` components input events.
