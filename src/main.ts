@@ -3,13 +3,11 @@ import 'primeicons/primeicons.css';
 import * as components from './components';
 import * as mixins from './mixins';
 import * as configs from './config';
-import PrimeVue from 'primevue/config';
 import { App } from 'vue';
 
 const ComponentLibrary = {
   install(app: App) {
     app.use(configs.constants);
-    app.use(PrimeVue, { unstyled: true });
     for (const mixinName in mixins) {
       // @ts-ignore
       const mixin = mixins[mixinName];
