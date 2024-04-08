@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## v2.0.30
+
+- Removes unused components
+
+### Breaking Changes
+
+- Removes:
+  - `<Accordion />`
+  - `<Breadcrumb />`
+  - `<Calendar />`
+  - `<CalendarDay />`
+  - `<CalendarMonth />`
+  - `<MainNavigation />`
+  - `<MainNavigationChildItem />`
+  - `<MainNavigationItem />`
+  - `<TopNavbar />`
+  - `<TopNavButton />`
+  - `<TopNavDropdown />`
+  - `<TopNavDropdownItem />`
+
 ## v2.0.29
 
 - Make `PrimeVue` and external dependency
