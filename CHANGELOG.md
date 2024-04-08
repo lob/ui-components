@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.32
+
+- Add `<IconButton />` component
+
 ## v2.0.31
 
 - Adds the icons:
