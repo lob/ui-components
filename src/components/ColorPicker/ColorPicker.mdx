@@ -1,0 +1,36 @@
+import { Canvas, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
+import {
+  Default,
+  Inline,
+  InlineNoHexInput,
+  NoHexInput
+} from '@/components/ColorPicker/ColorPicker.stories';
+
+# Color Picker
+
+A color picker is a component that allows users to select a color from a color palette.
+By default, the color picker will display a color input field, a color palette, and a hex input field.
+The hex input field may be hidden by setting the showHexInput prop to false.
+
+This component is a clone of the [PrimeVue ColorPicker component](https://primevue.org/colorpicker/), with the
+addition of the hex input field in the color picker panel and a non visible color input field for accessibility purposes.
+
+## Default Configuration
+
+<Canvas of={Default} />
+
+## Without Hex Input
+
+<Canvas of={NoHexInput} />
+
+## Inline
+
+<Canvas of={Inline} />
+
+## Inline - Without Hex Input
+
+<Canvas of={InlineNoHexInput} />
+
+## Props
+
+<ArgTypes story={PRIMARY_STORY} />
