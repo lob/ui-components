@@ -378,6 +378,7 @@ export default {
       this.$refs.fileElement.click();
     },
     onAreaClick() {
+      console.log('ON AREA CLICK');
       if (this.fileHasBeenSelected) {
         return;
       }

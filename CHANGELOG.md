@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.30
+
+- Shows up and down buttons by default in `NumberInput`
+
 ## v2.0.29
 
 - Make `PrimeVue` and external dependency

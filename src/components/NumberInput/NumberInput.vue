@@ -31,6 +31,7 @@
       :model-value="modelValue"
       :placeholder="placeholder"
       :readonly="readonly"
+      :show-buttons="showButtons"
       locale="en-US"
       unstyled
       @blur="emits('blur')"
@@ -88,6 +89,7 @@ const props = withDefaults(
     readonly?: InputNumberProps['readonly'];
     required?: boolean;
     success?: boolean;
+    showButtons?: InputNumberProps['showButtons'];
   }>(),
   {
     containerProps: undefined,
@@ -97,14 +99,15 @@ const props = withDefaults(
     hideLabel: false,
     max: undefined,
     maxFractionDigits: undefined,
-    min: undefined,
+    min: 0,
     minFractionDigits: undefined,
     mode: NumberInputMode.DECIMAL,
     modelValue: 0,
     placeholder: undefined,
     readonly: false,
     required: false,
-    success: false
+    success: false,
+    showButtons: true
   }
 );
 
