@@ -21,7 +21,8 @@ module.exports = {
       colors: {
         purple: {
           800: '#483AC5'
-        }
+        },
+        'line-grey': '#E3E1EB'
       }
     }
   },

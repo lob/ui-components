@@ -28,6 +28,7 @@ export * from './components/Badge';
 export * from './components/Icon';
 export * from './components/Modal';
 export * from './components/ImageFileUpload';
+export * from './components/ColorPicker';
 
 export default ComponentLibrary;
 
