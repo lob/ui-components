@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## v2.0.31
+
+- Adds the icons:
+  - `PlanBusiness`
+  - `PlanDeveloper`
+  - `PlanEnterprise`
+  - `PlanGrowth`
+  - `PlanGrowthPlus`
+  - `PlanStartup`
+
+### Breaking Changes
+
+- Removes the icons:
+  - `Rocket`
+  - `Shop`
+  - `UserChatBubble`
+
+## v2.0.30
+
 ## v2.0.29
 
 - Make `PrimeVue` and external dependency
