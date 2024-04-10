@@ -22,7 +22,7 @@
 import Icon from '@/components/Icon/Icon.vue';
 import { IconName } from '@/components/Icon/types';
 import { Size } from '@/types';
-import ConditionalWrapper from '@/components/ConditionalWrapper.vue';
+import ConditionalWrapper from '@/utils/ConditionalWrapper.vue';
 import Button from 'primevue/button';
 import { AnchorHTMLAttributes, computed, defineOptions } from 'vue';
 

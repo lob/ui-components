@@ -25,11 +25,12 @@ const ComponentLibrary = {
 
 // TODO Utilize the components export but first we will have to remove global usage.
 export * from './components/Badge';
+export * from './components/ColorPicker';
 export * from './components/Icon';
 export * from './components/IconButton';
-export * from './components/Modal';
 export * from './components/ImageFileUpload';
-export * from './components/ColorPicker';
+export * from './components/Modal';
+export * from './components/Steps';
 
 export default ComponentLibrary;
 

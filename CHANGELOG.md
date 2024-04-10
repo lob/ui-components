@@ -2,6 +2,16 @@
 
 ## v2.0.32
 
+- Add `<Steps />` component
+- Adds the icons:
+  - `Back`
+  - `CampaignAutomated`
+  - `CampaignOneTime`
+  - `Next`
+  - `Success`
+
+## v2.0.32
+
 - Add `<IconButton />` component
 
 ## v2.0.31

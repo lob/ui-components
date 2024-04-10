@@ -41,12 +41,12 @@ export default defineConfig({
     globals: true,
     setupFiles: 'setupTests.js',
     coverage: {
-      include: ['src/**/*.{js,vue}'],
+      include: ['src/**/*.{js,ts,vue}'],
       exclude: [
         'src/**/index.{js,ts}', // No need to cover index files for exports
-        'src/main.js', // No need to cover bootstrap file
+        'src/main.ts', // No need to cover bootstrap file
         'src/**/*.spec.{js,ts}', // No need to cover test files
-        'src/**/*.stories.js', // No need to cover stories files
+        'src/**/*.stories.{js,ts}', // No need to cover stories files
         'src/theme/**', // No need to cover components just for showing theming
         'src/components/Icons/**' // No need to cover components just for rendering svg icons
       ],

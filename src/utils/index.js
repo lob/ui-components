@@ -4,4 +4,3 @@ export * from './keyboard';
 export * from './object';
 export * from './formatBytes';
 export * from './escapeRegExp';
-export * from './stringDiff';
