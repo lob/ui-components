@@ -35,7 +35,7 @@
 
 ## v2.0.29
 
-- Fixes the initialization of PrimeVue
+- Make `PrimeVue` an external dependency
 
 ## v2.0.28
 

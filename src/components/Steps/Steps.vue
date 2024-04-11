@@ -8,7 +8,7 @@
   >
     <template #item="{ active, index, label }">
       <span :class="['uic-steps-action', { active }]">
-        <span :class="['uic-steps-step', { icon: !!stepIcons[index] }]">
+        <span :class="['uic-steps-step', { icon: Boolean(stepIcons[index]) }]">
           <Icon
             v-if="stepIcons[index]"
             :icon="stepIcons[index]"
