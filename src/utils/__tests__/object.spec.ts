@@ -2,8 +2,8 @@ import { shallowEquals } from '../object';
 
 describe('object utils', () => {
   describe('shallowEquals', () => {
-    let obj1;
-    let obj2;
+    let obj1: Record<string, number>;
+    let obj2: Record<string, number> | null;
 
     it('throws an error when either obj is null or undefined', () => {
       obj1 = { a: 1, b: 2 };

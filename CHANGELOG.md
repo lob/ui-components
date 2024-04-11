@@ -2,6 +2,16 @@
 
 ## v2.0.32
 
+- Add `<Steps />` component
+- Adds the icons:
+  - `Back`
+  - `CampaignAutomated`
+  - `CampaignOneTime`
+  - `Next`
+  - `Success`
+
+## v2.0.32
+
 - Add `<IconButton />` component
 
 ## v2.0.31
@@ -25,7 +35,7 @@
 
 ## v2.0.29
 
-- Make `PrimeVue` and external dependency
+- Make `PrimeVue` an external dependency
 
 ## v2.0.28
 
