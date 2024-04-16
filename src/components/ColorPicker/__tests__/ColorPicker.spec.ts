@@ -101,6 +101,37 @@ describe('ColorPicker', () => {
     });
   });
 
+  it('should allow pasting a hex value in the hex input', async () => {
+    const { getByTestId } = renderComponent({
+      props: initialProps
+    });
+
+    const colorPickerInput = getByTestId('color-picker-input');
+    expect(colorPickerInput).toBeInTheDocument();
+
+    await userEvent.click(colorPickerInput);
+
+    let colorPickerHexInput: HTMLInputElement | null = null;
+
+    await waitFor(() => {
+      colorPickerHexInput = screen.getByTestId(
+        'color-picker-hex-input'
+      ) as HTMLInputElement;
+      expect(colorPickerHexInput).toBeInTheDocument();
+      expect(colorPickerHexInput).toBeVisible();
+    });
+
+    await fireEvent.paste(colorPickerHexInput!, {
+      clipboardData: { getData: () => 'ff00ff' }
+    });
+
+    await waitFor(() => {
+      expect(colorPickerInput).toHaveStyle(
+        'background-color: rgb(255, 0, 255)'
+      );
+    });
+  });
+
   it('should accept hex values in the accessible input', async () => {
     const { container, getByTestId } = renderComponent({
       props: initialProps

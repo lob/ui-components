@@ -83,6 +83,7 @@
             data-testid="color-picker-hex-input"
             @blur="onHexInputBlur"
             @keydown="onHexInputKeydown"
+            @paste="onHexInputPaste"
           />
         </div>
       </transition>
@@ -747,6 +748,14 @@ export default {
       this.updateModel(event);
     },
     onHexInputKeydown($event) {
+      if (
+        $event.key === 'Tab' ||
+        $event.key === 'Meta' ||
+        $event.key === 'Control' ||
+        ($event.key === 'v' && ($event.metaKey || $event.ctrlKey))
+      ) {
+        return;
+      }
       if (!/[a-f0-9]/i.test($event.key)) {
         $event.preventDefault();
       }
@@ -773,6 +782,14 @@ export default {
       }
 
       this.onInputKeydown($event);
+    },
+    onHexInputPaste($event) {
+      const hex = this.validateHEX($event.clipboardData.getData('text'));
+      const hsb = this.HEXtoHSB(hex);
+
+      this.hsbValue = hsb;
+      this.updateUI();
+      this.updateModel($event);
     }
   }
 };
