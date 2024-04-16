@@ -102,7 +102,7 @@ describe('ColorPicker', () => {
   });
 
   it('should allow pasting a hex value in the hex input', async () => {
-    const { getByTestId } = renderComponent({
+    const { getByTestId, findByTestId } = renderComponent({
       props: initialProps
     });
 
@@ -111,15 +111,9 @@ describe('ColorPicker', () => {
 
     await userEvent.click(colorPickerInput);
 
-    let colorPickerHexInput: HTMLInputElement | null = null;
+    const colorPickerHexInput = await findByTestId('color-picker-hex-input');
 
-    await waitFor(() => {
-      colorPickerHexInput = screen.getByTestId(
-        'color-picker-hex-input'
-      ) as HTMLInputElement;
-      expect(colorPickerHexInput).toBeInTheDocument();
-      expect(colorPickerHexInput).toBeVisible();
-    });
+    expect(colorPickerHexInput).toBeVisible();
 
     await fireEvent.paste(colorPickerHexInput!, {
       clipboardData: { getData: () => 'ff00ff' }
