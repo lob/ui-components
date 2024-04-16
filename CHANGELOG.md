@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.40
+
+- Fix: Unable to paste hex code into `<ColorPicker />` hex input.
+
 ## v2.0.39
 
 - Type `<Table />` components
@@ -58,6 +62,8 @@
   - `UserChatBubble`
 
 ## v2.0.30
+
+- Add `<ColorPicker />` component
 
 ## v2.0.29
 
