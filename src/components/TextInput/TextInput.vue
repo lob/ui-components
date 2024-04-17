@@ -240,6 +240,7 @@ const slots = defineSlots<{
   selectedOptions?: () => any;
 }>();
 
+const input = ref<HTMLInputElement>();
 const showCopied = ref(false);
 
 const hasLeftIcon = computed(() => Boolean(slots.iconLeft));
@@ -267,7 +268,7 @@ const handleFocus = (e: FocusEvent) => {
 
 const copyToClipboard = () => {
   showCopied.value = true;
-  // this.$refs.input.select();
+  input.value?.select();
   document.execCommand('copy');
   emit('copy');
   setTimeout(() => {
@@ -277,7 +278,9 @@ const copyToClipboard = () => {
 
 const clearInput = (e: MouseEvent) => {
   e.preventDefault();
-  // this.$refs.input.value = '';
+  if (input.value) {
+    input.value.value = '';
+  }
   modelValue.value = '';
   emit('input', '');
   emit('change', e);
