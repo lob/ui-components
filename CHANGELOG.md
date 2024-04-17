@@ -1,6 +1,11 @@
 # CHANGELOG
 
-## v2.0.32
+## v2.0.34
+
+- Type `<TextInput />` component
+- Fix clickbox on the `<TextInput />`
+
+## v2.0.33
 
 - Add `<Steps />` component
 - Adds the icons:

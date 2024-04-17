@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { render } from '@testing-library/vue';
+import { RenderResult, render } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
 import { translate } from '@/mixins';
 import DateInput from '../DateInput.vue';
@@ -57,21 +57,24 @@ describe('DateInput', () => {
 
     expect(emittedEvent).toHaveProperty('update:open');
     const length = emittedEvent['update:open'].length;
+    // @ts-expect-error No types.
     expect(emittedEvent['update:open'][length - 1][0]).toEqual(true); // last event should be an open event
   });
 
   describe('selecting a date', () => {
     let props;
-    let component;
-    let dateToSelect;
+    let component: RenderResult;
+    let dateToSelect: HTMLButtonElement | null;
     const RealDate = global.Date;
 
     beforeEach(() => {
       props = { ...initialProps, open: true };
 
       const oldGlobalDate = global.Date;
+      // @ts-expect-error Improper way of mocking dates.
       global.Date = vi.fn((...args) => {
         if (args.length) {
+          // @ts-expect-error Improper way of mocking dates.
           return new RealDate(...args);
         }
         return new Date(2021, 5, 14);
@@ -85,30 +88,30 @@ describe('DateInput', () => {
       // which ensures the minDate and maxDate default values are set correctly
       vi.useRealTimers();
       component = renderComponent({ props });
-      const { queryByText } = component;
-      dateToSelect = queryByText(23).closest('button');
+      const { getByText } = component;
+      dateToSelect = getByText(23).closest('button');
     });
 
     it('emits an update:open event with value false', async () => {
       const { emitted } = component;
 
-      await userEvent.click(dateToSelect);
+      if (dateToSelect) {
+        await userEvent.click(dateToSelect);
+      }
       const emittedEvent = emitted();
-      expect(emittedEvent).toHaveProperty('update:open');
-
-      expect(emittedEvent['update:open'][0][0]).toEqual(false);
+      expect(emittedEvent).toHaveProperty('update:open', [[false]]);
     });
 
     it('emits an update:modelValue event', async () => {
       const { emitted } = component;
 
-      await userEvent.click(dateToSelect);
+      if (dateToSelect) {
+        await userEvent.click(dateToSelect);
+      }
       const emittedEvent = emitted();
-      expect(emittedEvent).toHaveProperty('update:modelValue');
-
-      expect(emittedEvent['update:modelValue'][0][0]).toEqual(
-        new Date(2022, 5, 23)
-      );
+      expect(emittedEvent).toHaveProperty('update:modelValue', [
+        [new Date(2022, 5, 23)]
+      ]);
     });
   });
 
@@ -122,7 +125,7 @@ describe('DateInput', () => {
       const { getByText, getByTestId } = renderComponent({ props });
 
       const textInput = getByTestId('input-container');
-      expect(textInput).toHaveClass('!border-red-600');
+      expect(textInput).toHaveClass('!border-error-dark');
       const errorMessage = getByText('Date no longer valid');
       expect(errorMessage).toBeVisible();
     });
