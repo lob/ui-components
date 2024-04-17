@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.36
+
+- Fix `<TextInput />` ref
+
 ## v2.0.35
 
 - Fix helper text styles on `<TextInput />`
