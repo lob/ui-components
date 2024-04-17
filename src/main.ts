@@ -31,6 +31,7 @@ export * from './components/IconButton';
 export * from './components/ImageFileUpload';
 export * from './components/Modal';
 export * from './components/Steps';
+export * from './components/Table';
 
 export default ComponentLibrary;
 

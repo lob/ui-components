@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.39
+
+- Type `<Table />` components
+
 ## v2.0.38
 
 - Add hover styles to `<Steps />`

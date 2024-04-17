@@ -14,9 +14,9 @@ export default {
     if (isNestedSlot) {
       columns = defaultSlot
         .flatMap((slotItem) => slotItem.children)
-        .map((child) => h('td', child));
+        .map((child) => h('th', child));
     } else {
-      columns = defaultSlot.map((slotItem) => h('td', slotItem));
+      columns = defaultSlot.map((slotItem) => h('th', slotItem));
     }
     const tr = h('tr', columns);
     return h('thead', this.$attrs, tr);

@@ -4,46 +4,50 @@
   </table>
 </template>
 
-<script>
-export default {
-  name: 'LobTable',
-  props: {
-    space: {
-      type: String,
-      default: 'md',
-      validator: function (value) {
-        return ['sm', 'md', 'lg'].includes(value);
-      }
-    }
-  },
-  computed: {
-    spaceClassName() {
-      return `space-${this.space}`;
-    }
-  },
-  methods: {}
-};
+<script setup lang="ts">
+import { computed, defineOptions } from 'vue';
+import { TableSize } from './constants';
+
+defineOptions({ name: 'LobTable' });
+
+const props = withDefaults(
+  defineProps<{
+    /** @deprecated Utilize the `size` prop. */
+    space?: TableSize;
+    size?: TableSize;
+  }>(),
+  {
+    size: TableSize.MD
+  }
+);
+
+const spaceClassName = computed(() => {
+  if (props.space) {
+    return `size-${props.space}`;
+  }
+  return `size-${props.size}`;
+});
 </script>
 
 <style scoped lang="scss">
-.space-sm {
-  ::v-deep(th),
-  ::v-deep(td) {
+.size-sm {
+  :deep(th),
+  :deep(td) {
     @apply py-1;
     @apply px-2;
   }
 }
 
-.space-md {
-  ::v-deep(th),
-  ::v-deep(td) {
+.size-md {
+  :deep(th),
+  :deep(td) {
     @apply p-2;
   }
 }
 
-.space-lg {
-  ::v-deep(th),
-  ::v-deep(td) {
+.size-lg {
+  :deep(th),
+  :deep(td) {
     @apply p-4;
   }
 }

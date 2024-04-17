@@ -10,13 +10,13 @@ describe('TableRow', () => {
     const slotContent2 = 'Full Line Item';
     const slots = { default: [slotContent1, slotContent2] };
 
-    const { queryByText } = renderComponent({ slots });
+    const { getByText } = renderComponent({ slots });
 
-    const slot1 = queryByText('Hello');
+    const slot1 = getByText('Hello');
     expect(slot1).toBeInTheDocument();
     expect(slot1.outerHTML).toEqual('<td>Hello</td>');
 
-    const slot2 = queryByText('Full Line Item');
+    const slot2 = getByText('Full Line Item');
     expect(slot2).toBeInTheDocument();
     expect(slot2.outerHTML).toEqual('<td>Full Line Item</td>');
   });
@@ -26,9 +26,9 @@ describe('TableRow', () => {
     const slotContent2 = 'Full Line Item';
     const slots = { default: [slotContent1, slotContent2] };
     const props = { singleCellRow: true };
-    const { queryByRole } = renderComponent({ props, slots });
+    const { getByRole } = renderComponent({ props, slots });
 
-    const cell = queryByRole('cell');
+    const cell = getByRole('cell');
     expect(cell).toBeInTheDocument();
     expect(cell.outerHTML).toEqual(
       '<td colspan="100%">HelloFull Line Item</td>'
