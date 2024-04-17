@@ -43,24 +43,23 @@
     <div
       data-testId="input-container"
       :class="[
-        'bg-white h-11 rounded flex items-center border border-gray-200',
+        'bg-white h-11 px-3 py-2 rounded flex items-center gap-2 border border-gray-200',
         {
           'hover:border-gray-300 focus-within:border-[#2D2D2F] focus-within:hover:border-[#2D2D2F] focus-within:outline-black focus-within:outline-offset-1 focus-within:outline-1':
             !disabled && !readonly
         },
-        { '!border-success-dark !bg-green-50': success },
-        { '!border-error-dark !bg-red-50': error },
+        { '!border-green-700 !bg-green-50': success },
+        { '!border-red-600 !bg-red-50': error },
         { '!bg-gray-50': disabled || readonly || withCopyButton },
         { '!flex-wrap !h-fit': isMultiselect }
       ]"
     >
       <div
-        v-if="hasLeftIcon"
+        v-if="iconLeft"
         :class="[
-          'pl-3 py-2',
           modelValue && !disabled ? 'text-gray-800' : 'text-gray-500',
-          { 'text-success-dark': success },
-          { 'text-error-dark': error },
+          { 'text-green-700': success },
+          { 'text-red-600': error },
           { '!text-gray-300': disabled }
         ]"
       >
@@ -76,13 +75,12 @@
         :max="max"
         :pattern="pattern"
         :class="[
-          'px-3 py-2',
           `w-full text-gray-800 type-small-400 caret-gray-300 placeholder-gray-200 placeholder:type-small-400 outline-none ${inputClass}`,
           { nonErrorAutofill: !disabled && !readonly },
           { truncate: withCopyButton },
-          { 'bg-green-50 !placeholder-success-dark': success },
+          { 'bg-green-50 !placeholder-green-700': success },
           {
-            'bg-red-50 !placeholder-error-dark !autofill:bg-red-50 errorAutofill':
+            'bg-red-50 !placeholder-red-600 !autofill:bg-red-50 errorAutofill':
               error
           },
           {
@@ -94,19 +92,18 @@
         :required="required"
         :placeholder="placeholder"
         :readonly="readonly"
-        @input="handleInput"
-        @focus="handleFocus"
-        @blur="$emit('blur', $event)"
-        @change="$emit('change', $event)"
-        @invalid="$emit('invalid', $event.target)"
+        @input="onInput"
+        @focus="onFocus"
+        @blur="onBlur"
+        @change="onChange"
+        @invalid="onInvalid"
       />
       <button
         v-if="showClearButton && modelValue"
         :class="[
-          'mr-3',
           modelValue && !disabled ? 'text-gray-800' : 'text-gray-500',
-          { 'text-success': success },
-          { 'text-error': error },
+          { 'text-green-700': success },
+          { 'text-red-600': error },
           { '!text-gray-300': disabled }
         ]"
         @click="clearInput"
@@ -121,12 +118,11 @@
         />
       </button>
       <div
-        v-if="hasRightIcon"
+        v-if="iconRight"
         :class="[
-          'pr-3 py-2',
           modelValue && !disabled ? 'text-gray-800' : 'text-gray-500',
-          { 'text-success': success },
-          { 'text-error': error },
+          { 'text-green-700': success },
+          { 'text-red-600': error },
           { '!text-gray-300': disabled }
         ]"
       >
@@ -135,7 +131,7 @@
       <button
         v-if="withCopyButton"
         type="button"
-        class="rounded-full mr-3 px-3 h-7 type-xs-700 bg-black text-white hover:bg-gray-700 focus-within:outline-1 focus-visible:outline-black focus-visible:outline-offset-1 active:bg-gray-800 focus:bg-gray-800"
+        class="rounded-full px-3 h-7 type-xs-700 bg-black text-white hover:bg-gray-700 focus-within:outline-1 focus-visible:outline-black focus-visible:outline-offset-1 active:bg-gray-800 focus:bg-gray-800"
         @click="copyToClipboard"
       >
         {{ copyButtonLabel }}
@@ -145,8 +141,8 @@
       v-if="helperText"
       :class="[
         'text-gray-500 type-xs-400 mt-1',
-        { '!text-success-dark': success },
-        { '!text-error-dark': error },
+        { 'text-green-700': success },
+        { 'text-red-600': error },
         { '!text-gray-500': disabled }
       ]"
     >
@@ -155,135 +151,202 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script>
 import LobLabel from '../Label/Label.vue';
 import Check from '../Icons/Check.vue';
 import XmarkLarge from '../Icons/XmarkLarge.vue';
-import { computed, defineModel, defineOptions, defineSlots, ref } from 'vue';
 
-defineOptions({ name: 'TextInput' });
-
-const props = withDefaults(
-  defineProps<{
-    tooltipContent?: string | null;
-    tooltipPosition?: 'leading' | 'trailing';
-    id?: string;
-    type?:
-      | 'date'
-      | 'email'
-      | 'number'
-      | 'password'
-      | 'tel'
-      | 'text'
-      | 'url'
-      | 'time';
-    min?: number;
-    max?: number;
-    pattern?: string;
-    label: string;
-    srOnlyLabel?: boolean;
-    placeholder?: string;
-    disabled?: boolean;
-    required?: boolean;
-    error?: boolean;
-    success?: boolean;
-    readonly?: boolean;
-    withCopyButton?: boolean;
-    copyButtonLabel?: string;
-    copiedTooltipContent?: string;
-    selectOnClick?: boolean;
-    inputClass?: string;
-    helperText?: string;
-    isMultiselect?: boolean;
-    withClearButton?: boolean;
-  }>(),
-  {
-    tooltipContent: null,
-    tooltipPosition: 'trailing',
-    id: undefined,
-    type: 'text',
-    min: undefined,
-    max: undefined,
-    pattern: undefined,
-    srOnlyLabel: false,
-    placeholder: undefined,
-    disabled: false,
-    required: false,
-    error: false,
-    success: false,
-    readonly: false,
-    withCopyButton: false,
-    copyButtonLabel: 'Copy',
-    copiedTooltipContent: 'Copied',
-    selectOnClick: false,
-    inputClass: '',
-    helperText: '',
-    isMultiselect: false,
-    withClearButton: false
+export default {
+  name: 'TextInput',
+  components: { LobLabel, Check, XmarkLarge },
+  props: {
+    tooltipContent: {
+      type: String,
+      default: null
+    },
+    tooltipPosition: {
+      type: String,
+      default: 'trailing',
+      validator: function (value) {
+        return ['leading', 'trailing'].includes(value);
+      }
+    },
+    modelValue: {
+      type: [String, Number],
+      default: null
+    },
+    id: {
+      type: String,
+      required: true
+    },
+    type: {
+      type: String,
+      default: 'text',
+      validator: function (value) {
+        return [
+          'date',
+          'email',
+          'number',
+          'password',
+          'tel',
+          'text',
+          'url',
+          'time'
+        ].includes(value);
+      }
+    },
+    // Used by number inputs.
+    min: {
+      type: Number,
+      default: null
+    },
+    // Used by number inputs.
+    max: {
+      type: Number,
+      default: null
+    },
+    // Used by tel inputs.
+    pattern: {
+      type: String,
+      default: null
+    },
+    label: {
+      type: String,
+      required: true
+    },
+    srOnlyLabel: {
+      type: Boolean,
+      default: false
+    },
+    placeholder: {
+      type: String,
+      default: null
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    required: {
+      type: Boolean,
+      default: false
+    },
+    error: {
+      type: Boolean,
+      default: false
+    },
+    success: {
+      type: Boolean,
+      default: false
+    },
+    readonly: {
+      type: Boolean,
+      default: false
+    },
+    withCopyButton: {
+      type: Boolean,
+      default: false
+    },
+    copyButtonLabel: {
+      type: String,
+      default: 'Copy'
+    },
+    copiedTooltipContent: {
+      type: String,
+      default: 'Copied'
+    },
+    selectOnClick: {
+      type: Boolean,
+      default: false
+    },
+    inputClass: {
+      type: String,
+      default: ''
+    },
+    helperText: {
+      type: String,
+      default: ''
+    },
+    isMultiselect: {
+      type: Boolean,
+      default: false
+    },
+    withClearButton: {
+      type: Boolean,
+      default: false
+    }
+  },
+  emits: [
+    'update:modelValue',
+    'input',
+    'change',
+    'focus',
+    'blur',
+    'copy',
+    'invalid'
+  ],
+  data() {
+    return {
+      showCopied: false
+    };
+  },
+  computed: {
+    iconLeft() {
+      return this.$slots.iconLeft;
+    },
+    iconRight() {
+      return this.$slots.iconRight;
+    },
+    selectedOptions() {
+      return this.$slots.selectedOptions;
+    },
+    showClearButton() {
+      return (
+        this.withClearButton &&
+        !this.isMultiselect &&
+        !this.iconRight &&
+        !this.withCopyButton
+      );
+    }
+  },
+  methods: {
+    copyToClipboard() {
+      this.showCopied = true;
+      this.$refs.input.select();
+      document.execCommand('copy');
+      this.$emit('copy');
+      this.copied = true;
+      setTimeout(() => {
+        this.showCopied = false;
+      }, 1500);
+    },
+    onInput($event) {
+      this.$emit('update:modelValue', $event.target.value);
+      this.$emit('input', $event.target.value);
+      this.$emit('change', $event);
+    },
+    onFocus($event) {
+      if (this.selectOnClick) {
+        this.$refs.input.select();
+      }
+      this.$emit('focus', $event);
+    },
+    onBlur($event) {
+      this.$emit('blur', $event);
+    },
+    onInvalid($event) {
+      this.$emit('invalid', $event.target);
+    },
+    focus() {
+      this.$refs.input.focus();
+    },
+    clearInput($event) {
+      $event.preventDefault();
+      this.$refs.input.value = '';
+      this.$emit('update:modelValue', '');
+      this.$emit('input', '');
+      this.$emit('change', $event);
+    }
   }
-);
-
-const modelValue = defineModel<string | number | null>({ default: null });
-
-const emit = defineEmits<{
-  (e: 'input', value: string | number): void; // eslint-disable-line no-unused-vars
-  (e: 'change', event: Event | MouseEvent): void; // eslint-disable-line no-unused-vars
-  (e: 'focus', event: FocusEvent): void; // eslint-disable-line no-unused-vars
-  (e: 'blur', event: FocusEvent): void; // eslint-disable-line no-unused-vars
-  (e: 'copy'): void; // eslint-disable-line no-unused-vars
-  (e: 'invalid', target: EventTarget | null): void; // eslint-disable-line no-unused-vars
-}>();
-
-const slots = defineSlots<{
-  iconLeft?: () => any;
-  iconRight?: () => any;
-  selectedOptions?: () => any;
-}>();
-
-const input = ref<HTMLInputElement>();
-const showCopied = ref(false);
-
-const hasLeftIcon = computed(() => Boolean(slots.iconLeft));
-const hasRightIcon = computed(() => Boolean(slots.iconRight));
-const showClearButton = computed(
-  () =>
-    props.withClearButton &&
-    !props.isMultiselect &&
-    !hasRightIcon.value &&
-    !props.withCopyButton
-);
-
-const handleInput = (e: Event) => {
-  modelValue.value = (e.target as HTMLInputElement)?.value;
-  emit('input', (e.target as HTMLInputElement)?.value);
-  emit('change', e);
-};
-
-const handleFocus = (e: FocusEvent) => {
-  if (props.selectOnClick) {
-    (e.target as HTMLInputElement)?.select();
-  }
-  emit('focus', e);
-};
-
-const copyToClipboard = () => {
-  showCopied.value = true;
-  input.value?.select();
-  document.execCommand('copy');
-  emit('copy');
-  setTimeout(() => {
-    showCopied.value = false;
-  }, 1500);
-};
-
-const clearInput = (e: MouseEvent) => {
-  e.preventDefault();
-  if (input.value) {
-    input.value.value = '';
-  }
-  modelValue.value = '';
-  emit('input', '');
-  emit('change', e);
 };
 </script>
 
