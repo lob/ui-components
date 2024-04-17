@@ -145,8 +145,8 @@
       v-if="helperText"
       :class="[
         'text-gray-500 type-xs-400 mt-1',
-        { 'text-success': success },
-        { 'text-error': error },
+        { '!text-success-dark': success },
+        { '!text-error-dark': error },
         { '!text-gray-500': disabled }
       ]"
     >

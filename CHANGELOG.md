@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.35
+
+- Fix helper text styles on `<TextInput />`
+
 ## v2.0.34
 
 - Type `<TextInput />` component
