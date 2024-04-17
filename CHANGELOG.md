@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.37
+
+- Revert `<TextInput />` changes
+
 ## v2.0.36
 
 - Fix `<TextInput />` ref

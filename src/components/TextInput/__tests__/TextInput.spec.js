@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { render, fireEvent, RenderResult } from '@testing-library/vue';
+import { render, fireEvent } from '@testing-library/vue';
 import TextInput from '../TextInput.vue';
 import userEvent from '@testing-library/user-event';
 
@@ -60,7 +60,7 @@ describe('Text input', () => {
     });
     const textInput = getByTestId('input-container');
 
-    expect(textInput).toHaveClass('!border-error-dark');
+    expect(textInput).toHaveClass('!border-red-600');
   });
 
   it('updates the v-model on text input', async () => {
@@ -68,7 +68,7 @@ describe('Text input', () => {
     const { getByLabelText } = render(TextInput, {
       props
     });
-    const textInput = getByLabelText(props.label) as HTMLInputElement;
+    const textInput = getByLabelText(props.label);
 
     await fireEvent.update(textInput, 'hello!');
     expect(textInput.value).toEqual('hello!');
@@ -99,7 +99,7 @@ describe('Text input', () => {
       props
     });
 
-    const textInput = getByLabelText(props.label) as HTMLInputElement;
+    const textInput = getByLabelText(props.label);
     const updatedValue = 'hello!';
     await fireEvent.update(textInput, updatedValue);
 
@@ -140,7 +140,7 @@ describe('Text input', () => {
     };
     const { getByRole, getByLabelText } = render(TextInput, { props });
 
-    const textInput = getByLabelText(props.label) as HTMLInputElement;
+    const textInput = getByLabelText(props.label);
     const updatedValue = 'hello!';
     await fireEvent.update(textInput, updatedValue);
 
@@ -186,7 +186,7 @@ describe('Text input', () => {
   });
 
   describe('with Copy Button', () => {
-    let component: RenderResult;
+    let component;
     beforeEach(async () => {
       const props = {
         ...initialProps,
