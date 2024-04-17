@@ -8,17 +8,21 @@
   >
     <template #item="{ active, index, label }">
       <span :class="['uic-steps-action', { active }]">
-        <span :class="['uic-steps-step', { icon: Boolean(stepIcons[index]) }]">
-          <Icon
-            v-if="stepIcons[index]"
-            :icon="stepIcons[index]"
-            data-testid="uic-steps-icon"
-          />
-          <template v-else>
-            {{ index + 1 }}
-          </template>
+        <span class="uic-steps-container">
+          <span
+            :class="['uic-steps-step', { icon: Boolean(stepIcons[index]) }]"
+          >
+            <Icon
+              v-if="stepIcons[index]"
+              :icon="stepIcons[index]"
+              data-testid="uic-steps-icon"
+            />
+            <template v-else>
+              {{ index + 1 }}
+            </template>
+          </span>
+          <span class="uic-steps-label">{{ label }}</span>
         </span>
-        <span class="uic-steps-label">{{ label }}</span>
         <Transition>
           <span v-if="active" class="uic-steps-active-indicator" />
         </Transition>
@@ -71,9 +75,18 @@ const stepIcons = computed<Record<number, IconName>>(() => {
 }
 .uic-steps-action {
   @apply relative;
+  @apply flex;
   @apply cursor-pointer;
+  @apply py-1;
+
+  &:hover > .uic-steps-container {
+    @apply bg-gray-25;
+  }
+}
+.uic-steps-container {
   @apply flex gap-2 items-center;
-  @apply py-4;
+  @apply px-3 py-2 my-2 rounded-xl;
+  @apply transition-colors;
 }
 .uic-steps-label {
   @apply type-small-600 text-gray-600;

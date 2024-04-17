@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v2.0.38
+
+- Add hover styles to `<Steps />`
+- Fix clickbox on the `<TextInput />`
+
 ## v2.0.37
 
 - Revert `<TextInput />` changes
