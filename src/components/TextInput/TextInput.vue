@@ -43,7 +43,7 @@
     <div
       data-testId="input-container"
       :class="[
-        'bg-white h-11 px-3 py-2 rounded flex items-center gap-2 border border-gray-200',
+        'bg-white h-11 rounded flex items-center gap-2 border border-gray-200',
         {
           'hover:border-gray-300 focus-within:border-[#2D2D2F] focus-within:hover:border-[#2D2D2F] focus-within:outline-black focus-within:outline-offset-1 focus-within:outline-1':
             !disabled && !readonly
@@ -57,6 +57,7 @@
       <div
         v-if="iconLeft"
         :class="[
+          'pl-3 py-2',
           modelValue && !disabled ? 'text-gray-800' : 'text-gray-500',
           { 'text-green-700': success },
           { 'text-red-600': error },
@@ -75,7 +76,7 @@
         :max="max"
         :pattern="pattern"
         :class="[
-          `w-full text-gray-800 type-small-400 caret-gray-300 placeholder-gray-200 placeholder:type-small-400 outline-none ${inputClass}`,
+          `w-full text-gray-800 type-small-400 caret-gray-300 placeholder-gray-200 placeholder:type-small-400 outline-none px-3 py-2 ${inputClass}`,
           { nonErrorAutofill: !disabled && !readonly },
           { truncate: withCopyButton },
           { 'bg-green-50 !placeholder-green-700': success },
@@ -101,6 +102,7 @@
       <button
         v-if="showClearButton && modelValue"
         :class="[
+          'pr-3 py-2',
           modelValue && !disabled ? 'text-gray-800' : 'text-gray-500',
           { 'text-green-700': success },
           { 'text-red-600': error },
@@ -120,6 +122,7 @@
       <div
         v-if="iconRight"
         :class="[
+          'pr-3 py-2',
           modelValue && !disabled ? 'text-gray-800' : 'text-gray-500',
           { 'text-green-700': success },
           { 'text-red-600': error },
@@ -131,7 +134,7 @@
       <button
         v-if="withCopyButton"
         type="button"
-        class="rounded-full px-3 h-7 type-xs-700 bg-black text-white hover:bg-gray-700 focus-within:outline-1 focus-visible:outline-black focus-visible:outline-offset-1 active:bg-gray-800 focus:bg-gray-800"
+        class="mr-3 my-2 rounded-full px-3 h-7 type-xs-700 bg-black text-white hover:bg-gray-700 focus-within:outline-1 focus-visible:outline-black focus-visible:outline-offset-1 active:bg-gray-800 focus:bg-gray-800"
         @click="copyToClipboard"
       >
         {{ copyButtonLabel }}
