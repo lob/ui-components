@@ -4,8 +4,8 @@
   </tbody>
 </template>
 
-<script>
-export default {
-  name: 'TableBody'
-};
+<script setup lang="ts">
+import { defineOptions } from 'vue';
+
+defineOptions({ name: 'TableBody' });
 </script>
