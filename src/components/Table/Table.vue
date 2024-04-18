@@ -12,12 +12,13 @@ defineOptions({ name: 'LobTable' });
 
 const props = withDefaults(
   defineProps<{
+    size?: TableSize;
     /** @deprecated Utilize the `size` prop. */
     space?: TableSize;
-    size?: TableSize;
   }>(),
   {
-    size: TableSize.MD
+    size: TableSize.MD,
+    space: undefined
   }
 );
 
