@@ -1,0 +1,37 @@
+import { Canvas, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
+import { Primary } from './Overlay.stories';
+
+# Overlay
+
+<Canvas of={Primary} />
+
+## Usage
+
+1. Create a template ref with the `Overlay` component
+
+```html
+<script>
+  const overlayRef = ref();
+</script>
+
+<template>
+  <Overlay ref="overlayRef" />
+</template>
+```
+
+2. Use the `toggle` method bound with an event to toggle the `Overlay`
+
+```html
+<script>
+  const overlayRef = ref();
+</script>
+
+<template>
+  <button @click="(e) => overlayRef.toggle(e)">Toggle Overlay</button>
+  <Overlay ref="overlayRef" />
+</template>
+```
+
+## Props
+
+<ArgTypes story={PRIMARY_STORY} />

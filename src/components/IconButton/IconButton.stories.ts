@@ -75,11 +75,6 @@ const meta: Meta<typeof IconButton> = {
           summary: Object.values(IconButtonSize).join(' | ')
         }
       }
-    },
-    click: {
-      table: {
-        type: 'null'
-      }
     }
   }
 };

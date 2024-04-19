@@ -182,7 +182,7 @@ describe('ImageFileUpload', () => {
       ];
 
       expect(fileSelectedEvent.file).toBeInstanceOf(File);
-      expect(fileSelectedEvent.file.name).toBe('chucknorris.png');
+      expect(fileSelectedEvent.file?.name).toBe('chucknorris.png');
       expect(fileSelectedEvent.originalEvent).toBeInstanceOf(Event);
     });
   });
