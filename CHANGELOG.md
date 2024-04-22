@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v2.0.41
+
+- Add `<Menu />` component
+- Add `<Overlay />` component
+
 ## v2.0.40
 
 - Fix: Unable to paste hex code into `<ColorPicker />` hex input.

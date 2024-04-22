@@ -6,6 +6,7 @@
     "vi": false,
     "defineProps": false,
     "defineEmits": false,
+    "defineExpose": false,
     "withDefaults": false
   },
   "parser": "vue-eslint-parser",

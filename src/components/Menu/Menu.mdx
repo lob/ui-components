@@ -1,0 +1,37 @@
+import { Canvas, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
+import { Primary } from './Menu.stories';
+
+# Menu
+
+<Canvas of={Primary} />
+
+## Usage
+
+1. Create a template ref with the `Menu` component
+
+```html
+<script>
+  const menuRef = ref();
+</script>
+
+<template>
+  <menu ref="menuRef" />
+</template>
+```
+
+2. Use the `toggle` method bound with an event to toggle the `Menu`
+
+```html
+<script>
+  const menuRef = ref();
+</script>
+
+<template>
+  <button @click="(e) => menuRef.toggle(e)">Toggle Menu</button>
+  <menu ref="menuRef" />
+</template>
+```
+
+## Props
+
+<ArgTypes story={PRIMARY_STORY} />

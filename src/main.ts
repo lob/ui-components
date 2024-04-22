@@ -29,7 +29,9 @@ export * from './components/ColorPicker';
 export * from './components/Icon';
 export * from './components/IconButton';
 export * from './components/ImageFileUpload';
+export * from './components/Menu';
 export * from './components/Modal';
+export * from './components/Overlay';
 export * from './components/Steps';
 export * from './components/Table';
 
