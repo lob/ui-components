@@ -8,7 +8,8 @@
       :size="size"
       :error="error"
       :aria-describedby="error ? 'error-message' : ''"
-      @click.stop="isOpen = !isOpen"
+      :disabled="disabled"
+      @click.stop="isOpen = !disabled ? !isOpen : isOpen"
       @keydown.space.stop="isOpen = !isOpen"
     >
       <template #iconRight>
@@ -101,6 +102,10 @@ export default {
     errorMessage: {
       type: [String, null],
       default: null
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   emits: ['update:modelValue', 'update:open'],

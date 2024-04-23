@@ -40,7 +40,12 @@ export default {
         type: 'text'
       }
     }
-  }
+  },
+  disabled: {
+    control: {
+      type: 'boolean'
+    }
+  },
 };
 
 const startDate = new Date();

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.42
+
+- Add `disabled` prop to `<DateInput />` component
+
 ## v2.0.41
 
 - Add `<Menu />` component
