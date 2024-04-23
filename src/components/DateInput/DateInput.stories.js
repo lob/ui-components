@@ -45,7 +45,7 @@ export default {
     control: {
       type: 'boolean'
     }
-  },
+  }
 };
 
 const startDate = new Date();
