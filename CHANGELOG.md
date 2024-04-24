@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## v2.0.43
+
+- Makes common types available for import
+- Adds the icons:
+  - `Error`
+  - `Processing`
+
 ## v2.0.42
 
 - Add `disabled` prop to `<DateInput />` component
