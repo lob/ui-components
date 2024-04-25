@@ -31,6 +31,6 @@ defineExpose({
   @apply my-1 p-2;
   @apply border border-gray-100 rounded-lg;
   @apply bg-white;
-  @apply shadow-lg;
+  @apply shadow-large;
 }
 </style>
