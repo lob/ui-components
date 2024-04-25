@@ -114,7 +114,7 @@ const getWrappingTag = (to?: string) => {
   @apply my-1 p-2 w-72;
   @apply border border-gray-100 rounded-lg;
   @apply bg-white;
-  @apply shadow-xl;
+  @apply shadow-large;
 
   .uic-menu-item-parent {
     @apply flex items-center gap-2;
