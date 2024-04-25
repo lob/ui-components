@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v2.0.44
+
+- Add new icons for the `Icon` component
+  - `Ellipsis`
+  - `EllipsisVertical`
+
 ## v2.0.43
 
 - Makes common types available for import

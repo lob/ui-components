@@ -37,6 +37,8 @@ export const IconName = {
   DUPLICATE: 'Duplicate',
   EDIT: 'Edit',
   ENVELOPE: 'Envelope',
+  ELLIPSIS: 'Ellipsis',
+  ELLIPSIS_VERTICAL: 'EllipsisVertical',
   ERROR: 'Error',
   EXIT: 'Exit',
   EXPORT: 'Export',
