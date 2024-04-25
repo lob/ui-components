@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.46
+
+- Fix click event emission in `IconButton`
+
 ## v2.0.45
 
 - Fix sizing issues in `Ellipsis` and `EllipsisVertical`
