@@ -11,7 +11,7 @@
       :class="`uic-icon-button size-${size} color-${color} variant-${variant}`"
       :disabled="disabled"
       data-testid="uic-icon-button"
-      @click="$emit('click')"
+      @click="$emit('click', $event)"
     >
       <Icon :icon="icon" :size="iconSize" />
     </Button>
@@ -55,7 +55,7 @@ const props = withDefaults(
 );
 
 defineEmits<{
-  (e: 'click'): void; // eslint-disable-line no-unused-vars
+  (e: 'click', payload: MouseEvent): void; // eslint-disable-line no-unused-vars
 }>();
 
 const iconSize = computed(() => {
