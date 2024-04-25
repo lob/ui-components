@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.47
+
+- Use the correct classes for box shadow in `Overlay` and `Menu` component.
+
 ## v2.0.46
 
 - Fix click event emission in `IconButton`
