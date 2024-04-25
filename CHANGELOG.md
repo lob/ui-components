@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.45
+
+- Fix sizing issues in `Ellipsis` and `EllipsisVertical`
+
 ## v2.0.44
 
 - Add new icons for the `Icon` component
