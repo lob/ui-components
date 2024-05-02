@@ -21,8 +21,8 @@ describe('LoadingIndicator', () => {
   });
 
   describe('when there is content in the default slot', () => {
-    let slotContent;
-    let slots;
+    let slotContent: string;
+    let slots: Record<string, string>;
     beforeEach(() => {
       slotContent = 'Hello, this is the slot.';
       slots = { default: slotContent };

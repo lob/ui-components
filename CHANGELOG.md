@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v2.0.48
+
+- Add new icons for the `Icon` component
+  - `Details`
+  - `Previous`
+
 ## v2.0.47
 
 - Use the correct classes for box shadow in `Overlay` and `Menu` component.

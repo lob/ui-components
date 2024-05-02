@@ -1,34 +1,37 @@
 <template>
   <div
-    :class="loading ? `loading-gif ${loadingClass}` : ''"
+    :class="isLoading ? `loading-gif ${loadingClass}` : ''"
     aria-live="polite"
-    :aria-busy="loading"
+    :aria-busy="isLoading"
     data-testId="loading-indicator"
   >
     <slot />
   </div>
 </template>
 
-<script>
-import { Comment } from 'vue';
+<script setup lang="ts">
+import { Comment, computed, defineOptions, defineSlots } from 'vue';
 
-export default {
-  name: 'LoadingIndicator',
-  props: {
-    loadingClass: {
-      type: String,
-      default: ''
-    }
-  },
-  computed: {
-    loading() {
-      return (
-        !this.$slots.default ||
-        this.$slots.default().findIndex((o) => o.type !== Comment) === -1
-      );
-    }
+defineOptions({ name: 'LoadingIndicator' });
+
+withDefaults(
+  defineProps<{
+    loadingClass?: string;
+  }>(),
+  {
+    loadingClass: undefined
   }
-};
+);
+
+const slots = defineSlots<{
+  default(): any;
+}>();
+
+const isLoading = computed(
+  () =>
+    !slots.default ||
+    slots.default().findIndex((o: any) => o.type !== Comment) === -1
+);
 </script>
 
 <style lang="scss" scoped>
