@@ -77,7 +77,8 @@ export const Primary: StoryObj<typeof Menu> = {
         label: 'Delete',
         clickHandler: () => console.log('Deleted'),
         key: 'test3',
-        icon: IconName.DELETE
+        icon: IconName.DELETE,
+        disabled: true
       }
     ]
   }
