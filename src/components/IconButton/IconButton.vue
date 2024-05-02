@@ -83,6 +83,10 @@ const linkTag = computed(() => {
 .uic-icon-button {
   @apply rounded-lg;
 
+  &:disabled {
+    @apply cursor-not-allowed;
+  }
+
   &.size- {
     &sm {
       @apply p-2;
