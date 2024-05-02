@@ -35,6 +35,7 @@ const iconInfo = {
 };
 
 export default {
+  // eslint-disable-next-line vue/no-reserved-component-names
   name: 'Map',
   props: {
     size: {
