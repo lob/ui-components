@@ -79,6 +79,7 @@
 <script>
 import LobLabel from '../Label/Label.vue';
 export default {
+  // eslint-disable-next-line vue/no-reserved-component-names
   name: 'Textarea',
   components: {
     LobLabel
