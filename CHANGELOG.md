@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.51
+
+- Adds the `DataTable` component
+
 ## v2.0.50
 
 - Adjust the margin on the menu's divider if the menu has a footer.

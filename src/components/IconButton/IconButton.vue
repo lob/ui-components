@@ -59,6 +59,9 @@ defineEmits<{
 }>();
 
 const iconSize = computed(() => {
+  if (props.size === IconButtonSize.XS) {
+    return Size.SM;
+  }
   if (props.size === IconButtonSize.SM) {
     return Size.MD;
   }
@@ -88,6 +91,9 @@ const linkTag = computed(() => {
   }
 
   &.size- {
+    &xs {
+      @apply p-1;
+    }
     &sm {
       @apply p-2;
     }

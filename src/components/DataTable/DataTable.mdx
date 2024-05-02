@@ -1,0 +1,103 @@
+import { Canvas } from '@storybook/addon-docs';
+import { Primary } from './DataTable.stories';
+
+# DataTable
+
+<Canvas of={Primary} />
+
+## How to Use
+
+### Basic
+
+```html
+<template>
+  <DataTable :data="[{ id: 'test', name: 'John Smith' }]" data-key="id">
+    <Column field="id" header="ID" />
+    <Column field="name" header="Full Name" />
+  </DataTable>
+</template>
+
+<script setup lang="ts">
+  import { Column, DataTable } from '@lob/ui-components';
+</script>
+```
+
+### With Async Data
+
+#### Without Pagination
+
+```html
+<template>
+  <DataTable async :data data-key="id" :error="errorMessage" :loading :total>
+    <Column field="id" header="ID" />
+    <Column field="name" header="Full Name" />
+  </DataTable>
+</template>
+
+<script setup lang="ts">
+  import { Column, DataTable } from '@lob/ui-components';
+
+  const loading = ref(false);
+  const data = ref<{ id: number; name: string }>([]);
+  const total = ref<number>();
+  const errorMessage = ref<string>();
+
+  const fetchData = async () => {
+    isLoading.value = true;
+    try {
+      const response = await fetch('...');
+      data.value = response.data;
+      total.value = response.total;
+    } catch (e) {
+      errorMessage.value = e.message;
+    }
+    isLoading.value = false;
+  };
+</script>
+```
+
+#### With Pagination
+
+Pagination state is handled by the component
+
+There is also support for `next`/ `previous` pagination with the `list` prop
+using the props `next` and `previous` for button state and the events `@next`
+and `@previous`.
+
+```html
+<template>
+  <DataTable
+    async
+    :data
+    data-key="id"
+    :error="errorMessage"
+    :loading
+    :total
+    @paginate="fetchData"
+  >
+    <Column field="id" header="ID" />
+    <Column field="name" header="Full Name" />
+  </DataTable>
+</template>
+
+<script setup lang="ts">
+  import { Column, DataTable } from '@lob/ui-components';
+
+  const loading = ref(false);
+  const data = ref<{ id: number; name: string }>([]);
+  const total = ref<number>([]);
+  const errorMessage = ref<string>();
+
+  const fetchData = async (paginationData) => {
+    isLoading.value = true;
+    try {
+      const response = await fetch('...');
+      data.value = response.data;
+      total.value = response.total;
+    } catch (e) {
+      errorMessage.value = e.message;
+    }
+    isLoading.value = false;
+  };
+</script>
+```

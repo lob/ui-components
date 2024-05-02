@@ -12,6 +12,7 @@ export type IconButtonColor =
   (typeof IconButtonColor)[keyof typeof IconButtonColor];
 
 export const IconButtonSize = {
+  XS: Size.XS,
   SM: Size.SM,
   MD: Size.MD,
   LG: Size.LG,
