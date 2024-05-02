@@ -33,7 +33,15 @@
         :href="item.item.url"
         :target="item.item.target"
       >
-        <span class="uic-menu-item-child">
+        <span
+          :class="[
+            'uic-menu-item-child',
+            {
+              '!text-gray-200 !hover:bg-none !cursor-not-allowed':
+                item.item.disabled
+            }
+          ]"
+        >
           <Icon
             v-if="
               item.item.icon &&

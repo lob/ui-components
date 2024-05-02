@@ -2,6 +2,10 @@
 
 ## v2.0.48
 
+- Add disabled styles for the items of the `Menu` component.
+
+## v2.0.48
+
 - Add new icons for the `Icon` component
   - `Details`
   - `Previous`
