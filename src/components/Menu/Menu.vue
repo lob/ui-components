@@ -10,7 +10,8 @@
         enterActiveClass: 'transition duration-250 ease-out',
         leaveActiveClass: 'transition duration-250 ease-out',
         leaveToClass: 'opacity-0 scale-[.98]'
-      }
+      },
+      menu: { class: [{ 'mb-2': Boolean($slots.footer) }] }
     }"
   >
     <template #submenuheader="item">

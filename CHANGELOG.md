@@ -1,6 +1,10 @@
 # CHANGELOG
 
-## v2.0.48
+## v2.0.50
+
+- Adjust the margin on the menu's divider if the menu has a footer.
+
+## v2.0.49
 
 - Add disabled styles for the items of the `Menu` component.
 
