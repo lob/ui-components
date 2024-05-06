@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.54
+
+- Fixes the `DataTable` error rendering
+
 ## v2.0.53
 
 - Fixes the `IconButton` test ID
