@@ -10,7 +10,7 @@
       v-bind="!to ? $attrs : undefined"
       :class="`uic-icon-button size-${size} color-${color} variant-${variant}`"
       :disabled="disabled"
-      data-testid="uic-icon-button"
+      :data-testid="$attrs['data-testid'] ?? 'uic-icon-button'"
       @click="$emit('click', $event)"
     >
       <Icon :icon="icon" :size="iconSize" />
