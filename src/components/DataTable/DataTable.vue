@@ -34,10 +34,11 @@
         : undefined
     "
   >
-    <!-- For some reason, if this is not explicit it fails. -->
-    <template v-if="loading !== true" #empty>
-      <Alert v-if="error" variant="error">{{ error }}</Alert>
-      <Alert v-else variant="info">No results</Alert>
+    <template #empty>
+      <template v-if="!loading">
+        <Alert v-if="error" variant="error">{{ error }}</Alert>
+        <Alert v-else variant="info">No results</Alert>
+      </template>
     </template>
 
     <template #loading>
