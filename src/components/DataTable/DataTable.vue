@@ -74,6 +74,7 @@
 
     <IconButton
       class="mr-2"
+      data-testid="uic-datatable-list-previous"
       :disabled="!previous"
       :icon="IconName.PREVIOUS"
       size="sm"
@@ -81,6 +82,7 @@
       @click="$emit('previous')"
     />
     <IconButton
+      data-testid="uic-datatable-list-next"
       :disabled="!next"
       :icon="IconName.NEXT"
       size="sm"

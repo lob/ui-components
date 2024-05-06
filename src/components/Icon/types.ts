@@ -67,8 +67,10 @@ export const IconName = {
   SIGNAL: 'Signal',
   SUCCESS: 'Success',
   TRIANGLE_EXCLAMATION: 'TriangleExclamation',
+  UNVERIFIED: 'Unverified',
   USER: 'User',
   USERS: 'Users',
+  VERIFIED: 'Verified',
   WEBHOOKS: 'Webhooks'
 } as const;
 export type IconName = (typeof IconName)[keyof typeof IconName];
