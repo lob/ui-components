@@ -34,7 +34,8 @@
         : undefined
     "
   >
-    <template v-if="!loading" #empty>
+    <!-- For some reason, if this is not explicit it fails. -->
+    <template v-if="loading !== true" #empty>
       <Alert v-if="error" variant="error">{{ error }}</Alert>
       <Alert v-else variant="info">No results</Alert>
     </template>

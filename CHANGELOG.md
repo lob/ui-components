@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.53
+
+- Fixes the `IconButton` test ID
+
 ## v2.0.52
 
 - Add new icons for the `Icon` component
