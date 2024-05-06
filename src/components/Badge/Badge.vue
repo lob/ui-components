@@ -34,6 +34,7 @@ withDefaults(
 .uic-badge {
   @apply inline-flex flex-row gap-1 items-center justify-center;
   @apply px-4 py-1 border rounded-full;
+  @apply truncate;
 
   &.uic-size {
     &-sm {

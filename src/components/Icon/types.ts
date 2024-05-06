@@ -45,6 +45,7 @@ export const IconName = {
   EXPORT: 'Export',
   FILE_ALT: 'FileAlt',
   FIRE: 'Fire',
+  FUTURE: 'Future',
   GEAR: 'Gear',
   GIFT: 'Gift',
   LAYER_GROUP: 'LayerGroup',

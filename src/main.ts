@@ -26,6 +26,8 @@ const ComponentLibrary = {
 // TODO Utilize the components export but first we will have to remove global usage.
 export * from './components/Badge';
 export * from './components/ColorPicker';
+export * from './components/DataTable';
+export { default as Column } from 'primevue/column';
 export * from './components/Icon';
 export * from './components/IconButton';
 export * from './components/ImageFileUpload';
