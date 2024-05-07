@@ -12,7 +12,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Setup node and npm with the versions defined in package.json engines.
       - name: Install node and npm
@@ -37,7 +37,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Setup node and npm with the versions defined in package.json engines.
       - name: Install node and npm
@@ -51,7 +51,7 @@ jobs:
 
       - name: Publish the package to npm
         id: publish
-        uses: JS-DevTools/npm-publish@v1
+        uses: JS-DevTools/npm-publish@v3
         with:
           token: ${{ env.NPM_TOKEN }}
           # only publish if the version in package.json has changed
@@ -59,7 +59,7 @@ jobs:
 
       - name: Add git tag ${{ steps.publish.outputs.version }}
         if: steps.publish.outputs.type != 'none'
-        uses: actions/github-script@v5
+        uses: actions/github-script@v7
         env:
           NEW_VERSION: '${{ steps.publish.outputs.version }}'
           OLD_VERSION: '${{ steps.publish.outputs.old-version }}'

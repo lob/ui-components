@@ -13,24 +13,24 @@ runs:
   using: composite
   steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Read node version from package.json engines
       id: node_version
-      uses: notiz-dev/github-action-json-property@v0.1.0
+      uses: notiz-dev/github-action-json-property@v0.2.0
       with:
         path: 'package.json'
         prop_path: 'engines.node'
 
     - name: Read npm version from package.json engines
       id: npm_version
-      uses: notiz-dev/github-action-json-property@v0.1.0
+      uses: notiz-dev/github-action-json-property@v0.2.0
       with:
         path: 'package.json'
         prop_path: 'engines.npm'
 
     - name: Install Node ${{ steps.node_version.outputs.prop }}
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ steps.node_version.outputs.prop }}
 
