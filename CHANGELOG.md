@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.55
+
+- Add `empty` slot to `DataTable`
+
 ## v2.0.54
 
 - Fixes the `DataTable` error rendering
