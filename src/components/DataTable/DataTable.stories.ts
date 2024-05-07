@@ -21,9 +21,9 @@ export const Primary: StoryObj<typeof DataTable> = {
     setup: () => ({ args }),
     template: `
       <DataTable v-bind="args">
-        <Column field="firstName" header="First Name" />
-        <Column field="lastName" header="Last Name" />
-        <Column field="favoriteColor" header="Favorite Color" />
+        <Column field="firstName" header="First Name" class="w-96" />
+        <Column field="lastName" header="Last Name" class="w-96" />
+        <Column field="favoriteColor" header="Favorite Color" class="w-96" />
       </DataTable>
     `
   }),

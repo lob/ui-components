@@ -32,7 +32,11 @@ const totalRows = computed(() => {
   if (typeof props.total !== 'number') {
     return '-';
   }
-  return props.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  const commaFormatted = props.total
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  // When our ES total is 10,000, we want to display 10,000+.
+  return props.total === 10000 ? `${commaFormatted}+` : commaFormatted;
 });
 </script>
 

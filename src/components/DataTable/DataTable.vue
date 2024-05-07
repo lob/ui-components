@@ -37,7 +37,8 @@
     <template #empty>
       <template v-if="!loading">
         <Alert v-if="error" variant="error">{{ error }}</Alert>
-        <Alert v-else variant="info">No results</Alert>
+        <Alert v-else-if="!$slots['empty']" variant="info">No results</Alert>
+        <slot v-else name="empty" />
       </template>
     </template>
 
@@ -49,7 +50,7 @@
 
     <Column v-if="clickable" class="w-14 text-center">
       <template #body>
-        <Icon :icon="IconName.DETAILS" size="xl" />
+        <Icon :icon="IconName.DETAILS" size="xl" class="mx-auto" />
       </template>
     </Column>
 
@@ -170,6 +171,7 @@ defineEmits<{
 defineSlots<{
   default(): any;
   toolbar(): any;
+  empty(): any;
 }>();
 </script>
 
@@ -311,6 +313,6 @@ defineSlots<{
   @apply py-2;
 }
 .uic-datatable-toolbar {
-  @apply py-2;
+  @apply pb-6;
 }
 </style>
