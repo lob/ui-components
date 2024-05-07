@@ -17,14 +17,14 @@ runs:
 
     - name: Read node version from package.json engines
       id: node_version
-      uses: notiz-dev/github-action-json-property@v0.1.0
+      uses: notiz-dev/github-action-json-property@v0.2.0
       with:
         path: 'package.json'
         prop_path: 'engines.node'
 
     - name: Read npm version from package.json engines
       id: npm_version
-      uses: notiz-dev/github-action-json-property@v0.1.0
+      uses: notiz-dev/github-action-json-property@v0.2.0
       with:
         path: 'package.json'
         prop_path: 'engines.npm'
