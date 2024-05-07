@@ -13,7 +13,7 @@ runs:
   using: composite
   steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Read node version from package.json engines
       id: node_version
@@ -30,7 +30,7 @@ runs:
         prop_path: 'engines.npm'
 
     - name: Install Node ${{ steps.node_version.outputs.prop }}
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ steps.node_version.outputs.prop }}
 
