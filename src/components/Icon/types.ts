@@ -61,6 +61,7 @@ export const IconName = {
   LIGHTNING: 'Lightning',
   LOCATION_PIN: 'LocationPin',
   MONEY_BILL: 'MoneyBill',
+  NAV_ARROW_LEFT: 'NavArrowLeft',
   NEXT: 'Next',
   OPEN_BOOK: 'OpenBook',
   PAINT_ROLLER: 'PaintRoller',
