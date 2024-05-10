@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v2.0.57
+
+- Add new icons for the `Icon` component
+  - `NavArrowLeft`
+
 ## v2.0.56
 
 - Add new icons for the `Icon` component
