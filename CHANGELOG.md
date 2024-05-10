@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## v2.0.56
+
+- Add new icons for the `Icon` component
+  - `BorderOut`
+  - `Calendar`
+  - `CalendarAlt`
+  - `ClockFour`
+  - `ClockSeven`
+  - `ClockTen`
+  - `DollarSign`
+  - `DoubleSidedArrow`
+  - `Envelopes`
+  - `PaintRoller`
+  - `Resize`
+  - `Send`
+  - `Truck`
+
 ## v2.0.55
 
 - Add `empty` slot to `DataTable`
