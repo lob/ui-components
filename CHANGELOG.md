@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.58
+
+- Change the way borders are applied to `DataTable`s
+
 ## v2.0.57
 
 - Add new icons for the `Icon` component
