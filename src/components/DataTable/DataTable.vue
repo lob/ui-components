@@ -219,15 +219,17 @@ defineSlots<{
 
     table {
       table-layout: fixed;
+      border-collapse: separate;
+      border-spacing: 0;
       width: 100%;
     }
 
     // Row borders.
-    thead tr,
-    tbody tr:not(:last-of-type) {
+    thead tr th,
+    tbody tr:not(:last-of-type) td {
       @apply border-b border-gray-100;
     }
-    tfoot tr {
+    tfoot tr td {
       @apply border-t border-gray-100;
     }
 
