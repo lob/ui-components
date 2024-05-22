@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.60
+
+- Export `Tile` component for use
+
 ## v2.0.59
 
 - Add `Tile` component

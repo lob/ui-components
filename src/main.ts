@@ -36,6 +36,7 @@ export * from './components/Modal';
 export * from './components/Overlay';
 export * from './components/Steps';
 export * from './components/Table';
+export * from './components/Tile';
 export * from './types';
 
 export default ComponentLibrary;
