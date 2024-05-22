@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v2.0.59
+
+- Add `Tile` component
+- Add `TileGroup` component
+
 ## v2.0.58
 
 - Change the way borders are applied to `DataTable`s
