@@ -18,6 +18,7 @@ export const IconName = {
   BARS: 'Bars',
   BELL: 'Bell',
   BORDER_OUT: 'BorderOut',
+  BUILDING: 'Building',
   BULLHORN: 'Bullhorn',
   CALENDAR: 'Calendar',
   CALENDAR_ALT: 'CalendarAlt',
@@ -31,6 +32,7 @@ export const IconName = {
   CIRCLE_INFO: 'CircleInfo',
   CIRCLE_QUESTION: 'CircleQuestion',
   CIRCLE_USER: 'CircleUser',
+  CLIPBOARD: 'Clipboard',
   CLOCK_FOUR: 'ClockFour',
   CLOCK_SEVEN: 'ClockSeven',
   CLOCK_TEN: 'ClockTen',
@@ -38,6 +40,7 @@ export const IconName = {
   CLOUD_DATA: 'CloudData',
   CODE: 'Code',
   COIN: 'Coin',
+  COMMENT_NOTES: 'CommentNotes',
   CREDIT_CARD: 'CreditCard',
   DELETE: 'Delete',
   DETAILS: 'Details',
@@ -53,7 +56,10 @@ export const IconName = {
   EXIT: 'Exit',
   EXPORT: 'Export',
   FILE_ALT: 'FileAlt',
+  FILE_INFO: 'FileInfo',
+  FILE_SHARE: 'FileShare',
   FIRE: 'Fire',
+  FOLDER_INFO: 'FolderInfo',
   FUTURE: 'Future',
   GEAR: 'Gear',
   GIFT: 'Gift',
@@ -63,6 +69,8 @@ export const IconName = {
   MONEY_BILL: 'MoneyBill',
   NAV_ARROW_LEFT: 'NavArrowLeft',
   NEXT: 'Next',
+  NOTES: 'Notes',
+  PEN: 'Pen',
   OPEN_BOOK: 'OpenBook',
   PAINT_ROLLER: 'PaintRoller',
   PIE_CHART_SLICE: 'PieChartSlice',
@@ -79,6 +87,7 @@ export const IconName = {
   SEND: 'Send',
   SIGNAL: 'Signal',
   SUCCESS: 'Success',
+  TAG: 'Tag',
   TRIANGLE_EXCLAMATION: 'TriangleExclamation',
   TRUCK: 'Truck',
   UNVERIFIED: 'Unverified',
@@ -88,3 +97,23 @@ export const IconName = {
   WEBHOOKS: 'Webhooks'
 } as const;
 export type IconName = (typeof IconName)[keyof typeof IconName];
+
+export const IconSemantic = {
+  ACCOUNT_NUMBER: IconName.FILE_INFO,
+  ACCOUNT_TYPE: IconName.FOLDER_INFO,
+  BANK_ACCOUNT: IconName.BANK_ACCOUNT,
+  CHECK_DATE: IconName.CALENDAR_ALT,
+  CHECK_NUMBER: IconName.TAG,
+  CURRENCY_AMOUNT: IconName.DOLLAR_SIGN,
+  DATE_CREATED: IconName.CLOCK_FOUR,
+  DATE_MODIFIED: IconName.CLOCK_TEN,
+  DESCRIPTION: IconName.CLIPBOARD,
+  MAIL_TYPE: IconName.TRUCK,
+  MEMO: IconName.COMMENT_NOTES,
+  MESSAGE: IconName.NOTES,
+  ROUTING_NUMBER: IconName.FILE_SHARE,
+  SEND_DATE: IconName.CALENDAR,
+  SIGNATORY: IconName.PEN,
+  TARGET_DELIVERY_DATE: IconName.CALENDAR_ALT
+} as const;
+export type IconSemantic = (typeof IconSemantic)[keyof typeof IconSemantic];
