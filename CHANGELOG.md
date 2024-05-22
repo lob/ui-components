@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## v2.0.61
+
+- Add new icons for the `Icon` component
+  - `Building`
+  - `Clipboard`
+  - `CommentNotes`
+  - `FileInfo`
+  - `FileShare`
+  - `FolderInfo`
+  - `Notes`
+  - `Pen`
+  - `Tag`
+
 ## v2.0.60
 
 - Export `Tile` component for use
