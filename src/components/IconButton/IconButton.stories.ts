@@ -83,7 +83,7 @@ export default meta;
 
 export const Primary: StoryObj<typeof IconButton> = {
   args: {
-    icon: IconName.NAV_ARROW_LEFT
+    icon: IconName.ENVELOPE
   }
 };
 
@@ -101,7 +101,7 @@ export const AllIconButtons: StoryFn<typeof IconButton> = () => ({
             ${Object.values(IconButtonSize)
               .map(
                 (size) =>
-                  `<IconButton icon="NavArrowLeft" variant="${variant}" color="${color}" size="${size}" />`
+                  `<IconButton icon="Envelope" variant="${variant}" color="${color}" size="${size}" />`
               )
               .join('')}
           </div>`
