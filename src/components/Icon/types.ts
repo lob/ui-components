@@ -83,6 +83,7 @@ export const IconName = {
   PLUS: 'Plus',
   PREVIOUS: 'Previous',
   PROCESSING: 'Processing',
+  QR_CODE: 'QRCode',
   RESIZE: 'Resize',
   SEND: 'Send',
   SIGNAL: 'Signal',
