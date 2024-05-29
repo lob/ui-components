@@ -4,12 +4,14 @@ import Icon from '../Icon.vue';
 import { IconName } from '../types';
 
 describe('Icon', () => {
-  it.each([...Object.values(IconName)])('renders', async (iconName) => {
-    const { findByTestId } = render(Icon, {
-      props: {
-        icon: iconName
-      }
+  [...Object.values(IconName)].forEach((iconName) => {
+    it(`renders ${iconName} icon`, async () => {
+      const { findByTestId } = render(Icon, {
+        props: {
+          icon: iconName
+        }
+      });
+      expect(await findByTestId('uic-icon')).toBeVisible();
     });
-    expect(await findByTestId('uic-icon')).toBeVisible();
   });
 });
