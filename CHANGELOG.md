@@ -2,6 +2,10 @@
 
 ## v2.0.61
 
+- Add `QRCode` to the `Icon` component
+
+## v2.0.61
+
 - Add new icons for the `Icon` component
   - `Building`
   - `Clipboard`
