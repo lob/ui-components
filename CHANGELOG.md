@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v2.0.62
+
+- `DataTable` improvements
+  - No need for a `clickable` prop
+  - Alignment of sort icons in header cells
+
 ## v2.0.61
 
 - Add `QRCode` to the `Icon` component
