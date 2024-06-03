@@ -3,7 +3,7 @@
     <slot name="toolbar" />
   </div>
   <DataTable
-    :class="[`uic-datatable`, { 'uic-clickable': clickable }]"
+    :class="[`uic-datatable`, { 'uic-clickable': onRowClick }]"
     data-testid="uic-datatable"
     :lazy="async"
     :loading
@@ -16,13 +16,11 @@
     :value="data"
     v-bind="$attrs"
     @row-click="
-      clickable
-        ? $emit('rowClick', {
-            event: $event.originalEvent,
-            data: $event.data,
-            index: $event.index
-          })
-        : undefined
+      $emit('rowClick', {
+        event: $event.originalEvent,
+        data: $event.data,
+        index: $event.index
+      })
     "
     @page="
       !list
@@ -48,7 +46,7 @@
 
     <slot />
 
-    <Column v-if="clickable" class="w-14 text-center">
+    <Column v-if="onRowClick" class="w-14 text-center">
       <template #body>
         <Icon :icon="IconName.DETAILS" size="xl" class="mx-auto" />
       </template>
@@ -118,8 +116,6 @@ withDefaults(
   defineProps<{
     /** The table will not change the data, you pass in the most accurate data. */
     async?: boolean;
-    /** Must specify in order for `rowClick` event to fire. */
-    clickable?: boolean;
     data?: Data[];
     dataKey: keyof Data;
     error?: string;
@@ -127,6 +123,7 @@ withDefaults(
     list?: boolean;
     loading?: boolean;
     next?: string;
+    onRowClick?: (e: DataTableRowClickEvent) => void; // eslint-disable-line no-unused-vars
     previous?: string;
     rows?: DataTableRowSize;
     scrollable?: boolean;
@@ -135,12 +132,12 @@ withDefaults(
   }>(),
   {
     async: false,
-    clickable: false,
     data: undefined,
     error: undefined,
     list: false,
     loading: false,
     next: undefined,
+    onRowClick: undefined,
     previous: undefined,
     rows: DataTableRowSize.TEN,
     scrollable: true,
@@ -236,6 +233,9 @@ defineSlots<{
     thead tr,
     tfoot tr {
       @apply type-small-600 text-gray-800 text-left;
+    }
+    th [data-pc-section='headercontent'] {
+      @apply inline-flex flex-row gap-2 items-center;
     }
     th,
     tfoot td {
