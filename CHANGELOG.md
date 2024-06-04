@@ -1,12 +1,17 @@
 # CHANGELOG
 
-## v2.0.62
+## v2.0.64
+
+- Add `Grid` and `GridItem` components
+- Generalize clickable functionality
+
+## v2.0.63
 
 - `DataTable` improvements
   - No need for a `clickable` prop
   - Alignment of sort icons in header cells
 
-## v2.0.61
+## v2.0.62
 
 - Add `QRCode` to the `Icon` component
 

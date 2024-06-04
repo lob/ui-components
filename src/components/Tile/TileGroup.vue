@@ -17,7 +17,10 @@ defineSlots<{
 
   & > :deep(*) {
     @apply rounded-none;
-    @apply border-r-0;
+
+    &:not(:last-child) {
+      @apply border-r-transparent;
+    }
   }
 
   & > :deep(:first-child) {
@@ -25,7 +28,6 @@ defineSlots<{
   }
 
   & > :deep(:last-child) {
-    @apply border-r;
     @apply rounded-r-2xl;
   }
 }

@@ -4,26 +4,12 @@ import mdx from './Tile.mdx';
 import Tile from './Tile.vue';
 // @ts-ignore No types from Vue file
 import TileGroup from './TileGroup.vue';
-import routeDecorator, {
-  routeTemplate
-} from '../../../.storybook/routeDecorator';
 import { TileColor } from './constants';
 import { TileSize } from './constants';
 
 const meta: Meta<typeof Tile> = {
   title: 'Components/Tile',
   component: Tile,
-  decorators: [
-    routeDecorator('/', [
-      {
-        path: '/internal',
-        name: 'InternalLink',
-        component: {
-          template: routeTemplate('internal')
-        }
-      }
-    ])
-  ],
   parameters: {
     docs: {
       page: mdx
