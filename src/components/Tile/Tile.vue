@@ -108,32 +108,18 @@ const computedClasses = computed(() => [
 
 <style scoped lang="scss">
 .uic-panel {
+  @apply tile-container;
+
   @apply relative;
   @apply flex flex-col justify-center;
-  @apply p-6 min-w-fit rounded-2xl;
-  @apply border-line-grey border;
-  @apply bg-white;
-  @apply transition-colors;
-  box-shadow: none !important;
-
-  &:focus-within {
-    @apply outline-offset-2;
-    @apply outline-dashed;
-  }
+  @apply p-6 min-w-fit;
 
   &:not(.disabled).clickable {
     &:hover {
-      @apply cursor-pointer;
-      @apply border-gray-800;
-
       .uic-panel-click-icon {
         @apply bg-gray-100;
       }
     }
-  }
-
-  &.disabled {
-    @apply cursor-not-allowed;
   }
 
   :deep([data-pc-section='header']) {
@@ -165,7 +151,7 @@ const computedClasses = computed(() => [
   }
 
   :deep([data-pc-section='icons']) {
-    @apply absolute top-6 right-6;
+    @apply ml-auto;
   }
 }
 

@@ -50,6 +50,36 @@
       @apply border-transparent;
     }
   }
+
+  // TODO Move to `@layer components` when that works
+  .tile-container {
+    @apply rounded-2xl;
+    @apply border-line-grey border;
+    @apply bg-white;
+    @apply transition-colors;
+    box-shadow: none !important;
+
+    &:focus-within {
+      @apply outline-1 outline-gray-800;
+      @apply outline-offset-2;
+      @apply outline-dashed;
+    }
+
+    &:not(.disabled).clickable,
+    &:not(:disabled).clickable {
+      &:hover,
+      &:active {
+        @apply cursor-pointer;
+        @apply border-gray-800;
+        box-shadow: 0px 2px 4px 0px #17161713 !important;
+      }
+    }
+
+    &:disabled,
+    &.disabled {
+      @apply cursor-not-allowed;
+    }
+  }
 }
 
 // This is a hack for the modal styles flashing.
