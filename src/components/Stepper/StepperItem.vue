@@ -47,7 +47,7 @@
           ]"
           style="left: 0.1875rem; top: 0.1875rem"
         >
-          <check
+          <Check
             v-if="finished"
             class="w-2 absolute -top-0.5 left-0.5 z-20 text-white"
           />

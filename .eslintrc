@@ -30,7 +30,11 @@
     "vue/v-on-event-hyphenation": 0,
     "comma-dangle": 0,
     "lob/padded-describes": 0,
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "vue/component-name-in-template-casing": ["error", "PascalCase", {
+      "registeredComponentsOnly": false,
+      "ignores": []
+    }]
   },
   "overrides": [
     {

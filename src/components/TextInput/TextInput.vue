@@ -15,7 +15,7 @@
       aria-live="polite"
       :class="['absolute -top-4 ml-20', { '-top-11': srOnlyLabel }]"
     >
-      <transition
+      <Transition
         enter-active-class="duration-1000 ease-out"
         enter-from-class="opacity-0 transform translate-y-2"
         enter-to-class="opacity-100 transform translate-y-0"
@@ -38,7 +38,7 @@
             class="absolute bg-transparent w-0 h-0 m-auto border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-gray-700 -bottom-2 left-0 right-0"
           />
         </div>
-      </transition>
+      </Transition>
     </div>
     <div
       data-testId="input-container"

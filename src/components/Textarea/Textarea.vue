@@ -1,6 +1,6 @@
 <template>
   <div>
-    <lob-label
+    <LobLabel
       v-if="label"
       :label="label"
       :label-for="id"

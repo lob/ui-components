@@ -24,7 +24,7 @@
         @click="pageClick(1)"
       >
         <span class="sr-only">{{ t('pagination.firstPageLabel') }}</span>
-        <page-arrow-icon :first="true" :disabled="page === 1" />
+        <PageArrowIcon :first="true" :disabled="page === 1" />
       </button>
       <button
         :class="[
@@ -35,7 +35,7 @@
         @click="pageClick(page - 1)"
       >
         <span class="sr-only">{{ t('pagination.prevPageLabel') }}</span>
-        <page-arrow-icon :previous="true" :disabled="page <= 1" />
+        <PageArrowIcon :previous="true" :disabled="page <= 1" />
       </button>
       <button
         :class="[
@@ -46,7 +46,7 @@
         @click="pageClick(page + 1)"
       >
         <span class="sr-only">{{ t('pagination.nextPageLabel') }}</span>
-        <page-arrow-icon :next="true" :disabled="offset + limit >= total" />
+        <PageArrowIcon :next="true" :disabled="offset + limit >= total" />
       </button>
       <button
         :class="[
@@ -57,7 +57,7 @@
         @click="pageClick(lastPage)"
       >
         <span class="sr-only">{{ t('pagination.lastPageLabel') }}</span>
-        <page-arrow-icon :last="true" :disabled="offset + limit >= total" />
+        <PageArrowIcon :last="true" :disabled="offset + limit >= total" />
       </button>
     </div>
 
@@ -73,7 +73,7 @@
           @click="pageClick(page + 1)"
         >
           {{ t('pagination.nextPageLabelMobile') }}
-          <page-arrow-icon
+          <PageArrowIcon
             :next="true"
             class="transform group-hover:translate-x-1 group-hover:text-primary-300"
           />
@@ -86,7 +86,7 @@
           ]"
           @click="pageClick(page - 1)"
         >
-          <page-arrow-icon
+          <PageArrowIcon
             :previous="true"
             class="transform group-hover:-translate-x-1 group-hover:text-primary-300"
           />

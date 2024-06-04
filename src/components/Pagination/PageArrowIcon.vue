@@ -5,10 +5,10 @@
       { 'text-gray-100 hover:text-gray-100': disabled }
     ]"
   >
-    <chevrons-left v-if="first" />
-    <chevron-left v-if="previous" />
-    <chevron-right v-if="next" />
-    <chevrons-right v-if="last" />
+    <ChevronsLeft v-if="first" />
+    <ChevronLeft v-if="previous" />
+    <ChevronRight v-if="next" />
+    <ChevronsRight v-if="last" />
   </span>
 </template>
 

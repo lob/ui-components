@@ -6,7 +6,7 @@
     >
       {{ group.label }}
     </div>
-    <dropdown-item
+    <DropdownItem
       v-for="option in group.options"
       :id="`${id}-${flattenedOptions.indexOf(option)}`"
       :key="option.label || option"
