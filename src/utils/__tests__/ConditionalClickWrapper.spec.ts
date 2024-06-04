@@ -28,4 +28,21 @@ describe('ConditionalClickWrapper', () => {
     );
     expect(getByTestId('conditional-wrapper-slot')).toBeVisible();
   });
+
+  it.each([
+    { props: {} },
+    { props: { to: '/test' } },
+    { props: { to: 'https://test.com' } }
+  ])('emits `click` when clickable with props `$props`', ({ props }) => {
+    const { emitted, getByTestId } = render(ConditionalClickWrapper, {
+      props: {
+        ...props,
+        'data-testid': 'conditional-click-wrapper',
+        onClick: () => undefined
+      },
+      slots: { default: DEFAULT_SLOT }
+    });
+    getByTestId('conditional-click-wrapper').click();
+    expect(emitted()).toHaveProperty('click');
+  });
 });

@@ -1,11 +1,14 @@
 <template>
-  <li :class="[!isClickable ? computedClasses : undefined, 'list-none']">
+  <li
+    :class="[!isClickable ? computedClasses : undefined, 'list-none']"
+    data-testid="uic-grid-item"
+  >
     <ConditionalClickWrapper
       :to="to"
       :disabled
       :target="target"
-      :on-click
       :class="computedClasses"
+      @[onClick&&`click`]="$emit('click', $event)"
     >
       <img
         v-if="!imgError"
@@ -32,7 +35,7 @@ import { Icon } from '../Icon';
 const props = withDefaults(
   defineProps<{
     disabled?: boolean;
-    src: string;
+    src?: string;
     alt: string;
     title: string;
     subtitle: string;
@@ -42,6 +45,7 @@ const props = withDefaults(
   }>(),
   {
     disabled: false,
+    src: undefined,
     to: undefined,
     target: undefined,
     onClick: undefined

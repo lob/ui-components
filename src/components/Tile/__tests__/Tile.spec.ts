@@ -19,17 +19,9 @@ describe('Tile', () => {
 
   it('clicks when clickable', () => {
     const { emitted, getByTestId } = render(Tile, {
-      props: { clickable: true }
+      props: { onClick: () => undefined }
     });
     getByTestId('uic-tile').click();
     expect(emitted()).toHaveProperty('click');
-  });
-
-  it('does not click when not clickable', () => {
-    const { emitted, getByTestId } = render(Tile, {
-      props: { clickable: false }
-    });
-    getByTestId('uic-tile').click();
-    expect(emitted()).not.toHaveProperty('click');
   });
 });

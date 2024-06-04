@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.65
+
+- Refactor components to utilize the utility component `ConditionalClickWrapper` for normalized click functionality
+
 ## v2.0.64
 
 - Add `Grid` and `GridItem` components
