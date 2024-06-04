@@ -26,7 +26,7 @@
       @keydown="onInputKeydown"
     />
     <Portal :append-to="appendTo" :disabled="inline">
-      <transition
+      <Transition
         name="p-connected-overlay"
         @enter="onOverlayEnter"
         @leave="onOverlayLeave"
@@ -86,7 +86,7 @@
             @paste="onHexInputPaste"
           />
         </div>
-      </transition>
+      </Transition>
     </Portal>
   </div>
 </template>

@@ -2,7 +2,7 @@
 <!-- Code samples https://github.com/microsoft/sonder-ui/tree/master/src/components/select -->
 <template>
   <div>
-    <lob-label
+    <LobLabel
       v-if="label"
       :id="`${id}-label`"
       :label="label"
@@ -51,7 +51,7 @@
         >
           {{ value || placeholder }}
         </div>
-        <chevron-down
+        <ChevronDown
           size="s"
           :class="[
             'transition-all duration-100',
@@ -64,7 +64,7 @@
           data-testid="chevron-down"
         />
       </div>
-      <transition
+      <Transition
         enter-active-class="duration-100 ease-out"
         enter-from-class="opacity-0 -translate-y-2"
         enter-to-class="opacity-100 translate-y-0"
@@ -85,7 +85,7 @@
         >
           <div v-for="item in optionItems" :key="item.id || item.label || item">
             <div v-if="isOptGroup(item)" role="group">
-              <dropdown-item-group
+              <DropdownItemGroup
                 :id="id"
                 :ref="(el) => setOptionRef(el, item)"
                 :group="item"
@@ -99,7 +99,7 @@
               />
             </div>
             <div v-else>
-              <dropdown-item
+              <DropdownItem
                 :id="`${id}-${flattenedOptions.indexOf(item)}`"
                 :ref="(el) => setOptionRef(el, item)"
                 :option="item"
@@ -114,7 +114,7 @@
             </div>
           </div>
         </div>
-      </transition>
+      </Transition>
     </div>
     <ConfirmChangeModal
       v-if="confirmChangeModal"

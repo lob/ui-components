@@ -6,7 +6,7 @@
       :alt="iconAltText"
       :class="iconClasses ? `${iconClasses}` : 'w-6 mr-1.5 align-bottom'"
     />
-    <router-link
+    <RouterLink
       v-for="crumb in crumbs"
       :key="crumb.name"
       :to="crumb.path"
@@ -14,8 +14,8 @@
       exact-active-class="!text-primary-500"
     >
       {{ crumb.name }}
-      <chevron-right size="s" class="mx-2" />
-    </router-link>
+      <ChevronRight size="s" class="mx-2" />
+    </RouterLink>
   </nav>
 </template>
 
