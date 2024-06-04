@@ -47,17 +47,17 @@ describe('DataTable', () => {
   });
 
   it('emits `next` and `previous` when `list`', async () => {
-    const { emitted, getByTestId } = renderDataTable({
+    const { emitted, findByTestId } = renderDataTable({
       props: { ...DEFAULT_PROPS, list: true, next: 'test', previous: 'test' }
     });
 
-    const nextButton = getByTestId('uic-datatable-list-next');
+    const nextButton = await findByTestId('uic-datatable-list-next');
     expect(nextButton).toBeVisible();
     expect(nextButton).toBeEnabled();
     userEvent.click(nextButton);
     await waitFor(() => expect(emitted()).toHaveProperty('next'));
 
-    const previousButton = getByTestId('uic-datatable-list-previous');
+    const previousButton = await findByTestId('uic-datatable-list-previous');
     expect(previousButton).toBeVisible();
     expect(previousButton).toBeEnabled();
     userEvent.click(previousButton);

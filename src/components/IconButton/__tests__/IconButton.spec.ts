@@ -23,16 +23,16 @@ describe('IconButton', () => {
     { icon: IconName.APP_WINDOWS, color: IconButtonColor.WARNING },
     { icon: IconName.APP_WINDOWS, variant: IconButtonVariant.OUTLINED },
     { icon: IconName.APP_WINDOWS, variant: IconButtonVariant.PRIMARY }
-  ])('renders', (props) => {
-    const { getByTestId } = render(IconButton, {
-      props
+  ])('renders', async (props) => {
+    const { findByTestId } = render(IconButton, {
+      props: { ...props, onClick: () => undefined }
     });
-    expect(getByTestId('uic-icon-button')).toBeVisible();
+    expect(await findByTestId('uic-icon-button')).toBeVisible();
   });
 
   it('emits click', () => {
     const { getByTestId, emitted } = render(IconButton, {
-      props: { icon: IconName.APP_WINDOWS }
+      props: { icon: IconName.APP_WINDOWS, onClick: () => undefined }
     });
     getByTestId('uic-icon-button').click();
     expect(emitted()).toHaveProperty('click');

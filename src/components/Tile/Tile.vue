@@ -1,57 +1,51 @@
 <template>
-  <ConditionalLinkWrapper
+  <ConditionalClickWrapper
     v-bind="$attrs"
-    :to="clickable ? to : undefined"
-    :target="target"
-    :class="clickable && to ? computedClasses : 'undefined'"
+    :to
+    :target
+    :class="isClickable ? computedClasses : undefined"
+    :disabled
+    @[onClick&&`click`]="$emit('click', $event)"
   >
-    <ConditionalWrapper
-      :tag="clickable ? 'button' : undefined"
-      v-bind="$attrs"
-      :class="clickable && !to ? computedClasses : 'outline-none'"
-      :disabled
-      @click="$emit('click', $event)"
+    <Panel
+      :class="!isClickable ? computedClasses : undefined"
+      v-bind="!isClickable ? $attrs : undefined"
+      data-testid="uic-tile"
     >
-      <Panel
-        :class="!clickable ? computedClasses : 'undefined'"
-        v-bind="!clickable ? $attrs : undefined"
-        data-testid="uic-tile"
-      >
-        <template #header>
-          <slot name="header" />
-        </template>
+      <template #header>
+        <slot name="header" />
+      </template>
 
-        <template #icons>
-          <div v-if="clickable" class="uic-panel-click-icon">
-            <Icon :icon="IconName.NEXT" />
+      <template #icons>
+        <div v-if="isClickable" class="uic-panel-click-icon">
+          <Icon :icon="IconName.NEXT" />
+        </div>
+      </template>
+
+      <template #default>
+        <template v-if="loading">
+          <LoadingSpinnerIcon
+            :width="size === TileSize.LG ? '32' : '28'"
+            :height="size === TileSize.LG ? '32' : '28'"
+          />
+        </template>
+        <Alert v-else-if="error" variant="error">
+          {{ error }}
+        </Alert>
+        <template v-else>
+          <div class="flex flex-row items-end">
+            <slot name="default" />
+            <p
+              v-if="$slots['subtext']"
+              class="ml-4 type-small-400 text-gray-600"
+            >
+              <slot name="subtext" />
+            </p>
           </div>
         </template>
-
-        <template #default>
-          <template v-if="loading">
-            <LoadingSpinnerIcon
-              :width="size === TileSize.LG ? '32' : '28'"
-              :height="size === TileSize.LG ? '32' : '28'"
-            />
-          </template>
-          <Alert v-else-if="error" variant="error">
-            {{ error }}
-          </Alert>
-          <template v-else>
-            <div class="flex flex-row items-end">
-              <slot name="default" />
-              <p
-                v-if="$slots['subtext']"
-                class="ml-4 type-small-400 text-gray-600"
-              >
-                <slot name="subtext" />
-              </p>
-            </div>
-          </template>
-        </template>
-      </Panel>
-    </ConditionalWrapper>
-  </ConditionalLinkWrapper>
+      </template>
+    </Panel>
+  </ConditionalClickWrapper>
 </template>
 
 <script setup lang="ts">
@@ -60,8 +54,7 @@ import { Icon, IconName } from '../Icon';
 import Panel from 'primevue/panel';
 import { computed } from 'vue';
 
-import ConditionalWrapper from '@/utils/ConditionalWrapper.vue';
-import ConditionalLinkWrapper from '@/utils/ConditionalLinkWrapper.vue';
+import ConditionalClickWrapper from '@/utils/ConditionalClickWrapper.vue';
 import { TileColor, TileSize } from './constants';
 import { LoadingSpinnerIcon } from '../LoadingSpinnerIcon';
 
@@ -69,21 +62,21 @@ defineOptions({ inheritAttrs: false });
 
 const props = withDefaults(
   defineProps<{
-    clickable?: boolean;
     color?: TileColor;
     disabled?: boolean;
     error?: string;
     loading?: boolean;
+    onClick?: (e: MouseEvent) => void; // eslint-disable-line no-unused-vars
     target?: string;
     to?: string;
     size?: TileSize;
   }>(),
   {
     color: TileColor.NEUTRAL,
-    clickable: false,
     disabled: false,
     error: undefined,
     loading: false,
+    onClick: undefined,
     target: undefined,
     to: undefined,
     size: TileSize.MD
@@ -100,13 +93,14 @@ defineSlots<{
   subtext(): any;
 }>();
 
+const isClickable = computed(() => Boolean(props.onClick) || props.to);
 const computedClasses = computed(() => [
   `uic-panel size-${props.size} color-${props.color}`,
-  { clickable: props.clickable, disabled: props.disabled }
+  { clickable: isClickable.value, disabled: props.disabled }
 ]);
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .uic-panel {
   @apply tile-container;
 
@@ -122,12 +116,12 @@ const computedClasses = computed(() => [
     }
   }
 
-  :deep([data-pc-section='header']) {
+  [data-pc-section='header'] {
     @apply flex flex-row items-center gap-1;
     @apply text-base text-gray-600;
   }
 
-  :deep([data-pc-section='content']) {
+  [data-pc-section='content'] {
     @apply mt-2 font-semibold;
   }
   &.color-neutral {
@@ -140,17 +134,17 @@ const computedClasses = computed(() => [
     @apply text-success;
   }
   &.size-md {
-    :deep([data-pc-section='content']) {
+    [data-pc-section='content'] {
       @apply text-xl;
     }
   }
   &.size-lg {
-    :deep([data-pc-section='content']) {
+    [data-pc-section='content'] {
       @apply text-2xl;
     }
   }
 
-  :deep([data-pc-section='icons']) {
+  [data-pc-section='icons'] {
     @apply ml-auto;
   }
 }

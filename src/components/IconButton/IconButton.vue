@@ -1,31 +1,22 @@
 <template>
-  <ConditionalWrapper
+  <ConditionalClickWrapper
     v-bind="$attrs"
-    :tag="linkTag"
-    :to="!isExternalLink ? to : undefined"
-    :href="isExternalLink ? to : undefined"
-    :target="target"
+    :to
+    :target
+    :disabled
+    :class="`uic-icon-button size-${size} color-${color} variant-${variant}`"
+    :data-testid="$attrs['data-testid'] || 'uic-icon-button'"
+    @click="$emit('click', $event)"
   >
-    <Button
-      v-bind="!to ? $attrs : undefined"
-      :class="`uic-icon-button size-${size} color-${color} variant-${variant}`"
-      :disabled="disabled"
-      :data-testid="
-        !to ? $attrs['data-testid'] ?? 'uic-icon-button' : undefined
-      "
-      @click="$emit('click', $event)"
-    >
-      <Icon :icon="icon" :size="iconSize" />
-    </Button>
-  </ConditionalWrapper>
+    <Icon :icon="icon" :size="iconSize" />
+  </ConditionalClickWrapper>
 </template>
 
 <script setup lang="ts">
 import Icon from '@/components/Icon/Icon.vue';
 import { IconName } from '@/components/Icon/types';
 import { Size } from '@/types';
-import ConditionalWrapper from '@/utils/ConditionalWrapper.vue';
-import Button from 'primevue/button';
+import ConditionalClickWrapper from '@/utils/ConditionalClickWrapper.vue';
 import { AnchorHTMLAttributes, computed, defineOptions } from 'vue';
 
 defineOptions({ inheritAttrs: false });
@@ -41,6 +32,7 @@ const props = withDefaults(
     color?: IconButtonColor;
     disabled?: boolean;
     icon: IconName;
+    onClick: (e: MouseEvent) => void; // eslint-disable-line no-unused-vars
     size?: IconButtonSize;
     target?: AnchorHTMLAttributes['target'];
     to?: string;
@@ -72,20 +64,11 @@ const iconSize = computed(() => {
   }
   return Size.XXL;
 });
-
-const isExternalLink = computed(() => {
-  return props.to && props.to.startsWith('http');
-});
-const linkTag = computed(() => {
-  if (!props.to) {
-    return undefined;
-  }
-  return isExternalLink.value ? 'a' : 'router-link';
-});
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .uic-icon-button {
+  @apply block;
   @apply rounded-lg;
 
   &:disabled {

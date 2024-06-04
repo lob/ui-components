@@ -101,7 +101,7 @@ export const AllIconButtons: StoryFn<typeof IconButton> = () => ({
             ${Object.values(IconButtonSize)
               .map(
                 (size) =>
-                  `<IconButton icon="Envelope" variant="${variant}" color="${color}" size="${size}" />`
+                  `<IconButton icon="Envelope" variant="${variant}" color="${color}" size="${size}" @click="console.log('testing')" />`
               )
               .join('')}
           </div>`
