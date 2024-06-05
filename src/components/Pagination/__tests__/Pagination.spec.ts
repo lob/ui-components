@@ -43,7 +43,7 @@ describe('Pagination', () => {
     { total: 9999, expected: '9,999 results' },
     { total: 10000, expected: '10,000+ results' },
     { total: 10001, expected: '10,001 results' }
-  ])('renders `total` as `` when ``', ({ total, expected }) => {
+  ])('renders `total` as `$expected` when `$total`', ({ total, expected }) => {
     const { getByTestId } = render(Pagination, { props: { total } });
     expect(getByTestId('uic-pagination-total')).toHaveTextContent(expected);
   });
