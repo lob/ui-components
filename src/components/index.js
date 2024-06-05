@@ -21,7 +21,6 @@ export { default as MainNavigationChildItem } from './MainNavigation/MainNavigat
 export { default as MegaButton } from './MegaButton/MegaButton';
 export { default as Multiselect } from './Multiselect/Multiselect';
 export { default as NumberInput } from './NumberInput/NumberInput.vue';
-export { default as Pagination } from './Pagination/Pagination';
 export { default as ProgressBar } from './ProgressBar/ProgressBar';
 export { default as RadioButton } from './RadioButton/RadioButton';
 export { default as RadioButtonLarge } from './RadioButtonLarge/RadioButtonLarge';

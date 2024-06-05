@@ -1,12 +1,9 @@
 <template>
-  <p
-    class="uic-datatable-total-results"
-    data-testid="uic-datatable-total-results"
-  >
+  <p class="pagination-total" data-testid="uic-pagination-total">
     <LoadingSpinnerIcon
       v-if="loading"
       :size="14"
-      data-testid="uic-datatable-total-results-loading"
+      data-testid="uic-pagination-total-loading"
     />
     <template v-else>{{ totalRows }}</template>
     {{ `result${total === 1 ? '' : 's'}` }}
@@ -19,12 +16,12 @@ import { computed } from 'vue';
 
 const props = withDefaults(
   defineProps<{
-    total?: number;
     loading?: boolean;
+    total?: number;
   }>(),
   {
-    total: undefined,
-    loading: false
+    loading: false,
+    total: undefined
   }
 );
 
@@ -40,9 +37,10 @@ const totalRows = computed(() => {
 });
 </script>
 
-<style>
-.uic-datatable-total-results {
-  @apply inline-flex gap-2 items-center;
+<style scoped lang="scss">
+.pagination-total {
+  @apply flex flex-row gap-2 items-center;
+  @apply mr-auto;
   @apply type-small-600 text-gray-800;
 }
 </style>

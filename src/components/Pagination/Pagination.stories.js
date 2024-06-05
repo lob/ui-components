@@ -16,37 +16,18 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { Pagination },
   setup: () => ({ args }),
-  template: '<div style="width: 500px"><pagination v-bind="args" /></div>'
+  template: '<div style="width: 500px;"><Pagination v-bind="args" /></div>'
 });
 
-export const FirstPageActive = Template.bind({});
-FirstPageActive.args = {
-  collection: [{}],
-  page: 1,
-  total: 30,
-  limit: 10
+export const Primary = Template.bind({});
+Primary.args = {
+  total: 1024,
+  next: 'example'
 };
 
-export const MiddlePageActive = Template.bind({});
-MiddlePageActive.args = {
-  collection: [{}],
-  page: 2,
-  total: 30,
-  limit: 10
-};
-
-export const LastPageActive = Template.bind({});
-LastPageActive.args = {
-  collection: [{}],
-  page: 3,
-  total: 30,
-  limit: 10
-};
-
-export const NoResults = Template.bind({});
-NoResults.args = {
-  collection: [],
-  page: null,
-  total: null,
-  limit: null
+export const Loading = Template.bind({});
+Loading.args = {
+  total: 1024,
+  loading: true,
+  next: 'example'
 };

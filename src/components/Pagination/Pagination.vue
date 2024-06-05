@@ -1,148 +1,67 @@
 <template>
-  <div
-    v-if="shouldRender"
-    class="flex md:justify-between mt-0 relative pt-0 px-2 pb-1 -top-1 w-full"
-  >
-    <div>
-      <p>
-        {{ total }}
-        <span v-if="total !== 1">{{ t('pagination.pageResultsLabel') }}</span>
-        <span v-else>{{ t('pagination.pageSingleResultLabel') }}</span>
-      </p>
-    </div>
+  <div class="uic-pagination" data-testid="uic-pagination">
+    <PaginationTotal :loading :total data-testid="uic-pagination-total" />
 
-    <div class="hidden md:flex items-center">
-      <p class="text-sm text-normal mr-8">
-        {{ paginationText }}
-      </p>
-      <button
-        :class="[
-          'border-none bg-transparent my-0 mx-4 relative hover:text-primary-300',
-          { 'text-gray-100 pointer-none': page === 1 }
-        ]"
-        :disabled="page === 1"
-        @click="pageClick(1)"
-      >
-        <span class="sr-only">{{ t('pagination.firstPageLabel') }}</span>
-        <PageArrowIcon :first="true" :disabled="page === 1" />
-      </button>
-      <button
-        :class="[
-          'border-none bg-transparent my-0 mx-4 relative hover:text-primary-300',
-          { 'text-gray-100 pointer-none': page <= 1 }
-        ]"
-        :disabled="page <= 1"
-        @click="pageClick(page - 1)"
-      >
-        <span class="sr-only">{{ t('pagination.prevPageLabel') }}</span>
-        <PageArrowIcon :previous="true" :disabled="page <= 1" />
-      </button>
-      <button
-        :class="[
-          'border-none bg-transparent my-0 mx-4 relative hover:text-primary-300',
-          { 'text-gray-100 pointer-none': offset + limit >= total }
-        ]"
-        :disabled="offset + limit >= total"
-        @click="pageClick(page + 1)"
-      >
-        <span class="sr-only">{{ t('pagination.nextPageLabel') }}</span>
-        <PageArrowIcon :next="true" :disabled="offset + limit >= total" />
-      </button>
-      <button
-        :class="[
-          'border-none bg-transparent my-0 mx-4 relative hover:text-primary-300',
-          { 'text-gray-100 pointer-none': offset + limit >= total }
-        ]"
-        :disabled="offset + limit >= total"
-        @click="pageClick(lastPage)"
-      >
-        <span class="sr-only">{{ t('pagination.lastPageLabel') }}</span>
-        <PageArrowIcon :last="true" :disabled="offset + limit >= total" />
-      </button>
-    </div>
-
-    <div class="flex md:hidden items-center pl-8">
-      <p>
-        <button
-          :class="[
-            'border-none bg-transparent my-0 mx-4 relative hover:text-primary-300 items-center text-gray-900 flex md-hidden text-sm transition-transform duration-500 ease-linear transform group',
-            { 'text-gray-100 pointer-none': offset + limit >= total },
-            { hidden: page == lastPage }
-          ]"
-          :disabled="offset + limit >= total"
-          @click="pageClick(page + 1)"
-        >
-          {{ t('pagination.nextPageLabelMobile') }}
-          <PageArrowIcon
-            :next="true"
-            class="transform group-hover:translate-x-1 group-hover:text-primary-300"
-          />
-        </button>
-        <button
-          :class="[
-            'border-none bg-transparent my-0 mx-4 relative hover:text-primary-300 items-center text-gray-900 flex md-hidden text-sm transition-transform duration-500 ease-linear transform group',
-            'pagination__btn--prev',
-            { hidden: page != lastPage }
-          ]"
-          @click="pageClick(page - 1)"
-        >
-          <PageArrowIcon
-            :previous="true"
-            class="transform group-hover:-translate-x-1 group-hover:text-primary-300"
-          />
-          {{ t('pagination.prevPageLabelMobile') }}
-        </button>
-      </p>
-    </div>
+    <IconButton
+      v-bind="previousButtonProps"
+      class="mr-2"
+      :data-testid="
+        previousButtonProps?.['data-testid'] || 'uic-pagination-previous'
+      "
+      :disabled="!previous || loading"
+      :icon="IconName.PREVIOUS"
+      size="sm"
+      variant="outlined"
+      @click="$emit('previous')"
+    />
+    <IconButton
+      v-bind="nextButtonProps"
+      :data-testid="nextButtonProps?.['data-testid'] || 'uic-pagination-next'"
+      :disabled="!next || loading"
+      :icon="IconName.NEXT"
+      size="sm"
+      variant="outlined"
+      @click="$emit('next')"
+    />
   </div>
 </template>
 
-<script>
-import PageArrowIcon from './PageArrowIcon.vue';
+<script setup lang="ts">
+import { IconButton } from '@/components/IconButton';
+import { IconName } from '@/components/Icon';
 
-export default {
-  name: 'Pagination',
-  components: { PageArrowIcon },
-  props: {
-    collection: {
-      type: Array,
-      default: null
-    },
-    page: {
-      type: Number,
-      default: 0
-    },
-    total: {
-      type: Number,
-      default: 0
-    },
-    limit: {
-      type: Number,
-      default: 0
-    }
-  },
-  emits: ['change'],
-  computed: {
-    shouldRender() {
-      return this.collection && this.collection.length > 0;
-    },
-    paginationText() {
-      return `${this.offset + 1} - ${Math.min(
-        this.offset + this.limit,
-        this.total
-      )} of ${this.total}`;
-    },
-    offset() {
-      return (this.page - 1) * this.limit;
-    },
-    lastPage() {
-      return Math.ceil(this.total / this.limit);
-    }
-  },
-  methods: {
-    pageClick(newPage) {
-      this.$emit('change', { page: newPage });
-    }
+import PaginationTotal from './PaginationTotal.vue';
+
+withDefaults(
+  defineProps<{
+    loading?: boolean;
+    next?: string;
+    previous?: string;
+    total?: number;
+    nextButtonProps?: Partial<InstanceType<typeof IconButton>['$props']> &
+      Record<string, unknown>;
+    previousButtonProps?: Partial<InstanceType<typeof IconButton>['$props']> &
+      Record<string, unknown>;
+  }>(),
+  {
+    loading: false,
+    next: undefined,
+    previous: undefined,
+    total: undefined,
+    nextButtonProps: undefined,
+    previousButtonProps: undefined
   }
-};
+);
+
+defineEmits<{
+  (e: 'next'): void; // eslint-disable-line no-unused-vars
+  (e: 'previous'): void; // eslint-disable-line no-unused-vars
+}>();
 </script>
+
+<style scoped lang="scss">
+.uic-pagination {
+  @apply flex items-center;
+  @apply py-2;
+}
+</style>
