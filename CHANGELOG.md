@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.67
+
+- Add `Grid` `loading` state
+
 ## v2.0.66
 
 - Change `Pagination` component interface and implementation

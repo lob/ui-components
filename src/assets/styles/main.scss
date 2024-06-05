@@ -42,15 +42,6 @@
     @apply text-lg;
   }
 
-  a {
-    &:focus {
-      @apply outline-none;
-      @apply ring-2;
-      @apply ring-primary-100;
-      @apply border-transparent;
-    }
-  }
-
   // TODO Move to `@layer components` when that works
   .tile-container {
     @apply rounded-2xl;

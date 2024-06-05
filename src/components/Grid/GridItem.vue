@@ -11,44 +11,54 @@
       @[onClick&&`click`]="$emit('click', $event)"
     >
       <img
-        v-if="!imgError"
+        v-if="!rendering && src && !imgError"
         ref="img"
         :src
         :alt
         class="uic-grid-item-img"
         @error="imgError = true"
       />
-      <div v-else class="uic-grid-item-img fallback">
+      <div v-else :class="['uic-grid-item-img', 'fallback', { rendering }]">
         <Icon icon="Creative" :size-override="64" />
       </div>
-      <p class="uic-grid-item-title">{{ title }}</p>
-      <p class="uic-grid-item-subtitle">{{ subtitle }}</p>
+      <p class="uic-grid-item-title">
+        <span>{{ title || '-' }}</span>
+      </p>
+      <p class="uic-grid-item-subtitle">
+        <span>{{ subtitle || '-' }}</span>
+      </p>
     </ConditionalClickWrapper>
   </li>
 </template>
 
 <script setup lang="ts">
 import ConditionalClickWrapper from '@/utils/ConditionalClickWrapper.vue';
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
+
 import { Icon } from '../Icon';
 
 const props = withDefaults(
   defineProps<{
+    alt?: string;
     disabled?: boolean;
-    src?: string;
-    alt: string;
-    title: string;
-    subtitle: string;
-    to?: string;
-    target?: string;
     onClick?: (e: MouseEvent) => void; // eslint-disable-line no-unused-vars
+    rendering?: boolean;
+    src?: string;
+    subtitle?: string;
+    target?: string;
+    title?: string;
+    to?: string;
   }>(),
   {
+    alt: undefined,
     disabled: false,
+    onClick: undefined,
+    rendering: false,
     src: undefined,
-    to: undefined,
+    subtitle: undefined,
     target: undefined,
-    onClick: undefined
+    title: undefined,
+    to: undefined
   }
 );
 
@@ -59,13 +69,23 @@ defineEmits<{
 const img = ref<HTMLImageElement>();
 const imgError = ref(false);
 
+const isClickable = computed(() => Boolean(props.onClick) || props.to);
+
 const computedClasses = computed(() => ({
   'uic-grid-item': true,
-  clickable: Boolean(props.onClick),
+  clickable: isClickable.value,
   disabled: props.disabled
 }));
 
-const isClickable = computed(() => Boolean(props.onClick) || props.to);
+// Retries when the src changes.
+watch(
+  () => props.src,
+  (newSrc) => {
+    if (newSrc) {
+      imgError.value = false;
+    }
+  }
+);
 </script>
 
 <style lang="scss">
@@ -88,6 +108,10 @@ const isClickable = computed(() => Boolean(props.onClick) || props.to);
   &.fallback {
     @apply flex items-center justify-center;
     @apply bg-gray-50 text-gray-300;
+
+    &.rendering {
+      @apply animate-pulse;
+    }
   }
 }
 
