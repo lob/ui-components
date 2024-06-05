@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.68
+
+- Remove require `onClick` prop from `<IconButton />`
+
 ## v2.0.67
 
 - Add `Grid` `loading` state
