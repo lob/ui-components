@@ -53,7 +53,7 @@
     </Column>
 
     <template #paginatorstart>
-      <DataTableTotalResults :loading :total="total ?? data?.length" />
+      <PaginationTotal :loading :total="total ?? data?.length" />
     </template>
 
     <template #paginatorprevpagelinkicon>
@@ -66,31 +66,17 @@
   </DataTable>
 
   <!-- This is custom pagination for next/ previous endpoints. -->
-  <div v-if="list" class="uic-list-pagination">
-    <DataTableTotalResults
-      :loading
-      :total="total || data?.length"
-      class="mr-auto"
-    />
-
-    <IconButton
-      class="mr-2"
-      data-testid="uic-datatable-list-previous"
-      :disabled="!previous"
-      :icon="IconName.PREVIOUS"
-      size="sm"
-      variant="outlined"
-      @click="$emit('previous')"
-    />
-    <IconButton
-      data-testid="uic-datatable-list-next"
-      :disabled="!next"
-      :icon="IconName.NEXT"
-      size="sm"
-      variant="outlined"
-      @click="$emit('next')"
-    />
-  </div>
+  <Pagination
+    v-if="list"
+    :loading
+    :next
+    :previous
+    :total="total || data?.length"
+    :previous-button-props="{ 'data-testid': 'uic-datatable-list-previous' }"
+    :next-button-props="{ 'data-testid': 'uic-datatable-list-next' }"
+    @next="$emit('next')"
+    @previous="$emit('previous')"
+  />
 </template>
 
 <script
@@ -99,6 +85,7 @@
   generic="Data extends Record<string | number | symbol, any>"
 >
 import Alert from '@/components/Alert/Alert.vue';
+import { Pagination, PaginationTotal } from '@/components/Pagination';
 import Column from 'primevue/column';
 import DataTable, {
   DataTablePageEvent,
@@ -107,8 +94,6 @@ import DataTable, {
 import { DataTableRowSize } from './constants';
 import { Icon, IconName } from '@/components/Icon';
 import { LoadingSpinnerIcon } from '@/components/LoadingSpinnerIcon';
-import DataTableTotalResults from './DataTableTotalResults.vue';
-import IconButton from '../IconButton/IconButton.vue';
 
 defineOptions({ inheritAttrs: false });
 

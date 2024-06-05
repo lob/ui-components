@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v2.0.66
+
+- Change `Pagination` component interface and implementation
+
+### Breaking Changes
+
+- `Pagination` interface and functionality has changed
+
 ## v2.0.65
 
 - Refactor components to utilize the utility component `ConditionalClickWrapper` for normalized click functionality
