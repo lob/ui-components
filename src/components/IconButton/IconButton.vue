@@ -32,7 +32,7 @@ const props = withDefaults(
     color?: IconButtonColor;
     disabled?: boolean;
     icon: IconName;
-    onClick: (e: MouseEvent) => void; // eslint-disable-line no-unused-vars
+    onClick?: (e: MouseEvent) => void; // eslint-disable-line no-unused-vars
     size?: IconButtonSize;
     target?: AnchorHTMLAttributes['target'];
     to?: string;
@@ -41,6 +41,7 @@ const props = withDefaults(
   {
     color: IconButtonColor.NEUTRAL,
     disabled: false,
+    onClick: undefined,
     size: IconButtonSize.MD,
     target: undefined,
     to: undefined,
