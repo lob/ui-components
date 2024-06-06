@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.69
+
+- Improve `Grid` responsiveness
+
 ## v2.0.68
 
 - Remove require `onClick` prop from `<IconButton />`

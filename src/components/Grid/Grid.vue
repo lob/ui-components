@@ -68,8 +68,27 @@ defineSlots<{
   @apply relative;
 
   &-list {
-    @apply flex flex-row flex-wrap gap-5 justify-start;
-    @apply min-h-[10rem];
+    @apply grid gap-5;
+    @apply auto-rows-fr;
+    @apply max-w-[2000px];
+
+    // Breakpoints
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    @media (min-width: 640px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    @media (min-width: 1280px) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    @media (min-width: 1536px) {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+    @media (min-width: 1800px) {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
   }
 }
 

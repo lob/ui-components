@@ -95,17 +95,21 @@ watch(
   @apply relative;
   @apply flex flex-col justify-start;
   @apply p-3;
-  @apply min-w-[15.5rem] max-w-[15.5rem] min-h-[16.25rem] max-h-[16.25rem];
+  @apply aspect-square w-full;
 }
 
 .uic-grid-item-img {
-  @apply w-full h-[10.5rem] object-contain rounded-lg;
+  @apply rounded-lg;
+  @apply w-auto h-auto max-w-full max-h-full;
+  @apply object-contain;
+  aspect-ratio: 4 / 3;
 
   .disabled & {
     @apply opacity-75;
   }
 
   &.fallback {
+    @apply w-full h-auto;
     @apply flex items-center justify-center;
     @apply bg-gray-50 text-gray-300;
 
