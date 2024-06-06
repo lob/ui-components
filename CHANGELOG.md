@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.70
+
+- Add `EnvelopeSearch` and `ImageSearch` icons, and `CUSTOM_ENVELOPE` and `HTML_TEMPLATE` semantic icon entries.
+
 ## v2.0.69
 
 - Improve `Grid` responsiveness
