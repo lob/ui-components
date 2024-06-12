@@ -71,6 +71,12 @@
       @apply cursor-not-allowed;
     }
   }
+
+  // TODO Move to `@layer components` when that works
+  .uic-label {
+    @apply type-small-500 text-gray-800;
+    @apply mb-1;
+  }
 }
 
 // This is a hack for the modal styles flashing.
