@@ -6,31 +6,40 @@
         <li
           v-for="([key, value], index) in modelValue"
           :key="`key-value-${index}`"
-          class="grid gap-6 items-center"
+          class="grid gap-6 items-start"
           style="grid-template-columns: 1fr 1fr min-content"
         >
           <TextInput
             :id="`key-${index}`"
             :data-testid="`uic-key-value-input-key-${index}`"
+            :disabled
             :error="Boolean(keyErrors?.[index])"
             :helper-text="keyErrors?.[index]"
             :label="keyLabel"
             :model-value="key"
             sr-only-label
             @update:modelValue="handleKeyChange(index, $event)"
+            @blur="$emit('keyBlur', index)"
+            @focus="$emit('keyFocus', index)"
+            @input="$emit('keyInput', index)"
           />
           <TextInput
             :id="`value-${index}`"
             :data-testid="`uic-key-value-input-value-${index}`"
+            :disabled
             :error="Boolean(valueErrors?.[index])"
             :helper-text="valueErrors?.[index]"
             :label="valueLabel"
             :model-value="value"
             sr-only-label
             @update:modelValue="handleValueChange(index, $event)"
+            @blur="$emit('valueBlur', index)"
+            @focus="$emit('valueFocus', index)"
+            @input="$emit('valueInput', index)"
           />
           <IconButton
             :data-testid="`uic-key-value-input-delete-${index}`"
+            :disabled
             icon="Delete"
             type="button"
             color="error"
@@ -64,6 +73,7 @@ import TextInput from '@/components/TextInput/TextInput.vue';
 const props = withDefaults(
   defineProps<{
     addLabel?: string;
+    disabled?: boolean;
     /** Errors correspond with the field's index. */
     keyErrors?: Record<number, string>;
     keyLabel?: string;
@@ -80,6 +90,7 @@ const props = withDefaults(
   }>(),
   {
     addLabel: 'Add field',
+    disabled: false,
     keyErrors: undefined,
     keyLabel: 'Key',
     valueErrors: undefined,
@@ -89,6 +100,12 @@ const props = withDefaults(
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: [string, string][]): void; // eslint-disable-line no-unused-vars
+  (e: 'keyFocus', index: number): void; // eslint-disable-line no-unused-vars
+  (e: 'valueFocus', index: number): void; // eslint-disable-line no-unused-vars
+  (e: 'keyBlur', index: number): void; // eslint-disable-line no-unused-vars
+  (e: 'valueBlur', index: number): void; // eslint-disable-line no-unused-vars
+  (e: 'keyInput', index: number): void; // eslint-disable-line no-unused-vars
+  (e: 'valueInput', index: number): void; // eslint-disable-line no-unused-vars
 }>();
 
 const handleKeyChange = (index: number, newKey: string) => {
