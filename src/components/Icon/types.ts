@@ -40,9 +40,11 @@ export const IconName = {
   CLOUD_DATA: 'CloudData',
   CODE: 'Code',
   COIN: 'Coin',
+  COLLAPSE: 'Collapse',
   COMMENT_NOTES: 'CommentNotes',
   CREATIVE: 'Creative',
   CREDIT_CARD: 'CreditCard',
+  CREDIT_CARD_SEARCH: 'CreditCardSearch',
   DELETE: 'Delete',
   DETAILS: 'Details',
   DOLLAR_SIGN: 'DollarSign',
@@ -67,6 +69,7 @@ export const IconName = {
   GIFT: 'Gift',
   IMAGE_SEARCH: 'ImageSearch',
   LAYER_GROUP: 'LayerGroup',
+  LAYERS: 'Layers',
   LIGHTNING: 'Lightning',
   LOCATION_PIN: 'LocationPin',
   MONEY_BILL: 'MoneyBill',
@@ -121,6 +124,8 @@ export const IconSemantic = {
   ROUTING_NUMBER: IconName.FILE_SHARE,
   SEND_DATE: IconName.CALENDAR,
   SIGNATORY: IconName.PEN,
-  TARGET_DELIVERY_DATE: IconName.CALENDAR_ALT
+  TARGET_DELIVERY_DATE: IconName.CALENDAR_ALT,
+  TEMPLATE_ID: IconName.CREDIT_CARD_SEARCH,
+  TEMPLATE_VERSION: IconName.LAYERS
 } as const;
 export type IconSemantic = (typeof IconSemantic)[keyof typeof IconSemantic];
