@@ -36,6 +36,7 @@ export * from './components/KeyValueInput';
 export * from './components/Menu';
 export * from './components/Modal';
 export * from './components/Overlay';
+export * from './components/Panel';
 export * from './components/Pagination';
 export * from './components/Steps';
 export * from './components/Table';

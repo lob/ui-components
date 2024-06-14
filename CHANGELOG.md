@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.72
+
+- Add `Panel` component
+
 ## v2.0.71
 
 - Add `KeyValueInput` component
