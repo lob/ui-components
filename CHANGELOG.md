@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.73
+
+- Add `Skeleton` component
+
 ## v2.0.72
 
 - Add `Panel` component
