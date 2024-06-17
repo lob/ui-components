@@ -90,6 +90,7 @@ export const IconName = {
   PREVIOUS: 'Previous',
   PROCESSING: 'Processing',
   QR_CODE: 'QRCode',
+  REPEAT: 'Repeat',
   RESIZE: 'Resize',
   SEND: 'Send',
   SIGNAL: 'Signal',
