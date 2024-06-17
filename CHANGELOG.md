@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.74
+
+- Add `Repeat` to the `Icon` component
+
 ## v2.0.73
 
 - Add `Skeleton` component
