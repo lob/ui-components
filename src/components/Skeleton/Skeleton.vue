@@ -29,13 +29,13 @@ withDefaults(
 .uic-skeleton {
   @apply overflow-hidden;
   @apply animate-pulse;
-  @apply rounded-lg;
+  @apply rounded-full;
 
   &.color-error {
     @apply bg-error;
   }
   &.color-neutral {
-    @apply bg-gray-200;
+    @apply bg-gray-100;
   }
   &.color-success {
     @apply bg-success;
