@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## v2.0.73
+
+- Add `Skeleton` component
+
+- Add `IconButton` text variant
+- Add placeholder props for `KeyValueInput` fields
+
 ## v2.0.72
 
 - Add `Panel` component

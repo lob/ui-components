@@ -6,7 +6,7 @@
         <li
           v-for="([key, value], index) in modelValue"
           :key="`key-value-${index}`"
-          class="grid gap-6 items-start"
+          class="grid gap-4 items-start"
           style="grid-template-columns: 1fr 1fr min-content"
         >
           <TextInput
@@ -17,6 +17,7 @@
             :helper-text="keyErrors?.[index]"
             :label="keyLabel"
             :model-value="key"
+            :placeholder="keyPlaceholder"
             sr-only-label
             @update:modelValue="handleKeyChange(index, $event)"
             @blur="$emit('keyBlur', index)"
@@ -31,6 +32,7 @@
             :helper-text="valueErrors?.[index]"
             :label="valueLabel"
             :model-value="value"
+            :placeholder="valuePlaceholder"
             sr-only-label
             @update:modelValue="handleValueChange(index, $event)"
             @blur="$emit('valueBlur', index)"
@@ -41,9 +43,10 @@
             :data-testid="`uic-key-value-input-delete-${index}`"
             :disabled
             icon="Delete"
+            size="lg"
             type="button"
-            color="error"
-            variant="outlined"
+            color="neutral"
+            variant="text"
             @click="handleDelete(index)"
           />
         </li>
@@ -77,6 +80,7 @@ const props = withDefaults(
     /** Errors correspond with the field's index. */
     keyErrors?: Record<number, string>;
     keyLabel?: string;
+    keyPlaceholder?: string;
     label: string;
     /**
      * The `modelValue` is typed this way to allow invalid duplicated keys to be
@@ -87,14 +91,17 @@ const props = withDefaults(
     /** Errors correspond with the field's index. */
     valueErrors?: Record<number, string>;
     valueLabel?: string;
+    valuePlaceholder?: string;
   }>(),
   {
     addLabel: 'Add field',
     disabled: false,
     keyErrors: undefined,
     keyLabel: 'Key',
+    keyPlaceholder: undefined,
     valueErrors: undefined,
-    valueLabel: 'Value'
+    valueLabel: 'Value',
+    valuePlaceholder: undefined
   }
 );
 
