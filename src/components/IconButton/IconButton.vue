@@ -346,6 +346,116 @@ const iconSize = computed(() => {
         }
       }
     }
+
+    &text {
+      @apply rounded-full;
+      @apply transition-colors;
+
+      &.color- {
+        &error {
+          @apply text-error-dark;
+
+          &:hover {
+            @apply bg-error-light;
+          }
+
+          &:active,
+          &:focus {
+            @apply bg-red-100;
+          }
+
+          &:disabled {
+            @apply bg-error-light;
+            @apply text-red-300;
+          }
+        }
+        &info {
+          @apply text-info-dark;
+
+          &:hover {
+            @apply bg-info-light;
+          }
+
+          &:active,
+          &:focus {
+            @apply bg-blue-100;
+          }
+
+          &:disabled {
+            @apply bg-info-light;
+            @apply text-blue-300;
+          }
+        }
+        &neutral {
+          @apply text-gray-800;
+
+          &:hover {
+            @apply bg-gray-50;
+          }
+
+          &:active,
+          &:focus {
+            @apply bg-gray-100;
+          }
+
+          &:disabled {
+            @apply bg-gray-25;
+            @apply text-gray-400;
+          }
+        }
+        &success {
+          @apply text-success-dark;
+
+          &:hover {
+            @apply bg-success-light;
+          }
+
+          &:active,
+          &:focus {
+            @apply bg-green-100;
+          }
+
+          &:disabled {
+            @apply bg-success-light;
+            @apply text-green-400;
+          }
+        }
+        &upgrade {
+          @apply text-upgrade-dark;
+
+          &:hover {
+            @apply bg-upgrade-light;
+          }
+
+          &:active,
+          &:focus {
+            @apply bg-purple-100;
+          }
+
+          &:disabled {
+            @apply bg-upgrade-light;
+            @apply text-purple-300;
+          }
+        }
+        &warning {
+          @apply text-warning-dark;
+
+          &:hover {
+            @apply bg-warning-light;
+          }
+
+          &:active,
+          &:focus {
+            @apply bg-orange-100;
+          }
+
+          &:disabled {
+            @apply bg-warning-light;
+            @apply text-orange-300;
+          }
+        }
+      }
+    }
   }
 }
 </style>

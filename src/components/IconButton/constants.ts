@@ -23,7 +23,8 @@ export type IconButtonSize =
 
 export const IconButtonVariant = {
   OUTLINED: Variant.OUTLINED,
-  PRIMARY: Variant.PRIMARY
+  PRIMARY: Variant.PRIMARY,
+  TEXT: Variant.TEXT
 } as const;
 export type IconButtonVariant =
   (typeof IconButtonVariant)[keyof typeof IconButtonVariant];
