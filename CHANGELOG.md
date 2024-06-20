@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.75
+
+- Change clickbox for `Panel` toggle
+
 ## v2.0.74
 
 - Add `Repeat` to the `Icon` component
