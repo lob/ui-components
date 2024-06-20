@@ -42,13 +42,6 @@
     @apply text-lg;
   }
 
-  .uic-panel-container {
-    @apply rounded-md;
-    @apply border-line-grey border;
-    @apply bg-white;
-    @apply w-full p-4;
-  }
-
   // TODO Move to `@layer components` when that works
   .tile-container {
     @apply rounded-2xl;

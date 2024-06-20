@@ -1,7 +1,7 @@
 <template>
   <Panel
+    v-model:collapsed="collapsed"
     class="uic-panel-container"
-    :collapsed
     data-testid="uic-panel"
     :pt="{
       transition: {
@@ -15,28 +15,25 @@
         leaveToClass: 'max-h-0'
       }
     }"
-    :toggleable="collapsible"
-    @update:collapsed="$emit('update:collapsed', $event)"
   >
     <template #header>
-      <component
-        :is="headerComponent"
-        class="type-base-600 flex flex-row gap-2 items-center"
-      >
-        <slot name="header">
-          {{ header }}
-        </slot>
-        <LoadingSpinnerIcon v-if="loading" />
-      </component>
-    </template>
-
-    <template #togglericon="{ collapsed: iconCollapsed }">
-      <Icon
-        :class="['toggle-icon', { collapsed: iconCollapsed }]"
-        data-testid="uic-panel-toggle-icon"
-        icon="Collapse"
-        size="lg"
-      />
+      <button class="uic-panel-header-button" @click="collapsed = !collapsed">
+        <component
+          :is="headerComponent"
+          class="type-base-600 flex flex-row gap-2 items-center"
+        >
+          <slot name="header">
+            {{ header }}
+          </slot>
+          <LoadingSpinnerIcon v-if="loading" />
+        </component>
+        <Icon
+          :class="['toggle-icon', { collapsed }]"
+          data-testid="uic-panel-toggle-icon"
+          icon="Collapse"
+          size="lg"
+        />
+      </button>
     </template>
 
     <template #default>
@@ -52,15 +49,11 @@ import { LoadingSpinnerIcon } from '../LoadingSpinnerIcon';
 
 withDefaults(
   defineProps<{
-    collapsed?: boolean;
-    collapsible?: boolean;
     header?: string;
     headerComponent?: string;
     loading?: boolean;
   }>(),
   {
-    collapsed: false,
-    collapsible: false,
     header: undefined,
     headerComponent: 'h2',
     loading: false
@@ -68,25 +61,37 @@ withDefaults(
 );
 
 defineEmits<{
-  (e: 'update:collapsed', collapsed: boolean): void; // eslint-disable-line no-unused-vars
+  (e: 'update:collapsed'): void; // eslint-disable-line no-unused-vars
 }>();
+
+const collapsed = defineModel<boolean>('collapsed', { default: false });
 </script>
 
 <style scoped="scss">
 .uic-panel-container {
-  :deep([data-pc-section='header']) {
+  @apply flex flex-col;
+  @apply w-full p-4;
+  @apply rounded-md;
+  @apply border-line-grey border;
+  @apply bg-white;
+
+  .uic-panel-header-button {
     @apply flex flex-row gap-2 items-center justify-between;
+    width: calc(100% + 1rem);
+    @apply -m-2 p-2;
+    @apply rounded-md;
+    @apply transition-colors;
+
+    &:hover {
+      @apply bg-gray-25;
+    }
   }
 
-  :deep([data-pc-section='icons']) {
-    @apply flex flex-row items-center justify-center;
+  .toggle-icon {
+    transition: transform 0.3s;
 
-    .toggle-icon {
-      transition: transform 0.3s;
-
-      &:not(.collapsed) {
-        transform: rotate(180deg);
-      }
+    &:not(.collapsed) {
+      transform: rotate(180deg);
     }
   }
 
