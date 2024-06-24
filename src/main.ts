@@ -1,9 +1,11 @@
-import './assets/styles/main.scss';
 import 'primeicons/primeicons.css';
+import Tooltip from 'primevue/tooltip';
+import { App } from 'vue';
+
+import './assets/styles/main.scss';
 import * as components from './components';
 import * as mixins from './mixins';
 import * as configs from './config';
-import { App } from 'vue';
 
 const ComponentLibrary = {
   install(app: App) {
@@ -20,6 +22,7 @@ const ComponentLibrary = {
       const component = components[componentName];
       app.component(component.name || componentName, component);
     }
+    app.directive('tooltip', Tooltip);
   }
 };
 
