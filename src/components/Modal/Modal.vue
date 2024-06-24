@@ -1,10 +1,11 @@
 <template>
   <Dialog
+    v-model:visible="visible"
     :modal="showMask"
     :closable="closable"
     :pt="{
       root: {
-        class: `relative bg-white p-10 rounded-xl shadow-large text-gray-800`
+        class: `relative bg-white p-10 rounded-xl shadow-large text-gray-800 m-10`
       },
       mask: {
         style: 'animation: fadeIn 100ms;', // This is a hack. Without it the styles flash.
@@ -29,9 +30,7 @@
     :block-scroll="true"
     :dismissable-mask="closable"
     :style="{ width }"
-    :visible="visible"
     data-testid="uic-modal"
-    @update:visible="(visible) => emits('update:visible', visible)"
     @show="emits('open')"
     @hide="emits('close')"
   >
@@ -82,7 +81,6 @@ import { ModalColor, ModalVariant } from './constants';
 
 const props = withDefaults(
   defineProps<{
-    visible?: boolean;
     width?: string;
     header?: string;
     subheader?: string;
@@ -93,7 +91,6 @@ const props = withDefaults(
     iconColor?: ModalColor;
   }>(),
   {
-    visible: false,
     width: '550px',
     header: undefined,
     subheader: undefined,
@@ -111,8 +108,9 @@ const props = withDefaults(
 const emits = defineEmits<{
   (e: 'close'): void; // eslint-disable-line no-unused-vars
   (e: 'open'): void; // eslint-disable-line no-unused-vars
-  (e: 'update:visible', visible: boolean): void; // eslint-disable-line no-unused-vars
 }>();
+
+const visible = defineModel<boolean>('visible', { default: false });
 
 const slots = useSlots();
 

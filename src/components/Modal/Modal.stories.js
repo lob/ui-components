@@ -79,7 +79,7 @@ const PrimaryTemplate = (args, { argTypes }) => ({
       </template>
     
       <template #footer>
-        <LobButton variant="secondary">Go back</LobButton>
+        <LobButton variant="secondary" @click="isModalVisible = false">Go back</LobButton>
         <LobButton variant="primary" class="ml-2">Submit</LobButton>
       </template>
     </Modal>
