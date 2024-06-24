@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.76
+
+- `Modal` improvements
+
 ## v2.0.75
 
 - Change clickbox for `Panel` toggle
