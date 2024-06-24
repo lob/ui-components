@@ -1,8 +1,9 @@
 <template>
   <p class="pagination-total" data-testid="uic-pagination-total">
-    <LoadingSpinnerIcon
+    <Skeleton
       v-if="loading"
-      :size="14"
+      width="40px"
+      height="14px"
       data-testid="uic-pagination-total-loading"
     />
     <template v-else>{{ totalRows }}</template>
@@ -11,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { LoadingSpinnerIcon } from '@/components/LoadingSpinnerIcon';
+import { Skeleton } from '@/components/Skeleton';
 import { computed } from 'vue';
 
 const props = withDefaults(

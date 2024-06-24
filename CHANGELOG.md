@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.77
+
+- Add `Skeleton` loading to `Tile` and `Pagination` components
+
 ## v2.0.76
 
 - `Modal` improvements

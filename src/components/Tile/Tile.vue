@@ -14,6 +14,7 @@
     >
       <template #header>
         <slot name="header" />
+        <LoadingSpinnerIcon v-if="$slots.default && loading" />
       </template>
 
       <template #icons>
@@ -23,21 +24,18 @@
       </template>
 
       <template #default>
-        <template v-if="loading">
-          <LoadingSpinnerIcon
-            :width="size === TileSize.LG ? '32' : '28'"
-            :height="size === TileSize.LG ? '32' : '28'"
-          />
+        <template v-if="!$slots.default && loading">
+          <Skeleton :height="size === TileSize.LG ? '32px' : '28px'" />
         </template>
         <Alert v-else-if="error" variant="error">
           {{ error }}
         </Alert>
         <template v-else>
-          <div class="flex flex-row items-end">
+          <div :class="['uic-panel-content', { loading }]">
             <slot name="default" />
             <p
               v-if="$slots['subtext']"
-              class="ml-4 type-small-400 text-gray-600"
+              :class="['uic-panel-subcontent', { loading }]"
             >
               <slot name="subtext" />
             </p>
@@ -50,13 +48,14 @@
 
 <script setup lang="ts">
 import Alert from '@/components/Alert/Alert.vue';
-import { Icon, IconName } from '../Icon';
+import ConditionalClickWrapper from '@/utils/ConditionalClickWrapper.vue';
 import Panel from 'primevue/panel';
 import { computed } from 'vue';
 
-import ConditionalClickWrapper from '@/utils/ConditionalClickWrapper.vue';
 import { TileColor, TileSize } from './constants';
+import { Icon, IconName } from '../Icon';
 import { LoadingSpinnerIcon } from '../LoadingSpinnerIcon';
+import { Skeleton } from '../Skeleton';
 
 defineOptions({ inheritAttrs: false });
 
@@ -107,6 +106,25 @@ const computedClasses = computed(() => [
   @apply relative;
   @apply flex flex-col justify-center;
   @apply p-6 min-w-fit;
+
+  &-content {
+    @apply flex flex-row items-end;
+    @apply transition-colors;
+
+    &.loading {
+      @apply text-gray-300;
+    }
+  }
+
+  &-subcontent {
+    @apply ml-4;
+    @apply type-small-400;
+    @apply transition-colors;
+
+    &.loading {
+      @apply text-gray-200;
+    }
+  }
 
   &:not(.disabled).clickable {
     &:hover {
