@@ -50,7 +50,6 @@ export const Primary: StoryObj<typeof Tile> = {
     template: `
       <Tile v-bind="args">
         <template #header>Total Volume</template>
-        <template #default>193,038,282</template>
       </Tile>
     `
   })
