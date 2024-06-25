@@ -14,7 +14,7 @@
     >
       <template #header>
         <slot name="header" />
-        <LoadingSpinnerIcon v-if="$slots.default && loading" />
+        <LoadingSpinnerIcon v-if="isSlotEmpty($slots.default) && loading" />
       </template>
 
       <template #icons>
@@ -24,8 +24,11 @@
       </template>
 
       <template #default>
-        <template v-if="!$slots.default && loading">
-          <Skeleton :height="size === TileSize.LG ? '32px' : '28px'" />
+        <template v-if="!isSlotEmpty($slots.default) && loading">
+          <Skeleton
+            :height="size === TileSize.LG ? '32px' : '28px'"
+            width="50%"
+          />
         </template>
         <Alert v-else-if="error" variant="error">
           {{ error }}
@@ -50,6 +53,7 @@
 import Alert from '@/components/Alert/Alert.vue';
 import ConditionalClickWrapper from '@/utils/ConditionalClickWrapper.vue';
 import Panel from 'primevue/panel';
+import { isSlotEmpty } from '@/utils/isSlotEmpty';
 import { computed } from 'vue';
 
 import { TileColor, TileSize } from './constants';
