@@ -2,6 +2,10 @@
 
 ## v2.0.79
 
+- Make `Modal`s scrollable when overflow
+
+## v2.0.78
+
 - Improve `Skeleton` loading within `Tile` component
 
 ## v2.0.77

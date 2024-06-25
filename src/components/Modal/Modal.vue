@@ -5,7 +5,7 @@
     :closable="closable"
     :pt="{
       root: {
-        class: `relative bg-white p-10 rounded-xl shadow-large text-gray-800 m-10`
+        class: `relative bg-white p-10 rounded-xl shadow-large text-gray-800 m-10 max-h-[90vh] overflow-y-auto`
       },
       mask: {
         style: 'animation: fadeIn 100ms;', // This is a hack. Without it the styles flash.
