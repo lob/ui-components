@@ -1,6 +1,6 @@
 import LobButton from '../Button/Button.vue';
 import RadioButton from '../RadioButton/RadioButton.vue';
-import RadioGroup from '../RadioGroup/RadioGroup.vue';
+import RadioButtonGroup from '../RadioButton/RadioButtonGroup.vue';
 import Icon from '../Icon/Icon.vue';
 import { IconName } from '../Icon/types';
 
@@ -48,7 +48,7 @@ const radioModel = 'yes';
 
 const PrimaryTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { Icon, Modal, LobButton, RadioButton, RadioGroup },
+  components: { Icon, Modal, LobButton, RadioButton, RadioButtonGroup },
   setup: () => ({ args }),
   data: () => ({ isModalVisible, radioModel }),
   template: `
@@ -67,7 +67,7 @@ const PrimaryTemplate = (args, { argTypes }) => ({
     
       <template #default>
         <p>Would you like to export an additional CSV of associated tracking events?</p>
-        <RadioGroup>
+        <RadioButtonGroup>
           <radio-button
             name="exportCSV"
             value="yes"
@@ -75,7 +75,7 @@ const PrimaryTemplate = (args, { argTypes }) => ({
             v-model="radioModel"
           />
           <radio-button name="exportCSV" value="no" label="No" v-model="radioModel" />
-        </RadioGroup>
+        </RadioButtonGroup>
       </template>
     
       <template #footer>

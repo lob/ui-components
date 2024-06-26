@@ -1,7 +1,7 @@
 import Dropdown from '../Dropdown/Dropdown.vue';
 import LobButton from '../Button/Button.vue';
 import RadioButton from '../RadioButton/RadioButton.vue';
-import RadioGroup from '../RadioGroup/RadioGroup.vue';
+import RadioButtonGroup from '../RadioButton/RadioButtonGroup.vue';
 import LegacyModal from './LegacyModal.vue';
 import mdx from './LegacyModal.mdx';
 
@@ -20,7 +20,7 @@ const radioModel = 'yes';
 
 const PrimaryTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { LegacyModal, LobButton, RadioButton, RadioGroup },
+  components: { LegacyModal, LobButton, RadioButton, RadioButtonGroup },
   setup: () => ({ args }),
   data: () => ({ isModalVisible, radioModel }),
   template: `
@@ -36,10 +36,10 @@ const PrimaryTemplate = (args, { argTypes }) => ({
       @close="isModalVisible = false"
     >
       Would you like to export an additional CSV of associated tracking events?
-      <RadioGroup>
+      <RadioButtonGroup>
         <radio-button name="exportCSV" id="yes" value="yes" label="Yes" v-model="radioModel"/>
         <radio-button name="exportCSV" id="no" value="no" label="No" v-model="radioModel" />
-      </RadioGroup>
+      </RadioButtonGroup>
 
       <template v-slot:footer>
         <div class="flex self-end">

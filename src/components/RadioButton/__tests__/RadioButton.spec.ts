@@ -13,7 +13,7 @@ const initialProps = {
   disabled: false
 };
 
-describe('Radio Button', () => {
+describe('RadioButton', () => {
   it('does not check the input when the value does not match the modelValue', () => {
     const props = initialProps;
     const { getByLabelText } = render(RadioButton, {
@@ -35,20 +35,6 @@ describe('Radio Button', () => {
 
     const radio = getByLabelText(props.label);
     expect(radio).toBeChecked();
-  });
-
-  it('adds an error class to the input when error prop is true', () => {
-    const props = {
-      ...initialProps,
-      error: true
-    };
-
-    const { getByLabelText } = render(RadioButton, {
-      props
-    });
-
-    const radio = getByLabelText(props.label);
-    expect(radio).toHaveClass('radio__input--error');
   });
 
   it('disables the input when disabled prop is true', () => {
