@@ -41,6 +41,7 @@ export * from './components/Modal';
 export * from './components/Overlay';
 export * from './components/Panel';
 export * from './components/Pagination';
+export * from './components/RadioButton';
 export * from './components/Skeleton';
 export * from './components/Steps';
 export * from './components/Table';
