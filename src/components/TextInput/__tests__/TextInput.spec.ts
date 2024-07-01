@@ -1,7 +1,8 @@
 import '@testing-library/jest-dom';
-import { render, fireEvent } from '@testing-library/vue';
+import { render, fireEvent, RenderResult } from '@testing-library/vue';
 import TextInput from '../TextInput.vue';
 import userEvent from '@testing-library/user-event';
+import Tooltip from 'primevue/tooltip';
 
 const initialProps = {
   id: 'test',
@@ -10,10 +11,19 @@ const initialProps = {
   'v-model': ''
 };
 
+const DEFAULT_RENDER_OPTIONS = {
+  global: {
+    directives: {
+      tooltip: Tooltip
+    }
+  }
+} as const;
+
 describe('Text input', () => {
   it('renders correctly', () => {
     const props = initialProps;
     const { getByLabelText } = render(TextInput, {
+      ...DEFAULT_RENDER_OPTIONS,
       props
     });
     const textInput = getByLabelText(props.label);
@@ -28,6 +38,7 @@ describe('Text input', () => {
     };
 
     const { getByLabelText } = render(TextInput, {
+      ...DEFAULT_RENDER_OPTIONS,
       props
     });
     const textInput = getByLabelText(new RegExp(props.label));
@@ -42,6 +53,7 @@ describe('Text input', () => {
     };
 
     const { getByLabelText } = render(TextInput, {
+      ...DEFAULT_RENDER_OPTIONS,
       props
     });
     const textInput = getByLabelText(props.label);
@@ -56,6 +68,7 @@ describe('Text input', () => {
     };
 
     const { getByTestId } = render(TextInput, {
+      ...DEFAULT_RENDER_OPTIONS,
       props
     });
     const textInput = getByTestId('input-container');
@@ -66,9 +79,10 @@ describe('Text input', () => {
   it('updates the v-model on text input', async () => {
     const props = initialProps;
     const { getByLabelText } = render(TextInput, {
+      ...DEFAULT_RENDER_OPTIONS,
       props
     });
-    const textInput = getByLabelText(props.label);
+    const textInput = getByLabelText(props.label) as HTMLInputElement;
 
     await fireEvent.update(textInput, 'hello!');
     expect(textInput.value).toEqual('hello!');
@@ -77,6 +91,7 @@ describe('Text input', () => {
   it('fires the input event on text input', async () => {
     const props = initialProps;
     const { getByLabelText, emitted } = render(TextInput, {
+      ...DEFAULT_RENDER_OPTIONS,
       props
     });
     const textInput = getByLabelText(props.label);
@@ -96,10 +111,11 @@ describe('Text input', () => {
       selectOnClick: true
     };
     const { getByLabelText } = render(TextInput, {
+      ...DEFAULT_RENDER_OPTIONS,
       props
     });
 
-    const textInput = getByLabelText(props.label);
+    const textInput = getByLabelText(props.label) as HTMLInputElement;
     const updatedValue = 'hello!';
     await fireEvent.update(textInput, updatedValue);
 
@@ -113,7 +129,11 @@ describe('Text input', () => {
     const slots = { iconLeft: [`${slotContent}`] };
 
     const props = initialProps;
-    const { getByText } = render(TextInput, { props, slots });
+    const { getByText } = render(TextInput, {
+      ...DEFAULT_RENDER_OPTIONS,
+      props,
+      slots
+    });
 
     const slot = getByText(new RegExp(slotContent));
     expect(slot).toBeInTheDocument();
@@ -125,6 +145,7 @@ describe('Text input', () => {
       helperText: 'Helper text'
     };
     const { getByText } = render(TextInput, {
+      ...DEFAULT_RENDER_OPTIONS,
       props
     });
 
@@ -138,9 +159,12 @@ describe('Text input', () => {
       withClearButton: true,
       modelValue: 'test value'
     };
-    const { getByRole, getByLabelText } = render(TextInput, { props });
+    const { getByRole, getByLabelText } = render(TextInput, {
+      ...DEFAULT_RENDER_OPTIONS,
+      props
+    });
 
-    const textInput = getByLabelText(props.label);
+    const textInput = getByLabelText(props.label) as HTMLInputElement;
     const updatedValue = 'hello!';
     await fireEvent.update(textInput, updatedValue);
 
@@ -164,35 +188,34 @@ describe('Text input', () => {
 
     it('the label is correctly associated with the input when the tooltip is trailing', async () => {
       const { getByLabelText, getByTestId } = render(TextInput, {
+        ...DEFAULT_RENDER_OPTIONS,
         props: propsTooltip
       });
       const companyInput = getByLabelText(propsTooltip.label);
       expect(companyInput).toBeInTheDocument();
       await userEvent.type(companyInput, 'lob');
       expect(companyInput).toHaveValue('lob');
-      const tooltipTrailing = getByTestId('tooltip-trailing');
-      expect(tooltipTrailing).toBeInTheDocument();
     });
 
     it('the label is correctly associated with the input when the tooltip is leading', () => {
       const { getByLabelText, getByTestId } = render(TextInput, {
+        ...DEFAULT_RENDER_OPTIONS,
         props: propsTooltipLeading
       });
       const companyInput = getByLabelText(propsTooltip.label);
       expect(companyInput).toBeInTheDocument();
-      const tooltipLeading = getByTestId('tooltip-leading');
-      expect(tooltipLeading).toBeInTheDocument();
     });
   });
 
   describe('with Copy Button', () => {
-    let component;
+    let component: RenderResult;
     beforeEach(async () => {
       const props = {
         ...initialProps,
         withCopyButton: true
       };
       component = render(TextInput, {
+        ...DEFAULT_RENDER_OPTIONS,
         props
       });
     });

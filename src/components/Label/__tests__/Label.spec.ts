@@ -1,6 +1,7 @@
 import '@testing-library/jest-dom';
-import { render } from '@testing-library/vue';
+import { fireEvent, render } from '@testing-library/vue';
 import LobLabel from '../Label.vue';
+import Tooltip from 'primevue/tooltip';
 
 const initialProps = {
   id: 'test',
@@ -11,7 +12,10 @@ const initialProps = {
 describe('LobLabel', () => {
   it('renders correctly', () => {
     const props = initialProps;
-    const { getByText } = render(LobLabel, { props });
+    const { getByText } = render(LobLabel, {
+      props,
+      global: { directives: { tooltip: Tooltip } }
+    });
 
     const label = getByText(props.label);
     expect(label).toBeInTheDocument();
@@ -23,33 +27,42 @@ describe('LobLabel', () => {
       required: true
     };
 
-    const { getByText } = render(LobLabel, { props });
+    const { getByText } = render(LobLabel, {
+      props,
+      global: { directives: { tooltip: Tooltip } }
+    });
     const label = getByText(props.label);
     const asterisk = getByText('*');
     expect(label).toContainElement(asterisk);
   });
 
   describe('if a tooltip is added', () => {
-    it('the tooltip shows on the left by default', () => {
+    it('the tooltip shows on the left by default', async () => {
       const props = { ...initialProps, tooltipContent: 'magic tooltip' };
-      const { getByTestId } = render(LobLabel, { props });
+      const { findByText, getByTestId } = render(LobLabel, {
+        props,
+        global: { directives: { tooltip: Tooltip } }
+      });
 
-      const tooltip = getByTestId('tooltip-leading');
-      expect(tooltip).toBeInTheDocument();
+      await fireEvent.mouseEnter(getByTestId('uic-tooltip-icon'));
+      expect(await findByText('magic tooltip')).toBeInTheDocument();
       const labelWrapper = getByTestId('labelWrapper');
       expect(labelWrapper).not.toHaveClass('justify-between');
     });
 
-    it('the tooltip shows on the right if tooltipPosition:trailing is added', () => {
+    it('the tooltip shows on the right if tooltipPosition:trailing is added', async () => {
       const props = {
         ...initialProps,
         tooltipContent: 'magic tooltip',
         tooltipPosition: 'trailing'
       };
-      const { getByTestId } = render(LobLabel, { props });
+      const { findByText, getByTestId } = render(LobLabel, {
+        props,
+        global: { directives: { tooltip: Tooltip } }
+      });
 
-      const tooltip = getByTestId('tooltip-trailing');
-      expect(tooltip).toBeInTheDocument();
+      await fireEvent.mouseEnter(getByTestId('uic-tooltip-icon'));
+      expect(await findByText('magic tooltip')).toBeInTheDocument();
       const labelWrapper = getByTestId('labelWrapper');
       expect(labelWrapper).toHaveClass('justify-between flex-row-reverse');
     });

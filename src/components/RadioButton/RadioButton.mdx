@@ -37,11 +37,7 @@ Example with slot that contains label and tooltip
   v-model="postcard.size"
   @click="handleClick"
 >
-  <div class="flex">
-    {{ service.description }}
-    <!-- this becomes the label -->
-    <Tooltip />
-  </div>
+  <div class="flex">{{ service.description }}</div>
 </RadioButton>
 ```
 
