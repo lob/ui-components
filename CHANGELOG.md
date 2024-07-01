@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## v2.0.80
+
+- Add PrimeVue `tooltip` directive to plugin installation
+
+### Breaking Changes
+
+- Removes `Tooltip` component
+- Adds a dependency on PrimeVue plugin installation prior to `ui-component` plugin installation
+
 ## v2.0.79
 
 - Make `Modal`s scrollable when overflow

@@ -5,10 +5,16 @@ import PrimeVue from 'primevue/config';
 
 import '@/assets/styles/main.scss';
 import 'primeicons/primeicons.css';
+import Tooltip from 'primevue/tooltip';
+import { TooltipPassThrough } from '@/components/Tooltip';
 
 setup((app) => {
   app.use(configs.constants);
-  app.use(PrimeVue, { unstyled: true });
+  app.use(PrimeVue, {
+    unstyled: true,
+    pt: { directives: { tooltip: TooltipPassThrough } }
+  });
+  app.directive('tooltip', Tooltip);
   for (const mixinName in mixins) {
     const mixin = mixins[mixinName];
     app.mixin(mixin);

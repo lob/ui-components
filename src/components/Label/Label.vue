@@ -10,23 +10,19 @@
     ]"
     data-testid="labelWrapper"
   >
-    <Tooltip
+    <span
       v-if="tooltipContent"
-      position="bottom"
-      :class="['text-gray-500', { 'mr-1': tooltipPosition === 'leading' }]"
-      :data-testid="
-        tooltipPosition === 'trailing' ? 'tooltip-trailing' : 'tooltip-leading'
-      "
+      v-tooltip.bottom="tooltipContent"
+      data-testid="uic-tooltip-icon"
+      :class="[
+        'text-gray-500',
+        {
+          'mr-1': tooltipContent && tooltipPosition !== 'trailing'
+        }
+      ]"
     >
-      <template #trigger>
-        <CircleInfo />
-      </template>
-      <template #content>
-        <p class="w-max max-w-[200px]">
-          {{ tooltipContent }}
-        </p>
-      </template>
-    </Tooltip>
+      <Icon icon="CircleInfo" />
+    </span>
     <label :for="labelFor">
       <span>
         {{ label }}
@@ -41,14 +37,12 @@
 
 <script>
 import { defineComponent } from 'vue';
-import Tooltip from '../Tooltip/Tooltip.vue';
-import CircleInfo from '../Icons/CircleInfo.vue';
+import { Icon } from '../Icon';
 
 export default defineComponent({
   name: 'LobLabel',
   components: {
-    Tooltip,
-    CircleInfo
+    Icon
   },
   props: {
     label: { type: String, required: true },

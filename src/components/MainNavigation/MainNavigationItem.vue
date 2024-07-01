@@ -22,21 +22,7 @@
       @[clickEvent]="toggleSubNav"
     >
       <div class="w-5 h-5 transition-transform duration-100 ease-in">
-        <div v-if="expanded">
-          <slot name="icon" :title="title" />
-        </div>
-        <div v-else>
-          <Tooltip position="right">
-            <template #content>
-              <div class="whitespace-nowrap !type-xs-500 !leading-3">
-                {{ title }}
-              </div>
-            </template>
-            <template #trigger>
-              <slot name="icon" :title="title" />
-            </template>
-          </Tooltip>
-        </div>
+        <slot name="icon" :title="title" />
       </div>
       <span
         :class="[
@@ -79,11 +65,10 @@
 <script>
 import ChevronDown from '../Icons/ChevronDown';
 import LobLink from '../Link/Link';
-import Tooltip from '../Tooltip/Tooltip.vue';
 
 export default {
   name: 'MainNavigationItem',
-  components: { ChevronDown, LobLink, Tooltip },
+  components: { ChevronDown, LobLink },
   props: {
     title: {
       type: String,

@@ -1,7 +1,7 @@
 const plugin = require('tailwindcss/plugin');
 
 module.exports = {
-  content: ['./src/**/*.vue'],
+  content: ['./src/**/*.{vue,js,ts}'],
   safelist: [
     { pattern: /text-(xl|2xl|3xl|4xl|5xl)/ },
     {

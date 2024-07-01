@@ -44,6 +44,7 @@ export * from './components/Pagination';
 export * from './components/Skeleton';
 export * from './components/Steps';
 export * from './components/Table';
+export * from './components/Tooltip';
 export * from './components/Tile';
 export * from './types';
 

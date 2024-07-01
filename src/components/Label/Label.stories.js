@@ -2,7 +2,6 @@ import LobLabel from './Label.vue';
 import mdx from './Label.mdx';
 
 import { Info } from '@/components/Icons';
-import Tooltip from '@/components/Tooltip/Tooltip.vue';
 
 export default {
   title: 'Components/Label',
@@ -80,19 +79,11 @@ RequiredField.args = {
 
 const WithTooltipTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { LobLabel, Info, Tooltip },
+  components: { LobLabel, Info },
   setup: () => ({ args }),
   template: `
     <lob-label v-bind="args">
       <template v-slot:tooltip>
-        <Tooltip position="bottom">
-          <template #trigger>
-            <Info class="w-5 h-5" />
-          </template>
-          <template #content>
-            {{ args.tooltipContent }}
-          </template>
-        </Tooltip>
       </template>
     </lob-label>
     <input class="border rounded p-2 text-gray-500" />
