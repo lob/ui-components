@@ -1,6 +1,8 @@
+// @ts-expect-error No types
 import Card from './Card.vue';
 import mdx from './Card.mdx';
 import { IconName } from '@/components/Icon';
+import { StoryFn } from '@storybook/vue3';
 
 export default {
   title: 'Components/Card',
@@ -40,16 +42,27 @@ export default {
   }
 };
 
-const Template = (args, { argTypes }) => ({
+const Template: StoryFn = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { Card },
   setup: () => ({ args }),
-  template:
-    '<Card><template #title>{{ args.title }}</template><template #default>{{ args.content }}</template></Card>'
+  template: '<Card v-bind="args" />'
 });
 
 export const Primary = Template.bind({});
 Primary.args = {
+  icon: 'Envelope',
   title: 'Envelopes',
+  content: 'There are envelopes within this system'
+};
+
+export const NoIcon = Template.bind({});
+NoIcon.args = {
+  title: 'Envelopes',
+  content: 'There are envelopes within this system'
+};
+
+export const OnlyContent = Template.bind({});
+OnlyContent.args = {
   content: 'There are envelopes within this system'
 };

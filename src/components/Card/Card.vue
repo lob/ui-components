@@ -14,7 +14,7 @@
         </span>
       </template>
 
-      <template #title>
+      <template v-if="title || $slots.title" #title>
         <slot name="title">
           {{ title }}
         </slot>
@@ -90,9 +90,6 @@ const cardClasses = computed(() =>
     @apply flex items-center justify-center;
     @apply bg-gray-25;
     @apply w-10 h-10 rounded-full;
-  }
-
-  [data-pc-section='header'] {
     @apply mb-2;
   }
 
