@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v2.0.81
+
+- Update `Card` component
+- Add `Chip` component
+
 ## v2.0.80
 
 - Add PrimeVue `tooltip` directive to plugin installation
