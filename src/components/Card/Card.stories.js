@@ -1,5 +1,6 @@
 import Card from './Card.vue';
 import mdx from './Card.mdx';
+import { IconName } from '@/components/Icon';
 
 export default {
   title: 'Components/Card',
@@ -10,16 +11,30 @@ export default {
     }
   },
   argTypes: {
-    content: {
+    icon: {
+      options: Object.values(IconName),
+      control: {
+        type: 'select'
+      },
+      table: {
+        type: {
+          summary: Object.values(IconName).join(' | ')
+        }
+      }
+    },
+    onClick: {
+      description: 'Utilize the `@emit`, this is to detect clickability'
+    },
+
+    // SLOTS
+    title: {
       control: {
         type: 'text'
-      },
-      description: 'Content to display inside of the card',
-      table: {
-        defaultValue: 'I am a card.',
-        type: {
-          summary: 'html or component'
-        }
+      }
+    },
+    default: {
+      control: {
+        type: 'text'
       }
     }
   }
@@ -29,10 +44,12 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { Card },
   setup: () => ({ args }),
-  template: '<card v-slot>{{ args.content }}</card>'
+  template:
+    '<Card><template #title>{{ args.title }}</template><template #default>{{ args.content }}</template></Card>'
 });
 
 export const Primary = Template.bind({});
 Primary.args = {
-  content: 'I am a card.'
+  title: 'Envelopes',
+  content: 'There are envelopes within this system'
 };
