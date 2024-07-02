@@ -24,9 +24,6 @@ export default {
         }
       }
     },
-    onClick: {
-      description: 'Utilize the `@emit`, this is to detect clickability'
-    },
 
     // SLOTS
     title: {
@@ -65,4 +62,13 @@ NoIcon.args = {
 export const OnlyContent = Template.bind({});
 OnlyContent.args = {
   content: 'There are envelopes within this system'
+};
+
+export const Link = Template.bind({});
+Link.args = {
+  icon: 'Envelope',
+  title: 'Envelopes',
+  content: 'There are envelopes within this system',
+  to: 'https://lob.com',
+  target: '_blank'
 };

@@ -8,21 +8,21 @@
     @[onClick&&`click`]="$emit('click', $event)"
   >
     <Card :class="cardClasses">
-      <template #header>
-        <span v-if="icon" class="uic-card-icon-container">
+      <template v-if="icon" #header>
+        <span class="uic-card-icon-container">
           <Icon :icon size="xxl" />
         </span>
       </template>
 
       <template v-if="title || $slots.title" #title>
         <slot name="title">
-          {{ title }}
+          <p class="type-base-600 text-gray-800;">{{ title }}</p>
         </slot>
       </template>
 
       <template #content>
         <slot>
-          <p>{{ content }}</p>
+          <p class="type-small-400 text-gray-800">{{ content }}</p>
         </slot>
       </template>
     </Card>
@@ -34,7 +34,9 @@ import ConditionalClickWrapper from '@/utils/ConditionalClickWrapper.vue';
 import { Icon } from '@/components/Icon';
 import Card from 'primevue/card';
 import { IconName } from '../Icon';
-import { computed } from 'vue';
+import { computed, useAttrs } from 'vue';
+
+const attrs = useAttrs();
 
 const props = withDefaults(
   defineProps<{
@@ -69,6 +71,7 @@ defineSlots<{
 const isClickable = computed(() => Boolean(props.onClick) || props.to);
 const computedClasses = computed(() => [
   `uic-card`,
+  attrs.class,
   { clickable: isClickable.value, disabled: props.disabled }
 ]);
 const clickWrapperClasses = computed(() =>
@@ -94,12 +97,7 @@ const cardClasses = computed(() =>
   }
 
   [data-pc-section='title'] {
-    @apply type-base-600 text-gray-800;
     @apply mb-1;
-  }
-
-  [data-pc-section='content'] {
-    @apply type-small-400 text-gray-800;
   }
 }
 </style>
