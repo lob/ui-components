@@ -96,6 +96,7 @@ export const IconName = {
   SIGNAL: 'Signal',
   SUCCESS: 'Success',
   TAG: 'Tag',
+  TEMPLATE_MODE_SWTICH: 'TemplateModeSwitch',
   TRIANGLE_EXCLAMATION: 'TriangleExclamation',
   TRUCK: 'Truck',
   UNVERIFIED: 'Unverified',

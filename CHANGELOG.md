@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.81
+
+- Add `TemplateModeSwitch` icon
+
 ## v2.0.80
 
 - Add PrimeVue `tooltip` directive to plugin installation
