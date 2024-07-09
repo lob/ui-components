@@ -50,7 +50,7 @@
     @apply transition-colors;
     box-shadow: none !important;
 
-    &:focus-within {
+    &:focus-visible {
       @apply outline-1 outline-gray-800;
       @apply outline-offset-2;
       @apply outline-dashed;

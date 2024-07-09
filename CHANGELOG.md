@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v2.0.82
+
+- Update `Card` component
+- Add `Chip` component
+
 ## v2.0.81
 
 - Add `TemplateModeSwitch` icon
