@@ -7,45 +7,47 @@
     :disabled
     @[onClick&&`click`]="$emit('click', $event)"
   >
-    <Panel
-      :class="!isClickable ? computedClasses : undefined"
-      v-bind="!isClickable ? $attrs : undefined"
-      data-testid="uic-tile"
-    >
-      <template #header>
-        <slot name="header" />
-        <LoadingSpinnerIcon v-if="isSlotEmpty($slots.default) && loading" />
-      </template>
-
-      <template #icons>
-        <div v-if="isClickable" class="uic-panel-click-icon">
-          <Icon :icon="IconName.NEXT" />
-        </div>
-      </template>
-
-      <template #default>
-        <template v-if="!isSlotEmpty($slots.default) && loading">
-          <Skeleton
-            :height="size === TileSize.LG ? '32px' : '28px'"
-            width="50%"
-          />
+    <template #default="{ attrs }">
+      <Panel
+        :class="!isClickable ? computedClasses : undefined"
+        v-bind="attrs"
+        data-testid="uic-tile"
+      >
+        <template #header>
+          <slot name="header" />
+          <LoadingSpinnerIcon v-if="isSlotEmpty($slots.default) && loading" />
         </template>
-        <Alert v-else-if="error" variant="error">
-          {{ error }}
-        </Alert>
-        <template v-else>
-          <div :class="['uic-panel-content', { loading }]">
-            <slot name="default" />
-            <p
-              v-if="$slots['subtext']"
-              :class="['uic-panel-subcontent', { loading }]"
-            >
-              <slot name="subtext" />
-            </p>
+
+        <template #icons>
+          <div v-if="isClickable" class="uic-panel-click-icon">
+            <Icon :icon="IconName.NEXT" />
           </div>
         </template>
-      </template>
-    </Panel>
+
+        <template #default>
+          <template v-if="!isSlotEmpty($slots.default) && loading">
+            <Skeleton
+              :height="size === TileSize.LG ? '32px' : '28px'"
+              width="50%"
+            />
+          </template>
+          <Alert v-else-if="error" variant="error">
+            {{ error }}
+          </Alert>
+          <template v-else>
+            <div :class="['uic-panel-content', { loading }]">
+              <slot name="default" />
+              <p
+                v-if="$slots['subtext']"
+                :class="['uic-panel-subcontent', { loading }]"
+              >
+                <slot name="subtext" />
+              </p>
+            </div>
+          </template>
+        </template>
+      </Panel>
+    </template>
   </ConditionalClickWrapper>
 </template>
 

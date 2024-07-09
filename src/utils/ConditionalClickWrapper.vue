@@ -13,7 +13,7 @@
       :disabled
       @click="$emit('click', $event)"
     >
-      <slot />
+      <slot :attrs="!isLink && !isButton ? $attrs : undefined" />
     </ConditionalWrapper>
   </ConditionalWrapper>
 </template>
