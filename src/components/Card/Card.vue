@@ -1,31 +1,33 @@
 <template>
   <ConditionalClickWrapper
     v-bind="$attrs"
-    :to
-    :target
     :class="clickWrapperClasses"
     :disabled
+    :target
+    :to
     @[onClick&&`click`]="$emit('click', $event)"
   >
-    <Card :class="cardClasses">
-      <template v-if="icon" #header>
-        <span class="uic-card-icon-container">
-          <Icon :icon size="xxl" />
-        </span>
-      </template>
+    <template #default="{ attrs: slotAttrs }">
+      <Card v-bind="slotAttrs" :class="cardClasses">
+        <template v-if="icon" #header>
+          <span class="uic-card-icon-container">
+            <Icon :icon size="xxl" />
+          </span>
+        </template>
 
-      <template v-if="title || $slots.title" #title>
-        <slot name="title">
-          <p class="type-base-600 text-gray-800;">{{ title }}</p>
-        </slot>
-      </template>
+        <template v-if="title || $slots.title" #title>
+          <slot name="title">
+            <p class="type-base-600 text-gray-800;">{{ title }}</p>
+          </slot>
+        </template>
 
-      <template #content>
-        <slot>
-          <p class="type-small-400 text-gray-800">{{ content }}</p>
-        </slot>
-      </template>
-    </Card>
+        <template #content>
+          <slot>
+            <p class="type-small-400 text-gray-800">{{ content }}</p>
+          </slot>
+        </template>
+      </Card>
+    </template>
   </ConditionalClickWrapper>
 </template>
 

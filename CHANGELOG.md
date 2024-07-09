@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.83
+
+- Fix attribute handling for conditionally clickable components
+
 ## v2.0.82
 
 - Update `Card` component
