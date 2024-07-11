@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v2.0.84
+
+- Improve `Overlay` flexibility
+- Add `Filter` icon
+
 ## v2.0.83
 
 - Fix attribute handling for conditionally clickable components

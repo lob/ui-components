@@ -27,7 +27,7 @@ import { Primary } from './Overlay.stories';
 </script>
 
 <template>
-  <button @click="(e) => overlayRef.toggle(e)">Toggle Overlay</button>
+  <button @click="overlayRef.toggle($event)">Toggle Overlay</button>
   <Overlay ref="overlayRef" />
 </template>
 ```
