@@ -62,6 +62,7 @@ export const IconName = {
   FILE_ALT: 'FileAlt',
   FILE_INFO: 'FileInfo',
   FILE_SHARE: 'FileShare',
+  FILTER: 'Filter',
   FIRE: 'Fire',
   FOLDER_INFO: 'FolderInfo',
   FUTURE: 'Future',
