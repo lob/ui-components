@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v2.0.85
+
+- Improve `Overlay` interface
+- Add `Minus` icon
+- Add `Integrations` icon
+
 ## v2.0.84
 
 - Improve `Overlay` flexibility

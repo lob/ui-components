@@ -10,6 +10,8 @@
         leaveToClass: 'opacity-0 scale-[.98]'
       }
     }"
+    @show="$emit('show')"
+    @hide="$emit('hide')"
   >
     <div v-bind="contentProps">
       <slot />
@@ -21,7 +23,7 @@
 import OverlayPanel from 'primevue/overlaypanel';
 import { HTMLAttributes, ref } from 'vue';
 
-const overlay = ref();
+const overlay = ref<InstanceType<typeof OverlayPanel>>();
 
 withDefaults(
   defineProps<{
@@ -32,8 +34,15 @@ withDefaults(
   }
 );
 
+defineEmits<{
+  (e: 'hide'): void; // eslint-disable-line no-unused-vars
+  (e: 'show'): void; // eslint-disable-line no-unused-vars
+}>();
+
 defineExpose({
-  toggle: (e: Event) => overlay.value.toggle(e)
+  hide: () => overlay.value?.hide(),
+  show: (e: Event) => overlay.value?.show(e),
+  toggle: (e: Event) => overlay.value?.toggle(e)
 });
 </script>
 
