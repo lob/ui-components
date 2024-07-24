@@ -56,7 +56,7 @@ export const Primary: StoryObj<typeof Menu> = {
     items: [
       {
         label: 'Create (External Link)',
-        to: 'https://google.com',
+        to: 'https://lob.com',
         target: '_blank',
         key: 'test1',
         icon: IconName.PLUS
