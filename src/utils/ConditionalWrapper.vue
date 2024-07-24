@@ -2,7 +2,7 @@
   <component :is="tag" v-if="tag" v-bind="$attrs">
     <slot />
   </component>
-  <slot v-else v-bind="$attrs" />
+  <slot v-else attrs="$attrs" />
 </template>
 
 <script setup lang="ts">

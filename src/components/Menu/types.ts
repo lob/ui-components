@@ -1,6 +1,7 @@
 import { IconName } from '../Icon';
 
 export interface MenuItem {
+  class?: string;
   label: string;
   to?: string;
   disabled?: boolean;

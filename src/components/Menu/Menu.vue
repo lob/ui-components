@@ -33,6 +33,7 @@
         :to="item.item.url"
         :href="item.item.url"
         :target="item.item.target"
+        :class="item.item.class"
       >
         <span
           :class="[
@@ -104,6 +105,7 @@ const pvMenuItems = computed<PrimeVueMenuItem[]>(() =>
       pvItem.disabled = item.disabled;
       pvItem.visible = item.visible;
       pvItem.target = item.target;
+      pvItem.class = item.class;
     }
 
     return pvItem;

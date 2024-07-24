@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.86
+
+- Adds `class` property to `MenuItem` type
+
 ## v2.0.85
 
 - Improve `Overlay` interface
