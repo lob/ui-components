@@ -38,7 +38,7 @@ withDefaults(
     disabled?: boolean;
     spaceEvenly?: boolean;
     label?: string;
-    labelAttributes?: LabelHTMLAttributes;
+    labelAttributes?: LabelHTMLAttributes & Record<string, unknown>;
     /** Simply adds an asterisk to the `legend`, does not enforce required on `RadioButton`s. */
     required?: boolean;
     hideLabel?: boolean;

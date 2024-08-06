@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.88
+
+- Fixes typing of `-attribute` props to allow `data-` attributes on `RadioButton` and `RadioButtonGroup`
+
 ## v2.0.87
 
 - Bug fixes and improvements of the `RadioButton` component
