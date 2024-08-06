@@ -49,10 +49,10 @@ withDefaults(
     helperText?: string;
     icon?: IconName;
     id: string;
-    inputAttributes?: InputHTMLAttributes;
+    inputAttributes?: InputHTMLAttributes & Record<string, unknown>;
     label?: string;
-    labelContainerAttributes?: HTMLAttributes;
-    labelAttributes?: LabelHTMLAttributes;
+    labelContainerAttributes?: HTMLAttributes & Record<string, unknown>;
+    labelAttributes?: LabelHTMLAttributes & Record<string, unknown>;
     loading?: boolean;
     name: string;
     readonly?: boolean;
@@ -132,7 +132,7 @@ $disabled-radio: '.uic-radio-button-input:disabled';
     }
 
     .variant-outlined & {
-      @apply px-6 py-3;
+      @apply px-4 p-3;
       @apply min-w-[16rem];
     }
 
