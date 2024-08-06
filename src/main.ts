@@ -28,6 +28,7 @@ const ComponentLibrary = {
 
 // TODO Utilize the components export but first we will have to remove global usage.
 export * from './components/Badge';
+export * from './components/Chip';
 export * from './components/ColorPicker';
 export * from './components/DataTable';
 export { default as Column } from 'primevue/column';
@@ -41,6 +42,7 @@ export * from './components/Modal';
 export * from './components/Overlay';
 export * from './components/Panel';
 export * from './components/Pagination';
+export * from './components/RadioButton';
 export * from './components/Skeleton';
 export * from './components/Steps';
 export * from './components/Table';

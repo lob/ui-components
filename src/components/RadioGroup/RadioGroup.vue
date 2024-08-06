@@ -13,6 +13,7 @@
 </template>
 
 <script>
+/** @deprecated Utilize the `RadioButtonGroup` component */
 export default {
   name: 'RadioGroup',
   props: {
