@@ -22,8 +22,6 @@ export { default as MegaButton } from './MegaButton/MegaButton';
 export { default as Multiselect } from './Multiselect/Multiselect';
 export { default as NumberInput } from './NumberInput/NumberInput.vue';
 export { default as ProgressBar } from './ProgressBar/ProgressBar';
-export { default as RadioButton } from './RadioButton/RadioButton';
-export { default as RadioButtonLarge } from './RadioButtonLarge/RadioButtonLarge';
 export { default as RadioGroup } from './RadioGroup/RadioGroup';
 export { default as SearchBar } from './SearchBar/SearchBar';
 export { default as Subnavigation } from './Subnavigation/Subnavigation';

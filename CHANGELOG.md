@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v2.0.87
+
+- Bug fixes and improvements of the `RadioButton` component
+- Added `RadioButtonGroup` component to replace `RadioGroup`
+- Deprecates `RadioGroup`
+
+### Breaking Changes
+
+- Removes `RadioButtonLarge` component
+
 ## v2.0.86
 
 - Adds `class` property to `MenuItem` type
