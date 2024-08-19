@@ -50,6 +50,15 @@ const Template = (args, { argTypes }) => ({
     '<RadioButton v-bind="args" v-model="vModel"><template #content>Some random text content for card</template></RadioButton>'
 });
 
+const HelperSlotTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { RadioButton },
+  data: () => ({ vModel }),
+  setup: () => ({ args }),
+  template:
+    '<RadioButton v-bind="args" v-model="vModel"><template #helper>You can put <lob-link class="text-blue-600 hover:text-blue-500" to="/internal"> hyperlinks </lob-link> in here!</template></RadioButton>'
+});
+
 export const Primary = Template.bind({});
 Primary.args = {
   name: 'postcard-size',
@@ -66,6 +75,14 @@ WithHelperText.args = {
   label: '4x6',
   value: '4x6',
   helperText: 'Standard Postcard Size and a second line of text'
+};
+
+export const WithHelperSlot = HelperSlotTemplate.bind({});
+WithHelperSlot.args = {
+  name: 'postcard-size',
+  id: '4x6',
+  label: '4x6',
+  value: '4x6'
 };
 
 export const WithIcon = Template.bind({});

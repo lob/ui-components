@@ -64,4 +64,16 @@ describe('RadioButton', () => {
     expect(emittedEvent).toHaveProperty('input');
     expect(emittedEvent.input[0]).toEqual([props.value]);
   });
+
+  it('can accept content in the `helper` slot', async () => {
+    const props = initialProps;
+    const { getByText } = render(RadioButton, {
+      props,
+      slots: {
+        helper: 'Helper text'
+      }
+    });
+    const helperContent = getByText('Helper text');
+    expect(helperContent).toBeInTheDocument();
+  });
 });
