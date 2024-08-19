@@ -28,15 +28,21 @@
           <slot name="chips" />
         </div>
       </span>
-      <span v-if="helperText" class="uic-radio-button-helper">{{
-        helperText
-      }}</span>
+      <span class="uic-radio-button-helper">
+        <slot v-if="hasHelperTextSlotContent" name="helper" />
+        <span v-else>{{ helperText }}</span>
+      </span>
     </div>
   </label>
 </template>
 
 <script setup lang="ts" generic="Value">
-import { HTMLAttributes, InputHTMLAttributes, LabelHTMLAttributes } from 'vue';
+import {
+  HTMLAttributes,
+  InputHTMLAttributes,
+  LabelHTMLAttributes,
+  computed
+} from 'vue';
 
 import { RadioButtonVariant } from './constants';
 import { LoadingSpinnerIcon } from '../LoadingSpinnerIcon';
@@ -82,10 +88,15 @@ defineEmits<{
   (e: 'input', value: Value): void; // eslint-disable-line no-unused-vars
 }>();
 
-defineSlots<{
+const slots = defineSlots<{
   default: () => any;
   chips: () => any;
+  helper: () => any;
 }>();
+
+const hasHelperTextSlotContent = computed(() => {
+  return Boolean(slots.helper);
+});
 
 const modelValue = defineModel<Value>();
 </script>

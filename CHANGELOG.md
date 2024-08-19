@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.89
+
+- Slot `helper` added `RadioButton` as alternative to `helperText`
+
 ## v2.0.88
 
 - Fixes typing of `-attribute` props to allow `data-` attributes on `RadioButton` and `RadioButtonGroup`
