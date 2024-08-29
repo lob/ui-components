@@ -1,3 +1,37 @@
-## Usage
+import { Canvas, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
+import { Primary } from './SearchBar.stories';
 
-TBD
+# AdvancedSearchBar
+
+This Advanced Search Bar component is designed to render an input for the user to enter their search term and then return multi tabled search from Recipients, Campaigns and Templates.
+
+<Canvas of={Primary} />
+
+## How to Use
+
+To use this component, you must provide a `searchFunction` to fetch search results. The function must return an array. The array must contain objects for each result group with nested results within it.
+
+The component also has 3 optional props. Count an option to display the a number of search results that differs from the number rendered. Link a link to see all the search results. Footer an option to display the footer for the search results.
+
+The table has a 2 slots, Header slot for you to define the header for each result group and body how to render a single result row which it will use to iterate and render each result. You can provide whatever markup you want to be rendered within the slots.
+
+To use this component, here is an example
+
+```html
+
+<AdvancedSearchBar searchFunction="myCustomSearch">
+  <template #header="{result} class="min-w-full">
+    <Icon v-if="result.icon" class="mr-1" :icon="result.icon"/>
+    {{ result.title }}
+  </template>
+  <template #body="{ result }">
+    <div v-if="result">
+      {{ result.name }}
+    </div>
+  </template>
+</AdvancedSearchBar>
+```
+
+## Props
+
+<ArgTypes story={PRIMARY_STORY} />
