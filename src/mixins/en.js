@@ -46,7 +46,9 @@ export default {
     loading: 'Loading, please wait...',
     resultsPrefix: 'View all',
     resultsSuffix: 'results...',
-    noResults: 'No results found'
+    noResults: 'No results found',
+    matchingResults: 'matching results',
+    seeAllResults: 'See all results'
   },
   dropzone: {
     yourFile: 'your file',
