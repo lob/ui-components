@@ -4,12 +4,13 @@
       id="searchBar"
       v-model="searchTerm"
       class="min-w-full"
+      data-testid="searchBar"
       :label="t('search.textLabel')"
       :sr-only-label="true"
       @focus="visible = true"
     >
       <template #iconLeft>
-        <MagnifyingGlass size="l" />
+        <Icon icon="MagnifyingGlass" />
       </template>
       <template #iconRight>
         <button
@@ -22,7 +23,7 @@
           data-testid="clearSearchButton"
           @click="clearSearch"
         >
-          <XmarkLarge />
+          <Icon icon="Close" />
         </button>
       </template>
     </TextInput>
@@ -85,14 +86,12 @@
   </div>
 </template>
 <script setup lang="ts">
-import TextInput from '../TextInput/TextInput';
-import LobTable from '../Table/Table';
-import TableHeader from '../Table/TableHeader';
-import TableBody from '../Table/TableBody';
-import TableRow from '../Table/TableRow';
+import TextInput from '../TextInput/TextInput.vue';
+import LobTable from '../Table/Table.vue';
+import TableHeader from '../Table/TableHeader.vue';
+import TableBody from '../Table/TableBody.vue';
+import TableRow from '../Table/TableRow.vue';
 import LobLink from '../Link/Link.vue';
-import MagnifyingGlass from '../Icons/MagnifyingGlass';
-import XmarkLarge from '../Icons/XmarkLarge';
 import { ref, watch, computed, onMounted, onUnmounted } from 'vue';
 import { Icon, IconName } from '../Icon';
 
@@ -100,8 +99,8 @@ const searchTerm = ref('');
 const searchResults = ref([]);
 const searching = ref(false);
 const visible = ref(false);
-const timeout = ref(null);
-const searchBar = ref(null);
+const timeout = ref<number | null>(null);
+const searchBar = ref<null | HTMLDivElement>(null);
 
 const props = withDefaults(
   defineProps<{
@@ -120,27 +119,23 @@ const props = withDefaults(
 const disabled = computed(() => !searchTerm.value);
 const totalResults = computed(() => props.count);
 
-function search(searchTerm: string) {
-  searchResults.value = ref([]);
-  props
-    .searchFunction(searchTerm)
-    .then((results) => {
-      searchResults.value = results;
-    })
-    .finally(() => {
-      searching.value = false;
-    });
+async function search(searchTerm: string) {
+  searchResults.value = [];
+  searching.value = true;
+  searchResults.value = await props.searchFunction(searchTerm);
+  searching.value = false;
 }
 
-function debounceSearch(searchTerm: string, delayMs: number = 500) {
-  searching.value = true;
-  clearTimeout(timeout);
+function debounceSearch(searchTerm: string, delayMs: number = 0) {
+  if (timeout.value !== null) {
+    clearTimeout(timeout.value);
+  }
   timeout.value = setTimeout(async () => {
     search(searchTerm);
-  }, delayMs);
+  }, delayMs) as unknown as number;
 }
 
-watch(searchTerm, async (newSearchTerm) => {
+watch(searchTerm, (newSearchTerm) => {
   if (newSearchTerm && newSearchTerm !== '') {
     visible.value = true;
     debounceSearch(newSearchTerm);
@@ -159,11 +154,11 @@ function hide() {
   visible.value = false;
 }
 
-function onClickOutside($event) {
+function onClickOutside($event: MouseEvent) {
   if (searchBar.value) {
     const clickOnTheContainer = searchBar.value === $event.target;
     const clickOnChild =
-      searchBar.value && searchBar.value.contains($event.target);
+      searchBar.value && searchBar.value.contains($event.target as Node);
 
     if (!clickOnTheContainer && !clickOnChild) {
       hide();

@@ -3,7 +3,7 @@ import mdx from './AdvancedSearchBar.mdx';
 import routeDecorator, {
   routeTemplate
 } from '../../../.storybook/routeDecorator';
-import { IconName } from '../Icon';
+import { Icon, IconName } from '../Icon';
 
 export default {
   title: 'Components/Advanced Search Bar',
@@ -27,7 +27,7 @@ export default {
 
 const PrimaryTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { AdvancedSearchBar },
+  components: { Icon, AdvancedSearchBar },
   setup: () => ({ args }),
   template: `
     <AdvancedSearchBar v-bind='args'>
@@ -43,7 +43,7 @@ const PrimaryTemplate = (args, { argTypes }) => ({
           class="min-w-full text-gray-700 text-sm font-medium hover:text-primary-700 flex"
         >
           <div v-if="result">
-            {{ result }}
+            {{ result.name }}
           </div>
         </div>
       </template>
@@ -61,17 +61,17 @@ Primary.args = {
         results: [
           {
             name: 'John Doe',
-            description: 'A postcard to John Doe',
+            description: 'A postcard to John Doe for Texas',
             type: 'postcard'
           },
           {
             name: 'Jane Doe',
-            description: 'A postcard to Jane Doe',
+            description: 'A postcard to Jane Doe for California',
             type: 'postcard'
           },
           {
             name: 'John Smith',
-            description: 'soccer postcard',
+            description: 'soccer postcard going to Texas',
             type: 'postcard'
           }
         ]
@@ -95,11 +95,11 @@ Primary.args = {
         icon: IconName.CREATIVE,
         results: [
           {
-            name: 'Template with John Doe',
+            name: 'Template with John Doe to be sent to Texas',
             description: 'A template to create postcard for John Doe'
           },
           {
-            name: 'Template with Jane Doe',
+            name: 'Template with Jane Doe to be sent to California',
             description: 'A template to create postcard for Jane Doe'
           }
         ]
@@ -109,7 +109,7 @@ Primary.args = {
       return {
         title: result.title,
         icon: result.icon,
-        results: result.results.filter(
+        items: result.results.filter(
           (eachResult) =>
             eachResult.description.includes(searchTerm) ||
             eachResult.name.includes(searchTerm)
