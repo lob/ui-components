@@ -2,12 +2,8 @@ import '@testing-library/jest-dom';
 import AdvancedSearchBar from '../AdvancedSearchBar.vue';
 import { translate } from '@/mixins';
 import { IconName } from '../../Icon';
-import {
-  RenderOptions,
-  render,
-  fireEvent,
-  waitFor
-} from '@testing-library/vue';
+import { RenderOptions, render, waitFor } from '@testing-library/vue';
+import userEvent from '@testing-library/user-event';
 
 const mixins = [translate];
 
@@ -96,14 +92,14 @@ describe('AdvancedSearchBar', () => {
       ...initialProps
     };
 
-    const { queryByTestId, container } = renderComponent({ props });
+    const { getByLabelText, getByTestId } = renderComponent({ props });
 
-    const input = container.querySelector('#searchBar');
-    await fireEvent.update(input, searchTerm);
+    const input = getByLabelText('Search term') as HTMLInputElement;
+    await userEvent.type(input, searchTerm);
     expect(input.value).toBe(searchTerm);
 
-    const button = queryByTestId('clearSearchButton');
-    await fireEvent.click(button);
+    const button = getByTestId('clearSearchButton') as HTMLElement;
+    await userEvent.click(button);
     expect(input.value).toBe('');
   });
 
@@ -127,10 +123,10 @@ describe('AdvancedSearchBar', () => {
       footer: true
     };
 
-    const { container, getByText } = renderComponent({ props });
+    const { getByLabelText, getByText } = renderComponent({ props });
 
-    const input = container.querySelector('#searchBar');
-    await fireEvent.update(input, searchTerm);
+    const input = getByLabelText('Search term') as HTMLInputElement;
+    await userEvent.type(input, searchTerm);
     expect(input.value).toBe(searchTerm);
 
     await waitFor(() => {
@@ -145,17 +141,19 @@ describe('AdvancedSearchBar', () => {
       count: 1
     };
 
-    const { queryByRole, container, getByText } = renderComponent({ props });
+    const { queryByRole, getByLabelText, getByText } = renderComponent({
+      props
+    });
 
-    const input = container.querySelector('#searchBar');
-    await fireEvent.update(input, searchTerm);
+    const input = getByLabelText('Search term') as HTMLInputElement;
+    await userEvent.type(input, searchTerm);
     expect(input.value).toBe(searchTerm);
 
     let searchResults = queryByRole('results');
     await waitFor(() => {
       expect(getByText('1 matching results')).toBeInTheDocument();
     });
-    await fireEvent.click(container);
+    await userEvent.click(document.body);
     searchResults = queryByRole('results');
     await waitFor(() => {
       expect(searchResults).not.toBeInTheDocument();
@@ -169,16 +167,16 @@ describe('AdvancedSearchBar', () => {
       count: 1
     };
 
-    const { container, getByText } = renderComponent({ props });
+    const { getByLabelText, getByText } = renderComponent({ props });
 
-    const input = container.querySelector('#searchBar');
-    await fireEvent.update(input, searchTerm);
+    const input = getByLabelText('Search term') as HTMLInputElement;
+    await userEvent.type(input, searchTerm);
     expect(input.value).toBe(searchTerm);
 
     await waitFor(() => {
       expect(getByText('1 matching results')).toBeInTheDocument();
     });
-    await fireEvent.click(container);
+    await userEvent.click(document.body);
     expect(input.value).toBe(searchTerm);
   });
 });
