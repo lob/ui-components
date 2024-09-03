@@ -74,6 +74,7 @@ export const IconName = {
   LAYERS: 'Layers',
   LIGHTNING: 'Lightning',
   LOCATION_PIN: 'LocationPin',
+  MAGNIFYING_GLASS: 'MagnifyingGlass',
   MONEY_BILL: 'MoneyBill',
   MINUS: 'Minus',
   NAV_ARROW_LEFT: 'NavArrowLeft',

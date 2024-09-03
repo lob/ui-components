@@ -1,4 +1,5 @@
 export { default as Accordion } from './Accordion/Accordion';
+export { default as AdvancedSearchBar } from './AdvancedSearchBar/AdvancedSearchBar';
 export { default as Alert } from './Alert/Alert';
 export { default as Breadcrumb } from './Breadcrumb/Breadcrumb';
 export { default as LobButton } from './Button/Button';
