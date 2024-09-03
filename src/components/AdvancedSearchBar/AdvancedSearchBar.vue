@@ -37,9 +37,9 @@
         {{ t('search.loading') }}
       </template>
       <!-- If search is done and seach has results, show the results -->
-      <template v-else-if="!searching && searchResults">
+      <template v-else-if="!searching && props.data">
         <div class="search-body m-2 border-b">
-          <div v-for="itemGroup in searchResults" :key="itemGroup">
+          <div v-for="itemGroup in props.data" :key="itemGroup.id">
             <LobTable v-if="itemGroup" class="min-w-full mb-4" space="sm">
               <TableHeader>
                 <slot name="header" :result="itemGroup" />
@@ -92,11 +92,10 @@ import TableHeader from '../Table/TableHeader.vue';
 import TableBody from '../Table/TableBody.vue';
 import TableRow from '../Table/TableRow.vue';
 import LobLink from '../Link/Link.vue';
-import { ref, watch, computed, onMounted, onUnmounted } from 'vue';
+import { ref, Ref, watch, computed, onMounted, onUnmounted } from 'vue';
 import { Icon, IconName } from '../Icon';
 
 const searchTerm = ref('');
-const searchResults = ref([]);
 const searching = ref(false);
 const visible = ref(false);
 const timeout = ref<number | null>(null);
@@ -105,6 +104,8 @@ const searchBar = ref<null | HTMLDivElement>(null);
 const props = withDefaults(
   defineProps<{
     searchFunction: Function;
+    //receive the data as a prop. This allows for reactivity.
+    data: Ref<any[]>;
     count?: number;
     link?: string;
     footer?: boolean;
@@ -119,14 +120,11 @@ const props = withDefaults(
 const disabled = computed(() => !searchTerm.value);
 const totalResults = computed(() => props.count);
 
-async function search(searchTerm: string) {
-  searchResults.value = [];
-  searching.value = true;
-  searchResults.value = await props.searchFunction(searchTerm);
-  searching.value = false;
+async function search(searchTerm: string): Promise<void> {
+  await props.searchFunction(searchTerm);
 }
 
-function debounceSearch(searchTerm: string, delayMs: number = 0) {
+function debounceSearch(searchTerm: string, delayMs: number = 50) {
   if (timeout.value !== null) {
     clearTimeout(timeout.value);
   }
@@ -135,24 +133,26 @@ function debounceSearch(searchTerm: string, delayMs: number = 0) {
   }, delayMs) as unknown as number;
 }
 
+function hide() {
+  visible.value = false;
+}
+
+function clearSearch() {
+  //clear search term and fire and forget new search.
+  searchTerm.value = '';
+  search(searchTerm.value);
+  hide();
+}
+
+//watch the search term for any update and search.
 watch(searchTerm, (newSearchTerm) => {
   if (newSearchTerm && newSearchTerm !== '') {
     visible.value = true;
     debounceSearch(newSearchTerm);
+  } else {
+    clearSearch();
   }
 });
-
-function clearSearch() {
-  if (searchTerm.value) {
-    searchTerm.value = '';
-    searchResults.value = [];
-    visible.value = false;
-  }
-}
-
-function hide() {
-  visible.value = false;
-}
 
 function onClickOutside($event: MouseEvent) {
   if (searchBar.value) {
@@ -163,6 +163,8 @@ function onClickOutside($event: MouseEvent) {
     if (!clickOnTheContainer && !clickOnChild) {
       hide();
     }
+  } else {
+    clearSearch();
   }
 }
 

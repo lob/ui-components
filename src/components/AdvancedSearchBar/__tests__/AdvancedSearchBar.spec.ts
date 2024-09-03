@@ -119,6 +119,7 @@ describe('AdvancedSearchBar', () => {
     const searchTerm = 'soccer';
     const props = {
       ...initialProps,
+      data: await initialProps.searchFunction(searchTerm),
       count: 1,
       footer: true
     };
@@ -138,6 +139,7 @@ describe('AdvancedSearchBar', () => {
     const searchTerm = 'soccer';
     const props = {
       ...initialProps,
+      data: await initialProps.searchFunction(searchTerm),
       count: 1
     };
 
@@ -164,6 +166,7 @@ describe('AdvancedSearchBar', () => {
     const searchTerm = 'soccer';
     const props = {
       ...initialProps,
+      data: await initialProps.searchFunction(searchTerm),
       count: 1
     };
 
