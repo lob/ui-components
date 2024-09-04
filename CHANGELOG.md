@@ -1,12 +1,16 @@
 # CHANGELOG
 
+## v2.0.92
+
+- Fix bug with the AdvancedSearchbar component and return group title.
+
 ## v2.0.91
 
 - Type `Textarea` component and normalize props
 
 ## v2.0.90
 
--
+- Release AdvancedSearchBar component that displays the search results in multiple groups.
 
 ## v2.0.89
 
