@@ -1,5 +1,6 @@
 import FilterContent from './FilterContent.vue';
-import { LobButton, Checkbox, RadioGroup, RadioButton } from '@/components';
+import { LobButton, Checkbox, RadioGroup } from '@/components';
+import { RadioButton } from '../RadioButton';
 import mdx from './FilterContent.mdx';
 
 export default {
@@ -79,7 +80,7 @@ const WithHeaderTemplate = (args, { argTypes }) => ({
             Filter By
           </div>
         </template>
-        <radio-group legend="Mail Type" sr-only-legend>
+        <radio-button-group label="Mail Type" hide-label>
           <radio-button 
             name="mail-type" 
             value="usps-first-class" 
