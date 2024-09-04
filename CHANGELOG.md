@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.93
+
+- Dev dependency upgrades
+
 ## v2.0.92
 
 - Fix bug with the AdvancedSearchbar component and return group title.

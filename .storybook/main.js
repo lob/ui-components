@@ -5,8 +5,7 @@ module.exports = {
     '@storybook/addon-links',
     '@storybook/addon-docs',
     '@storybook/addon-essentials',
-    '@storybook/addon-a11y',
-    '@storybook/addon-postcss'
+    '@storybook/addon-a11y'
   ],
 
   staticDirs: ['../src/assets/images'],
