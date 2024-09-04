@@ -51,7 +51,10 @@
                   class="text-gray-500 hover:text-primary-700 cursor-pointer"
                   @click="hide"
                 >
-                  <slot name="body" :result="item" />
+                  <slot
+                    name="body"
+                    :result="{ item, type: itemGroup?.title }"
+                  />
                 </TableRow>
               </TableBody>
             </LobTable>
