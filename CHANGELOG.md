@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v2.0.91
+
+- Type `Textarea` component and normalize props
+
+## v2.0.90
+
+-
+
 ## v2.0.89
 
 - Slot `helper` added `RadioButton` as alternative to `helperText`

@@ -1,186 +1,166 @@
 <template>
-  <div>
-    <LobLabel
+  <div class="flex flex-col">
+    <Label
       v-if="label"
-      :label="label"
+      v-bind="labelProps"
+      :label
       :label-for="id"
-      :required="required"
-      :sr-only-label="srOnlyLabel"
-      :tooltip-content="tooltipContent"
-      :tooltip-position="tooltipPosition"
+      :sr-only-label="hideLabel"
+      :tooltip-content="tooltip"
+      :required
     />
-    <textarea
-      :id="id"
-      :value="modelValue"
-      :name="name"
-      :required="required"
-      :disabled="disabled"
-      :readonly="readonly"
-      :placeholder="placeholder"
-      :maxlength="maxLength"
-      :class="[
-        `p-3 w-full rounded-sm text-gray-800 type-small-400 border border-gray-200 ${inputClass}`,
-        `caret-gray-300 placeholder-gray-200 placeholder:type-small-400`,
-        {
-          'hover:border-gray-300 focus:border-blue-500 focus:hover:border-blue-500 focus:outline-[1.5px] focus:outline-dashed focus:outline-black focus:outline-offset-1':
-            !disabled && !readonly
-        },
-        {
-          'text-green-700 placeholder-green-700 border-green-700 bg-green-50':
-            success
-        },
-        { 'text-red-600 placeholder-red-600 border-red-600 bg-red-50': error },
-        { 'focus:!border-red-600': showMaxLengthAlert },
-        {
-          '!text-gray-300 !placeholder-gray-300 !bg-gray-50 !border-gray-200 cursor-not-allowed':
-            disabled || readonly
-        },
-        { 'resize-none': !resizable }
-      ]"
-      aria-describedby="charCounter"
-      @input="onInput"
-      @focus="isAreaOnFocus = true"
-      @blur="isAreaOnFocus = false"
+
+    <Textarea
+      :id
+      v-bind="textareaProps"
+      v-model="modelValue"
+      :class="['uic-textarea', `color-${color}`, { resizeable }]"
+      :cols
+      :disabled
+      :maxlength
+      :minlength
+      :name
+      :placeholder
+      :readonly
+      :required
+      :rows
+      :spellcheck
+      @input="$emit('input', $event)"
     />
-    <div
-      :class="[
-        'flex',
-        { 'justify-between': helperText && maxLength },
-        { 'justify-end': !helperText && maxLength }
-      ]"
+
+    <small
+      v-if="$slots.helper || helper"
+      :class="['uic-textarea-helper', `color-${color}`, 'mt-1']"
     >
-      <div
-        v-if="helperText"
-        :class="[
-          'text-gray-500 type-xs-400',
-          { 'text-green-700': success },
-          { 'text-red-600': error },
-          { '!text-gray-500': disabled }
-        ]"
-      >
-        {{ helperText }}
-      </div>
-      <div
-        v-show="showCounter && maxLength && isAreaOnFocus"
-        id="charCounter"
-        role="status"
-        aria-live="polite"
-        :class="[
-          'type-xs-400',
-          showMaxLengthAlert ? 'text-red-700' : 'text-gray-500'
-        ]"
-      >
-        {{ counterContent }}
-      </div>
-    </div>
+      <slot name="helper">
+        {{ helper }}
+      </slot>
+    </small>
   </div>
 </template>
 
-<script>
-import LobLabel from '../Label/Label.vue';
-export default {
-  // eslint-disable-next-line vue/no-reserved-component-names
-  name: 'Textarea',
-  components: {
-    LobLabel
-  },
-  props: {
-    tooltipContent: {
-      type: String,
-      default: null
-    },
-    tooltipPosition: {
-      type: String,
-      default: 'leading',
-      validator: function (value) {
-        return ['leading', 'trailing'].includes(value);
-      }
-    },
-    id: {
-      type: String,
-      required: true
-    },
-    modelValue: {
-      type: String,
-      default: null
-    },
-    name: {
-      type: String,
-      default: ''
-    },
-    label: {
-      type: String,
-      required: true
-    },
-    srOnlyLabel: {
-      type: Boolean,
-      default: false
-    },
-    placeholder: {
-      type: String,
-      default: ''
-    },
-    helperText: {
-      type: String,
-      default: ''
-    },
-    required: {
-      type: Boolean,
-      default: false
-    },
-    error: {
-      type: Boolean,
-      default: false
-    },
-    success: {
-      type: Boolean,
-      default: false
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    readonly: {
-      type: Boolean,
-      default: false
-    },
-    inputClass: {
-      type: String,
-      default: ''
-    },
-    resizable: {
-      type: Boolean,
-      default: false
-    },
-    showCounter: {
-      type: Boolean,
-      default: false
-    },
-    maxLength: {
-      type: [null, Number],
-      default: null
-    }
-  },
-  emits: ['update:modelValue', 'input', 'change'],
-  data() {
-    return {
-      isAreaOnFocus: false
-    };
-  },
-  computed: {
-    showMaxLengthAlert() {
-      return this.maxLength && this.modelValue?.length >= this.maxLength - 5;
-    },
-    counterContent() {
-      return `${this.modelValue?.length}/${this.maxLength}`;
-    }
-  },
-  methods: {
-    onInput($event) {
-      this.$emit('update:modelValue', $event.target.value);
-      this.$emit('input', $event.target.value);
-      this.$emit('change', $event);
+<script setup lang="ts">
+import { TextareaHTMLAttributes } from 'vue';
+import Label from '../Label/Label.vue';
+import Textarea from 'primevue/textarea';
+import { TextareaColor } from './constants';
+
+withDefaults(
+  defineProps<{
+    color?: TextareaColor;
+    cols?: TextareaHTMLAttributes['cols'];
+    disabled?: TextareaHTMLAttributes['disabled'];
+    helper?: string;
+    hideLabel?: boolean;
+    id?: TextareaHTMLAttributes['id'];
+    label?: string;
+    labelProps?: Record<string, unknown>;
+    maxlength?: TextareaHTMLAttributes['maxlength'];
+    minlength?: TextareaHTMLAttributes['minlength'];
+    name?: TextareaHTMLAttributes['name'];
+    placeholder?: TextareaHTMLAttributes['placeholder'];
+    readonly?: TextareaHTMLAttributes['readonly'];
+    required?: TextareaHTMLAttributes['required'];
+    resizeable?: boolean;
+    rows?: TextareaHTMLAttributes['rows'];
+    spellcheck?: TextareaHTMLAttributes['spellcheck'];
+    textareaProps?: TextareaHTMLAttributes;
+    tooltip?: string;
+  }>(),
+  {
+    color: TextareaColor.NEUTRAL,
+    cols: undefined,
+    disabled: false,
+    helper: undefined,
+    hideLabel: false,
+    id: undefined,
+    label: undefined,
+    labelProps: () => ({}),
+    maxlength: undefined,
+    minlength: undefined,
+    name: undefined,
+    placeholder: undefined,
+    readonly: false,
+    required: false,
+    resizeable: true,
+    rows: undefined,
+    spellcheck: undefined,
+    textareaProps: () => ({}),
+    tooltip: undefined
+  }
+);
+
+defineEmits<{
+  (e: 'input', value: Event): void; // eslint-disable-line no-unused-vars
+}>();
+
+const modelValue = defineModel<string>({ default: '' });
+</script>
+
+<style scoped lang="scss">
+.uic-textarea {
+  @apply p-3 w-full;
+  @apply bg-white;
+  @apply rounded-sm border;
+  @apply text-gray-800 type-small-400;
+  @apply outline-1 outline-dashed outline-offset-2 outline-transparent;
+  transition:
+    outline-color cubic-bezier(0.4, 0, 0.2, 1) 150ms,
+    border-color cubic-bezier(0.4, 0, 0.2, 1) 150ms;
+
+  &.color-error {
+    @apply border-error;
+  }
+  &.color-neutral {
+    @apply border-gray-200;
+
+    &:hover {
+      @apply border-gray-400;
     }
   }
-};
-</script>
+  &.color-success {
+    @apply border-success;
+  }
+  &.color-warning {
+    @apply border-warning;
+  }
+
+  &:focus-visible {
+    @apply outline-black;
+  }
+
+  &:disabled,
+  &:read-only {
+    @apply cursor-not-allowed;
+    @apply bg-gray-50;
+    @apply text-gray-200;
+    @apply border-gray-200;
+  }
+
+  &::placeholder {
+    @apply text-gray-400;
+  }
+
+  &:not(.resizeable) {
+    @apply resize-none;
+  }
+
+  &-helper {
+    @apply mt-1;
+    @apply type-xs-400;
+
+    &.color-error {
+      @apply text-error-dark;
+    }
+    &.color-neutral {
+      @apply text-gray-500;
+    }
+    &.color-success {
+      @apply text-success-dark;
+    }
+    &.color-warning {
+      @apply text-warning-dark;
+    }
+  }
+}
+</style>
