@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.96
+
+- Vite upgrade
+
 ## v2.0.95
 
 - `jest-dom` upgrade
