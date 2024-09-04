@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.94
+
+- Vite upgrade
+
 ## v2.0.93
 
 - Dev dependency upgrades
