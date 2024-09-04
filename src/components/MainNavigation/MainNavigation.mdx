@@ -1,9 +1,12 @@
-import { Canvas, ArgTypes, PRIMARY_STORY } from '@storybook/addon-docs';
+import { Canvas, ArgTypes, PRIMARY_STORY, Meta } from '@storybook/addon-docs';
 import {
   FullNavigation,
   Item,
   ItemWithChildItems
 } from './MainNavigation.stories';
+import * as MainNavigationStories from './MainNavigation.stories';
+
+<Meta of={MainNavigationStories} />
 
 # MainNavigation
 
