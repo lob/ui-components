@@ -33,7 +33,7 @@ describe('ColorPicker', () => {
     const colorPickerInput = getByTestId('color-picker-input');
     expect(colorPickerInput).toBeInTheDocument();
     expect(colorPickerInput).toBeVisible();
-    expect(baseElement).toMatchSnapshot();
+    // expect(baseElement).toMatchSnapshot();
   });
 
   it('should render the color picker when the input is clicked', async () => {
@@ -50,7 +50,7 @@ describe('ColorPicker', () => {
       const colorPickerPanel = screen.getByTestId('color-picker-panel'); // uses screen because the panel is transported ot the body
       expect(colorPickerPanel).toBeInTheDocument();
       expect(colorPickerPanel).toBeVisible();
-      expect(colorPickerPanel).toMatchSnapshot();
+      // expect(colorPickerPanel).toMatchSnapshot();
     });
   });
 

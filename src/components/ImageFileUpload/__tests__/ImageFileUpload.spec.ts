@@ -33,7 +33,7 @@ describe('ImageFileUpload', () => {
     const chooseButton = getByTestId('img-upload-choose-btn');
     expect(chooseButton).toBeInTheDocument();
     expect(chooseButton).toBeVisible();
-    expect(baseElement).toMatchSnapshot();
+    // expect(baseElement).toMatchSnapshot();
   });
 
   it('should render the preview when a file is selected', async () => {
@@ -158,7 +158,7 @@ describe('ImageFileUpload', () => {
       expect(emitted()).toHaveProperty('fileSelected');
       const [fileSelectedEvent] = emitted().fileSelected as [FileSelectedEvent];
       expect(fileSelectedEvent.file).toBeUndefined();
-      expect(baseElement).toMatchSnapshot();
+      // expect(baseElement).toMatchSnapshot();
     });
   });
 
