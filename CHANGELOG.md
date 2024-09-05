@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.97
+
+- Storybook upgrade
+
 ## v2.0.96
 
 - Vite upgrade
