@@ -12,7 +12,7 @@
     "experimentalDecorators": true,
     "skipLibCheck": true,
     "lib": ["esnext", "dom"],
-    "types": ["vitest/globals", "vite/client", "jest"],
+    "types": ["vitest/globals", "vite/client"],
     "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
