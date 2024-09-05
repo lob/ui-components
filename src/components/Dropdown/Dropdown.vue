@@ -135,13 +135,9 @@
 import { ChevronDown } from '@/components/Icons';
 import DropdownItemGroup from './DropdownItemGroup';
 import DropdownItem from './DropdownItem';
-import { findLastIndex, shallowEquals } from '@/utils';
+import { shallowEquals } from '@/utils';
 import LobLabel from '../Label/Label.vue';
 import ConfirmChangeModal from './ConfirmChangeModal';
-
-if (!Array.prototype.findLastIndex) {
-  Array.prototype.findLastIndex = findLastIndex; //eslint-disable-line
-}
 
 const Keys = {
   Backspace: 'Backspace',

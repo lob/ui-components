@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v2.0.98
+
+- Dependency upgrades
+- Code cleanup
+
 ## v2.0.97
 
 - Storybook upgrade

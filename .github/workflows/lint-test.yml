@@ -1,4 +1,4 @@
-name: Lint and Test
+name: 🧪 Lint and Test
 
 on:
   push:
@@ -22,7 +22,7 @@ jobs:
         uses: './.github/actions/install-node-and-npm'
 
       - name: Install dependencies
-        run: npm ci --legacy-peer-deps
+        run: npm ci
 
       - name: Run lint
         run: npm run format-check
