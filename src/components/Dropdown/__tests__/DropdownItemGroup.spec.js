@@ -55,7 +55,7 @@ describe('DropdownItemGroup', () => {
     expect(emittedEvents).toHaveProperty('click');
 
     // eslint-disable-next-line no-unused-vars
-    const [event, index] = emittedEvents.click[0];
+    const [_, index] = emittedEvents.click[0];
     expect(index).toEqual(0);
   });
 
@@ -71,7 +71,7 @@ describe('DropdownItemGroup', () => {
     expect(emittedEvents).toHaveProperty('mouseenter');
 
     // eslint-disable-next-line no-unused-vars
-    const [event, index] = emittedEvents.mouseenter[0];
+    const [_, index] = emittedEvents.mouseenter[0];
     expect(index).toEqual(0);
   });
 });

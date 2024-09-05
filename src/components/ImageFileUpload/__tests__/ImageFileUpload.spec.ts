@@ -24,7 +24,7 @@ const renderComponent = (options: RenderOptions = {}) =>
 
 describe('ImageFileUpload', () => {
   it('should render correctly', async () => {
-    const { baseElement, getByTestId } = renderComponent({
+    const { getByTestId } = renderComponent({
       props: initialProps
     });
 
@@ -135,7 +135,7 @@ describe('ImageFileUpload', () => {
   });
 
   it('should display an error when the file size exceeds the maxFileSize prop', async () => {
-    const { baseElement, getByRole, container, emitted } = renderComponent({
+    const { getByRole, container, emitted } = renderComponent({
       props: { ...initialProps, maxFileSize: 1 }
     });
 

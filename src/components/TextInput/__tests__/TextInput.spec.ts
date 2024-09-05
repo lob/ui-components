@@ -187,7 +187,7 @@ describe('Text input', () => {
     };
 
     it('the label is correctly associated with the input when the tooltip is trailing', async () => {
-      const { getByLabelText, getByTestId } = render(TextInput, {
+      const { getByLabelText } = render(TextInput, {
         ...DEFAULT_RENDER_OPTIONS,
         props: propsTooltip
       });
@@ -198,7 +198,7 @@ describe('Text input', () => {
     });
 
     it('the label is correctly associated with the input when the tooltip is leading', () => {
-      const { getByLabelText, getByTestId } = render(TextInput, {
+      const { getByLabelText } = render(TextInput, {
         ...DEFAULT_RENDER_OPTIONS,
         props: propsTooltipLeading
       });

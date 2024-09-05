@@ -26,7 +26,7 @@ const renderComponent = (options: RenderOptions = {}) =>
 
 describe('ColorPicker', () => {
   it('should render correctly', async () => {
-    const { baseElement, getByTestId } = renderComponent({
+    const { getByTestId } = renderComponent({
       props: initialProps
     });
 
