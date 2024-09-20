@@ -7,7 +7,7 @@
 
 ## Deprecation Notice
 
-This repository is deprecated and is no longer actively maintained. We recommend using [Alternative Project/Library] for similar functionality.
+This repository is deprecated and is no longer actively maintained. We recommend using PrimeVue for similar functionality.
 
 ### Important Information
 
