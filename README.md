@@ -1,3 +1,28 @@
+# ⚠️ UI-Components - DEPRECATED
+
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+
+> **Warning**
+> This project is no longer maintained and has been archived.
+
+## Deprecation Notice
+
+This repository is deprecated and is no longer actively maintained. We recommend using [Alternative Project/Library] for similar functionality.
+
+### Important Information
+
+- **Last Update:** Sep 5, 2024
+- **Reason for Deprecation:** Moving forward, the project will now be tightly coupled with Lob's internal Dashboard and design system, and will be maintained in that repository.
+- **Recommended Alternative:** [PrimeVue](https://primevue.org/)
+
+---
+
+**Note:** This README now serves as an archive. The information below may be outdated.
+
+---
+
+[Original README content starts here]
+
 # UI Components
 
 Lob's Vue component library. This repo is public. We are building our components in public to showcase the work that Lob is doing to create a consistent design system as well as follow best practices in modern web development and accessibility.
